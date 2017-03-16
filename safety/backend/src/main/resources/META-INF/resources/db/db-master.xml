@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+	
+    <include file="dicas.xml" relativeToChangelogFile="true"/>
+    <include file="historico_dicas.xml" relativeToChangelogFile="true"/>
+    
+    <include file="questionario.xml" relativeToChangelogFile="true"/>
+    <include file="questionario_pergunta.xml" relativeToChangelogFile="true"/>
+    <include file="questionario_resposta.xml" relativeToChangelogFile="true"/>
+    
+	<include file="widgets.xml" relativeToChangelogFile="true"/>
+	<include file="widget_descriptions.xml" relativeToChangelogFile="true"/>
+	<include file="widget_permissions.xml" relativeToChangelogFile="true"/>
+	<include file="widget_images.xml" relativeToChangelogFile="true"/>
+	
+	<include file="historico.xml" relativeToChangelogFile="true"/>
+	<include file="coach.xml" relativeToChangelogFile="true"/>
+	<include file="meta.xml" relativeToChangelogFile="true"/>
+	<include file="metas_dias.xml" relativeToChangelogFile="true"/>
+	<include file="categoria.xml" relativeToChangelogFile="true"/>
+	<include file="anotacao.xml" relativeToChangelogFile="true"/>
+	<include file="coachee.xml" relativeToChangelogFile="true"/><include
+		file="widget_usuario.xml" relativeToChangelogFile="true" />
+</databaseChangeLog>

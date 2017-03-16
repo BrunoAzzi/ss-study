@@ -1,0 +1,77 @@
+<div class="row">
+  <h1>Feature 2cd ba</h1>
+  <form>
+    <div class="form-group">
+
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    </div>
+    <div class="checkbox">
+      <ba-checkbox [(ngModel)]="isChecked" [label]="'Check me out'" [ngModelOptions]="{standalone: true}"></ba-checkbox>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+    <div class="clearfix"></div>
+
+    <h4>Order by: (multiple check boxes)</h4>
+  <input type="checkbox" [(ngModel)]="orderBy" value="rating"> Rating<br/>
+  <input type="checkbox" [(ngModel)]="orderBy" value="date"> Date<br/>
+  <input type="checkbox" [(ngModel)]="orderBy" value="watches"> Watch count<br/>
+  <input type="checkbox" [(ngModel)]="orderBy" value="comments"> Comment count<br/>
+
+  <i>selected items:</i> <b><span *ngFor="let order of orderBy">{{ order }} </span></b><br/><br/>
+
+
+
+  </form>
+
+</div>
+<div class="row">
+<h2>Modal</h2>
+  <button class="btn btn-danger" (click)="showChildModal()">Abrir modal</button>
+  <!-- control modal from parent component -->
+  <!-- Static modal -->
+  <div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content" style="color: #000">
+        <div class="modal-header">
+          <button class="close" aria-label="Close" (click)="staticModal.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">Modal</h4>
+        </div>
+        <div class="modal-body">
+          Body do Modal
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary confirm-btn" (click)="staticModal.hide()">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <!-- regular tabs -->
+    <tabset>
+      <tab title="About me">
+        Its all about me.
+      </tab>
+      <tab title="Contacts">
+        This is content of the contacts tab
+      </tab>
+      <tab title="Map" [disabled]="true">
+        Content of the Map Tab
+      </tab>
+    </tabset>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+### Java ###
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# Eclipse
+.project
+.settings/
+.classpath
+
+/.gradle/
+/bin/
+/build/
+.idea/
+
+

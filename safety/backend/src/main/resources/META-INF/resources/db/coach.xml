@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    
+    <changeSet id="coach" author="Gabriel">
+    
+        <validCheckSum>ANY</validCheckSum>
+
+
+        <createTable tableName="coach">
+            
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            
+            <column name="nome" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+            
+            <column name="email" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+            
+            <column name="senha" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+            
+            <column name="cpf" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+            
+            <column name="sexo" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+            
+            <column  name="data_nascimento" type="INT">
+                <constraints nullable="true"/>
+            </column>
+            
+           <column name="formacao" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+            
+            <column name="empresa_vinculo" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+            
+            <column name="sobre" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+        
+    </changeSet>
+</databaseChangeLog>

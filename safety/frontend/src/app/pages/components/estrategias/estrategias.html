@@ -1,0 +1,43 @@
+<ba-card  baCardClass="with-scroll">
+  <h1>Estratégias</h1>
+  <form>
+    <div class="col-md-12"><label for="input01">Temática</label>
+
+      <select name="estrategias" class="form-control formModal" [(ngModel)]="tematica">
+        <option value="Alimentação">Alimentação</option>
+        <option value="Exercicio">Exercicio</option>
+        <option value="Estresse">Estresse</option>
+        <option value="Estresse">Prevenção</option>
+        <option value="Estresse">Relacionamento</option>
+      </select>
+
+    </div>
+    <div class="col-md-12"><label for="input01">Estratégias</label>
+      <input type="text" class="form-control formModal"  name="estrategias"  [(ngModel)]="estrategiaSearch">
+    </div>
+
+    <div class="col-md-12"><label for="input01">Estratégias</label>
+      <input type="text" class="form-control formModal"  name="estrategias"  [(ngModel)]="estrategiaSearch">
+    </div>
+
+    <div class="col-md-12"><label for="input01">Estratégias</label>
+      <!-- <table>
+        <tr>Respirar para se manter Vivo</tr>
+        <tr>Tomar agua para ficar Hidratado</tr>
+        <tr>Buscar sair um pouco do Computador, seu sedentário</tr>
+      </table> -->
+      <input #input placeholder="Search" id="search">
+          <div class="item" *ngFor="let item of data | searchPipe: input.value">
+            {{item}}
+          </div>
+
+
+
+
+  </div>
+
+
+
+    <input class="btn btn-success pull-right"type="submit" value="Submit">
+  </form>
+</ba-card>

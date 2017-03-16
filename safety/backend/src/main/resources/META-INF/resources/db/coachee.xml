@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    
+    <changeSet id="coachee" author="Gabriel">
+    
+        <validCheckSum>ANY</validCheckSum>
+
+        <createTable tableName="coachee">
+            
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            
+            <column name="nome_coachee" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+            
+             <column name="perfil_coachee" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+            
+            <column name="empresa_coachee" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+            
+            <column name="funcao_coachee" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+            
+            <column name="localidade_coachee" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+            
+             <column  name="peso_coachee" type="FLOAT">
+                <constraints nullable="true"/>
+            </column>
+            
+             <column  name="altura_coachee" type="FLOAT">
+                <constraints nullable="true"/>
+            </column>
+            
+            <column  name="cintura_coachee" type="FLOAT">
+                <constraints nullable="true"/>
+            </column>
+            
+             <column  name="imc_coachee" type="BIGINT">
+                <constraints nullable="true"/>
+            </column>
+            
+             <column  name="foco_alimentacao" type="INT">
+                <constraints nullable="true"/>
+            </column>
+            
+            <column  name="foco_exercicio" type="INT">
+                <constraints nullable="true"/>
+            </column>
+            
+            <column  name="foco_estresse" type="INT">
+                <constraints nullable="true"/>
+            </column>
+            
+            <column  name="foco_prevencao" type="INT">
+                <constraints nullable="true"/>
+            </column>
+            
+            <column  name="foco_relacionamento" type="INT">
+                <constraints nullable="true"/>
+            </column>
+            
+            <column  name="min_sessao" type="INT">
+                <constraints nullable="true"/>
+            </column>
+            <column  name="max_sessao" type="INT">
+                <constraints nullable="true"/>
+            </column>
+        
+        </createTable>
+        
+    </changeSet>
+</databaseChangeLog>

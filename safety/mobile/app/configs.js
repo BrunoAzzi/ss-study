@@ -1,0 +1,3 @@
+
+/* ADICIONAR O IP DO SERVIDOR QUE ESTÁ RODANDO O PROJETO SPRING */
+export const SERVER_URL = 'http:/10.1.60.233:8080/template';
