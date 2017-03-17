@@ -1,6 +1,6 @@
 # README #
 
-### Padronização dos código e comentários
+### Padronização do código e comentários
 **Código**: escrito sempre em inglês o mesmo vale para nomes nas colunas do banco de dados.
 
 **Comentários**: pode ser escrito em inglês ou português.
