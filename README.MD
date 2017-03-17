@@ -1,8 +1,9 @@
 # README #
 
 ### Padronização dos código e comentários
-Código: deve ser escrito sempre em inglês o mesmo vale para os nomes das colunas do banco de dados.
-Comentários: pode ser escrito em inglês ou português.
+**Código**: deve ser escrito sempre em inglês o mesmo vale para os nomes das colunas do banco de dados.
+
+**Comentários**: pode ser escrito em inglês ou português.
 
 ### Apresentações Comerciais
 https://drive.google.com/open?id=1_DuPz9lqjjgYtcCmiB3_Z5ktzzptLD7oGdVTSvRzq74
