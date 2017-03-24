@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="66.157" height="65.25" viewBox="0 0 66.157 65.25">
+  <metadata><?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
+<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 5.6-c138 79.159824, 2016/09/14-01:09:01        ">
+   <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+      <rdf:Description rdf:about=""/>
+   </rdf:RDF>
+</x:xmpmeta>
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                           
+<?xpacket end="w"?></metadata>
+<defs>
+    <style>
+      .cls-1, .cls-2 {
+        opacity: 0.6;
+      }
+
+      .cls-2 {
+        fill: #2dcc70;
+        stroke: #8f8f8f;
+        stroke-linejoin: round;
+        stroke-width: 1px;
+        fill-rule: evenodd;
+        filter: url(#filter);
+      }
+    </style>
+    <filter id="filter" x="292.781" y="194.531" width="65.157" height="64.25" filterUnits="userSpaceOnUse">
+      <feFlood result="flood" flood-color="#fff"/>
+      <feComposite result="composite" operator="in" in2="SourceGraphic"/>
+      <feBlend result="blend" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="ic_prevencao_disabled" data-name="ic prevencao disabled" class="cls-1">
+    <g transform="translate(-292.281 -194.031)" style="fill: #2dcc70; filter: url(#filter)">
+      <path id="Elipse_2_cópia_8" data-name="Elipse 2 cópia 8" class="cls-2" d="M325.366,194.527a32.13,32.13,0,1,1-32.573,32.127A32.353,32.353,0,0,1,325.366,194.527Z" style="stroke: inherit; filter: none; fill: inherit"/>
+    </g>
+    <use transform="translate(-292.281 -194.031)" xlink:href="#Elipse_2_cópia_8" style="stroke: #8f8f8f; filter: none; fill: none"/>
+    <image id="Objeto_Inteligente_de_Vetor" data-name="Objeto Inteligente de Vetor" class="cls-1" x="16.719" y="14.969" width="34" height="36" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAkCAQAAABGFyBUAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAHdElNRQfhAwkRKBh4sahmAAACBElEQVRIx+3W32vNcRzH8cf5QbbZOufQKdkSK1ptJhec2pqJZSMXUuRG+Qs2uXIl7sWNu7kTVsQVUZNCSMNqZR0rMUfIj422kdlxMesccr7fnVzyvvp8Ps9Xz+/38/l8v9/PN3JCSB3C8dK4B/Ewh8WhiZKSqEarLVEpiYMmvZc1ZGa+kuW2WG2pCCZ8QZ0qbPVOVr9cmKTKXo2qjHnkhSGvfEfcMk3qrNJinSF9JkpL1tsl7a2brpguGp82ahQLdNpgo5UueVjAsc5Ce7vdKt1zypM/z92MrDuS6q0V9RQyv0h26vLVWVdLCObqu8c+WqNBTHZWEv2JWnWYctqD8A3FXb0mdWid20pI2yHvjOF5KWBYH3ZIFyR7pNwyOG8FDLgtZc+cpFmD5y6WpYALRjWcbJ6VtInply8R7dZdgsy4IaaNqIR6L90veb2ERMAC59SfTMS1qJANuOlcAMsbUaslrlbeQECwN2R529VGpYx7FhDbZlsAHfFJKqra58BnNCMTQGeMq45baKHDAbEkgTxB3JiEJQGhBQRyxiKh39gjOFoa9yi8gH9V/yX/nCSq4u8lBxyz6JeRSPmSmBorivpxi30rV5LDpqJ+l2pvypVc99o6+8QR0WGzCdfCJL//FXxzzn7tmnxQI23KZS/DJMUH+my9M6hajaS8EeeLT/8/VQY/ALZ7d9bb9v6TAAAAAElFTkSuQmCC"/>
+  </g>
+</svg>
