@@ -1,6 +1,4 @@
-<snippet>
-  <content><![CDATA[
-# ${1:Smart Safety API}
+# Smart Safety API
 
 ## Banco de Dados
 
@@ -76,6 +74,3 @@ The following list shows some arguments why JPA is useful for data handling in y
 8. JPA as an abstraction of the relational database allows you to exchange your relational data store with another relational data store if you need to. This portability prevents your microservice from a vendor lock in.
 9. To implement the strategy, every microservice should have its own schema in a relational database, you can set the default schema for your service in the JPA configuration file persistence.xml.
 
-]]></content>
-  <tabTrigger>readme</tabTrigger>
-</snippet>
