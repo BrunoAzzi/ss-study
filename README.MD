@@ -9,10 +9,10 @@
 ### Documentos das Sprints
 
 #### SPRINT 2
-https://docs.google.com/document/d/1I-bfIu8z0fCVR-Ym17VoVUxx6Ydf-jm7rBrnxjGRUj0/edit
+https://drive.google.com/file/d/0By8tjaJtDQQqdEVyQXYwS3c4ZG8/view?usp=sharing
 
 #### SPRINT 1
-https://docs.google.com/document/d/1Xe18E1SeUH1C4Oo7WXohb17Ashr0asc0_BMQ6UHjd3o/edit
+https://drive.google.com/file/d/0By8tjaJtDQQqV0lLM1ljbUhuNjQ/view?usp=sharing
 
 ### Apresentações Comerciais
 https://drive.google.com/open?id=1_DuPz9lqjjgYtcCmiB3_Z5ktzzptLD7oGdVTSvRzq74
