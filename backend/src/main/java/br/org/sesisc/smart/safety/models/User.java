@@ -1,10 +1,17 @@
 package br.org.sesisc.smart.safety.models;
 
 
-public class User {
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
+public class User {
+    @NotNull
+    @Pattern(regexp="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$")
     private String email;
+
+    @NotNull
     private String password;
+
     private Boolean active;
     private String token;
 
