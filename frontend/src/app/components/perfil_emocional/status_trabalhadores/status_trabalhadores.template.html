@@ -1,0 +1,35 @@
+<br>
+<safety-card class="card-principal">
+    <safety-card-header>
+        <span>STATUS DOS COLABORADORES</span>
+    </safety-card-header>
+    <safety-card-content>
+        <md-input-container>
+        <md-placeholder>
+                  <md-icon>search</md-icon>
+                </md-placeholder>
+      <input mdInput  value=""  [(ngModel)]="searchText">
+    </md-input-container>
+        <table width="100%">
+            <thead>
+                <th></th>
+                <th class="indices" *ngFor="let day of indexes">
+                    {{ day }}
+                </th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of getFilteredData()">
+                    <td>{{item.name}}</td>
+                    <td *ngFor="let status of item.statuses">
+                        <div *ngIf="status == 'g'"> <img src='/assets/icon/rostos/contente/17.png'></div>
+                        <div *ngIf="status == 's'"> <img src='/assets/icon/rostos/triste/17.png'></div>
+                        <!-- <div *ngIf="status == ''"> <img src='/assets/icon/rostos/naoRespondido/17.png'></div> -->
+                        <div *ngIf="status == 'a'"> <img src='/assets/icon/rostos/irritado/17.png'></div>
+                        <div *ngIf="status == 'e'"> <img src='/assets/icon/rostos/empolgado/17.png'></div>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </safety-card-content>
+</safety-card>

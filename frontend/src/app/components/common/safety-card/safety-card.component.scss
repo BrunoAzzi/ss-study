@@ -1,0 +1,31 @@
+$pale-gray: #f8fafb;
+$warm-grey-four: #999999;
+
+md-card.custom-header {
+    padding: 0px !important;
+
+    > *:not(md-toolbar){
+        padding: 24px;
+    }
+}
+
+.mat-toolbar {
+    min-height: 50px;
+    background-color: $pale-gray;
+    text-transform: uppercase;
+    font-family: Lato, sans-serif;
+    font-size: 10px;
+    font-weight: 900;
+    line-height: 1.4;
+    letter-spacing: 0.5px;
+    text-align: left;
+    color: $warm-grey-four;
+}
+
+md-card-content {
+    overflow: hidden;
+}
+
+:host /deep/ md-toolbar-row {
+    height: 50px !important;
+}

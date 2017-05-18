@@ -1,0 +1,31 @@
+.main-toolbar {
+  box-sizing: border-box;
+  padding: 0 1em;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+
+  h1 {
+    margin: 0;
+    font-weight: lighter;
+    margin-right: 1em;
+  }
+
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    li {
+      display: inline-block;
+    }
+  }
+
+  .navigation-items {
+    flex-grow: 1;
+  }
+
+  .profile-info {
+    flex-grow: 0;
+    align-self: flex-end;
+  }
+}

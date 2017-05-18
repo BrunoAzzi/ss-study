@@ -1,0 +1,24 @@
+<nav class="main-nav">
+  <header>
+    <h1><span class="logo">{{company?.logo}}</span>{{company?.name}}</h1>
+  </header>
+  <ul>
+    <li *ngFor="let menuItem of menuItems.main">
+      <a [ngClass]="{active: activeRoute(menuItem.route)}" [routerLink]="['/' + menuItem.route]">
+        <div class="icon">
+          <img [src]="menuItem.icon" alt="helmet">
+        </div>
+        <span class="label">{{menuItem.label}}</span>
+      </a>
+    </li>
+    <li class="divisor">Cadastros</li>
+    <li *ngFor="let menuItem of menuItems.setup">
+      <a [ngClass]="{active: activeRoute(menuItem.route)}" [routerLink]="['/' + menuItem.route]">
+        <div class="icon">
+          <img [src]="menuItem.icon" alt="helmet">
+        </div>
+        <span class="label">{{menuItem.label}}</span>
+      </a>
+    </li>
+  </ul>
+</nav>

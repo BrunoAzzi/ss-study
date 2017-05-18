@@ -1,0 +1,11 @@
+<div fxLayout="column" fxFlex>
+    
+    <ng-content select="content-toolbar" ></ng-content>
+
+    <md-sidenav-container fxFlex>
+        <md-sidenav (close)="closeSidenav()" #notificationSidenav align="end" mode="over" class="main-nav">
+            <notification-menu></notification-menu>
+        </md-sidenav>
+        <ng-content ></ng-content>
+    </md-sidenav-container>
+</div>

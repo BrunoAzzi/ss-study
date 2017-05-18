@@ -1,0 +1,29 @@
+
+<safety-card>
+
+    <safety-card-header>
+        <span>Status do dia</span>
+    </safety-card-header>
+    <safety-card-content>
+        <div class="totalcolaboradores">
+            <p><strong>{{totaldecolaboradores}}</strong><a class="legenda_cinza"> Colaboradores na obra</a></p>
+        </div>
+        <!-- <br><br> -->
+
+        <ul class="emoticons">
+            <comp-base-status-dia class="emoticon" [image]="'/assets/icon/rostos/irritado/31.png'" [label]="'Irritado'" [value]="resultados?.irritado"></comp-base-status-dia>
+            <comp-base-status-dia class="emoticon" [image]="'/assets/icon/rostos/triste/31.png'" [label]="'Triste'"  [value]="resultados?.triste"></comp-base-status-dia>
+            <comp-base-status-dia class="emoticon" [image]="'/assets/icon/rostos/contente/31.png'" [label]="'Contente'" [value]="resultados?.contente"></comp-base-status-dia>
+            <comp-base-status-dia class="emoticon" [image]="'/assets/icon/rostos/empolgado/31.png'" [label]="'Empolgado'" [value]="resultados?.empolgado"></comp-base-status-dia>
+            <comp-base-status-dia class="emoticon" [image]="'/assets/icon/rostos/naoRespondido/31.png'" [label]="'Não respondido'" [value]="resultados?.naoRespondido"></comp-base-status-dia>
+        </ul>
+
+        <!-- <ul class="emoticons">
+        <li class="emoticon" *ngFor="let resultado of (resultados | keys)">
+        <img src="/assets/icon/rostos/{{resultado}}/31.png">
+        <a style="color: #ff4c4c">{{resultado}} </a>
+        <h1>{{resultados[resultado]}}</h1>
+    </li>
+</ul> -->
+</safety-card-content>
+</safety-card>

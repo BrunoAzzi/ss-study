@@ -1,0 +1,20 @@
+<md-toolbar fxLayout class="main-toolbar">
+    <ng-content></ng-content>
+    <span fxFlex></span>
+
+    <div fxLayout>
+        <ul md-nav-list>
+            <li md-list-item ><button md-icon-button disabled ><md-icon>help</md-icon></button><li>
+            <li md-list-item *ngIf="showNotification"><button md-icon-button (click)="toggle()" ><md-icon>notifications</md-icon></button></li>
+        </ul>
+
+        <button md-button [mdMenuTriggerFor]="profile" disableRipple>
+            <img class="avatar" src="http://placehold.it/65x65" alt="avatar">
+        </button>
+    </div>
+
+    <md-menu #profile="mdMenu" yPosition="below" [overlapTrigger]="false">
+        <button md-menu-item>Item 1</button>
+        <button md-menu-item>Item 2</button>
+    </md-menu>
+</md-toolbar>

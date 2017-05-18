@@ -1,0 +1,21 @@
+machine:
+    environment:
+        PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin"
+    node:
+        version: 6.10.2
+
+dependencies:
+    override:
+        - yarn --dev
+    cache_directories:
+        - ~/.cache/yarn
+
+test:
+    override:
+        - yarn test
+
+deployment:
+    staging:
+        branch: master
+        commands:
+            - curl -X POST -d '{}' https://api.netlify.com/build_hooks/5908fc1a424ef22e8df41582

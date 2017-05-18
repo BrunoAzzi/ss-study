@@ -1,0 +1,16 @@
+<md-list fxLayout="column" >
+    <h3 md-subheader fxLayout fxLayoutAlign="none center">
+        <span class="notifications-title">Ocorrências</span>
+        <span class="not-red-notifications-count" *ngIf="isNotReadNotifications">({{numberOfNotReadNotifications}}) Não Lidas</span>
+        <span fxFlex></span>
+        <span href="#" class="see-all-notifications">VER TODAS</span>
+    </h3>
+
+    <md-divider></md-divider>
+
+    <notification md-list-item fxLayout="column" fxLayoutAlign="space-around"
+        [ngClass]="{ 'not-read-notification': !notification.isRead }"
+        [notification]="notification"
+        *ngFor="let notification of notifications">
+    </notification>
+</md-list>

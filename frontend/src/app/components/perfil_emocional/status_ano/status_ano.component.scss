@@ -1,0 +1,46 @@
+.canvas_principal {
+// float:left
+  //  height: 400px;
+  max-height: 220px;
+  justify-content: center;
+  width: 98%;
+  text-align:center;
+  padding-top: 10px;
+  flex-direction: column;
+}
+
+canvas{
+   display: inline;
+}
+
+.eixo_x {
+    text-align: center;
+  min-width: 100%;
+  margin-left: 8px;
+  font-size: 0.85em;
+  font-family: Lato;
+  font-weight: bold;
+  justify-content: center;
+  strong {
+    font-weight: lighter;
+    font-size: 2em;
+  }
+}
+
+.eixo_y {
+  margin-left: 8px;
+  font-size: 0.85em;
+  font-family: Lato;
+  font-weight: bold;
+  strong {
+    font-weight: lighter;
+    font-size: 2em;
+  }
+}
+
+.legenda_cinza{
+
+   color: #999999;
+
+
+}

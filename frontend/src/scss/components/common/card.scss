@@ -1,0 +1,27 @@
+$warm-grey-four: #999999;
+
+md-card-header {
+  color: white;
+  text-transform: uppercase;
+//  background-color: #00a77e;
+  background-color: #f2f6f7;
+  font-family: 'Lato';
+  line-height: 3em;
+  height: 3em;
+  opacity: 0.5;
+  margin: 0;
+}
+
+md-card {
+  padding: 0 !important;
+  height: 100%;
+}
+
+md-card-title{
+   font-size: 10px;
+   font-weight: 900;
+   line-height: 1.4;
+   letter-spacing: 0.5px;
+   text-align: left;
+   color: $warm-grey-four;
+ }

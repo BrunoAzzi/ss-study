@@ -1,0 +1,14 @@
+.big-button {
+  display: block;
+  padding: 1em 3em;
+  background-color: #ff4c4c;
+  text-transform: uppercase;
+  margin: auto;
+  color: white;
+  text-decoration: none;
+  max-width: 200px;
+  cursor: pointer;
+  &:hover {
+    background-color: darken(#ff4c4c, 5);
+  }
+}

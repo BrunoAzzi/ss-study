@@ -1,0 +1,27 @@
+:host {
+    width: 100%;
+}
+
+.mat-toolbar {
+  font-size: 16px;
+}
+
+.mat-toolbar /deep/ .mat-toolbar-layout {
+    width: 100%
+}
+
+.avatar {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.main-toolbar {
+    height: 8em;
+    line-height: 8em;
+}
+
+.main-toolbar /deep/ md-toolbar-row {
+    height: 8em !important;
+}

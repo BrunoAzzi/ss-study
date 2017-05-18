@@ -1,0 +1,19 @@
+    <div md-line fxLayout fxLayoutAlign="space-between center">
+        <span [ngClass]="getNotificationType(notification.type)">{{notification.type.label | uppercase}}</span>
+        <span class="notification-floor-indication">{{notification.location | uppercase}}</span>
+    </div>
+
+    <div md-line fxLayout fxLayoutAlign="left center">
+        <md-icon md-list-icon class="message-icon">{{notification.icon}}</md-icon>
+        <pre fxFlex class="notification-message">{{notification.message}}</pre>
+    </div>
+
+    <div md-line fxLayout fxLayoutAlign="space-between center" >
+        <div fxLayout fxLayoutAlign="left center">
+            <img md-list-avatar class="avatar" src="http://placehold.it/25x25"/>
+            <div class="notification-user-name">{{notification.relator?.name}} ({{notification.relator?.nickname}})</div>
+        </div>
+        <div>
+            <div class="notification-time">{{notification.date | date:'d/MMM | HH:mm' | uppercase}}</div>
+        </div>
+    </div>

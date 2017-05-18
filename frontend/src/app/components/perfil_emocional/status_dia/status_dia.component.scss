@@ -1,0 +1,46 @@
+$warm-grey-four: #999999;
+
+  p {
+    margin-left: 8px;
+    font-size: 0.85em;
+    font-family: Lato;
+    font-weight: bold;
+    strong {
+      font-weight: lighter;
+      font-size: 2em;
+    }
+  }
+
+.totalcolaboradores{
+    height: 20%;
+
+}
+
+.div_emoticons{
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+.emoticons {
+  flex-wrap: wrap;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  margin-top: 35px;
+}
+
+.emoticon{
+   width: 20%;
+}
+
+.legenda_cinza{
+   color: #999999;
+}
+
+  md-card-content{
+    height: 223px;
+
+
+  }
