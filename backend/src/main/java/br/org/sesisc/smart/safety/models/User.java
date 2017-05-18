@@ -1,11 +1,11 @@
 package br.org.sesisc.smart.safety.models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Session {
+public class User {
 
     private String email;
     private String password;
+    private Boolean active;
     private String token;
 
     public String getEmail() {
@@ -18,6 +18,14 @@ public class Session {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
     public String getToken() {
