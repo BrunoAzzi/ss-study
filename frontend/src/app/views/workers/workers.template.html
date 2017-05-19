@@ -145,12 +145,18 @@
                             </tr>
                             <tr>
                                 <td>
+                                    <!-- <md-checkbox disableRipple [(ngModel)]="isReciclagem">Reciclagem</md-checkbox>
+
+                                        <input mdInput [disabled]="isReciclagem" type="number" placeholder="Peridiocidade" >
+                                        <span mdSuffix>meses</span> -->
+
                                     <md-input-container class="example-full-width">
-                                        <input mdInput placeholder="CRO" id="contato">
+                                        <input mdInput placeholder="CRO" id="cro" [(ngModel)]="mycro" (ngModelChange)="checkCroEmpty()">
                                     </md-input-container>
                                 </td>
                                 <td colspan="2">
-                                    <md-select placeholder="CARGO">
+
+                                    <md-select placeholder="CARGO"  [mdTooltip]="desabilitado ? 'Digite um CRO válido!' : 'Selecione um cargo'" [disabled]="desabilitado">
                                         <md-option *ngFor="let cargo of cargos" [value]="cargo.value">
                                             {{ cargo.viewValue }}
                                         </md-option>

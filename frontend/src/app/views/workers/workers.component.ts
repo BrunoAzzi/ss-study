@@ -7,6 +7,8 @@ import { Component } from '@angular/core';
 })
 export class WorkersComponent {
     isReciclagem: boolean = false;
+    desabilitado: boolean = true;
+    mycro: string = "";
 
   status = [
     {value: 'ativo', viewValue: 'Ativo'},
@@ -35,4 +37,11 @@ export class WorkersComponent {
     {value: '', viewValue: ''},
   ];
 
+  checkCroEmpty() {
+          if(this.mycro.length>0){
+              this.desabilitado = false;
+          } else {
+              this.desabilitado = true;
+          }
+    }
  }
