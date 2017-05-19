@@ -8,7 +8,11 @@ import { Component } from '@angular/core';
 export class WorkersComponent {
     isReciclagem: boolean = false;
     desabilitado: boolean = true;
-    mycro: string = "";
+    mycbo: string = "";
+    errorMessageExample1: string;
+    //^\d{3}\x2E\d{3}\x2E\d{3}\x2D\d{2}$
+   mask = [/\d{3}/, /\x2E/,/\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
+
 
   status = [
     {value: 'ativo', viewValue: 'Ativo'},
@@ -37,8 +41,8 @@ export class WorkersComponent {
     {value: '', viewValue: ''},
   ];
 
-  checkCroEmpty() {
-          if(this.mycro.length>0){
+  checkCboEmpty() {
+          if(this.mycbo.length>0){
               this.desabilitado = false;
           } else {
               this.desabilitado = true;

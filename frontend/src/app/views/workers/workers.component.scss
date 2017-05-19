@@ -18,11 +18,15 @@ safety-card-content div {
 
 safety-card-content > :last-child {
     margin-bottom: 0px;
+}
 
-    .save-and-continue {
-        color: white;
-        background-color: #a1abb0
-    }
+.save-and-continue {
+    color: white;
+    background-color: #a1abb0
+}
+
+.rigth {
+    float: right;
 }
 
 .new-hability {
@@ -68,7 +72,7 @@ td textarea {
 }
 
 .mat-input-container {
-      font-size: x-small;
+//      font-size: x-small;
 }
 
 .mat-radio-container{

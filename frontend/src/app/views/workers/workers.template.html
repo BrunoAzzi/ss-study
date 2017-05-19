@@ -8,19 +8,195 @@
 
         <safety-card>
             <safety-card-header>
+                <span>dados dos trabalhadores</span>
+            </safety-card-header>
+            <safety-card-content>
+                <form novalidate id="form1" name="form1">
+                    <div class="dados_pessoais">
+                        <div class="quarter_screen">
+                            <!-- foto -->
+                            <button class="insira_foto" md-raised-button>
+                                <span>Salvar e continuar</span>
+                            </button>
+                        </div>
+
+
+                        <div class="resto_tela">
+
+                            <table class="example-full-width">
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <md-input-container class="example-full-width">
+                                            <input mdInput placeholder="CPF" id="cpf" name="cpf">
+                                        </md-input-container>
+                                    </td>
+                                    <td colspan="2">
+                                        <md-input-container class="example-full-width">
+                                            <input mdInput required placeholder="Nome" id="nome" name="nome" [(ngModel)]="errorMessageExample1" required>
+                                            <md-error>This field is required</md-error>
+                                        </md-input-container>
+                                    </td>
+                                    <td colspan="2">
+                                        <div>
+                                            <p class="label_table">Sexo:</p>
+                                            <md-radio-group  layout-gt-md="row">
+                                                <md-radio-button value="m" checked="true">Masculino</md-radio-button>
+                                                <md-radio-button value="f">Feminino</md-radio-button>
+                                            </md-radio-group>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <md-input-container class="example-full-width">
+                                            <input mdInput placeholder="Data de Nascimento" name="data_nasc" id="data_nasc">
+                                        </md-input-container>
+                                    </td>
+                                    <td>
+                                        <md-input-container class="example-full-width">
+                                            <input mdInput name="idade" placeholder="Idade" id="idade">
+                                        </md-input-container>
+                                    </td>
+                                    <td>
+                                        <md-select placeholder="Escolaridade" name="escolaridade" id="escolaridade">
+                                            <md-option *ngFor="let escolaridade of escolaridades" [value]="escolaridade.value">
+                                                {{ escolaridade.viewValue }}
+                                            </md-option>
+                                        </md-select>
+                                    </td>
+                                    <td>
+                                        <md-input-container class="example-full-width">
+                                            <input mdInput placeholder="NIT" id="nit" name="nit">
+                                        </md-input-container>
+                                    </td>
+                                    <td>
+                                        <md-input-container class="example-full-width">
+                                            <input mdInput placeholder="CTPS" id="ctps" name="ctps">
+                                        </md-input-container>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <md-input-container class="example-full-width">
+                                            <input mdInput placeholder="CEP" id="cep" name="cep">
+                                        </md-input-container>
+                                    </td>
+                                    <td colspan="2">
+                                        <md-input-container class="example-full-width">
+                                            <input mdInput placeholder="Endereço Completo" id="endereco_completo" name="endereco_completo">
+                                        </md-input-container>
+                                    </td>
+                                    <td>
+                                        <md-input-container class="example-full-width">
+                                            <input mdInput placeholder="Complemento" id="complemento" name="complemento">
+                                        </md-input-container>
+                                    </td>
+                                    <td>
+                                        <md-input-container class="example-full-width">
+                                            <input mdInput placeholder="Contato" id="contato" name="contato">
+                                        </md-input-container>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <!-- <md-checkbox disableRipple [(ngModel)]="isReciclagem">Reciclagem</md-checkbox>
+
+                                        <input mdInput [disabled]="isReciclagem" type="number" placeholder="Peridiocidade" >
+                                        <span mdSuffix>meses</span> -->
+
+                                        <md-input-container class="example-full-width">
+                                            <input mdInput required placeholder="CBO" id="cbo" name="cbo" [(ngModel)]="mycbo" (ngModelChange)="checkCboEmpty()" >
+                                            <md-error>This field is required</md-error>
+                                        </md-input-container>
+                                    </td>
+                                    <td colspan="2">
+
+                                        <md-select placeholder="CARGO"  [mdTooltip]="desabilitado ? 'Digite um CBO válido!' : 'Selecione um cargo'" [disabled]="desabilitado">
+                                            <md-option *ngFor="let cargo of cargos" [value]="cargo.value">
+                                                {{ cargo.viewValue }}
+                                            </md-option>
+                                        </md-select>
+                                    </td>
+                                    <td class="coluna_texto" colspan="2" rowspan="3">
+                                        <md-input-container class="example-full-width">
+                                            <textarea mdInput placeholder="Descrição da Função" name="area_texto"></textarea>
+                                        </md-input-container>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <md-select placeholder="Portador de Nec. Especiais?">
+                                            <md-option *ngFor="let necessidade of necessidades" [value]="necessidade.value">
+                                                {{ necessidade.viewValue }}
+                                            </md-option>
+                                        </md-select>
+                                    </td>
+                                    <td>
+                                        <md-input-container class="example-full-width">
+                                            <input mdInput placeholder="Data de Admissão" id="admissao" name="admissao">
+                                        </md-input-container>
+                                    </td>
+                                    <td>
+                                        <md-select placeholder="Status">
+                                            <md-option *ngFor="let statu of status" [value]="statu.value">
+                                                {{ statu.viewValue }}
+                                            </md-option>
+                                        </md-select>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <p class="label_table">Tipo de Contratação:</p>
+                                        <md-radio-group>
+                                            <md-radio-button value="p" checked="true">Próprio</md-radio-button>
+                                            <md-radio-button value="t">Terceiro</md-radio-button>
+                                        </md-radio-group>
+                                    </td>
+                                    <td colspan="2">
+                                        <md-input-container class="example-full-width">
+                                            <input mdInput placeholder="Empresa" id="empresa" name="empresa">
+                                        </md-input-container>
+                                    </td>
+                                </tr>
+
+
+                            </table>
+
+                        </div>
+                    </div>
+                    <button type="submit" md-raised-button class="save-and-continue rigth">
+                        <span>Salvar e continuar</span>
+                    </button>
+                </form>
+            </safety-card-content>
+        </safety-card>
+
+        <safety-card>
+            <safety-card-header>
                 <span>habilitações</span>
             </safety-card-header>
             <safety-card-content>
+
                 <div fxLayout fxLayoutAlign="space-between center">
                     <button mdTooltip="Excluir" md-icon-button class="delete"><md-icon>remove_circle</md-icon></button>
-                    <md-select placeholder="Habilitação">
+                    <md-select placeholder="Habilitação" >
                         <md-option value="asd">asd</md-option>
                         <md-option value="asd">asd</md-option>
                         <md-option value="asd">asd</md-option>
                     </md-select>
                     <md-checkbox disableRipple [(ngModel)]="isReciclagem">Reciclagem</md-checkbox>
                     <md-input-container>
-                        <input mdInput [disabled]="isReciclagem" type="number" placeholder="Peridiocidade" >
+                        <input  #focus_habilitacao  mdInput [disabled]="isReciclagem" type="number" placeholder="Peridiocidade" >
                         <span mdSuffix>meses</span>
                     </md-input-container>
                     <md-input-container>
@@ -46,174 +222,7 @@
         </safety-card>
 
 
-        <safety-card>
-            <safety-card-header>
-                <span>dados dos trabalhadores</span>
-            </safety-card-header>
-            <safety-card-content>
-                <div class="dados_pessoais">
-                    <div class="quarter_screen">
-                        <!-- foto -->
-                        <button class="insira_foto" md-raised-button>
-                            <span>Salvar e continuar</span>
-                        </button>
-                    </div>
 
-
-                    <div class="resto_tela">
-
-                        <table class="example-full-width">
-                            <tr>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <md-input-container class="example-full-width">
-                                        <input mdInput placeholder="CPF" id="cpf">
-                                    </md-input-container>
-                                </td>
-                                <td colspan="2">
-                                    <md-input-container class="example-full-width">
-                                        <input mdInput placeholder="Nome" id="nome">
-                                    </md-input-container>
-                                </td>
-                                <td colspan="2">
-                                    <div>
-                                        <p class="label_table">Sexo:</p>
-                                        <md-radio-group  layout-gt-md="row">
-                                            <md-radio-button value="m">Masculino</md-radio-button>
-                                            <md-radio-button value="f">Feminino</md-radio-button>
-                                        </md-radio-group>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <md-input-container class="example-full-width">
-                                        <input mdInput placeholder="Data de Nascimento" id="data_nasc">
-                                    </md-input-container>
-                                </td>
-                                <td>
-                                    <md-input-container class="example-full-width">
-                                        <input mdInput placeholder="Idade" id="idade">
-                                    </md-input-container>
-                                </td>
-                                <td>
-                                    <md-select placeholder="Escolaridade" id="escolaridade">
-                                        <md-option *ngFor="let escolaridade of escolaridades" [value]="escolaridade.value">
-                                            {{ escolaridade.viewValue }}
-                                        </md-option>
-                                    </md-select>
-                                </td>
-                                <td>
-                                    <md-input-container class="example-full-width">
-                                        <input mdInput placeholder="NIT" id="nit">
-                                    </md-input-container>
-                                </td>
-                                <td>
-                                    <md-input-container class="example-full-width">
-                                        <input mdInput placeholder="CTPS" id="ctps">
-                                    </md-input-container>
-                                </td>
-
-                            </tr>
-                            <tr>
-                                <td>
-                                    <md-input-container class="example-full-width">
-                                        <input mdInput placeholder="CEP" id="cep">
-                                    </md-input-container>
-                                </td>
-                                <td colspan="2">
-                                    <md-input-container class="example-full-width">
-                                        <input mdInput placeholder="Endereço Completo" id="endereco_completo">
-                                    </md-input-container>
-                                </td>
-                                <td>
-                                    <md-input-container class="example-full-width">
-                                        <input mdInput placeholder="Complemento" id="complemento">
-                                    </md-input-container>
-                                </td>
-                                <td>
-                                    <md-input-container class="example-full-width">
-                                        <input mdInput placeholder="Contato" id="contato">
-                                    </md-input-container>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <!-- <md-checkbox disableRipple [(ngModel)]="isReciclagem">Reciclagem</md-checkbox>
-
-                                        <input mdInput [disabled]="isReciclagem" type="number" placeholder="Peridiocidade" >
-                                        <span mdSuffix>meses</span> -->
-
-                                    <md-input-container class="example-full-width">
-                                        <input mdInput placeholder="CRO" id="cro" [(ngModel)]="mycro" (ngModelChange)="checkCroEmpty()">
-                                    </md-input-container>
-                                </td>
-                                <td colspan="2">
-
-                                    <md-select placeholder="CARGO"  [mdTooltip]="desabilitado ? 'Digite um CRO válido!' : 'Selecione um cargo'" [disabled]="desabilitado">
-                                        <md-option *ngFor="let cargo of cargos" [value]="cargo.value">
-                                            {{ cargo.viewValue }}
-                                        </md-option>
-                                    </md-select>
-                                </td>
-                                <td class="coluna_texto" colspan="2" rowspan="3">
-                                    <md-input-container class="example-full-width">
-                                        <textarea mdInput placeholder="Descrição da Função"></textarea>
-                                    </md-input-container>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <md-select placeholder="Portador de Nec. Especiais?">
-                                        <md-option *ngFor="let necessidade of necessidades" [value]="necessidade.value">
-                                            {{ necessidade.viewValue }}
-                                        </md-option>
-                                    </md-select>
-                                </td>
-                                <td>
-                                    <md-input-container class="example-full-width">
-                                        <input mdInput placeholder="Data de Admissão" id="admissao">
-                                    </md-input-container>
-                                </td>
-                                <td>
-                                    <md-select placeholder="Status">
-                                        <md-option *ngFor="let statu of status" [value]="statu.value">
-                                            {{ statu.viewValue }}
-                                        </md-option>
-                                    </md-select>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <p class="label_table">Tipo de Contratação:</p>
-                                    <md-radio-group>
-                                        <md-radio-button value="p">Próprio</md-radio-button>
-                                        <md-radio-button value="t">Terceiro</md-radio-button>
-                                    </md-radio-group>
-                                </td>
-                                <td colspan="2">
-                                    <md-input-container class="example-full-width">
-                                        <input mdInput placeholder="Empresa" id="empresa">
-                                    </md-input-container>
-                                </td>
-                            </tr>
-
-
-                        </table>
-
-                    </div>
-                </div>
-
-            </safety-card-content>
-        </safety-card>
 
     </div>
 </div>

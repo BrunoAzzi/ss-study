@@ -47,6 +47,9 @@ import { MyPhaserComponent } from "./components/common/my-phaser/my-phaser.compo
 // Notifications
 import { NotificationSidenavContainerModule } from "./components/common/notifications";
 
+//Masks
+import{ TextMaskModule } from 'angular2-text-mask';
+
 // Routing module
 import { AppRoutingModule } from "./app-routing.module";
 
@@ -119,6 +122,9 @@ import { SafetyCardModule } from "./components/common/safety-card";
 
     // Angular Material
     MaterialModule,
+
+    //Masks
+    TextMaskModule,
 
     // Flex Layout
     FlexLayoutModule,
