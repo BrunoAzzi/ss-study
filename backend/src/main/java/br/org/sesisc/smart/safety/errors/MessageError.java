@@ -1,12 +1,12 @@
-package br.org.sesisc.smart.safety.models;
+package br.org.sesisc.smart.safety.errors;
 
-public class ErrorMessage {
+public class MessageError {
 
     private String target;
     private String type;
     private String message;
 
-    public ErrorMessage(final String target, final String type, final String message) {
+    public MessageError(final String target, final String type, final String message) {
         this.target = target;
         this.type = type;
         this.message = message;
