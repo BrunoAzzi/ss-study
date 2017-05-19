@@ -5,6 +5,10 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from "@angular/router";
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientService } from "./services/http-client.service"; 
+import { SessionsService } from "./services/sessions.service"; 
+import { AuthGuard } from './guards/index';
+import { MdSnackBar } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { ChartsModule } from "ng2-charts";
@@ -115,7 +119,7 @@ import { SafetyCardModule } from "./components/common/safety-card";
     ChartsModule,
 
     // Mocks
-    InMemoryWebApiModule.forRoot(InMemoryDataService),
+    InMemoryWebApiModule.forRoot(InMemoryDataService, {passThruUnknownUrl: true}),
 
     // Angular Material
     MaterialModule,
@@ -127,7 +131,12 @@ import { SafetyCardModule } from "./components/common/safety-card";
     AppRoutingModule,
 
   ],
-  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
+  providers: [
+    HttpClientService,
+    AuthGuard,
+    SessionsService,
+    MdSnackBar,
+    { provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
