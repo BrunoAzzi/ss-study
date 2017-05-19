@@ -5,11 +5,12 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 public class User {
-    @NotNull
-    @Pattern(regexp="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$")
+    @NotNull(message="Email é um campo obrigatório.")
+    @Pattern(message="Email não está no formato correto.",
+            regexp="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$")
     private String email;
 
-    @NotNull
+    @NotNull(message="Senha é um campo obrigatório.")
     private String password;
 
     private Boolean active;
