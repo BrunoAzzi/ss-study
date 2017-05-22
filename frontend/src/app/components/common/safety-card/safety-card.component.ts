@@ -39,7 +39,7 @@ export class SafetyCardComponent {
 
     coerceBooleanProperty(value: any): boolean {
        return value != null && `${value}` !== 'false';
-   }
+    }
 
     toggleState() {
         this.isHidden = !this.isHidden;

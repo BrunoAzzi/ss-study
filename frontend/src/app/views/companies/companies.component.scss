@@ -3,29 +3,13 @@
     flex: 1;
     flex-direction: column;
     max-height: 100%;
+
+
+    & /deep/ .mat-tab-header {
+        margin-bottom: 10px;
+    }
 }
 
-.container {
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-around;
-//  padding-top: 2em;
-}
-
-.half-screen {
-  flex-grow: 1;
-  display: block;
-  width: 50%;
-  &.left {
-    margin-right: 1em;
-  }
-  &.right {
-    margin-left: 1em;
-  }
-}
-
-.full-screen {
-  flex-grow: 1;
-  display: block;
-  width: 100%;
+.column-spacer {
+    margin: 10px 20px;
 }
