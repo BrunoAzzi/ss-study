@@ -32,6 +32,7 @@
     "md2": "0.0.19",
     "moment": "^2.18.1",
     "ng2-charts": "^1.5.0",
+    "ng2-mask": "^1.0.3",
     "phaser": "^2.6.2",
     "rxjs": "^5.1.0",
     "web-animations-js": "^2.2.4",

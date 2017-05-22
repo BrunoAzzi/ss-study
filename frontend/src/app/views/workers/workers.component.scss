@@ -53,12 +53,18 @@ safety-card-content > :last-child {
     padding-top: 2em;
 }
 
-table{
-    border-collapse: separate; border-spacing: 8px;
+.full_width{
+    width: 100%;
 }
 
+table{
+    border-collapse: separate; border-spacing: 8px;
+
+}
+
+
 td {
-  background: #fdfdfd;
+ // background: #fdfdfd;
 
 }
 
@@ -80,7 +86,7 @@ td textarea {
 }
 
 .mat-radio-button{
-  font-size: x-small;
+  //font-size: x-small;
 
 }
 

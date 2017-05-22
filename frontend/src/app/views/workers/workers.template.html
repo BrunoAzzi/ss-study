@@ -34,13 +34,14 @@
                                 <tr>
                                     <td>
                                         <md-input-container class="example-full-width">
-                                            <input mdInput placeholder="CPF" id="cpf" name="cpf">
+                                            <input mdInput required placeholder="CPF" id="cpf" name="cpf"  mask='000.000.000-00'  [(ngModel)]="errorMessageExample1">
+                                            <md-error>Campo vazio ou com caracteres inválidos.</md-error>
                                         </md-input-container>
                                     </td>
                                     <td colspan="2">
                                         <md-input-container class="example-full-width">
-                                            <input mdInput required placeholder="Nome" id="nome" name="nome" [(ngModel)]="errorMessageExample1" required>
-                                            <md-error>This field is required</md-error>
+                                            <input mdInput required placeholder="Nome" id="nome" name="nome"  pattern="[A-Z a-z]+" [(ngModel)]="errorMessageExample2" required>
+                                            <md-error>Campo vazio ou com caracteres inválidos.</md-error>
                                         </md-input-container>
                                     </td>
                                     <td colspan="2">
@@ -56,12 +57,13 @@
                                 <tr>
                                     <td>
                                         <md-input-container class="example-full-width">
-                                            <input mdInput placeholder="Data de Nascimento" name="data_nasc" id="data_nasc">
+                                            <input mdInput placeholder="Data de Nascimento" mask='00/00/0000' name="data_nasc" id="data_nasc">
+
                                         </md-input-container>
                                     </td>
                                     <td>
                                         <md-input-container class="example-full-width">
-                                            <input mdInput name="idade" placeholder="Idade" id="idade">
+                                            <input mdInput name="idade" placeholder="Idade" id="idade" type="number">
                                         </md-input-container>
                                     </td>
                                     <td>
@@ -73,12 +75,12 @@
                                     </td>
                                     <td>
                                         <md-input-container class="example-full-width">
-                                            <input mdInput placeholder="NIT" id="nit" name="nit">
+                                            <input mdInput placeholder="NIT" id="nit" name="nit" mask='000.00000.00-0'>
                                         </md-input-container>
                                     </td>
                                     <td>
                                         <md-input-container class="example-full-width">
-                                            <input mdInput placeholder="CTPS" id="ctps" name="ctps">
+                                            <input mdInput placeholder="CTPS" id="ctps" name="ctps" type="number">
                                         </md-input-container>
                                     </td>
 
@@ -86,12 +88,12 @@
                                 <tr>
                                     <td>
                                         <md-input-container class="example-full-width">
-                                            <input mdInput placeholder="CEP" id="cep" name="cep">
+                                            <input mdInput placeholder="CEP" id="cep" [(ngModel)]="myCep" name="cep" mask="00.000-000" (blur)="autocompleteAdressFromApi()">
                                         </md-input-container>
                                     </td>
                                     <td colspan="2">
                                         <md-input-container class="example-full-width">
-                                            <input mdInput placeholder="Endereço Completo" id="endereco_completo" name="endereco_completo">
+                                            <input mdInput placeholder="Endereço Completo" id="endereco_completo" name="endereco_completo" value="{{enderecoCompleto}}">
                                         </md-input-container>
                                     </td>
                                     <td>
@@ -114,12 +116,12 @@
 
                                         <md-input-container class="example-full-width">
                                             <input mdInput required placeholder="CBO" id="cbo" name="cbo" [(ngModel)]="mycbo" (ngModelChange)="checkCboEmpty()" >
-                                            <md-error>This field is required</md-error>
+                                            <md-error>Campo vazio ou com caracteres inválidos.</md-error>
                                         </md-input-container>
                                     </td>
                                     <td colspan="2">
 
-                                        <md-select placeholder="CARGO"  [mdTooltip]="desabilitado ? 'Digite um CBO válido!' : 'Selecione um cargo'" [disabled]="desabilitado">
+                                        <md-select class="full_width" placeholder="Cargo"  [mdTooltip]="desabilitado ? 'Digite um CBO válido!' : 'Selecione um cargo'" [disabled]="desabilitado">
                                             <md-option *ngFor="let cargo of cargos" [value]="cargo.value">
                                                 {{ cargo.viewValue }}
                                             </md-option>
@@ -142,7 +144,7 @@
                                     </td>
                                     <td>
                                         <md-input-container class="example-full-width">
-                                            <input mdInput placeholder="Data de Admissão" id="admissao" name="admissao">
+                                            <input mdInput placeholder="Data de Admissão" mask='00/00/0000' id="admissao" name="admissao">
                                         </md-input-container>
                                     </td>
                                     <td>
@@ -157,13 +159,14 @@
                                 <tr>
                                     <td>
                                         <p class="label_table">Tipo de Contratação:</p>
-                                        <md-radio-group>
+                                        <md-radio-group [(value)]="radioGroupValue">
                                             <md-radio-button value="p" checked="true">Próprio</md-radio-button>
                                             <md-radio-button value="t">Terceiro</md-radio-button>
                                         </md-radio-group>
                                     </td>
                                     <td colspan="2">
-                                        <md-input-container class="example-full-width">
+
+                                        <md-input-container class="example-full-width" >
                                             <input mdInput placeholder="Empresa" id="empresa" name="empresa">
                                         </md-input-container>
                                     </td>

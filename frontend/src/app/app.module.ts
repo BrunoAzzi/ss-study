@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpModule, JsonpModule } from '@angular/http';
 import { RouterModule } from "@angular/router";
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -48,7 +48,7 @@ import { MyPhaserComponent } from "./components/common/my-phaser/my-phaser.compo
 import { NotificationSidenavContainerModule } from "./components/common/notifications";
 
 //Masks
-import{ TextMaskModule } from 'angular2-text-mask';
+import {Ng2MaskModule} from 'ng2-mask';
 
 // Routing module
 import { AppRoutingModule } from "./app-routing.module";
@@ -65,6 +65,8 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 
 // Safety custom components
 import { SafetyCardModule } from "./components/common/safety-card";
+
+
 
 // Pipes
 
@@ -109,6 +111,7 @@ import { SafetyCardModule } from "./components/common/safety-card";
     BrowserModule,
     BrowserAnimationsModule,
     HttpModule,
+    JsonpModule,
     FormsModule,
 
     // Custom Components
@@ -124,7 +127,7 @@ import { SafetyCardModule } from "./components/common/safety-card";
     MaterialModule,
 
     //Masks
-    TextMaskModule,
+    Ng2MaskModule,
 
     // Flex Layout
     FlexLayoutModule,
