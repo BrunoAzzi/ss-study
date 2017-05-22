@@ -40,7 +40,6 @@ import { StatusAnoComponent } from "./components/perfil_emocional/status_ano/sta
 // Layouts
 
 import { LoginComponent } from "./views/login/login.component";
-import { RegisterComponent } from "./views/register/register.component";
 import { BlankComponent } from "./components/common/layouts/blank/blank.component";
 import { BasicComponent } from "./components/common/layouts/basic/basic.component";
 
@@ -89,7 +88,6 @@ import { SafetyCardModule } from "./components/common/safety-card";
     TrainingComponent,
     WorkersComponent,
     LoginComponent,
-    RegisterComponent,
     BlankComponent,
     BasicComponent,
     TopnavbarComponent,
