@@ -25,6 +25,14 @@ safety-card-content > :last-child {
     }
 }
 
+.habilitacao {
+    padding: 40px;
+}
+
+.reciclagem {
+    padding: 20px;
+}
+
 .new-hability {
     padding: 10px 16px;
 }
@@ -65,19 +73,6 @@ td {
 
 td textarea {
     border: none;
-}
-
-.mat-input-container {
-      font-size: x-small;
-}
-
-.mat-radio-container{
-
-}
-
-.mat-radio-button{
-  font-size: x-small;
-
 }
 
 .example-full-width {

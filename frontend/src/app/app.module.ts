@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from "@angular/router";
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { ChartsModule } from "ng2-charts";
@@ -15,7 +16,8 @@ import { DataTablePipe } from "./components/perfil_emocional/status_trabalhadore
 
 // Components
 import { CompaniesComponent } from "./views/companies/companies.component";
-import { CategoryDividerComponent } from "./components/common/category-divider/category-divider.component";
+import { HabilitacaoComponent } from "./components/workers/habilitacao/habilitacao.component";
+import { ReciclagemComponent } from "./components/workers/habilitacao/reciclagem/reciclagem.component";
 
 //import { DatepickerOverviewExample } from  "./views/companies/datepicker-overview-example.component";
 import { PPEComponent } from "./views/ppe/ppe.component";
@@ -60,74 +62,78 @@ import { MaterialModule } from "./material.module";
 // Flex Layout
 import { FlexLayoutModule } from "@angular/flex-layout";
 
-// Safety custom components
+// Safety custom modules
 import { SafetyCardModule } from "./components/common/safety-card";
+import { CategoryDividerModule } from "./components/common/category-divider";
 
 // Pipes
 
 @NgModule({
-  declarations: [
-    // Pipes
-    KeysPipe,
-    DataTablePipe,
+    declarations: [
+        // Pipes
+        KeysPipe,
+        DataTablePipe,
 
-    // Category Divider
-    CategoryDividerComponent,
+        // Components
+        AppComponent,
+        CompaniesComponent,
+        PPEComponent,
+        MyConstructionSitesComponent,
+        ReportsComponent,
+        RepositoriesComponent,
+        ThirdPartiesComponent,
+        TrainingComponent,
+        WorkersComponent,
+        LoginComponent,
+        RegisterComponent,
+        BlankComponent,
+        BasicComponent,
+        TopnavbarComponent,
+        NavigationComponent,
+        MyPhaserComponent,
 
-    // Components
-    AppComponent,
-    CompaniesComponent,
-    PPEComponent,
-    MyConstructionSitesComponent,
-    ReportsComponent,
-    RepositoriesComponent,
-    ThirdPartiesComponent,
-    TrainingComponent,
-    WorkersComponent,
-    LoginComponent,
-    RegisterComponent,
-    BlankComponent,
-    BasicComponent,
-    TopnavbarComponent,
-    NavigationComponent,
-    MyPhaserComponent,
+        // Painel Emocional
+        StatusDiaComponent,
+        StatusTrabalhadoresComponent,
+        StatusAnoComponent,
+        CompBaseStatusDia,
 
-    // Painel Emocional
-    StatusDiaComponent,
-    StatusTrabalhadoresComponent,
-    StatusAnoComponent,
-    CompBaseStatusDia
-  ],
-  imports: [
-    // Notification Module
-    NotificationSidenavContainerModule,
+        // Trabalhadores
+        HabilitacaoComponent,
+        ReciclagemComponent,
+    ],
+    imports: [
+        // Notification Module
+        NotificationSidenavContainerModule,
 
-    // Angular modules
-    BrowserModule,
-    BrowserAnimationsModule,
-    HttpModule,
-    FormsModule,
+        // Angular modules
+        BrowserModule,
+        BrowserAnimationsModule,
+        HttpModule,
+        FormsModule,
+        CommonModule,
 
-    // Custom Components
-    SafetyCardModule,
+        // Custom Modules
+        SafetyCardModule,
+        CategoryDividerModule,
 
-    // Charts
-    ChartsModule,
+        // Charts
+        ChartsModule,
 
-    // Mocks
-    InMemoryWebApiModule.forRoot(InMemoryDataService),
+        // Mocks
+        InMemoryWebApiModule.forRoot(InMemoryDataService),
 
-    // Angular Material
-    MaterialModule,
+        // Angular Material
+        MaterialModule,
 
-    // Flex Layout
-    FlexLayoutModule,
+        // Flex Layout
+        FlexLayoutModule,
 
-    // Routes
-    AppRoutingModule,
+        // Routes
+        AppRoutingModule,
 
-  ],
-  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
-  bootstrap: [AppComponent]
+    ],
+    providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

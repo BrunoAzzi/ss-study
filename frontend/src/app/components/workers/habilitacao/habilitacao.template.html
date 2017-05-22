@@ -1,0 +1,49 @@
+<div class="habilitacao">
+
+    <category-divider>
+        <category-divider-left>
+        </category-divider-left>
+        <category-divider-center>
+            <md-select #habilitationName required (change)="toggleName(habilitationName.selected.value)" placeholder="Selecione a habilitação" floatPlaceholder="never">
+                <md-option *ngFor="let name of habilitacaoNames" [value]="name">{{name}}</md-option>
+            </md-select>
+        </category-divider-center>
+        <category-divider-right>
+            <button md-button (click)="removeMyself()">excluir</button>
+        </category-divider-right>
+    </category-divider>
+
+    <div fxLayout fxLayoutAlign="space-around center">
+        <md-input-container>
+            <input required mdInput type="date" placeholder="Inicioa da vigencia">
+            <md-error>Campo vazio ou com caracteres inválidos.</md-error>
+        </md-input-container>
+        <md-input-container>
+            <input mdInput type="number" placeholder="Peridiocidade">
+            <span mdSuffix>meses</span>
+            <md-error>Campo vazio ou com caracteres inválidos.</md-error>
+        </md-input-container>
+        <md-input-container>
+            <input mdInput disabled type="date" placeholder="Proxima Reciclagem">
+        </md-input-container>
+        <md-checkbox #apto checked="true" (click)="inapto.toggle()">Apto</md-checkbox>
+        <md-checkbox #inapto (click)="apto.toggle()">Inapto</md-checkbox>
+        <!-- <button mdTooltip="Anexo" md-icon-button> -->
+        <!-- <md-icon>attach_file</md-icon> -->
+        <input mdTooltip="Anexo" md-icon-button type="file">
+        <!-- </button> -->
+    </div>
+
+    <div class="reciclagem">
+        <safety-card>
+            <safety-card-header>
+                <span>Reciclagens</span>
+            </safety-card-header>
+
+            <safety-card-content>
+                <reciclagem [reciclagem]="reciclagem" (removed)="removeReciclagem(reciclagem)" *ngFor="let reciclagem of reciclagens"></reciclagem>
+                <button md-button (click)="addReciclagem()">Adicionar Reciclagem</button>
+            </safety-card-content>
+        </safety-card>
+    </div>
+</div>
