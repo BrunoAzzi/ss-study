@@ -18,6 +18,13 @@
             <column name="active" type="boolean" defaultValueBoolean="true"/>
             <column name="token" type="varchar(200)"/>
         </createTable>
+        <addAutoIncrement catalogName="ssafety_db"
+                          columnDataType="int"
+                          columnName="id"
+                          incrementBy="1"
+                          schemaName="public"
+                          startWith="1"
+                          tableName="users"/>
     </changeSet>
 
 </databaseChangeLog>

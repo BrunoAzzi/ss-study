@@ -1,4 +1,4 @@
-package br.org.sesisc.smart.safety.errors;
+package br.org.sesisc.smart.safety.responses;
 
 public class MessageError {
 

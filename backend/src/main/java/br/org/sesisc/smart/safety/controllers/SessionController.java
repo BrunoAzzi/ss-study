@@ -1,6 +1,8 @@
 package br.org.sesisc.smart.safety.controllers;
 
-import br.org.sesisc.smart.safety.errors.ResponseError;
+import br.org.sesisc.smart.safety.dao.UserDao;
+import br.org.sesisc.smart.safety.responses.ErrorResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
@@ -17,11 +19,23 @@ import java.util.HashMap;
 @RequestMapping("/sessions")
 public class SessionController {
 
+    @Autowired
+    private UserDao serviceUser;
+
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> create(@Valid @RequestBody final User userParams, Errors errors) {
         if (errors.hasErrors()) {
-            return new ResponseEntity<HashMap>(ResponseError.handle(errors), HttpStatus.UNPROCESSABLE_ENTITY);
+            return new ResponseEntity<HashMap>(ErrorResponse.handle(errors), HttpStatus.UNPROCESSABLE_ENTITY);
         }
-        return new ResponseEntity<User>(new User(), HttpStatus.OK);
+
+        User user = serviceUser.findBy(new String[] {"email"}, new Object[] {userParams.getEmail()});
+        if (user.authenticate(userParams.getPassword())) {
+            HashMap<String, Object> map = new HashMap<String, Object>();
+            map.put("user", user);
+
+            return new ResponseEntity<HashMap>(map, HttpStatus.OK);
+        }
+
+        return new ResponseEntity<User>(user, HttpStatus.OK);
     }
 }
