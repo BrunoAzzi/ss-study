@@ -16,6 +16,7 @@ import { DataTablePipe } from "./components/perfil_emocional/status_trabalhadore
 // Components
 import { CompaniesComponent } from "./views/companies/companies.component";
 import { CategoryDividerComponent } from "./components/common/category-divider/category-divider.component";
+import { DateRangeComponent } from "./components/common/date-range/date-range.component";
 
 //import { DatepickerOverviewExample } from  "./views/companies/datepicker-overview-example.component";
 import { PPEComponent } from "./views/ppe/ppe.component";
@@ -53,6 +54,9 @@ import {Ng2MaskModule} from 'ng2-mask';
 // Routing module
 import { AppRoutingModule } from "./app-routing.module";
 
+// Calendar Range
+import { MyDateRangePickerModule } from "mydaterangepicker";
+
 // In memory data api
 import { InMemoryDataService } from './mocks/in-memory-data.service';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -80,6 +84,7 @@ import { SafetyCardModule } from "./components/common/safety-card";
     CategoryDividerComponent,
 
     // Components
+    DateRangeComponent,
     AppComponent,
     CompaniesComponent,
     PPEComponent,
@@ -131,6 +136,9 @@ import { SafetyCardModule } from "./components/common/safety-card";
 
     // Flex Layout
     FlexLayoutModule,
+
+    //Calendar Range
+    MyDateRangePickerModule,
 
     // Routes
     AppRoutingModule,

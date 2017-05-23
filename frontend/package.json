@@ -31,6 +31,7 @@
     "font-awesome": "^4.7.0",
     "md2": "0.0.19",
     "moment": "^2.18.1",
+    "mydaterangepicker": "^4.1.4",
     "ng2-charts": "^1.5.0",
     "ng2-mask": "^1.0.3",
     "phaser": "^2.6.2",

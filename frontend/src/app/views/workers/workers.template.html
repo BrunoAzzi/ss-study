@@ -67,7 +67,7 @@
                                         </md-input-container>
                                     </td>
                                     <td>
-                                        <md-select placeholder="Escolaridade" name="escolaridade" id="escolaridade">
+                                        <md-select  class="example-full-width" placeholder="Escolaridade" name="escolaridade" id="escolaridade">
                                             <md-option *ngFor="let escolaridade of escolaridades" [value]="escolaridade.value">
                                                 {{ escolaridade.viewValue }}
                                             </md-option>
@@ -115,7 +115,7 @@
                                         <span mdSuffix>meses</span> -->
 
                                         <md-input-container class="example-full-width">
-                                            <input mdInput required placeholder="CBO" id="cbo" name="cbo" [(ngModel)]="mycbo" (ngModelChange)="checkCboEmpty()" >
+                                            <input mdInput required type="number" placeholder="CBO" id="cbo" name="cbo" [(ngModel)]="mycbo" (ngModelChange)="checkCboEmpty()" >
                                             <md-error>Campo vazio ou com caracteres inválidos.</md-error>
                                         </md-input-container>
                                     </td>
@@ -160,13 +160,13 @@
                                     <td>
                                         <div>
                                             <p class="label_table">Tipo de Contratação:</p>
-                                        <md-radio-group name="tipocontratacao" [(ngModel)]="tipocontratacao">
-                                            <md-radio-button name="proprio" value="true" checked="true">Próprio</md-radio-button>
-                                            <md-radio-button name="terceiro" value="false">Terceiro</md-radio-button>
-                                        </md-radio-group>
-                                    </div>
+                                            <md-radio-group name="tipocontratacao" [(ngModel)]="tipocontratacao">
+                                                <md-radio-button name="proprio" value="true" checked="true">Próprio</md-radio-button>
+                                                <md-radio-button name="terceiro" value="false">Terceiro</md-radio-button>
+                                            </md-radio-group>
+                                        </div>
                                     </td>
-                                    <td colspan="2">
+                                    <td style="align-text: center" colspan="2">
 
                                         <md-input-container class="example-full-width" >
                                             <input mdInput placeholder="Empresa" id="empresa" name="empresa"  [mdTooltip]="tipocontratacao ? 'Digite o nome da empresa' : 'Não é necessário escrever o nome da própria empresa'"  [disabled]="tipocontratacao">
@@ -226,8 +226,61 @@
             </safety-card-content>
         </safety-card>
 
+        <safety-card>
+            <safety-card-header>
+                <span>Dados Segurança do Trabalho</span>
+            </safety-card-header>
+            <safety-card-content>
+                <table class="example-full-width">
+                    <tr>
+                        <td class="sim_nao">
+                            <md-select placeholder="Trabalhador é cipeiro?">
+                                <md-option *ngFor="let necessidade of necessidades" [value]="necessidade.value">
+                                    {{ necessidade.viewValue }}
+                                </md-option>
+                            </md-select>
+                        </td>
+                        <td colspan="2">
+                            <md-select class="full_width" placeholder="Cargo na CIPA">
+                                <md-option *ngFor="let cargonacipa of cargosnacipa" [value]="cargonacipa.value">
+                                    {{ cargonacipa.viewValue }}
+                                </md-option>
+                            </md-select>
+                        </td>
+                        <td colspan="2">
 
+                            <date-range></date-range>
 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="sim_nao">
+                            <md-select placeholder="Trabalhador é brigadista?">
+                                <md-option *ngFor="let necessidade of necessidades" [value]="necessidade.value">
+                                    {{ necessidade.viewValue }}
+                                </md-option>
+                            </md-select>
+                        </td>
+                        <td colspan="4"></td>
+                    </tr>
+                </table>
+
+                <button type="submit" md-raised-button class="save-and-continue rigth">
+                    <span>Salvar e continuar</span>
+                </button>
+
+            </safety-card-content>
+
+        </safety-card>
+
+        <safety-card>
+            <safety-card-header>
+                <span>Dados de saúde</span>
+            </safety-card-header>
+            <safety-card-content>
+
+            </safety-card-content>
+        </safety-card>
 
     </div>
 </div>

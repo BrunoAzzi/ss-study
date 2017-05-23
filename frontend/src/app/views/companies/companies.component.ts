@@ -13,10 +13,7 @@ export class CompaniesComponent {
   // private width: number = 800;
   // private height: number = 600;
 
-  public showPopup() {
-    console.log("Rodolfo é gênio");
-  };
-
+  
     onSelectChange = ($event: any): void => {
 
       this.canvas = document.getElementById('cnvs');

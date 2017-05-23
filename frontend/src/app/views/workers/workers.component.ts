@@ -12,24 +12,16 @@ export class WorkersComponent {
     isReciclagem: boolean = false;
     desabilitado: boolean = true;
     radioGroupValue: string = "";
-    mycbo: string = "";
+    mycbo: string = '';
+    mycbonumber: number = 0;
     errorMessageExample1: string;
     errorMessageExample2: string;
     myCep: string = "";
     enderecoCompleto: string;
-    contratacao_propria: boolean;
     tipocontratacao: any='';
 
+
     constructor (private correiosService: CorreiosService) { }
-
-    //myCep = [{"cep":"88036400","tipoDeLogradouro":"Rua","logradouro":"Luiz Oscar de Carvalho","bairro":"Trindade","cidade":"Florianópolis","estado":"SC"}];
-
-    // contratacao_inicial = 'true';
-
-    //  contratacoes = [
-    //     {value:'true', viewValue:'Próprio'},
-    //     {value:'false', viewValue:'Terceiro'},
-    //   ];
 
     status = [
         {value: 'ativo', viewValue: 'Ativo'},
@@ -41,6 +33,14 @@ export class WorkersComponent {
     cargos = [
         {value: 'prog', viewValue: 'Programador'},
         {value: 'des', viewValue: 'Desenvolvedor'},
+    ];
+
+    cargosnacipa = [
+        {value: 'suplente', viewValue: 'Membro Suplente'},
+        {value: 'efetivo', viewValue: 'Membro Efetivo'},
+        {value: 'presidente', viewValue: 'Presidente'},
+        {value: 'vice', viewValue: 'Vice Presidente'},
+        {value: 'secretario', viewValue: 'Secretário'},
     ];
 
     escolaridades = [
@@ -59,7 +59,7 @@ export class WorkersComponent {
     ];
 
     autocompleteAdressFromApi() {
-        console.log(this.myCep);
+        //console.log(this.myCep);
         this.correiosService.getAddress(this.myCep).subscribe( data => {
             this.enderecoCompleto = data.cidade + " - " + data.estado + ", " + data.bairro + ", " + data.tipoDeLogradouro + " " + data.logradouro;
             // console.log(this.enderecoCompleto);
@@ -67,12 +67,10 @@ export class WorkersComponent {
 
     }
 
-        myHiredChange(){
-              console.log(this.radioGroupValue);
-        }
 
     checkCboEmpty() {
-        if(this.mycbo.length>0){
+        this.mycbonumber = Number.parseInt(this.mycbo);
+        if(this.mycbonumber>0){
             this.desabilitado = false;
         } else {
             this.desabilitado = true;

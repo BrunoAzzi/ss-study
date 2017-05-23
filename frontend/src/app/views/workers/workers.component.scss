@@ -90,6 +90,19 @@ td textarea {
 
 }
 
+.sim_nao{
+    display: flex;
+    justify-content: center;   
+}
+
+md-select /deep/ .mat-select-trigger {
+    font-size: 14px;
+}
+
+md-option  {
+    font-size: 14px;
+}
+
 .example-full-width {
   width: 100%;
 }
