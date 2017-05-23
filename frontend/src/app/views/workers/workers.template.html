@@ -47,8 +47,8 @@
                                     <td colspan="2">
                                         <div>
                                             <p class="label_table">Sexo:</p>
-                                            <md-radio-group  layout-gt-md="row">
-                                                <md-radio-button value="m" checked="true">Masculino</md-radio-button>
+                                            <md-radio-group layout-gt-md="row">
+                                                <md-radio-button value="m">Masculino</md-radio-button>
                                                 <md-radio-button value="f">Feminino</md-radio-button>
                                             </md-radio-group>
                                         </div>
@@ -158,16 +158,18 @@
 
                                 <tr>
                                     <td>
-                                        <p class="label_table">Tipo de Contratação:</p>
-                                        <md-radio-group [(value)]="radioGroupValue">
-                                            <md-radio-button value="p" checked="true">Próprio</md-radio-button>
-                                            <md-radio-button value="t">Terceiro</md-radio-button>
+                                        <div>
+                                            <p class="label_table">Tipo de Contratação:</p>
+                                        <md-radio-group name="tipocontratacao" [(ngModel)]="tipocontratacao">
+                                            <md-radio-button name="proprio" value="true" checked="true">Próprio</md-radio-button>
+                                            <md-radio-button name="terceiro" value="false">Terceiro</md-radio-button>
                                         </md-radio-group>
+                                    </div>
                                     </td>
                                     <td colspan="2">
 
                                         <md-input-container class="example-full-width" >
-                                            <input mdInput placeholder="Empresa" id="empresa" name="empresa">
+                                            <input mdInput placeholder="Empresa" id="empresa" name="empresa"  [mdTooltip]="tipocontratacao ? 'Digite o nome da empresa' : 'Não é necessário escrever o nome da própria empresa'"  [disabled]="tipocontratacao">
                                         </md-input-container>
                                     </td>
                                 </tr>

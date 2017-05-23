@@ -17,10 +17,19 @@ export class WorkersComponent {
     errorMessageExample2: string;
     myCep: string = "";
     enderecoCompleto: string;
-    //
+    contratacao_propria: boolean;
+    tipocontratacao: any='';
+
     constructor (private correiosService: CorreiosService) { }
 
     //myCep = [{"cep":"88036400","tipoDeLogradouro":"Rua","logradouro":"Luiz Oscar de Carvalho","bairro":"Trindade","cidade":"Florianópolis","estado":"SC"}];
+
+    // contratacao_inicial = 'true';
+
+    //  contratacoes = [
+    //     {value:'true', viewValue:'Próprio'},
+    //     {value:'false', viewValue:'Terceiro'},
+    //   ];
 
     status = [
         {value: 'ativo', viewValue: 'Ativo'},
