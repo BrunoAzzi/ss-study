@@ -7,15 +7,22 @@ Feature: Registration of Company Details
     And I am in company registration screen
     And I select in first accordion item called "Dados da empresa"
     
-  Scenario Outline: Get informations from CNPJ
-    Given the <cnpj> exist and is valid
-    When I type the <cnpj> in CPNJ field
-    And I submit, press on the magnifying glass icon
-    Then I should see automatically populate the informations: <social_name>, <fantasy_name>, <cnae>, <cnae_description> and <address>.
+  Scenario: Get informations from CNPJ
+    Given the following "CNPJ" is valid and exists:
+      | cnpj                 | 
+      | 000.000.000.00       | 
+    When I type this in CPNJ field
+    And I submit, pressing the magnifying glass icon
+    Then I should see automatically populate the informations: "Nome Social", "Nome Fantasia", "CNAE",
+                                                                "Descricao do CNAE" and "Endereco".
 
-    Examples:
-      | cnpj                 | social_name    | fantasy_name    | cnae           | cnae_description   | address     |
-      | 000.000.000.00       |                |                 |                |                    |             |
+  Scenario: Get informations from CEP
+    Given the following "CEP" is valid and exists:
+      | cep            | 
+      | 00.000.000     | 
+    When I type this in CEP field
+    And I submit, pressing the magnifying glass icon
+    Then I should see automatically populate all informations of address.
 
   Scenario: Upload a logo image
       Given I have a logo image to company
@@ -23,3 +30,8 @@ Feature: Registration of Company Details
       And I select a image from my computer 
       Then the image will be uploaded
       And I should see that in box 
+  
+  Scenario: Submit company details
+      Given that the fields 
+      When 
+      Then 
