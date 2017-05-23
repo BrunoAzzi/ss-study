@@ -65,6 +65,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 
 // Safety custom components
 import { SafetyCardModule } from "./components/common/safety-card";
+import { CompanyDetailsComponent } from "./components/forms/company-details/company-details.component";
 
 // Pipes
 
@@ -93,6 +94,7 @@ import { SafetyCardModule } from "./components/common/safety-card";
     TopnavbarComponent,
     NavigationComponent,
     MyPhaserComponent,
+    CompanyDetailsComponent,
 
     // Painel Emocional
     StatusDiaComponent,
@@ -127,7 +129,6 @@ import { SafetyCardModule } from "./components/common/safety-card";
 
     // Routes
     AppRoutingModule,
-
   ],
   providers: [
     HttpClientService,
