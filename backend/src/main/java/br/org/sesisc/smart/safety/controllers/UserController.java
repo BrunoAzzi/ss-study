@@ -14,36 +14,31 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.HashMap;
 
 @RestController
-@RequestMapping("/sessions")
-public class SessionController {
+@RequestMapping("/users")
+public class UserController {
 
     @Autowired
     private UserDao serviceUser;
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<?> create(@Valid @RequestBody final User userParams, Errors errors) {
+    public ResponseEntity<?> create(@Valid @RequestBody User userParams, Errors errors) {
         if (errors.hasErrors()) {
             return ErrorResponse.handle(errors, HttpStatus.UNPROCESSABLE_ENTITY);
         }
 
-        User user = serviceUser.findBy(new String[] {"email"}, new Object[] {userParams.getEmail()});
-        if (user != null && user.authenticate(userParams.getPassword())) {
-            user.genNewToken();
-            serviceUser.update(user.getId(), new String[] { "token" }, new Object[] { user.getToken() });
+        User user = new User();
+        user.setEmail(userParams.getEmail());
+        user.digestPassword(userParams.getPassword());
+        user.setActive(true);
+        serviceUser.create(user);
 
-            return SuccessResponse.handle(
-                    new String[] {"user"},
-                    new Object[] {user},
-                    HttpStatus.OK
-            );
-        } else {
-            return ErrorResponse.handle(
-                    new String[] { "Usuario e/ou senha inválido!" },
-                    User.class,
-                    HttpStatus.UNPROCESSABLE_ENTITY
-            );
-        }
+        return SuccessResponse.handle(
+                new String[] {"user"},
+                new Object[] {user},
+                HttpStatus.OK
+        );
     }
 }

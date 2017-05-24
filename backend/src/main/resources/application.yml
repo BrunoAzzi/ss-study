@@ -11,3 +11,11 @@ liquibase:
   user: ssafety_usr
   password: secret
   drop-first: false
+
+security:
+  basic:
+    enabled: false
+
+endpoints:
+  shutdown:
+    enabled: true

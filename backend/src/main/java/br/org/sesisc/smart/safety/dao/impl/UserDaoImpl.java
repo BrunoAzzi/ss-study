@@ -4,13 +4,17 @@ import br.org.sesisc.smart.safety.dao.UserDao;
 import br.org.sesisc.smart.safety.dao.mapper.UserMapper;
 import br.org.sesisc.smart.safety.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Repository("UserDao")
@@ -43,6 +47,24 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    public void update(final long id, final String[] properties, final Object[] values) {
+        String sql = "UPDATE users SET";
+
+        if (properties.length == values.length) {
+            List<String> assignments = new ArrayList<>();
+            for (String property : properties) {
+                assignments.add(String.format("%s = ?", property));
+            }
+            sql = String.format("%s %s WHERE id = ?", sql, String.join(", ", assignments));
+
+            final Object[] valuesWithId = Arrays.copyOf(values, values.length + 1);
+            valuesWithId[values.length] = id;
+
+            jdbcTemplate.update(sql, valuesWithId);
+        }
+    }
+
+    @Override
     public List<User> findAll() {
         return jdbcTemplate.query(FETCH_SQL, new UserMapper());
     }
@@ -53,7 +75,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User findBy(String[] properties, Object[] values) {
+    public User findBy(final String[] properties, final Object[] values) {
         String query = "SELECT * FROM users WHERE 1=1";
 
         if (properties.length == values.length) {
@@ -62,9 +84,14 @@ public class UserDaoImpl implements UserDao {
             }
             query = String.format("%s LIMIT 1", query);
 
-            return (User) jdbcTemplate.queryForObject(query, values, new UserMapper());
+            try {
+                return (User) jdbcTemplate.queryForObject(query, values, new UserMapper());
+            } catch (EmptyResultDataAccessException e) {
+                return null;
+            }
         }
 
-        return new User();
+        return null;
     }
+
 }
