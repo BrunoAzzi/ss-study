@@ -54,9 +54,24 @@ export class WorkersComponent {
     ];
 
     necessidades = [
-        {value: 's', viewValue: 'Sim'},
-        {value: 'n', viewValue: 'Não'},
+        {value: 0, viewValue: 'Sim'},
+        {value: 1, viewValue: 'Não'},
     ];
+    selectedNecessidade: number = 1;
+
+    brigadistas = [
+        {value: 0, viewValue: 'Sim'},
+        {value: 1, viewValue: 'Não'},
+    ];
+    selectedBrigadista: number = 1;
+
+    cipeiros = [
+        {value: 0, viewValue: 'Sim'},
+        {value: 1, viewValue: 'Não'},
+    ];
+    selectedCipeiro: number = 1;
+
+    selectedCargocipa:boolean = false;
 
     autocompleteAdressFromApi() {
         //console.log(this.myCep);

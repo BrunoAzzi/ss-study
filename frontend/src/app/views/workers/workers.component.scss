@@ -59,7 +59,6 @@ safety-card-content > :last-child {
 
 table{
     border-collapse: separate; border-spacing: 8px;
-
 }
 
 
@@ -90,9 +89,21 @@ td textarea {
 
 }
 
-.sim_nao{
-    display: flex;
-    justify-content: center;   
+// .sim_nao{
+//     display: flex;
+//     justify-content: center;
+// }
+
+.component_center{
+  text-align: -webkit-center;
+}
+
+.max_width_cargocipa{
+    min-width: 250px;
+}
+
+.max_width_simnao{
+    min-width: 190px;
 }
 
 md-select /deep/ .mat-select-trigger {

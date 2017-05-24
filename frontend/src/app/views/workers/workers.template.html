@@ -231,44 +231,47 @@
                 <span>Dados Segurança do Trabalho</span>
             </safety-card-header>
             <safety-card-content>
-                <table class="example-full-width">
-                    <tr>
-                        <td class="sim_nao">
-                            <md-select placeholder="Trabalhador é cipeiro?">
-                                <md-option *ngFor="let necessidade of necessidades" [value]="necessidade.value">
-                                    {{ necessidade.viewValue }}
-                                </md-option>
-                            </md-select>
-                        </td>
-                        <td colspan="2">
-                            <md-select class="full_width" placeholder="Cargo na CIPA">
-                                <md-option *ngFor="let cargonacipa of cargosnacipa" [value]="cargonacipa.value">
-                                    {{ cargonacipa.viewValue }}
-                                </md-option>
-                            </md-select>
-                        </td>
-                        <td colspan="2">
+                <form
+                id="form3" name="form3">
+                    <table class="example-full-width">
+                        <tr>
+                            <td width="20%" align="center"  >
+                                <md-select required name="select_cipeiro" class="max_width_simnao" [(ngModel)]="selectedCipeiro" placeholder="Trabalhador é cipeiro?">
+                                    <md-option *ngFor="let cipeiro of cipeiros" [value]="cipeiro.value">
+                                        {{ cipeiro.viewValue }}
+                                    </md-option>
+                                </md-select>
+                            </td>
+                            <td width="40%" align="center" colspan="2">
+                                <md-select required name="select_cargocipa" [disabled]='selectedCipeiro' [(ngModel)]="selectedCargocipa" class="max_width_cargocipa" placeholder="Cargo na CIPA" [disabled]="seg_trab_desab">
+                                    <md-option *ngFor="let cargonacipa of cargosnacipa" [value]="cargonacipa.value">
+                                        {{ cargonacipa.viewValue }}
+                                    </md-option>
+                                </md-select>
+                            </td>
+                            <td width="40%"  align="center"   class="calendar_center" colspan="2">
 
-                            <date-range></date-range>
+                                <date-range required name="data_range"></date-range>
 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="sim_nao">
-                            <md-select placeholder="Trabalhador é brigadista?">
-                                <md-option *ngFor="let necessidade of necessidades" [value]="necessidade.value">
-                                    {{ necessidade.viewValue }}
-                                </md-option>
-                            </md-select>
-                        </td>
-                        <td colspan="4"></td>
-                    </tr>
-                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%" align="center"  >
+                                <md-select required name="select_brigadista" class="max_width_simnao" placeholder="Trabalhador é brigadista?" [(ngModel)]="selectedBrigadista" [disabled]="seg_trab_desab">
+                                    <md-option *ngFor="let brigadista of brigadistas" [value]="brigadista.value">
+                                        {{ brigadista.viewValue }}
+                                    </md-option>
+                                    <!-- <md-option *ngFor="let necessidade of necessidades; #i = index" [selected]="i === 0" [value]="necessidade.value"> {{necessidade.viewValue}}</md-option> -->
+                                </md-select>
+                            </td>
+                            <td width="80%" colspan="4"></td>
+                        </tr>
+                    </table>
 
-                <button type="submit" md-raised-button class="save-and-continue rigth">
-                    <span>Salvar e continuar</span>
-                </button>
-
+                    <button type="submit" md-raised-button class="save-and-continue rigth"  [disabled]='!selectedCargocipa'>
+                        <span>Salvar e continuar</span>
+                    </button>
+                </form>
             </safety-card-content>
 
         </safety-card>
