@@ -1,8 +1,7 @@
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { Component, Input, Output, OnInit } from '@angular/core';
 import * as Phaser from 'phaser';
-//import * as PIXI from 'pixi';
-//var pixi =  require ('../../../node_modules/phaser/build/pixi.js');
+
 
 @Component({
   selector: 'app-my-phaser',
@@ -15,17 +14,17 @@ export class MyPhaserComponent implements OnInit {
   @Input() phaserState: object;
   @Input() view: boolean;
 
-
   game;
   angular;
-  cursor;
   isMoving;
   temp;
+  zoom;
 
   ngOnInit() {
     // global variable to comunicate angular with phaser
-    console.log("TESTE PHASER");
+    this.zoom = 1;
     this.temp = undefined;
+    window["static"] = [];
     window["angular"] = this;
     this.createPhaser(this.phaserConfig);
   }
@@ -38,70 +37,72 @@ export class MyPhaserComponent implements OnInit {
       actionOnClick: this.actionOnClick,
       onDragStart: this.onDragStart,
       onDragStop: this.onDragStop,
-      updateGame: this.game,
       mapearArea: this.mapearArea,
       monitoramento: this.monitoramento,
       onInputDown: this.onInputDown,
       onMove: this.onMove,
       scrollEvent: this.scrollEvent,
+      zoomSetting: this.zoomSetting,
     });
   }
 
 
   preload() {
     this.isMoving = true;
-    this.game.stage.backgroundColor = "#f8fafb";
+    this.game.stage.backgroundColor = "#e9eced";
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
-
     this.game.input.mouse.mouseWheelCallback = this.scrollEvent;
+
+    //variaveis globais
+
     //mapa
     this.game.load.image('map', window["angular"].phaserState.mapImage.url);
-    var cursor = 0;
-    // this.game.load.image('bgMap', 'src/assets/bgMenu.png');
+
     //Buttons Itens
     for (var index = 0; index < window["angular"].phaserConfig['menu'].buttons.length; index++) {
       this.game.load.spritesheet(window["angular"].phaserConfig['menu'].buttons[index].name, window["angular"].phaserConfig['menu'].buttons[index].button, 64.4, 54);
       this.game.load.image('iten', window["angular"].phaserConfig['menu'].buttons[index].item);
     }
-
-
   }
+
+
 
   create() {
 
     //always create  the map
-    this.game.world.setBounds(0, 0, 2000, 2000);
     var map = this.game.add.sprite(0, 0, 'map');
     map.inputEnabled = true;
-    //
-    //floor for each map
-    var floor = this.game.add.text(10, 100, window["angular"].phaserState["mapImage"].titulo, { fontSize: '20px', fill: '#3c3c3c' });
-    floor.fixedToCamera = true;
-    this.game.physics.arcade.enable(map);
 
+    this.game.world.setBounds(-map._frame.sourceSizeW*2, - map._frame.sourceSizeH*2, map._frame.sourceSizeW * 5, map._frame.sourceSizeH * 5);
+
+    window["angular"].zoom = (window["angular"].phaserConfig['width'] / map._frame.sourceSizeW);
+    window["angular"].maxZoom = (window["angular"].phaserConfig['width'] / map._frame.sourceSizeW)*Math.pow(1.25 , 5) ;
+    window["angular"].minZoom = (window["angular"].phaserConfig['width'] / map._frame.sourceSizeW)*Math.pow(0.8 , 5);
+    //floor for each map
+    var floor = this.game.world.game.add.text(10, 100, window["angular"].phaserState["mapImage"].titulo, { fontSize: '20px', fill: '#3c3c3c' });
+    floor.fixedToCamera = true;
+    window["static"].push(floor);
+    this.game.physics.arcade.enable(map);
     //Option just if is mapearArea view
     if (!window["angular"].view) {
       this.mapearArea();
-    }else{
-       this.monitoramento();
+    } else {
+      this.monitoramento();
     }
 
     window["camera"] = this.game.camera;
     window["key"] = this.game.input;
+    window["world"] = this.game.world.game.world;
+    this.zoomSetting();
+    //  window["static"].fixedToCamera = true;
 
 
   }
 
   update() {
+    //console.log("update");
     //move camera
-
-    window["camera"] = this.game.camera;
-    window["key"] = this.game.input;
-    if (window["key"].activePointer.isDown && this.isMoving) {
-      window["camera"].y -= window["key"].mouse.event.movementY;
-      window["camera"].x -= window["key"].mouse.event.movementX;
-    }
-
+    
 
   }
 
@@ -109,12 +110,12 @@ export class MyPhaserComponent implements OnInit {
   mapearArea() {
     this.game.input.addMoveCallback(this.onMove, this);
 
-
     var menuButtons;
     var itens;
     var locationX = 0;
     var locationY = -145;
     var tempButtons;
+    var teste;
 
     for (var index = 0; index < window["angular"].phaserConfig['menu'].buttons.length; index++) {
       switch (window["angular"].phaserConfig['menu'].position) {
@@ -140,21 +141,25 @@ export class MyPhaserComponent implements OnInit {
       }
 
       menuButtons = this.game.add.button(locationX, locationY, window["angular"].phaserConfig['menu'].buttons[index].name, undefined, this, 1, 1, 0);
-      menuButtons.fixedToCamera = true;
       menuButtons.anchor.setTo(0.5, 0);
       menuButtons.inputEnabled = true;
       menuButtons.fixedToCamera = true;
       menuButtons.events.onInputDown.add(this.onInputDown, this);
+
+      window["static"].push(menuButtons);
+
     }
+
   }
 
   actionOnClick(button) {
-
+   
 
   }
 
   onDragStart(button) {
 
+    console.log("TesteButtonDrag");
     this.isMoving = false;
     this.game.position = {
       x: button.position.x,
@@ -176,28 +181,20 @@ export class MyPhaserComponent implements OnInit {
   }
 
   onInputDown(button) {
-
-    var graphics;
+    //var graphics;
     this.isMoving = false;
     this.game.canvas.style.backgroundImage = "iten";
 
     for (var index = 0; index < window["angular"].phaserConfig['menu'].buttons.length; index++) {
       if (button.key == window["angular"].phaserConfig['menu'].buttons[index].name) {
 
-        this.temp = this.game.add.button(button.centerX / 2, button.centerY / 2, 'iten', undefined, 0, 0, 0);
-
-        this.temp.input.enableDrag();
+        this.temp = this.game.add.button(window["key"].position.x, window["key"].position.y, 'iten', undefined, 0, 0, 0);
+        this.temp.position.x = ((window["key"].position.x + this.game.camera.position.x) / window["angular"].zoom) - (this.temp._frame.centerX);
+        this.temp.position.y = ((window["key"].position.y + this.game.camera.position.y) / window["angular"].zoom) - (this.temp._frame.centerY);
+        this.temp.inputEnabled = true;
+        this.temp.input.enableDrag(true);
         this.temp.events.onDragStart.add(this.onDragStart, this);
         this.temp.events.onDragStop.add(this.onDragStop, this);
-        /*
-                graphics = this.game.add.graphics(0, 0);
-        
-                graphics.lineStyle(1, 0x00a77e, 1);
-                graphics.beginFill(0xffffff, 0.6);
-                graphics.drawCircle(this.temp._frame.centerX, this.temp._frame.centerY, 30);
-        
-                this.temp.addChild(graphics);
-                 */
 
       }
     }
@@ -207,22 +204,46 @@ export class MyPhaserComponent implements OnInit {
   onMove(pointer, x, y) {
     if (this.temp) {
       if (window["key"].mousePointer.isDown) {
-        this.temp.position.x = x - (this.temp._frame.centerX) + this.game.camera.position.x;
-        this.temp.position.y = y - (this.temp._frame.centerY) + this.game.camera.position.y;
+        this.temp.position.x = ((x + this.game.camera.position.x) / window["angular"].zoom) - (this.temp._frame.centerX);
+        this.temp.position.y = ((y + this.game.camera.position.y) / window["angular"].zoom) - (this.temp._frame.centerY);
+
+        // this.temp.position.x = x  - (this.temp._frame.centerX) + this.game.camera.position.x;
+        //this.temp.position.y = y - (this.temp._frame.centerY) + this.game.camera.position.y;
       } else {
         this.temp = undefined;
         this.isMoving = true;
       }
+    }else{
+      if (window["key"].activePointer.isDown && this.isMoving) {
+        window["camera"].y -= window["key"].mouse.event.movementY;// / window["angular"].zoom;
+        window["camera"].x -= window["key"].mouse.event.movementX;// / window["angular"].zoom;
+      }
     }
   }
 
-  scrollEvent(game) {
+  scrollEvent() {
+    //window["static"].fixedToCamera = false;
     if (window["key"].mouse.wheelDelta > 0) {
-      console.log("scroll up");
+      window["angular"].zoom *= 1.25;
+      if(window["angular"].zoom > window["angular"].maxZoom){
+        window["angular"].zoom = window["angular"].maxZoom;
+      }
     } else {
-      console.log("scroll down");
+      window["angular"].zoom *= 0.8;
+      if(window["angular"].zoom < window["angular"].minZoom){
+        window["angular"].zoom = window["angular"].minZoom;
+      }
     }
 
+    window["angular"].zoomSetting();
+  }
+
+
+  zoomSetting() {
+    window["world"].scale.set(window["angular"].zoom, window["angular"].zoom);
+    for (var index = 0; index < window["static"].length; index++) {
+      window["static"][index].scale.set(1.0 / window["angular"].zoom, 1.0 / window["angular"].zoom);
+    }
   }
 
 

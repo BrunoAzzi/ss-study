@@ -14,8 +14,10 @@ export class MyConstructionSitesComponent {
   view = false;
 
   phaserConfig = {
-    width: 600,
-    height: 600,
+    zoomMin: 0.1,
+    zoomMax: 10,
+    width: window.innerWidth - 400,
+    height: window.innerHeight-300,
     callModal : this.callModal,
     menu: {
       position: "top",
