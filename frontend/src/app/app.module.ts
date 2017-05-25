@@ -101,6 +101,7 @@ import { InputFile } from "./components/common/input-file/input-file.component";
         // Trabalhadores
         SkillComponent,
         RecyclingComponent,
+        InputFile
 
     ],
     imports: [
