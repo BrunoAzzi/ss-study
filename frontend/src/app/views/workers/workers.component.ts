@@ -61,8 +61,9 @@ export class WorkersComponent {
         this.maximunLength = this.skillNames.length;
     }
 
-    saveSkills() {
-        console.log("skills saved!")
+    saveSkills(safetyCard) {
+        console.log("skills saved!");
+        if (this.isValid) safetyCard.close();
     }
 
 }

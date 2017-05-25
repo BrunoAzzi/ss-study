@@ -102,7 +102,6 @@ import { InputFile } from "./components/common/input-file/input-file.component";
         SkillComponent,
         RecyclingComponent,
 
-        InputFile
     ],
     imports: [
         // Notification Module
