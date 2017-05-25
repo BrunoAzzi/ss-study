@@ -57,7 +57,8 @@ export class WorkersComponent {
     ];
 
     constructor() {
-        this.maximunLength = this.habilitacaoNames.length;
+        if (this.skillList.length < 1) this.skillList.push(new Skill());
+        this.maximunLength = this.skillNames.length;
     }
 
     saveSkills() {
