@@ -4,7 +4,7 @@
         <category-divider-left>
         </category-divider-left>
         <category-divider-center>
-            <md-select #skillName required [(ngModel)]="isSkillValid" (change)="toggleName(skillName.selected.value)" placeholder="Selecione a habilitação" floatPlaceholder="never">
+            <md-select #skillName required (change)="toggleName(skillName.selected.value)" placeholder="Selecione a habilitação" floatPlaceholder="never">
                 <md-option *ngFor="let name of nameList" [value]="name">{{name}}</md-option>
             </md-select>
         </category-divider-center>
@@ -25,8 +25,10 @@
         <md-input-container>
             <input [ngModel]="skill.dueDate | date:'yyyy-MM-dd'" (change)="skill.dueDate = $event.target.valueAsDate" mdInput disabled type="date" placeholder="Proxima Reciclagem">
         </md-input-container>
-        <md-checkbox #apto checked="true" (click)="inapto.toggle()">Apto</md-checkbox>
-        <md-checkbox #inapto (click)="apto.toggle()">Inapto</md-checkbox>
+        <md-radio-group [(ngModel)]="isApt">
+            <md-radio-button value="true">Apto</md-radio-button>
+            <md-radio-button value="false">Inapto</md-radio-button>
+        </md-radio-group>
         <input-file (onFileSelect)="onFileSelect($event)" [accept]="'.doc,.docx,.png,.pdf'"></input-file>
     </div>
 

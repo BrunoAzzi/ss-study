@@ -5,8 +5,8 @@ export class Skill {
     periodicity: number;
 
     constructor() {
-        this.dueDate = new Date();
-        this.periodicity = 5;
+        this.dueDate = null;
+        this.periodicity = 0;
         this.attachment = null;
         this.validityStart = null;
     }
