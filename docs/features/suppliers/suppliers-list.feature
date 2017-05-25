@@ -1,8 +1,13 @@
 @TOCODE
-Feature: Companies list
+Feature: Suppliers list
   In order to manage companies across the system
   As a user
   I want to view the companies of the system
+
+  Scenario: Adding a company
+    Given I am at the list of companies page
+    When I click on the add button
+    Then I see the company form page with no data filled
 
   Background:
     Given the following companies exist:
@@ -36,7 +41,3 @@ Feature: Companies list
       When I select the first company
       And click on the remove button
       Then I can see a list containing 1 item
-  Scenario: Adding a company
-    Given I am at the list of companies page
-    When I click on the add button
-    Then I see the company form page with no data filled

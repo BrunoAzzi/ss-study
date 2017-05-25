@@ -8,4 +8,4 @@ Feature: Logout
     Given I am logged to the system
     When I perform logoff
     Then I should be redirected to the login page
-    And I cannot access some pages of the system
+    And I cannot access most pages of the system
