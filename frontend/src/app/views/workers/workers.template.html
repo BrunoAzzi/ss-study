@@ -5,28 +5,28 @@
     </topnavbar>
 
     <div class="body-content">
+        <safety-card #safetyCard>
 
-        <safety-card>
             <safety-card-header>
                 <span>habilitações</span>
             </safety-card-header>
+
             <safety-card-content>
                 <form novalidate id="form1" name="form1">
 
                     <habilitacao [habilitacao]="habilitacao" (removed)="removeHabilitacao(habilitacao)" [(habilitacaoNames)]="habilitacaoNames" *ngFor="let habilitacao of habilitacoes"></habilitacao>
 
                     <div fxLayout fxLayoutAlign="space-between center">
-
                         <button md-button (click)="addHabilitacao()">
                             <span>Adicicionar habilitação</span>
                         </button>
 
-                        <button class="save-and-continue" md-raised-button type="submit">
+                        <button (click)="saveSkills();safetyCard.close()" class="save-and-continue" md-raised-button type="submit">
                             <span>Salvar e continuar</span>
                         </button>
                     </div>
-                </form>
 
+                </form>
             </safety-card-content>
         </safety-card>
 

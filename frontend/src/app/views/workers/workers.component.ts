@@ -60,4 +60,8 @@ export class WorkersComponent {
         this.maximunLength = this.habilitacaoNames.length;
     }
 
+    saveSkills() {
+        console.log("skills saved!")
+    }
+
 }

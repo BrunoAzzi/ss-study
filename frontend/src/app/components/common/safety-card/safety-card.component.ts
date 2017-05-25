@@ -38,18 +38,23 @@ export class SafetyCardComponent {
     }
 
     coerceBooleanProperty(value: any): boolean {
-       return value != null && `${value}` !== 'false';
-   }
+        return value != null && `${value}` !== 'false';
+    }
+
+    close() {
+        this.isHidden = true;
+        this.state = "inactive";
+        this.toggleIcon = "keyboard_arrow_down";
+    }
+
+    open() {
+        this.isHidden = false;
+        this.state = "active";
+        this.toggleIcon = "keyboard_arrow_up";
+    }
 
     toggleState() {
-        this.isHidden = !this.isHidden;
-        if (this.isHidden) {
-            this.state = "inactive";
-            this.toggleIcon = "keyboard_arrow_down";
-        } else {
-            this.state = "active";
-            this.toggleIcon = "keyboard_arrow_up";
-        }
+        this.isHidden ? this.open() : this.close();
     }
 }
 
