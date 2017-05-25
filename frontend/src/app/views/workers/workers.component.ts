@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Habilitacao } from '../../mocks/habilitacao/habilitacao';
+import { Skill } from '../../mocks/skill/skill';
 
 @Component({
     selector: 'workers',
@@ -8,21 +8,21 @@ import { Habilitacao } from '../../mocks/habilitacao/habilitacao';
     styleUrls: ['./workers.component.scss']
 })
 export class WorkersComponent {
-    isReciclagem: boolean = false;
     maximunLength: number;
+    isValid: boolean = false;
 
-    habilitacoes = [];
+    skillList = [];
 
-    addHabilitacao() {
-        if (this.habilitacoes.length < this.maximunLength) this.habilitacoes.push(new Habilitacao());
+    addSkill() {
+        if (this.skillList.length < this.maximunLength) this.skillList.push(new Skill());
     }
 
-    removeHabilitacao(habilitacao: Habilitacao) {
-        let index = this.habilitacoes.indexOf(habilitacao);
-        if (index > -1) this.habilitacoes.splice(index, 1);
+    removeSkill(skill: Skill) {
+        let index = this.skillList.indexOf(skill);
+        if (index > -1) this.skillList.splice(index, 1);
     }
 
-    habilitacaoNames = [
+    skillNames = [
         "NR 32",
         "NR 35",
         "NR 18",

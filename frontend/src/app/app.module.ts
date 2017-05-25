@@ -16,8 +16,8 @@ import { DataTablePipe } from "./components/perfil_emocional/status_trabalhadore
 
 // Components
 import { CompaniesComponent } from "./views/companies/companies.component";
-import { HabilitacaoComponent } from "./components/workers/habilitacao/habilitacao.component";
-import { ReciclagemComponent } from "./components/workers/habilitacao/reciclagem/reciclagem.component";
+import { SkillComponent } from "./components/workers/skill/skill.component";
+import { RecyclingComponent } from "./components/workers/recycling/recycling.component";
 
 //import { DatepickerOverviewExample } from  "./views/companies/datepicker-overview-example.component";
 import { PPEComponent } from "./views/ppe/ppe.component";
@@ -99,8 +99,9 @@ import { CategoryDividerModule } from "./components/common/category-divider";
         CompBaseStatusDia,
 
         // Trabalhadores
-        HabilitacaoComponent,
-        ReciclagemComponent,
+        SkillComponent,
+        RecyclingComponent,
+
     ],
     imports: [
         // Notification Module

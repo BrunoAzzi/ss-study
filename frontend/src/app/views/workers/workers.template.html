@@ -14,10 +14,10 @@
             <safety-card-content>
                 <form novalidate id="form1" name="form1">
 
-                    <habilitacao [habilitacao]="habilitacao" (removed)="removeHabilitacao(habilitacao)" [(habilitacaoNames)]="habilitacaoNames" *ngFor="let habilitacao of habilitacoes"></habilitacao>
+                    <skill [skill]="skill" (removed)="removeSkill(skill)" [(skillNames)]="skillNames" *ngFor="let skill of skillList"></skill>
 
                     <div fxLayout fxLayoutAlign="space-between center">
-                        <button md-button (click)="addHabilitacao()">
+                        <button md-button (click)="addSkill()">
                             <span>Adicicionar habilitação</span>
                         </button>
 
