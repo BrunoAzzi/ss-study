@@ -14,9 +14,10 @@ export class SessionsService {
     login(email: string, password: string) {
         return this.service.postLogin(JSON.stringify({ email: email, password: password }))
             .map((response: Response) => {
-                let user = response.json();
-                if (user.token) {
-                    Cookie.set('auth_token', user.token);
+                console.log(response.json());
+                let obj = response.json();
+                if (obj.user && obj.user.token) {
+                    Cookie.set('auth_token', obj.user.token);
                 }
             });
     }
