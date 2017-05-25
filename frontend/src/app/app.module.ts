@@ -66,7 +66,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { SafetyCardModule } from "./components/common/safety-card";
 import { CategoryDividerModule } from "./components/common/category-divider";
 
-// Pipes
+import { InputFile } from "./components/common/input-file/input-file.component";
 
 @NgModule({
     declarations: [
@@ -102,6 +102,7 @@ import { CategoryDividerModule } from "./components/common/category-divider";
         SkillComponent,
         RecyclingComponent,
 
+        InputFile
     ],
     imports: [
         // Notification Module

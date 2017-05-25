@@ -1,0 +1,6 @@
+<span>
+    <input [accept]="accept" type="file" (change)="onNativeInputFileSelect($event)" #inputFile hidden />
+    <button type="button" md-icon-button (click)="selectFile()">
+        <md-icon>attach_file</md-icon>
+    </button>
+</span>
