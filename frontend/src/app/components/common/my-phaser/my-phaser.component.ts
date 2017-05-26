@@ -21,7 +21,6 @@ export class MyPhaserComponent implements OnInit {
   zoom;
 
   ngOnInit() {
-    // global variable to comunicate angular with phaser
     this.zoom = 1;
     this.temp = undefined;
     window["static"] = [];
@@ -37,8 +36,8 @@ export class MyPhaserComponent implements OnInit {
       actionOnClick: this.actionOnClick,
       onDragStart: this.onDragStart,
       onDragStop: this.onDragStop,
-      mapearArea: this.mapearArea,
-      monitoramento: this.monitoramento,
+      mapArea: this.mapArea,
+      monitoring: this.monitoring,
       onInputDown: this.onInputDown,
       onMove: this.onMove,
       scrollEvent: this.scrollEvent,
@@ -53,69 +52,55 @@ export class MyPhaserComponent implements OnInit {
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
     this.game.input.mouse.mouseWheelCallback = this.scrollEvent;
 
-    //variaveis globais
-
-    //mapa
     this.game.load.image('map', window["angular"].phaserState.mapImage.url);
-
-    //Buttons Itens
     for (var index = 0; index < window["angular"].phaserConfig['menu'].buttons.length; index++) {
       this.game.load.spritesheet(window["angular"].phaserConfig['menu'].buttons[index].name, window["angular"].phaserConfig['menu'].buttons[index].button, 64.4, 54);
-      this.game.load.image('iten', window["angular"].phaserConfig['menu'].buttons[index].item);
+      this.game.load.image('iten' + index, window["angular"].phaserConfig['menu'].buttons[index].item);
+
     }
   }
 
 
 
   create() {
-
-    //always create  the map
     var map = this.game.add.sprite(0, 0, 'map');
     map.inputEnabled = true;
-
-    this.game.world.setBounds(-map._frame.sourceSizeW*2, - map._frame.sourceSizeH*2, map._frame.sourceSizeW * 5, map._frame.sourceSizeH * 5);
+    this.game.world.setBounds(-map._frame.sourceSizeW * 2, - map._frame.sourceSizeH * 2, map._frame.sourceSizeW * 5, map._frame.sourceSizeH * 5);
 
     window["angular"].zoom = (window["angular"].phaserConfig['width'] / map._frame.sourceSizeW);
-    window["angular"].maxZoom = (window["angular"].phaserConfig['width'] / map._frame.sourceSizeW)*Math.pow(1.25 , 5) ;
-    window["angular"].minZoom = (window["angular"].phaserConfig['width'] / map._frame.sourceSizeW)*Math.pow(0.8 , 5);
-    //floor for each map
+    window["angular"].maxZoom = (window["angular"].phaserConfig['width'] / map._frame.sourceSizeW) * Math.pow(1.25, 5);
+    window["angular"].minZoom = (window["angular"].phaserConfig['width'] / map._frame.sourceSizeW) * Math.pow(0.8, 5);
     var floor = this.game.world.game.add.text(10, 100, window["angular"].phaserState["mapImage"].titulo, { fontSize: '20px', fill: '#3c3c3c' });
     floor.fixedToCamera = true;
     window["static"].push(floor);
     this.game.physics.arcade.enable(map);
-    //Option just if is mapearArea view
+
+
     if (!window["angular"].view) {
-      this.mapearArea();
+      this.mapArea();
     } else {
-      this.monitoramento();
+      this.monitoring();
     }
 
     window["camera"] = this.game.camera;
-    window["key"] = this.game.input;
+    window["mouse"] = this.game.input;
     window["world"] = this.game.world.game.world;
     this.zoomSetting();
-    //  window["static"].fixedToCamera = true;
-
 
   }
 
   update() {
-    //console.log("update");
-    //move camera
-    
+
 
   }
 
 
-  mapearArea() {
+  mapArea() {
     this.game.input.addMoveCallback(this.onMove, this);
 
     var menuButtons;
-    var itens;
     var locationX = 0;
     var locationY = -145;
-    var tempButtons;
-    var teste;
 
     for (var index = 0; index < window["angular"].phaserConfig['menu'].buttons.length; index++) {
       switch (window["angular"].phaserConfig['menu'].position) {
@@ -145,21 +130,17 @@ export class MyPhaserComponent implements OnInit {
       menuButtons.inputEnabled = true;
       menuButtons.fixedToCamera = true;
       menuButtons.events.onInputDown.add(this.onInputDown, this);
-
       window["static"].push(menuButtons);
 
     }
-
   }
 
   actionOnClick(button) {
-   
+
 
   }
 
   onDragStart(button) {
-
-    console.log("TesteButtonDrag");
     this.isMoving = false;
     this.game.position = {
       x: button.position.x,
@@ -174,28 +155,23 @@ export class MyPhaserComponent implements OnInit {
       this.actionOnClick(button);
     } else {
       this.isMoving = true;
-      //window["angular"].phaserConfig.callModal();
-
     }
 
   }
 
   onInputDown(button) {
-    //var graphics;
     this.isMoving = false;
-    this.game.canvas.style.backgroundImage = "iten";
 
     for (var index = 0; index < window["angular"].phaserConfig['menu'].buttons.length; index++) {
       if (button.key == window["angular"].phaserConfig['menu'].buttons[index].name) {
 
-        this.temp = this.game.add.button(window["key"].position.x, window["key"].position.y, 'iten', undefined, 0, 0, 0);
-        this.temp.position.x = ((window["key"].position.x + this.game.camera.position.x) / window["angular"].zoom) - (this.temp._frame.centerX);
-        this.temp.position.y = ((window["key"].position.y + this.game.camera.position.y) / window["angular"].zoom) - (this.temp._frame.centerY);
+        this.temp = this.game.add.button(window["mouse"].position.x, window["mouse"].position.y, 'iten' + index, undefined, 0, 0, 0);
+        this.temp.position.x = ((window["mouse"].position.x + this.game.camera.position.x) / window["angular"].zoom) - (this.temp._frame.centerX);
+        this.temp.position.y = ((window["mouse"].position.y + this.game.camera.position.y) / window["angular"].zoom) - (this.temp._frame.centerY);
         this.temp.inputEnabled = true;
         this.temp.input.enableDrag(true);
         this.temp.events.onDragStart.add(this.onDragStart, this);
         this.temp.events.onDragStop.add(this.onDragStop, this);
-
       }
     }
 
@@ -203,34 +179,31 @@ export class MyPhaserComponent implements OnInit {
 
   onMove(pointer, x, y) {
     if (this.temp) {
-      if (window["key"].mousePointer.isDown) {
+      if (window["mouse"].mousePointer.isDown) {
         this.temp.position.x = ((x + this.game.camera.position.x) / window["angular"].zoom) - (this.temp._frame.centerX);
         this.temp.position.y = ((y + this.game.camera.position.y) / window["angular"].zoom) - (this.temp._frame.centerY);
 
-        // this.temp.position.x = x  - (this.temp._frame.centerX) + this.game.camera.position.x;
-        //this.temp.position.y = y - (this.temp._frame.centerY) + this.game.camera.position.y;
       } else {
         this.temp = undefined;
         this.isMoving = true;
       }
-    }else{
-      if (window["key"].activePointer.isDown && this.isMoving) {
-        window["camera"].y -= window["key"].mouse.event.movementY;// / window["angular"].zoom;
-        window["camera"].x -= window["key"].mouse.event.movementX;// / window["angular"].zoom;
+    } else {
+      if (window["mouse"].activePointer.isDown && this.isMoving) {
+        window["camera"].y -= window["mouse"].mouse.event.movementY;
+        window["camera"].x -= window["mouse"].mouse.event.movementX;
       }
     }
   }
 
   scrollEvent() {
-    //window["static"].fixedToCamera = false;
-    if (window["key"].mouse.wheelDelta > 0) {
+    if (window["mouse"].mouse.wheelDelta > 0) {
       window["angular"].zoom *= 1.25;
-      if(window["angular"].zoom > window["angular"].maxZoom){
+      if (window["angular"].zoom > window["angular"].maxZoom) {
         window["angular"].zoom = window["angular"].maxZoom;
       }
     } else {
       window["angular"].zoom *= 0.8;
-      if(window["angular"].zoom < window["angular"].minZoom){
+      if (window["angular"].zoom < window["angular"].minZoom) {
         window["angular"].zoom = window["angular"].minZoom;
       }
     }
@@ -247,9 +220,8 @@ export class MyPhaserComponent implements OnInit {
   }
 
 
-  monitoramento() {
-    //recebe como parametro o que será "desenhado" no mapa
-    console.log("monitoramento");
+  monitoring() {
+
   }
 
 

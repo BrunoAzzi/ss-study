@@ -25,7 +25,7 @@ export class MyConstructionSitesComponent {
         { 'name': 'buttonCone', 'button': 'assets/ConeButtonSheet.png', 'item': 'assets/ConeItem.png' },
         { 'name': 'buttonAgua', 'button': 'assets/AguaButtonSheet.png', 'item': 'assets/AguaItem.png' },
         { 'name': 'buttonAlojamento', 'button': 'assets/AlojamentoButtonSheet.png', 'item': 'assets/AlojamentoItem.png' },
-        { 'name': 'buttonBandeja', 'button': 'assets/BadejaButtonSheet.png', 'item': 'assets/BandejaItem.png' },
+        { 'name': 'buttonBandeja', 'button': 'assets/BandejaButtonSheet.png', 'item': 'assets/BandejaItem.png' },
         { 'name': 'buttonBanheiro', 'button': 'assets/BanheiroButtonSheet.png', 'item': 'assets/BanheiroItem.png' },
         { 'name': 'buttonBarrier', 'button': 'assets/BarrierButtonSheet.png', 'item': 'assets/BarrierItem.png' },
         { 'name': 'buttonExtintor', 'button': 'assets/ExtintorButtonSheet.png', 'item': 'assets/ExtintorItem.png' },
@@ -40,15 +40,13 @@ export class MyConstructionSitesComponent {
 
   phaserState = {
     mapImage: this.mapImage[0],
-    marks: [
-      { name: 'buttonWater', value: 'assets/agua.png', label: 'Água', position: { x: 10, y: 20 } }
-    ]
+
   }
 
   constructor() {
   }
 
   callModal(){
-    alert("Modal");
+    
   }
 }
