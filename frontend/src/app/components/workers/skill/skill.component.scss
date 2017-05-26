@@ -1,0 +1,25 @@
+$silver: #e8e8e8;
+$pale-gray: #f8fafb;
+
+.recycling {
+    margin: 20px 0;
+    padding: 0 40px;
+
+    .header {
+        padding: 20px;
+        background-color: $silver;
+        font-family: inherit;
+    }
+
+    .content {
+        border: 1px solid $pale-gray;
+
+        recycling {
+            border-bottom: 1px solid $silver;
+        }
+    }
+
+    .add {
+        margin: 20px;
+    }
+}

@@ -3,8 +3,10 @@ export class Recycling {
     dueDate: Date;
     validityStart: Date;
     periodicity: number;
+    isApt: boolean;
 
     constructor() {
+        this.isApt = true;
         this.attachment = null;
         this.dueDate = null;
         this.validityStart = null;

@@ -17,7 +17,7 @@
                     <skill [skill]="skill" (removed)="removeSkill(skill)" [(skillNames)]="skillNames" *ngFor="let skill of skillList"></skill>
 
                     <div fxLayout fxLayoutAlign="space-between center">
-                        <button md-button (click)="addSkill()">
+                        <button md-raised-button (click)="addSkill()">
                             <span>Adicicionar habilitação</span>
                         </button>
 
