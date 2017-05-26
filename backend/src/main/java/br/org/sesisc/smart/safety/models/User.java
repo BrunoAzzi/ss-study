@@ -6,6 +6,8 @@ import org.mindrot.jbcrypt.BCrypt;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.Date;
 
 public class User {
 
@@ -23,8 +25,9 @@ public class User {
     @NotNull(message="Senha é um campo obrigatório.")
     private String password;
 
-    private Boolean active;
+    private boolean active;
     private String token;
+    private String recoverPassToken;
 
     /*
      * Getters & Setters
@@ -54,11 +57,6 @@ public class User {
         this.password = password;
     }
 
-    public void digestPassword(String password) {
-        String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
-        this.password = hashed;
-    }
-
     public Boolean getActive() {
         return active;
     }
@@ -75,17 +73,25 @@ public class User {
         this.token = token;
     }
 
+    public String getRecoverPassToken() {
+        return recoverPassToken;
+    }
+
+    public void setRecoverPassToken(String recoverPassToken) {
+        this.recoverPassToken = recoverPassToken;
+    }
+
     /*
      * Actions
      */
 
-    public boolean authenticate(final String password) {
-        return BCrypt.checkpw(password, this.password) && this.active;
+    public void digestPassword(String password) {
+        final String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+        this.password = hashedPassword;
     }
 
-    public void genNewToken() {
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        this.token = BCrypt.hashpw(String.valueOf(timestamp.getTime()), BCrypt.gensalt());
+    public boolean authenticate(final String password) {
+        return BCrypt.checkpw(password, this.password) && this.active;
     }
 
 }

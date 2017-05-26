@@ -1,6 +1,6 @@
 package br.org.sesisc.smart.safety.security;
 
-import br.org.sesisc.smart.safety.dao.UserDao;
+import br.org.sesisc.smart.safety.repositories.UserRepository;
 import br.org.sesisc.smart.safety.models.User;
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
@@ -9,12 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.core.Authentication;
 
-import java.util.UUID;
-
 public class TokenCustomService {
 
     @Autowired
-    private UserDao serviceUser;
+    private UserRepository serviceUser;
 
     private static Cache restApiAuthTokenCache;
     private static final int HALF_AN_HOUR_IN_MILLISECONDS = 30 * 60 * 1000;
