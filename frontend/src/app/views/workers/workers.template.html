@@ -5,6 +5,31 @@
     </topnavbar>
 
     <div class="body-content">
+        <safety-card #safetyCard>
+
+            <safety-card-header>
+                <span>habilitações</span>
+            </safety-card-header>
+
+            <safety-card-content>
+                <form novalidate id="form1" name="form1">
+
+                    <skill [skill]="skill" (removed)="removeSkill(skill)" [(skillNames)]="skillNames" *ngFor="let skill of skillList"></skill>
+
+                    <div fxLayout fxLayoutAlign="space-between center">
+                        <button md-button (click)="addSkill()">
+                            <span>Adicicionar habilitação</span>
+                        </button>
+
+                        <button (click)="saveSkills(safetyCard)" class="save-and-continue" md-raised-button type="submit">
+                            <span>Salvar e continuar</span>
+                        </button>
+                    </div>
+
+                </form>
+            </safety-card-content>
+        </safety-card>
+
 
         <safety-card>
             <safety-card-header>
@@ -12,15 +37,10 @@
             </safety-card-header>
             <safety-card-content>
                 <form novalidate id="form1" name="form1">
-                    <div class="personalData">
-                        <div class="quarter_screen">
-
-                                <!-- <div ng2FileDrop class="custom-component-drop-zone"</div> -->
-                            <!-- foto -->
-                            <!-- <div ng2FileDrop class="custom-component-drop-zone"</div> -->
-                            <!-- <button class="insira_foto" md-raised-button>
-                            <span>Salvar e continuar</span>
-                        </button> -->
+                    <div class="personalData quarter_screen">
+                        <!-- foto -->
+                        <button class="insira_foto" md-raised-button>
+                        </button>
                     </div>
 
 
@@ -186,50 +206,12 @@
                     <span>Salvar e continuar</span>
                 </button>
             </form>
-        </safety-card-content>
-    </safety-card>
+            </safety-card-content>
+        </safety-card>
 
-    <safety-card>
-        <safety-card-header>
-            <span>habilitações</span>
-        </safety-card-header>
-        <safety-card-content>
 
-            <div fxLayout fxLayoutAlign="space-between center">
-                <button mdTooltip="Excluir" md-icon-button class="delete"><md-icon>remove_circle</md-icon></button>
-                <md-select placeholder="Habilitação" >
-                    <md-option value="asd">asd</md-option>
-                    <md-option value="asd">asd</md-option>
-                    <md-option value="asd">asd</md-option>
-                </md-select>
-                <md-checkbox disableRipple [(ngModel)]="isReciclagem">Reciclagem</md-checkbox>
-                <md-input-container>
-                    <input  #focus_habilitacao  mdInput [disabled]="isReciclagem" type="number" placeholder="Peridiocidade" >
-                    <span mdSuffix>meses</span>
-                </md-input-container>
-                <md-input-container>
-                    <input mdInput [disabled]="isReciclagem" type="date" placeholder="Proxima Reciclagem">
-                </md-input-container>
-                <md-checkbox #teste1 checked="true" (click)="teste2.toggle()" >Apto</md-checkbox>
-                <md-checkbox #teste2 (click)="teste1.toggle()" >Inapto</md-checkbox>
-                <button mdTooltip="Anexo" md-icon-button><md-icon>attach_file</md-icon></button>
-            </div>
 
-            <div fxLayout fxLayoutAlign="space-between center">
-                <button md-raised-button>
-                    <md-icon>add</md-icon>
-                    <span>Adicione uma nova habilitação</span>
-                </button>
-
-                <button class="save-and-continue" md-raised-button>
-                    <span>Salvar e continuar</span>
-                </button>
-            </div>
-
-        </safety-card-content>
-    </safety-card>
-
-    <safety-card>
+        <safety-card>
         <safety-card-header>
             <span>Dados Segurança do Trabalho</span>
         </safety-card-header>
@@ -275,17 +257,14 @@
                 </button>
             </form>
         </safety-card-content>
+        </safety-card>
 
-    </safety-card>
-
-    <safety-card>
+        <safety-card>
         <safety-card-header>
             <span>Dados de saúde</span>
         </safety-card-header>
         <safety-card-content>
-
         </safety-card-content>
-    </safety-card>
+        </safety-card>
 
-</div>
 </div>

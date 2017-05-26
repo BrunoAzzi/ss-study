@@ -1,6 +1,8 @@
 import { Component, EventEmitter  } from '@angular/core';
 import {CorreiosService} from "../../services/correios.service";
 import { Endereco_completo } from '../../mocks/endereco_completo/endereco_completo';
+import { CommonModule } from '@angular/common';
+import { Skill } from '../../mocks/skill/skill';
 
 @Component({
     selector: 'workers',
@@ -9,6 +11,7 @@ import { Endereco_completo } from '../../mocks/endereco_completo/endereco_comple
     providers: [CorreiosService]
 })
 export class WorkersComponent {
+
     isReciclagem: boolean = false;
     disabled: boolean = true;
     radioGroupValue: string = "";
@@ -20,9 +23,36 @@ export class WorkersComponent {
     completeAddress: string;
     hiredType: any='';
 
+    maximunLength: number;
+    isValid: boolean = false;
+
+    skillList = [];
+
+    addSkill() {
+        if (this.skillList.length < this.maximunLength) this.skillList.push(new Skill());
+    }
+
+    removeSkill(skill: Skill) {
+        let index = this.skillList.indexOf(skill);
+        if (index > -1) this.skillList.splice(index, 1);
+    }
+
+    skillNames = [
+        "NR 32",
+        "NR 35",
+        "NR 18",
+        "NR 33",
+    ];
+
+
+    saveSkills(safetyCard) {
+        console.log("skills saved!");
+        if (this.isValid) safetyCard.close();
+    }
 
     constructor (private correiosService: CorreiosService) {
-
+        if (this.skillList.length < 1) this.skillList.push(new Skill());
+        this.maximunLength = this.skillNames.length;
      }
 
 
