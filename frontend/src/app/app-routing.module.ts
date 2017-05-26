@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from "@angular/router";
+import { AuthGuard } from './guards/index';
 
 import { CompaniesComponent } from "./views/companies/companies.component";
 import { PPEComponent } from "./views/ppe/ppe.component";
@@ -11,38 +12,36 @@ import { TrainingComponent } from "./views/training/training.component";
 import { WorkersComponent } from "./views/workers/workers.component";
 
 import { LoginComponent } from "./views/login/login.component";
-import { RegisterComponent } from "./views/register/register.component";
 import { BlankComponent } from "./components/common/layouts/blank/blank.component";
 import { BasicComponent } from "./components/common/layouts/basic/basic.component";
 
 const routes:Routes = [
   // Main redirect
-  { path: '', redirectTo: '/myconstructionsites', pathMatch: 'full' },
+  { path: '', redirectTo: 'myconstructionsites', pathMatch: 'full', canActivate: [AuthGuard] },
 
   // App views
   {
     path: '', component: BasicComponent,
     children: [
-      { path: 'companies', component: CompaniesComponent },
-      { path: 'epis', component: PPEComponent },
-      { path: 'myconstructionsites', component: MyConstructionSitesComponent },
-      { path: 'reports', component: ReportsComponent },
-      { path: 'repositories', component: RepositoriesComponent },
-      { path: 'thirdparties', component: ThirdPartiesComponent },
-      { path: 'training', component: TrainingComponent },
-      { path: 'workers', component: WorkersComponent },
+      { path: 'companies', component: CompaniesComponent, canActivate: [AuthGuard]  },
+      { path: 'epis', component: PPEComponent, canActivate: [AuthGuard]  },
+      { path: 'myconstructionsites', component: MyConstructionSitesComponent, canActivate: [AuthGuard]  },
+      { path: 'reports', component: ReportsComponent, canActivate: [AuthGuard]  },
+      { path: 'repositories', component: RepositoriesComponent, canActivate: [AuthGuard]  },
+      { path: 'thirdparties', component: ThirdPartiesComponent, canActivate: [AuthGuard]  },
+      { path: 'training', component: TrainingComponent, canActivate: [AuthGuard]  },
+      { path: 'workers', component: WorkersComponent, canActivate: [AuthGuard]  },
     ]
    },
   {
     path: '', component: BlankComponent,
     children: [
-      { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegisterComponent }
+      { path: 'login', component: LoginComponent }
     ]
    },
 
   // Handle all other routes
-  { path: '**', redirectTo: '/myconstructionsites', pathMatch: 'full' }
+  { path: '**', redirectTo: 'myconstructionsites', pathMatch: 'full', canActivate: [AuthGuard]  }
 ];
 
 @NgModule({
