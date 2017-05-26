@@ -31,9 +31,11 @@
                 <div class="form-fields">
                     <md-input-container>
                         <input mdInput placeholder="E-MAIL" name="email" [(ngModel)]="model.email" #email="ngModel" required email>
+                        <md-error>Digite o e-mail em formato correto</md-error>
                     </md-input-container>
                     <md-input-container>
                         <input type="password" mdInput placeholder="SENHA" name="password" [(ngModel)]="model.password" #password="ngModel" required>
+                        <md-error>Digite a senha</md-error>
                     </md-input-container>
                 </div>
                 <div class="form-bottom">
