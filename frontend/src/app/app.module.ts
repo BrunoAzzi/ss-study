@@ -6,6 +6,10 @@ import { RouterModule } from "@angular/router";
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
+import { HttpClientService } from "./services/http-client.service";
+import { SessionsService } from "./services/sessions.service";
+import { AuthGuard } from './guards/index';
+import { MdSnackBar } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { ChartsModule } from "ng2-charts";
@@ -38,7 +42,6 @@ import { StatusAnoComponent } from "./components/perfil_emocional/status_ano/sta
 // Layouts
 
 import { LoginComponent } from "./views/login/login.component";
-import { RegisterComponent } from "./views/register/register.component";
 import { BlankComponent } from "./components/common/layouts/blank/blank.component";
 import { BasicComponent } from "./components/common/layouts/basic/basic.component";
 
@@ -65,6 +68,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 // Safety custom modules
 import { SafetyCardModule } from "./components/common/safety-card";
 import { CategoryDividerModule } from "./components/common/category-divider";
+import { CompanyDetailsComponent } from "./components/forms/company-details/company-details.component";
 
 import { InputFile } from "./components/common/input-file/input-file.component";
 
@@ -85,12 +89,12 @@ import { InputFile } from "./components/common/input-file/input-file.component";
         TrainingComponent,
         WorkersComponent,
         LoginComponent,
-        RegisterComponent,
         BlankComponent,
         BasicComponent,
         TopnavbarComponent,
         NavigationComponent,
         MyPhaserComponent,
+        CompanyDetailsComponent,
 
         // Painel Emocional
         StatusDiaComponent,
@@ -102,7 +106,6 @@ import { InputFile } from "./components/common/input-file/input-file.component";
         SkillComponent,
         RecyclingComponent,
         InputFile
-
     ],
     imports: [
         // Notification Module
@@ -115,7 +118,7 @@ import { InputFile } from "./components/common/input-file/input-file.component";
         FormsModule,
         CommonModule,
 
-        // Custom Modules
+        // Custom Components
         SafetyCardModule,
         CategoryDividerModule,
 
@@ -123,7 +126,7 @@ import { InputFile } from "./components/common/input-file/input-file.component";
         ChartsModule,
 
         // Mocks
-        InMemoryWebApiModule.forRoot(InMemoryDataService),
+        InMemoryWebApiModule.forRoot(InMemoryDataService, { passThruUnknownUrl: true }),
 
         // Angular Material
         MaterialModule,
@@ -133,9 +136,13 @@ import { InputFile } from "./components/common/input-file/input-file.component";
 
         // Routes
         AppRoutingModule,
-
     ],
-    providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
+    providers: [
+        HttpClientService,
+        AuthGuard,
+        SessionsService,
+        MdSnackBar,
+        { provide: LocationStrategy, useClass: HashLocationStrategy }],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
