@@ -1,3 +1,4 @@
+@TOCODE
 Feature: Login
   In order to gain access to the system
   As a user
@@ -8,7 +9,7 @@ Feature: Login
       | email                  | password |
       | john.doe@example.com   | 123123   |
     And I am not authenticated
-    And I access the any system url
+    And I access the home system url
     When I type <email> on email field
     And I type <password> on password field
     And I submit
