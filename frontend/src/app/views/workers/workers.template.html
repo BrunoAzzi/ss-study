@@ -5,266 +5,262 @@
     </topnavbar>
 
     <div class="body-content">
-        <safety-card #safetyCard>
-
-            <safety-card-header>
-                <span>habilitações</span>
-            </safety-card-header>
-
-            <safety-card-content>
-                <form novalidate id="form1" name="form1">
-
-                    <skill [skill]="skill" (removed)="removeSkill(skill)" [(skillNames)]="skillNames" *ngFor="let skill of skillList"></skill>
-
-                    <div fxLayout fxLayoutAlign="space-between center">
-                        <button md-button (click)="addSkill()">
-                            <span>Adicicionar habilitação</span>
-                        </button>
-
-                        <button (click)="saveSkills(safetyCard)" class="save-and-continue" md-raised-button type="submit">
-                            <span>Salvar e continuar</span>
-                        </button>
-                    </div>
-
-                </form>
-            </safety-card-content>
-        </safety-card>
-
-
-        <safety-card>
-            <safety-card-header>
-                <span>dados dos trabalhadores</span>
-            </safety-card-header>
-            <safety-card-content>
-                <form novalidate id="form1" name="form1">
-                    <div class="personalData quarter_screen">
-                        <!-- foto -->
-                        <button class="insira_foto" md-raised-button>
-                        </button>
-                    </div>
-
-
-                    <div class="screenRemainder">
-
-                        <table class="exampleFullWidth">
-                            <tr>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <md-input-container class="exampleFullWidth">
-                                        <input mdInput required placeholder="CPF" id="cpf" name="cpf"  mask='000.000.000-00'  [(ngModel)]="errorMessageExample1">
-                                        <md-error>Campo vazio ou com caracteres inválidos.</md-error>
-                                    </md-input-container>
-                                </td>
-                                <td colspan="2">
-                                    <md-input-container class="exampleFullWidth">
-                                        <input mdInput required placeholder="Nome" id="name" name="name"  pattern="[A-Z a-z]+" [(ngModel)]="errorMessageExample2" required>
-                                        <md-error>Campo vazio ou com caracteres inválidos.</md-error>
-                                    </md-input-container>
-                                </td>
-                                <td colspan="2">
-                                    <div>
-                                        <p>Sexo:</p>
-                                        <md-radio-group layout-gt-md="row">
-                                            <md-radio-button value="m">Masculino</md-radio-button>
-                                            <md-radio-button value="f">Feminino</md-radio-button>
-                                        </md-radio-group>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <md-input-container class="exampleFullWidth">
-                                        <input mdInput placeholder="Data de Nascimento" mask='00/00/0000' name="birthDate" id="birthDate">
-
-                                    </md-input-container>
-                                </td>
-                                <td>
-                                    <md-input-container class="exampleFullWidth">
-                                        <input mdInput name="age" placeholder="Idade" id="age" type="number">
-                                    </md-input-container>
-                                </td>
-                                <td>
-                                    <md-select  class="exampleFullWidth" placeholder="Escolaridade" name="scholarity" id="scholarity">
-                                        <md-option *ngFor="let scholarity of scholaritys" [value]="scholarity.value">
-                                            {{ scholarity.viewValue }}
-                                        </md-option>
-                                    </md-select>
-                                </td>
-                                <td>
-                                    <md-input-container class="exampleFullWidth">
-                                        <input mdInput placeholder="NIT" id="nit" name="nit" mask='000.00000.00-0'>
-                                    </md-input-container>
-                                </td>
-                                <td>
-                                    <md-input-container class="exampleFullWidth">
-                                        <input mdInput placeholder="CTPS" id="ctps" name="ctps" type="number">
-                                    </md-input-container>
-                                </td>
-
-                            </tr>
-                            <tr>
-                                <td>
-                                    <md-input-container class="exampleFullWidth">
-                                        <input mdInput placeholder="CEP" id="cep" [(ngModel)]="myCep" name="cep" mask="00.000-000" (blur)="autocompleteAdressFromApi()">
-                                    </md-input-container>
-                                </td>
-                                <td colspan="2">
-                                    <md-input-container class="exampleFullWidth">
-                                        <input mdInput placeholder="Endereço Completo" id="completeAddress" name="completeAddress" value="{{completeAddress}}">
-                                    </md-input-container>
-                                </td>
-                                <td>
-                                    <md-input-container class="exampleFullWidth">
-                                        <input mdInput placeholder="Complemento" id="complement" name="complement">
-                                    </md-input-container>
-                                </td>
-                                <td>
-                                    <md-input-container class="exampleFullWidth">
-                                        <input mdInput placeholder="Contato" id="contact" name="contact">
-                                    </md-input-container>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <!-- <md-checkbox disableRipple [(ngModel)]="isReciclagem">Reciclagem</md-checkbox>
-
-                                    <input mdInput [disabled]="isReciclagem" type="number" placeholder="Peridiocidade" >
-                                    <span mdSuffix>meses</span> -->
-
-                                    <md-input-container class="exampleFullWidth">
-                                        <input mdInput required type="number" placeholder="CBO" id="cbo" name="cbo" [(ngModel)]="mycbo" (ngModelChange)="checkCboEmpty()" >
-                                        <md-error>Campo vazio ou com caracteres inválidos.</md-error>
-                                    </md-input-container>
-                                </td>
-                                <td colspan="2">
-
-                                    <md-select class="fullWidth" placeholder="Cargo"  [mdTooltip]="disabled ? 'Digite um CBO válido!' : 'Selecione um cargo'" [disabled]="disabled">
-                                        <md-option *ngFor="let labor of labors" [value]="labor.value">
-                                            {{ labor.viewValue }}
-                                        </md-option>
-                                    </md-select>
-                                </td>
-                                <td class="textColumn" colspan="2" rowspan="3">
-                                    <md-input-container class="exampleFullWidth">
-                                        <textarea mdInput placeholder="Descrição da Função" name="textArea"></textarea>
-                                    </md-input-container>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <md-select placeholder="Portador de Nec. Especiais?">
-                                        <md-option *ngFor="let necessity of necessitys" [value]="necessity.value">
-                                            {{ necessity.viewValue }}
-                                        </md-option>
-                                    </md-select>
-                                </td>
-                                <td>
-                                    <md-input-container class="exampleFullWidth">
-                                        <input mdInput placeholder="Data de Admissão" mask='00/00/0000' id="admissionDate" name="admissionDate">
-                                    </md-input-container>
-                                </td>
-                                <td>
-                                    <md-select placeholder="Status">
-                                        <md-option *ngFor="let statu of status" [value]="statu.value">
-                                            {{ statu.viewValue }}
-                                        </md-option>
-                                    </md-select>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <div>
-                                        <p>Tipo de Contratação:</p>
-                                        <md-radio-group name="hiredType" [(ngModel)]="hiredType">
-                                            <md-radio-button name="own" value="true" checked="true">Próprio</md-radio-button>
-                                            <md-radio-button name="outsourced" value="false">Terceiro</md-radio-button>
-                                        </md-radio-group>
-                                    </div>
-                                </td>
-                                <td style="align-text: center" colspan="2">
-
-                                    <md-input-container class="exampleFullWidth" >
-                                        <input mdInput placeholder="Empresa" id="company" name="company"  [mdTooltip]="hiredType ? 'Digite o nome da empresa' : 'Não é necessário escrever o nome da própria empresa'"  [disabled]="hiredType">
-                                    </md-input-container>
-                                </td>
-                            </tr>
-
-
-                        </table>
-
-                    </div>
-                </div>
-                <button type="submit" md-raised-button class="save-and-continue rigth">
-                    <span>Salvar e continuar</span>
-                </button>
-            </form>
-            </safety-card-content>
-        </safety-card>
 
 
 
-        <safety-card>
-        <safety-card-header>
-            <span>Dados Segurança do Trabalho</span>
-        </safety-card-header>
-        <safety-card-content>
-            <form id="form3" name="form3">
-                <table class="exampleFullWidth">
-                    <tr>
-                        <td width="20%" align="center"  >
-                            <md-select required name="selectCipeiro" class="maxWidthSimNao" [(ngModel)]="selectedCipeiro" placeholder="Trabalhador é cipeiro?">
-                                <md-option *ngFor="let cipeiro of cipeiros" [value]="cipeiro.value">
-                                    {{ cipeiro.viewValue }}
-                                </md-option>
-                            </md-select>
-                        </td>
-                        <td width="40%" align="center" colspan="2">
-                            <md-select required name="selectCipaLabor" [disabled]='selectedCipeiro' [(ngModel)]="selectedCipaLabor" class="maxWidthCipaLabor" placeholder="Cargo na CIPA">
-                                <md-option *ngFor="let labor of laborsInCipa " [value]="labor.value">
-                                    {{ labor.viewValue }}
-                                </md-option>
-                            </md-select>
-                        </td>
-                        <td width="40%"  align="center"   class="calendar_center" colspan="2">
+                <safety-card>
+                    <safety-card-header>
+                        <span>dados dos trabalhadores</span>
+                    </safety-card-header>
+                    <safety-card-content>
+                        <form novalidate id="formBasicData" name="formBasicData">
+                            <div class="personalData quarter_screen">
+                                <!-- foto -->
+                            </div>
 
-                            <date-range required name="data_range"></date-range>
 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td width="20%" align="center"  >
-                            <md-select required name="select_brigadista" class="maxWidthSimNao" placeholder="Trabalhador é brigadista?" [(ngModel)]="selectedBrigadista" >
-                                <md-option *ngFor="let brigadista of brigadistas" [value]="brigadista.value">
-                                    {{ brigadista.viewValue }}
-                                </md-option>
-                                <!-- <md-option *ngFor="let necessidade of necessidades; #i = index" [selected]="i === 0" [value]="necessidade.value"> {{necessidade.viewValue}}</md-option> -->
-                            </md-select>
-                        </td>
-                        <td width="80%" colspan="4"></td>
-                    </tr>
-                </table>
+                            <div class="screenRemainder">
 
-                <button type="submit" md-raised-button class="save-and-continue rigth"  [disabled]='!selectedCipaLabor'>
-                    <span>Salvar e continuar</span>
-                </button>
-            </form>
-        </safety-card-content>
-        </safety-card>
+                                <table class="exampleFullWidth">
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <md-input-container class="exampleFullWidth">
+                                                <input mdInput required placeholder="CPF" id="cpf" name="cpf"  mask='000.000.000-00'  [(ngModel)]="errorMessageExample1">
+                                                <md-error>Campo vazio ou com caracteres inválidos.</md-error>
+                                            </md-input-container>
+                                        </td>
+                                        <td colspan="2">
+                                            <md-input-container class="exampleFullWidth">
+                                                <input mdInput required placeholder="Nome" id="name" name="name"  pattern="[A-Z a-z]+" [(ngModel)]="errorMessageExample2" required>
+                                                <md-error>Campo vazio ou com caracteres inválidos.</md-error>
+                                            </md-input-container>
+                                        </td>
+                                        <td colspan="2">
+                                            <div>
+                                                <p>Sexo:</p>
+                                                <md-radio-group layout-gt-md="row">
+                                                    <md-radio-button value="m">Masculino</md-radio-button>
+                                                    <md-radio-button value="f">Feminino</md-radio-button>
+                                                </md-radio-group>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <md-input-container class="exampleFullWidth">
+                                                <input mdInput placeholder="Data de Nascimento" mask='00/00/0000' name="birthDate" id="birthDate">
 
-        <safety-card>
-        <safety-card-header>
-            <span>Dados de saúde</span>
-        </safety-card-header>
-        <safety-card-content>
-        </safety-card-content>
-        </safety-card>
+                                            </md-input-container>
+                                        </td>
+                                        <td>
+                                            <md-input-container class="exampleFullWidth">
+                                                <input mdInput name="age" placeholder="Idade" id="age" type="number">
+                                            </md-input-container>
+                                        </td>
+                                        <td>
+                                            <md-select  class="exampleFullWidth" placeholder="Escolaridade" name="scholarity" id="scholarity">
+                                                <md-option *ngFor="let scholarity of scholaritys" [value]="scholarity.value">
+                                                    {{ scholarity.viewValue }}
+                                                </md-option>
+                                            </md-select>
+                                        </td>
+                                        <td>
+                                            <md-input-container class="exampleFullWidth">
+                                                <input mdInput placeholder="NIT" id="nit" name="nit" mask='000.00000.00-0'>
+                                            </md-input-container>
+                                        </td>
+                                        <td>
+                                            <md-input-container class="exampleFullWidth">
+                                                <input mdInput placeholder="CTPS" id="ctps" name="ctps" type="number">
+                                            </md-input-container>
+                                        </td>
 
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <md-input-container class="exampleFullWidth">
+                                                <input mdInput placeholder="CEP" id="cep" [(ngModel)]="myCep" name="cep" mask="00.000-000" (blur)="autocompleteAdressFromApi()">
+                                            </md-input-container>
+                                        </td>
+                                        <td colspan="2">
+                                            <md-input-container class="exampleFullWidth">
+                                                <input mdInput placeholder="Endereço Completo" id="completeAddress" name="completeAddress" value="{{completeAddress}}">
+                                            </md-input-container>
+                                        </td>
+                                        <td>
+                                            <md-input-container class="exampleFullWidth">
+                                                <input mdInput placeholder="Complemento" id="complement" name="complement">
+                                            </md-input-container>
+                                        </td>
+                                        <td>
+                                            <md-input-container class="exampleFullWidth">
+                                                <input mdInput placeholder="Contato" id="contact" name="contact">
+                                            </md-input-container>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <!-- <md-checkbox disableRipple [(ngModel)]="isReciclagem">Reciclagem</md-checkbox>
+
+                                            <input mdInput [disabled]="isReciclagem" type="number" placeholder="Peridiocidade" >
+                                            <span mdSuffix>meses</span> -->
+
+                                            <md-input-container class="exampleFullWidth">
+                                                <input mdInput required type="number" placeholder="CBO" id="cbo" name="cbo" [(ngModel)]="mycbo" (ngModelChange)="checkCboEmpty()" >
+                                                <md-error>Campo vazio ou com caracteres inválidos.</md-error>
+                                            </md-input-container>
+                                        </td>
+                                        <td colspan="2">
+
+                                            <md-select class="fullWidth" placeholder="Cargo"  [mdTooltip]="disabled ? 'Digite um CBO válido!' : 'Selecione um cargo'" [disabled]="disabled">
+                                                <md-option *ngFor="let labor of labors" [value]="labor.value">
+                                                    {{ labor.viewValue }}
+                                                </md-option>
+                                            </md-select>
+                                        </td>
+                                        <td class="textColumn" colspan="2" rowspan="3">
+                                            <md-input-container class="exampleFullWidth">
+                                                <textarea mdInput placeholder="Descrição da Função" name="textArea"></textarea>
+                                            </md-input-container>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <md-select placeholder="Portador de Nec. Especiais?">
+                                                <md-option *ngFor="let necessity of necessitys" [value]="necessity.value">
+                                                    {{ necessity.viewValue }}
+                                                </md-option>
+                                            </md-select>
+                                        </td>
+                                        <td>
+                                            <md-input-container class="exampleFullWidth">
+                                                <input mdInput placeholder="Data de Admissão" mask='00/00/0000' id="admissionDate" name="admissionDate">
+                                            </md-input-container>
+                                        </td>
+                                        <td>
+                                            <md-select placeholder="Status">
+                                                <md-option *ngFor="let statu of status" [value]="statu.value">
+                                                    {{ statu.viewValue }}
+                                                </md-option>
+                                            </md-select>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                                <p>Tipo de Contratação:</p>
+                                                <md-radio-group name="hiredType" [(ngModel)]="hiredType">
+                                                    <md-radio-button name="own" value="true" checked="true">Próprio</md-radio-button>
+                                                    <md-radio-button name="outsourced" value="false">Terceiro</md-radio-button>
+                                                </md-radio-group>
+                                        </td>
+                                        <td style="align-text: center" colspan="2">
+
+                                            <md-input-container class="exampleFullWidth" >
+                                                <input mdInput placeholder="Empresa" id="company" name="company"  [mdTooltip]="hiredType ? 'Digite o nome da empresa' : 'Não é necessário escrever o nome da própria empresa'"  [disabled]="hiredType">
+                                            </md-input-container>
+                                        </td>
+                                    </tr>
+
+
+                                </table>
+
+                            </div>
+
+                            <button (click)="savePersonalDataWorker(safetyCard)" class="save-and-continue" md-raised-button type="submit">
+                                <span>Salvar e continuar</span>
+                            </button>
+                    </form>
+                    </safety-card-content>
+                </safety-card>
+
+                <safety-card #safetyCard>
+
+                    <safety-card-header>
+                        <span>habilitações</span>
+                    </safety-card-header>
+
+                    <safety-card-content>
+                        <form novalidate id="form1" name="form1">
+
+                            <skill [skill]="skill" (removed)="removeSkill(skill)" [(skillNames)]="skillNames" *ngFor="let skill of skillList"></skill>
+
+                            <div fxLayout fxLayoutAlign="space-between center">
+                                <button md-button (click)="addSkill()">
+                                    <span>Adicicionar habilitação</span>
+                                </button>
+
+                                <button (click)="saveSkills(safetyCard)" class="save-and-continue" md-raised-button type="submit">
+                                    <span>Salvar e continuar</span>
+                                </button>
+                            </div>
+
+                        </form>
+                    </safety-card-content>
+                </safety-card>
+
+                <safety-card>
+                        <safety-card-header>
+                            <span>Dados Segurança do Trabalho</span>
+                        </safety-card-header>
+                        <safety-card-content>
+                            <form id="formSecurityWork" name="formSecurityWork">
+                                <table class="exampleFullWidth">
+                                    <tr>
+                                        <td width="20%" align="center"  >
+                                            <md-select required name="selectCipeiro" class="maxWidthSimNao" [(ngModel)]="selectedCipeiro" placeholder="Trabalhador é cipeiro?">
+                                                <md-option *ngFor="let cipeiro of cipeiros" [value]="cipeiro.value">
+                                                    {{ cipeiro.viewValue }}
+                                                </md-option>
+                                            </md-select>
+                                        </td>
+                                        <td width="40%" align="center" colspan="2">
+                                            <md-select required name="selectCipaLabor" [disabled]='selectedCipeiro' [(ngModel)]="selectedCipaLabor" class="maxWidthCipaLabor" placeholder="Cargo na CIPA">
+                                                <md-option *ngFor="let labor of laborsInCipa " [value]="labor.value">
+                                                    {{ labor.viewValue }}
+                                                </md-option>
+                                            </md-select>
+                                        </td>
+                                        <td width="40%"  align="center"   class="calendar_center" colspan="2">
+
+                                            <date-range required name="data_range"></date-range>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="20%" align="center"  >
+                                            <md-select required name="select_brigadista" class="maxWidthSimNao" placeholder="Trabalhador é brigadista?" [(ngModel)]="selectedBrigadista" >
+                                                <md-option *ngFor="let brigadista of brigadistas" [value]="brigadista.value">
+                                                    {{ brigadista.viewValue }}
+                                                </md-option>
+                                                <!-- <md-option *ngFor="let necessidade of necessidades; #i = index" [selected]="i === 0" [value]="necessidade.value"> {{necessidade.viewValue}}</md-option> -->
+                                            </md-select>
+                                        </td>
+                                        <td width="80%" colspan="4"></td>
+                                    </tr>
+                                </table>
+
+                                <button type="submit" md-raised-button class="save-and-continue rigth"  [disabled]='!selectedCipaLabor'>
+                                    <span>Salvar e continuar</span>
+                                </button>
+                            </form>
+                        </safety-card-content>
+                </safety-card>
+
+                <safety-card>
+                    <safety-card-header>
+                        <span>Dados de saúde</span>
+                    </safety-card-header>
+                    <safety-card-content>
+                    </safety-card-content>
+                </safety-card>
+    </div>
 </div>

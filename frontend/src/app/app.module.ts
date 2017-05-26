@@ -12,6 +12,7 @@ import { MdSnackBar } from '@angular/material';
 import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
 import { ChartsModule } from "ng2-charts";
+import { CookieService } from 'ng2-cookies';
 
 // Pipe
 import { KeysPipe } from "./pipes/keys.pipe";
@@ -20,7 +21,7 @@ import { DataTablePipe } from "./components/perfil_emocional/status_trabalhadore
 // Components
 import { CompaniesComponent } from "./views/companies/companies.component";
 import { CompanyDetailsComponent } from  "./components/forms/company-details/company-details.component";
-import { CategoryDividerComponent } from "./components/common/category-divider/category-divider.component";
+//import { CategoryDividerComponent } from "./components/common/category-divider/category-divider.component";
 import { DateRangeComponent } from "./components/common/date-range/date-range.component";
 import { SkillComponent } from "./components/workers/skill/skill.component";
 import { RecyclingComponent } from "./components/workers/recycling/recycling.component";
@@ -90,7 +91,7 @@ import { InputFile } from "./components/common/input-file/input-file.component";
         DataTablePipe,
 
 		    // Category Divider
-    CategoryDividerComponent,
+//    CategoryDividerComponent,
 
         // Components
             DateRangeComponent,
@@ -163,6 +164,7 @@ import { InputFile } from "./components/common/input-file/input-file.component";
   providers: [
     HttpClientService,
     AuthGuard,
+    CookieService,
     SessionsService,
     MdSnackBar,
     { provide: LocationStrategy, useClass: HashLocationStrategy }],

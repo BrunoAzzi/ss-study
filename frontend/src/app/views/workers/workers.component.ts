@@ -45,6 +45,11 @@ export class WorkersComponent {
     ];
 
 
+    savePersonalDataWorker(safetyCard) {
+        console.log("Personal Data saved!");
+        if (this.isValid) safetyCard.close();
+    }
+
     saveSkills(safetyCard) {
         console.log("skills saved!");
         if (this.isValid) safetyCard.close();
