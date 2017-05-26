@@ -24,7 +24,6 @@
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
     "ang2-phaser": "^1.1.6",
-    "angular2-text-mask": "^8.0.1",
     "animate.css": "3.1.1",
     "classlist.js": "^1.1.20150312",
     "core-js": "^2.4.1",

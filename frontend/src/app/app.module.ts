@@ -51,6 +51,9 @@ import { NotificationSidenavContainerModule } from "./components/common/notifica
 //Masks
 import {Ng2MaskModule} from 'ng2-mask';
 
+// Upload
+// import { Ng2FileDropModule }  from 'ng2-file-drop';
+
 // Routing module
 import { AppRoutingModule } from "./app-routing.module";
 
@@ -139,6 +142,9 @@ import { SafetyCardModule } from "./components/common/safety-card";
 
     //Calendar Range
     MyDateRangePickerModule,
+
+    //Upload
+    // Ng2FileDropModule,
 
     // Routes
     AppRoutingModule,

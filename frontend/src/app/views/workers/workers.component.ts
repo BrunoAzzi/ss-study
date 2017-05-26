@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter  } from '@angular/core';
 import {CorreiosService} from "../../services/correios.service";
 import { Endereco_completo } from '../../mocks/endereco_completo/endereco_completo';
 
@@ -10,18 +10,22 @@ import { Endereco_completo } from '../../mocks/endereco_completo/endereco_comple
 })
 export class WorkersComponent {
     isReciclagem: boolean = false;
-    desabilitado: boolean = true;
+    disabled: boolean = true;
     radioGroupValue: string = "";
     mycbo: string = '';
     mycbonumber: number = 0;
     errorMessageExample1: string;
     errorMessageExample2: string;
     myCep: string = "";
-    enderecoCompleto: string;
-    tipocontratacao: any='';
+    completeAddress: string;
+    hiredType: any='';
 
 
-    constructor (private correiosService: CorreiosService) { }
+    constructor (private correiosService: CorreiosService) {
+
+     }
+
+
 
     status = [
         {value: 'ativo', viewValue: 'Ativo'},
@@ -30,12 +34,12 @@ export class WorkersComponent {
         {value: 'demitido', viewValue: 'Demitido'},
     ];
 
-    cargos = [
+    labors = [
         {value: 'prog', viewValue: 'Programador'},
         {value: 'des', viewValue: 'Desenvolvedor'},
     ];
 
-    cargosnacipa = [
+    laborsInCipa = [
         {value: 'suplente', viewValue: 'Membro Suplente'},
         {value: 'efetivo', viewValue: 'Membro Efetivo'},
         {value: 'presidente', viewValue: 'Presidente'},
@@ -43,7 +47,7 @@ export class WorkersComponent {
         {value: 'secretario', viewValue: 'Secretário'},
     ];
 
-    escolaridades = [
+    scholaritys = [
         {value: 'fund_i', viewValue: 'Fundamental incompleto'},
         {value: 'fund_c', viewValue: 'Fundamental completo'},
         {value: 'medio_i', viewValue: 'Médio incompleto'},
@@ -53,11 +57,11 @@ export class WorkersComponent {
         {value: 'pos', viewValue: 'Pós Graduação'},
     ];
 
-    necessidades = [
+    necessitys = [
         {value: 0, viewValue: 'Sim'},
         {value: 1, viewValue: 'Não'},
     ];
-    selectedNecessidade: number = 1;
+    selectedNecessity: number = 1;
 
     brigadistas = [
         {value: 0, viewValue: 'Sim'},
@@ -71,12 +75,12 @@ export class WorkersComponent {
     ];
     selectedCipeiro: number = 1;
 
-    selectedCargocipa:boolean = false;
+    selectedCipaLabor:boolean = false;
 
     autocompleteAdressFromApi() {
         //console.log(this.myCep);
         this.correiosService.getAddress(this.myCep).subscribe( data => {
-            this.enderecoCompleto = data.cidade + " - " + data.estado + ", " + data.bairro + ", " + data.tipoDeLogradouro + " " + data.logradouro;
+            this.completeAddress = data.cidade + " - " + data.estado + ", " + data.bairro + ", " + data.tipoDeLogradouro + " " + data.logradouro;
             // console.log(this.enderecoCompleto);
         });
 
@@ -86,9 +90,22 @@ export class WorkersComponent {
     checkCboEmpty() {
         this.mycbonumber = Number.parseInt(this.mycbo);
         if(this.mycbonumber>0){
-            this.desabilitado = false;
+            this.disabled = false;
         } else {
-            this.desabilitado = true;
+            this.disabled = true;
         }
     }
+
+
+    // public uploader:FileUploader = new FileUploader({url: 'https://evening-anchorage-3159.herokuapp.com/api/'});
+      public hasBaseDropZoneOver:boolean = false;
+      public hasAnotherDropZoneOver:boolean = false;
+
+      public fileOverBase(e:any):void {
+        this.hasBaseDropZoneOver = e;
+      }
+
+      public fileOverAnother(e:any):void {
+        this.hasAnotherDropZoneOver = e;
+      }
 }
