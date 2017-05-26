@@ -9,11 +9,11 @@ To get your backend up and running follow these steps:
 
 ### Docker
 In order to run the docker-composer.yml you need to:
-1. Be sure that none application is running in ports
+1. Be sure that none application is running in ports:
     - `8080`, usually an former installation of apache tomcat run in this port;
     - `3306`, usually an former installation of mysql/mariadb run in this port;
 2. Install [Docker](https://docs.docker.com/engine/installation/) and [Docker Compose](https://docs.docker.com/compose/install/);
-3. Inside `SmartSafety/backend` run `docker-compose up -d`;
+3. Inside `SmartSafety/backend` run the command `docker-compose up -d`;
 
 ## Usage
 At this point of the development there a no saved user profiles, in order to create a user you will need to:
@@ -23,8 +23,8 @@ At this point of the development there a no saved user profiles, in order to cre
     - BODY:
         ```json
         {
-            email: "your@email.here",
-            password: "yourPasswordHere"
+            "email": "your@email.here",
+            "password": "yourPasswordHere"
         }
         ```
-Ok, ready to go, if you get a 200 you are ok.
+Ok, ready to go, if you get a status 200 you are ok.
