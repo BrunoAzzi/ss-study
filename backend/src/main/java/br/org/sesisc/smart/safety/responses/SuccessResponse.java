@@ -7,7 +7,11 @@ import java.util.HashMap;
 
 public class SuccessResponse {
 
-    public static ResponseEntity<HashMap> handle(String[] keys, Object[] objects, HttpStatus status) {
+    public static ResponseEntity<?> handle(HttpStatus status) {
+        return new ResponseEntity<String>("", status);
+    }
+
+    public static ResponseEntity<?> handle(String[] keys, Object[] objects, HttpStatus status) {
         final HashMap<String, Object> map = new HashMap<>();
 
         if (keys.length > 0 && keys.length == objects.length) {

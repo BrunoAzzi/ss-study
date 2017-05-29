@@ -1,10 +1,10 @@
-package br.org.sesisc.smart.safety.dao;
+package br.org.sesisc.smart.safety.repositories;
 
 import br.org.sesisc.smart.safety.models.User;
 
 import java.util.List;
 
-public interface UserDao {
+public interface UserRepository {
     User create(final User user);
     void update(final long id, final String[] properties, final Object[] values);
     List<User> findAll();
