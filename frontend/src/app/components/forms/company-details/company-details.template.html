@@ -1,0 +1,76 @@
+<form class="full-width" (ngSubmit)="save()" #f="ngForm" novalidate>
+
+    <div class="form-content">
+        <md-card class="image-upload"></md-card>
+        <table class="table-form" cellspacing="0">
+            <tr>
+
+                <td>
+                    <md-input-container>
+                        <input mdInput placeholder="CNPJ">
+                    </md-input-container>
+                </td>
+
+                <td>
+                    <md-input-container>
+                        <input mdInput placeholder="RAZÃO SOCIAL">
+                    </md-input-container>
+                </td>
+
+                <td>
+                    <md-input-container>
+                        <input mdInput placeholder="NOME FANTASIA">
+                    </md-input-container>
+                </td>
+
+            </tr>
+            <tr>
+
+                <td>
+                    <md-input-container>
+                        <input mdInput placeholder="CNAE">
+                    </md-input-container>
+                </td>
+
+                <td>
+                    <md-input-container>
+                        <input mdInput placeholder="DESCRIÇÃO DO CNAE">
+                    </md-input-container>
+                </td>
+
+                <td>
+                    <md-input-container>
+                        <input mdInput placeholder="CEP">
+                    </md-input-container>
+                </td>
+
+            </tr>
+            <tr>
+
+                <td colspan="2">
+                    <md-input-container>
+                        <input mdInput placeholder="ENDEREÇO">
+                    </md-input-container>
+                </td>
+
+                <td>
+                    <md-input-container>
+                        <input mdInput placeholder="COMPLEMENTO">
+                    </md-input-container>
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    <md-input-container>
+                        <input mdInput placeholder="URL">
+                    </md-input-container>
+                </td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="form-bottom">
+        <button md-raised-button [disabled]="!f.valid">SALVAR E CONTINUAR</button>
+    </div>
+</form>
