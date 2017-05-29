@@ -1,49 +1,52 @@
 .divider {
     position: relative;
     text-align: center;
+    overflow: hidden;
     margin: 19px 0;
+    width: 100%;
+    float: left;
+    clear: both;
+
+    & /deep/ md-select {
+        .mat-select-underline {
+            display: none;
+        }
+
+        .mat-select-value {
+            width: 100%;
+        }
+
+        .mat-select-value-text {
+            width: 100%;
+        }
+    }
+
+    & /deep/ md-input-container {
+        .mat-input-underline {
+            display: none;
+        }
+    }
 }
 
-.divider h2 {
-    display: inline-block;
-    font-size: 14px;
-    background-color: white;
-    vertical-align: middle;
+.divider > div {
     position: relative;
+    background-color: white;
     z-index: 1;
     padding: 0 10px;
-    line-height: 26px;
-    color: #b9c2cb;
-    font-weight: 600;
-    text-transform: uppercase;
     margin: 0;
-    font-family: inherit;
-    text-rendering: optimizelegibility;
 }
 
-.divider .tools {
-    position: absolute;
-    top: 5px;
-    right: 0;
-    background: white;
-    padding: 0 0 0 10px;
-    z-index: 1;
-}
-
-.divider .tools a {
-    float: left;
-    margin: 0 0 0 10px;
-    opacity: .9;
+.divider /deep/ a {
+    text-decoration: underline;
+    color: red;
     cursor: pointer;
 }
 
-.divider:after {
+.divider .line {
+    z-index: 0;
     background: #e2e6e9;
     position: absolute;
     width: 100%;
-    top: 0;
-    left: 0;
-    margin: 13px 0 0;
     height: 1px;
     content: "";
 }
