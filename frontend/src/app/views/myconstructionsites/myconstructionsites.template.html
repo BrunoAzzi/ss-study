@@ -13,7 +13,11 @@
 
 
     <div class="body-content">
-        <app-my-phaser [phaserConfig]="phaserConfig" [phaserState]="phaserState" [view]="view"></app-my-phaser>
+        <md-tab-group #tabGroup>
+            <md-tab id="tab4" label="Monitorar">
+                <app-my-phaser [phaserConfig]="phaserConfig" [phaserState]="phaserState" [view]="false"></app-my-phaser>
+            </md-tab>
+            <md-tab id="tab5" label="Mapear Áreas"></md-tab>
+        </md-tab-group>
     </div>
 </notification-sidenav-container>
-

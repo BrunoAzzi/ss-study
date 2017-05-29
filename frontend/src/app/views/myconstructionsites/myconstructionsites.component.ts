@@ -14,41 +14,39 @@ export class MyConstructionSitesComponent {
   view = false;
 
   phaserConfig = {
-    width: 600,
-    height: 600,
+    zoomMin: 0.1,
+    zoomMax: 10,
+    width: window.innerWidth - 400,
+    height: window.innerHeight-300,
     callModal : this.callModal,
     menu: {
       position: "top",
       buttons: [
-        { 'name': 'buttonCone', 'button': 'assets/ConeButtonSheet.png', 'clicked':'assets/ConeButtonClicked.png', 'item': 'assets/ConeItem.png' },
-        /*
-        { 'name': 'buttonAloj', 'value': 'src/assets/alojamento.png', 'label': 'Alojamento' },
-        { 'name': 'buttonWc', 'value': 'src/assets/banheiro.png', 'label': 'Banheiro' },
-        { 'name': 'buttonBarrier', 'value': 'src/assets/barrier.png', 'label': 'Barrier' },
-        { 'name': 'buttonCone', 'value': 'src/assets/cone.png', 'label': 'Cone' },
-        { 'name': 'buttonExtintor', 'value': 'src/assets/extintor.png', 'label': 'Extintor' },
-        { 'name': 'buttonGrua', 'value': 'src/assets/grua.png', 'label': 'Grua' },
-        { 'name': 'buttonLavanderia', 'value': 'src/assets/lavanderia.png', 'label': 'Lavanderia' },
-        { 'name': 'buttonPS', 'value': 'src/assets/primeirosSocorros.png', 'label': 'Primeiros Socorros' },
-        { 'name': 'buttonTv', 'value': 'src/assets/tv.png', 'label': 'Sala TV' },
-        { 'name': 'buttonMaq', 'value': 'src/assets/setorDeMaquinas.png', 'label': 'Maquina' },
-        { 'name': 'buttonBandeja', 'value': 'src/assets/bandeja.png', 'label': 'Bandeja' }
-        */
+        { 'name': 'buttonCone', 'button': 'assets/ConeButtonSheet.png', 'item': 'assets/ConeItem.png' },
+        { 'name': 'buttonAgua', 'button': 'assets/AguaButtonSheet.png', 'item': 'assets/AguaItem.png' },
+        { 'name': 'buttonAlojamento', 'button': 'assets/AlojamentoButtonSheet.png', 'item': 'assets/AlojamentoItem.png' },
+        { 'name': 'buttonBandeja', 'button': 'assets/BandejaButtonSheet.png', 'item': 'assets/BandejaItem.png' },
+        { 'name': 'buttonBanheiro', 'button': 'assets/BanheiroButtonSheet.png', 'item': 'assets/BanheiroItem.png' },
+        { 'name': 'buttonBarrier', 'button': 'assets/BarrierButtonSheet.png', 'item': 'assets/BarrierItem.png' },
+        { 'name': 'buttonExtintor', 'button': 'assets/ExtintorButtonSheet.png', 'item': 'assets/ExtintorItem.png' },
+        { 'name': 'buttonGrua', 'button': 'assets/GruaButtonSheet.png', 'item': 'assets/GruaItem.png' },
+        { 'name': 'buttonMaquina', 'button': 'assets/MaquinaButtonSheet.png', 'item': 'assets/MaquinasItem.png' },
+        { 'name': 'buttonPs', 'button': 'assets/PsButtonSheet.png', 'item': 'assets/PSItem.png' },
+        { 'name': 'buttonRefeitorio', 'button': 'assets/RefeitorioButtonSheet.png', 'item': 'assets/RefeitorioItem.png' },
+        { 'name': 'buttonTv', 'button': 'assets/TvButtonSheet.png', 'item': 'assets/TvItem.png' },
       ]
     }
   };
 
   phaserState = {
     mapImage: this.mapImage[0],
-    marks: [
-      { name: 'buttonWater', value: 'assets/agua.png', label: 'Água', position: { x: 10, y: 20 } }
-    ]
+
   }
 
   constructor() {
   }
 
   callModal(){
-    alert("Modal");
+    
   }
 }
