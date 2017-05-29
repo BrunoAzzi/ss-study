@@ -5,43 +5,28 @@
     </topnavbar>
 
     <div class="body-content">
+        <safety-card #safetyCard>
 
-        <safety-card>
             <safety-card-header>
                 <span>habilitações</span>
             </safety-card-header>
+
             <safety-card-content>
-                <div fxLayout fxLayoutAlign="space-between center">
-                    <button mdTooltip="Excluir" md-icon-button class="delete"><md-icon>remove_circle</md-icon></button>
-                    <md-select placeholder="Habilitação">
-                        <md-option value="asd">asd</md-option>
-                        <md-option value="asd">asd</md-option>
-                        <md-option value="asd">asd</md-option>
-                    </md-select>
-                    <md-checkbox disableRipple [(ngModel)]="isReciclagem">Reciclagem</md-checkbox>
-                    <md-input-container>
-                        <input mdInput [disabled]="isReciclagem" type="number" placeholder="Peridiocidade" >
-                        <span mdSuffix>meses</span>
-                    </md-input-container>
-                    <md-input-container>
-                        <input mdInput [disabled]="isReciclagem" type="date" placeholder="Proxima Reciclagem">
-                    </md-input-container>
-                    <md-checkbox #teste1 checked="true" (click)="teste2.toggle()" >Apto</md-checkbox>
-                    <md-checkbox #teste2 (click)="teste1.toggle()" >Inapto</md-checkbox>
-                    <button mdTooltip="Anexo" md-icon-button><md-icon>attach_file</md-icon></button>
-                </div>
+                <form novalidate id="form1" name="form1">
 
-                <div fxLayout fxLayoutAlign="space-between center">
-                    <button md-raised-button>
-                        <md-icon>add</md-icon>
-                        <span>Adicione uma nova habilitação</span>
-                    </button>
+                    <skill [skill]="skill" (removed)="removeSkill(skill)" [(skillNames)]="skillNames" *ngFor="let skill of skillList"></skill>
 
-                    <button class="save-and-continue" md-raised-button>
-                        <span>Salvar e continuar</span>
-                    </button>
-                </div>
+                    <div fxLayout fxLayoutAlign="space-between center">
+                        <button md-raised-button (click)="addSkill()">
+                            <span>Adicicionar habilitação</span>
+                        </button>
 
+                        <button (click)="saveSkills(safetyCard)" class="save-and-continue" md-raised-button type="submit">
+                            <span>Salvar e continuar</span>
+                        </button>
+                    </div>
+
+                </form>
             </safety-card-content>
         </safety-card>
 
@@ -55,8 +40,8 @@
                     <div class="quarter_screen">
                         <!-- foto -->
                         <button class="insira_foto" md-raised-button>
-                            <span>Salvar e continuar</span>
-                        </button>
+                    <span>Salvar e continuar</span>
+                </button>
                     </div>
 
 
@@ -84,7 +69,7 @@
                                 <td colspan="2">
                                     <div>
                                         <p class="label_table">Sexo:</p>
-                                        <md-radio-group  layout-gt-md="row">
+                                        <md-radio-group layout-gt-md="row">
                                             <md-radio-button value="m">Masculino</md-radio-button>
                                             <md-radio-button value="f">Feminino</md-radio-button>
                                         </md-radio-group>
@@ -146,7 +131,7 @@
                             <tr>
                                 <td>
                                     <md-input-container class="example-full-width">
-                                        <input mdInput placeholder="CRO" id="contato">
+                                        <input mdInput placeholder="CBO" type="number">
                                     </md-input-container>
                                 </td>
                                 <td colspan="2">
@@ -206,6 +191,22 @@
                     </div>
                 </div>
 
+            </safety-card-content>
+        </safety-card>
+
+        <safety-card>
+            <safety-card-header>
+                <span>dados de segurança do trabalho</span>
+            </safety-card-header>
+            <safety-card-content>
+            </safety-card-content>
+        </safety-card>
+
+        <safety-card>
+            <safety-card-header>
+                <span>dados de saúde</span>
+            </safety-card-header>
+            <safety-card-content>
             </safety-card-content>
         </safety-card>
 

@@ -1,10 +1,10 @@
 import { Component, Input } from '@angular/core';
 import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition
+    trigger,
+    state,
+    style,
+    animate,
+    transition
 } from '@angular/animations';
 
 @Component({
@@ -18,7 +18,7 @@ import {
                 'padding-top': '0',
                 'padding-bottom': '0',
             })),
-            state('active',   style({
+            state('active', style({
                 height: '*'
             })),
             transition('inactive => active', animate('100ms ease-in')),
@@ -38,30 +38,35 @@ export class SafetyCardComponent {
     }
 
     coerceBooleanProperty(value: any): boolean {
-       return value != null && `${value}` !== 'false';
-   }
+        return value != null && `${value}` !== 'false';
+    }
+
+    close() {
+        this.isHidden = true;
+        this.state = "inactive";
+        this.toggleIcon = "keyboard_arrow_down";
+    }
+
+    open() {
+        this.isHidden = false;
+        this.state = "active";
+        this.toggleIcon = "keyboard_arrow_up";
+    }
 
     toggleState() {
-        this.isHidden = !this.isHidden;
-        if (this.isHidden) {
-            this.state = "inactive";
-            this.toggleIcon = "keyboard_arrow_down";
-        } else {
-            this.state = "active";
-            this.toggleIcon = "keyboard_arrow_up";
-        }
+        this.isHidden ? this.open() : this.close();
     }
 }
 
 @Component({
-  selector: 'safety-card-header',
-  template: '<ng-content></ng-content>',
-  styles: [' :host { width: 100%; display: flex; box-sizing: border-box; width: 100%; flex-direction: row; align-items: center; white-space: nowrap; } ']
+    selector: 'safety-card-header',
+    template: '<ng-content></ng-content>',
+    styles: [' :host { width: 100%; display: flex; box-sizing: border-box; width: 100%; flex-direction: row; align-items: center; white-space: nowrap; } ']
 })
 export class SafetyCardHeaderComponent { }
 
 @Component({
-  selector: 'safety-card-content',
-  template: '<ng-content></ng-content>',
+    selector: 'safety-card-content',
+    template: '<ng-content></ng-content>',
 })
 export class SafetyCardContentComponent { }

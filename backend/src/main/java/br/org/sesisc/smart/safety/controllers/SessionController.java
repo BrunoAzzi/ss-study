@@ -1,6 +1,7 @@
 package br.org.sesisc.smart.safety.controllers;
 
-import br.org.sesisc.smart.safety.dao.UserDao;
+import br.org.sesisc.smart.safety.helpers.TokenHelper;
+import br.org.sesisc.smart.safety.repositories.UserRepository;
 import br.org.sesisc.smart.safety.models.User;
 import br.org.sesisc.smart.safety.responses.ErrorResponse;
 import br.org.sesisc.smart.safety.responses.SuccessResponse;
@@ -20,7 +21,7 @@ import javax.validation.Valid;
 public class SessionController {
 
     @Autowired
-    private UserDao serviceUser;
+    private UserRepository repository;
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> create(@Valid @RequestBody final User userParams, Errors errors) {
@@ -28,10 +29,10 @@ public class SessionController {
             return ErrorResponse.handle(errors, HttpStatus.UNPROCESSABLE_ENTITY);
         }
 
-        User user = serviceUser.findBy(new String[] {"email"}, new Object[] {userParams.getEmail()});
+        User user = repository.findBy(new String[] {"email"}, new Object[] {userParams.getEmail()});
         if (user != null && user.authenticate(userParams.getPassword())) {
-            user.genNewToken();
-            serviceUser.update(user.getId(), new String[] { "token" }, new Object[] { user.getToken() });
+            user.setToken(TokenHelper.getInstance().generateToken());
+            repository.update(user.getId(), new String[] { "token" }, new Object[] { user.getToken() });
 
             return SuccessResponse.handle(
                     new String[] {"user"},

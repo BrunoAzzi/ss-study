@@ -1,13 +1,27 @@
+$warm-grey-four: #999999;
+
 :host {
     width: 100%;
+    z-index: 9999;
 }
 
 .mat-toolbar {
-  font-size: 16px;
+    z-index: 9999;
+    font-size: 16px;
+    box-shadow: 0 3px 9px 0 rgba(0, 0, 0, 0.05);
+    background-color: white;
+
+    & /deep/ h1 {
+        font-family: "Lato";
+        font-size: 24px;
+        font-weight: 300;
+        line-height: 0.58;
+        color: $warm-grey-four;
+    }
 }
 
 .mat-toolbar /deep/ .mat-toolbar-layout {
-    width: 100%
+    width: 100%;
 }
 
 .avatar {
@@ -23,5 +37,6 @@
 }
 
 .main-toolbar /deep/ md-toolbar-row {
+    padding-left: 20px;
     height: 8em !important;
 }

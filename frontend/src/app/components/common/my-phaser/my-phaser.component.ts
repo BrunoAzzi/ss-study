@@ -90,6 +90,10 @@ export class MyPhaserComponent implements OnInit {
   }
 
   update() {
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 
     
   }
