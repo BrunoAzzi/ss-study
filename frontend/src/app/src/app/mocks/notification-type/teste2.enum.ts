@@ -1,2 +1,0 @@
-export enum Teste2 {
-}

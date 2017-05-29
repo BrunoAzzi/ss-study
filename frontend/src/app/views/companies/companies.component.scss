@@ -3,13 +3,4 @@
     flex: 1;
     flex-direction: column;
     max-height: 100%;
-
-
-    & /deep/ .mat-tab-header {
-        margin-bottom: 10px;
-    }
-}
-
-.column-spacer {
-    margin: 10px 20px;
 }

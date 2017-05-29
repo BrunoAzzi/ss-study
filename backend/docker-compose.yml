@@ -1,0 +1,14 @@
+version: '2'
+services:
+  maridadb_dev:
+    image: mariadb
+    command: "mysqld --innodb-buffer-pool-size=20M"
+    volumes:
+      - "./mariadb:/var/lib/mysql:rw"
+    environment:
+      - "MYSQL_DATABASE=ssafety_db"
+      - "MYSQL_USER=ssafety_usr"
+      - "MYSQL_PASSWORD=secret"
+      - "MYSQL_ROOT_PASSWORD=topsecret"
+    ports:
+      - "3306:3306"    

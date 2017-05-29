@@ -13,6 +13,7 @@ import {
     MdCardModule,
     MdTabsModule,
     MdRadioModule,
+    MdSnackBarModule,
     MdGridListModule
 } from '@angular/material';
 
@@ -32,6 +33,7 @@ import {
       MdCardModule,
       MdTabsModule,
       MdRadioModule,
+      MdSnackBarModule,
       MdGridListModule
   ],
   exports: [
@@ -49,6 +51,7 @@ import {
       MdCardModule,
       MdTabsModule,
       MdRadioModule,
+      MdSnackBarModule,
       MdGridListModule
   ],
 })

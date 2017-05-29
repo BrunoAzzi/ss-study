@@ -5,6 +5,11 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from "@angular/router";
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
+import { HttpClientService } from "./services/http-client.service";
+import { SessionsService } from "./services/sessions.service";
+import { AuthGuard } from './guards/index';
+import { MdSnackBar } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { ChartsModule } from "ng2-charts";
@@ -15,7 +20,9 @@ import { DataTablePipe } from "./components/perfil_emocional/status_trabalhadore
 
 // Components
 import { CompaniesComponent } from "./views/companies/companies.component";
-import { CategoryDividerComponent } from "./components/common/category-divider/category-divider.component";
+import { SkillComponent } from "./components/workers/skill/skill.component";
+import { RecyclingComponent } from "./components/workers/recycling/recycling.component";
+import { BoxMessageComponent } from "./components/common/box-message/box-message.component";
 
 //import { DatepickerOverviewExample } from  "./views/companies/datepicker-overview-example.component";
 import { PPEComponent } from "./views/ppe/ppe.component";
@@ -36,7 +43,6 @@ import { StatusAnoComponent } from "./components/perfil_emocional/status_ano/sta
 // Layouts
 
 import { LoginComponent } from "./views/login/login.component";
-import { RegisterComponent } from "./views/register/register.component";
 import { BlankComponent } from "./components/common/layouts/blank/blank.component";
 import { BasicComponent } from "./components/common/layouts/basic/basic.component";
 
@@ -60,74 +66,88 @@ import { MaterialModule } from "./material.module";
 // Flex Layout
 import { FlexLayoutModule } from "@angular/flex-layout";
 
-// Safety custom components
+// Safety custom modules
 import { SafetyCardModule } from "./components/common/safety-card";
+import { CategoryDividerModule } from "./components/common/category-divider";
+import { CompanyDetailsComponent } from "./components/forms/company-details/company-details.component";
 
-// Pipes
+import { InputFile } from "./components/common/input-file/input-file.component";
+import { MyConstructionSitesLandingPageComponent } from './views/myconstructionsites/landing-page/my-construction-sites-landing-page.component';
+import { MyConstructionSitesPhaserComponent } from './views/myconstructionsites/phaser/my-construction-sites-phaser.component';
 
 @NgModule({
-  declarations: [
-    // Pipes
-    KeysPipe,
-    DataTablePipe,
+    declarations: [
+        // Pipes
+        KeysPipe,
+        DataTablePipe,
 
-    // Category Divider
-    CategoryDividerComponent,
+        // Components
+        AppComponent,
+        CompaniesComponent,
+        PPEComponent,
+        MyConstructionSitesComponent,
+        ReportsComponent,
+        RepositoriesComponent,
+        ThirdPartiesComponent,
+        TrainingComponent,
+        WorkersComponent,
+        LoginComponent,
+        BlankComponent,
+        BasicComponent,
+        TopnavbarComponent,
+        NavigationComponent,
+        MyPhaserComponent,
+        CompanyDetailsComponent,
+        BoxMessageComponent,
 
-    // Components
-    AppComponent,
-    CompaniesComponent,
-    PPEComponent,
-    MyConstructionSitesComponent,
-    ReportsComponent,
-    RepositoriesComponent,
-    ThirdPartiesComponent,
-    TrainingComponent,
-    WorkersComponent,
-    LoginComponent,
-    RegisterComponent,
-    BlankComponent,
-    BasicComponent,
-    TopnavbarComponent,
-    NavigationComponent,
-    MyPhaserComponent,
+        // Painel Emocional
+        StatusDiaComponent,
+        StatusTrabalhadoresComponent,
+        StatusAnoComponent,
+        CompBaseStatusDia,
 
-    // Painel Emocional
-    StatusDiaComponent,
-    StatusTrabalhadoresComponent,
-    StatusAnoComponent,
-    CompBaseStatusDia
-  ],
-  imports: [
-    // Notification Module
-    NotificationSidenavContainerModule,
+        // Trabalhadores
+        SkillComponent,
+        RecyclingComponent,
+        InputFile,
+        MyConstructionSitesLandingPageComponent,
+        MyConstructionSitesPhaserComponent
+    ],
+    imports: [
+        // Notification Module
+        NotificationSidenavContainerModule,
 
-    // Angular modules
-    BrowserModule,
-    BrowserAnimationsModule,
-    HttpModule,
-    FormsModule,
+        // Angular modules
+        BrowserModule,
+        BrowserAnimationsModule,
+        HttpModule,
+        FormsModule,
 
-    // Custom Components
-    SafetyCardModule,
+        // Custom Components
+        SafetyCardModule,
+        CategoryDividerModule,
 
-    // Charts
-    ChartsModule,
+        // Charts
+        ChartsModule,
 
-    // Mocks
-    InMemoryWebApiModule.forRoot(InMemoryDataService),
+        // Mocks
+        InMemoryWebApiModule.forRoot(InMemoryDataService, { passThruUnknownUrl: true }),
 
-    // Angular Material
-    MaterialModule,
+        // Angular Material
+        MaterialModule,
 
-    // Flex Layout
-    FlexLayoutModule,
+        // Flex Layout
+        FlexLayoutModule,
 
-    // Routes
-    AppRoutingModule,
-
-  ],
-  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
-  bootstrap: [AppComponent]
+        // Routes
+        AppRoutingModule,
+    ],
+    providers: [
+        HttpClientService,
+        AuthGuard,
+        SessionsService,
+        MdSnackBar,
+        { provide: LocationStrategy, useClass: HashLocationStrategy }],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

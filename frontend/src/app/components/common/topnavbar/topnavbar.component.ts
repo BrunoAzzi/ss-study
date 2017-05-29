@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { NotificationSidenavService } from "../../../services/notification-sidenav.service";
+import { SessionsService } from "../../../services/sessions.service";
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'topnavbar',
@@ -15,7 +17,9 @@ export class TopnavbarComponent {
         this.showNotification = this.coerceBooleanProperty(v);
     }
 
-    constructor(private notificationSidenavService: NotificationSidenavService) { }
+    constructor(private notificationSidenavService: NotificationSidenavService,
+                private sessionsService: SessionsService,
+                private router: Router) { }
 
     toggle() {
         this.notificationSidenavService.toggle();
@@ -23,6 +27,11 @@ export class TopnavbarComponent {
 
     coerceBooleanProperty(value: any): boolean {
         return value != null && `${value}` !== 'false';
+    }
+
+    logoutClicked(){
+        this.sessionsService.logout();
+        this.router.navigate(["/login"]);
     }
 
 }
