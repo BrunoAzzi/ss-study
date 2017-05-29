@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { SessionsService } from '../../services/sessions.service';
 import { Router } from '@angular/router';
-import { MdSnackBar } from '@angular/material';
 
 
 @Component({
@@ -12,11 +11,11 @@ import { MdSnackBar } from '@angular/material';
 export class LoginComponent { 
     model: any = {};
     loading = false;
+    error = "";
 
     constructor(
         private sessionsService: SessionsService,
-        private router: Router,
-        public snackBar: MdSnackBar) {
+        private router: Router) {
         }
 
     login() {
@@ -27,14 +26,12 @@ export class LoginComponent {
                     this.router.navigate(["/"]);
                 },
                 error => {
-                    this.showErrorBar(error);
+                    this.showErrorBar(error.json().errors[0].message);
                     this.loading = false;
                 });
     }
 
     showErrorBar(error: string) {
-    this.snackBar.open(error, "Ok", {
-      duration: 3000
-    });
-  }
+        this.error = error;
+    }
 }

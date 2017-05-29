@@ -20,6 +20,7 @@ import { DataTablePipe } from "./components/perfil_emocional/status_trabalhadore
 // Components
 import { CompaniesComponent } from "./views/companies/companies.component";
 import { CategoryDividerComponent } from "./components/common/category-divider/category-divider.component";
+import { BoxMessageComponent } from "./components/common/box-message/box-message.component";
 
 //import { DatepickerOverviewExample } from  "./views/companies/datepicker-overview-example.component";
 import { PPEComponent } from "./views/ppe/ppe.component";
@@ -95,6 +96,7 @@ import { CompanyDetailsComponent } from "./components/forms/company-details/comp
     NavigationComponent,
     MyPhaserComponent,
     CompanyDetailsComponent,
+    BoxMessageComponent,
 
     // Painel Emocional
     StatusDiaComponent,
