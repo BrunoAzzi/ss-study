@@ -1,4 +1,4 @@
-package br.org.sesisc.smart.safety.condig;
+package br.org.sesisc.smart.safety.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

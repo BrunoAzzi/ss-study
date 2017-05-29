@@ -5,6 +5,7 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.sql.Timestamp;
 
 public class User {
 
@@ -79,7 +80,12 @@ public class User {
      */
 
     public boolean authenticate(final String password) {
-        return BCrypt.checkpw(password, this.password);
+        return BCrypt.checkpw(password, this.password) && this.active;
+    }
+
+    public void genNewToken() {
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        this.token = BCrypt.hashpw(String.valueOf(timestamp.getTime()), BCrypt.gensalt());
     }
 
 }
