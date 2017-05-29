@@ -4,7 +4,7 @@ Feature: Login
   As a user
   I must login using e-mail and password
 
-  Scenario Outline: Login to the system
+  Background:
     Given the following users exist:
       | email                  | password |
       | john.doe@example.com   | 123123   |
@@ -15,8 +15,23 @@ Feature: Login
     And I submit
     Then I should see <outcome>
 
-    Examples:
-      | email                 | password | outcome       |
-      | john.doe@example.com  | 123123   | login success |
-      | john.doe@example.com  | 124124   | login error   |
-      | john.does@example.com | 123123   | login error   |
+    Scenario Outline: Login to the system with success
+      When I fill the login form with: <email>, <password>
+      And I submit
+      Then I should see a success message
+      And I am redirected to the dashboard
+      Examples:
+        | email                 | password |
+        | john.doe@example.com  | 123123   |
+        | john.Doe@example.com  | 123123   |
+        | johH.DOES@EXAmple.com | 123123   |
+
+    Scenario Outline: Fail to login to the system
+      When I fill the login form with: <email>, <password>
+      And I submit
+      Then I should see an error message
+      Examples:
+        | email                   | password |
+        | john.doe@example.com    | 123124   |
+        | john.doe@example.com.br | 123123   |
+        | johH.DOES@EXAmple.com   |          |
