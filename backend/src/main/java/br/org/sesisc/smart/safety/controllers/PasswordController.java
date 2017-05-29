@@ -4,7 +4,6 @@ import br.org.sesisc.smart.safety.controllers.custom.params.PasswordUpdateParam;
 import br.org.sesisc.smart.safety.controllers.custom.params.RecoverParam;
 import br.org.sesisc.smart.safety.helpers.TokenHelper;
 import br.org.sesisc.smart.safety.mailer.MessageMailer;
-import br.org.sesisc.smart.safety.mailer.MessageMailerImpl;
 import br.org.sesisc.smart.safety.models.User;
 import br.org.sesisc.smart.safety.repositories.UserRepository;
 import br.org.sesisc.smart.safety.responses.ErrorResponse;
@@ -36,7 +35,8 @@ public class PasswordController {
         User user = repository.findBy(new String[] {"email"}, new Object[] {params.getEmail()});
         if (user != null) {
             final String token = TokenHelper.getInstance().generateExpirableToken(user.getId().toString());
-            repository.update(user.getId(), new String[] {"recoverpass_token"}, new Object[] {token});
+            user.setRecoverPassToken(token);
+            repository.update(user.getId(), new String[] {"recoverpass_token"}, new Object[] {user.getRecoverPassToken()});
             boolean sent = mailer.sendRecoverPassword(user);
             if(!sent) {
                 return ErrorResponse.handle(
@@ -58,8 +58,7 @@ public class PasswordController {
 
         User user = repository.findBy(new String[] {"recoverpass_token"}, new Object[] {params.getToken()});
         if (user != null) {
-            final String validToken = TokenHelper.getInstance().generateExpirableToken(user.getId().toString());
-            if (user.getRecoverPassToken().equals(validToken)) {
+            if (TokenHelper.getInstance().isValidExpirableToken(user.getId().toString(), user.getRecoverPassToken())) {
                 user.digestPassword(params.getPassword());
                 repository.update(user.getId(), new String[] {"password"}, new Object[] {user.getPassword()});
 

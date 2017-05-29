@@ -33,6 +33,11 @@ public class TokenHelper {
         return BCrypt.hashpw(value, BCrypt.gensalt(12));
     }
 
+    public boolean isValidExpirableToken(final String key, final String token) {
+        final String value = String.format("%s%s", key, getTimeStampByQuarterHours());
+        return BCrypt.checkpw(value, token);
+    }
+
     private String getTimeStampByQuarterHours() {
         final Date currentDate = new Date();
         Calendar cal = Calendar.getInstance();
@@ -41,6 +46,8 @@ public class TokenHelper {
         final int unroundedMinutes = cal.get(Calendar.MINUTE);
         final int mod = unroundedMinutes % 15;
         cal.add(Calendar.MINUTE, mod < 8 ? -mod : (15-mod));
+        cal.set(Calendar.SECOND,  0);
+        cal.set(Calendar.MILLISECOND, 0);
 
         return String.valueOf(cal.getTime());
     }
