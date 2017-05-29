@@ -1,0 +1,29 @@
+$warm-grey: #999999;
+$grapefruit: #ff4c4c;
+
+.hello {
+    font-family: Lato;
+    font-size: 26px;
+    font-weight: 300;
+    line-height: 0.65;
+    text-align: left;
+    color: $warm-grey;
+    margin-top: 100px;
+    margin-bottom: 50px;
+
+    b {
+        font-weight: 900;
+    }
+}
+
+.start {
+    text-transform: uppercase;
+    background-color: $grapefruit;
+    padding: 20px 65px;
+    font-family: Lato;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 0.71;
+    text-align: left;
+    color: #ffffff;
+}
