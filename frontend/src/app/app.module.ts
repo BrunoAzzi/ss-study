@@ -72,6 +72,8 @@ import { CategoryDividerModule } from "./components/common/category-divider";
 import { CompanyDetailsComponent } from "./components/forms/company-details/company-details.component";
 
 import { InputFile } from "./components/common/input-file/input-file.component";
+import { MyConstructionSitesLandingPageComponent } from './views/myconstructionsites/landing-page/my-construction-sites-landing-page.component';
+import { MyConstructionSitesPhaserComponent } from './views/myconstructionsites/phaser/my-construction-sites-phaser.component';
 
 @NgModule({
     declarations: [
@@ -107,7 +109,9 @@ import { InputFile } from "./components/common/input-file/input-file.component";
         // Trabalhadores
         SkillComponent,
         RecyclingComponent,
-        InputFile
+        InputFile,
+        MyConstructionSitesLandingPageComponent,
+        MyConstructionSitesPhaserComponent
     ],
     imports: [
         // Notification Module
