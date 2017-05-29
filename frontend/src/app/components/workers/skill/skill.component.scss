@@ -1,5 +1,51 @@
 $silver: #e8e8e8;
 $pale-gray: #f8fafb;
+$green-blue: #00bd87;
+$grapefruit: #ff4c4c;
+$cool-grey: #a1abb0;
+
+:host {
+    padding: 15px 0;
+    font-family: Lato;
+}
+// a.action {
+//     font-size: 10px;
+//     font-weight: bold;
+//     line-height: 1;
+//     text-align: left;
+//     color: $grapefruit;
+//     text-transform: uppercase;
+//     text-decoration: underline;
+//     cursor: pointer;
+// }
+
+.periodicity {
+    max-width: 100px;
+}
+
+.success {
+    color: $green-blue;
+}
+
+.danger {
+    color: $grapefruit;
+}
+
+.disabled {
+    color: $cool-grey;
+}
+
+md-radio-button {
+    margin: 0 10px;
+}
+
+.tricky-select {
+    width: 100%;
+}
+
+.tricky-select .mat-input-underline {
+    display: none;
+}
 
 .recycling {
     margin: 20px 0;

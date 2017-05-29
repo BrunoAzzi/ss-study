@@ -12,14 +12,14 @@
             </safety-card-header>
 
             <safety-card-content>
-                <form novalidate id="form1" name="form1">
+                <form #form novalidate id="form1" name="form1">
 
-                    <skill [skill]="skill" (removed)="removeSkill(skill)" [(skillNames)]="skillNames" *ngFor="let skill of skillList"></skill>
+                    <skill [form]="form" fxLayout fxLayoutAlign="space-around center" [skill]="skill" (removed)="removeSkill(skill)" [(skillNames)]="skillNames" *ngFor="let skill of skillList"></skill>
 
-                    <div fxLayout fxLayoutAlign="space-between center">
-                        <button md-raised-button (click)="addSkill()">
-                            <span>Adicicionar habilitação</span>
-                        </button>
+                    <div fxLayout fxLayoutAlign="space-between center" class="actionbar">
+                        <a class="action" (click)="addSkill()">
+                            Adicicionar habilitação
+                        </a>
 
                         <button (click)="saveSkills(safetyCard)" class="save-and-continue" md-raised-button type="submit">
                             <span>Salvar e continuar</span>

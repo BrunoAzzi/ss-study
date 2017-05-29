@@ -10,6 +10,7 @@ import { Recycling } from '../../../mocks/recycling/recycling';
 export class SkillComponent {
     @Input() skill: Skill = new Skill();
     @Input() nameList: any;
+    @Input() form: any;
 
     @Output() skillNamesChange = new EventEmitter();
     @Output() removed = new EventEmitter();
@@ -31,6 +32,16 @@ export class SkillComponent {
         let newMonthValue = validityStart.getMonth() + this.skill.periodicity;
         validityStart.setMonth(newMonthValue);
         this.skill.dueDate = validityStart;
+        this.checkOverdue();
+    }
+
+    checkOverdue() {
+        let today = new Date();
+        if (this.skill.dueDate.getTime() < today.getTime()) {
+            this.skill.overdue = true;
+        } else {
+            this.skill.overdue = false;
+        }
     }
 
     addReciclagem() {
