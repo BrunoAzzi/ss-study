@@ -1,4 +1,4 @@
-package br.org.sesisc.smart.safety.dao.mapper;
+package br.org.sesisc.smart.safety.repositories.mapper;
 
 import br.org.sesisc.smart.safety.models.User;
 import org.springframework.jdbc.core.RowMapper;
@@ -16,6 +16,7 @@ public class UserMapper implements RowMapper {
         user.setPassword(rs.getString("password"));
         user.setActive(rs.getBoolean("active"));
         user.setToken(rs.getString("token"));
+        user.setRecoverPassToken(rs.getString("recoverpass_token"));
 
         return user;
     }

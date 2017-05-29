@@ -1,8 +1,8 @@
 @TOCODE
 Feature: Suppliers list
-  In order to manage companies across the system
+  In order to manage suppliers across the system
   As a user
-  I want to view the companies of the system
+  I want to view the suppliers of the system
 
   Scenario: Adding a company
     Given I am at the list of companies page

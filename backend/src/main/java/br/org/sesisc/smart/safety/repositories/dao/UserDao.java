@@ -1,13 +1,12 @@
-package br.org.sesisc.smart.safety.dao.impl;
+package br.org.sesisc.smart.safety.repositories.dao;
 
-import br.org.sesisc.smart.safety.dao.UserDao;
-import br.org.sesisc.smart.safety.dao.mapper.UserMapper;
+import br.org.sesisc.smart.safety.repositories.UserRepository;
+import br.org.sesisc.smart.safety.repositories.mapper.UserMapper;
 import br.org.sesisc.smart.safety.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
@@ -17,12 +16,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@Repository("UserDao")
-public class UserDaoImpl implements UserDao {
-
-    private final String INSERT_SQL = "INSERT INTO users(email, password, active) values(?,?,?)";
-    private final String FETCH_SQL = "SELECT * FROM users";
-    private final String FETCH_SQL_BY_ID = "SELECT * FROM users WHERE id = ?";
+@Repository("UserRepository")
+public class UserDao implements UserRepository {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -33,7 +28,8 @@ public class UserDaoImpl implements UserDao {
         jdbcTemplate.update(new PreparedStatementCreator() {
             @Override
             public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
-                PreparedStatement ps = connection.prepareStatement(INSERT_SQL, Statement.RETURN_GENERATED_KEYS);
+                final String sql = "INSERT INTO users(email, password, active) values (?,?,?)";
+                PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                 ps.setString(1, user.getEmail());
                 ps.setString(2, user.getPassword());
                 ps.setBoolean(3, user.getActive());
@@ -66,12 +62,12 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> findAll() {
-        return jdbcTemplate.query(FETCH_SQL, new UserMapper());
+        return jdbcTemplate.query("SELECT * FROM users", new UserMapper());
     }
 
     @Override
     public Object findById(final long id) {
-        return jdbcTemplate.queryForObject(FETCH_SQL_BY_ID, new Object[] { id }, new UserMapper());
+        return jdbcTemplate.queryForObject("SELECT * FROM users WHERE id = ?", new Object[] { id }, new UserMapper());
     }
 
     @Override

@@ -22,6 +22,7 @@ import { DataTablePipe } from "./components/perfil_emocional/status_trabalhadore
 import { CompaniesComponent } from "./views/companies/companies.component";
 import { SkillComponent } from "./components/workers/skill/skill.component";
 import { RecyclingComponent } from "./components/workers/recycling/recycling.component";
+import { BoxMessageComponent } from "./components/common/box-message/box-message.component";
 
 //import { DatepickerOverviewExample } from  "./views/companies/datepicker-overview-example.component";
 import { PPEComponent } from "./views/ppe/ppe.component";
@@ -95,6 +96,7 @@ import { InputFile } from "./components/common/input-file/input-file.component";
         NavigationComponent,
         MyPhaserComponent,
         CompanyDetailsComponent,
+        BoxMessageComponent,
 
         // Painel Emocional
         StatusDiaComponent,
@@ -116,7 +118,6 @@ import { InputFile } from "./components/common/input-file/input-file.component";
         BrowserAnimationsModule,
         HttpModule,
         FormsModule,
-        CommonModule,
 
         // Custom Components
         SafetyCardModule,
