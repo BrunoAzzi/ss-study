@@ -23,9 +23,6 @@ export class SkillComponent {
         dateFormat: 'dd/mm/yyyy',
     };
 
-    // Initialized to specific date (09.10.2018).
-    private model: Object = { date: { year: 2018, month: 10, day: 9 } };
-
     onFileSelect(event) { }
 
     setPeriodicity(periodicity: number) {
@@ -38,9 +35,6 @@ export class SkillComponent {
     setValidityStart(event) {
         this.skill.validityStart = event.jsdate;
         this.updateDueDate();
-        console.log(
-            event, this.skill.validityStart
-        )
     }
 
     updateDueDate() {
