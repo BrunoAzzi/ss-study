@@ -144,26 +144,40 @@ export class MyPhaserComponent implements OnInit {
   }
 
   actionOnClick(button) {
+
     var graphics = this.game.add.graphics(0, 0);
     var h = 75;
     var w = 168;
     var poly = new Phaser.Polygon();
-    poly.setTo([new Phaser.Point(button._frame.width/ 2, 0),
-        new Phaser.Point(button._frame.width/ 2 + 20, 0 - 15),
-        new Phaser.Point(button._frame.width/ 2 + (w*3) / 4, 0- 15),
-        new Phaser.Point(button._frame.width/ 2 + (w*3) / 4, 0 - 15 -h ),
-        new Phaser.Point(button._frame.width/ 2 - w / 4,  0 - 15 -h ),
-        new Phaser.Point(button._frame.width/ 2 - w / 4,  0 - 15),
-        new Phaser.Point(button._frame.width/ 2 - 20,  0 - 15 )]);
+    poly.setTo([new Phaser.Point(button._frame.width / 2, 0),
+    new Phaser.Point(button._frame.width / 2 + 20, 0 - 15),
+    new Phaser.Point(button._frame.width / 2 + (w * 3) / 4, 0 - 15),
+    new Phaser.Point(button._frame.width / 2 + (w * 3) / 4, 0 - 15 - h),
+    new Phaser.Point(button._frame.width / 2 - w / 4, 0 - 15 - h),
+    new Phaser.Point(button._frame.width / 2 - w / 4, 0 - 15),
+    new Phaser.Point(button._frame.width / 2 - 20, 0 - 15)]);
 
     graphics.lineStyle(1, 0x000000, 0.3);
     graphics.beginFill(0xcee3ea, 1);
     graphics.drawPolygon(poly.points);
     graphics.endFill();
-    console.log(button);
-    if(button.children.length == 0){
-          button.addChild(graphics);
-    }else{
+
+    var text = this.game.add.text(poly._points[4].x + 15, poly._points[4].y + 13, "João da Silva Antunes",
+      { fontSize: '14px', fill: '#ff4c4c', width: '136px', height: '47px', fontWeight: 'bold', font: 'Lato' });
+
+    var date = this.game.add.text(poly._points[4].x + 15, poly._points[4].y + 30, "10:09 - 10/05",
+      { fontSize: '12px', fill: '#999999', width: '136px', height: '47px', fontWeight: 'bold', font: 'Lato' });
+
+    var id = this.game.add.text(poly._points[4].x + 15, poly._points[4].y + 43, "Cone 02381",
+      { fontSize: '12px', fill: '#999999', width: '136px', height: '47px', fontWeight: 'bold', font: 'Lato' });
+
+    graphics.addChild(text);
+    graphics.addChild(date);
+    graphics.addChild(id);
+    
+    if (button.children.length == 0) {
+      button.addChild(graphics);
+    } else {
       button.children.pop();
     }
 
