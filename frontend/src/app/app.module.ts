@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 import { RouterModule } from "@angular/router";
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
@@ -19,6 +19,7 @@ import { KeysPipe } from "./pipes/keys.pipe";
 import { DataTablePipe } from "./components/perfil_emocional/status_trabalhadores/DataTablePipe.pipe";
 
 // Components
+import { WorkersDataComponent } from "./components/workers/workersData/workersData.component";
 import { CompaniesComponent } from "./views/companies/companies.component";
 import { CompanyDetailsComponent } from  "./components/forms/company-details/company-details.component";
 //import { CategoryDividerComponent } from "./components/common/category-divider/category-divider.component";
@@ -111,6 +112,7 @@ import { InputFile } from "./components/common/input-file/input-file.component";
     NavigationComponent,
     MyPhaserComponent,
     CompanyDetailsComponent,
+    WorkersDataComponent,
 
         // Painel Emocional
         StatusDiaComponent,
@@ -133,6 +135,7 @@ import { InputFile } from "./components/common/input-file/input-file.component";
         BrowserAnimationsModule,
         HttpModule,
         FormsModule,
+        ReactiveFormsModule,
         CommonModule,
 		JsonpModule,
 
