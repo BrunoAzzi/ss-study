@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { IMyDpOptions } from 'mydatepicker';
 import { Skill } from '../../../mocks/skill/skill';
 import { Recycling } from '../../../mocks/recycling/recycling';
 
@@ -10,12 +11,17 @@ import { Recycling } from '../../../mocks/recycling/recycling';
 export class SkillComponent {
     @Input() skill: Skill = new Skill();
     @Input() nameList: any;
+    @Input() form: any;
 
     @Output() skillNamesChange = new EventEmitter();
     @Output() removed = new EventEmitter();
 
     formerName: string;
     recyclingList: Recycling[] = [];
+
+    private myDatePickerOptions: IMyDpOptions = {
+        dateFormat: 'dd/mm/yyyy',
+    };
 
     onFileSelect(event) { }
 
@@ -26,11 +32,26 @@ export class SkillComponent {
         }
     }
 
+    setValidityStart(event) {
+        this.skill.validityStart = event.jsdate;
+        this.updateDueDate();
+    }
+
     updateDueDate() {
         let validityStart = new Date(this.skill.validityStart.getTime());
         let newMonthValue = validityStart.getMonth() + this.skill.periodicity;
         validityStart.setMonth(newMonthValue);
         this.skill.dueDate = validityStart;
+        this.checkOverdue();
+    }
+
+    checkOverdue() {
+        let today = new Date();
+        if (this.skill.dueDate.getTime() < today.getTime()) {
+            this.skill.overdue = true;
+        } else {
+            this.skill.overdue = false;
+        }
     }
 
     addReciclagem() {

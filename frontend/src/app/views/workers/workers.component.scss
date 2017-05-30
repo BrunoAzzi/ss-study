@@ -6,12 +6,8 @@
     height: 100%;
 }
 
-md-select /deep/ .mat-select-trigger {
-    font-size: 14px;
-}
-
-md-option {
-    font-size: 14px;
+.action {
+    padding: 20px;
 }
 
 safety-card /deep/ md-card {

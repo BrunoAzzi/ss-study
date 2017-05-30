@@ -30,7 +30,6 @@ export class WorkersComponent {
     ];
 
     saveSkills(safetyCard) {
-        console.log("skills saved!");
         if (this.isValid) safetyCard.close();
     }
 
