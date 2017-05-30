@@ -145,6 +145,7 @@ import { MyConstructionSitesPhaserComponent } from './views/myconstructionsites/
         CommonModule,
         JsonpModule,
 
+        Ng2MaskModule,
 
         // Custom Components
         SafetyCardModule,
