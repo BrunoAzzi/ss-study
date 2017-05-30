@@ -35,7 +35,7 @@ export class StatusAnoComponent implements OnInit, OnDestroy {
   loaded = false;
   constructor( ) { }
 
-  maxnumber: number = 300; //depende dos dados
+  maxnumber: number = 200; //depende dos dados
   steps: number = 4; // não muda
   scale = Math.ceil(this.maxnumber / this.steps);
 
