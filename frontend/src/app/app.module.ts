@@ -23,6 +23,7 @@ import { CompaniesComponent } from "./views/companies/companies.component";
 import { SkillComponent } from "./components/workers/skill/skill.component";
 import { RecyclingComponent } from "./components/workers/recycling/recycling.component";
 import { BoxMessageComponent } from "./components/common/box-message/box-message.component";
+import { BlueprintComponent } from './components/blueprint/blueprint.component';
 
 //import { DatepickerOverviewExample } from  "./views/companies/datepicker-overview-example.component";
 import { PPEComponent } from "./views/ppe/ppe.component";
@@ -32,6 +33,7 @@ import { RepositoriesComponent } from "./views/repositories/repositories.compone
 import { ThirdPartiesComponent } from "./views/thirdparties/thirdparties.component";
 import { TrainingComponent } from "./views/training/training.component";
 import { WorkersComponent } from "./views/workers/workers.component";
+import { MonitoringComponent } from './views/monitoring/monitoring.component';
 
 // Painel Emocional
 
@@ -97,6 +99,8 @@ import { InputFile } from "./components/common/input-file/input-file.component";
         MyPhaserComponent,
         CompanyDetailsComponent,
         BoxMessageComponent,
+        MonitoringComponent,
+        BlueprintComponent,
 
         // Painel Emocional
         StatusDiaComponent,

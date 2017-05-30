@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
 })
 export class MyConstructionSitesComponent {
 
-  mapImage = [{ 'titulo': '2ºGaragem', 'url': 'assets/map.png' }];
+  mapImage = [{ 'titulo': '2ºGaragem', 'url': 'assets/phaser/map.png' }];
   popUp = 'assets/popUp.png';
   view = false;
 
@@ -22,18 +22,18 @@ export class MyConstructionSitesComponent {
     menu: {
       position: "top",
       buttons: [
-        { 'name': 'buttonCone', 'button': 'assets/ConeButtonSheet.png', 'item': 'assets/ConeItem.png' },
-        { 'name': 'buttonAgua', 'button': 'assets/AguaButtonSheet.png', 'item': 'assets/AguaItem.png' },
-        { 'name': 'buttonAlojamento', 'button': 'assets/AlojamentoButtonSheet.png', 'item': 'assets/AlojamentoItem.png' },
-        { 'name': 'buttonBandeja', 'button': 'assets/BandejaButtonSheet.png', 'item': 'assets/BandejaItem.png' },
-        { 'name': 'buttonBanheiro', 'button': 'assets/BanheiroButtonSheet.png', 'item': 'assets/BanheiroItem.png' },
-        { 'name': 'buttonBarrier', 'button': 'assets/BarrierButtonSheet.png', 'item': 'assets/BarrierItem.png' },
-        { 'name': 'buttonExtintor', 'button': 'assets/ExtintorButtonSheet.png', 'item': 'assets/ExtintorItem.png' },
-        { 'name': 'buttonGrua', 'button': 'assets/GruaButtonSheet.png', 'item': 'assets/GruaItem.png' },
-        { 'name': 'buttonMaquina', 'button': 'assets/MaquinaButtonSheet.png', 'item': 'assets/MaquinasItem.png' },
-        { 'name': 'buttonPs', 'button': 'assets/PsButtonSheet.png', 'item': 'assets/PSItem.png' },
-        { 'name': 'buttonRefeitorio', 'button': 'assets/RefeitorioButtonSheet.png', 'item': 'assets/RefeitorioItem.png' },
-        { 'name': 'buttonTv', 'button': 'assets/TvButtonSheet.png', 'item': 'assets/TvItem.png' },
+        { 'name': 'buttonCone', 'button': 'assets/phaser/ConeButtonSheet.png', 'item': 'assets/phaser/ConeItem.png' },
+        { 'name': 'buttonAgua', 'button': 'assets/phaser/AguaButtonSheet.png', 'item': 'assets/phaser/AguaItem.png' },
+        { 'name': 'buttonAlojamento', 'button': 'assets/phaser/AlojamentoButtonSheet.png', 'item': 'assets/phaser/AlojamentoItem.png' },
+        { 'name': 'buttonBandeja', 'button': 'assets/phaser/BandejaButtonSheet.png', 'item': 'assets/phaser/BandejaItem.png' },
+        { 'name': 'buttonBanheiro', 'button': 'assets/phaser/BanheiroButtonSheet.png', 'item': 'assets/phaser/BanheiroItem.png' },
+        { 'name': 'buttonBarrier', 'button': 'assets/phaser/BarrierButtonSheet.png', 'item': 'assets/phaser/BarrierItem.png' },
+        { 'name': 'buttonExtintor', 'button': 'assets/phaser/ExtintorButtonSheet.png', 'item': 'assets/phaser/ExtintorItem.png' },
+        { 'name': 'buttonGrua', 'button': 'assets/phaser/GruaButtonSheet.png', 'item': 'assets/phaser/GruaItem.png' },
+        { 'name': 'buttonMaquina', 'button': 'assets/phaser/MaquinaButtonSheet.png', 'item': 'assets/phaser/MaquinasItem.png' },
+        { 'name': 'buttonPs', 'button': 'assets/phaser/PsButtonSheet.png', 'item': 'assets/phaser/PSItem.png' },
+        { 'name': 'buttonRefeitorio', 'button': 'assets/phaser/RefeitorioButtonSheet.png', 'item': 'assets/phaser/RefeitorioItem.png' },
+        { 'name': 'buttonTv', 'button': 'assets/phaser/TvButtonSheet.png', 'item': 'assets/phaser/TvItem.png' },
       ]
     }
   };
