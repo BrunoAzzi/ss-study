@@ -1,8 +1,4 @@
-$silver: #e8e8e8;
-$pale-gray: #f8fafb;
-$green-blue: #00bd87;
-$grapefruit: #ff4c4c;
-$cool-grey: #a1abb0;
+@import '../../../../scss/components/color.scss';
 
 :host {
     padding: 15px 0;

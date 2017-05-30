@@ -1,7 +1,7 @@
 .big-button {
     display: block;
     padding: 1em 3em;
-    background-color: #ff4c4c;
+    background-color: $grapefruit;
     text-transform: uppercase;
     margin: auto;
     color: white;
@@ -10,7 +10,7 @@
     cursor: pointer;
 
     &:hover {
-        background-color: darken(#ff4c4c, 5);
+        background-color: darken($grapefruit, 5);
     }
 }
 
