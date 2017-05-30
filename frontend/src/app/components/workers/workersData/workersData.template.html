@@ -5,17 +5,29 @@
     <safety-card-content>
         <form [formGroup]="myForm" (submit)="savePersonalDataWorker(safetyCard)" id="formBasicData" name="formBasicData">
             <div class="form-content">
+
                 <md-input-container>
                     <input mdInput formControlName="fullname" placeholder="Nome" id="name" name="name" pattern="[A-Z a-z]+" [(ngModel)]="fullname">
-                    <md-error>Campo vazio ou com caracteres inválidos.</md-error>
+                    <!-- <div *ngIf="myForm.controls.fullname.invalid"> -->
+                    <md-error *ngIf="myForm.controls.fullname.hasError('required')">Campo Obrigatório.</md-error>
+                    <md-error *ngIf="myForm.controls.fullname.hasError('minlength')">Tem poucas letras.</md-error>
+                    <!-- </div> -->
+                    <!-- <md-error *ngIf="myForm.controls.invalid">Tem poucas letras.</md-error> -->
+                    <!--
+                        <md-error>Obrigatório.</md-error>
+                    </div> -->
                 </md-input-container>
+
                 <!-- <md-card class="image-upload"></md-card> -->
 
 
                 <!-- <table class="table-form">
                  <tr>
                     <td>
-
+                    <md-input-container>
+                        <input mdInput formControlName="cpf" placeholder="CPF" id="cpf" name="cpf" mask='000.000.000-00' [(ngModel)]="errorMessageExample1">
+                        <md-error>Campo vazio ou com caracteres inválidos.</md-error>
+                    </md-input-container>
                         <md-input-container>
                             <input mdInput required placeholder="CPF" id="cpf" name="cpf" mask='000.000.000-00' [(ngModel)]="errorMessageExample1">
                             <md-error>Campo vazio ou com caracteres inválidos.</md-error>
@@ -33,7 +45,7 @@
                             <p>Sexo:</p>
                             <md-radio-group layout-gt-md="row">
                                 <div fxLayout="row" fxLayoutAlign="space-around center">
-                                    <md-radio-button value="m">Masculino</md-radio-button>
+                                    <md-radio-button value="m" checked="checked" >Masculino</md-radio-button>
                                     <md-radio-button value="f">Feminino</md-radio-button>
                                 </div>
                             </md-radio-group>

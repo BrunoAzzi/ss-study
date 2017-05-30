@@ -32,8 +32,9 @@ export class WorkersDataComponent implements OnInit {
         // });
         // build the form model
         this.myForm = this.fb.group({
-            fullname: new FormControl('', Validators.required)
+            fullname: new FormControl('', Validators.compose([Validators.required, Validators.minLength(4)]))
         })
+        console.log(this.myForm);
     }
 
 
@@ -102,7 +103,6 @@ export class WorkersDataComponent implements OnInit {
             this.disabled = true;
         }
     }
-
 
     savePersonalDataWorker(safetyCard) {
         if (this.myForm.valid) {
