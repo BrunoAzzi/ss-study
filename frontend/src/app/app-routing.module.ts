@@ -17,6 +17,7 @@ import { BasicComponent } from "./components/common/layouts/basic/basic.componen
 
 import { MyConstructionSitesLandingPageComponent } from "./views/myconstructionsites/landing-page/my-construction-sites-landing-page.component";
 import { MyConstructionSitesPhaserComponent } from './views/myconstructionsites/phaser/my-construction-sites-phaser.component';
+import { MyConstructionSitesShowComponent } from './views/myconstructionsites/show/my-construction-sites-show.component';
 
 const routes: Routes = [
     // Main redirect
@@ -36,7 +37,7 @@ const routes: Routes = [
             {
                 path: 'myconstructionsites', component: MyConstructionSitesComponent, canActivate: [AuthGuard], children: [
                     { path: '', component: MyConstructionSitesLandingPageComponent, canActivate: [AuthGuard] },
-                    // { path: 'list', component: MyConstructionSitesListComponent, canActivate: [AuthGuard] },
+                    { path: 'list', component: MyConstructionSitesShowComponent, canActivate: [AuthGuard] },
                     // { path: 'add', component: MyConstructionSitesAddComponent, canActivate: [AuthGuard] },
                     { path: 'phaser', component: MyConstructionSitesPhaserComponent, canActivate: [AuthGuard] },
                 ]

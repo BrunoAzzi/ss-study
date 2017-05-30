@@ -1,0 +1,57 @@
+@import '../../../../scss/components/color.scss';
+
+:host {
+    background-color: white;
+}
+
+img {
+    height: 50px;
+    width: 135px;
+}
+
+.construction-site-info {
+    span {
+        font-family: Lato;
+        font-size: 12px;
+        font-weight: 300;
+        line-height: 1.42;
+        text-align: left;
+        color: $greyish-brown-two;
+        margin: 0 5px;
+    }
+
+    .title {
+        font-size: 16px;
+        line-height: 1.06;
+    }
+
+    .address {
+        font-size: 14px;
+        line-height: 0.85;
+    }
+
+    .sponsor {
+        line-height: 0.42;
+    }
+
+    md-icon {
+        color: white;
+        margin: 0 15px;
+    }
+}
+
+.tools {
+    padding: 0 10px;
+}
+
+.success {
+    background-color: $green-blue !important;
+}
+
+.danger {
+    background-color: $grapefruit !important;
+}
+
+.warn {
+    background-color: $sunflower !important;
+}

@@ -1,0 +1,87 @@
+@import "../../../../scss/components/color.scss";
+
+.top-actionbar {
+    padding: 20px;
+    margin: 5px;
+
+    .right-actionbar {
+        & > md-select {
+            margin: 0 10px;
+        }
+
+        md-icon {
+            color: $warm-grey-four;
+        }
+
+        .actived {
+            color: black;
+        }
+    }
+}
+
+.list-wrapper {
+    margin: 0 35px;
+
+    & > * {
+        margin: 16px 0;
+    }
+}
+
+md-chip {
+    padding: 3px 10px !important;
+    margin: 0 5px !important;
+    border-radius: 0 !important;
+    font-family: Lato;
+    font-size: 10px !important;
+    font-weight: 900 !important;
+    line-height: 1.4;
+    letter-spacing: 0.5px;
+    text-align: left;
+    text-transform: uppercase;
+    color: white !important;
+
+    md-icon {
+        margin-right: 5px;
+        font-size: 15px;
+        color: white;
+    }
+}
+
+.order {
+    min-width: 150px;
+
+    & /deep/ {
+        .mat-select-placeholder,
+        .mat-select-value {
+            color: $warm-grey-four;
+            text-transform: uppercase;
+            font-family: Lato;
+            font-size: 10px;
+            font-weight: 900;
+            line-height: 1.4;
+            letter-spacing: 0.5px;
+            text-align: left;
+        }
+
+        .mat-select-underline {
+            display: none !important;
+        }
+    }
+}
+
+.search {
+    margin: 0 20px;
+    color: $warm-grey-four;
+}
+
+.success {
+    background-color: $green-blue !important;
+}
+
+.danger {
+    background-color: $grapefruit !important;
+}
+
+.warn {
+    background-color: $sunflower !important;
+}

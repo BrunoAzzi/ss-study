@@ -25,7 +25,6 @@ import { DataTablePipe } from "./components/perfil_emocional/status_trabalhadore
 import { WorkersDataComponent } from "./components/workers/workersData/workersData.component";
 import { CompaniesComponent } from "./views/companies/companies.component";
 import { CompanyDetailsComponent } from  "./components/forms/company-details/company-details.component";
-//import { CategoryDividerComponent } from "./components/common/category-divider/category-divider.component";
 import { DateRangeComponent } from "./components/common/date-range/date-range.component";
 import { SkillComponent } from "./components/workers/skill/skill.component";
 import { RecyclingComponent } from "./components/workers/recycling/recycling.component";
@@ -61,9 +60,6 @@ import { NotificationSidenavContainerModule } from "./components/common/notifica
 //Masks
 import {Ng2MaskModule} from 'ng2-mask';
 
-// Upload
-// import { Ng2FileDropModule }  from 'ng2-file-drop';
-
 // Routing module
 import { AppRoutingModule } from "./app-routing.module";
 
@@ -87,15 +83,14 @@ import { CategoryDividerModule } from "./components/common/category-divider";
 import { InputFile } from "./components/common/input-file/input-file.component";
 import { MyConstructionSitesLandingPageComponent } from './views/myconstructionsites/landing-page/my-construction-sites-landing-page.component';
 import { MyConstructionSitesPhaserComponent } from './views/myconstructionsites/phaser/my-construction-sites-phaser.component';
+import { MyConstructionSitesShowComponent } from './views/myconstructionsites/show/my-construction-sites-show.component';
+import { LineConstructionSiteComponent } from './components/mysconstructionsites/line-construction-site/line-construction-site.component';
 
 @NgModule({
     declarations: [
         // Pipes
         KeysPipe,
         DataTablePipe,
-
-        // Category Divider
-        //    CategoryDividerComponent,
 
         // Components
         DateRangeComponent,
@@ -128,8 +123,12 @@ import { MyConstructionSitesPhaserComponent } from './views/myconstructionsites/
         SkillComponent,
         RecyclingComponent,
         InputFile,
+
+        // Obras
         MyConstructionSitesLandingPageComponent,
-        MyConstructionSitesPhaserComponent
+        MyConstructionSitesPhaserComponent,
+        MyConstructionSitesShowComponent,
+        LineConstructionSiteComponent
     ],
     imports: [
         // Notification Module
