@@ -1,14 +1,26 @@
 .big-button {
-  display: block;
-  padding: 1em 3em;
-  background-color: #ff4c4c;
-  text-transform: uppercase;
-  margin: auto;
-  color: white;
-  text-decoration: none;
-  max-width: 200px;
-  cursor: pointer;
-  &:hover {
-    background-color: darken(#ff4c4c, 5);
-  }
+    display: block;
+    padding: 1em 3em;
+    background-color: $grapefruit;
+    text-transform: uppercase;
+    margin: auto;
+    color: white;
+    text-decoration: none;
+    max-width: 200px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: darken($grapefruit, 5);
+    }
+}
+
+a.action {
+    font-size: 10px;
+    font-weight: bold;
+    line-height: 1;
+    text-align: left;
+    color: $grapefruit;
+    text-transform: uppercase;
+    text-decoration: underline;
+    cursor: pointer;
 }

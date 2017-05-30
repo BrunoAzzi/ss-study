@@ -5,6 +5,8 @@
     </topnavbar>
 
     <div class="body-content">
+        <workers-data></workers-data>
+
         <safety-card #safetyCard>
 
             <safety-card-header>
@@ -12,15 +14,16 @@
             </safety-card-header>
 
             <safety-card-content>
-                <form novalidate id="form1" name="form1">
+                <form fxLayout="column" #form novalidate id="form1" name="form1">
 
-                    <skill [skill]="skill" (removed)="removeSkill(skill)" [(skillNames)]="skillNames" *ngFor="let skill of skillList"></skill>
+                    <skill [form]="form" fxLayout fxLayoutAlign="space-around center" [skill]="skill" (removed)="removeSkill(skill)" [(skillNames)]="skillNames" *ngFor="let skill of skillList"></skill>
 
-                    <div fxLayout fxLayoutAlign="space-between center">
-                        <button md-raised-button (click)="addSkill()">
-                            <span>Adicicionar habilitação</span>
-                        </button>
-
+                    <div fxFill fxLayout fxLayoutAlign="start center">
+                        <a class="action" (click)="addSkill()">
+                            Adicicionar habilitação
+                        </a>
+                    </div>
+                    <div fxFill fxLayout fxLayoutAlign="end center">
                         <button (click)="saveSkills(safetyCard)" class="save-and-continue" md-raised-button type="submit">
                             <span>Salvar e continuar</span>
                         </button>
@@ -30,185 +33,12 @@
             </safety-card-content>
         </safety-card>
 
-
         <safety-card>
             <safety-card-header>
-                <span>dados dos trabalhadores</span>
-            </safety-card-header>
-            <safety-card-content>
-                <div class="dados_pessoais">
-                    <div class="quarter_screen">
-                        <!-- foto -->
-                        <button class="insira_foto" md-raised-button>
-                    <span>Salvar e continuar</span>
-                </button>
-                    </div>
-
-
-                    <div class="resto_tela">
-
-                        <table class="example-full-width">
-                            <tr>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <md-input-container class="example-full-width">
-                                        <input mdInput placeholder="CPF" id="cpf">
-                                    </md-input-container>
-                                </td>
-                                <td colspan="2">
-                                    <md-input-container class="example-full-width">
-                                        <input mdInput placeholder="Nome" id="nome">
-                                    </md-input-container>
-                                </td>
-                                <td colspan="2">
-                                    <div>
-                                        <p class="label_table">Sexo:</p>
-                                        <md-radio-group layout-gt-md="row">
-                                            <md-radio-button value="m">Masculino</md-radio-button>
-                                            <md-radio-button value="f">Feminino</md-radio-button>
-                                        </md-radio-group>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <md-input-container class="example-full-width">
-                                        <input mdInput placeholder="Data de Nascimento" id="data_nasc">
-                                    </md-input-container>
-                                </td>
-                                <td>
-                                    <md-input-container class="example-full-width">
-                                        <input mdInput placeholder="Idade" id="idade">
-                                    </md-input-container>
-                                </td>
-                                <td>
-                                    <md-select placeholder="Escolaridade" id="escolaridade">
-                                        <md-option *ngFor="let escolaridade of escolaridades" [value]="escolaridade.value">
-                                            {{ escolaridade.viewValue }}
-                                        </md-option>
-                                    </md-select>
-                                </td>
-                                <td>
-                                    <md-input-container class="example-full-width">
-                                        <input mdInput placeholder="NIT" id="nit">
-                                    </md-input-container>
-                                </td>
-                                <td>
-                                    <md-input-container class="example-full-width">
-                                        <input mdInput placeholder="CTPS" id="ctps">
-                                    </md-input-container>
-                                </td>
-
-                            </tr>
-                            <tr>
-                                <td>
-                                    <md-input-container class="example-full-width">
-                                        <input mdInput placeholder="CEP" id="cep">
-                                    </md-input-container>
-                                </td>
-                                <td colspan="2">
-                                    <md-input-container class="example-full-width">
-                                        <input mdInput placeholder="Endereço Completo" id="endereco_completo">
-                                    </md-input-container>
-                                </td>
-                                <td>
-                                    <md-input-container class="example-full-width">
-                                        <input mdInput placeholder="Complemento" id="complemento">
-                                    </md-input-container>
-                                </td>
-                                <td>
-                                    <md-input-container class="example-full-width">
-                                        <input mdInput placeholder="Contato" id="contato">
-                                    </md-input-container>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <md-input-container class="example-full-width">
-                                        <input mdInput placeholder="CBO" type="number">
-                                    </md-input-container>
-                                </td>
-                                <td colspan="2">
-                                    <md-select placeholder="CARGO">
-                                        <md-option *ngFor="let cargo of cargos" [value]="cargo.value">
-                                            {{ cargo.viewValue }}
-                                        </md-option>
-                                    </md-select>
-                                </td>
-                                <td class="coluna_texto" colspan="2" rowspan="3">
-                                    <md-input-container class="example-full-width">
-                                        <textarea mdInput placeholder="Descrição da Função"></textarea>
-                                    </md-input-container>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <md-select placeholder="Portador de Nec. Especiais?">
-                                        <md-option *ngFor="let necessidade of necessidades" [value]="necessidade.value">
-                                            {{ necessidade.viewValue }}
-                                        </md-option>
-                                    </md-select>
-                                </td>
-                                <td>
-                                    <md-input-container class="example-full-width">
-                                        <input mdInput placeholder="Data de Admissão" id="admissao">
-                                    </md-input-container>
-                                </td>
-                                <td>
-                                    <md-select placeholder="Status">
-                                        <md-option *ngFor="let statu of status" [value]="statu.value">
-                                            {{ statu.viewValue }}
-                                        </md-option>
-                                    </md-select>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <p class="label_table">Tipo de Contratação:</p>
-                                    <md-radio-group>
-                                        <md-radio-button value="p">Próprio</md-radio-button>
-                                        <md-radio-button value="t">Terceiro</md-radio-button>
-                                    </md-radio-group>
-                                </td>
-                                <td colspan="2">
-                                    <md-input-container class="example-full-width">
-                                        <input mdInput placeholder="Empresa" id="empresa">
-                                    </md-input-container>
-                                </td>
-                            </tr>
-
-
-                        </table>
-
-                    </div>
-                </div>
-
-            </safety-card-content>
-        </safety-card>
-
-        <safety-card>
-            <safety-card-header>
-                <span>dados de segurança do trabalho</span>
+                <span>Dados de saúde</span>
             </safety-card-header>
             <safety-card-content>
             </safety-card-content>
         </safety-card>
-
-        <safety-card>
-            <safety-card-header>
-                <span>dados de saúde</span>
-            </safety-card-header>
-            <safety-card-content>
-            </safety-card-content>
-        </safety-card>
-
     </div>
 </div>

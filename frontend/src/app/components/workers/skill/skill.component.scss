@@ -1,5 +1,46 @@
-$silver: #e8e8e8;
-$pale-gray: #f8fafb;
+@import '../../../../scss/components/color.scss';
+
+:host {
+    padding: 15px 0;
+    font-family: Lato;
+}
+
+my-date-picker {
+    max-width: 200px;
+
+    & /deep/ .selector {
+        position: fixed;
+        z-index: 100;
+    }
+}
+
+.periodicity {
+    max-width: 100px;
+}
+
+.success {
+    color: $green-blue;
+}
+
+.danger {
+    color: $grapefruit;
+}
+
+.disabled {
+    color: $cool-grey;
+}
+
+md-radio-button {
+    margin: 0 10px;
+}
+
+.tricky-select {
+    width: 100%;
+}
+
+.tricky-select .mat-input-underline {
+    display: none;
+}
 
 .recycling {
     margin: 20px 0;
