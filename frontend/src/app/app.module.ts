@@ -5,11 +5,13 @@ import { HttpModule, JsonpModule } from '@angular/http';
 import { RouterModule } from "@angular/router";
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { HttpClientService } from "./services/http-client.service";
 import { SessionsService } from "./services/sessions.service";
 import { AuthGuard } from './guards/index';
 import { MdSnackBar } from '@angular/material';
 import { CommonModule } from '@angular/common';
+
 import { AppComponent } from './app.component';
 import { ChartsModule } from "ng2-charts";
 import { CookieService } from 'ng2-cookies';
@@ -26,6 +28,7 @@ import { CompanyDetailsComponent } from  "./components/forms/company-details/com
 import { DateRangeComponent } from "./components/common/date-range/date-range.component";
 import { SkillComponent } from "./components/workers/skill/skill.component";
 import { RecyclingComponent } from "./components/workers/recycling/recycling.component";
+import { BoxMessageComponent } from "./components/common/box-message/box-message.component";
 
 //import { DatepickerOverviewExample } from  "./views/companies/datepicker-overview-example.component";
 import { PPEComponent } from "./views/ppe/ppe.component";
@@ -78,12 +81,12 @@ import { MaterialModule } from "./material.module";
 import { FlexLayoutModule } from "@angular/flex-layout";
 
 // Safety custom modules
-import { CategoryDividerModule } from "./components/common/category-divider";
 import { SafetyCardModule } from "./components/common/safety-card";
-
-
+import { CategoryDividerModule } from "./components/common/category-divider";
 
 import { InputFile } from "./components/common/input-file/input-file.component";
+import { MyConstructionSitesLandingPageComponent } from './views/myconstructionsites/landing-page/my-construction-sites-landing-page.component';
+import { MyConstructionSitesPhaserComponent } from './views/myconstructionsites/phaser/my-construction-sites-phaser.component';
 
 @NgModule({
     declarations: [
@@ -91,28 +94,29 @@ import { InputFile } from "./components/common/input-file/input-file.component";
         KeysPipe,
         DataTablePipe,
 
-		    // Category Divider
-//    CategoryDividerComponent,
+        // Category Divider
+        //    CategoryDividerComponent,
 
         // Components
-            DateRangeComponent,
-    AppComponent,
-    CompaniesComponent,
-    PPEComponent,
-    MyConstructionSitesComponent,
-    ReportsComponent,
-    RepositoriesComponent,
-    ThirdPartiesComponent,
-    TrainingComponent,
-    WorkersComponent,
-    LoginComponent,
-    BlankComponent,
-    BasicComponent,
-    TopnavbarComponent,
-    NavigationComponent,
-    MyPhaserComponent,
-    CompanyDetailsComponent,
-    WorkersDataComponent,
+        DateRangeComponent,
+        AppComponent,
+        CompaniesComponent,
+        PPEComponent,
+        MyConstructionSitesComponent,
+        ReportsComponent,
+        RepositoriesComponent,
+        ThirdPartiesComponent,
+        TrainingComponent,
+        WorkersComponent,
+        LoginComponent,
+        BlankComponent,
+        BasicComponent,
+        TopnavbarComponent,
+        NavigationComponent,
+        MyPhaserComponent,
+        CompanyDetailsComponent,
+        WorkersDataComponent,
+        BoxMessageComponent,
 
         // Painel Emocional
         StatusDiaComponent,
@@ -123,8 +127,9 @@ import { InputFile } from "./components/common/input-file/input-file.component";
         // Trabalhadores
         SkillComponent,
         RecyclingComponent,
-        InputFile
-
+        InputFile,
+        MyConstructionSitesLandingPageComponent,
+        MyConstructionSitesPhaserComponent
     ],
     imports: [
         // Notification Module
@@ -135,12 +140,13 @@ import { InputFile } from "./components/common/input-file/input-file.component";
         BrowserAnimationsModule,
         HttpModule,
         FormsModule,
+
         ReactiveFormsModule,
         CommonModule,
-		JsonpModule,
+        JsonpModule,
 
 
-        // Custom Modules
+        // Custom Components
         SafetyCardModule,
         CategoryDividerModule,
 
@@ -148,11 +154,11 @@ import { InputFile } from "./components/common/input-file/input-file.component";
         ChartsModule,
 
         // Mocks
-        InMemoryWebApiModule.forRoot(InMemoryDataService),
+        InMemoryWebApiModule.forRoot(InMemoryDataService, { passThruUnknownUrl: true }),
 
 
-		//Calendar Range
-		MyDateRangePickerModule,
+        //Calendar Range
+        MyDateRangePickerModule,
 
         // Angular Material
         MaterialModule,
@@ -162,15 +168,13 @@ import { InputFile } from "./components/common/input-file/input-file.component";
 
         // Routes
         AppRoutingModule,
-
     ],
-  providers: [
-    HttpClientService,
-    AuthGuard,
-    CookieService,
-    SessionsService,
-    MdSnackBar,
-    { provide: LocationStrategy, useClass: HashLocationStrategy }],
-  bootstrap: [AppComponent]
+    providers: [
+        HttpClientService,
+        AuthGuard,
+        SessionsService,
+        MdSnackBar,
+        { provide: LocationStrategy, useClass: HashLocationStrategy }],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

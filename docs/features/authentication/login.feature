@@ -10,6 +10,10 @@ Feature: Login
       | john.doe@example.com   | 123123   |
     And I am not authenticated
     And I access the home system url
+    When I type <email> on email field
+    And I type <password> on password field
+    And I submit
+    Then I should see <outcome>
 
     Scenario Outline: Login to the system with success
       When I fill the login form with: <email>, <password>

@@ -1,8 +1,7 @@
 <md-card fxLayout="column" class="custom-header">
     <md-toolbar>
         <ng-content select="safety-card-header"></ng-content>
-        <span class="spacer"></span>
-        <a md-icon-button *ngIf="!toggleDisabled" (click)="toggleState()"><md-icon>{{toggleIcon}}</md-icon></a>
+        <a md-icon-button fxFlexAlign="right center" *ngIf="!toggleDisabled" (click)="toggleState()"><md-icon>{{toggleIcon}}</md-icon></a>
     </md-toolbar>
 
     <md-card-content [@heroState]="state">

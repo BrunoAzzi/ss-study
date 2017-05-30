@@ -1,7 +1,27 @@
-::-webkit-input-placeholder { color:red; }
-:host { height: 100%;}
-md-select /deep/ .mat-select-trigger { font-size: 14px; }
-md-option  {  font-size: 14px; }
-safety-card /deep/ md-card {    margin-bottom: 20px;}
-safety-card-content div {    margin-bottom: 10px;}
-safety-card-content > :last-child {    margin-bottom: 0px;}
+::-webkit-input-placeholder {
+    color: red;
+}
+
+:host {
+    height: 100%;
+}
+
+md-select /deep/ .mat-select-trigger {
+    font-size: 14px;
+}
+
+md-option {
+    font-size: 14px;
+}
+
+safety-card /deep/ md-card {
+    margin-bottom: 20px;
+}
+
+safety-card-content div {
+    margin-bottom: 10px;
+}
+
+safety-card-content > :last-child {
+    margin-bottom: 0;
+}

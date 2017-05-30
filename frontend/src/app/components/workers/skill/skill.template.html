@@ -1,47 +1,43 @@
-<div class="skill">
+<category-divider>
+    <category-divider-left>
+    </category-divider-left>
+    <category-divider-center>
+        <md-select #skillName required (change)="toggleName(skillName.selected.value)" placeholder="Selecione a habilitação" floatPlaceholder="never">
+            <md-option *ngFor="let name of nameList" [value]="name">{{name}}</md-option>
+        </md-select>
+    </category-divider-center>
+    <category-divider-right>
+        <button md-button (click)="removeMyself()">excluir</button>
+    </category-divider-right>
+</category-divider>
 
-    <category-divider>
-        <category-divider-left>
-        </category-divider-left>
-        <category-divider-center>
-            <md-select #skillName required (change)="toggleName(skillName.selected.value)" placeholder="Selecione a habilitação" floatPlaceholder="never">
-                <md-option *ngFor="let name of nameList" [value]="name">{{name}}</md-option>
-            </md-select>
-        </category-divider-center>
-        <category-divider-right>
-            <button md-button (click)="removeMyself()">excluir</button>
-        </category-divider-right>
-    </category-divider>
+<div fxLayout fxLayoutAlign="space-around center">
+    <md-input-container>
+        <input [ngModel]="skill.validityStart | date:'yyyy-MM-dd'" (input)="skill.validityStart = $event.target.valueAsDate;updateDueDate()" required mdInput type="date" placeholder="Inicio da vigência">
+        <md-error>Campo obrigatório.</md-error>
+    </md-input-container>
+    <md-input-container>
+        <input [ngModel]="skill.periodicity" min="0" mdInput type="number" (input)="setPeriodicity($event.target.valueAsNumber)" [disabled]="!skill.validityStart" placeholder="Peridiocidade">
+        <span mdSuffix>meses</span>
+    </md-input-container>
+    <md-input-container>
+        <input [ngModel]="skill.dueDate | date:'yyyy-MM-dd'" (change)="skill.dueDate = $event.target.valueAsDate" mdInput disabled type="date" placeholder="Proxima Reciclagem">
+    </md-input-container>
+    <md-radio-group [(ngModel)]="skill.isApt">
+        <md-radio-button value="true">Apto</md-radio-button>
+        <md-radio-button value="false">Inapto</md-radio-button>
+    </md-radio-group>
+    <input-file (onFileSelect)="onFileSelect($event)" [accept]="'.doc,.docx,.png,.pdf'"></input-file>
+</div>
 
-    <div fxLayout fxLayoutAlign="space-around center">
-        <md-input-container>
-            <input [ngModel]="skill.validityStart | date:'yyyy-MM-dd'" (input)="skill.validityStart = $event.target.valueAsDate;updateDueDate()" required mdInput type="date" placeholder="Inicio da vigência">
-            <md-error>Campo obrigatório.</md-error>
-        </md-input-container>
-        <md-input-container>
-            <input [ngModel]="skill.periodicity" min="0" mdInput type="number" (input)="setPeriodicity($event.target.valueAsNumber)" [disabled]="!skill.validityStart" placeholder="Peridiocidade">
-            <span mdSuffix>meses</span>
-        </md-input-container>
-        <md-input-container>
-            <input [ngModel]="skill.dueDate | date:'yyyy-MM-dd'" (change)="skill.dueDate = $event.target.valueAsDate" mdInput disabled type="date" placeholder="Proxima Reciclagem">
-        </md-input-container>
-        <md-radio-group [(ngModel)]="isApt">
-            <md-radio-button value="true">Apto</md-radio-button>
-            <md-radio-button value="false">Inapto</md-radio-button>
-        </md-radio-group>
-        <input-file (onFileSelect)="onFileSelect($event)" [accept]="'.doc,.docx,.png,.pdf'"></input-file>
+<div class="recycling" fxLayout="column">
+    <div class="header">
+        <span>Reciclagens</span>
     </div>
-
-    <div class="recycling">
-        <safety-card>
-            <safety-card-header>
-                <span>Reciclagens</span>
-            </safety-card-header>
-
-            <safety-card-content>
-                <recycling [recycling]="recycling" (removed)="removeReciclagem(recycling)" *ngFor="let recycling of recyclingList"></recycling>
-                <button md-button (click)="addReciclagem()">Adicionar Reciclagem</button>
-            </safety-card-content>
-        </safety-card>
+    <div class="content" fxLayout="column">
+        <recycling fxLayout fxLayoutAlign="space-around center" [ngClass]="{ odd: odd }" [recycling]="recycling" (removed)="removeReciclagem(recycling)" *ngFor="let recycling of recyclingList; let odd = odd;"></recycling>
+        <div fxLayout>
+            <button class="add" md-raised-button (click)="addReciclagem()">Adicionar Reciclagem</button>
+        </div>
     </div>
 </div>

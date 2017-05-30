@@ -5,39 +5,40 @@
     </topnavbar>
 
     <div>
-                <workers-data></workers-data>
-                 <br>
-                <safety-card #safetyCard>
+        <workers-data></workers-data>
+        <br>
+        <safety-card #safetyCard>
 
-                    <safety-card-header>
-                        <span>habilitações</span>
-                    </safety-card-header>
+            <safety-card-header>
+                <span>habilitações</span>
+            </safety-card-header>
 
-                    <safety-card-content>
-                        <form novalidate id="form1" name="form1">
+            <safety-card-content>
+                <form novalidate id="form1" name="form1">
 
-                            <skill [skill]="skill" (removed)="removeSkill(skill)" [(skillNames)]="skillNames" *ngFor="let skill of skillList"></skill>
+                    <skill [skill]="skill" (removed)="removeSkill(skill)" [(skillNames)]="skillNames" *ngFor="let skill of skillList"></skill>
 
-                            <div fxLayout fxLayoutAlign="space-between center">
-                                <button md-button (click)="addSkill()">
+                    <div fxLayout fxLayoutAlign="space-between center">
+                        <button md-button (click)="addSkill()">
                                     <span>Adicicionar habilitação</span>
                                 </button>
 
-                                <button (click)="saveSkills(safetyCard)" class="save-and-continue" md-raised-button type="submit">
+                        <button (click)="saveSkills(safetyCard)" class="save-and-continue" md-raised-button type="submit">
                                     <span>Salvar e continuar</span>
                                 </button>
-                            </div>
+                    </div>
 
-                        </form>
-                    </safety-card-content>
-                </safety-card>
+                </form>
+            </safety-card-content>
+        </safety-card>
 
-                <safety-card>
-                    <safety-card-header>
-                        <span>Dados de saúde</span>
-                    </safety-card-header>
-                    <safety-card-content>
-                    </safety-card-content>
-                </safety-card>
+
+        <safety-card>
+            <safety-card-header>
+                <span>Dados de saúde</span>
+            </safety-card-header>
+            <safety-card-content>
+            </safety-card-content>
+        </safety-card>
     </div>
 </div>

@@ -9,6 +9,10 @@ md-card.custom-header {
     }
 }
 
+md-card {
+    overflow: hidden;
+}
+
 .mat-toolbar {
     min-height: 50px;
     background-color: $pale-gray;
@@ -23,6 +27,7 @@ md-card.custom-header {
 }
 
 md-card-content {
+    height: 100%;
     overflow: hidden;
 }
 

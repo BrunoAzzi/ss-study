@@ -3,6 +3,7 @@ import { Recycling } from '../../../mocks/recycling/recycling';
 
 @Component({
     selector: 'recycling',
+    styleUrls: ['./recycling.component.scss'],
     templateUrl: 'recycling.template.html',
 })
 export class RecyclingComponent {
