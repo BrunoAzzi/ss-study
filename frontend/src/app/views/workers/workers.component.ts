@@ -1,16 +1,16 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, EventEmitter  } from '@angular/core';
 import { Skill } from '../../mocks/skill/skill';
 
 @Component({
     selector: 'workers',
     templateUrl: 'workers.template.html',
-    styleUrls: ['./workers.component.scss']
+    styleUrls: ['./workers.component.scss'],
 })
 export class WorkersComponent {
+
+    isReciclagem: boolean = false;
     maximunLength: number;
     isValid: boolean = false;
-
     skillList = [];
 
     addSkill() {
@@ -29,40 +29,12 @@ export class WorkersComponent {
         "NR 33",
     ];
 
-    status = [
-        { value: 'ativo', viewValue: 'Ativo' },
-        { value: 'inativo', viewValue: 'Inativo' },
-        { value: 'afastado', viewValue: 'Afastado' },
-        { value: 'demitido', viewValue: 'Demitido' },
-    ];
-
-    cargos = [
-        { value: 'prog', viewValue: 'Programador' },
-        { value: 'des', viewValue: 'Desenvolvedor' },
-    ];
-
-    escolaridades = [
-        { value: 'fund_i', viewValue: 'Fundamental incompleto' },
-        { value: 'fund_c', viewValue: 'Fundamental completo' },
-        { value: 'medio_i', viewValue: 'Médio incompleto' },
-        { value: 'medio_c', viewValue: 'Médio completo' },
-        { value: 'sup_i', viewValue: 'Superior incompleto' },
-        { value: 'sup_c', viewValue: 'Superior completo' },
-        { value: 'pos', viewValue: 'Pós Graduação' },
-    ];
-
-    necessidades = [
-        { value: '', viewValue: '' },
-        { value: '', viewValue: '' },
-    ];
+    saveSkills(safetyCard) {
+        if (this.isValid) safetyCard.close();
+    }
 
     constructor() {
         if (this.skillList.length < 1) this.skillList.push(new Skill());
         this.maximunLength = this.skillNames.length;
     }
-
-    saveSkills(safetyCard) {
-        if (this.isValid) safetyCard.close();
-    }
-
 }
