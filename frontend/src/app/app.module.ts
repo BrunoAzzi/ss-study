@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { HttpClientService } from "./services/http-client.service";
 import { SessionsService } from "./services/sessions.service";
+import { PasswordService } from "./services/password.service";
 import { AuthGuard } from './guards/index';
 import { MdSnackBar } from '@angular/material';
 
@@ -43,6 +44,9 @@ import { StatusAnoComponent } from "./components/perfil_emocional/status_ano/sta
 // Layouts
 
 import { LoginComponent } from "./views/login/login.component";
+import { PasswordRecoveryComponent } from "./views/password-recovery/password-recovery.component";
+import { PasswordUpdateComponent } from "./views/password-update/password-update.component";
+
 import { BlankComponent } from "./components/common/layouts/blank/blank.component";
 import { BasicComponent } from "./components/common/layouts/basic/basic.component";
 
@@ -92,6 +96,8 @@ import { MyConstructionSitesPhaserComponent } from './views/myconstructionsites/
         TrainingComponent,
         WorkersComponent,
         LoginComponent,
+        PasswordRecoveryComponent,
+        PasswordUpdateComponent,
         BlankComponent,
         BasicComponent,
         TopnavbarComponent,
@@ -146,6 +152,7 @@ import { MyConstructionSitesPhaserComponent } from './views/myconstructionsites/
         HttpClientService,
         AuthGuard,
         SessionsService,
+        PasswordService,
         MdSnackBar,
         { provide: LocationStrategy, useClass: HashLocationStrategy }],
     bootstrap: [AppComponent]

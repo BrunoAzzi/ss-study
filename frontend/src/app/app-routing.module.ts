@@ -12,6 +12,9 @@ import { TrainingComponent } from "./views/training/training.component";
 import { WorkersComponent } from "./views/workers/workers.component";
 
 import { LoginComponent } from "./views/login/login.component";
+import { PasswordRecoveryComponent } from "./views/password-recovery/password-recovery.component";
+import { PasswordUpdateComponent } from "./views/password-update/password-update.component";
+
 import { BlankComponent } from "./components/common/layouts/blank/blank.component";
 import { BasicComponent } from "./components/common/layouts/basic/basic.component";
 
@@ -46,7 +49,9 @@ const routes: Routes = [
     {
         path: '', component: BlankComponent,
         children: [
-            { path: 'login', component: LoginComponent }
+            { path: 'login', component: LoginComponent },
+            { path: 'send-recover', component: PasswordRecoveryComponent },
+            { path: 'recover', component: PasswordUpdateComponent },
         ]
     },
 
