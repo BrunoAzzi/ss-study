@@ -1,168 +1,174 @@
-<safety-card>
+<safety-card #safetyCard>
     <safety-card-header>
         <span>dados dos trabalhadores</span>
     </safety-card-header>
     <safety-card-content>
-        <form novalidate id="formBasicData" name="formBasicData">
+        <form [formGroup]="myForm" (submit)="savePersonalDataWorker(safetyCard)" id="formBasicData" name="formBasicData">
             <div class="form-content">
-                <md-card class="image-upload"></md-card>
+                <md-input-container>
+                    <input mdInput formControlName="fullname" placeholder="Nome" id="name" name="name" pattern="[A-Z a-z]+" [(ngModel)]="fullname">
+                    <md-error>Campo vazio ou com caracteres inválidos.</md-error>
+                </md-input-container>
+                <!-- <md-card class="image-upload"></md-card> -->
 
 
-                <table class="table-form">
-                    <tr>
-                        <td>
-                            <md-input-container>
-                                <input mdInput required placeholder="CPF" id="cpf" name="cpf" mask='000.000.000-00' [(ngModel)]="errorMessageExample1">
-                                <md-error>Campo vazio ou com caracteres inválidos.</md-error>
-                            </md-input-container>
-                        </td>
-                        <td colspan="2">
-                            <md-input-container>
-                                <input mdInput required placeholder="Nome" id="name" name="name" pattern="[A-Z a-z]+" [(ngModel)]="errorMessageExample2" required>
-                                <md-error>Campo vazio ou com caracteres inválidos.</md-error>
-                            </md-input-container>
-                        </td>
-                        <td colspan="1">
-                            <div class="formato-material radio-material">
-                                <p>Sexo:</p>
-                                <md-radio-group layout-gt-md="row">
-                                    <div fxLayout="row" fxLayoutAlign="space-around center">
-                                        <md-radio-button value="m">Masculino</md-radio-button>
-                                        <md-radio-button value="f">Feminino</md-radio-button>
-                                    </div>
-                                </md-radio-group>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <md-input-container>
-                                <input mdInput placeholder="Data de Nascimento" mask='00/00/0000' name="birthDate" id="birthDate">
+                <!-- <table class="table-form">
+                 <tr>
+                    <td>
 
-                            </md-input-container>
-                        </td>
-                        <td>
-                            <md-input-container>
-                                <input mdInput name="age" placeholder="Idade" id="age" type="number">
-                            </md-input-container>
-                        </td>
-                        <td>
-                            <md-select class="full-width" placeholder="Escolaridade" name="scholarity" id="scholarity">
-                                <md-option *ngFor="let scholarity of scholaritys" [value]="scholarity.value">
-                                    {{ scholarity.viewValue }}
-                                </md-option>
-                            </md-select>
-                        </td>
-                        <td>
-                            <md-input-container>
-                                <input mdInput placeholder="NIT" id="nit" name="nit" mask='000.00000.00-0'>
-                            </md-input-container>
-                        </td>
-                        <td>
-                            <md-input-container>
-                                <input mdInput placeholder="CTPS" id="ctps" name="ctps" type="number">
-                            </md-input-container>
-                        </td>
+                        <md-input-container>
+                            <input mdInput required placeholder="CPF" id="cpf" name="cpf" mask='000.000.000-00' [(ngModel)]="errorMessageExample1">
+                            <md-error>Campo vazio ou com caracteres inválidos.</md-error>
+                        </md-input-container>
 
-                    </tr>
-                    <tr>
-                        <td>
-                            <md-input-container>
-                                <input mdInput placeholder="CEP" id="cep" [(ngModel)]="myCep" name="cep" mask="00.000-000" (blur)="autocompleteAdressFromApi()">
-                            </md-input-container>
-                        </td>
-                        <td colspan="2">
-                            <md-input-container>
-                                <input mdInput placeholder="Endereço Completo" id="completeAddress" name="completeAddress" value="{{completeAddress}}">
-                            </md-input-container>
-                        </td>
-                        <td>
-                            <md-input-container>
-                                <input mdInput placeholder="Complemento" id="complement" name="complement">
-                            </md-input-container>
-                        </td>
-                        <td>
-                            <md-input-container>
-                                <input mdInput placeholder="Contato" id="contact" name="contact">
-                            </md-input-container>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
+                    </td>
+                    <td colspan="2">
+                        <md-input-container>
+                            <input mdInput formControlName="fullname" placeholder="Nome" id="name" name="name" pattern="[A-Z a-z]+" [(ngModel)]="fullname">
+                            <md-error>Campo vazio ou com caracteres inválidos.</md-error>
+                        </md-input-container>
+                    </td>
+                    <td colspan="1">
+                        <div class="formato-material radio-material">
+                            <p>Sexo:</p>
+                            <md-radio-group layout-gt-md="row">
+                                <div fxLayout="row" fxLayoutAlign="space-around center">
+                                    <md-radio-button value="m">Masculino</md-radio-button>
+                                    <md-radio-button value="f">Feminino</md-radio-button>
+                                </div>
+                            </md-radio-group>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <md-input-container>
+                            <input mdInput placeholder="Data de Nascimento" mask='00/00/0000' name="birthDate" id="birthDate">
 
+                        </md-input-container>
+                    </td>
+                    <td>
+                        <md-input-container>
+                            <input mdInput name="age" placeholder="Idade" id="age" type="number">
+                        </md-input-container>
+                    </td>
+                    <td>
+                        <md-select class="full-width" placeholder="Escolaridade" name="scholarity" id="scholarity">
+                            <md-option *ngFor="let scholarity of scholaritys" [value]="scholarity.value">
+                                {{ scholarity.viewValue }}
+                            </md-option>
+                        </md-select>
+                    </td>
+                    <td>
+                        <md-input-container>
+                            <input mdInput placeholder="NIT" id="nit" name="nit" mask='000.00000.00-0'>
+                        </md-input-container>
+                    </td>
+                    <td>
+                        <md-input-container>
+                            <input mdInput placeholder="CTPS" id="ctps" name="ctps" type="number">
+                        </md-input-container>
+                    </td>
 
-                            <md-input-container>
-                                <input mdInput required type="number" placeholder="CBO" id="cbo" name="cbo" [(ngModel)]="mycbo" (ngModelChange)="checkCboEmpty()">
-                                <md-error>Campo vazio ou com caracteres inválidos.</md-error>
-                            </md-input-container>
-                        </td>
-                        <td colspan="2">
-
-                            <md-select class="full-width" placeholder="Cargo" [mdTooltip]="disabled ? 'Digite um CBO válido!' : 'Selecione um cargo'" [disabled]="disabled">
-                                <md-option *ngFor="let labor of labors" [value]="labor.value">
-                                    {{ labor.viewValue }}
-                                </md-option>
-                            </md-select>
-                        </td>
-                        <td class="textColumn" colspan="2" rowspan="3">
-                            <div fxLayout="row" fxLayoutAlign="none">
-                                <md-input-container>
-                                    <textarea mdInput placeholder="Descrição da Função" name="textArea"></textarea>
-                                </md-input-container>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <md-select class="full-width" placeholder="Portador de Nec. Especiais?">
-                                <md-option *ngFor="let necessity of necessitys" [value]="necessity.value">
-                                    {{ necessity.viewValue }}
-                                </md-option>
-                            </md-select>
-                        </td>
-                        <td>
-                            <md-input-container>
-                                <input mdInput placeholder="Data de Admissão" mask='00/00/0000' id="admissionDate" name="admissionDate">
-                            </md-input-container>
-                        </td>
-                        <td>
-                            <md-select class="full-width" placeholder="Status">
-                                <md-option *ngFor="let statu of status" [value]="statu.value">
-                                    {{ statu.viewValue }}
-                                </md-option>
-                            </md-select>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <div class="formato-material radio-material">
-                                <p>Tipo de Contratação:</p>
-                                <md-radio-group name="hiredType" [(ngModel)]="hiredType">
-                                    <div fxLayout="row" fxLayoutAlign="space-around center">
-                                        <md-radio-button name="own" value="true" checked="true">Próprio</md-radio-button>
-                                        <md-radio-button name="outsourced" value="false">Terceiro</md-radio-button>
-                                    </div>
-                                </md-radio-group>
-
-                            </div>
-                        </td>
-                        <td style="align-text: center" colspan="2">
-
-                            <md-input-container>
-                                <input mdInput placeholder="Empresa" id="company" name="company" [mdTooltip]="hiredType ? 'Digite o nome da empresa' : 'Não é necessário escrever o nome da própria empresa'" [disabled]="hiredType">
-                            </md-input-container>
-                        </td>
-                    </tr>
+                </tr>
+                <tr>
+                    <td>
+                        <md-input-container>
+                            <input mdInput placeholder="CEP" id="cep" [(ngModel)]="myCep" name="cep" mask="00.000-000" (blur)="autocompleteAdressFromApi()">
+                        </md-input-container>
+                    </td>
+                    <td colspan="2">
+                        <md-input-container>
+                            <input mdInput placeholder="Endereço Completo" id="completeAddress" name="completeAddress" value="{{completeAddress}}">
+                        </md-input-container>
+                    </td>
+                    <td>
+                        <md-input-container>
+                            <input mdInput placeholder="Complemento" id="complement" name="complement">
+                        </md-input-container>
+                    </td>
+                    <td>
+                        <md-input-container>
+                            <input mdInput placeholder="Contato" id="contact" name="contact">
+                        </md-input-container>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
 
 
-                </table>
+                        <md-input-container>
+                            <input mdInput required type="number" placeholder="CBO" id="cbo" name="cbo" [(ngModel)]="mycbo" (ngModelChange)="checkCboEmpty()">
+                            <md-error>Campo vazio ou com caracteres inválidos.</md-error>
+                        </md-input-container>
+                    </td>
+                    <td colspan="2">
+
+                        <md-select class="full-width" placeholder="Cargo" [mdTooltip]="disabled ? 'Digite um CBO válido!' : 'Selecione um cargo'" [disabled]="disabled">
+                            <md-option *ngFor="let labor of labors" [value]="labor.value">
+                                {{ labor.viewValue }}
+                            </md-option>
+                        </md-select>
+                    </td>
+                    <td class="textColumn" colspan="2" rowspan="3">
+                        <div fxLayout="row" fxLayoutAlign="none">
+                            <md-input-container>
+                                <textarea mdInput placeholder="Descrição da Função" name="textArea"></textarea>
+                            </md-input-container>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <md-select class="full-width" placeholder="Portador de Nec. Especiais?">
+                            <md-option *ngFor="let necessity of necessitys" [value]="necessity.value">
+                                {{ necessity.viewValue }}
+                            </md-option>
+                        </md-select>
+                    </td>
+                    <td>
+                        <md-input-container>
+                            <input mdInput placeholder="Data de Admissão" mask='00/00/0000' id="admissionDate" name="admissionDate">
+                        </md-input-container>
+                    </td>
+                    <td>
+                        <md-select class="full-width" placeholder="Status">
+                            <md-option *ngFor="let statu of status" [value]="statu.value">
+                                {{ statu.viewValue }}
+                            </md-option>
+                        </md-select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="formato-material radio-material">
+                            <p>Tipo de Contratação:</p>
+                            <md-radio-group name="hiredType" [(ngModel)]="hiredType">
+                                <div fxLayout="row" fxLayoutAlign="space-around center">
+                                    <md-radio-button name="own" value="true" checked="true">Próprio</md-radio-button>
+                                    <md-radio-button name="outsourced" value="false">Terceiro</md-radio-button>
+                                </div>
+                            </md-radio-group>
+
+                        </div>
+                    </td>
+                    <td style="align-text: center" colspan="2">
+
+                        <md-input-container>
+                            <input mdInput placeholder="Empresa" id="company" name="company" [mdTooltip]="hiredType ? 'Digite o nome da empresa' : 'Não é necessário escrever o nome da própria empresa'" [disabled]="hiredType">
+                        </md-input-container>
+                    </td>
+                </tr>
+
+
+                </table> -->
 
 
             </div>
             <div fxLayout="row" fxLayoutAlign="end center">
-                <button (click)="savePersonalDataWorker(safetyCard)" class="save-and-continue" md-raised-button type="submit">
+                <button class="save-and-continue" md-raised-button type="submit">
                         <span>Salvar e continuar</span>
                 </button>
             </div>

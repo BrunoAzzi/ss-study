@@ -1,9 +1,9 @@
-import {Component, Inject} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Component, Inject, OnInit } from '@angular/core';
+import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import { personalDataWorker } from '../../../mocks/personalDataWorker/personalDataWorker';
 import {CorreiosService} from "../../../services/correios.service";
 import { Endereco_completo } from '../../../mocks/endereco_completo/endereco_completo';
-import { CommonModule } from '@angular/common';
+import { CommonModule} from '@angular/common';
 
 @Component({
     selector: 'workers-data',
@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
     styleUrls: ['./workersData.component.scss'],
     providers: [CorreiosService]
 })
-export class WorkersDataComponent {
+export class WorkersDataComponent implements OnInit {
     disabled: boolean = true;
     mycbo: string = '';
     mycbonumber: number = 0;
@@ -21,8 +21,19 @@ export class WorkersDataComponent {
     completeAddress: string;
     hiredType: any = '';
     isValid: boolean = false;
+    worker: personalDataWorker;
+    myForm: FormGroup;
 
-    constructor(private correiosService: CorreiosService, private formBuilder: FormBuilder) {
+    constructor(private correiosService: CorreiosService, private fb: FormBuilder) { }
+
+    ngOnInit() {
+        // this.myForm = new FormGroup({
+        //     fullname: new FormControl('', Validators.required)
+        // });
+        // build the form model
+        this.myForm = this.fb.group({
+            fullname: new FormControl('', Validators.required)
+        })
     }
 
 
@@ -94,8 +105,10 @@ export class WorkersDataComponent {
 
 
     savePersonalDataWorker(safetyCard) {
-        console.log("Personal Data saved!");
-        if (this.isValid) safetyCard.close();
+        if (this.myForm.valid) {
+            console.log("Personal Data saved!");
+            safetyCard.close();
+        }
     }
 
 }
