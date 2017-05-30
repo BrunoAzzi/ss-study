@@ -66,12 +66,20 @@ td textarea {
     }
 }
 
-.formato_material {
+.formato-material {
     width: 100%;
     font-family: Lato;
     font-size: 12px;
     font-weight: bold;
     color: rgba(0,0,0,.38);
+}
+
+.radio-material {
+    margin-bottom: 6px;
+}
+
+.select-material {
+    margin-bottom: 6px;
 }
 
 .full-width {

@@ -19,86 +19,83 @@ export class WorkersDataComponent {
     errorMessageExample2: string;
     myCep: string = "";
     completeAddress: string;
-    hiredType: any='';
+    hiredType: any = '';
     isValid: boolean = false;
 
-         constructor (private correiosService: CorreiosService, private formBuilder:FormBuilder) {
-         }
+    constructor(private correiosService: CorreiosService, private formBuilder: FormBuilder) {
+    }
 
 
-             status = [
-                 {value: 'ativo', viewValue: 'Ativo'},
-                 {value: 'inativo', viewValue: 'Inativo'},
-                 {value: 'afastado', viewValue: 'Afastado'},
-                 {value: 'demitido', viewValue: 'Demitido'},
-             ];
+    status = [
+        { value: 'ativo', viewValue: 'Ativo' },
+        { value: 'inativo', viewValue: 'Inativo' },
+        { value: 'afastado', viewValue: 'Afastado' },
+        { value: 'demitido', viewValue: 'Demitido' },
+    ];
 
-             labors = [
-                 {value: 'prog', viewValue: 'Programador'},
-                 {value: 'des', viewValue: 'Desenvolvedor'},
-             ];
+    labors = [
+        { value: 'prog', viewValue: 'Programador' },
+        { value: 'des', viewValue: 'Desenvolvedor' },
+    ];
 
-             laborsInCipa = [
-                 {value: 'suplente', viewValue: 'Membro Suplente'},
-                 {value: 'efetivo', viewValue: 'Membro Efetivo'},
-                 {value: 'presidente', viewValue: 'Presidente'},
-                 {value: 'vice', viewValue: 'Vice Presidente'},
-                 {value: 'secretario', viewValue: 'Secretário'},
-             ];
+    laborsInCipa = [
+        { value: 'suplente', viewValue: 'Membro Suplente' },
+        { value: 'efetivo', viewValue: 'Membro Efetivo' },
+        { value: 'presidente', viewValue: 'Presidente' },
+        { value: 'vice', viewValue: 'Vice Presidente' },
+        { value: 'secretario', viewValue: 'Secretário' },
+    ];
 
-             scholaritys = [
-                 {value: 'fund_i', viewValue: 'Fundamental incompleto'},
-                 {value: 'fund_c', viewValue: 'Fundamental completo'},
-                 {value: 'medio_i', viewValue: 'Médio incompleto'},
-                 {value: 'medio_c', viewValue: 'Médio completo'},
-                 {value: 'sup_i', viewValue: 'Superior incompleto'},
-                 {value: 'sup_c', viewValue: 'Superior completo'},
-                 {value: 'pos', viewValue: 'Pós Graduação'},
-             ];
+    scholaritys = [
+        { value: 'fund_i', viewValue: 'Fundamental incompleto' },
+        { value: 'fund_c', viewValue: 'Fundamental completo' },
+        { value: 'medio_i', viewValue: 'Médio incompleto' },
+        { value: 'medio_c', viewValue: 'Médio completo' },
+        { value: 'sup_i', viewValue: 'Superior incompleto' },
+        { value: 'sup_c', viewValue: 'Superior completo' },
+        { value: 'pos', viewValue: 'Pós Graduação' },
+    ];
 
-             necessitys = [
-                 {value: 0, viewValue: 'Sim'},
-                 {value: 1, viewValue: 'Não'},
-             ];
-             selectedNecessity: number = 1;
+    necessitys = [
+        { value: 0, viewValue: 'Sim' },
+        { value: 1, viewValue: 'Não' },
+    ];
+    selectedNecessity: number = 1;
 
-             brigadistas = [
-                 {value: 0, viewValue: 'Sim'},
-                 {value: 1, viewValue: 'Não'},
-             ];
-             selectedBrigadista: number = 1;
+    brigadistas = [
+        { value: 0, viewValue: 'Sim' },
+        { value: 1, viewValue: 'Não' },
+    ];
+    selectedBrigadista: number = 1;
 
-             cipeiros = [
-                 {value: 0, viewValue: 'Sim'},
-                 {value: 1, viewValue: 'Não'},
-             ];
-             selectedCipeiro: number = 1;
+    cipeiros = [
+        { value: 0, viewValue: 'Sim' },
+        { value: 1, viewValue: 'Não' },
+    ];
+    selectedCipeiro: number = 1;
 
-             selectedCipaLabor:boolean = false;
+    selectedCipaLabor: boolean = false;
 
-             autocompleteAdressFromApi() {
-                 //console.log(this.myCep);
-                 this.correiosService.getAddress(this.myCep).subscribe( data => {
-                     this.completeAddress = data.cidade + " - " + data.estado + ", " + data.bairro + ", " + data.tipoDeLogradouro + " " + data.logradouro;
-                     // console.log(this.enderecoCompleto);
-                 });
-
-             }
+    autocompleteAdressFromApi() {
+        this.correiosService.getAddress(this.myCep).subscribe(data => {
+            this.completeAddress = data.cidade + " - " + data.estado + ", " + data.bairro + ", " + data.tipoDeLogradouro + " " + data.logradouro;
+        });
+    }
 
 
-             checkCboEmpty() {
-                 this.mycbonumber = Number.parseInt(this.mycbo);
-                 if(this.mycbonumber>0){
-                     this.disabled = false;
-                 } else {
-                     this.disabled = true;
-                 }
-             }
+    checkCboEmpty() {
+        this.mycbonumber = Number.parseInt(this.mycbo);
+        if (this.mycbonumber > 0) {
+            this.disabled = false;
+        } else {
+            this.disabled = true;
+        }
+    }
 
 
-                 savePersonalDataWorker(safetyCard) {
-                     console.log("Personal Data saved!");
-                     if (this.isValid) safetyCard.close();
-                 }
+    savePersonalDataWorker(safetyCard) {
+        console.log("Personal Data saved!");
+        if (this.isValid) safetyCard.close();
+    }
 
 }
