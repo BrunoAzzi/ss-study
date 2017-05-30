@@ -1,25 +1,31 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpModule, JsonpModule } from '@angular/http';
 import { RouterModule } from "@angular/router";
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CommonModule } from '@angular/common';
+
 import { HttpClientService } from "./services/http-client.service";
 import { SessionsService } from "./services/sessions.service";
 import { AuthGuard } from './guards/index';
 import { MdSnackBar } from '@angular/material';
+import { CommonModule } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { ChartsModule } from "ng2-charts";
+import { CookieService } from 'ng2-cookies';
 
 // Pipe
 import { KeysPipe } from "./pipes/keys.pipe";
 import { DataTablePipe } from "./components/perfil_emocional/status_trabalhadores/DataTablePipe.pipe";
 
 // Components
+import { WorkersDataComponent } from "./components/workers/workersData/workersData.component";
 import { CompaniesComponent } from "./views/companies/companies.component";
+import { CompanyDetailsComponent } from  "./components/forms/company-details/company-details.component";
+//import { CategoryDividerComponent } from "./components/common/category-divider/category-divider.component";
+import { DateRangeComponent } from "./components/common/date-range/date-range.component";
 import { SkillComponent } from "./components/workers/skill/skill.component";
 import { RecyclingComponent } from "./components/workers/recycling/recycling.component";
 import { BoxMessageComponent } from "./components/common/box-message/box-message.component";
@@ -45,7 +51,6 @@ import { StatusAnoComponent } from "./components/perfil_emocional/status_ano/sta
 import { LoginComponent } from "./views/login/login.component";
 import { BlankComponent } from "./components/common/layouts/blank/blank.component";
 import { BasicComponent } from "./components/common/layouts/basic/basic.component";
-
 import { TopnavbarComponent } from "./components/common/topnavbar/topnavbar.component";
 import { NavigationComponent } from "./components/common/navigation/navigation.component";
 import { MyPhaserComponent } from "./components/common/my-phaser/my-phaser.component";
@@ -53,8 +58,17 @@ import { MyPhaserComponent } from "./components/common/my-phaser/my-phaser.compo
 // Notifications
 import { NotificationSidenavContainerModule } from "./components/common/notifications";
 
+//Masks
+import {Ng2MaskModule} from 'ng2-mask';
+
+// Upload
+// import { Ng2FileDropModule }  from 'ng2-file-drop';
+
 // Routing module
 import { AppRoutingModule } from "./app-routing.module";
+
+// Calendar Range
+import { MyDateRangePickerModule } from "mydaterangepicker";
 
 // In memory data api
 import { InMemoryDataService } from './mocks/in-memory-data.service';
@@ -69,7 +83,6 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 // Safety custom modules
 import { SafetyCardModule } from "./components/common/safety-card";
 import { CategoryDividerModule } from "./components/common/category-divider";
-import { CompanyDetailsComponent } from "./components/forms/company-details/company-details.component";
 
 import { InputFile } from "./components/common/input-file/input-file.component";
 import { MyConstructionSitesLandingPageComponent } from './views/myconstructionsites/landing-page/my-construction-sites-landing-page.component';
@@ -81,7 +94,11 @@ import { MyConstructionSitesPhaserComponent } from './views/myconstructionsites/
         KeysPipe,
         DataTablePipe,
 
+        // Category Divider
+        //    CategoryDividerComponent,
+
         // Components
+        DateRangeComponent,
         AppComponent,
         CompaniesComponent,
         PPEComponent,
@@ -98,6 +115,7 @@ import { MyConstructionSitesPhaserComponent } from './views/myconstructionsites/
         NavigationComponent,
         MyPhaserComponent,
         CompanyDetailsComponent,
+        WorkersDataComponent,
         BoxMessageComponent,
 
         // Painel Emocional
@@ -123,6 +141,12 @@ import { MyConstructionSitesPhaserComponent } from './views/myconstructionsites/
         HttpModule,
         FormsModule,
 
+        ReactiveFormsModule,
+        CommonModule,
+        JsonpModule,
+
+        Ng2MaskModule,
+
         // Custom Components
         SafetyCardModule,
         CategoryDividerModule,
@@ -132,6 +156,10 @@ import { MyConstructionSitesPhaserComponent } from './views/myconstructionsites/
 
         // Mocks
         InMemoryWebApiModule.forRoot(InMemoryDataService, { passThruUnknownUrl: true }),
+
+
+        //Calendar Range
+        MyDateRangePickerModule,
 
         // Angular Material
         MaterialModule,
