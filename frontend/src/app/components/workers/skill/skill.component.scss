@@ -8,16 +8,20 @@ $cool-grey: #a1abb0;
     padding: 15px 0;
     font-family: Lato;
 }
-// a.action {
-//     font-size: 10px;
-//     font-weight: bold;
-//     line-height: 1;
-//     text-align: left;
-//     color: $grapefruit;
-//     text-transform: uppercase;
-//     text-decoration: underline;
-//     cursor: pointer;
-// }
+
+.datepicker-wrapper {
+    // overflow: visible;
+    // z-index: 100;
+}
+
+my-date-picker {
+    max-width: 200px;
+
+    & /deep/ .selector {
+        position: fixed;
+        z-index: 100;
+    }
+}
 
 .periodicity {
     max-width: 100px;

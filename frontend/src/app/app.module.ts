@@ -13,6 +13,7 @@ import { MdSnackBar } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { ChartsModule } from "ng2-charts";
+import { MyDatePickerModule } from 'mydatepicker';
 
 // Pipe
 import { KeysPipe } from "./pipes/keys.pipe";
@@ -24,7 +25,6 @@ import { SkillComponent } from "./components/workers/skill/skill.component";
 import { RecyclingComponent } from "./components/workers/recycling/recycling.component";
 import { BoxMessageComponent } from "./components/common/box-message/box-message.component";
 
-//import { DatepickerOverviewExample } from  "./views/companies/datepicker-overview-example.component";
 import { PPEComponent } from "./views/ppe/ppe.component";
 import { MyConstructionSitesComponent } from "./views/myconstructionsites/myconstructionsites.component";
 import { ReportsComponent } from "./views/reports/reports.component";
@@ -129,6 +129,9 @@ import { MyConstructionSitesPhaserComponent } from './views/myconstructionsites/
 
         // Charts
         ChartsModule,
+
+        // Datepicker
+        MyDatePickerModule,
 
         // Mocks
         InMemoryWebApiModule.forRoot(InMemoryDataService, { passThruUnknownUrl: true }),

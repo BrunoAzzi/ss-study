@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { IMyDpOptions } from 'mydatepicker';
 import { Skill } from '../../../mocks/skill/skill';
 import { Recycling } from '../../../mocks/recycling/recycling';
 
@@ -18,6 +19,13 @@ export class SkillComponent {
     formerName: string;
     recyclingList: Recycling[] = [];
 
+    private myDatePickerOptions: IMyDpOptions = {
+        dateFormat: 'dd/mm/yyyy',
+    };
+
+    // Initialized to specific date (09.10.2018).
+    private model: Object = { date: { year: 2018, month: 10, day: 9 } };
+
     onFileSelect(event) { }
 
     setPeriodicity(periodicity: number) {
@@ -25,6 +33,14 @@ export class SkillComponent {
             this.skill.periodicity = periodicity;
             this.updateDueDate();
         }
+    }
+
+    setValidityStart(event) {
+        this.skill.validityStart = event.jsdate;
+        this.updateDueDate();
+        console.log(
+            event, this.skill.validityStart
+        )
     }
 
     updateDueDate() {
