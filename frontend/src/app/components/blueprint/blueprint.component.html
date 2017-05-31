@@ -1,51 +1,116 @@
-<ul class="tools">
-    <li [ngClass]="{ active: isSelectedTool('checkpoint') }">
-        <a (click)="changeMark('checkpoint')">Check Point</a>
-    </li>
-    <li [ngClass]="{ active: isSelectedTool('cup_holders') }">
-        <a (click)="changeMark('cup_holders')">Guarda Copos</a>
-    </li>
-    <li [ngClass]="{ active: isSelectedTool('crane') }">
-        <a (click)="changeMark('crane')">Grua</a>
-    </li>
-    <li [ngClass]="{ active: isSelectedTool('water') }">
-        <a (click)="changeMark('water')">Água</a>
-    </li>
-    <li [ngClass]="{ active: isSelectedTool('wc') }">
-        <a (click)="changeMark('wc')">Banheiro</a>
-    </li>
-    <li [ngClass]="{ active: isSelectedTool('er') }">
-        <a (click)="changeMark('er')">Primeiros Socorros</a>
-    </li>
-    <li [ngClass]="{ active: isSelectedTool('tray') }">
-        <a (click)="changeMark('tray')">Bandeja</a>
-    </li>
-    <li [ngClass]="{ active: isSelectedTool('extinguisher') }">
-        <a (click)="changeMark('extinguisher')">Extintor</a>
-    </li>
-    <li [ngClass]="{ active: isSelectedTool('accommodation') }">
-        <a (click)="changeMark('accommodation')">Alojamento</a>
-    </li>
-    <li [ngClass]="{ active: isSelectedTool('refectory') }">
-        <a (click)="changeMark('refectory')">Refeitório</a>
-    </li>
-    <li [ngClass]="{ active: isSelectedTool('recreation') }">
-        <a (click)="changeMark('recreation')">Lazer</a>
-    </li>
-    <li [ngClass]="{ active: isSelectedTool('laundry') }">
-        <a >Lavanderia</a>
-    </li>
-    <li [ngClass]="{ active: isSelectedTool('carpentry') }">
-        <a (click)="changeMark('carpentry')">Carpintaria</a>
-    </li>
-    <li [ngClass]="{ active: isSelectedTool('elevator') }">
-        <a >Elevador</a>
-    </li>
-    <li [ngClass]="{ active: isSelectedTool('totem') }">
-        <a >Totem</a>
-    </li>
-    <li [ngClass]="{ active: isSelectedTool('others') }">
-        <a >Outros</a>
-    </li>
-</ul>
-<div id="sheet"></div>
+<div class="toolbox">
+    <span>Ferramentas: </span>
+    <ul class="tools">
+        <li [ngClass]="{ active: isSelectedTool('checkpoint') }">
+            <a (click)="changeMark('checkpoint')">
+                <img src="assets/maps/icons/cone.png" srcset="assets/maps/icons/cone@2x.png 2x, assets/maps/icons/cone@3x.png 3x">
+                Check Point
+            </a>
+        </li>
+        <li [ngClass]="{ active: isSelectedTool('cup_holders') }">
+            <a (click)="changeMark('cup_holders')">
+                <img src="assets/maps/icons/cup_holders.png" srcset="assets/maps/icons/cup_holders@2x.png 2x, assets/maps/icons/cup_holders@3x.png 3x">
+                Guarda Copos
+            </a>
+        </li>
+        <li [ngClass]="{ active: isSelectedTool('crane') }">
+            <a (click)="changeMark('crane')">
+                <img src="assets/maps/icons/crane.png" srcset="assets/maps/icons/crane@2x.png 2x, assets/maps/icons/crane@3x.png 3x">
+                Grua
+            </a>
+        </li>
+        <li [ngClass]="{ active: isSelectedTool('water') }">
+            <a (click)="changeMark('water')">
+                <img src="assets/maps/icons/water.png" srcset="assets/maps/icons/water@2x.png 2x, assets/maps/icons/water@3x.png 3x">
+                Água
+            </a>
+        </li>
+        <li [ngClass]="{ active: isSelectedTool('wc') }">
+            <a (click)="changeMark('wc')">
+                <img src="assets/maps/icons/wc.png" srcset="assets/maps/icons/wc@2x.png 2x, assets/maps/icons/wc@3x.png 3x">
+                Banheiro
+            </a>
+        </li>
+        <li [ngClass]="{ active: isSelectedTool('er') }">
+            <a (click)="changeMark('er')">
+                <img src="assets/maps/icons/er.png" srcset="assets/maps/icons/er@2x.png 2x, assets/maps/icons/er@3x.png 3x">
+                Primeiros Socorros
+            </a>
+        </li>
+        <li [ngClass]="{ active: isSelectedTool('tray') }">
+            <a (click)="changeMark('tray')">
+                <img src="assets/maps/icons/tray.png" srcset="assets/maps/icons/tray@2x.png 2x, assets/maps/icons/tray@3x.png 3x">
+                Bandeja
+            </a>
+        </li>
+        <li [ngClass]="{ active: isSelectedTool('extinguisher') }">
+            <a (click)="changeMark('extinguisher')">
+                <img src="assets/maps/icons/extinguisher.png" srcset="assets/maps/icons/extinguisher@2x.png 2x, assets/maps/icons/extinguisher@3x.png 3x">
+                Extintor
+            </a>
+        </li>
+        <li [ngClass]="{ active: isSelectedTool('accommodation') }">
+            <a (click)="changeMark('accommodation')">
+                <img src="assets/maps/icons/accommodation.png" srcset="assets/maps/icons/accommodation@2x.png 2x, assets/maps/icons/accommodation@3x.png 3x">
+                Alojamento
+            </a>
+        </li>
+        <li [ngClass]="{ active: isSelectedTool('refectory') }">
+            <a (click)="changeMark('refectory')">
+                <img src="assets/maps/icons/refectory.png" srcset="assets/maps/icons/refectory@2x.png 2x, assets/maps/icons/refectory@3x.png 3x">
+                Refeitório
+            </a>
+        </li>
+        <li [ngClass]="{ active: isSelectedTool('recreation') }">
+            <a (click)="changeMark('recreation')">
+                <img src="assets/maps/icons/recreation.png" srcset="assets/maps/icons/recreation@2x.png 2x, assets/maps/icons/recreation@3x.png 3x">
+                Lazer
+            </a>
+        </li>
+        <li [ngClass]="{ active: isSelectedTool('laundry') }">
+            <a >
+                <img src="assets/maps/icons/laundry.png" srcset="assets/maps/icons/laundry@2x.png 2x, assets/maps/icons/laundry@3x.png 3x">
+                Lavanderia
+            </a>
+        </li>
+        <li [ngClass]="{ active: isSelectedTool('carpentry') }">
+            <a (click)="changeMark('carpentry')">
+                <img src="assets/maps/icons/carpentry.png" srcset="assets/maps/icons/carpentry@2x.png 2x, assets/maps/icons/carpentry@3x.png 3x">
+                Carpintaria
+            </a>
+        </li>
+        <li [ngClass]="{ active: isSelectedTool('elevator') }">
+            <a >
+                <img src="assets/maps/icons/elevator.png" srcset="assets/maps/icons/elevator@2x.png 2x, assets/maps/icons/elevator@3x.png 3x">
+                Elevador
+            </a>
+        </li>
+        <li [ngClass]="{ active: isSelectedTool('totem') }">
+            <a >
+                <img src="assets/maps/icons/totem.png" srcset="assets/maps/icons/totem@2x.png 2x, assets/maps/icons/totem@3x.png 3x">
+                Totem
+            </a>
+        </li>
+        <li [ngClass]="{ active: isSelectedTool('others') }">
+            <a >
+                <img src="assets/maps/icons/others.png" srcset="assets/maps/icons/others@2x.png 2x, assets/maps/icons/others@3x.png 3x">
+                Outros
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="workbench">
+    <div class="floors">
+        <div class="tower">Torre 1</div>
+        <div class="tower">Torre 2</div>
+        <div class="floor-title">Andares</div>
+        <div class="floor" [ngClass]="{ active: isSelectedFloor('5') }" (click)="setFloor('5')">5</div>
+        <div class="floor" [ngClass]="{ active: isSelectedFloor('4') }" (click)="setFloor('4')">4</div>
+        <div class="floor" [ngClass]="{ active: isSelectedFloor('3') }" (click)="setFloor('3')">3</div>
+        <div class="floor" [ngClass]="{ active: isSelectedFloor('2') }" (click)="setFloor('2')">2</div>
+        <div class="floor" [ngClass]="{ active: isSelectedFloor('1') }" (click)="setFloor('1')">1</div>
+        <div class="floor" [ngClass]="{ active: isSelectedFloor('T') }" (click)="setFloor('T')">T</div>
+        <div class="floor" [ngClass]="{ active: isSelectedFloor('SS') }" (click)="setFloor('SS')">SS</div>
+    </div>
+    <div id="sheet"></div>
+</div>

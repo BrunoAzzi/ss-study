@@ -12,6 +12,7 @@ export class BlueprintComponent implements OnInit, AfterViewInit {
     map: any
     currentMark: any
     private currentTool: string
+    private currentFloor: string
     
     constructor() { }
 
@@ -28,7 +29,7 @@ export class BlueprintComponent implements OnInit, AfterViewInit {
         let image1 = L.imageOverlay('assets/maps/layer-large.png', bounds).addTo(this.map);
         this.map.fitBounds(bounds);
 
-        L.control.scale().addTo(this.map);
+        // L.control.scale().addTo(this.map);
 
         this.map.on('click', function(e) {
             if (self.currentMark) {
@@ -39,16 +40,28 @@ export class BlueprintComponent implements OnInit, AfterViewInit {
 
     changeMark(name: string) {
         this.currentMark = null;
-        this.currentTool = name;
-        if (name.length > 0) {
-            this.currentMark = L.icon({
-                iconUrl: `assets/maps/markers/${name}.png`,
-                iconSize: [53, 51],
-            });
+        if (this.currentTool === name) {
+            this.currentTool = '';
+        } else {
+            this.currentTool = name;
+            if (name.length > 0) {
+                this.currentMark = L.icon({
+                    iconUrl: `assets/maps/markers/${name}.png`,
+                    iconSize: [53, 51],
+                });
+            }
         }
     }
 
     isSelectedTool(name: string) {
         return name === this.currentTool;
+    }
+
+    isSelectedFloor(floor: string) {
+        return floor === this.currentFloor;
+    }
+
+    setFloor(floor: string) {
+        this.currentFloor = floor;
     }
 }
