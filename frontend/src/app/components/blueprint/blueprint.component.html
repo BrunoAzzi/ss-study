@@ -1,1 +1,51 @@
+<ul class="tools">
+    <li [ngClass]="{ active: isSelectedTool('checkpoint') }">
+        <a (click)="changeMark('checkpoint')">Check Point</a>
+    </li>
+    <li [ngClass]="{ active: isSelectedTool('cup_holders') }">
+        <a (click)="changeMark('cup_holders')">Guarda Copos</a>
+    </li>
+    <li [ngClass]="{ active: isSelectedTool('crane') }">
+        <a (click)="changeMark('crane')">Grua</a>
+    </li>
+    <li [ngClass]="{ active: isSelectedTool('water') }">
+        <a (click)="changeMark('water')">Água</a>
+    </li>
+    <li [ngClass]="{ active: isSelectedTool('wc') }">
+        <a (click)="changeMark('wc')">Banheiro</a>
+    </li>
+    <li [ngClass]="{ active: isSelectedTool('er') }">
+        <a (click)="changeMark('er')">Primeiros Socorros</a>
+    </li>
+    <li [ngClass]="{ active: isSelectedTool('tray') }">
+        <a (click)="changeMark('tray')">Bandeja</a>
+    </li>
+    <li [ngClass]="{ active: isSelectedTool('extinguisher') }">
+        <a (click)="changeMark('extinguisher')">Extintor</a>
+    </li>
+    <li [ngClass]="{ active: isSelectedTool('accommodation') }">
+        <a (click)="changeMark('accommodation')">Alojamento</a>
+    </li>
+    <li [ngClass]="{ active: isSelectedTool('refectory') }">
+        <a (click)="changeMark('refectory')">Refeitório</a>
+    </li>
+    <li [ngClass]="{ active: isSelectedTool('recreation') }">
+        <a (click)="changeMark('recreation')">Lazer</a>
+    </li>
+    <li [ngClass]="{ active: isSelectedTool('laundry') }">
+        <a >Lavanderia</a>
+    </li>
+    <li [ngClass]="{ active: isSelectedTool('carpentry') }">
+        <a (click)="changeMark('carpentry')">Carpintaria</a>
+    </li>
+    <li [ngClass]="{ active: isSelectedTool('elevator') }">
+        <a >Elevador</a>
+    </li>
+    <li [ngClass]="{ active: isSelectedTool('totem') }">
+        <a >Totem</a>
+    </li>
+    <li [ngClass]="{ active: isSelectedTool('others') }">
+        <a >Outros</a>
+    </li>
+</ul>
 <div id="sheet"></div>
