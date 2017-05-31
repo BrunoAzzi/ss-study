@@ -14,8 +14,8 @@ export class PasswordService {
     return this.service.post('/password/recover', JSON.stringify({ email: email }))
   }
 
-  overwritePassword(password: String) {
-    return this.service.post('/password/update', JSON.stringify({ password: password }))
+  overwritePassword(password: String, token: String) {
+    return this.service.post('/password/update', JSON.stringify({ password: password, token: token }))
       .map((obj) => {
           if (obj.user && obj.user.token) {
               Cookie.set('auth_token', obj.user.token);
