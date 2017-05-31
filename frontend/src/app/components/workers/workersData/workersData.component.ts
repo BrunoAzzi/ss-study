@@ -4,6 +4,7 @@ import { personalDataWorker } from '../../../mocks/personalDataWorker/personalDa
 import {CorreiosService} from "../../../services/correios.service";
 import { Endereco_completo } from '../../../mocks/endereco_completo/endereco_completo';
 import { CommonModule} from '@angular/common';
+import { CustomValidators } from './CustomValidators';
 
 @Component({
     selector: 'workers-data',
@@ -15,11 +16,9 @@ export class WorkersDataComponent implements OnInit {
     disabled: boolean = true;
     mycbo: string = '';
     mycbonumber: number = 0;
-    errorMessageExample1: string;
-    errorMessageExample2: string;
     myCep: string = "";
     completeAddress: string;
-    hiredType: any = '';
+    hiredType: boolean = true;
     isValid: boolean = false;
     worker: personalDataWorker;
     myForm: FormGroup;
@@ -27,16 +26,37 @@ export class WorkersDataComponent implements OnInit {
     constructor(private correiosService: CorreiosService, private fb: FormBuilder) { }
 
     ngOnInit() {
-        // this.myForm = new FormGroup({
-        //     fullname: new FormControl('', Validators.required)
-        // });
-        // build the form model
         this.myForm = this.fb.group({
-            fullname: new FormControl('', Validators.compose([Validators.required, Validators.minLength(4)]))
+            fullname: new FormControl('', Validators.compose([Validators.required, CustomValidators.onlytext])),
+            cpf: new FormControl('', Validators.compose([Validators.required, CustomValidators.cpf])),
+            ctps: new FormControl('', CustomValidators.onlyPositiveNumbers),
+            birthDate: null,
+            age: null,
+            nit: new FormControl('', CustomValidators.onlyPositiveNumbers),
+            cep: null,
+            completeAddress: null,
+            admissionDate: null,
+            complement: null,
+            contact: null,
+            cbo: new FormControl('', Validators.compose([Validators.required, CustomValidators.onlyPositiveNumbers])),
+            textArea: null,
+            company: new FormControl({ value: '', disabled: this.hiredType }, null),
+            hiredTypeRadio: null,
+            sex: null,
+            scholarity: [''],
+            role: [''],
+            necessitys: [''],
+            status: ['']
         })
-        console.log(this.myForm);
+
     }
 
+    static validateColor(c: FormControl) {
+        if (c.value.indexOf('Green') < 0) {
+            return { badColor: true };
+        }
+        return null;
+    }
 
     status = [
         { value: 'ativo', viewValue: 'Ativo' },
@@ -94,19 +114,18 @@ export class WorkersDataComponent implements OnInit {
         });
     }
 
+    hiredChange() {
+        this.hiredType = !this.hiredType;
+        this.hiredType ? this.myForm.controls.company.disable() : this.myForm.controls.company.enable();
+    }
 
     checkCboEmpty() {
         this.mycbonumber = Number.parseInt(this.mycbo);
-        if (this.mycbonumber > 0) {
-            this.disabled = false;
-        } else {
-            this.disabled = true;
-        }
+        (this.mycbonumber > 0) ? this.disabled = false : this.disabled = true;
     }
 
     savePersonalDataWorker(safetyCard) {
         if (this.myForm.valid) {
-            console.log("Personal Data saved!");
             safetyCard.close();
         }
     }
