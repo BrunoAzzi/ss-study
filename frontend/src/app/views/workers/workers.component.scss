@@ -1,7 +1,9 @@
-$pale-grey-two: #f2f6f7;
+::-webkit-input-placeholder {
+    color: red;
+}
 
-:host {
-    height: 100%;
+.action {
+    padding: 20px;
 }
 
 safety-card /deep/ md-card {
@@ -14,54 +16,9 @@ safety-card-content div {
 
 safety-card-content > :last-child {
     margin-bottom: 0;
-
-    .save-and-continue {
-        color: white;
-        background-color: #a1abb0;
-    }
 }
 
-.dados_pessoais {
-    display: inline-flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    width: 100%;
-    padding-top: 2em;
-}
-
-table {
-    border-collapse: separate;
-    border-spacing: 8px;
-}
-
-td {
-    background: #fdfdfd;
-}
-
-/deep/ .coluna_texto {
-    flex-direction: column;
-    justify-content: flex-start;
-}
-
-td textarea {
-    border: none;
-}
-
-.example-full-width {
-    width: 100%;
-}
-
-::-webkit-input-placeholder {
-    color: red;
-}
-
-.quarter_screen {
-    display: inline-flex;
-    width: 25%;
-    flex-wrap: wrap;
-}
-
-.resto_tela {
-    width: 75%;
-    flex-wrap: wrap;
+.save-and-continue {
+    color: white;
+    background-color: #a1abb0;
 }

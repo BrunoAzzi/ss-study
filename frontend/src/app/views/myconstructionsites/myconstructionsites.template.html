@@ -1,23 +1,10 @@
-<notification-sidenav-container>
-    <content-toolbar>
-        <topnavbar notification>
-            <h1>Minhas obras</h1>
-            <ul class="navigation-items">
-                <li>link 1</li>
-                <li>link 2</li>
-                <li>link 3</li>
-                <li>link 4</li>
-            </ul>
-        </topnavbar>
-    </content-toolbar>
+<!-- <notification-sidenav-container>
+    <content-toolbar> -->
+<topnavbar>
+    <h1>Minhas obras</h1>
+</topnavbar>
+<!-- </content-toolbar> -->
 
+<router-outlet></router-outlet>
 
-    <div class="body-content">
-        <md-tab-group #tabGroup>
-            <md-tab id="tab4" label="Monitorar">
-                <app-my-phaser [phaserConfig]="phaserConfig" [phaserState]="phaserState" [view]="false"></app-my-phaser>
-            </md-tab>
-            <md-tab id="tab5" label="Mapear Áreas"></md-tab>
-        </md-tab-group>
-    </div>
-</notification-sidenav-container>
+<!-- </notification-sidenav-container> -->

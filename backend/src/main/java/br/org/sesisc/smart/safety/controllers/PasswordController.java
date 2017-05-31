@@ -60,7 +60,8 @@ public class PasswordController {
         if (user != null) {
             if (TokenHelper.getInstance().isValidExpirableToken(user.getId().toString(), user.getRecoverPassToken())) {
                 user.digestPassword(params.getPassword());
-                repository.update(user.getId(), new String[] {"password"}, new Object[] {user.getPassword()});
+                user.setToken(TokenHelper.getInstance().generateToken());
+                repository.update(user.getId(), new String[] {"password", "token"}, new Object[] {user.getPassword(), user.getToken()});
 
                 return SuccessResponse.handle(
                         new String[] {"user"},
