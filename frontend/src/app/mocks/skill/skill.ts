@@ -4,6 +4,8 @@ export class Skill {
     validityStart: Date;
     periodicity: number;
     isApt: boolean;
+    overdue: boolean;
+    name: string;
 
     constructor() {
         this.isApt = true;

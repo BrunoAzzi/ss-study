@@ -52,6 +52,9 @@ export class MyPhaserComponent implements OnInit {
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
     this.game.input.mouse.mouseWheelCallback = this.scrollEvent;
 
+    this.game.load.image('minZoom', 'assets/phaser/minZoom.png');
+    this.game.load.image('maxZoom', 'assets/phaser/MaxZoom.png');
+
     this.game.load.image('map', window["angular"].phaserState.mapImage.url);
     for (var index = 0; index < window["angular"].phaserConfig['menu'].buttons.length; index++) {
       this.game.load.spritesheet(window["angular"].phaserConfig['menu'].buttons[index].name, window["angular"].phaserConfig['menu'].buttons[index].button, 64.4, 54);
@@ -70,9 +73,15 @@ export class MyPhaserComponent implements OnInit {
     window["angular"].zoom = (window["angular"].phaserConfig['width'] / map._frame.sourceSizeW);
     window["angular"].maxZoom = (window["angular"].phaserConfig['width'] / map._frame.sourceSizeW) * Math.pow(1.25, 5);
     window["angular"].minZoom = (window["angular"].phaserConfig['width'] / map._frame.sourceSizeW) * Math.pow(0.8, 5);
-    var floor = this.game.world.game.add.text(10, 100, window["angular"].phaserState["mapImage"].titulo, { fontSize: '20px', fill: '#3c3c3c' });
+    var floor = this.game.add.text(50, 110, window["angular"].phaserState["mapImage"].titulo, { fontSize: '20px', fill: '#3c3c3c', width: '100', height: '19', font: 'Lato' });
+    var zoomMin = this.game.add.button(0, 127, 'minZoom', undefined, this, 0, 0, 0);
+    var zoomMax = this.game.add.button(0, 100, 'maxZoom', undefined, this, 0, 0, 0);
     floor.fixedToCamera = true;
+    zoomMax.fixedToCamera = true;
+    zoomMin.fixedToCamera = true;
     window["static"].push(floor);
+    window["static"].push(zoomMin);
+    window["static"].push(zoomMax);
     this.game.physics.arcade.enable(map);
 
 
@@ -90,7 +99,6 @@ export class MyPhaserComponent implements OnInit {
   }
 
   update() {
-
 
   }
 
@@ -136,6 +144,42 @@ export class MyPhaserComponent implements OnInit {
   }
 
   actionOnClick(button) {
+
+    var graphics = this.game.add.graphics(0, 0);
+    var h = 75;
+    var w = 168;
+    var poly = new Phaser.Polygon();
+    poly.setTo([new Phaser.Point(button._frame.width / 2, 0),
+    new Phaser.Point(button._frame.width / 2 + 20, 0 - 15),
+    new Phaser.Point(button._frame.width / 2 + (w * 3) / 4, 0 - 15),
+    new Phaser.Point(button._frame.width / 2 + (w * 3) / 4, 0 - 15 - h),
+    new Phaser.Point(button._frame.width / 2 - w / 4, 0 - 15 - h),
+    new Phaser.Point(button._frame.width / 2 - w / 4, 0 - 15),
+    new Phaser.Point(button._frame.width / 2 - 20, 0 - 15)]);
+
+    graphics.lineStyle(1, 0x000000, 0.3);
+    graphics.beginFill(0xcee3ea, 1);
+    graphics.drawPolygon(poly.points);
+    graphics.endFill();
+
+    var text = this.game.add.text(poly._points[4].x + 15, poly._points[4].y + 13, "João da Silva Antunes",
+      { fontSize: '14px', fill: '#ff4c4c', width: '136px', height: '47px', fontWeight: 'bold', font: 'Lato' });
+
+    var date = this.game.add.text(poly._points[4].x + 15, poly._points[4].y + 30, "10:09 - 10/05",
+      { fontSize: '12px', fill: '#999999', width: '136px', height: '47px', fontWeight: 'bold', font: 'Lato' });
+
+    var id = this.game.add.text(poly._points[4].x + 15, poly._points[4].y + 43, "Cone 02381",
+      { fontSize: '12px', fill: '#999999', width: '136px', height: '47px', fontWeight: 'bold', font: 'Lato' });
+
+    graphics.addChild(text);
+    graphics.addChild(date);
+    graphics.addChild(id);
+    
+    if (button.children.length == 0) {
+      button.addChild(graphics);
+    } else {
+      button.children.pop();
+    }
 
 
   }

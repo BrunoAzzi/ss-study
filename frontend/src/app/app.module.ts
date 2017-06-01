@@ -8,12 +8,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HttpClientService } from "./services/http-client.service";
 import { SessionsService } from "./services/sessions.service";
+import { PasswordService } from "./services/password.service";
 import { AuthGuard } from './guards/index';
 import { MdSnackBar } from '@angular/material';
 import { CommonModule } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { ChartsModule } from "ng2-charts";
+import { MyDatePickerModule } from 'mydatepicker';
 import { CookieService } from 'ng2-cookies';
 
 // Pipe
@@ -30,7 +32,6 @@ import { SkillComponent } from "./components/workers/skill/skill.component";
 import { RecyclingComponent } from "./components/workers/recycling/recycling.component";
 import { BoxMessageComponent } from "./components/common/box-message/box-message.component";
 
-//import { DatepickerOverviewExample } from  "./views/companies/datepicker-overview-example.component";
 import { PPEComponent } from "./views/ppe/ppe.component";
 import { MyConstructionSitesComponent } from "./views/myconstructionsites/myconstructionsites.component";
 import { ReportsComponent } from "./views/reports/reports.component";
@@ -49,6 +50,9 @@ import { StatusAnoComponent } from "./components/perfil_emocional/status_ano/sta
 // Layouts
 
 import { LoginComponent } from "./views/login/login.component";
+import { PasswordRecoveryComponent } from "./views/password-recovery/password-recovery.component";
+import { PasswordUpdateComponent } from "./views/password-update/password-update.component";
+
 import { BlankComponent } from "./components/common/layouts/blank/blank.component";
 import { BasicComponent } from "./components/common/layouts/basic/basic.component";
 import { TopnavbarComponent } from "./components/common/topnavbar/topnavbar.component";
@@ -109,6 +113,8 @@ import { MyConstructionSitesPhaserComponent } from './views/myconstructionsites/
         TrainingComponent,
         WorkersComponent,
         LoginComponent,
+        PasswordRecoveryComponent,
+        PasswordUpdateComponent,
         BlankComponent,
         BasicComponent,
         TopnavbarComponent,
@@ -154,6 +160,9 @@ import { MyConstructionSitesPhaserComponent } from './views/myconstructionsites/
         // Charts
         ChartsModule,
 
+        // Datepicker
+        MyDatePickerModule,
+
         // Mocks
         InMemoryWebApiModule.forRoot(InMemoryDataService, { passThruUnknownUrl: true }),
 
@@ -174,6 +183,7 @@ import { MyConstructionSitesPhaserComponent } from './views/myconstructionsites/
         HttpClientService,
         AuthGuard,
         SessionsService,
+        PasswordService,
         MdSnackBar,
         { provide: LocationStrategy, useClass: HashLocationStrategy }],
     bootstrap: [AppComponent]
