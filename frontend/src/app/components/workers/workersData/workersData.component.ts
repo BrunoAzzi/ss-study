@@ -1,20 +1,22 @@
-import {Component, Inject, OnInit } from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import { personalDataWorker } from '../../../mocks/personalDataWorker/personalDataWorker';
 import {CorreiosService} from "../../../services/correios.service";
 import { Endereco_completo } from '../../../mocks/endereco_completo/endereco_completo';
 import { CommonModule} from '@angular/common';
 import { CustomValidators } from './CustomValidators';
+import { CBO } from '../../../mocks/CBO/CBO';
+import { CBOService } from "../../../services/cbo.service";
 
 @Component({
     selector: 'workers-data',
     templateUrl: 'workersData.template.html',
     styleUrls: ['./workersData.component.scss'],
-    providers: [CorreiosService]
+    providers: [CorreiosService, CBOService]
 })
-export class WorkersDataComponent implements OnInit {
+export class WorkersDataComponent {
     disabled: boolean = true;
-    mycbo: string = '';
+    mycbo: string = "";
     mycbonumber: number = 0;
     myCep: string = "";
     completeAddress: string;
@@ -23,9 +25,8 @@ export class WorkersDataComponent implements OnInit {
     worker: personalDataWorker;
     myForm: FormGroup;
 
-    constructor(private correiosService: CorreiosService, private fb: FormBuilder) { }
-
-    ngOnInit() {
+    constructor(private correiosService: CorreiosService, private cboService: CBOService, private fb: FormBuilder) {
+        this.getCBOs();
         this.myForm = this.fb.group({
             fullname: new FormControl('', Validators.compose([Validators.required, CustomValidators.onlytext])),
             cpf: new FormControl('', Validators.compose([Validators.required, CustomValidators.cpf])),
@@ -38,7 +39,7 @@ export class WorkersDataComponent implements OnInit {
             admissionDate: null,
             complement: null,
             contact: null,
-            cbo: new FormControl('', Validators.compose([Validators.required, CustomValidators.onlyPositiveNumbers])),
+            cbo: new FormControl('', Validators.required),
             textArea: null,
             company: new FormControl({ value: '', disabled: this.hiredType }, null),
             hiredTypeRadio: null,
@@ -48,15 +49,9 @@ export class WorkersDataComponent implements OnInit {
             necessitys: [''],
             status: ['']
         })
-
     }
 
-    static validateColor(c: FormControl) {
-        if (c.value.indexOf('Green') < 0) {
-            return { badColor: true };
-        }
-        return null;
-    }
+    getCBOs(): void { }
 
     status = [
         { value: 'ativo', viewValue: 'Ativo' },
@@ -112,6 +107,15 @@ export class WorkersDataComponent implements OnInit {
         this.correiosService.getAddress(this.myCep).subscribe(data => {
             this.completeAddress = data.cidade + " - " + data.estado + ", " + data.bairro + ", " + data.tipoDeLogradouro + " " + data.logradouro;
         });
+    }
+
+    autocompleteRoleFromMock() {
+
+        this.cboService.getCBO().subscribe(
+            function(response) { console.log("Success Response" + response) },
+            function(error) { console.log("Error happened" + error) },
+            function() { console.log("the subscription is completed") }
+        );
     }
 
     hiredChange() {

@@ -1,6 +1,7 @@
 import {FormControl} from '@angular/forms';
 
 export class CustomValidators {
+
     static cpf(control: FormControl) {
         if (control.value == '') { return null; }
         var valid = seecpf(control.value);
@@ -34,11 +35,7 @@ export class CustomValidators {
 }
 
 
-function seecpf(cpf) {
-    cpf = String(cpf);
-    cpf = cpf.replace(/[^\d]+/g, '');
-    if (cpf == '') return false;
-    // Elimina CPFs invalidos conhecidos
+function eliminateInvalidCPFS(cpf) {
     if (cpf.length != 11 ||
         cpf == "00000000000" ||
         cpf == "11111111111" ||
@@ -51,7 +48,10 @@ function seecpf(cpf) {
         cpf == "88888888888" ||
         cpf == "99999999999")
         return false;
-    // Valida 1o digito
+}
+
+function validateCPF(cpf) {
+    cpf = String(cpf);
     let add = 0;
     for (let i = 0; i < 9; i++)
         add += parseInt(cpf.charAt(i)) * (10 - i);
@@ -60,7 +60,6 @@ function seecpf(cpf) {
         rev = 0;
     if (rev != parseInt(cpf.charAt(9)))
         return false;
-    // Valida 2o digito
     add = 0;
     for (let i = 0; i < 10; i++)
         add += parseInt(cpf.charAt(i)) * (11 - i);
@@ -70,4 +69,16 @@ function seecpf(cpf) {
     if (rev != parseInt(cpf.charAt(10)))
         return false;
     return true;
+}
+
+function cleanCPF(cpf) {
+    return cpf.replace(/[^\d]+/g, '');
+}
+
+function seecpf(cpf) {
+    cpf = String(cpf);
+    cpf = cleanCPF(cpf);
+    if (cpf == '') return false;
+    if (eliminateInvalidCPFS(cpf) == false) return false;
+    return validateCPF(cpf);
 }

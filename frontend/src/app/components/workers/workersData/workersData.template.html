@@ -99,9 +99,8 @@
 
 
                             <md-input-container>
-                                <input mdInput type="number" formControlName="cbo" placeholder="CBO" id="cbo" name="cbo" [(ngModel)]="mycbo" (ngModelChange)="checkCboEmpty()">
+                                <input mdInput formControlName="cbo" placeholder="CBO" id="cbo" name="cbo" [(ngModel)]="mycbo" mask="0000-00" (ngModelChange)="checkCboEmpty()" (blur)="autocompleteRoleFromMock()">
                                 <md-error *ngIf="myForm.controls.fullname.hasError('required')">Campo Obrigatório.</md-error>
-                                <md-error *ngIf="myForm.controls.fullname.hasError('onlyPositiveNumbers')">São permitidos apenas valores maiores ou igual a 0.</md-error>
                             </md-input-container>
                         </td>
                         <td colspan="2">
