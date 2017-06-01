@@ -65,14 +65,6 @@ export class WorkersDataComponent {
         { value: 'des', viewValue: 'Desenvolvedor' },
     ];
 
-    laborsInCipa = [
-        { value: 'suplente', viewValue: 'Membro Suplente' },
-        { value: 'efetivo', viewValue: 'Membro Efetivo' },
-        { value: 'presidente', viewValue: 'Presidente' },
-        { value: 'vice', viewValue: 'Vice Presidente' },
-        { value: 'secretario', viewValue: 'Secretário' },
-    ];
-
     scholaritys = [
         { value: 'fund_i', viewValue: 'Fundamental incompleto' },
         { value: 'fund_c', viewValue: 'Fundamental completo' },
@@ -89,19 +81,6 @@ export class WorkersDataComponent {
     ];
     selectedNecessity: number = 1;
 
-    brigadistas = [
-        { value: 0, viewValue: 'Sim' },
-        { value: 1, viewValue: 'Não' },
-    ];
-    selectedBrigadista: number = 1;
-
-    cipeiros = [
-        { value: 0, viewValue: 'Sim' },
-        { value: 1, viewValue: 'Não' },
-    ];
-    selectedCipeiro: number = 1;
-
-    selectedCipaLabor: boolean = false;
 
     autocompleteAdressFromApi() {
         this.correiosService.getAddress(this.myCep).subscribe(data => {

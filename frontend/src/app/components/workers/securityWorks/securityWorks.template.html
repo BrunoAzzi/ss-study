@@ -1,0 +1,41 @@
+<safety-card #safetyCard>
+    <safety-card-header>
+        <span>Dados Segurança do Trabalho</span>
+    </safety-card-header>
+    <safety-card-content>
+        <form id="form3" name="form3">
+            <div class="form-content">
+                <div class="square">
+                    <md-select required name="selectCipeiro" class="maxWidthSimNao" [(ngModel)]="selectedCipeiro" placeholder="Trabalhador é cipeiro?">
+                        <md-option *ngFor="let cipeiro of cipeiros" [value]="cipeiro.value">
+                            {{ cipeiro.viewValue }}
+                        </md-option>
+                    </md-select>
+                </div>
+                <div class="square">
+                    <md-select required name="selectCipaLabor" [disabled]='selectedCipeiro' [(ngModel)]="selectedCipaLabor" class="maxWidthCipaLabor" placeholder="Cargo na CIPA">
+                        <md-option *ngFor="let labor of laborsInCipa " [value]="labor.value">
+                            {{ labor.viewValue }}
+                        </md-option>
+                    </md-select>
+                </div>
+                <div class="square">
+                    <date-range required name="data_range"></date-range>
+                </div>
+                <div class="square">
+                    <md-select required name="select_brigadista" class="maxWidthSimNao" placeholder="Trabalhador é brigadista?" [(ngModel)]="selectedBrigadista">
+                        <md-option *ngFor="let brigadista of brigadistas" [value]="brigadista.value">
+                            {{ brigadista.viewValue }}
+                        </md-option>
+                    </md-select>
+                </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="end center">
+                <button class="save-and-continue" md-raised-button type="submit">
+                        <span>Salvar e continuar</span>
+                </button>
+            </div>
+        </form>
+    </safety-card-content>
+</safety-card>
