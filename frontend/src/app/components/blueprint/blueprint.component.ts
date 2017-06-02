@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, Input } from '@angular/core';
 
 declare var L: any;
 
@@ -8,7 +8,7 @@ declare var L: any;
     styleUrls: ['blueprint.component.scss']
 })
 
-export class BlueprintComponent implements OnInit, AfterViewInit {
+export class BlueprintComponent implements OnInit, AfterViewChecked {
     map: any;
     currentMark: any;
     coordinates: any = {};
@@ -16,25 +16,49 @@ export class BlueprintComponent implements OnInit, AfterViewInit {
     private currentFloor: string;
     private lastMap: any;
     private imageMap: any;
-    private floors: any;
+    private floors: Array<any>;
+
+    @Input() mapType: string;
+    
+    private tools: Array<any> = [
+        { name: 'checkpoint', imageName: 'cone', labelName: 'Check Point' },
+        { name: 'cup_holders', imageName: 'cup_holders', labelName: 'Guarda Copos' },
+        { name: 'crane', imageName: 'crane', labelName: 'Grua' },
+        { name: 'water', imageName: 'water', labelName: 'Água' },
+        { name: 'wc', imageName: 'wc', labelName: 'Banheiro' },
+        { name: 'er', imageName: 'er', labelName: 'Primeiros Socorros' },
+        { name: 'tray', imageName: 'tray', labelName: 'Bandejas' },
+        { name: 'extinguisher', imageName: 'extinguisher', labelName: 'Extintor' },
+        { name: 'accommodation', imageName: 'accommodation', labelName: 'Alojamento' },
+        { name: 'refectory', imageName: 'refectory', labelName: 'Refeitório' },
+        { name: 'recreation', imageName: 'recreation', labelName: 'Lazer' },
+        { name: 'laundry', imageName: 'laundry', labelName: 'Lavanderia' },
+        { name: 'carpentry', imageName: 'carpentry', labelName: 'Carpintaria' },
+        { name: 'elevator', imageName: 'elevator', labelName: 'Elevador' },
+        { name: 'totem', imageName: 'totem', labelName: 'Totem' },
+        { name: 'others', imageName: 'others', labelName: 'Outros' },
+    ];
+    
+
     private position: any;
 
     constructor() {
-        this.floors = {
-            '5': { bounds: [[0, 0], [413, 186]], image: 'assets/maps/piso.svg' },
-            '4': { bounds: [[0, 0], [413, 186]], image: 'assets/maps/piso.svg' },
-            '3': { bounds: [[0, 0], [413, 186]], image: 'assets/maps/piso.svg' },
-            '2': { bounds: [[0, 0], [413, 186]], image: 'assets/maps/piso.svg' },
-            '1': { bounds: [[0, 0], [413, 186]], image: 'assets/maps/piso.svg' },
-            'T': { bounds: [[0, 0], [413, 186]], image: 'assets/maps/terreo.svg' },
-            'SS': { bounds: [[0, 0], [413, 186]], image: 'assets/maps/subsolo.svg' },
-        };
+        
+        this.floors = [
+            { name: '5', bounds: [[0, 0], [413, 186]], image: 'assets/maps/piso.svg' },
+            { name: '4', bounds: [[0, 0], [413, 186]], image: 'assets/maps/piso.svg' },
+            { name: '3', bounds: [[0, 0], [413, 186]], image: 'assets/maps/piso.svg' },
+            { name: '2', bounds: [[0, 0], [413, 186]], image: 'assets/maps/piso.svg' },
+            { name: '1', bounds: [[0, 0], [413, 186]], image: 'assets/maps/piso.svg' },
+            { name: 'T', bounds: [[0, 0], [413, 186]], image: 'assets/maps/terreo.svg' },
+            { name: 'SS', bounds: [[0, 0], [413, 186]], image: 'assets/maps/subsolo.svg' },
+        ]
     }
 
     ngOnInit() {
     }
 
-    ngAfterViewInit() {
+    ngAfterViewChecked() {
         const self = this;
 
         this.map = L.map('sheet', {
@@ -47,7 +71,7 @@ export class BlueprintComponent implements OnInit, AfterViewInit {
         this.imageMap.addTo(this.map);
         this.map.fitBounds(bounds);
 
-        this.setFloor('T');
+        this.setFloor(this.floors[0]);
 
         this.map.on('click', function(e) {
             if (self.currentMark) {
@@ -81,19 +105,19 @@ export class BlueprintComponent implements OnInit, AfterViewInit {
         return floor === this.currentFloor;
     }
 
-    setFloor(floor: string) {
+    setFloor(floor: any) {
         this.cleanupAllMarkersByFloor(this.currentFloor);
-        this.currentFloor = floor;
-        const overlay = this.floors[floor];
+        this.currentFloor = floor.name;
+        const overlay = floor;
         this.imageMap.remove();
         this.imageMap = L.imageOverlay(overlay.image, overlay.bounds);
         this.imageMap.addTo(this.map);
         this.map.fitBounds(overlay.bounds);
 
-        if (!(floor in this.coordinates)) {
-            this.coordinates[floor] = {};
+        if (!(floor.name in this.coordinates)) {
+            this.coordinates[floor.name] = {};
         } else {
-            const markers = this.coordinates[floor];
+            const markers = this.coordinates[floor.name];
             if (Object.keys(markers).length > 0) {
                 for (const mark in markers) {
                     if (markers.hasOwnProperty(mark)) {
