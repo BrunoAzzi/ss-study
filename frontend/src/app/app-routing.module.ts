@@ -10,6 +10,7 @@ import { RepositoriesComponent } from "./views/repositories/repositories.compone
 import { ThirdPartiesComponent } from "./views/thirdparties/thirdparties.component";
 import { TrainingComponent } from "./views/training/training.component";
 import { WorkersComponent } from "./views/workers/workers.component";
+import { MonitoringComponent } from './views/monitoring/monitoring.component';
 
 import { LoginComponent } from "./views/login/login.component";
 import { PasswordRecoveryComponent } from "./views/password-recovery/password-recovery.component";
@@ -23,7 +24,7 @@ import { MyConstructionSitesPhaserComponent } from './views/myconstructionsites/
 
 const routes: Routes = [
     // Main redirect
-    { path: '', redirectTo: 'myconstructionsites', pathMatch: 'full', canActivate: [AuthGuard] },
+    { path: '', redirectTo: 'monitoring', pathMatch: 'full', canActivate: [AuthGuard] },
 
     // App views
     {
@@ -36,6 +37,7 @@ const routes: Routes = [
             { path: 'thirdparties', component: ThirdPartiesComponent, canActivate: [AuthGuard] },
             { path: 'training', component: TrainingComponent, canActivate: [AuthGuard] },
             { path: 'workers', component: WorkersComponent, canActivate: [AuthGuard] },
+            { path: 'monitoring', component: MonitoringComponent, canActivate: [AuthGuard]},
             {
                 path: 'myconstructionsites', component: MyConstructionSitesComponent, canActivate: [AuthGuard], children: [
                     { path: '', component: MyConstructionSitesLandingPageComponent, canActivate: [AuthGuard] },
