@@ -40,7 +40,7 @@ import { RepositoriesComponent } from "./views/repositories/repositories.compone
 import { ThirdPartiesComponent } from "./views/thirdparties/thirdparties.component";
 import { TrainingComponent } from "./views/training/training.component";
 import { WorkersComponent } from "./views/workers/workers.component";
-import { MonitoringComponent } from './views/monitoring/monitoring.component';
+import { MonitoringComponent } from './views/myconstructionsites/monitoring/monitoring.component';
 
 // Painel Emocional
 

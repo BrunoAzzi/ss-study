@@ -10,7 +10,7 @@ import { RepositoriesComponent } from "./views/repositories/repositories.compone
 import { ThirdPartiesComponent } from "./views/thirdparties/thirdparties.component";
 import { TrainingComponent } from "./views/training/training.component";
 import { WorkersComponent } from "./views/workers/workers.component";
-import { MonitoringComponent } from './views/monitoring/monitoring.component';
+import { MonitoringComponent } from './views/myconstructionsites/monitoring/monitoring.component';
 
 import { LoginComponent } from "./views/login/login.component";
 import { PasswordRecoveryComponent } from "./views/password-recovery/password-recovery.component";
@@ -37,13 +37,13 @@ const routes: Routes = [
             { path: 'thirdparties', component: ThirdPartiesComponent, canActivate: [AuthGuard] },
             { path: 'training', component: TrainingComponent, canActivate: [AuthGuard] },
             { path: 'workers', component: WorkersComponent, canActivate: [AuthGuard] },
-            { path: 'monitoring', component: MonitoringComponent, canActivate: [AuthGuard]},
             {
                 path: 'myconstructionsites', component: MyConstructionSitesComponent, canActivate: [AuthGuard], children: [
                     { path: '', component: MyConstructionSitesLandingPageComponent, canActivate: [AuthGuard] },
                     // { path: 'list', component: MyConstructionSitesListComponent, canActivate: [AuthGuard] },
                     // { path: 'add', component: MyConstructionSitesAddComponent, canActivate: [AuthGuard] },
                     { path: 'phaser', component: MyConstructionSitesPhaserComponent, canActivate: [AuthGuard] },
+                    { path: 'monitoring', component: MonitoringComponent, canActivate: [AuthGuard]}
                 ]
             },
         ]
