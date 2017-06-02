@@ -3,31 +3,37 @@
         <span>Dados Segurança do Trabalho</span>
     </safety-card-header>
     <safety-card-content>
-        <form id="form3" name="form3">
+        <form id="securityForm" [formGroup]="securityForm" (submit)="saveSecurityForm(safetyCard)" name="securityForm">
             <div class="form-content">
                 <div class="square">
-                    <md-select required name="selectCipeiro" class="maxWidthSimNao" [(ngModel)]="selectedCipeiro" placeholder="Trabalhador é cipeiro?">
+                    <md-select formControlName="cipeiros" required name="cipeiros" class="maxWidthSimNao" [(ngModel)]="selectedCipeiro" (ngModelChange)="cipeiroChange(selectedCipeiro, dateRange)" placeholder="Trabalhador é cipeiro?">
                         <md-option *ngFor="let cipeiro of cipeiros" [value]="cipeiro.value">
                             {{ cipeiro.viewValue }}
                         </md-option>
                     </md-select>
                 </div>
                 <div class="square">
-                    <md-select required name="selectCipaLabor" [disabled]='selectedCipeiro' [(ngModel)]="selectedCipaLabor" class="maxWidthCipaLabor" placeholder="Cargo na CIPA">
+                    <md-select name="laborsInCipa" required formControlName="laborsInCipa" [(ngModel)]="selectedCipaLabor" class="maxWidthCipaLabor" placeholder="Cargo na CIPA">
                         <md-option *ngFor="let labor of laborsInCipa " [value]="labor.value">
                             {{ labor.viewValue }}
                         </md-option>
                     </md-select>
+                    <div *ngIf="submited">
+                        <md-error *ngIf="securityForm.controls.laborsInCipa.hasError('required')">Campo Obrigatório.</md-error>
+                    </div>
                 </div>
                 <div class="square">
-                    <date-range required name="data_range"></date-range>
+                    <date-range #dateRange name="data_range"></date-range>
                 </div>
                 <div class="square">
-                    <md-select required name="select_brigadista" class="maxWidthSimNao" placeholder="Trabalhador é brigadista?" [(ngModel)]="selectedBrigadista">
+                    <md-select required name="brigadistas" formControlName="brigadistas" class="maxWidthSimNao" placeholder="Trabalhador é brigadista?" [(ngModel)]="selectedBrigadista">
                         <md-option *ngFor="let brigadista of brigadistas" [value]="brigadista.value">
                             {{ brigadista.viewValue }}
                         </md-option>
                     </md-select>
+                    <div *ngIf="submited">
+                        <md-error *ngIf="securityForm.controls.brigadistas.hasError('required')">Campo Obrigatório.</md-error>
+                    </div>
                 </div>
             </div>
 

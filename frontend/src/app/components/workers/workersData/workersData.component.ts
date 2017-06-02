@@ -24,6 +24,7 @@ export class WorkersDataComponent {
     isValid: boolean = false;
     worker: personalDataWorker;
     myForm: FormGroup;
+    selectedStatusValue: string;
 
     constructor(private correiosService: CorreiosService, private cboService: CBOService, private fb: FormBuilder) {
         this.getCBOs();
@@ -55,7 +56,7 @@ export class WorkersDataComponent {
 
     status = [
         { value: 'ativo', viewValue: 'Ativo' },
-        { value: 'inativo', viewValue: 'Inativo' },
+        { value: 'ferias', viewValue: 'Férias' },
         { value: 'afastado', viewValue: 'Afastado' },
         { value: 'demitido', viewValue: 'Demitido' },
     ];
