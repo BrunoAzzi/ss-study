@@ -1,10 +1,10 @@
-import {Component, Inject} from '@angular/core';
-import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
-import { personalDataWorker } from '../../../mocks/personalDataWorker/personalDataWorker';
-import {CorreiosService} from "../../../services/correios.service";
+import { Component, Inject } from '@angular/core';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { PersonalDataWorker } from '../../../mocks/personalDataWorker/personalDataWorker';
+import { CorreiosService } from "../../../services/correios.service";
 import { Endereco_completo } from '../../../mocks/endereco_completo/endereco_completo';
 import { CommonModule} from '@angular/common';
-import { CustomValidators } from './CustomValidators';
+import { CustomValidators } from './customValidators';
 import { CBO } from '../../../mocks/CBO/CBO';
 import { CBOService } from "../../../services/cbo.service";
 
@@ -22,7 +22,7 @@ export class WorkersDataComponent {
     completeAddress: string;
     hiredType: boolean = true;
     isValid: boolean = false;
-    worker: personalDataWorker;
+    worker: PersonalDataWorker;
     myForm: FormGroup;
 
     constructor(private correiosService: CorreiosService, private cboService: CBOService, private fb: FormBuilder) {
