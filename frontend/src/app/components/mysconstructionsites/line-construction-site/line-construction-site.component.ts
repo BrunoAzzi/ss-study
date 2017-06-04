@@ -9,7 +9,7 @@ import { ConstructionSite } from "../../../mocks/construction-site/construction-
 export class LineConstructionSiteComponent {
     @Input() constructionSite: ConstructionSite;
     status: any = {};
-    statusIcon: string = "";
+    statusIcon: any = "";
 
     ngOnInit() {
         switch (this.constructionSite.status) {
@@ -20,7 +20,7 @@ export class LineConstructionSiteComponent {
                 this.statusIcon = "remove";
                 break;
             case "em andamento":
-                this.statusIcon = "check_circle";
+                this.statusIcon = false;
                 break;
         }
 

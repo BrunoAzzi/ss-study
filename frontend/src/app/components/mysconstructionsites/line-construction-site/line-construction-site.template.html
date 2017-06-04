@@ -1,6 +1,9 @@
 <div fxLayout fxFlex fxLayoutAlign="start center" class="construction-site-info">
     <img src="" alt="">
-    <md-icon [ngClass]="status">{{statusIcon}}</md-icon>
+    <md-icon *ngIf="statusIcon" fxLayout fxLayoutAlign="center center" [ngClass]="status"> {{statusIcon}}</md-icon>
+    <div *ngIf="!statusIcon" class="icon-wrapper warn" fxLayout fxLayoutAlign="center center">
+        <img src="assets/icon/myconstructionsite/em-execucao.png" alt="">
+    </div>
     <span class="title">Koerich Beiramar Office</span>
     <span class="horizontal-divider">|</span>
     <span class="address">Novo Campeche, Florianópolis - SC</span>
@@ -8,18 +11,18 @@
     <span class="sponsor">Responsável: João da Silva</span>
 </div>
 <div fxLayout fxLayoutAlign="end center" class="tools">
-    <div class="">
-        <md-icon></md-icon>
-        <span></span>
+    <div fxLayout="column" class="labeled-icon">
+        <img src="assets/icon/myconstructionsite/danger.png" alt="">
+        <span>12</span>
     </div>
-    <div class="">
-        <md-icon></md-icon>
-        <span></span>
+    <div fxLayout="column" class="labeled-icon">
+        <img src="assets/icon/myconstructionsite/cone.png" alt="">
+        <span>30</span>
     </div>
-    <div class="">
-        <md-icon></md-icon>
-        <span></span>
+    <div fxLayout="column" class="labeled-icon">
+        <img src="assets/icon/myconstructionsite/forma.png" alt="">
+        <span>70</span>
     </div>
-    <md-icon></md-icon>
-    <md-icon>edit</md-icon>
+    <md-icon class="bell" fxLayout fxLayoutAlign="center center">notifications</md-icon>
+    <md-icon fxLayout fxLayoutAlign="center center">edit</md-icon>
 </div>

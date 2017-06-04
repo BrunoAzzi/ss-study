@@ -1,7 +1,7 @@
-import {Component, Inject} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { personalDataWorker } from '../../../mocks/personalDataWorker/personalDataWorker';
-import {CorreiosService} from "../../../services/correios.service";
+import { Component, Inject } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { personalDataWorker  } from '../../../mocks/personalDataWorker/personalDataWorker';
+import { CorreiosService } from "../../../services/correios.service";
 import { Endereco_completo } from '../../../mocks/endereco_completo/endereco_completo';
 import { CommonModule } from '@angular/common';
 

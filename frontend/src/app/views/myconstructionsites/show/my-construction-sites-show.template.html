@@ -1,41 +1,42 @@
-<div fxLayout fxLayoutAlign="space-between center" class="top-actionbar">
-    <div fxLayout fxLayoutAlign="start center">
-        <md-icon class="search">search</md-icon>
-        <md-chip-list>
-            <md-chip class="warn" fxLayout fxLayoutAlign="start center">
-                <md-icon fxLayout fxLayoutAlign="center center">check_circle</md-icon>
-                <span>Em andamento</span>
-            </md-chip>
-            <md-chip class="danger" fxLayout fxLayoutAlign="start center">
-                <md-icon fxLayout fxLayoutAlign="center center">remove</md-icon>
-                <span>Paralizadas</span>
-            </md-chip>
-            <md-chip class="success" fxLayout fxLayoutAlign="start center">
-                <md-icon fxLayout fxLayoutAlign="center center">check</md-icon>
-                <span>Finalizadas</span>
-            </md-chip>
-        </md-chip-list>
-    </div>
-    <div fxLayout fxLayoutAlign="end center" class="right-actionbar">
-        <md-select floatPlaceholder="never" placeholder="teste" class="order">
-            <md-option *ngFor="let state of states" [value]="state.code">{{ state.name }}</md-option>
-        </md-select>
-        <button md-icon-button (click)="setListView()" type="button" name="button">
+<div class="main-content">
+    <div fxLayout fxLayoutAlign="space-between center" class="top-actionbar">
+        <div fxLayout fxLayoutAlign="start center">
+            <md-icon class="search">search</md-icon>
+            <md-chip-list>
+                <md-chip class="warn" fxLayout fxLayoutAlign="start center">
+                    <md-icon fxLayout fxLayoutAlign="center center">check_circle</md-icon>
+                    <span>Em andamento</span>
+                </md-chip>
+                <md-chip class="danger" fxLayout fxLayoutAlign="start center">
+                    <md-icon fxLayout fxLayoutAlign="center center">remove</md-icon>
+                    <span>Paralizadas</span>
+                </md-chip>
+                <md-chip class="success" fxLayout fxLayoutAlign="start center">
+                    <md-icon fxLayout fxLayoutAlign="center center">check</md-icon>
+                    <span>Finalizadas</span>
+                </md-chip>
+            </md-chip-list>
+        </div>
+        <div fxLayout fxLayoutAlign="end center" class="right-actionbar">
+            <md-select floatPlaceholder="never" placeholder="teste" class="order">
+                <md-option *ngFor="let state of states" [value]="state.code">{{ state.name }}</md-option>
+            </md-select>
+            <button md-icon-button (click)="setListView()" type="button" name="button">
             <md-icon [ngClass]="{actived: listActived}">list</md-icon>
         </button>
-        <button md-icon-button (click)="setBlockView()" type="button" name="button">
+            <button md-icon-button (click)="setBlockView()" type="button" name="button">
             <md-icon [ngClass]="{actived: blockActived}">view_module</md-icon>
         </button>
+        </div>
+
     </div>
 
-
-</div>
-
-<div *ngIf="listActived; else blockView" class="list-wrapper">
-    <div class="" *ngFor="let constructionSite of constructionSiteList">
-        <line-construction-site fxFlex fxLayout fxLayoutAlign="space-between center" *ngIf="constructionSite" [constructionSite]="constructionSite"></line-construction-site>
+    <div *ngIf="listActived; else blockView" class="list-wrapper">
+        <div class="" *ngFor="let constructionSite of constructionSiteList">
+            <line-construction-site fxFlex fxLayout fxLayoutAlign="space-between center" *ngIf="constructionSite" [constructionSite]="constructionSite"></line-construction-site>
+        </div>
     </div>
-</div>
-<!-- <ng-template #blockView>
+    <!-- <ng-template #blockView>
     <card-construction-site *ngFor="let constructionSite of constructionSiteList" [constructionSite]="constructionSite"></card-construction-site>
 </ng-template> -->
+</div>
