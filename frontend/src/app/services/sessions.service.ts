@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import {HttpClientService} from "./http-client.service";
-import { Cookie } from 'ng2-cookies/ng2-cookies';
 import 'rxjs/add/operator/map'
+
+import { HttpClientService } from "./http-client.service";
+import { Cookie } from 'ng2-cookies/ng2-cookies';
+
 
 @Injectable()
 export class SessionsService {
@@ -12,10 +13,8 @@ export class SessionsService {
   }
 
     login(email: string, password: string) {
-        return this.service.postLogin(JSON.stringify({ email: email, password: password }))
-            .map((response: Response) => {
-                console.log(response.json());
-                let obj = response.json();
+        return this.service.post('/sessions', JSON.stringify({ email: email, password: password }))
+            .map((obj) => {
                 if (obj.user && obj.user.token) {
                     Cookie.set('auth_token', obj.user.token);
                 }

@@ -7,25 +7,40 @@
 @import 'components/common/select.scss';
 
 html {
-    height: 100%;
+    height: 100vh;
 }
 
 body {
-    display: flex;
-    overflow: hidden;
-    flex: 1;
-    flex-direction: column;
-    min-height: 100%;
-    max-height: 100%;
+    height: 100vh;
     margin: 0;
     padding: 0;
     font-family: 'Lato', sans-serif;
 }
 
 .body-content {
-    position: relative;
     padding: 20px;
-    max-height: 100%;
-    overflow-y: auto;
     box-sizing: border-box;
+    overflow: auto;
+}
+
+.main-content {
+    height: 100vh;
+}
+
+.leaflet-control-attribution {
+    display: none !important;
+}
+
+.leaflet-control-zoom {
+    border: none !important;
+    background-color: #ffffff;
+}
+
+.leaflet-control-zoom-in {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+}
+
+.leaflet-control-zoom-in, .leaflet-control-zoom-out {
+    color: #b8b9b9 !important;
+    box-shadow: 0px 3px 9px 0 rgba(0, 0, 0, 0.05) !important;
 }

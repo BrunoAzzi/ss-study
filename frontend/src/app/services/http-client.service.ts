@@ -1,5 +1,7 @@
-import {Injectable} from '@angular/core';
-import {Http, Headers} from '@angular/http';
+import { Injectable } from '@angular/core';
+import { Http, Headers, Response } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map'
 
 @Injectable()
 export class HttpClientService {
@@ -8,12 +10,17 @@ export class HttpClientService {
 
   constructor(private http: Http) {}
 
-  postLogin(params) {
-    
+  standardHeaders() {
     var headers = new Headers();
-    headers.append('Content-Type', 'application/json');
+    headers.append('Content-Type', 'application/json')
+    return { headers: headers }
+  }
 
-    return this.http.post(this.url + "/sessions", params, {headers: headers});
+  post(path: String, params) {
+    return this.http.post(this.url + path, params, this.standardHeaders())
+      .map((response: Response) => {
+        return response.text().length > 0 ? response.json() : {}
+      });
   }
 
 }
