@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'myconstructionsites',
@@ -7,14 +8,10 @@ import { Component } from '@angular/core';
 })
 export class MyConstructionSitesComponent {
 
-  mapImage = [{ 'titulo': '2ºGaragem', 'url': 'assets/phaser/map.png' }];
-  popUp = 'assets/popUp.png';
-  view = false;
-
-  constructor() {
+  constructor(private router: Router) {
   }
 
-  callModal(){
-    
+  activeRoute(routename: string): boolean {
+      return this.router.url.indexOf(routename) > -1;
   }
 }

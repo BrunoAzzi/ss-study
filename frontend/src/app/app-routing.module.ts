@@ -39,8 +39,6 @@ const routes: Routes = [
             {
                 path: 'myconstructionsites', component: MyConstructionSitesComponent, canActivate: [AuthGuard], children: [
                     { path: '', component: MyConstructionSitesLandingPageComponent, canActivate: [AuthGuard] },
-                    // { path: 'list', component: MyConstructionSitesListComponent, canActivate: [AuthGuard] },
-                    // { path: 'add', component: MyConstructionSitesAddComponent, canActivate: [AuthGuard] },
                     { path: 'monitoring', component: MonitoringComponent, canActivate: [AuthGuard]}
                 ]
             },
