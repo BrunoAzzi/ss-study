@@ -32,6 +32,7 @@ import { SkillComponent } from "./components/workers/skill/skill.component";
 import { RecyclingComponent } from "./components/workers/recycling/recycling.component";
 import { BoxMessageComponent } from "./components/common/box-message/box-message.component";
 import { BlueprintComponent } from './components/blueprint/blueprint.component';
+import { ToolboxComponent } from './components/toolbox/toolbox.component';
 
 import { PPEComponent } from "./views/ppe/ppe.component";
 import { MyConstructionSitesComponent } from "./views/myconstructionsites/myconstructionsites.component";
@@ -124,6 +125,7 @@ import { MyConstructionSitesLandingPageComponent } from './views/myconstructions
         BoxMessageComponent,
         MonitoringComponent,
         BlueprintComponent,
+        ToolboxComponent,
 
         // Painel Emocional
         StatusDiaComponent,

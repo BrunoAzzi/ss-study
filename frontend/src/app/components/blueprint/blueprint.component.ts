@@ -1,5 +1,5 @@
 import { element } from 'protractor';
-import { Component, OnInit, AfterContentChecked, Input } from '@angular/core';
+import { Component, AfterContentChecked, Input } from '@angular/core';
 import * as L from 'leaflet';
 
 @Component({
@@ -8,42 +8,20 @@ import * as L from 'leaflet';
     styleUrls: ['blueprint.component.scss']
 })
 
-export class BlueprintComponent implements OnInit, AfterContentChecked {
+export class BlueprintComponent implements AfterContentChecked {
     
+    @Input() mapType: string;
+
     private map: any;
     private currentMark: any;
     private coordinates: any = {};
-    private currentTool: string;
     private currentFloor: string;
     private lastMap: any;
     private imageMap: any;
+    private position: any;
     private floors: Array<any>;
     private firstTime: boolean = true;
-
-    @Input() mapType: string;
     
-    private tools: Array<any> = [
-        { name: 'checkpoint', imageName: 'cone', labelName: 'Check Point' },
-        { name: 'cup_holders', imageName: 'cup_holders', labelName: 'Guarda Copos' },
-        { name: 'crane', imageName: 'crane', labelName: 'Grua' },
-        { name: 'water', imageName: 'water', labelName: 'Água' },
-        { name: 'wc', imageName: 'wc', labelName: 'Banheiro' },
-        { name: 'er', imageName: 'er', labelName: 'Primeiros Socorros' },
-        { name: 'tray', imageName: 'tray', labelName: 'Bandejas' },
-        { name: 'extinguisher', imageName: 'extinguisher', labelName: 'Extintor' },
-        { name: 'accommodation', imageName: 'accommodation', labelName: 'Alojamento' },
-        { name: 'refectory', imageName: 'refectory', labelName: 'Refeitório' },
-        { name: 'recreation', imageName: 'recreation', labelName: 'Lazer' },
-        { name: 'laundry', imageName: 'laundry', labelName: 'Lavanderia' },
-        { name: 'carpentry', imageName: 'carpentry', labelName: 'Carpintaria' },
-        { name: 'elevator', imageName: 'elevator', labelName: 'Elevador' },
-        { name: 'totem', imageName: 'totem', labelName: 'Totem' },
-        { name: 'others', imageName: 'others', labelName: 'Outros' },
-    ];
-    
-
-    private position: any;
-
     constructor() {
         
         this.floors = [
@@ -55,9 +33,6 @@ export class BlueprintComponent implements OnInit, AfterContentChecked {
             { name: 'T', bounds: new L.LatLngBounds([0, 0], [413, 186]), image: 'assets/maps/terreo.svg' },
             { name: 'SS', bounds: new L.LatLngBounds([0, 0], [413, 186]), image: 'assets/maps/subsolo.svg' },
         ]
-    }
-
-    ngOnInit(): void {
     }
 
     ngAfterContentChecked(): void {
@@ -89,23 +64,16 @@ export class BlueprintComponent implements OnInit, AfterContentChecked {
         }
     }
 
-    changeMark(name: string) {
-        this.currentMark = null;
-        if (this.currentTool === name) {
-            this.currentTool = '';
+    toolChanged(e) {
+        const tool = e.tool;
+        if (tool !== null && tool.name.length > 0) {
+            this.currentMark = L.icon({
+                iconUrl: `assets/maps/markers/${tool.name}.png`,
+                iconSize: tool.size,
+            });
         } else {
-            this.currentTool = name;
-            if (name.length > 0) {
-                this.currentMark = L.icon({
-                    iconUrl: `assets/maps/markers/${name}.png`,
-                    iconSize: [53, 51],
-                });
-            }
+            this.currentMark = null;
         }
-    }
-
-    isSelectedTool(name: string) {
-        return name === this.currentTool;
     }
 
     isSelectedFloor(floor: string) {

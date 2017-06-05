@@ -1,14 +1,3 @@
-<div class="toolbox">
-    <span>Ferramentas: </span>
-    <ul class="tools">
-        <li *ngFor="let tool of tools" [ngClass]="{ active: isSelectedTool(tool.name) }">
-            <a (click)="changeMark(tool.name)">
-                <img src="assets/maps/icons/{{ tool.imageName }}.png" srcset="assets/maps/icons/{{ tool.imageName }}@2x.png 2x, assets/maps/icons/{{ tool.imageName }}@3x.png 3x">
-                {{ tool.labelName }}
-            </a>
-        </li>
-    </ul>
-</div>
 <div class="workbench">
     <div class="floors">
         <div class="tower">Torre 1</div>
