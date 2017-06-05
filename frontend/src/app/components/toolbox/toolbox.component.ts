@@ -31,7 +31,7 @@ export class ToolboxComponent {
     
     constructor() { }
 
-    changeMark(name: string, size: number[]) {
+    changeMark(name: string, size: number[]): void {
         if (this.selectedTool === name) {
             this.selectedTool = '';
             this.change.next({ tool: null });
@@ -44,7 +44,7 @@ export class ToolboxComponent {
         }
     }
 
-    isSelectedTool(name: string) {
+    isSelectedTool(name: string): boolean {
         return name === this.selectedTool;
     }
 }

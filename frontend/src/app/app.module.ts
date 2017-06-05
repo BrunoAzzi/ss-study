@@ -33,6 +33,7 @@ import { RecyclingComponent } from "./components/workers/recycling/recycling.com
 import { BoxMessageComponent } from "./components/common/box-message/box-message.component";
 import { BlueprintComponent } from './components/blueprint/blueprint.component';
 import { ToolboxComponent } from './components/toolbox/toolbox.component';
+import { BarLevelComponent } from './components/bar_level/bar_level.component';
 
 import { PPEComponent } from "./views/ppe/ppe.component";
 import { MyConstructionSitesComponent } from "./views/myconstructionsites/myconstructionsites.component";
@@ -49,6 +50,11 @@ import { CompBaseStatusDia } from "./components/perfil_emocional/comp_base/comp-
 import { StatusDiaComponent } from "./components/perfil_emocional/status_dia/status_dia.component";
 import { StatusTrabalhadoresComponent } from "./components/perfil_emocional/status_trabalhadores/status_trabalhadores.component";
 import { StatusAnoComponent } from "./components/perfil_emocional/status_ano/status_ano.component";
+
+//Models
+
+import { Floor } from './models/floor.model';
+import { Coordinate } from './models/coordinate.model';
 
 // Layouts
 
@@ -129,12 +135,17 @@ import { MyConstructionSitesPhaserComponent } from './views/myconstructionsites/
         MonitoringComponent,
         BlueprintComponent,
         ToolboxComponent,
+        BarLevelComponent,
 
         // Painel Emocional
         StatusDiaComponent,
         StatusTrabalhadoresComponent,
         StatusAnoComponent,
         CompBaseStatusDia,
+
+        //Models
+        Floor,
+        Coordinate,
 
         // Trabalhadores
         SkillComponent,

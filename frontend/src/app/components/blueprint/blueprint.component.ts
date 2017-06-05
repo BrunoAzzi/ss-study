@@ -1,3 +1,4 @@
+import { Floor } from './../../models/floor.model';
 import { element } from 'protractor';
 import { Component, AfterContentChecked, Input } from '@angular/core';
 import * as L from 'leaflet';
@@ -14,26 +15,14 @@ export class BlueprintComponent implements AfterContentChecked {
 
     private map: any;
     private currentMark: any;
-    private coordinates: any = {};
-    private currentFloor: string;
+    private currentFloor: Floor;
     private lastMap: any;
     private imageMap: any;
     private position: any;
-    private floors: Array<any>;
+    
     private firstTime: boolean = true;
     
-    constructor() {
-        
-        this.floors = [
-            { name: '5', bounds: new L.LatLngBounds([0, 0], [413, 186]), image: 'assets/maps/piso.svg' },
-            { name: '4', bounds: new L.LatLngBounds([0, 0], [413, 186]), image: 'assets/maps/piso.svg' },
-            { name: '3', bounds: new L.LatLngBounds([0, 0], [413, 186]), image: 'assets/maps/piso.svg' },
-            { name: '2', bounds: new L.LatLngBounds([0, 0], [413, 186]), image: 'assets/maps/piso.svg' },
-            { name: '1', bounds: new L.LatLngBounds([0, 0], [413, 186]), image: 'assets/maps/piso.svg' },
-            { name: 'T', bounds: new L.LatLngBounds([0, 0], [413, 186]), image: 'assets/maps/terreo.svg' },
-            { name: 'SS', bounds: new L.LatLngBounds([0, 0], [413, 186]), image: 'assets/maps/subsolo.svg' },
-        ]
-    }
+    constructor() { }
 
     ngAfterContentChecked(): void {
         const element = document.getElementById(`sheet${this.mapType}`);
@@ -76,8 +65,15 @@ export class BlueprintComponent implements AfterContentChecked {
         }
     }
 
-    isSelectedFloor(floor: string) {
-        return floor === this.currentFloor;
+    floorChanged(e) {
+        const floor: Floor = e.floor;
+        if(floor !== null) {
+            const bounds = new L.LatLngBounds(floor.bounds);
+            this.imageMap.remove();
+            this.imageMap = L.imageOverlay(floor.imagePath, bounds);
+            this.imageMap.addTo(this.map);
+            this.map.fitBounds(bounds);
+        }
     }
 
     setFloor(floor: any) {
