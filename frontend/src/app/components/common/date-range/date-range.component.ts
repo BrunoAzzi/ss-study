@@ -8,6 +8,7 @@ import {Component, Input} from '@angular/core';
 
 export class DateRangeComponent {
     @Input() disabled: boolean = true;
+    range: any;
 
     disable() {
         let copy = this.getCopyOfOptions();
@@ -19,6 +20,10 @@ export class DateRangeComponent {
         let copy = this.getCopyOfOptions();
         copy.componentDisabled = false;
         this.myDateRangePickerOptionsNormal = copy;
+    }
+
+    getDate() {
+        return this.selectedTextNormal;
     }
 
     private myDateRangePickerOptionsNormal = {
@@ -149,9 +154,10 @@ export class DateRangeComponent {
 
 
     onDateRangeChanged(event: any) {
-        console.log('onDateRangeChanged(): Begin: ', event.beginDate, ' - beginJsDate: ', new Date(event.beginJsDate).toLocaleDateString(), ' - End: ', event.endDate, ' - endJsDate: ', new Date(event.endJsDate).toLocaleDateString(), ' - formatted: ', event.formatted, ' - beginEpoc timestamp: ', event.beginEpoc, ' - endEpoc timestamp: ', event.endEpoc);
+        //console.log('onDateRangeChanged(): Begin: ', event.beginDate, ' - beginJsDate: ', new Date(event.beginJsDate).toLocaleDateString(), ' - End: ', event.endDate, ' - endJsDate: ', new Date(event.endJsDate).toLocaleDateString(), ' - formatted: ', event.formatted, ' - beginEpoc timestamp: ', event.beginEpoc, ' - endEpoc timestamp: ', event.endEpoc);
         if (event.formatted !== '') {
-            this.selectedTextNormal = 'Formatted: ' + event.formatted;
+            //this.selectedTextNormal = 'Formatted: ' + event.formatted;
+            this.selectedTextNormal = event.formatted;
             this.border = '1px solid #CCC';
 
             this.selectedDateRangeNormal = { beginDate: event.beginDate, endDate: event.endDate };
@@ -163,15 +169,15 @@ export class DateRangeComponent {
     }
 
     onInputFieldChanged(event: any) {
-        console.log('onInputFieldChanged(): Value: ', event.value, ' - dateRangeFormat: ', event.dateRangeFormat, ' - valid: ', event.valid);
+        //        console.log('onInputFieldChanged(): Value: ', event.value, ' - dateRangeFormat: ', event.dateRangeFormat, ' - valid: ', event.valid);
     }
 
     onCalendarViewChanged(event: any) {
-        console.log('onCalendarViewChanged(): Year: ', event.year, ' - month: ', event.month, ' - first: ', event.first, ' - last: ', event.last);
+        ///    console.log('onCalendarViewChanged(): Year: ', event.year, ' - month: ', event.month, ' - first: ', event.first, ' - last: ', event.last);
     }
 
     onDateSelected(event: any) {
-        console.log('onDateSelected(): Value: ', event);
+        //    console.log('onDateSelected(): Value: ', event);
     }
 
     getCopyOfOptions(): any {

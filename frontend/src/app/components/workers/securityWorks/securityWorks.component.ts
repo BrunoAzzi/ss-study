@@ -9,7 +9,9 @@ import { CommonModule} from '@angular/common';
 })
 export class SecurityWorksComponent {
     securityForm: FormGroup;
-    submited: boolean = false;
+    submitted: boolean = false;
+    invalidDate: boolean = true;
+
     constructor(private fb: FormBuilder) {
         this.securityForm = this.fb.group({
             brigadistas: new FormControl('', Validators.required),
@@ -32,13 +34,13 @@ export class SecurityWorksComponent {
 
 
     laborsInCipa = [
-        { value: 'suplente', viewValue: 'Membro Suplente' },
-        { value: 'efetivo', viewValue: 'Membro Efetivo' },
-        { value: 'presidente', viewValue: 'Presidente' },
-        { value: 'vice', viewValue: 'Vice Presidente' },
-        { value: 'secretario', viewValue: 'Secretário' },
+        { value: 0, viewValue: 'Membro Suplente' },
+        { value: 1, viewValue: 'Membro Efetivo' },
+        { value: 2, viewValue: 'Presidente' },
+        { value: 3, viewValue: 'Vice Presidente' },
+        { value: 4, viewValue: 'Secretário' },
     ];
-    selectedCipaLabor: string = '';
+    selectedCipaLabor: number = 5;
 
     cipeiroChange(deviceValue, dateRange) {
         if (deviceValue === 0) {
@@ -52,9 +54,13 @@ export class SecurityWorksComponent {
         }
     }
 
-    saveSecurityForm(safetyCard) {
-        this.submited = true;
-        if (this.securityForm.valid) {
+    saveSecurityForm(safetyCard, dateRange, btnsave) {
+        this.submitted = true;
+        let date = dateRange.getDate();
+        if (date == '' || date == null) { this.invalidDate = true; }
+        else { this.invalidDate = false; }
+
+        if (this.securityForm.valid && this.selectedCipeiro == 0 && !this.invalidDate) {
             safetyCard.close();
         }
     }

@@ -3,7 +3,7 @@
         <span>Dados Segurança do Trabalho</span>
     </safety-card-header>
     <safety-card-content>
-        <form id="securityForm" [formGroup]="securityForm" (submit)="saveSecurityForm(safetyCard)" name="securityForm">
+        <form id="securityForm" [formGroup]="securityForm" (submit)="saveSecurityForm(safetyCard, dateRange)" name="securityForm">
             <div class="form-content">
                 <div class="square">
                     <md-select formControlName="cipeiros" required name="cipeiros" class="maxWidthSimNao" [(ngModel)]="selectedCipeiro" (ngModelChange)="cipeiroChange(selectedCipeiro, dateRange)" placeholder="Trabalhador é cipeiro?">
@@ -24,6 +24,9 @@
                 </div>
                 <div class="square">
                     <date-range #dateRange name="data_range"></date-range>
+                    <div *ngIf="submited && invalidDate">
+                        <a class="md-error">Campo Obrigatório.</a>
+                    </div>
                 </div>
                 <div class="square">
                     <md-select required name="brigadistas" formControlName="brigadistas" class="maxWidthSimNao" placeholder="Trabalhador é brigadista?" [(ngModel)]="selectedBrigadista">
