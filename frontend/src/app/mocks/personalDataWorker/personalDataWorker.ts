@@ -1,6 +1,6 @@
 import { CBO } from "./../CBO/CBO";
 
-export class personalDataWorker {
+export class PersonalDataWorker {
     name: string;
     cpf: string;
     sex: string;
