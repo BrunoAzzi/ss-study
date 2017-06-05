@@ -1,6 +1,6 @@
-import { Component, OnInit, AfterViewChecked, Input } from '@angular/core';
-
-declare var L: any;
+import { element } from 'protractor';
+import { Component, OnInit, AfterContentChecked, Input } from '@angular/core';
+import * as L from 'leaflet';
 
 @Component({
     selector: 'app-blueprint',
@@ -8,15 +8,17 @@ declare var L: any;
     styleUrls: ['blueprint.component.scss']
 })
 
-export class BlueprintComponent implements OnInit, AfterViewChecked {
-    map: any;
-    currentMark: any;
-    coordinates: any = {};
+export class BlueprintComponent implements OnInit, AfterContentChecked {
+    
+    private map: any;
+    private currentMark: any;
+    private coordinates: any = {};
     private currentTool: string;
     private currentFloor: string;
     private lastMap: any;
     private imageMap: any;
     private floors: Array<any>;
+    private firstTime: boolean = true;
 
     @Input() mapType: string;
     
@@ -45,41 +47,46 @@ export class BlueprintComponent implements OnInit, AfterViewChecked {
     constructor() {
         
         this.floors = [
-            { name: '5', bounds: [[0, 0], [413, 186]], image: 'assets/maps/piso.svg' },
-            { name: '4', bounds: [[0, 0], [413, 186]], image: 'assets/maps/piso.svg' },
-            { name: '3', bounds: [[0, 0], [413, 186]], image: 'assets/maps/piso.svg' },
-            { name: '2', bounds: [[0, 0], [413, 186]], image: 'assets/maps/piso.svg' },
-            { name: '1', bounds: [[0, 0], [413, 186]], image: 'assets/maps/piso.svg' },
-            { name: 'T', bounds: [[0, 0], [413, 186]], image: 'assets/maps/terreo.svg' },
-            { name: 'SS', bounds: [[0, 0], [413, 186]], image: 'assets/maps/subsolo.svg' },
+            { name: '5', bounds: new L.LatLngBounds([0, 0], [413, 186]), image: 'assets/maps/piso.svg' },
+            { name: '4', bounds: new L.LatLngBounds([0, 0], [413, 186]), image: 'assets/maps/piso.svg' },
+            { name: '3', bounds: new L.LatLngBounds([0, 0], [413, 186]), image: 'assets/maps/piso.svg' },
+            { name: '2', bounds: new L.LatLngBounds([0, 0], [413, 186]), image: 'assets/maps/piso.svg' },
+            { name: '1', bounds: new L.LatLngBounds([0, 0], [413, 186]), image: 'assets/maps/piso.svg' },
+            { name: 'T', bounds: new L.LatLngBounds([0, 0], [413, 186]), image: 'assets/maps/terreo.svg' },
+            { name: 'SS', bounds: new L.LatLngBounds([0, 0], [413, 186]), image: 'assets/maps/subsolo.svg' },
         ]
     }
 
-    ngOnInit() {
+    ngOnInit(): void {
     }
 
-    ngAfterViewChecked() {
-        const self = this;
+    ngAfterContentChecked(): void {
+        const element = document.getElementById(`sheet${this.mapType}`);
+        
+        if (this.firstTime && element !== null && element !== undefined) {
+            this.firstTime = false;
+            const self = this;
+            
+            this.map = L.map(`sheet${this.mapType}`, {
+                crs: L.CRS.Simple,
+                maxZoom: 3
+            });
 
-        this.map = L.map('sheet', {
-            crs: L.CRS.Simple,
-            maxZoom: 3
-        });
+            const bounds = new L.LatLngBounds([0, 0], [413, 186]);
+            this.imageMap = L.imageOverlay('', bounds);
+            this.imageMap.addTo(this.map);
+            this.map.fitBounds(bounds);
 
-        const bounds = [[0, 0], [413, 186]];
-        this.imageMap = L.imageOverlay('', bounds);
-        this.imageMap.addTo(this.map);
-        this.map.fitBounds(bounds);
+            this.setFloor(this.floors[0]);
 
-        this.setFloor(this.floors[0]);
-
-        this.map.on('click', function(e) {
-            if (self.currentMark) {
-                self.position = { old: null, new: e.latlng };
-                let marker = L.marker(e.latlng, {icon: self.currentMark, draggable: true, pane: 'markerPane'});
-                self.setMarker(self, marker);
-            }
-        } );
+            this.map.on('click', function(e) {
+                if (self.currentMark) {
+                    self.position = { old: null, new: e.latlng };
+                    let marker = L.marker(e.latlng, {icon: self.currentMark, draggable: true, pane: 'markerPane'});
+                    self.setMarker(self, marker);
+                }
+            } );
+        }
     }
 
     changeMark(name: string) {
