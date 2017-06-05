@@ -2,9 +2,9 @@
     <span>Ferramentas: </span>
     <ul class="tools">
         <li *ngFor="let tool of tools" [ngClass]="{ active: isSelectedTool(tool.name) }">
-            <a (click)="changeMark(tool.name)">
-                <img src="assets/maps/icons/{{ tool.imageName }}.png" srcset="assets/maps/icons/{{ tool.imageName }}@2x.png 2x, assets/maps/icons/{{ tool.imageName }}@3x.png 3x">
-                {{ tool.labelName }}
+            <a (click)="changeMark(tool.name, tool.size)">
+                <img src="assets/maps/icons/{{ tool.icon }}.png" srcset="assets/maps/icons/{{ tool.icon }}@2x.png 2x, assets/maps/icons/{{ tool.icon }}@3x.png 3x">
+                {{ tool.title }}
             </a>
         </li>
         <li [ngClass]="{ active: isSelectedTool('others') }">
