@@ -23,6 +23,7 @@ import { KeysPipe } from "./pipes/keys.pipe";
 import { DataTablePipe } from "./components/perfil_emocional/status_trabalhadores/DataTablePipe.pipe";
 
 // Components
+import { SecurityWorksComponent } from "./components/workers/securityWorks/securityWorks.component";
 import { WorkersDataComponent } from "./components/workers/workersData/workersData.component";
 import { CompaniesComponent } from "./views/companies/companies.component";
 import { CompanyDetailsComponent } from  "./components/forms/company-details/company-details.component";
@@ -43,7 +44,7 @@ import { WorkersComponent } from "./views/workers/workers.component";
 import { MonitoringComponent } from './views/monitoring/monitoring.component';
 
 // Painel Emocional
-
+import { PainelEmocionalComponent } from './views/painelEmocional/painelEmocional.component';
 import { CompBaseStatusDia } from "./components/perfil_emocional/comp_base/comp-base-status-dia.component";
 import { StatusDiaComponent } from "./components/perfil_emocional/status_dia/status_dia.component";
 import { StatusTrabalhadoresComponent } from "./components/perfil_emocional/status_trabalhadores/status_trabalhadores.component";
@@ -124,11 +125,13 @@ import { MyConstructionSitesPhaserComponent } from './views/myconstructionsites/
         MyPhaserComponent,
         CompanyDetailsComponent,
         WorkersDataComponent,
+        SecurityWorksComponent,
         BoxMessageComponent,
         MonitoringComponent,
         BlueprintComponent,
 
         // Painel Emocional
+        PainelEmocionalComponent,
         StatusDiaComponent,
         StatusTrabalhadoresComponent,
         StatusAnoComponent,

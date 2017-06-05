@@ -1,0 +1,91 @@
+::-webkit-input-placeholder {
+    color: red;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 8px;
+}
+
+td textarea {
+    border: none;
+}
+
+md-select /deep/ .mat-select-trigger {
+    font-size: 14px;
+}
+
+md-option {
+    font-size: 14px;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 8px;
+}
+
+.mat-input-suffix {
+    margin-left: 10px;
+}
+
+.md-error {
+    color: rgb(244, 67, 54);
+    display: block;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-size: 14px;
+    height: 16px;
+    text-align: center;
+    width: 335.625px;
+    -webkit-box-direction: normal;
+}
+
+.square {
+    padding-right: 10px;
+    padding-bottom: 30px;
+    min-width: 31%;
+    text-align: center;
+}
+
+.form-content {
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+
+    md-input-container md-select {
+        width: 100%;
+        font-family: Lato;
+        font-size: 12px;
+        font-weight: bold;
+        color: #3c3c3c;
+    }
+}
+// .formato-material {
+//     width: 100%;
+//     font-family: Lato;
+//     font-size: 12px;
+//     font-weight: bold;
+//     color: rgba(0,0,0,.38);
+// }
+
+.select-material {
+    margin-bottom: 6px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.save-and-continue {
+    color: white;
+    background-color: #a1abb0;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+@media screen and (max-width: 768px), (min-device-width: 768px) and (max-device-width: 1024px) {
+    .form-bottom,
+    .form-content {
+        text-align: center;
+    }
+}
