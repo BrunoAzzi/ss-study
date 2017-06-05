@@ -59,7 +59,6 @@ import { BlankComponent } from "./components/common/layouts/blank/blank.componen
 import { BasicComponent } from "./components/common/layouts/basic/basic.component";
 import { TopnavbarComponent } from "./components/common/topnavbar/topnavbar.component";
 import { NavigationComponent } from "./components/common/navigation/navigation.component";
-import { MyPhaserComponent } from "./components/common/my-phaser/my-phaser.component";
 
 // Notifications
 import { NotificationSidenavContainerModule } from "./components/common/notifications";
@@ -92,7 +91,6 @@ import { CategoryDividerModule } from "./components/common/category-divider";
 
 import { InputFile } from "./components/common/input-file/input-file.component";
 import { MyConstructionSitesLandingPageComponent } from './views/myconstructionsites/landing-page/my-construction-sites-landing-page.component';
-import { MyConstructionSitesPhaserComponent } from './views/myconstructionsites/phaser/my-construction-sites-phaser.component';
 
 @NgModule({
     declarations: [
@@ -121,7 +119,6 @@ import { MyConstructionSitesPhaserComponent } from './views/myconstructionsites/
         BasicComponent,
         TopnavbarComponent,
         NavigationComponent,
-        MyPhaserComponent,
         CompanyDetailsComponent,
         WorkersDataComponent,
         BoxMessageComponent,
@@ -139,7 +136,6 @@ import { MyConstructionSitesPhaserComponent } from './views/myconstructionsites/
         RecyclingComponent,
         InputFile,
         MyConstructionSitesLandingPageComponent,
-        MyConstructionSitesPhaserComponent
     ],
     imports: [
         // Notification Module
