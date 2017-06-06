@@ -134,11 +134,13 @@
                             </md-input-container>
                         </td>
                         <td>
-                            <md-select class="full-width" formControlName="status" placeholder="Status">
+                            <md-select class="full-width" [(ngModel)]="selectedStatusValue" formControlName="status" placeholder="Status">
                                 <md-option *ngFor="let statu of status" [value]="statu.value">
                                     {{ statu.viewValue }}
                                 </md-option>
                             </md-select>
+
+                            <p *ngIf="selectedStatusValue=='demitido'">{{selectedStatusValue}}</p>
                         </td>
                     </tr>
 
