@@ -12,7 +12,7 @@ export class BarLevelComponent {
     @Output() change: EventEmitter<any> = new EventEmitter();
 
     private floors: Array<Floor>;
-    private selectedFloor: Floor;
+    private selectedFloor: Floor = null;
 
     constructor() {
         this.floors = [
@@ -32,6 +32,9 @@ export class BarLevelComponent {
     }
 
     isSelectedFloor(floorName: string) {
-        return floorName === this.selectedFloor.name;
+        if (this.selectedFloor !== null) {
+            return floorName === this.selectedFloor.name;
+        }
+        return false;
     }
 }
