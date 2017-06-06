@@ -1,0 +1,67 @@
+<safety-card>
+    <safety-card-header>
+        <span>Dados de saúde</span>
+    </safety-card-header>
+    <safety-card-content>
+        <form [formGroup]="myForm" id="formHealth">
+            <div class="form-content">
+                <table class="table-form">
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <md-select  formControlName="bloodTypes" placeholder="Tipo Sanguíneo">
+                                <md-option *ngFor="let bloodType of bloodTypes" [value]="bloodType.value">
+                                    {{bloodType.viewValue}}
+                                </md-option>
+                            </md-select>
+                        </td>
+                        <td >
+                            <md-input-container>
+                                <input mdInput placeholder="Alergias">
+                            </md-input-container>
+                        </td>
+                        <td >
+                            <md-input-container>
+                                <input mdInput placeholder="Doenças Existestes">
+                            </md-input-container>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <md-select formControlName="asoTypes" placeholder="aso">
+                                <md-option *ngFor="let asoType of asoTypes" [value]="asoType.value">
+                                    {{asoType.viewValue}}
+                                </md-option>
+                            </md-select>
+                        </td>
+                        <td>
+                            <md-input-container>
+                                <input mdInput formControlName="dateHealth" placeholder="Data" mask='00/00/0000'>
+                            </md-input-container>
+                        </td>
+                        <td>
+                            <md-select formControlName = "recyclingPriorities" placeholder="Prioridade de Reciclagem">
+                                <md-option  *ngFor="let recyclingPriority of recyclingPriorities" [value]="recyclingPriority.value">
+                                    {{recyclingPriority.viewValue}}
+                                </md-option>
+                            </md-select>
+                        </td>
+                        <td>
+                            <input-file (onFileSelect)="onFileSelect($event)" [accept]="'.doc,.docx,.png,.pdf'"></input-file>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="end center">
+                <button class="save-and-continue" md-raised-button type="submit">
+                        <span>Salvar e continuar</span>
+                </button>
+            </div>
+        </form>
+    </safety-card-content>
+</safety-card>
