@@ -1,14 +1,13 @@
 import { Floor } from './../../models/floor.model';
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
     selector: 'bar-level',
-    templateUrl: 'bar_level.component.html',
-    styleUrls: ['bar_level.component.scss']
+    templateUrl: 'bar-level.component.html',
+    styleUrls: ['bar-level.component.scss']
 })
 
 export class BarLevelComponent {
-
     @Output() change: EventEmitter<any> = new EventEmitter();
 
     private floors: Array<Floor>;

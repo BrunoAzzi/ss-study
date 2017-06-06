@@ -1,3 +1,4 @@
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -33,7 +34,7 @@ import { RecyclingComponent } from "./components/workers/recycling/recycling.com
 import { BoxMessageComponent } from "./components/common/box-message/box-message.component";
 import { BlueprintComponent } from './components/blueprint/blueprint.component';
 import { ToolboxComponent } from './components/toolbox/toolbox.component';
-import { BarLevelComponent } from './components/bar_level/bar_level.component';
+import { BarLevelComponent } from './components/bar-level/bar-level.component';
 
 import { PPEComponent } from "./views/ppe/ppe.component";
 import { MyConstructionSitesComponent } from "./views/myconstructionsites/myconstructionsites.component";
@@ -43,6 +44,7 @@ import { ThirdPartiesComponent } from "./views/thirdparties/thirdparties.compone
 import { TrainingComponent } from "./views/training/training.component";
 import { WorkersComponent } from "./views/workers/workers.component";
 import { MonitoringComponent } from './views/myconstructionsites/monitoring/monitoring.component';
+import { AreaMappingComponent } from './components/area-mapping/area-mapping.component';
 
 // Painel Emocional
 
@@ -136,6 +138,7 @@ import { MyConstructionSitesPhaserComponent } from './views/myconstructionsites/
         BlueprintComponent,
         ToolboxComponent,
         BarLevelComponent,
+        AreaMappingComponent,
 
         // Painel Emocional
         StatusDiaComponent,

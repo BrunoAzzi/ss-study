@@ -1,10 +1,10 @@
 import { Floor } from './../../models/floor.model';
 import { element } from 'protractor';
-import { Component, AfterContentChecked, Input } from '@angular/core';
+import { Component, AfterContentChecked, Input, Output, EventEmitter } from '@angular/core';
 import * as L from 'leaflet';
 
 @Component({
-    selector: 'app-blueprint',
+    selector: 'blueprint',
     templateUrl: 'blueprint.component.html',
     styleUrls: ['blueprint.component.scss']
 })
@@ -13,25 +13,21 @@ export class BlueprintComponent implements AfterContentChecked {
 
     @Input() mapType: string;
 
+    @Output() changeMap: EventEmitter<any> = new EventEmitter();
+    @Output() changeMapLayer: EventEmitter<any> = new EventEmitter();
+    @Output() changeImageMap: EventEmitter<any> = new EventEmitter();
+
     private map: any;
     private mapLayer: L.LayerGroup;
-    private currentMark: any;
-    private currentFloor: Floor;
-    private lastMap: any;
     private imageMap: any;
-    private position: any;
     private firstTime = true;
 
-    constructor() {
-        this.mapLayer = new L.LayerGroup([]);
-    }
+    constructor() { }
 
     ngAfterContentChecked(): void {
         const element = document.getElementById(`sheet${this.mapType}`);
-
         if (this.firstTime && element !== null && element !== undefined) {
             this.firstTime = false;
-            const self = this;
 
             this.map = L.map(`sheet${this.mapType}`, {
                 crs: L.CRS.Simple,
@@ -43,40 +39,15 @@ export class BlueprintComponent implements AfterContentChecked {
             this.imageMap.addTo(this.map);
             this.map.fitBounds(bounds);
 
+            this.mapLayer = new L.LayerGroup([]);
             this.mapLayer.addTo(this.map);
 
-            this.map.on('click', function(e) {
-                if (self.currentMark) {
-                    self.position = { old: null, new: e.latlng };
-                    const marker = L.marker(e.latlng, {icon: self.currentMark, draggable: true, pane: 'markerPane'});
-                    self.mapLayer.addLayer(marker);
-                }
-            } );
+            this.changeMap.next(this.map);
+            this.changeMapLayer.next(this.mapLayer);
+            this.changeImageMap.next(this.imageMap);
         }
     }
 
-    toolChanged(e) {
-        const tool = e.tool;
-        if (tool !== null && tool.name.length > 0) {
-            this.currentMark = L.icon({
-                iconUrl: `assets/maps/markers/${tool.name}.png`,
-                iconSize: tool.size,
-            });
-        } else {
-            this.currentMark = null;
-        }
-    }
-
-    floorChanged(e) {
-        this.mapLayer.clearLayers();
-        const floor: Floor = e.floor;
-        if (floor !== null) {
-            const bounds = new L.LatLngBounds(floor.bounds);
-            this.imageMap.remove();
-            this.imageMap = L.imageOverlay(floor.imagePath, bounds);
-            this.imageMap.addTo(this.map);
-            this.map.fitBounds(bounds);
-        }
-    }
+    
 
 }
