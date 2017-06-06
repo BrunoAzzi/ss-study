@@ -1,5 +1,6 @@
 import { Floor } from './../../../models/floor.model';
 import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { ConstructionService } from './../../../services/construction.service';
 
 @Component({
     selector: 'floor-navigation',
@@ -13,21 +14,26 @@ export class FloorNavigationComponent {
     private floors: Array<Floor>;
     private selectedFloor: Floor = null;
 
-    constructor() {
-        this.floors = [
-            new Floor('5', [[0, 0], [413, 186]], 'assets/maps/piso.svg'),
-            new Floor('4', [[0, 0], [413, 186]], 'assets/maps/piso.svg'),
-            new Floor('3', [[0, 0], [413, 186]], 'assets/maps/piso.svg'),
-            new Floor('2', [[0, 0], [413, 186]], 'assets/maps/piso.svg'),
-            new Floor('1', [[0, 0], [413, 186]], 'assets/maps/piso.svg'),
-            new Floor('T', [[0, 0], [413, 186]], 'assets/maps/terreo.svg'),
-            new Floor('SS', [[0, 0], [413, 186]], 'assets/maps/subsolo.svg')
-        ];
+    private toggleableSections: Array<any>;
+
+    constructor(private constructionService: ConstructionService) {
+        this.floors = constructionService.getConstruction().floors;
 
         this.floors = this.floors.map((floor) => {
             floor.sectionName = "Torre 2";
             return floor;
         })
+
+        this.toggleableSections = this.getSections().map(sectionName => ({ name: sectionName, hidden: true }))
+    }
+
+    isSectionHidden(sectionName) {
+        return this.toggleableSections.find(toggleableSection => (toggleableSection.name === sectionName)).hidden
+    }
+
+    toggleSection(sectionName) {
+        let section = this.toggleableSections.find(toggleableSection => (toggleableSection.name === sectionName))
+        section.hidden = !section.hidden
     }
 
     getSections() {

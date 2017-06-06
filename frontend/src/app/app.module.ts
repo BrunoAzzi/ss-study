@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientService } from "./services/http-client.service";
 import { SessionsService } from "./services/sessions.service";
 import { PasswordService } from "./services/password.service";
+import { ConstructionService } from "./services/construction.service";
 import { AuthGuard } from './guards/index';
 import { MdSnackBar } from '@angular/material';
 import { CommonModule } from '@angular/common';
@@ -207,6 +208,7 @@ import { MyConstructionSitesLandingPageComponent } from './views/myconstructions
         SessionsService,
         PasswordService,
         MdSnackBar,
+        ConstructionService,
         { provide: LocationStrategy, useClass: HashLocationStrategy }],
     bootstrap: [AppComponent]
 })

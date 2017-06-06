@@ -1,11 +1,19 @@
 .floor-navigation {
+
+    .floors {
+        max-height: 1600px;
+        overflow: hidden;
+        transition: all 1s ease;
+        &.hidden {
+            max-height: 0;
+        }
+    }
     
     li {
         display: block;
         background-color: white;
-        border-bottom: 1px solid #e8e8e8;
-        &:last-of-type {
-            border-bottom: none;
+        &.section > a, li {
+            border-bottom: 1px solid #e8e8e8;
         }
         a {
             font-weight: 300;
@@ -23,10 +31,8 @@
         &.section > a {
             background-color: #f2f6f7;
         }
-        &.floor a {
-            .name {
-                font-size: 1.5em;
-            }
+        &.floor a .name {
+            font-size: 1.5em;
         }
         &.active {
             border-left: 2px solid #ff4c4c;
