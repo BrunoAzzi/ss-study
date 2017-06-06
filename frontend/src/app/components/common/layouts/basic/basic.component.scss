@@ -1,5 +1,9 @@
 :host {
     overflow-y: hidden;
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    min-height: 100%;
 }
 
 .main-nav {
