@@ -74,7 +74,7 @@ export class AreaMappingComponent {
         if (this.currentMark) {
             const position = e.latlng;
             const icon = new Icon(this.currentTool.name, this.currentTool.size);
-            this.currentFloor.coordinates.push(new Coordinate(position, icon));
+            this.currentFloor.coordinates.push(new Coordinate(position, icon, this.currentTool.name));
             this.construtionService.updateFloor(this.currentFloor);
             this.createMarker(position, this.currentMark);
         }

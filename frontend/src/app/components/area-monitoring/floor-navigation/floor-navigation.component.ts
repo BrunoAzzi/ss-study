@@ -36,7 +36,7 @@ export class FloorNavigationComponent implements OnInit, OnDestroy {
             floor.sectionName = "Torre 2";
             return floor;
         })
-        this.toggleableSections = this.toggleableSections || this.getSections().map(sectionName => ({ name: sectionName, hidden: true }))
+        this.toggleableSections = this.toggleableSections || this.getSections().map(sectionName => ({ name: sectionName, hidden: false }))
     }
 
     isSectionHidden(sectionName) {

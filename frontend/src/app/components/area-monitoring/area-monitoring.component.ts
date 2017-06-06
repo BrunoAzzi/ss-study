@@ -1,4 +1,5 @@
 import { Floor } from './../../models/floor.model';
+import { Coordinate } from './../../models/coordinate.model';
 import { Component } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
@@ -31,10 +32,24 @@ export class AreaMonitoringComponent {
             this.imageMap = L.imageOverlay(floor.imagePath, bounds);
             this.imageMap.addTo(this.map);
             this.map.fitBounds(bounds);
+            this.setMarkByList(floor.coordinates);
         }
     }
 
+    private setMarkByList(coordinates: Array<Coordinate>) {
+        coordinates.forEach((coordinate, index, array) => {
+            const mark = L.icon({
+                iconUrl: `assets/maps/markers/${coordinate.icon.name}.png`,
+                iconSize: coordinate.icon.size,
+            });
+            this.createMarker(coordinate.position, mark);
+        });
+    }
 
+    private createMarker(position: [number, number], mark: any) {
+        const marker = L.marker(position, { icon: mark, draggable: true, pane: 'markerPane' });
+        this.mapLayer.addLayer(marker);
+    }
 
     changedMap(map) {
         this.map = map;
