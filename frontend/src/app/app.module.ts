@@ -45,6 +45,11 @@ import { TrainingComponent } from "./views/training/training.component";
 import { WorkersComponent } from "./views/workers/workers.component";
 import { MonitoringComponent } from './views/myconstructionsites/monitoring/monitoring.component';
 import { AreaMappingComponent } from './components/area-mapping/area-mapping.component';
+import { AreaMonitoringComponent } from './components/area-monitoring/area-monitoring.component';
+import { SummaryItemComponent } from './components/area-monitoring/summary-item/summary-item.component';
+import { SummaryComponent } from './components/area-monitoring/summary/summary.component';
+import { RiskGraphComponent } from './components/area-monitoring/risk-graph/risk-graph.component';
+import { FloorNavigationComponent } from './components/area-monitoring/floor-navigation/floor-navigation.component';
 
 // Painel Emocional
 
@@ -136,6 +141,11 @@ import { MyConstructionSitesLandingPageComponent } from './views/myconstructions
         ToolboxComponent,
         BarLevelComponent,
         AreaMappingComponent,
+        AreaMonitoringComponent,
+        SummaryItemComponent,
+        SummaryComponent,
+        RiskGraphComponent,
+        FloorNavigationComponent,
 
         // Painel Emocional
         StatusDiaComponent,

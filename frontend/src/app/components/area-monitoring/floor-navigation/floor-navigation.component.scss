@@ -1,0 +1,49 @@
+.floor-navigation {
+    
+    li {
+        display: block;
+        background-color: white;
+        border-bottom: 1px solid #e8e8e8;
+        &:last-of-type {
+            border-bottom: none;
+        }
+        a {
+            font-weight: 300;
+            font-family: 'Lato';
+            box-sizing: border-box;
+            background-color: white;
+            padding: 15px;
+            cursor: pointer;
+
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+        &.section > a {
+            background-color: #f2f6f7;
+        }
+        &.floor a {
+            .name {
+                font-size: 1.5em;
+            }
+        }
+        &.active {
+            border-left: 2px solid #ff4c4c;
+            a {
+                padding-left: 13px;
+            }
+        }
+        &.header {
+            font-size: 0.7em;
+            font-weight: 900;
+            text-transform: uppercase;
+            padding: 15px 15px;
+            color: #999999;
+
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    }
+}
