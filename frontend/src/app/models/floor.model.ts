@@ -6,6 +6,7 @@ export class Floor {
     bounds: [number, number][];
     imagePath: string;
     coordinates: Array<Coordinate> = [];
+    sectionName: string;
 
     constructor(name: string, bounds: [number, number][], imagePath: string) {
         this.name = name;

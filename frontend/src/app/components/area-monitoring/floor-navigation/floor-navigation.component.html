@@ -1,0 +1,22 @@
+<div class="floor-navigation">
+    <ul class="sections">
+        <li *ngFor="let sectionName of getSections()" class="section">
+            <a (click)="toggleSection(sectionName)">
+                <span class="name">{{ sectionName }}</span>
+                <summary alerts="100" cones="200" workers="300"></summary>
+                <md-icon>keyboard_arrow_down</md-icon>
+            </a>
+            <ul class="floors" [ngClass]="{ hidden: isSectionHidden(sectionName) }">
+                <li class="header">
+                    <span>Andares</span>
+                    <span>Risco</span>
+                </li>
+                <li *ngFor="let floor of floors" [ngClass]="{ active: isSelectedFloor(floor.name) }" class="floor"><a (click)="changeFloor(floor)">
+                    <span class="name">{{ floor.name }}</span>
+                    <summary alerts="2" cones="15" workers="30"></summary>
+                    <risk-graph></risk-graph>
+                </a></li>
+            </ul>
+        </li>
+    </ul>
+    </div>

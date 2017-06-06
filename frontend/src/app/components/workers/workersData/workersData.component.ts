@@ -1,7 +1,7 @@
-import {Component, Inject} from '@angular/core';
-import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
-import { personalDataWorker } from '../../../mocks/personalDataWorker/personalDataWorker';
-import {CorreiosService} from "../../../services/correios.service";
+import { Component, Inject } from '@angular/core';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { PersonalDataWorker } from '../../../mocks/personalDataWorker/personalDataWorker';
+import { CorreiosService } from "../../../services/correios.service";
 import { Endereco_completo } from '../../../mocks/endereco_completo/endereco_completo';
 import { CommonModule} from '@angular/common';
 import { CustomValidators } from './customValidators';
@@ -22,8 +22,9 @@ export class WorkersDataComponent {
     completeAddress: string;
     hiredType: boolean = true;
     isValid: boolean = false;
-    worker: personalDataWorker;
+    worker: PersonalDataWorker;
     myForm: FormGroup;
+    selectedStatusValue: string;
 
     constructor(private correiosService: CorreiosService, private cboService: CBOService, private fb: FormBuilder) {
         this.getCBOs();
@@ -55,7 +56,7 @@ export class WorkersDataComponent {
 
     status = [
         { value: 'ativo', viewValue: 'Ativo' },
-        { value: 'inativo', viewValue: 'Inativo' },
+        { value: 'ferias', viewValue: 'Férias' },
         { value: 'afastado', viewValue: 'Afastado' },
         { value: 'demitido', viewValue: 'Demitido' },
     ];
@@ -63,14 +64,6 @@ export class WorkersDataComponent {
     labors = [
         { value: 'prog', viewValue: 'Programador' },
         { value: 'des', viewValue: 'Desenvolvedor' },
-    ];
-
-    laborsInCipa = [
-        { value: 'suplente', viewValue: 'Membro Suplente' },
-        { value: 'efetivo', viewValue: 'Membro Efetivo' },
-        { value: 'presidente', viewValue: 'Presidente' },
-        { value: 'vice', viewValue: 'Vice Presidente' },
-        { value: 'secretario', viewValue: 'Secretário' },
     ];
 
     scholaritys = [
@@ -89,19 +82,6 @@ export class WorkersDataComponent {
     ];
     selectedNecessity: number = 1;
 
-    brigadistas = [
-        { value: 0, viewValue: 'Sim' },
-        { value: 1, viewValue: 'Não' },
-    ];
-    selectedBrigadista: number = 1;
-
-    cipeiros = [
-        { value: 0, viewValue: 'Sim' },
-        { value: 1, viewValue: 'Não' },
-    ];
-    selectedCipeiro: number = 1;
-
-    selectedCipaLabor: boolean = false;
 
     autocompleteAdressFromApi() {
         this.correiosService.getAddress(this.myCep).subscribe(data => {

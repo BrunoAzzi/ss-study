@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientService } from "./services/http-client.service";
 import { SessionsService } from "./services/sessions.service";
 import { PasswordService } from "./services/password.service";
+import { ConstructionService } from "./services/construction.service";
 import { AuthGuard } from './guards/index';
 import { MdSnackBar } from '@angular/material';
 import { CommonModule } from '@angular/common';
@@ -24,6 +25,7 @@ import { KeysPipe } from "./pipes/keys.pipe";
 import { DataTablePipe } from "./components/perfil_emocional/status_trabalhadores/DataTablePipe.pipe";
 
 // Components
+import { SecurityWorksComponent } from "./components/workers/securityWorks/securityWorks.component";
 import { WorkersDataComponent } from "./components/workers/workersData/workersData.component";
 import { CompaniesComponent } from "./views/companies/companies.component";
 import { CompanyDetailsComponent } from  "./components/forms/company-details/company-details.component";
@@ -45,6 +47,11 @@ import { TrainingComponent } from "./views/training/training.component";
 import { WorkersComponent } from "./views/workers/workers.component";
 import { MonitoringComponent } from './views/myconstructionsites/monitoring/monitoring.component';
 import { AreaMappingComponent } from './components/area-mapping/area-mapping.component';
+import { AreaMonitoringComponent } from './components/area-monitoring/area-monitoring.component';
+import { SummaryItemComponent } from './components/area-monitoring/summary-item/summary-item.component';
+import { SummaryComponent } from './components/area-monitoring/summary/summary.component';
+import { RiskGraphComponent } from './components/area-monitoring/risk-graph/risk-graph.component';
+import { FloorNavigationComponent } from './components/area-monitoring/floor-navigation/floor-navigation.component';
 
 // Painel Emocional
 
@@ -130,12 +137,18 @@ import { MyConstructionSitesLandingPageComponent } from './views/myconstructions
         NavigationComponent,
         CompanyDetailsComponent,
         WorkersDataComponent,
+        SecurityWorksComponent,
         BoxMessageComponent,
         MonitoringComponent,
         BlueprintComponent,
         ToolboxComponent,
         BarLevelComponent,
         AreaMappingComponent,
+        AreaMonitoringComponent,
+        SummaryItemComponent,
+        SummaryComponent,
+        RiskGraphComponent,
+        FloorNavigationComponent,
 
         // Painel Emocional
         StatusDiaComponent,
@@ -197,6 +210,7 @@ import { MyConstructionSitesLandingPageComponent } from './views/myconstructions
         SessionsService,
         PasswordService,
         MdSnackBar,
+        ConstructionService,
         { provide: LocationStrategy, useClass: HashLocationStrategy }],
     bootstrap: [AppComponent]
 })
