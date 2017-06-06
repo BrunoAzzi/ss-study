@@ -1,5 +1,3 @@
-import { Floor } from './../../models/floor.model';
-import { element } from 'protractor';
 import { Component, AfterContentChecked, Input, Output, EventEmitter } from '@angular/core';
 import * as L from 'leaflet';
 
@@ -47,7 +45,5 @@ export class BlueprintComponent implements AfterContentChecked {
             this.changeImageMap.next(this.imageMap);
         }
     }
-
-    
 
 }
