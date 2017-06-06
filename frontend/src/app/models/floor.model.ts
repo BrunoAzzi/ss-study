@@ -1,6 +1,7 @@
 import { Coordinate } from './coordinate.model';
 
 export class Floor {
+
     id: number;
     name: string;
     bounds: [number, number][];

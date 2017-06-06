@@ -3,6 +3,7 @@ import { Icon } from './../../models/icon.model';
 import { Coordinate } from './../../models/coordinate.model';
 import { Floor } from './../../models/floor.model';
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
+import { ConstructionService } from './../../services/construction.service';
 
 @Component({
     selector: 'area-mapping',
@@ -23,7 +24,7 @@ export class AreaMappingComponent {
     private currentFloor: Floor;
     private currentPosition: any = { old: null, new: null };
 
-    constructor(private _ngZone: NgZone) { 
+    constructor(private _ngZone: NgZone, private construtionService: ConstructionService) { 
         this.updateExternalEnv();
     }
 
@@ -74,6 +75,7 @@ export class AreaMappingComponent {
             const position = e.latlng;
             const icon = new Icon(this.currentTool.name, this.currentTool.size);
             this.currentFloor.coordinates.push(new Coordinate(position, icon));
+            this.construtionService.updateFloor(this.currentFloor);
             this.createMarker(position, this.currentMark);
         }
     }

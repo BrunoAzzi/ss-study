@@ -1,5 +1,6 @@
 import { Floor } from './../../models/floor.model';
 import { Component } from '@angular/core';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Component({
     selector: 'area-monitoring',
@@ -32,6 +33,8 @@ export class AreaMonitoringComponent {
             this.map.fitBounds(bounds);
         }
     }
+
+
 
     changedMap(map) {
         this.map = map;
