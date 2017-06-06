@@ -2,10 +2,11 @@
 
   $minimized-width: 65px;
 
-  height: 100%;
+  height: 100vh;
   width: auto;
   max-width: $minimized-width;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
   white-space: nowrap;
   transition: all 1s ease;
 

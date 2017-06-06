@@ -1,30 +1,57 @@
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { personalDataWorker  } from '../../../mocks/personalDataWorker/personalDataWorker';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { PersonalDataWorker } from '../../../mocks/personalDataWorker/personalDataWorker';
 import { CorreiosService } from "../../../services/correios.service";
 import { Endereco_completo } from '../../../mocks/endereco_completo/endereco_completo';
-import { CommonModule } from '@angular/common';
+import { CommonModule} from '@angular/common';
+import { CustomValidators } from './customValidators';
+import { CBO } from '../../../mocks/CBO/CBO';
+import { CBOService } from "../../../services/cbo.service";
 
 @Component({
     selector: 'workers-data',
     templateUrl: 'workersData.template.html',
     styleUrls: ['./workersData.component.scss'],
-    providers: [CorreiosService]
+    providers: [CorreiosService, CBOService]
 })
 export class WorkersDataComponent {
     disabled: boolean = true;
-    mycbo: string = '';
+    mycbo: string = "";
     mycbonumber: number = 0;
-    errorMessageExample1: string;
-    errorMessageExample2: string;
     myCep: string = "";
     completeAddress: string;
-    hiredType: any = '';
+    hiredType: boolean = true;
     isValid: boolean = false;
+    worker: PersonalDataWorker;
+    myForm: FormGroup;
 
-    constructor(private correiosService: CorreiosService, private formBuilder: FormBuilder) {
+    constructor(private correiosService: CorreiosService, private cboService: CBOService, private fb: FormBuilder) {
+        this.getCBOs();
+        this.myForm = this.fb.group({
+            fullname: new FormControl('', Validators.compose([Validators.required, CustomValidators.onlytext])),
+            cpf: new FormControl('', Validators.compose([Validators.required, CustomValidators.cpf])),
+            ctps: new FormControl('', CustomValidators.onlyPositiveNumbers),
+            birthDate: null,
+            age: null,
+            nit: new FormControl('', CustomValidators.onlyPositiveNumbers),
+            cep: null,
+            completeAddress: null,
+            admissionDate: null,
+            complement: null,
+            contact: null,
+            cbo: new FormControl('', Validators.required),
+            textArea: null,
+            company: new FormControl({ value: '', disabled: this.hiredType }, null),
+            hiredTypeRadio: null,
+            sex: null,
+            scholarity: [''],
+            role: [''],
+            necessitys: [''],
+            status: ['']
+        })
     }
 
+    getCBOs(): void { }
 
     status = [
         { value: 'ativo', viewValue: 'Ativo' },
@@ -82,20 +109,29 @@ export class WorkersDataComponent {
         });
     }
 
+    autocompleteRoleFromMock() {
+
+        this.cboService.getCBO().subscribe(
+            function(response) { console.log("Success Response" + response) },
+            function(error) { console.log("Error happened" + error) },
+            function() { console.log("the subscription is completed") }
+        );
+    }
+
+    hiredChange() {
+        this.hiredType = !this.hiredType;
+        this.hiredType ? this.myForm.controls.company.disable() : this.myForm.controls.company.enable();
+    }
 
     checkCboEmpty() {
         this.mycbonumber = Number.parseInt(this.mycbo);
-        if (this.mycbonumber > 0) {
-            this.disabled = false;
-        } else {
-            this.disabled = true;
-        }
+        (this.mycbonumber > 0) ? this.disabled = false : this.disabled = true;
     }
 
-
     savePersonalDataWorker(safetyCard) {
-        console.log("Personal Data saved!");
-        if (this.isValid) safetyCard.close();
+        if (this.myForm.valid) {
+            safetyCard.close();
+        }
     }
 
 }
