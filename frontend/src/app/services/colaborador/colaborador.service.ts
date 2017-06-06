@@ -8,9 +8,7 @@ export class ColaboradorService {
     constructor(private http: Http) { }
 
     getColaborador() {
-        console.log(this.http.get(this.colaboradorUrl));
         return this.http.get(this.colaboradorUrl).map((response) => {
-            console.log(response.json().data);
             return response.json().data
         })
     }

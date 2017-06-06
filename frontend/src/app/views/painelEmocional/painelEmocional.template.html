@@ -13,12 +13,22 @@
     <div class="body-content">
         <md-tab-group #tabGroup (selectChange)="onSelectChange($event)">
             <md-tab id="tab4" label="Painel Emocional">
-                <div>
-                    <div class="container">
-                        <status-dia class="half-screen left"></status-dia>
-                        <status-ano class="half-screen right"></status-ano>
+                <div fxLayout fxLayoutWrap class="line-spacer">
+                    <div fxFlex.lt-lg="100" fxFlex.gt-md="50">
+                        <div fxLayout="column" class="column-spacer">
+                            <status-dia></status-dia>
+                        </div>
                     </div>
-                    <status-trabalhadores class="full-screen"></status-trabalhadores>
+                    <div fxFlex.lt-lg="100" fxFlex.gt-md="50">
+                        <div fxLayout="column" class="column-spacer">
+                            <status-ano></status-ano>
+                        </div>
+                    </div>
+                </div>
+                <div fxLayout>
+                    <div fxFlex class="column-spacer">
+                        <status-trabalhadores fxFlex class=""></status-trabalhadores>
+                    </div>
                 </div>
             </md-tab>
 
