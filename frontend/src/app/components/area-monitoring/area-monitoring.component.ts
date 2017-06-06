@@ -37,7 +37,7 @@ export class AreaMonitoringComponent {
         this.map = map;
         this.map.on('click', (e) => {
             if (this.currentMark) {
-                const marker = L.marker(e.latlng, {icon: this.currentMark, draggable: true, pane: 'markerPane'});
+                const marker = L.marker(e.latlng, {icon: this.currentMark, draggable: false, pane: 'markerPane'});
                 this.mapLayer.addLayer(marker);
             }
         });
