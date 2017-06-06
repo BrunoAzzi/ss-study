@@ -26,7 +26,6 @@ export class WorkersDataComponent {
     myForm: FormGroup;
     selectedStatusValue: string;
 
-
     constructor(private correiosService: CorreiosService, private cboService: CBOService, private fb: FormBuilder) {
 
         this.myForm = this.fb.group({
@@ -69,7 +68,6 @@ export class WorkersDataComponent {
     ];
 
     labors = [
-
     ];
 
     scholaritys = [

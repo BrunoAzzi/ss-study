@@ -151,8 +151,6 @@ export class DateRangeComponent {
         this.myDateRangePickerOptionsNormal = copy;
     }
 
-
-
     onDateRangeChanged(event: any) {
         if (event.formatted !== '') {
             this.selectedTextNormal = event.formatted;
