@@ -5,7 +5,7 @@ export class Floor {
     name: string;
     bounds: [number, number][];
     imagePath: string;
-    coordinates: Array<Coordinate>
+    coordinates: Array<Coordinate>;
 
     constructor(name: string, bounds: [number, number][], imagePath: string) {
         this.name = name;

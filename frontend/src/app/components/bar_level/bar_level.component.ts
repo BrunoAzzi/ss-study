@@ -3,17 +3,18 @@ import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'bar-level',
-    templateUrl: 'bar_level.component.html'
+    templateUrl: 'bar_level.component.html',
+    styleUrls: ['bar_level.component.scss']
 })
 
 export class BarLevelComponent {
 
     @Output() change: EventEmitter<any> = new EventEmitter();
 
-    private floors: Array<any>;
+    private floors: Array<Floor>;
     private selectedFloor: Floor;
 
-    constructor() { 
+    constructor() {
         this.floors = [
             new Floor('5', [[0, 0], [413, 186]], 'assets/maps/piso.svg'),
             new Floor('4', [[0, 0], [413, 186]], 'assets/maps/piso.svg'),

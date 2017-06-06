@@ -143,10 +143,6 @@ import { MyConstructionSitesPhaserComponent } from './views/myconstructionsites/
         StatusAnoComponent,
         CompBaseStatusDia,
 
-        //Models
-        Floor,
-        Coordinate,
-
         // Trabalhadores
         SkillComponent,
         RecyclingComponent,
