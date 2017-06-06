@@ -13,6 +13,9 @@
     <div class="body-content">
         <md-tab-group #tabGroup (selectChange)="onSelectChange($event)">
             <md-tab id="tab4" label="Painel Emocional">
+                <div class="inRigth">
+                    <my-date-picker name="birthDate" [options]="myDatePickerOptions" placeholder="Mês/Ano Desejado"></my-date-picker>
+                </div>
                 <div fxLayout fxLayoutWrap class="line-spacer">
                     <div fxFlex.lt-lg="100" fxFlex.gt-md="50">
                         <div fxLayout="column" class="column-spacer">
@@ -30,6 +33,7 @@
                         <status-trabalhadores fxFlex class=""></status-trabalhadores>
                     </div>
                 </div>
+
             </md-tab>
 
             <md-tab id="tab1" label="Atividades"></md-tab>
