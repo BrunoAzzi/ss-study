@@ -1,4 +1,4 @@
-import { Component, NgZone } from '@angular/core';
+import { Component, NgZone, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Icon } from './../../models/icon.model';
 import { Coordinate } from './../../models/coordinate.model';
 import { Floor } from './../../models/floor.model';
@@ -24,7 +24,7 @@ export class AreaMappingComponent {
     private currentPosition: any = { old: null, new: null };
 
     constructor(private _ngZone: NgZone) { 
-        this.updateExternalEnv();
+        window['angularComponent'] = { removeMark: this.removeMark, zone: this._ngZone};
     }
 
     toolChanged(e) {
@@ -58,7 +58,6 @@ export class AreaMappingComponent {
         setTimeout(() => {
             this.barLevelStartIndex.next(0);
         }, 0);
-        this.updateExternalEnv();
     }
 
     changedMapLayer(mapLayer) {
@@ -90,33 +89,50 @@ export class AreaMappingComponent {
 
     private createMarker(position: [number, number], mark: any) {
         const marker = L.marker(position, { icon: mark, draggable: true, pane: 'markerPane' });
-        marker.bindPopup(`<a onclick="window.angularComponent.removeMark('${position.toString()}')">Remover</a>`);
+        marker.bindPopup(`<a onclick="window.angularComponent.removeMark('${position['lat']},${position['lng']}')">Remover</a>`);
         this.mapLayer.addLayer(marker);
         marker.on('move', (event: any) => { 
             this.currentPosition = { old: event.oldLatLng, new: event.latlng };
         });
         marker.on('moveend', () => { this.updateMark() });
-        this.updateExternalEnv();
     }
 
     private updateMark() {
         const index = this.currentFloor.coordinates.findIndex(coordinate => coordinate.position === this.currentPosition.old);
         if (index > -1) {
             this.currentFloor.coordinates[index].position = this.currentPosition.new;
-            this.updateExternalEnv();
+        }
+    }
+
+    private destroyMark(latLng:any) {
+        this.mapLayer.eachLayer((layer: L.Layer) => {
+            const layerLatLng = layer['_latlng'];
+            if (layerLatLng.lat === latLng.lat && layerLatLng.lng === latLng.lng) {
+                layer.remove();
+            }
+        });
+
+        this.currentFloor.coordinates = this.currentFloor.coordinates.filter(coordinate => coordinate.position['lat'] !== latLng.lat && coordinate.position['lng'] !== latLng.lng);
+    }
+
+    changePositionToRemove(e) {
+        const value = e.target.value;
+        if (value !== '') {
+            const position = value.split(',');
+            const latLng = { lat: Number(position[0]), lng: Number(position[1]) };
+            this.destroyMark(latLng);
         }
     }
 
     removeMark(value: string) {
-        console.log('coor', window['angularComponent']);
-        let app = window['angularComponent'];
-        const position = value.replace('LatLng(','').replace(')', '').split(', ');
-        const marker = L.marker([Number(position[0]), Number(position[1])]);
-        app.mapLayer.removeLayer(marker);
-        console.log('removeMark', position);
-    }
-
-    private updateExternalEnv() {
-        window['angularComponent'] = { removeMark: this.removeMark, mapLayer: this.mapLayer, currentFloor: this.currentFloor, zone: this._ngZone};
+        const el: any = document.getElementById("removePosition"); 
+        el.value = value;
+        if ("createEvent" in document) {
+            var evt = document.createEvent("HTMLEvents");
+            evt.initEvent("change", false, true);
+            el.dispatchEvent(evt);
+        } else if("fireEvent" in el) {
+            el.fireEvent("onchange");
+        }
     }
 }

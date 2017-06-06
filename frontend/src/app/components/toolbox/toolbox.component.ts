@@ -12,7 +12,7 @@ export class ToolboxComponent {
     private selectedTool: string;
 
     private tools: Array<any> = [
-        { name: 'checkpoint', size: [53,51], icon: 'cone', title: 'Check Point' },
+        { name: 'checkpoint', size: [53,51], icon: 'cone', title: 'Cone' },
         { name: 'cup_holders', size: [53,51], icon: 'cup_holders', title: 'Guarda Copos' },
         { name: 'crane', size: [53,51], icon: 'crane', title: 'Grua' },
         { name: 'water', size: [53,51], icon: 'water', title: 'Água' },

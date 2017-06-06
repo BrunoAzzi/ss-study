@@ -1,3 +1,4 @@
+<input id="removePosition" type="hidden" (change)="changePositionToRemove($event)" >
 <toolbox (change)="toolChanged($event)"></toolbox>
 <div class="workbench">
     <bar-level class="bar-level" (change)="floorChanged($event)" startIndex="{{barLevelStartIndex | async}}"></bar-level>
