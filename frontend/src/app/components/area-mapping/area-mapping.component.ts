@@ -1,6 +1,7 @@
+import { Component, NgZone } from '@angular/core';
+import { Icon } from './../../models/icon.model';
 import { Coordinate } from './../../models/coordinate.model';
 import { Floor } from './../../models/floor.model';
-import { Component } from '@angular/core';
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 
 @Component({
@@ -22,7 +23,9 @@ export class AreaMappingComponent {
     private currentFloor: Floor;
     private currentPosition: any = { old: null, new: null };
 
-    constructor() { }
+    constructor(private _ngZone: NgZone) { 
+        this.updateExternalEnv();
+    }
 
     toolChanged(e) {
         this.currentTool = e.tool;
@@ -54,7 +57,8 @@ export class AreaMappingComponent {
         this.map.on('click', (e) => { this.setMarkByEvent(e) });
         setTimeout(() => {
             this.barLevelStartIndex.next(0);
-        }, 0)
+        }, 0);
+        this.updateExternalEnv();
     }
 
     changedMapLayer(mapLayer) {
@@ -68,7 +72,8 @@ export class AreaMappingComponent {
     private setMarkByEvent(e) {
         if (this.currentMark) {
             const position = e.latlng;
-            this.currentFloor.coordinates.push(new Coordinate(position, this.currentTool.name));
+            const icon = new Icon(this.currentTool.name, this.currentTool.size);
+            this.currentFloor.coordinates.push(new Coordinate(position, icon));
             this.createMarker(position, this.currentMark);
         }
     }
@@ -76,8 +81,8 @@ export class AreaMappingComponent {
     private setMarkByList(coordinates: Array<Coordinate>) {
         coordinates.forEach((coordinate, index, array) => {
             const mark = L.icon({
-                iconUrl: `assets/maps/markers/${coordinate.iconName}.png`,
-                iconSize: this.currentTool.size,
+                iconUrl: `assets/maps/markers/${coordinate.icon.name}.png`,
+                iconSize: coordinate.icon.size,
             });
             this.createMarker(coordinate.position, mark);
         });
@@ -85,17 +90,33 @@ export class AreaMappingComponent {
 
     private createMarker(position: [number, number], mark: any) {
         const marker = L.marker(position, { icon: mark, draggable: true, pane: 'markerPane' });
+        marker.bindPopup(`<a onclick="window.angularComponent.removeMark('${position.toString()}')">Remover</a>`);
         this.mapLayer.addLayer(marker);
         marker.on('move', (event: any) => { 
             this.currentPosition = { old: event.oldLatLng, new: event.latlng };
         });
         marker.on('moveend', () => { this.updateMark() });
+        this.updateExternalEnv();
     }
 
     private updateMark() {
         const index = this.currentFloor.coordinates.findIndex(coordinate => coordinate.position === this.currentPosition.old);
         if (index > -1) {
             this.currentFloor.coordinates[index].position = this.currentPosition.new;
+            this.updateExternalEnv();
         }
+    }
+
+    removeMark(value: string) {
+        console.log('coor', window['angularComponent']);
+        let app = window['angularComponent'];
+        const position = value.replace('LatLng(','').replace(')', '').split(', ');
+        const marker = L.marker([Number(position[0]), Number(position[1])]);
+        app.mapLayer.removeLayer(marker);
+        console.log('removeMark', position);
+    }
+
+    private updateExternalEnv() {
+        window['angularComponent'] = { removeMark: this.removeMark, mapLayer: this.mapLayer, currentFloor: this.currentFloor, zone: this._ngZone};
     }
 }

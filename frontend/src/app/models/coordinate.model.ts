@@ -1,6 +1,7 @@
+import { Icon } from './icon.model';
 export class Coordinate {
     id: number;
-    iconName: string;
+    icon: Icon;
     lastPosition: [number, number];
     private _position: [number, number];
 
@@ -15,9 +16,9 @@ export class Coordinate {
         return this._position;
     }
 
-    constructor(position: [number, number], iconName: string) {
+    constructor(position: [number, number], icon: Icon) {
         this.position = position;
-        this.iconName = iconName;
+        this.icon = icon;
     }
 
 
