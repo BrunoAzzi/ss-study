@@ -40,9 +40,9 @@ export class BlueprintComponent implements AfterContentChecked {
             this.mapLayer = new L.LayerGroup([]);
             this.mapLayer.addTo(this.map);
 
-            this.changeMap.next(this.map);
-            this.changeMapLayer.next(this.mapLayer);
             this.changeImageMap.next(this.imageMap);
+            this.changeMapLayer.next(this.mapLayer);
+            this.changeMap.next(this.map);
         }
     }
 
