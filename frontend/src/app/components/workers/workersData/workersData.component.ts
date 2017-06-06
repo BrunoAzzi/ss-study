@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { PersonalDataWorker } from '../../../mocks/personalDataWorker/personalDataWorker';
 import { CorreiosService } from "../../../services/correios.service";
@@ -6,6 +6,7 @@ import { Endereco_completo } from '../../../mocks/endereco_completo/endereco_com
 import { CommonModule} from '@angular/common';
 import { CustomValidators } from './customValidators';
 import { CBOService } from "../../../services/cbo.service";
+import { IMyDpOptions } from 'mydatepicker';
 
 @Component({
     selector: 'workers-data',
@@ -52,6 +53,14 @@ export class WorkersDataComponent {
         })
     }
 
+
+    private myDatePickerOptions: IMyDpOptions = {
+        dateFormat: 'dd/mm/yyyy',
+        dayLabels: { su: 'Dom', mo: 'Seg', tu: 'Ter', we: 'Qua', th: 'Qui', fr: 'Sex', sa: 'Sab' },
+        monthLabels: { 1: 'Jan', 2: 'Fev', 3: 'Mar', 4: 'Abr', 5: 'Mai', 6: 'Jun', 7: 'Jul', 8: 'Ago', 9: 'Set', 10: 'Out', 11: 'Nov', 12: 'Dez' },
+        todayBtnTxt: 'Hoje'
+    };
+
     status = [
         { value: 'ativo', viewValue: 'Ativo' },
         { value: 'ferias', viewValue: 'Férias' },
@@ -90,14 +99,10 @@ export class WorkersDataComponent {
 
         this.cboService.getCBO("6125-05").subscribe(
             (response) => {
-                console.log("Success Response" + response)
                 this.labors = response.map((label, index) => {
                     return { value: index, viewValue: label };
                 });
-                console.log(this.labors);
             },
-            function(error) { console.log("Error happened" + error) },
-            function() { console.log("the subscription is completed") }
         );
     }
 
@@ -112,6 +117,7 @@ export class WorkersDataComponent {
     }
 
     savePersonalDataWorker(safetyCard) {
+        console.log(this.myForm.controls);
         if (this.myForm.valid) {
             safetyCard.close();
         }

@@ -10,7 +10,6 @@ export class CBOService {
     getCBO(cbo: string) {
         return (this.http.get(this.CBOUrl).map(
             response => {
-                console.log(response.json().data);
                 return response.json().data;
             }));
     }
