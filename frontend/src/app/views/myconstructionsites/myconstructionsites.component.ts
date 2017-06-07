@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ConstructionSiteService } from "../../services/construction-site/construction-site.service";
 import { ConstructionSite } from "../../mocks/construction-site/construction-site";
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'myconstructionsites',
@@ -8,8 +9,8 @@ import { ConstructionSite } from "../../mocks/construction-site/construction-sit
     styleUrls: ['./myconstructionsites.component.scss'],
     providers: [ConstructionSiteService]
 })
-export class MyConstructionSitesComponent {
-    constructionSiteList: ConstructionSite[];
+export class MyConstructionSitesComponent implements OnInit {
+    constructionSiteList: ConstructionSite[] = [];
 	mapImage = [{ 'titulo': '2ºGaragem', 'url': 'assets/phaser/map.png' }];
 	popUp = 'assets/popUp.png';
 	view = false;
@@ -43,15 +44,22 @@ export class MyConstructionSitesComponent {
 		mapImage: this.mapImage[0],
 	}
 
-    constructor(private constructionSiteService: ConstructionSiteService) {
-        constructionSiteService.getConstructionSite().subscribe(data => this.constructionSiteList = data);
+    constructor(
+        private constructionSiteService: ConstructionSiteService,
+        private router: Router
+    ) { }
 
-        // if (this.constructionSiteList.length > 0) {
-		      //redirect to /list
-        // }
+    ngOnInit() {
+        this.constructionSiteService.getConstructionSite().subscribe(data => {
+            this.constructionSiteList = data;
+            // TODO improve this using angular resolve guard
+            if (this.constructionSiteList.length > 0) this.redirectToConstructionSiteList();
+        });
     }
 
-	callModal() {
+    redirectToConstructionSiteList() {
+        this.router.navigate([this.router.url + '/list']);
+    }
 
-	}
+	callModal() { }
 }
