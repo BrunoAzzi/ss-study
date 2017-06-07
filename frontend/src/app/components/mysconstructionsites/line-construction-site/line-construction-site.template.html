@@ -6,11 +6,11 @@
     <div *ngIf="!statusIcon" class="icon-wrapper warn" fxLayout fxLayoutAlign="center center">
         <img src="assets/icon/myconstructionsite/em-execucao.png" alt="">
     </div>
-    <span class="title">Koerich Beiramar Office</span>
+    <span class="title">{{constructionSite.title}}</span>
     <span class="horizontal-divider">|</span>
-    <span class="address">Novo Campeche, Florianópolis - SC</span>
+    <span class="address">{{constructionSite.address}}</span>
     <span class="horizontal-divider">|</span>
-    <span class="sponsor">Responsável: João da Silva</span>
+    <span class="sponsor">Responsável: {{constructionSite.sponsor}}</span>
 </div>
 <div fxLayout fxLayoutAlign="end center" class="tools">
     <div fxLayout="column" class="labeled-icon">
