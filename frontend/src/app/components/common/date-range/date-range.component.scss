@@ -1,3 +1,4 @@
 my-date-range-picker /deep/ .selector {
-    position: relative;
+    position: fixed;
+    z-index: 100;
 }

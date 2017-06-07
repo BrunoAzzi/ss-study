@@ -3,6 +3,7 @@ import { Icon } from './../../models/icon.model';
 import { Coordinate } from './../../models/coordinate.model';
 import { Floor } from './../../models/floor.model';
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
+import { ConstructionService } from './../../services/construction.service';
 
 @Component({
     selector: 'area-mapping',
@@ -23,8 +24,8 @@ export class AreaMappingComponent {
     private currentFloor: Floor;
     private currentPosition: any = { old: null, new: null };
 
-    constructor(private _ngZone: NgZone) { 
-        window['angularComponent'] = { removeMark: this.removeMark, zone: this._ngZone};
+    constructor(private _ngZone: NgZone) {
+        window['angularComponent'] = { removeMark: this.removeMark, zone: this._ngZone };
     }
 
     toolChanged(e) {
@@ -72,7 +73,8 @@ export class AreaMappingComponent {
         if (this.currentMark) {
             const position = e.latlng;
             const icon = new Icon(this.currentTool.name, this.currentTool.size);
-            this.currentFloor.coordinates.push(new Coordinate(position, icon));
+            this.currentFloor.coordinates.push(new Coordinate(position, icon, this.currentTool.name));
+            this.construtionService.updateFloor(this.currentFloor);
             this.createMarker(position, this.currentMark);
         }
     }
@@ -91,7 +93,7 @@ export class AreaMappingComponent {
         const marker = L.marker(position, { icon: mark, draggable: true, pane: 'markerPane' });
         marker.bindPopup(`<a onclick="window.angularComponent.removeMark('${position['lat']},${position['lng']}')">Remover</a>`);
         this.mapLayer.addLayer(marker);
-        marker.on('move', (event: any) => { 
+        marker.on('move', (event: any) => {
             this.currentPosition = { old: event.oldLatLng, new: event.latlng };
         });
         marker.on('moveend', () => { this.updateMark() });
@@ -104,7 +106,7 @@ export class AreaMappingComponent {
         }
     }
 
-    private destroyMark(latLng:any) {
+    private destroyMark(latLng: any) {
         this.mapLayer.eachLayer((layer: L.Layer) => {
             const layerLatLng = layer['_latlng'];
             if (layerLatLng.lat === latLng.lat && layerLatLng.lng === latLng.lng) {
@@ -125,13 +127,13 @@ export class AreaMappingComponent {
     }
 
     removeMark(value: string) {
-        const el: any = document.getElementById("removePosition"); 
+        const el: any = document.getElementById("removePosition");
         el.value = value;
         if ("createEvent" in document) {
             var evt = document.createEvent("HTMLEvents");
             evt.initEvent("change", false, true);
             el.dispatchEvent(evt);
-        } else if("fireEvent" in el) {
+        } else if ("fireEvent" in el) {
             el.fireEvent("onchange");
         }
     }

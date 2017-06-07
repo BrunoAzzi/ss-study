@@ -1,6 +1,7 @@
 import { Floor } from './../../../models/floor.model';
-import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { Component, Output, EventEmitter, Input, OnInit, OnDestroy } from '@angular/core';
 import { ConstructionService } from './../../../services/construction.service';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Component({
     selector: 'floor-navigation',
@@ -8,23 +9,34 @@ import { ConstructionService } from './../../../services/construction.service';
     styleUrls: ['floor-navigation.component.scss']
 })
 
-export class FloorNavigationComponent {
+export class FloorNavigationComponent implements OnInit, OnDestroy {
     @Output() change: EventEmitter<any> = new EventEmitter();
 
-    private floors: Array<Floor>;
+    private floors: Array<Floor> = [];
     private selectedFloor: Floor = null;
 
     private toggleableSections: Array<any>;
+    private constructionSubscription: BehaviorSubject<any>;
 
     constructor(private constructionService: ConstructionService) {
-        this.floors = constructionService.getConstruction().floors;
+        this.constructionSubscription = constructionService.getConstruction();
+    }
 
+    ngOnInit() {
+        this.constructionSubscription.subscribe(this.onUpdateConstruction.bind(this));
+    }
+
+    ngOnDestroy() {
+        this.constructionSubscription.unsubscribe();
+    }
+
+    onUpdateConstruction(construction) {
+        this.floors = construction.floors
         this.floors = this.floors.map((floor) => {
             floor.sectionName = "Torre 2";
             return floor;
         })
-
-        this.toggleableSections = this.getSections().map(sectionName => ({ name: sectionName, hidden: true }))
+        this.toggleableSections = this.toggleableSections || this.getSections().map(sectionName => ({ name: sectionName, hidden: false }))
     }
 
     isSectionHidden(sectionName) {

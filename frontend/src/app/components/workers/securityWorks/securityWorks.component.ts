@@ -24,12 +24,14 @@ export class SecurityWorksComponent {
         { value: 0, viewValue: 'Sim' },
         { value: 1, viewValue: 'Não' },
     ];
+
     selectedBrigadista: number = 1;
 
     cipeiros = [
         { value: 0, viewValue: 'Sim' },
         { value: 1, viewValue: 'Não' },
     ];
+
     selectedCipeiro: number = 1;
 
 
@@ -40,6 +42,7 @@ export class SecurityWorksComponent {
         { value: 3, viewValue: 'Vice Presidente' },
         { value: 4, viewValue: 'Secretário' },
     ];
+
     selectedCipaLabor: number = 5;
 
     cipeiroChange(deviceValue, dateRange) {
