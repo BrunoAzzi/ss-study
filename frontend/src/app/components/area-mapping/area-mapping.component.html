@@ -1,0 +1,11 @@
+<toolbox (change)="toolChanged($event)"></toolbox>
+<div class="workbench">
+    <bar-level class="bar-level" (change)="floorChanged($event)" startIndex="{{barLevelStartIndex | async}}"></bar-level>
+    <blueprint 
+        class="blueprint" 
+        mapType="Mapping" 
+        (changeMap)="changedMap($event)" 
+        (changeMapLayer)="changedMapLayer($event)"
+        (changeImageMap)="changedImageMap($event)"
+    ></blueprint>
+</div>

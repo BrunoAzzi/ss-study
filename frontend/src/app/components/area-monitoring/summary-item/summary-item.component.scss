@@ -1,0 +1,21 @@
+.summary-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: space-around;
+    padding: 8px 0;
+    text-align: center;
+    margin: 0 6px;
+    span {
+        font-size: 0.8em;
+    }
+
+    .icon {
+        width: 20px;
+        height: 20px;
+        margin: auto;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+}

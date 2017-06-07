@@ -10,7 +10,7 @@ import { RepositoriesComponent } from "./views/repositories/repositories.compone
 import { ThirdPartiesComponent } from "./views/thirdparties/thirdparties.component";
 import { TrainingComponent } from "./views/training/training.component";
 import { WorkersComponent } from "./views/workers/workers.component";
-import { MonitoringComponent } from './views/monitoring/monitoring.component';
+import { MonitoringComponent } from './views/myconstructionsites/monitoring/monitoring.component';
 
 import { LoginComponent } from "./views/login/login.component";
 import { PasswordRecoveryComponent } from "./views/password-recovery/password-recovery.component";
@@ -20,7 +20,6 @@ import { BlankComponent } from "./components/common/layouts/blank/blank.componen
 import { BasicComponent } from "./components/common/layouts/basic/basic.component";
 
 import { MyConstructionSitesLandingPageComponent } from "./views/myconstructionsites/landing-page/my-construction-sites-landing-page.component";
-import { MyConstructionSitesPhaserComponent } from './views/myconstructionsites/phaser/my-construction-sites-phaser.component';
 import { MyConstructionSitesShowComponent } from './views/myconstructionsites/show/my-construction-sites-show.component';
 
 const routes: Routes = [
@@ -38,13 +37,12 @@ const routes: Routes = [
             { path: 'thirdparties', component: ThirdPartiesComponent, canActivate: [AuthGuard] },
             { path: 'training', component: TrainingComponent, canActivate: [AuthGuard] },
             { path: 'workers', component: WorkersComponent, canActivate: [AuthGuard] },
-            { path: 'monitoring', component: MonitoringComponent, canActivate: [AuthGuard] },
             {
                 path: 'myconstructionsites', component: MyConstructionSitesComponent, canActivate: [AuthGuard], children: [
                     { path: '', component: MyConstructionSitesLandingPageComponent, canActivate: [AuthGuard] },
+                    { path: 'monitoring', component: MonitoringComponent, canActivate: [AuthGuard] },
                     { path: 'list', component: MyConstructionSitesShowComponent, canActivate: [AuthGuard] },
                     // { path: 'add', component: MyConstructionSitesAddComponent, canActivate: [AuthGuard] },
-                    { path: 'phaser', component: MyConstructionSitesPhaserComponent, canActivate: [AuthGuard] },
                 ]
             },
         ]
