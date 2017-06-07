@@ -11,18 +11,11 @@ import { Router } from '@angular/router';
 })
 export class MyConstructionSitesComponent implements OnInit {
     constructionSiteList: ConstructionSite[] = [];
-	mapImage = [{ 'titulo': '2ºGaragem', 'url': 'assets/phaser/map.png' }];
-	popUp = 'assets/popUp.png';
-	view = false;
 
     constructor(
         private constructionSiteService: ConstructionSiteService,
         private router: Router
     ) { }
-
-    activeRoute(routename: string): boolean {
-        return this.router.url.indexOf(routename) > -1;
-    }
 
     ngOnInit() {
         this.constructionSiteService.getConstructionSite().subscribe(data => {

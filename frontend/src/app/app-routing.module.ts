@@ -18,6 +18,7 @@ import { PasswordUpdateComponent } from "./views/password-update/password-update
 
 import { BlankComponent } from "./components/common/layouts/blank/blank.component";
 import { BasicComponent } from "./components/common/layouts/basic/basic.component";
+import { ConstructionSiteComponent } from "./components/common/layouts/construction-site/construction-site.component";
 
 import { MyConstructionSitesLandingPageComponent } from "./views/myconstructionsites/landing-page/my-construction-sites-landing-page.component";
 import { MyConstructionSitesShowComponent } from './views/myconstructionsites/show/my-construction-sites-show.component';
@@ -40,9 +41,13 @@ const routes: Routes = [
             {
                 path: 'myconstructionsites', component: MyConstructionSitesComponent, canActivate: [AuthGuard], children: [
                     { path: '', component: MyConstructionSitesLandingPageComponent, canActivate: [AuthGuard] },
-                    { path: 'monitoring', component: MonitoringComponent, canActivate: [AuthGuard] },
+                    // { path: 'monitoring', component: MonitoringComponent, canActivate: [AuthGuard] },
                     { path: 'list', component: MyConstructionSitesShowComponent, canActivate: [AuthGuard] },
-                    // { path: 'add', component: MyConstructionSitesAddComponent, canActivate: [AuthGuard] },
+                ]
+            },
+            {
+                path: 'myconstructionsites/:id', component: ConstructionSiteComponent, canActivate: [AuthGuard], children: [
+                    { path: 'monitoring', component: MonitoringComponent, canActivate: [AuthGuard] },
                 ]
             },
         ]

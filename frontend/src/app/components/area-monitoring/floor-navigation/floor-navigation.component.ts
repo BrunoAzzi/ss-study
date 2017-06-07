@@ -12,7 +12,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 export class FloorNavigationComponent implements OnInit, OnDestroy {
     @Output() change: EventEmitter<any> = new EventEmitter();
 
-    private floors: Array<Floor>;
+    private floors: Array<Floor> = [];
     private selectedFloor: Floor = null;
 
     private toggleableSections: Array<any>;
