@@ -1,0 +1,13 @@
+<topnavbar>
+    <h1>Minhas obras</h1>
+    <ul class="navigation-items">
+        <li><a routerLink="/myconstructionsites">Visão Geral</a></li>
+        <li><a [ngClass]="{active: activeRoute('monitoring')}" routerLink="/myconstructionsites/1/monitoring">Monitoramento</a></li>
+        <li><a routerLink="/myconstructionsites">Trabalhadores</a></li>
+        <li><a routerLink="/myconstructionsites">Atividades</a></li>
+        <li><a routerLink="/myconstructionsites">Relatórios</a></li>
+        <li><a routerLink="/myconstructionsites">Documentos</a></li>
+    </ul>
+</topnavbar>
+
+<router-outlet></router-outlet>

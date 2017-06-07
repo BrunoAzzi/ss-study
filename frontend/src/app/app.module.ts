@@ -72,6 +72,7 @@ import { PasswordUpdateComponent } from "./views/password-update/password-update
 
 import { BlankComponent } from "./components/common/layouts/blank/blank.component";
 import { BasicComponent } from "./components/common/layouts/basic/basic.component";
+import { ConstructionSiteComponent } from "./components/common/layouts/construction-site/construction-site.component";
 import { TopnavbarComponent } from "./components/common/topnavbar/topnavbar.component";
 import { NavigationComponent } from "./components/common/navigation/navigation.component";
 
@@ -127,8 +128,6 @@ import { CardConstructionSiteComponent } from './components/mysconstructionsites
         LoginComponent,
         PasswordRecoveryComponent,
         PasswordUpdateComponent,
-        BlankComponent,
-        BasicComponent,
         TopnavbarComponent,
         NavigationComponent,
         CompanyDetailsComponent,
@@ -145,6 +144,11 @@ import { CardConstructionSiteComponent } from './components/mysconstructionsites
         SummaryComponent,
         RiskGraphComponent,
         FloorNavigationComponent,
+
+        // Layouts
+        BlankComponent,
+        BasicComponent,
+        ConstructionSiteComponent,
 
         // Painel Emocional
         StatusDiaComponent,
