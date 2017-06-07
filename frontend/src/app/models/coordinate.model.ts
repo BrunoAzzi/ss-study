@@ -4,6 +4,7 @@ export class Coordinate {
     icon: Icon;
     lastPosition: [number, number];
     private _position: [number, number];
+    type: string;
 
     set position(newPosition: [number, number]) {
         if (this._position !== newPosition) {
@@ -16,9 +17,10 @@ export class Coordinate {
         return this._position;
     }
 
-    constructor(position: [number, number], icon: Icon) {
+    constructor(position: [number, number], icon: Icon, type: string) {
         this.position = position;
         this.icon = icon;
+        this.type = type;
     }
 
 

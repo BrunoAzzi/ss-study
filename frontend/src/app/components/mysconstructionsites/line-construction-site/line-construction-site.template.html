@@ -1,0 +1,32 @@
+<div fxLayout fxFlex fxLayoutAlign="start center" class="construction-site-info">
+    <a routerLink="/myconstructionsites/{{constructionSite.id}}">
+        <div class="image-wrapper" fxLayout fxLayoutAlign="center center">
+            <img src="assets/construction-site/logo/{{constructionSite.image}}" alt="">
+        </div>
+    </a>
+    <md-icon *ngIf="statusIcon" fxLayout fxLayoutAlign="center center" [ngClass]="status"> {{statusIcon}}</md-icon>
+    <div *ngIf="!statusIcon" class="icon-wrapper warn" fxLayout fxLayoutAlign="center center">
+        <img src="assets/icon/myconstructionsite/em-execucao.png" alt="">
+    </div>
+    <span class="title">{{constructionSite.title}}</span>
+    <span class="horizontal-divider">|</span>
+    <span class="address">{{constructionSite.address}}</span>
+    <span class="horizontal-divider">|</span>
+    <span class="sponsor">Responsável: {{constructionSite.sponsor}}</span>
+</div>
+<div fxLayout fxLayoutAlign="end center" class="tools">
+    <div fxLayout="column" class="labeled-icon">
+        <img src="assets/icon/myconstructionsite/danger.png" alt="">
+        <span>12</span>
+    </div>
+    <div fxLayout="column" class="labeled-icon">
+        <img src="assets/icon/myconstructionsite/cone.png" alt="">
+        <span>30</span>
+    </div>
+    <div fxLayout="column" class="labeled-icon">
+        <img src="assets/icon/myconstructionsite/forma.png" alt="">
+        <span>70</span>
+    </div>
+    <md-icon class="bell" fxLayout fxLayoutAlign="center center">notifications</md-icon>
+    <md-icon fxLayout fxLayoutAlign="center center">edit</md-icon>
+</div>

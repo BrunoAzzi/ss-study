@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Floor } from './../models/floor.model';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class ConstructionService {
 
-    private floors: Array<Floor> = []
+    private subject: BehaviorSubject<any>;
 
-    constructor() { 
+    private floors: Floor[] = [];
+
+    constructor() {
+
         this.floors = [
             new Floor('5', [[0, 0], [413, 186]], 'assets/maps/piso.svg'),
             new Floor('4', [[0, 0], [413, 186]], 'assets/maps/terreo.svg'),
@@ -16,12 +20,33 @@ export class ConstructionService {
             new Floor('T', [[0, 0], [413, 186]], 'assets/maps/terreo.svg'),
             new Floor('SS', [[0, 0], [413, 186]], 'assets/maps/subsolo.svg')
         ]
+
+        this.subject = new BehaviorSubject({
+            floors: this.floors
+        });
     }
 
     getConstruction() {
-        return {
+        return this.subject;
+    }
+
+    updateFloor(floor: Floor) {
+        this.floors = this.floors.map(f => {
+            if (f.name === floor.name) {
+                return floor
+            }
+            return f
+        })
+        this.subject.next({
             floors: this.floors
-        }
+        })
+    }
+
+    removeLast() {
+        this.floors.pop();
+        this.subject.next({
+            floors: this.floors
+        })
     }
 
 }

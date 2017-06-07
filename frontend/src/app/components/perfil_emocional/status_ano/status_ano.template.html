@@ -1,24 +1,17 @@
-<safety-card class="card-principal">
+<safety-card class="card-principal" toggleDisable>
     <safety-card-header>
-        <span>Status do dia</span>
+        <span>Status do ano</span>
     </safety-card-header>
     <safety-card-content>
-    <a class="eixo_y legenda_cinza">Trabalhadores</a>
-    <div class="canvas_principal">
-        <canvas id="cnvs" width="640" height="220" baseChart
-                    [datasets]="lineChartData"
-                    [labels]="lineChartLabels"
-                    [options]="lineChartOptions"
-                    [colors]="colors"
-                    [chartType]="lineChartType"
-                    (chartHover)="chartHovered($event)"
-                    (chartClick)="chartClicked($event)">
+        <a class="eixo_y legenda_cinza">Trabalhadores</a>
+        <div class="canvas_principal">
+            <canvas id="cnvs" width="640" height="220" baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="colors" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
         </canvas><br>
-         <!-- [legend]="lineChartLegend" -->
-     </div>
-     <div class="eixo_x legenda_cinza">
-         Dias
-     </div>
+            <!-- [legend]="lineChartLegend" -->
+        </div>
+        <div class="eixo_x legenda_cinza">
+            Dias
+        </div>
 
-   </safety-card-content>
- </safety-card>
+    </safety-card-content>
+</safety-card>

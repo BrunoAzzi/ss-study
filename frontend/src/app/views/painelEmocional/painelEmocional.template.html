@@ -1,0 +1,33 @@
+<div fxLayout="column" fxFlex>
+
+    <!-- <topnavbar>
+        <h1>Empresas</h1>
+        <ul class="navigation-items">
+            <li>Geral</li>
+            <li>Monitoramento</li>
+            <li>Colaboradores</li>
+            <li>Atividades</li>
+        </ul>
+    </topnavbar> -->
+
+    <div class="body-content">
+        <md-tab-group #tabGroup (selectChange)="onSelectChange($event)">
+            <md-tab id="tab4" label="Painel Emocional">
+                <div>
+                    <div fxLayout>
+                        <status-dia fxFlex="50" class="half-screen"></status-dia>
+                        <status-ano fxFlex="50" class="half-screen"></status-ano>
+                    </div>
+                    <div fxLayout>
+                        <status-trabalhadores class="full-screen"></status-trabalhadores>
+                    </div>
+                </div>
+            </md-tab>
+
+            <md-tab id="tab1" label="Atividades"></md-tab>
+            <md-tab id="tab2" label="Capacitações"></md-tab>
+            <md-tab id="tab3" label="Vencimentos"></md-tab>
+        </md-tab-group>
+    </div>
+
+</div>
