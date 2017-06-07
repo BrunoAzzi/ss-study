@@ -20,10 +20,11 @@ import { BlankComponent } from "./components/common/layouts/blank/blank.componen
 import { BasicComponent } from "./components/common/layouts/basic/basic.component";
 
 import { MyConstructionSitesLandingPageComponent } from "./views/myconstructionsites/landing-page/my-construction-sites-landing-page.component";
+import { MyConstructionSitesShowComponent } from './views/myconstructionsites/show/my-construction-sites-show.component';
 
 const routes: Routes = [
     // Main redirect
-    { path: '', redirectTo: 'monitoring', pathMatch: 'full', canActivate: [AuthGuard] },
+    { path: '', redirectTo: 'myconstructionsites', pathMatch: 'full', canActivate: [AuthGuard] },
 
     // App views
     {
@@ -39,7 +40,9 @@ const routes: Routes = [
             {
                 path: 'myconstructionsites', component: MyConstructionSitesComponent, canActivate: [AuthGuard], children: [
                     { path: '', component: MyConstructionSitesLandingPageComponent, canActivate: [AuthGuard] },
-                    { path: 'monitoring', component: MonitoringComponent, canActivate: [AuthGuard]}
+                    { path: 'monitoring', component: MonitoringComponent, canActivate: [AuthGuard] },
+                    { path: 'list', component: MyConstructionSitesShowComponent, canActivate: [AuthGuard] },
+                    // { path: 'add', component: MyConstructionSitesAddComponent, canActivate: [AuthGuard] },
                 ]
             },
         ]
