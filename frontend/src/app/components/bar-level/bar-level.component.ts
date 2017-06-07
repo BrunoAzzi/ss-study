@@ -9,7 +9,7 @@ import { ConstructionService } from './../../services/construction.service';
 })
 
 export class BarLevelComponent implements OnChanges {
-    
+
     @Input() startIndex: number;
     @Output() change: EventEmitter<any> = new EventEmitter();
 

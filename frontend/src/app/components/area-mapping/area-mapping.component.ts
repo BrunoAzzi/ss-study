@@ -2,7 +2,8 @@ import { Component, NgZone, Input, OnChanges, SimpleChanges } from '@angular/cor
 import { Icon } from './../../models/icon.model';
 import { Coordinate } from './../../models/coordinate.model';
 import { Floor } from './../../models/floor.model';
-import { BehaviorSubject } from "rxjs/BehaviorSubject";
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import * as L from 'leaflet';
 
 @Component({
     selector: 'area-mapping',
@@ -12,7 +13,7 @@ import { BehaviorSubject } from "rxjs/BehaviorSubject";
 
 export class AreaMappingComponent {
 
-    barLevelStartIndex: any = new BehaviorSubject("");
+    barLevelStartIndex: any = new BehaviorSubject('');
 
     private map: any;
     private mapLayer: L.LayerGroup;
@@ -23,7 +24,7 @@ export class AreaMappingComponent {
     private currentFloor: Floor;
     private currentPosition: any = { old: null, new: null };
 
-    constructor(private _ngZone: NgZone) { 
+    constructor(private _ngZone: NgZone) {
         window['angularComponent'] = { removeMark: this.removeMark, zone: this._ngZone};
     }
 
@@ -66,6 +67,27 @@ export class AreaMappingComponent {
 
     changedImageMap(imageMap) {
         this.imageMap = imageMap;
+    }
+
+    changePositionToRemove(e) {
+        const value = e.target.value;
+        if (value !== '') {
+            const position = value.split(',');
+            const latLng = { lat: Number(position[0]), lng: Number(position[1]) };
+            this.destroyMark(latLng);
+        }
+    }
+
+    removeMark(value: string) {
+        const el: any = document.getElementById('removePosition');
+        el.value = value;
+        if ('createEvent' in document) {
+            const evt = document.createEvent('HTMLEvents');
+            evt.initEvent('change', false, true);
+            el.dispatchEvent(evt);
+        } else if('fireEvent' in el) {
+            el.fireEvent('onchange');
+        }
     }
 
     private setMarkByEvent(e) {
@@ -112,27 +134,9 @@ export class AreaMappingComponent {
             }
         });
 
-        this.currentFloor.coordinates = this.currentFloor.coordinates.filter(coordinate => coordinate.position['lat'] !== latLng.lat && coordinate.position['lng'] !== latLng.lng);
+        this.currentFloor.coordinates = this.currentFloor.coordinates.filter(coordinate =>
+            coordinate.position['lat'] !== latLng.lat && coordinate.position['lng'] !== latLng.lng
+        );
     }
 
-    changePositionToRemove(e) {
-        const value = e.target.value;
-        if (value !== '') {
-            const position = value.split(',');
-            const latLng = { lat: Number(position[0]), lng: Number(position[1]) };
-            this.destroyMark(latLng);
-        }
-    }
-
-    removeMark(value: string) {
-        const el: any = document.getElementById("removePosition"); 
-        el.value = value;
-        if ("createEvent" in document) {
-            var evt = document.createEvent("HTMLEvents");
-            evt.initEvent("change", false, true);
-            el.dispatchEvent(evt);
-        } else if("fireEvent" in el) {
-            el.fireEvent("onchange");
-        }
-    }
 }
