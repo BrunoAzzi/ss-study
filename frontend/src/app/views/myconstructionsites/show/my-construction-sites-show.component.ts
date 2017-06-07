@@ -9,18 +9,34 @@ import { ConstructionSite } from "../../../mocks/construction-site/construction-
     providers: [ConstructionSiteService]
 })
 export class MyConstructionSitesShowComponent {
-    constructionSiteList: ConstructionSite[];
+    LAST_SAVED = "last_saved";
+    FIRST_SAVED = "first_saved";
 
-    listActived: boolean = true;
-    blockActived: boolean = !this.listActived;
+	constructionSiteList: ConstructionSite[];
+    filteredConstructionSiteList: ConstructionSite[] = this.constructionSiteList;
 
     states = [
         { name: "Últimos cadastrados", code: "last_saved" },
         { name: "Primeiros cadastrados", code: "first_saved" }
     ];
 
-    constructor(private constructionSiteService: ConstructionSiteService) {
-        constructionSiteService.getConstructionSite().subscribe(data => this.constructionSiteList = data);
+	order: string = this.LAST_SAVED;
+
+	listActived: boolean = true;
+	blockActived: boolean = !this.listActived;
+
+	states = [
+		{ name: "Últimos cadastrados", code: this.LAST_SAVED },
+		{ name: "Primeiros cadastrados", code: this.FIRST_SAVED }
+	];
+
+	constructor(private constructionSiteService: ConstructionSiteService) {
+		constructionSiteService.getConstructionSite().subscribe(data => {
+            this.constructionSiteList = data;
+            this.filteredConstructionSiteList = this.constructionSiteList;
+        });
+	}
+
     }
 
     toggleView() {
@@ -28,13 +44,25 @@ export class MyConstructionSitesShowComponent {
         this.blockActived = !this.blockActived;
     }
 
-    setBlockView() {
-        this.listActived = false;
-        this.blockActived = true;
     }
 
     setListView() {
         this.listActived = true;
         this.blockActived = false;
     }
+
+	toggleView() {
+		this.listActived = !this.listActived;
+		this.blockActived = !this.blockActived;
+	}
+
+	setBlockView() {
+		this.listActived = false;
+		this.blockActived = true;
+	}
+
+	setListView() {
+		this.listActived = true;
+		this.blockActived = false;
+	}
 }

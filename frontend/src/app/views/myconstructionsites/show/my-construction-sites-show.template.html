@@ -18,21 +18,21 @@
             </md-chip-list>
         </div>
         <div fxLayout fxLayoutAlign="end center" class="right-actionbar">
-            <md-select floatPlaceholder="never" placeholder="teste" class="order">
+            <md-select [ngModel]="order" (ngModelChange)="orderBy(order)" floatPlaceholder="never" class="order">
                 <md-option *ngFor="let state of states" [value]="state.code">{{ state.name }}</md-option>
             </md-select>
             <button md-icon-button (click)="setListView()" type="button" name="button">
-            <md-icon [ngClass]="{actived: listActived}">list</md-icon>
-        </button>
+                <md-icon [ngClass]="{actived: listActived}">list</md-icon>
+            </button>
             <button md-icon-button (click)="setBlockView()" type="button" name="button">
-            <md-icon [ngClass]="{actived: blockActived}">view_module</md-icon>
-        </button>
+                <md-icon [ngClass]="{actived: blockActived}">view_module</md-icon>
+            </button>
         </div>
 
     </div>
 
     <div *ngIf="listActived; else blockView" class="list-wrapper">
-        <div class="" *ngFor="let constructionSite of constructionSiteList">
+        <div *ngFor="let constructionSite of filteredConstructionSiteList">
             <line-construction-site fxFlex fxLayout fxLayoutAlign="space-between center" *ngIf="constructionSite" [constructionSite]="constructionSite"></line-construction-site>
         </div>
     </div>
