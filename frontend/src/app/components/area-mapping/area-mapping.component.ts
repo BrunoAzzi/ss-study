@@ -24,7 +24,7 @@ export class AreaMappingComponent {
     private currentFloor: Floor;
     private currentPosition: any = { old: null, new: null };
 
-    constructor(private _ngZone: NgZone) {
+    constructor(private _ngZone: NgZone, private construtionService: ConstructionService) {
         window['angularComponent'] = { removeMark: this.removeMark, zone: this._ngZone };
     }
 
