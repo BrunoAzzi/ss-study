@@ -1,4 +1,5 @@
 import { Component, NgZone, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { MdDialog, MdDialogRef, MdButton, MdToolbar } from '@angular/material';
 import { ConstructionService } from './../../services/construction.service';
 import { Icon } from './../../models/icon.model';
 import { Coordinate } from './../../models/coordinate.model';
@@ -25,7 +26,7 @@ export class AreaMappingComponent {
     private currentFloor: Floor;
     private currentPosition: any = { old: null, new: null };
 
-    constructor(private _ngZone: NgZone, private service: ConstructionService) {
+    constructor(public dialog: MdDialog, private _ngZone: NgZone, private service: ConstructionService) {
         window['angularComponent'] = { removeMark: this.removeMark, zone: this._ngZone };
     }
 
@@ -56,7 +57,7 @@ export class AreaMappingComponent {
 
     changedMap(map) {
         this.map = map;
-        this.map.on('click', (e) => { this.setMarkByEvent(e) });
+        this.map.on('click', (e) => { this.setMarkByEvent(e); });
         setTimeout(() => {
             this.barLevelStartIndex.next(0);
         }, 0);
@@ -86,12 +87,13 @@ export class AreaMappingComponent {
             const evt = document.createEvent('HTMLEvents');
             evt.initEvent('change', false, true);
             el.dispatchEvent(evt);
-        } else if('fireEvent' in el) {
+        } else if ('fireEvent' in el) {
             el.fireEvent('onchange');
         }
     }
 
     private setMarkByEvent(e) {
+        let dialogRef = this.dialog.open(ContentElementDialog, { width: '447px'});
         if (this.currentMark) {
             const position = e.latlng;
             const icon = new Icon(this.currentTool.name, this.currentTool.size);
@@ -118,7 +120,7 @@ export class AreaMappingComponent {
         marker.on('move', (event: any) => {
             this.currentPosition = { old: event.oldLatLng, new: event.latlng };
         });
-        marker.on('moveend', () => { this.updateMark() });
+        marker.on('moveend', () => { this.updateMark(); });
     }
 
     private updateMark() {
@@ -141,4 +143,40 @@ export class AreaMappingComponent {
         );
     }
 
+}
+
+@Component({
+  selector: 'demo-content-element-dialog',
+  styles: [
+    `img {
+      max-width: 100%;
+    }`
+  ],
+  template: `
+        <form>
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    <h2>MAPEAR</h2>
+                    <span flex></span>
+                </div>
+            </md-toolbar>
+
+            <md-dialog-content>
+                <div class="md-dialog-content">
+                    Teste
+                </div>
+            </md-dialog-content>
+
+            <md-dialog-actions layout="row">
+                <span flex></span>
+                <button md-button ng-click="answer('not useful')">PRÓXIMO</button>
+                <span flex></span>
+            </md-dialog-actions>
+        </form> 
+  `
+})
+export class ContentElementDialog {
+  actionsAlignment: string;
+
+  constructor(public dialog: MdDialog) { }
 }
