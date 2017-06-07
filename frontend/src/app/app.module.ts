@@ -91,6 +91,7 @@ import { MyConstructionSitesLandingPageComponent } from './views/myconstructions
 import { MyConstructionSitesPhaserComponent } from './views/myconstructionsites/phaser/my-construction-sites-phaser.component';
 import { MyConstructionSitesShowComponent } from './views/myconstructionsites/show/my-construction-sites-show.component';
 import { LineConstructionSiteComponent } from './components/mysconstructionsites/line-construction-site/line-construction-site.component';
+import { CardConstructionSiteComponent } from './components/mysconstructionsites/card-construction-site/card-construction-site.component';
 
 @NgModule({
     declarations: [
@@ -138,7 +139,8 @@ import { LineConstructionSiteComponent } from './components/mysconstructionsites
         MyConstructionSitesLandingPageComponent,
         MyConstructionSitesPhaserComponent,
         MyConstructionSitesShowComponent,
-        LineConstructionSiteComponent
+        LineConstructionSiteComponent,
+        CardConstructionSiteComponent
     ],
     imports: [
         // Notification Module

@@ -41,7 +41,12 @@
             <line-construction-site fxFlex fxLayout fxLayoutAlign="space-between center" *ngIf="constructionSite" [constructionSite]="constructionSite"></line-construction-site>
         </div>
     </div>
-    <!-- <ng-template #blockView>
-    <card-construction-site *ngFor="let constructionSite of constructionSiteList" [constructionSite]="constructionSite"></card-construction-site>
-</ng-template> -->
+    <ng-template #blockView>
+        <div *ngFor="let constructionSite of filteredConstructionSiteList">
+            <card-construction-site *ngIf="constructionSite" [constructionSite]="constructionSite"></card-construction-site>
+        </div>
+        <div class="" fxLayout fxLayoutAlign="center center">
+            <p>There is no card implementation yet</p>
+        </div>
+    </ng-template>
 </div>
