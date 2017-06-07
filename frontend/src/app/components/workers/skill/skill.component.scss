@@ -7,11 +7,10 @@
 
 my-date-picker {
     max-width: 200px;
-
-    & /deep/ .selector {
-        position: fixed;
-        z-index: 100;
-    }
+    // & /deep/ .selector {
+    //     position: fixed;
+    //     z-index: 100;
+    // }
 }
 
 .periodicity {
