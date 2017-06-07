@@ -10,6 +10,7 @@ import { RepositoriesComponent } from "./views/repositories/repositories.compone
 import { ThirdPartiesComponent } from "./views/thirdparties/thirdparties.component";
 import { TrainingComponent } from "./views/training/training.component";
 import { WorkersComponent } from "./views/workers/workers.component";
+import { PainelEmocionalComponent } from './views/painelEmocional/painelEmocional.component';
 import { MonitoringComponent } from './views/myconstructionsites/monitoring/monitoring.component';
 
 import { LoginComponent } from "./views/login/login.component";
@@ -32,6 +33,7 @@ const routes: Routes = [
         path: '', component: BasicComponent,
         children: [
             { path: 'companies', component: CompaniesComponent, canActivate: [AuthGuard] },
+            { path: 'painelEmocional', component: PainelEmocionalComponent, canActivate: [AuthGuard] },
             { path: 'epis', component: PPEComponent, canActivate: [AuthGuard] },
             { path: 'reports', component: ReportsComponent, canActivate: [AuthGuard] },
             { path: 'repositories', component: RepositoriesComponent, canActivate: [AuthGuard] },

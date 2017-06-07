@@ -53,7 +53,7 @@ import { RiskGraphComponent } from './components/area-monitoring/risk-graph/risk
 import { FloorNavigationComponent } from './components/area-monitoring/floor-navigation/floor-navigation.component';
 
 // Painel Emocional
-
+import { PainelEmocionalComponent } from './views/painelEmocional/painelEmocional.component';
 import { CompBaseStatusDia } from "./components/perfil_emocional/comp_base/comp-base-status-dia.component";
 import { StatusDiaComponent } from "./components/perfil_emocional/status_dia/status_dia.component";
 import { StatusTrabalhadoresComponent } from "./components/perfil_emocional/status_trabalhadores/status_trabalhadores.component";
@@ -151,6 +151,7 @@ import { CardConstructionSiteComponent } from './components/mysconstructionsites
         ConstructionSiteComponent,
 
         // Painel Emocional
+        PainelEmocionalComponent,
         StatusDiaComponent,
         StatusTrabalhadoresComponent,
         StatusAnoComponent,

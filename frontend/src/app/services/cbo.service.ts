@@ -3,12 +3,15 @@ import { Headers, Http } from '@angular/http';
 
 @Injectable()
 export class CBOService {
-    private CBOUrl = "api/CBO";
+    private CBOUrl = "api/cbo";
 
     constructor(private http: Http) { }
 
-    getCBO() {
-        return (this.http.get(this.CBOUrl).map(response => response.json().data));
+    getCBO(cbo: string) {
+        return (this.http.get(this.CBOUrl).map(
+            response => {
+                return response.json().data;
+            }));
     }
 
 }
