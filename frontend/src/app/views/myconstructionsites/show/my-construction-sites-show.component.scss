@@ -21,6 +21,14 @@
             color: black;
         }
     }
+
+    .search-input {
+        margin-right: 10px;
+
+        & /deep/ .mat-input-wrapper {
+            margin: 0 !important;
+        }
+    }
 }
 
 .list-wrapper {

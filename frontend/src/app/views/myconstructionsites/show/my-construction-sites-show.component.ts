@@ -19,6 +19,9 @@ export class MyConstructionSitesShowComponent {
     showStoppedConstructionSites: boolean = true;
     showEndedConstructionSites: boolean = true;
 
+    showSearch: boolean = false;
+    textFilter: string = "";
+
 	order: string = this.LAST_SAVED;
 
 	listActived: boolean = true;
@@ -34,6 +37,17 @@ export class MyConstructionSitesShowComponent {
             this.constructionSiteList = data;
             this.filteredConstructionSiteList = this.constructionSiteList;
         });
+	}
+
+    toggleSearch() {
+        this.showSearch = !this.showSearch;
+    }
+
+    filterByText(event) { }
+
+	orderBy(order: string) {
+		// TODO improve to a more explicit implementation
+		this.filteredConstructionSiteList.reverse();
 	}
 
     toggleOnGoingFilter() {
@@ -57,8 +71,15 @@ export class MyConstructionSitesShowComponent {
         if (!this.showOnGoingConstructionSites) this.filterOnGoingConstructionSites();
         if (!this.showStoppedConstructionSites) this.filterStoppedConstructionSites();
         if (!this.showEndedConstructionSites) this.filterEndedConstructionSites()
+        if (this.showSearch) this.filterTextExpression();
     }
 
+    filterTextExpression() {
+        this.filteredConstructionSiteList = this.filteredConstructionSiteList.filter(constructionSite => {
+            // TODO improve field search, to only use some fields (name, description, etc)
+            return JSON.stringify(constructionSite).indexOf(this.textFilter) > -1;
+        });
+    }
 
     filterOnGoingConstructionSites() {
         this.filteredConstructionSiteList = this.filteredConstructionSiteList.filter(constructionSite => {

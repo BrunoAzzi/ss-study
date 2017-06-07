@@ -1,7 +1,12 @@
 <div class="main-content">
     <div fxLayout fxLayoutAlign="space-between center" class="top-actionbar">
         <div fxLayout fxLayoutAlign="start center">
-            <md-icon class="search">search</md-icon>
+            <button md-icon-button type="button" (click)="toggleSearch()" fxLayout fxLayoutAlign="center center">
+                <md-icon class="search">search</md-icon>
+            </button>
+            <md-input-container *ngIf="showSearch" class="search-input">
+                <input mdInput floatPlaceholder="never" [(ngModel)]="textFilter" (input)="makeList()">
+            </md-input-container>
             <md-chip-list>
                 <md-chip [ngClass]="{ warn: showOnGoingConstructionSites, disabled: !showOnGoingConstructionSites }" fxLayout fxLayoutAlign="start center" (click)="toggleOnGoingFilter()">
                     <md-icon fxLayout fxLayoutAlign="center center">check_circle</md-icon>
