@@ -3,15 +3,15 @@
         <div fxLayout fxLayoutAlign="start center">
             <md-icon class="search">search</md-icon>
             <md-chip-list>
-                <md-chip class="warn" fxLayout fxLayoutAlign="start center">
+                <md-chip [ngClass]="{ warn: showOnGoingConstructionSites, disabled: !showOnGoingConstructionSites }" fxLayout fxLayoutAlign="start center" (click)="toggleOnGoingFilter()">
                     <md-icon fxLayout fxLayoutAlign="center center">check_circle</md-icon>
                     <span>Em andamento</span>
                 </md-chip>
-                <md-chip class="danger" fxLayout fxLayoutAlign="start center">
+                <md-chip [ngClass]="{ danger: showStoppedConstructionSites, disabled: !showStoppedConstructionSites }" fxLayout fxLayoutAlign="start center" (click)="toggleStoppedFilter()">
                     <md-icon fxLayout fxLayoutAlign="center center">remove</md-icon>
                     <span>Paralizadas</span>
                 </md-chip>
-                <md-chip class="success" fxLayout fxLayoutAlign="start center">
+                <md-chip [ngClass]="{ success: showEndedConstructionSites, disabled: !showEndedConstructionSites }" fxLayout fxLayoutAlign="start center" (click)="toggleEndedFilter()">
                     <md-icon fxLayout fxLayoutAlign="center center">check</md-icon>
                     <span>Finalizadas</span>
                 </md-chip>

@@ -15,10 +15,9 @@ export class MyConstructionSitesShowComponent {
 	constructionSiteList: ConstructionSite[];
     filteredConstructionSiteList: ConstructionSite[] = this.constructionSiteList;
 
-    states = [
-        { name: "Últimos cadastrados", code: "last_saved" },
-        { name: "Primeiros cadastrados", code: "first_saved" }
-    ];
+    showOnGoingConstructionSites: boolean = true;
+    showStoppedConstructionSites: boolean = true;
+    showEndedConstructionSites: boolean = true;
 
 	order: string = this.LAST_SAVED;
 
@@ -37,18 +36,49 @@ export class MyConstructionSitesShowComponent {
         });
 	}
 
+    toggleOnGoingFilter() {
+        this.showOnGoingConstructionSites = !this.showOnGoingConstructionSites;
+        this.makeList();
     }
 
-    toggleView() {
-        this.listActived = !this.listActived;
-        this.blockActived = !this.blockActived;
+    toggleStoppedFilter() {
+        this.showStoppedConstructionSites = !this.showStoppedConstructionSites;
+        this.makeList();
     }
 
+    toggleEndedFilter() {
+        this.showEndedConstructionSites = !this.showEndedConstructionSites;
+        this.makeList();
     }
 
-    setListView() {
-        this.listActived = true;
-        this.blockActived = false;
+    makeList() {
+        this.filteredConstructionSiteList = this.constructionSiteList
+
+        if (!this.showOnGoingConstructionSites) this.filterOnGoingConstructionSites();
+        if (!this.showStoppedConstructionSites) this.filterStoppedConstructionSites();
+        if (!this.showEndedConstructionSites) this.filterEndedConstructionSites()
+    }
+
+
+    filterOnGoingConstructionSites() {
+        this.filteredConstructionSiteList = this.filteredConstructionSiteList.filter(constructionSite => {
+            // TODO improve the use of "em andamento" with a constant, or a type in class
+            return constructionSite.status !== "em andamento";
+        });
+    }
+
+    filterStoppedConstructionSites() {
+        this.filteredConstructionSiteList = this.filteredConstructionSiteList.filter(constructionSite => {
+            // TODO same as "em andamento"
+            return constructionSite.status !== "paralizada";
+        });
+    }
+
+    filterEndedConstructionSites() {
+        this.filteredConstructionSiteList = this.filteredConstructionSiteList.filter(constructionSite => {
+            // TODO same as "em andamento"
+            return constructionSite.status !== "finalizada";
+        });
     }
 
 	toggleView() {
