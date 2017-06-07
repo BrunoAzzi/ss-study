@@ -3,7 +3,10 @@
         <li *ngFor="let sectionName of getSections()" class="section">
             <a (click)="toggleSection(sectionName)">
                 <span class="name">{{ sectionName }}</span>
-                <summary alerts="100" cones="200" workers="300"></summary>
+                <summary 
+                    alerts="{{ summaryBySection(sectionName).alerts }}" 
+                    cones="{{ summaryBySection(sectionName).cones }}" 
+                    workers="{{ summaryBySection(sectionName).workers }}"></summary>
                 <md-icon>keyboard_arrow_down</md-icon>
             </a>
             <ul class="floors" [ngClass]="{ hidden: isSectionHidden(sectionName) }">

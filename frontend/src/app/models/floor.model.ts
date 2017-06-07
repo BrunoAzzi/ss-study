@@ -14,6 +14,7 @@ export class Floor {
         this.name = name;
         this.bounds = bounds;
         this.imagePath = imagePath;
+        this.sectionName = "Torre 1";
     }
 
     conesNumber() {

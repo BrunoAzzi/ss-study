@@ -31,11 +31,7 @@ export class FloorNavigationComponent implements OnInit, OnDestroy {
     }
 
     onUpdateConstruction(construction) {
-        this.floors = construction.floors
-        this.floors = this.floors.map((floor) => {
-            floor.sectionName = "Torre 2";
-            return floor;
-        })
+        this.floors = construction.floors;
         this.toggleableSections = this.toggleableSections || this.getSections().map(sectionName => ({ name: sectionName, hidden: false }))
     }
 
@@ -53,6 +49,20 @@ export class FloorNavigationComponent implements OnInit, OnDestroy {
             if (sections.indexOf(floor.sectionName) < 0) sections.push(floor.sectionName)
             return sections
         }, [])
+    }
+
+    summaryBySection(sectionName) {
+        return this.floors.filter(floor => floor.sectionName === sectionName).reduce((sum, floor) => {
+            return {
+                alerts: sum.alerts + floor.alertsNumber(),
+                cones: sum.cones + floor.conesNumber(),
+                workers: sum.workers + floor.workersNumber()
+            }
+        }, {
+            alerts: 0,
+            cones: 0,
+            workers: 0
+        })
     }
 
     changeFloor(floor: Floor): void {
