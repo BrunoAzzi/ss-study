@@ -33,7 +33,6 @@ const routes: Routes = [
         path: '', component: BasicComponent,
         children: [
             { path: 'companies', component: CompaniesComponent, canActivate: [AuthGuard] },
-            { path: 'painelEmocional', component: PainelEmocionalComponent, canActivate: [AuthGuard] },
             { path: 'epis', component: PPEComponent, canActivate: [AuthGuard] },
             { path: 'reports', component: ReportsComponent, canActivate: [AuthGuard] },
             { path: 'repositories', component: RepositoriesComponent, canActivate: [AuthGuard] },
@@ -43,13 +42,13 @@ const routes: Routes = [
             {
                 path: 'myconstructionsites', component: MyConstructionSitesComponent, canActivate: [AuthGuard], children: [
                     { path: '', component: MyConstructionSitesLandingPageComponent, canActivate: [AuthGuard] },
-                    // { path: 'monitoring', component: MonitoringComponent, canActivate: [AuthGuard] },
                     { path: 'list', component: MyConstructionSitesShowComponent, canActivate: [AuthGuard] },
                 ]
             },
             {
                 path: 'myconstructionsites/:id', component: ConstructionSiteComponent, canActivate: [AuthGuard], children: [
                     { path: 'monitoring', component: MonitoringComponent, canActivate: [AuthGuard] },
+                    { path: 'emotionalProfile', component: PainelEmocionalComponent, canActivate: [AuthGuard] },
                 ]
             },
         ]
