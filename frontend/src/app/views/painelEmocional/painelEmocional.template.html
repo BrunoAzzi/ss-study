@@ -14,11 +14,13 @@
         <md-tab-group #tabGroup (selectChange)="onSelectChange($event)">
             <md-tab id="tab4" label="Painel Emocional">
                 <div>
-                    <div class="container">
-                        <status-dia class="half-screen left"></status-dia>
-                        <status-ano class="half-screen right"></status-ano>
+                    <div fxLayout>
+                        <status-dia fxFlex="50" class="half-screen"></status-dia>
+                        <status-ano fxFlex="50" class="half-screen"></status-ano>
                     </div>
-                    <status-trabalhadores class="full-screen"></status-trabalhadores>
+                    <div fxLayout>
+                        <status-trabalhadores class="full-screen"></status-trabalhadores>
+                    </div>
                 </div>
             </md-tab>
 
