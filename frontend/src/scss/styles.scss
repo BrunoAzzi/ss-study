@@ -23,6 +23,12 @@ body {
     overflow: auto;
 }
 
+ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
 .main-content {
     height: 100vh;
 }
