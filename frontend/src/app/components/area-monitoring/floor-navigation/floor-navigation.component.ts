@@ -12,26 +12,30 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 export class FloorNavigationComponent implements OnInit, OnDestroy {
     @Output() change: EventEmitter<any> = new EventEmitter();
 
-    private floors: Array<Floor> = [];
+    // private floors: Array<Floor> = [];
     private selectedFloor: Floor = null;
 
     private toggleableSections: Array<any>;
-    private constructionSubscription: BehaviorSubject<any>;
+    // private constructionSubscription: BehaviorSubject<any>;
 
-    constructor(private constructionService: ConstructionService) {
-        this.constructionSubscription = constructionService.getConstruction();
+    constructor(private service: ConstructionService) {
+        // this.constructionSubscription = service.getConstruction();
     }
 
     ngOnInit() {
-        this.constructionSubscription.subscribe(this.onUpdateConstruction.bind(this));
+        // this.constructionSubscription.subscribe(this.onUpdateConstruction.bind(this));
     }
 
     ngOnDestroy() {
-        this.constructionSubscription.unsubscribe();
+        // this.constructionSubscription.unsubscribe();
+    }
+
+    getFloors() {
+        return this.service.constructionObject.floors
     }
 
     onUpdateConstruction(construction) {
-        this.floors = construction.floors;
+        this.service.constructionObject.floors = construction.floors;
         this.toggleableSections = this.toggleableSections || this.getSections().map(sectionName => ({ name: sectionName, hidden: false }))
     }
 
@@ -45,14 +49,14 @@ export class FloorNavigationComponent implements OnInit, OnDestroy {
     }
 
     getSections() {
-        return this.floors.reduce((sections, floor) => { 
+        return this.service.constructionObject.floors.reduce((sections, floor) => { 
             if (sections.indexOf(floor.sectionName) < 0) sections.push(floor.sectionName)
             return sections
         }, [])
     }
 
     summaryBySection(sectionName) {
-        return this.floors.filter(floor => floor.sectionName === sectionName).reduce((sum, floor) => {
+        return this.service.constructionObject.floors.filter(floor => floor.sectionName === sectionName).reduce((sum, floor) => {
             return {
                 alerts: sum.alerts + floor.alertsNumber(),
                 cones: sum.cones + floor.conesNumber(),

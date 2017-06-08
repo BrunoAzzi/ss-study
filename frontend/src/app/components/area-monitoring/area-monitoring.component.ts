@@ -15,7 +15,6 @@ export class AreaMonitoringComponent {
     private mapLayer: L.LayerGroup;
     private imageMap: any;
 
-    private floors: Array<Floor>;
     private sections: Array<any>;
 
     private currentMark: any;

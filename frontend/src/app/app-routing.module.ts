@@ -41,16 +41,14 @@ const routes: Routes = [
             { path: 'workers', component: WorkersComponent, canActivate: [AuthGuard] },
             {
                 path: 'myconstructionsites', component: MyConstructionSitesComponent, canActivate: [AuthGuard], children: [
+                    { path: ':id', component: ConstructionSiteComponent, canActivate: [AuthGuard], children: [
+                        { path: 'monitoring', component: MonitoringComponent, canActivate: [AuthGuard] },
+                        { path: 'emotionalProfile', component: PainelEmocionalComponent, canActivate: [AuthGuard] }
+                    ]},
                     { path: '', component: MyConstructionSitesLandingPageComponent, canActivate: [AuthGuard] },
                     { path: 'list', component: MyConstructionSitesShowComponent, canActivate: [AuthGuard] },
                 ]
-            },
-            {
-                path: 'myconstructionsites/:id', component: ConstructionSiteComponent, canActivate: [AuthGuard], children: [
-                    { path: 'monitoring', component: MonitoringComponent, canActivate: [AuthGuard] },
-                    { path: 'emotionalProfile', component: PainelEmocionalComponent, canActivate: [AuthGuard] },
-                ]
-            },
+            }
         ]
     },
     {
