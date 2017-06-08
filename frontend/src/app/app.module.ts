@@ -93,7 +93,7 @@ import { InMemoryDataService } from './mocks/in-memory-data.service';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 // Angular Material Module
-import { MaterialModule } from "./material.module";
+import { MaterialModule } from "./modules/material/material.module";
 
 // Flex Layout
 import { FlexLayoutModule } from "@angular/flex-layout";
