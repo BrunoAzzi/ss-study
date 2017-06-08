@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
     selector: 'date-range',
@@ -6,7 +6,25 @@ import {Component, OnInit} from '@angular/core';
     styleUrls: ['./date-range.component.scss']
 })
 
-export class DateRangeComponent implements OnInit {
+export class DateRangeComponent {
+    @Input() disabled: boolean = true;
+    range: any;
+
+    disable() {
+        let copy = this.getCopyOfOptions();
+        copy.componentDisabled = true;
+        this.myDateRangePickerOptionsNormal = copy;
+    }
+
+    enable() {
+        let copy = this.getCopyOfOptions();
+        copy.componentDisabled = false;
+        this.myDateRangePickerOptionsNormal = copy;
+    }
+
+    getDate() {
+        return this.selectedTextNormal;
+    }
 
     private myDateRangePickerOptionsNormal = {
         dateFormat: 'dd/mmm/yyyy',
@@ -19,7 +37,7 @@ export class DateRangeComponent implements OnInit {
         indicateInvalidDateRange: true,
         minYear: 1900,
         maxYear: 2200,
-        componentDisabled: false,
+        componentDisabled: true,
         showClearDateRangeBtn: true,
         showSelectorArrow: true,
         disableHeaderButtons: true,
@@ -33,27 +51,21 @@ export class DateRangeComponent implements OnInit {
         monthSelector: true,
         yearSelector: true,
         disableDateRanges: [
-            {beginDate: {year: 2016, month: 10, day: 5}, endDate: {year: 2016, month: 10, day: 7}},
-            {beginDate: {year: 2016, month: 10, day: 10}, endDate: {year: 2016, month: 10, day: 12}}
+            { beginDate: { year: 2016, month: 10, day: 5 }, endDate: { year: 2016, month: 10, day: 7 } },
+            { beginDate: { year: 2016, month: 10, day: 10 }, endDate: { year: 2016, month: 10, day: 12 } }
         ],
-        dayLabels: {su: 'Dom', mo: 'Seg', tu: 'Ter', we: 'Qua', th: 'Qui', fr: 'Sex', sa: 'Sab'},
-        monthLabels: {1: 'Jan', 2: 'Fev', 3: 'Mar', 4: 'Abr', 5: 'Mai', 6: 'Jun', 7: 'Jul', 8: 'Ago', 9: 'Set', 10: 'Out', 11: 'Nov', 12: 'Dez'}
+        dayLabels: { su: 'Dom', mo: 'Seg', tu: 'Ter', we: 'Qua', th: 'Qui', fr: 'Sex', sa: 'Sab' },
+        monthLabels: { 1: 'Jan', 2: 'Fev', 3: 'Mar', 4: 'Abr', 5: 'Mai', 6: 'Jun', 7: 'Jul', 8: 'Ago', 9: 'Set', 10: 'Out', 11: 'Nov', 12: 'Dez' }
     };
 
-    //selectedDateRangeNormal:string = '04 Nov 2016 - 26 Nov 2016';
-    selectedDateRangeNormal = {beginDate: {year: 2018, month: 10, day: 9}, endDate: {year: 2018, month: 10, day: 19}};
-
-    // selectBeginDateTxt:  string = 'Selecione a data inicial';
-    // selectEndDateTxt:  string = 'Selecione a data final';
+    selectedDateRangeNormal = { beginDate: { year: 2018, month: 10, day: 9 }, endDate: { year: 2018, month: 10, day: 19 } };
 
     selectedTextNormal: string = '';
     border: string = 'none';
 
     placeholderTxt: string = 'Período do Mandato';
 
-    constructor() {
-        //console.log('constructor(): SampleDateRangePickerNormal');
-    }
+    constructor() { }
 
     clearDateRange() {
         this.selectedDateRangeNormal = null;
@@ -100,12 +112,12 @@ export class DateRangeComponent implements OnInit {
         this.myDateRangePickerOptionsNormal = copy;
     }
 
-    onDisableToday(checked:boolean) {
+    onDisableToday(checked: boolean) {
         let date = new Date();
 
         // Disable/enable today
         let copy = this.getCopyOfOptions();
-        copy.disableDates = checked ? [{year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate()}] : [];
+        copy.disableDates = checked ? [{ year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate() }] : [];
         this.myDateRangePickerOptionsNormal = copy;
     }
 
@@ -139,18 +151,11 @@ export class DateRangeComponent implements OnInit {
         this.myDateRangePickerOptionsNormal = copy;
     }
 
-    ngOnInit() {
-    //    console.log('onInit(): SampleDateRangePickerNormal');
-    }
-
-
     onDateRangeChanged(event: any) {
-        console.log('onDateRangeChanged(): Begin: ', event.beginDate, ' - beginJsDate: ', new Date(event.beginJsDate).toLocaleDateString(), ' - End: ', event.endDate, ' - endJsDate: ', new Date(event.endJsDate).toLocaleDateString(), ' - formatted: ', event.formatted, ' - beginEpoc timestamp: ', event.beginEpoc, ' - endEpoc timestamp: ', event.endEpoc);
-        if(event.formatted !== '') {
-            this.selectedTextNormal = 'Formatted: ' + event.formatted;
+        if (event.formatted !== '') {
+            this.selectedTextNormal = event.formatted;
             this.border = '1px solid #CCC';
-
-            this.selectedDateRangeNormal = {beginDate: event.beginDate, endDate: event.endDate};
+            this.selectedDateRangeNormal = { beginDate: event.beginDate, endDate: event.endDate };
         }
         else {
             this.selectedTextNormal = '';
@@ -159,15 +164,12 @@ export class DateRangeComponent implements OnInit {
     }
 
     onInputFieldChanged(event: any) {
-        console.log('onInputFieldChanged(): Value: ', event.value, ' - dateRangeFormat: ', event.dateRangeFormat, ' - valid: ', event.valid);
     }
 
     onCalendarViewChanged(event: any) {
-        console.log('onCalendarViewChanged(): Year: ', event.year, ' - month: ', event.month, ' - first: ', event.first, ' - last: ', event.last);
     }
 
     onDateSelected(event: any) {
-        console.log('onDateSelected(): Value: ', event);
     }
 
     getCopyOfOptions(): any {

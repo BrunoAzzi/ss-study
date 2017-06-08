@@ -1,4 +1,3 @@
-import { CBO } from "./../CBO/CBO";
 
 export class PersonalDataWorker {
     name: string;
@@ -19,14 +18,12 @@ export class PersonalDataWorker {
     photoPath: string;
     admissionDate: Date;
     birthDate: Date;
-    cbo: CBO;
     ctps: number;
     age: number;
 
     constructor() {
         this.admissionDate = null;
         this.birthDate = null;
-        this.cbo = { code: "", role: "" };
         this.ctps = 0;
         this.age = 0;
         this.name = "";

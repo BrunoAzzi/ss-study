@@ -1,12 +1,12 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { PersonalDataWorker } from '../../../mocks/personalDataWorker/personalDataWorker';
 import { CorreiosService } from "../../../services/correios.service";
 import { Endereco_completo } from '../../../mocks/endereco_completo/endereco_completo';
 import { CommonModule} from '@angular/common';
 import { CustomValidators } from './customValidators';
-import { CBO } from '../../../mocks/CBO/CBO';
 import { CBOService } from "../../../services/cbo.service";
+import { IMyDpOptions } from 'mydatepicker';
 
 @Component({
     selector: 'workers-data',
@@ -24,9 +24,10 @@ export class WorkersDataComponent {
     isValid: boolean = false;
     worker: PersonalDataWorker;
     myForm: FormGroup;
+    selectedStatusValue: string;
 
     constructor(private correiosService: CorreiosService, private cboService: CBOService, private fb: FormBuilder) {
-        this.getCBOs();
+
         this.myForm = this.fb.group({
             fullname: new FormControl('', Validators.compose([Validators.required, CustomValidators.onlytext])),
             cpf: new FormControl('', Validators.compose([Validators.required, CustomValidators.cpf])),
@@ -51,26 +52,22 @@ export class WorkersDataComponent {
         })
     }
 
-    getCBOs(): void { }
+
+    private myDatePickerOptions: IMyDpOptions = {
+        dateFormat: 'dd/mm/yyyy',
+        dayLabels: { su: 'Dom', mo: 'Seg', tu: 'Ter', we: 'Qua', th: 'Qui', fr: 'Sex', sa: 'Sab' },
+        monthLabels: { 1: 'Jan', 2: 'Fev', 3: 'Mar', 4: 'Abr', 5: 'Mai', 6: 'Jun', 7: 'Jul', 8: 'Ago', 9: 'Set', 10: 'Out', 11: 'Nov', 12: 'Dez' },
+        todayBtnTxt: 'Hoje'
+    };
 
     status = [
         { value: 'ativo', viewValue: 'Ativo' },
-        { value: 'inativo', viewValue: 'Inativo' },
+        { value: 'ferias', viewValue: 'Férias' },
         { value: 'afastado', viewValue: 'Afastado' },
         { value: 'demitido', viewValue: 'Demitido' },
     ];
 
     labors = [
-        { value: 'prog', viewValue: 'Programador' },
-        { value: 'des', viewValue: 'Desenvolvedor' },
-    ];
-
-    laborsInCipa = [
-        { value: 'suplente', viewValue: 'Membro Suplente' },
-        { value: 'efetivo', viewValue: 'Membro Efetivo' },
-        { value: 'presidente', viewValue: 'Presidente' },
-        { value: 'vice', viewValue: 'Vice Presidente' },
-        { value: 'secretario', viewValue: 'Secretário' },
     ];
 
     scholaritys = [
@@ -89,19 +86,6 @@ export class WorkersDataComponent {
     ];
     selectedNecessity: number = 1;
 
-    brigadistas = [
-        { value: 0, viewValue: 'Sim' },
-        { value: 1, viewValue: 'Não' },
-    ];
-    selectedBrigadista: number = 1;
-
-    cipeiros = [
-        { value: 0, viewValue: 'Sim' },
-        { value: 1, viewValue: 'Não' },
-    ];
-    selectedCipeiro: number = 1;
-
-    selectedCipaLabor: boolean = false;
 
     autocompleteAdressFromApi() {
         this.correiosService.getAddress(this.myCep).subscribe(data => {
@@ -111,10 +95,12 @@ export class WorkersDataComponent {
 
     autocompleteRoleFromMock() {
 
-        this.cboService.getCBO().subscribe(
-            function(response) { console.log("Success Response" + response) },
-            function(error) { console.log("Error happened" + error) },
-            function() { console.log("the subscription is completed") }
+        this.cboService.getCBO("6125-05").subscribe(
+            (response) => {
+                this.labors = response.map((label, index) => {
+                    return { value: index, viewValue: label };
+                });
+            },
         );
     }
 
@@ -129,6 +115,7 @@ export class WorkersDataComponent {
     }
 
     savePersonalDataWorker(safetyCard) {
+        console.log(this.myForm.controls);
         if (this.myForm.valid) {
             safetyCard.close();
         }

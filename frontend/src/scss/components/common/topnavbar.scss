@@ -16,7 +16,34 @@
     margin: 0;
     list-style-type: none;
     li {
+      padding-left: 1.5em;
       display: inline-block;
+      a {
+        display: block;
+        box-sizing: border-box;
+        height: 100%;
+
+        font-size: 0.85em;
+        text-transform: uppercase;
+        text-decoration: none;
+        font-family: 'Lato';
+        font-weight: 900;
+        color: #999;
+        &.active {
+          color: #3c3c3c;
+          position: relative;
+          &:before {
+            content: "";
+            display: block;
+            height: 3px;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background-color: #3c3c3c;
+          }
+        }
+      }
     }
   }
 

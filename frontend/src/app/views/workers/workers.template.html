@@ -6,18 +6,14 @@
 
     <div class="body-content">
         <workers-data></workers-data>
-
+        <br>
         <safety-card #safetyCard>
-
             <safety-card-header>
                 <span>habilitações</span>
             </safety-card-header>
-
             <safety-card-content>
                 <form fxLayout="column" #form novalidate id="form1" name="form1">
-
                     <skill [form]="form" fxLayout fxLayoutAlign="space-around center" [skill]="skill" (removed)="removeSkill(skill)" [(skillNames)]="skillNames" *ngFor="let skill of skillList"></skill>
-
                     <div fxFill fxLayout fxLayoutAlign="start center">
                         <a class="action" (click)="addSkill()">
                             Adicicionar habilitação
@@ -28,7 +24,6 @@
                             <span>Salvar e continuar</span>
                         </button>
                     </div>
-
                 </form>
             </safety-card-content>
         </safety-card>

@@ -1,0 +1,17 @@
+@import '../../../../scss/components/color.scss';
+
+:host {
+    background-color: white;
+}
+
+.success {
+    background-color: $green-blue !important;
+}
+
+.danger {
+    background-color: $grapefruit !important;
+}
+
+.warn {
+    background-color: $sunflower !important;
+}
