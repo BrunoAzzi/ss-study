@@ -1,5 +1,4 @@
 <div fxLayout="column" fxFlex>
-
     <topnavbar>
         <h1>Empresas</h1>
         <ul class="navigation-items">
@@ -9,7 +8,6 @@
             <li>Atividades</li>
         </ul>
     </topnavbar>
-
     <div class="body-content">
         <md-tab-group #tabGroup (selectChange)="onSelectChange($event)">
             <md-tab id="tab4" label="Painel Emocional">
@@ -33,13 +31,10 @@
                         <status-trabalhadores fxFlex class=""></status-trabalhadores>
                     </div>
                 </div>
-
             </md-tab>
-
             <md-tab id="tab1" label="Atividades"></md-tab>
             <md-tab id="tab2" label="Capacitações"></md-tab>
             <md-tab id="tab3" label="Vencimentos"></md-tab>
         </md-tab-group>
     </div>
-
 </div>
