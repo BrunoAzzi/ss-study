@@ -10,7 +10,7 @@
                     <tr>
                         <td>
                             <md-input-container>
-                                <input mdInput formControlName="cpf" required placeholder="CPF" id="cpf" name="cpf" mask='000.000.000-00' [(ngModel)]="cpf">
+                                <input mdInput formControlName="cpf" required placeholder="CPF" id="cpf" name="cpf" [textMask]="{mask: cpfMask}"  [(ngModel)]="cpf">
                                 <md-error *ngIf="myForm.controls.cpf.hasError('required')">Campo Obrigatório.</md-error>
                                 <md-error *ngIf="myForm.controls.cpf.hasError('cpf')">CPF inválido.</md-error>
                             </md-input-container>
@@ -53,7 +53,7 @@
                         </td>
                         <td>
                             <md-input-container>
-                                <input mdInput formControlName="nit" placeholder="NIT" id="nit" name="nit" mask='000.00000.00-0'>
+                                <input mdInput formControlName="nit" placeholder="NIT" id="nit" name="nit" [textMask]="{mask: nitMask}" >
                                 <md-error *ngIf="myForm.controls.nit.hasError('onlyPositiveNumbers')">São permitidos apenas valores maiores ou igual a 0.</md-error>
                             </md-input-container>
                         </td>
@@ -67,7 +67,7 @@
                     <tr>
                         <td>
                             <md-input-container>
-                                <input mdInput placeholder="CEP" formControlName="cep" id="cep" [(ngModel)]="myCep" name="cep" mask="00.000-000" (blur)="autocompleteAdressFromApi()">
+                                <input mdInput placeholder="CEP" formControlName="cep" id="cep" [(ngModel)]="myCep" name="cep" [textMask]="{mask: cepMask}"  (blur)="autocompleteAdressFromApi()">
                             </md-input-container>
                         </td>
                         <td colspan="2">
@@ -89,7 +89,7 @@
                     <tr>
                         <td>
                             <md-input-container>
-                                <input mdInput formControlName="cbo" required placeholder="CBO" id="cbo" name="cbo" [(ngModel)]="mycbo" mask="0000-00" (ngModelChange)="checkCboEmpty()" (blur)="autocompleteRoleFromMock()">
+                                <input mdInput formControlName="cbo" required placeholder="CBO" id="cbo" name="cbo" [(ngModel)]="mycbo" [textMask]="{mask: cboMask}"  (ngModelChange)="checkCboEmpty()" (blur)="autocompleteRoleFromMock()">
                                 <md-error *ngIf="myForm.controls.fullname.hasError('required')">Campo Obrigatório.</md-error>
                             </md-input-container>
                         </td>
@@ -133,7 +133,7 @@
                         <td>
                             <div class="formato-material radio-material">
                                 <p>Tipo de Contratação:</p>
-                                <md-radio-group name="hiredType" formControlName="hiredTypeRadio" (change)="hiredChange($event.value)">
+                                <md-radio-group name="hiredType" formControlName="hiredTypeRadio" (change)="hiredChange()">
                                     <div fxLayout="row" fxLayoutAlign="space-around center">
                                         <md-radio-button name="own" value="true" checked="true">Próprio</md-radio-button>
                                         <md-radio-button name="outsourced" value="false">Terceiro</md-radio-button>

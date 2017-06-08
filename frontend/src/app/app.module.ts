@@ -80,7 +80,7 @@ import { NavigationComponent } from "./components/common/navigation/navigation.c
 import { NotificationSidenavContainerModule } from "./components/common/notifications";
 
 //Masks
-import {Ng2MaskModule} from 'ng2-mask';
+import { TextMaskModule } from 'angular2-text-mask';
 
 // Routing module
 import { AppRoutingModule } from "./app-routing.module";
@@ -184,7 +184,7 @@ import { CardConstructionSiteComponent } from './components/mysconstructionsites
         CommonModule,
         JsonpModule,
 
-        Ng2MaskModule,
+        TextMaskModule,
 
         // Custom Components
         SafetyCardModule,

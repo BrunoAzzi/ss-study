@@ -14,7 +14,7 @@ export class BarLevelComponent implements OnChanges, OnInit, OnDestroy {
     @Input() startIndex: number;
     @Output() change: EventEmitter<any> = new EventEmitter();
 
-    private floors: Array<Floor>;
+    floors: Array<Floor>;
     private selectedFloor: Floor = null;
 
     private constructionSubscription: BehaviorSubject<any>;

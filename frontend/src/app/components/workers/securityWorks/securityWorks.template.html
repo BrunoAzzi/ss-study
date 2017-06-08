@@ -18,13 +18,13 @@
                             {{ labor.viewValue }}
                         </md-option>
                     </md-select>
-                    <div *ngIf="submited">
+                    <div *ngIf="submitted">
                         <md-error *ngIf="securityForm.controls.laborsInCipa.hasError('required')">Campo Obrigatório.</md-error>
                     </div>
                 </div>
                 <div class="square">
                     <date-range #dateRange name="data_range"></date-range>
-                    <div *ngIf="submited && invalidDate">
+                    <div *ngIf="submitted && invalidDate">
                         <a class="md-error">Campo Obrigatório.</a>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                             {{ brigadista.viewValue }}
                         </md-option>
                     </md-select>
-                    <div *ngIf="submited">
+                    <div *ngIf="submitted">
                         <md-error *ngIf="securityForm.controls.brigadistas.hasError('required')">Campo Obrigatório.</md-error>
                     </div>
                 </div>
