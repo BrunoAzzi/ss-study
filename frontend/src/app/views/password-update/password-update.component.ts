@@ -14,7 +14,7 @@ import { PasswordService } from '../../services/password.service';
 export class PasswordUpdateComponent { 
     model: any = {};
     loading = false;
-    error = "";
+    error = '';
 
     form: FormGroup;
     sub: any;
@@ -25,7 +25,7 @@ export class PasswordUpdateComponent {
         private router: Router,
         private route: ActivatedRoute,
         private fb: FormBuilder) {
-            
+
         this.form = fb.group({
             password: ['', Validators.required],
             passwordConfirmation: ['', Validators.required]

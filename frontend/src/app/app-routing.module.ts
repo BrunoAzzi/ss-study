@@ -26,7 +26,7 @@ import { MyConstructionSitesShowComponent } from './views/myconstructionsites/sh
 
 const routes: Routes = [
     // Main redirect
-    { path: '', redirectTo: 'myconstructionsites', pathMatch: 'full', canActivate: [AuthGuard] },
+    { path: '', redirectTo: 'myconstructionsites/1', pathMatch: 'full', canActivate: [AuthGuard] },
 
     // App views
     {

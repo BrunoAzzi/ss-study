@@ -7,5 +7,5 @@ import { Router } from '@angular/router';
     styleUrls: ['./my-construction-sites-landing-page.component.scss']
 })
 export class MyConstructionSitesLandingPageComponent {
-    constructor(private router: Router) { }
+    constructor(public router: Router) { }
 }
