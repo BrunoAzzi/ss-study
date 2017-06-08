@@ -5,12 +5,7 @@
     <safety-card-content>
         <form [formGroup]="myForm" (submit)="savePersonalDataWorker(safetyCard)" id="formBasicData" name="formBasicData">
             <div class="form-content">
-
-
-
                 <md-card class="image-upload"></md-card>
-
-
                 <table class="table-form">
                     <tr>
                         <td>
@@ -80,7 +75,8 @@
                         </td>
                         <td colspan="2">
                             <md-input-container>
-                                <input mdInput placeholder="Endereço Completo" formControlName="completeAddress" id="completeAddress" name="completeAddress" value="{{completeAddress}}">
+                                <input mdInput placeholder="Endereço Completo" formControlName="completeAddress" id="completeAddress" name="completeAddress"
+                                    value="{{completeAddress}}">
                             </md-input-container>
                         </td>
                         <td>
@@ -99,7 +95,8 @@
 
 
                             <md-input-container>
-                                <input mdInput formControlName="cbo" placeholder="CBO" id="cbo" name="cbo" [(ngModel)]="mycbo" mask="0000-00" (ngModelChange)="checkCboEmpty()" (blur)="autocompleteRoleFromMock()">
+                                <input mdInput formControlName="cbo" placeholder="CBO" id="cbo" name="cbo" [(ngModel)]="mycbo" mask="0000-00" (ngModelChange)="checkCboEmpty()"
+                                    (blur)="autocompleteRoleFromMock()">
                                 <md-error *ngIf="myForm.controls.fullname.hasError('required')">Campo Obrigatório.</md-error>
                             </md-input-container>
                         </td>
