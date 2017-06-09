@@ -1,7 +1,7 @@
-import { Floor } from './../../models/floor.model';
 import { Component, Output, EventEmitter, Input, OnChanges, SimpleChanges, OnInit, OnDestroy } from '@angular/core';
 import { ConstructionService } from './../../services/construction.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Floor } from './../../models/floor.model';
 
 @Component({
     selector: 'bar-level',
@@ -10,17 +10,17 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 })
 
 export class BarLevelComponent implements OnChanges, OnInit, OnDestroy {
-    
+
     @Input() startIndex: number;
     @Output() change: EventEmitter<any> = new EventEmitter();
 
-    private floors: Array<Floor>;
+    floors: Array<Floor>;
     private selectedFloor: Floor = null;
 
     private constructionSubscription: BehaviorSubject<any>;
 
-    constructor(private constructionService: ConstructionService) {
-        this.constructionSubscription = constructionService.getConstruction();
+    constructor(private service: ConstructionService) {
+        this.constructionSubscription = service.getConstruction();
     }
 
     ngOnInit() {
@@ -32,7 +32,7 @@ export class BarLevelComponent implements OnChanges, OnInit, OnDestroy {
     }
 
     onUpdateConstruction(construction) {
-        this.floors = construction.floors
+        this.floors = construction.floors;
     }
 
     ngOnChanges(changes: SimpleChanges): void {

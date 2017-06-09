@@ -27,7 +27,7 @@ import { MyConstructionSitesAddComponent } from './views/myconstructionsites/add
 
 const routes: Routes = [
     // Main redirect
-    { path: '', redirectTo: 'myconstructionsites', pathMatch: 'full', canActivate: [AuthGuard] },
+    { path: '', redirectTo: 'myconstructionsites/1', pathMatch: 'full', canActivate: [AuthGuard] },
 
     // App views
     {

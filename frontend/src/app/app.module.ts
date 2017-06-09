@@ -12,7 +12,7 @@ import { SessionsService } from "./services/sessions.service";
 import { PasswordService } from "./services/password.service";
 import { ConstructionService } from "./services/construction.service";
 import { AuthGuard } from './guards/index';
-import { MdSnackBar } from '@angular/material';
+import { MdSnackBar, MdDialogModule, MdToolbarModule, MdButtonModule } from '@angular/material';
 import { CommonModule } from '@angular/common';
 
 import { AppComponent } from './app.component';
@@ -45,7 +45,7 @@ import { ThirdPartiesComponent } from "./views/thirdparties/thirdparties.compone
 import { TrainingComponent } from "./views/training/training.component";
 import { WorkersComponent } from "./views/workers/workers.component";
 import { MonitoringComponent } from './views/myconstructionsites/monitoring/monitoring.component';
-import { AreaMappingComponent } from './components/area-mapping/area-mapping.component';
+import { AreaMappingComponent, ContentElementDialog } from './components/area-mapping/area-mapping.component';
 import { AreaMonitoringComponent } from './components/area-monitoring/area-monitoring.component';
 import { SummaryItemComponent } from './components/area-monitoring/summary-item/summary-item.component';
 import { SummaryComponent } from './components/area-monitoring/summary/summary.component';
@@ -80,7 +80,7 @@ import { NavigationComponent } from "./components/common/navigation/navigation.c
 import { NotificationSidenavContainerModule } from "./components/common/notifications";
 
 //Masks
-import {Ng2MaskModule} from 'ng2-mask';
+import { TextMaskModule } from 'angular2-text-mask';
 
 // Routing module
 import { AppRoutingModule } from "./app-routing.module";
@@ -93,7 +93,7 @@ import { InMemoryDataService } from './mocks/in-memory-data.service';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 // Angular Material Module
-import { MaterialModule } from "./material.module";
+import { MaterialModule } from "./modules/material/material.module";
 
 // Flex Layout
 import { FlexLayoutModule } from "@angular/flex-layout";
@@ -151,6 +151,8 @@ import { ConstructionSiteDataComponent } from './components/mysconstructionsites
         RiskGraphComponent,
         FloorNavigationComponent,
 
+        ContentElementDialog,
+
         // Layouts
         BlankComponent,
         BasicComponent,
@@ -190,7 +192,7 @@ import { ConstructionSiteDataComponent } from './components/mysconstructionsites
         CommonModule,
         JsonpModule,
 
-        Ng2MaskModule,
+        TextMaskModule,
 
         // Custom Components
         SafetyCardModule,
@@ -211,6 +213,9 @@ import { ConstructionSiteDataComponent } from './components/mysconstructionsites
 
         // Angular Material
         MaterialModule,
+        MdDialogModule,
+        MdToolbarModule,
+        MdButtonModule,
 
         // Flex Layout
         FlexLayoutModule,
@@ -218,6 +223,7 @@ import { ConstructionSiteDataComponent } from './components/mysconstructionsites
         // Routes
         AppRoutingModule,
     ],
+    entryComponents: [ContentElementDialog],
     providers: [
         HttpClientService,
         AuthGuard,
