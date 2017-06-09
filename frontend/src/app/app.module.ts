@@ -101,18 +101,24 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 // Safety custom modules
 import { SafetyCardModule } from "./components/common/safety-card";
 import { CategoryDividerModule } from "./components/common/category-divider";
+import { FabComponent } from "./components/common/floating-action-button/fab.component";
 
 import { InputFile } from "./components/common/input-file/input-file.component";
 import { MyConstructionSitesLandingPageComponent } from './views/myconstructionsites/landing-page/my-construction-sites-landing-page.component';
 import { MyConstructionSitesShowComponent } from './views/myconstructionsites/show/my-construction-sites-show.component';
+import { MyConstructionSitesAddComponent } from './views/myconstructionsites/add/add.component';
 import { LineConstructionSiteComponent } from './components/mysconstructionsites/line-construction-site/line-construction-site.component';
 import { CardConstructionSiteComponent } from './components/mysconstructionsites/card-construction-site/card-construction-site.component';
+import { ConstructionSiteDataComponent } from './components/mysconstructionsites/construction-site-data/construction-site-data.component';
 
 @NgModule({
     declarations: [
         // Pipes
         KeysPipe,
         DataTablePipe,
+
+        // Custom Components
+        FabComponent,
 
         // Components
         DateRangeComponent,
@@ -167,8 +173,10 @@ import { CardConstructionSiteComponent } from './components/mysconstructionsites
         // Obras
         MyConstructionSitesLandingPageComponent,
         MyConstructionSitesShowComponent,
+        MyConstructionSitesAddComponent,
         LineConstructionSiteComponent,
-        CardConstructionSiteComponent
+        CardConstructionSiteComponent,
+        ConstructionSiteDataComponent,
     ],
     imports: [
         // Notification Module

@@ -23,6 +23,7 @@ import { ConstructionSiteComponent } from "./components/common/layouts/construct
 
 import { MyConstructionSitesLandingPageComponent } from "./views/myconstructionsites/landing-page/my-construction-sites-landing-page.component";
 import { MyConstructionSitesShowComponent } from './views/myconstructionsites/show/my-construction-sites-show.component';
+import { MyConstructionSitesAddComponent } from './views/myconstructionsites/add/add.component';
 
 const routes: Routes = [
     // Main redirect
@@ -43,6 +44,7 @@ const routes: Routes = [
                 path: 'myconstructionsites', component: MyConstructionSitesComponent, canActivate: [AuthGuard], children: [
                     { path: '', component: MyConstructionSitesLandingPageComponent, canActivate: [AuthGuard] },
                     { path: 'list', component: MyConstructionSitesShowComponent, canActivate: [AuthGuard] },
+                    { path: 'add', component: MyConstructionSitesAddComponent, canActivate: [AuthGuard] },
                 ]
             },
             {

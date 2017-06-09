@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ConstructionSiteService } from "../../../services/construction-site/construction-site.service";
 import { ConstructionSite } from "../../../mocks/construction-site/construction-site";
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'my-construction-sites-show',
@@ -32,12 +33,20 @@ export class MyConstructionSitesShowComponent {
 		{ name: "Primeiros cadastrados", code: this.FIRST_SAVED }
 	];
 
-	constructor(private constructionSiteService: ConstructionSiteService) {
+	constructor(
+        private constructionSiteService: ConstructionSiteService,
+        private router: Router,
+        private route: ActivatedRoute
+    ) {
 		constructionSiteService.getConstructionSite().subscribe(data => {
             this.constructionSiteList = data;
             this.filteredConstructionSiteList = this.constructionSiteList;
         });
 	}
+
+    addConstructionSite() {
+        this.router.navigate(['../add'], { relativeTo: this.route });
+    }
 
     toggleSearch() {
         this.showSearch = !this.showSearch;
