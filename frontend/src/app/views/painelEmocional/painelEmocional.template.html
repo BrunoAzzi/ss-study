@@ -1,15 +1,6 @@
 <div fxLayout="column" fxFlex>
-    <!-- <topnavbar>
-        <h1>Empresas</h1>
-        <ul class="navigation-items">
-            <li>Geral</li>
-            <li>Monitoramento</li>
-            <li>Colaboradores</li>
-            <li>Atividades</li>
-        </ul>
-    </topnavbar> -->
     <div class="body-content">
-        <md-tab-group #tabGroup (selectChange)="onSelectChange($event)">
+        <md-tab-group #tabGroup (selectChange)="onSelectChange($event)" disableRipple>
             <md-tab id="tab4" label="Painel Emocional">
                 <div class="inRigth">
                     <my-date-picker name="birthDate" [options]="myDatePickerOptions" placeholder="Mês/Ano Desejado"></my-date-picker>
