@@ -5,6 +5,7 @@
 @import 'components/common/button.scss';
 @import 'components/common/input.scss';
 @import 'components/common/select.scss';
+@import 'components/common/tab.scss';
 
 html {
     height: 100vh;
@@ -46,7 +47,8 @@ ul {
     border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
 }
 
-.leaflet-control-zoom-in, .leaflet-control-zoom-out {
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
     color: #b8b9b9 !important;
-    box-shadow: 0px 3px 9px 0 rgba(0, 0, 0, 0.05) !important;
+    box-shadow: 0 3px 9px 0 rgba(0, 0, 0, 0.05) !important;
 }
