@@ -26,7 +26,7 @@ export class DateRangeComponent {
         return this.selectedTextNormal;
     }
 
-    private myDateRangePickerOptionsNormal = {
+    myDateRangePickerOptionsNormal = {
         dateFormat: 'dd/mmm/yyyy',
         firstDayOfWeek: 'mo',
         sunHighlight: true,

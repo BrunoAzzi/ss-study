@@ -15,16 +15,68 @@ import { IMyDpOptions } from 'mydatepicker';
     providers: [CorreiosService, CBOService]
 })
 export class WorkersDataComponent {
-    disabled: boolean = true;
-    mycbo: string = "";
-    mycbonumber: number = 0;
-    myCep: string = "";
-    completeAddress: string;
-    hiredType: boolean = true;
-    isValid: boolean = false;
-    worker: PersonalDataWorker;
+    disabled = true;
+    mycbo = '';
+    mycbonumber = 0;
+    myCep = '';
+    cpf = '';
+    fullname = '';
+    hiredType = true;
+    isValid = false;
     myForm: FormGroup;
+    worker: PersonalDataWorker;
+    completeAddress: string;
     selectedStatusValue: string;
+
+    myDatePickerOptions: IMyDpOptions = {
+        dateFormat: 'dd/mm/yyyy',
+        dayLabels: { su: 'Dom', mo: 'Seg', tu: 'Ter', we: 'Qua', th: 'Qui', fr: 'Sex', sa: 'Sab' },
+        monthLabels: {
+            1: 'Jan',
+            2: 'Fev',
+            3: 'Mar',
+            4: 'Abr',
+            5: 'Mai',
+            6: 'Jun',
+            7: 'Jul',
+            8: 'Ago',
+            9: 'Set',
+            10: 'Out',
+            11: 'Nov',
+            12: 'Dez'
+        },
+        todayBtnTxt: 'Hoje'
+    };
+
+    status = [
+        { value: 'ativo', viewValue: 'Ativo' },
+        { value: 'ferias', viewValue: 'Férias' },
+        { value: 'afastado', viewValue: 'Afastado' },
+        { value: 'demitido', viewValue: 'Demitido' },
+    ];
+
+    labors = [];
+
+    scholaritys = [
+        { value: 'fund_i', viewValue: 'Fundamental incompleto' },
+        { value: 'fund_c', viewValue: 'Fundamental completo' },
+        { value: 'medio_i', viewValue: 'Médio incompleto' },
+        { value: 'medio_c', viewValue: 'Médio completo' },
+        { value: 'sup_i', viewValue: 'Superior incompleto' },
+        { value: 'sup_c', viewValue: 'Superior completo' },
+        { value: 'pos', viewValue: 'Pós Graduação' },
+    ];
+
+    necessitys = [
+        { value: 0, viewValue: 'Sim' },
+        { value: 1, viewValue: 'Não' },
+    ];
+    selectedNecessity: number = 1;
+
+    cpfMask = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
+    nitMask = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, /\d/, /\d/, '.', /\d/, /\d/, '-', /\d/];
+    cepMask = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
+    cboMask = [/\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/];
 
     constructor(private correiosService: CorreiosService, private cboService: CBOService, private fb: FormBuilder) {
 
@@ -52,44 +104,9 @@ export class WorkersDataComponent {
         })
     }
 
-
-    private myDatePickerOptions: IMyDpOptions = {
-        dateFormat: 'dd/mm/yyyy',
-        dayLabels: { su: 'Dom', mo: 'Seg', tu: 'Ter', we: 'Qua', th: 'Qui', fr: 'Sex', sa: 'Sab' },
-        monthLabels: { 1: 'Jan', 2: 'Fev', 3: 'Mar', 4: 'Abr', 5: 'Mai', 6: 'Jun', 7: 'Jul', 8: 'Ago', 9: 'Set', 10: 'Out', 11: 'Nov', 12: 'Dez' },
-        todayBtnTxt: 'Hoje'
-    };
-
-    status = [
-        { value: 'ativo', viewValue: 'Ativo' },
-        { value: 'ferias', viewValue: 'Férias' },
-        { value: 'afastado', viewValue: 'Afastado' },
-        { value: 'demitido', viewValue: 'Demitido' },
-    ];
-
-    labors = [
-    ];
-
-    scholaritys = [
-        { value: 'fund_i', viewValue: 'Fundamental incompleto' },
-        { value: 'fund_c', viewValue: 'Fundamental completo' },
-        { value: 'medio_i', viewValue: 'Médio incompleto' },
-        { value: 'medio_c', viewValue: 'Médio completo' },
-        { value: 'sup_i', viewValue: 'Superior incompleto' },
-        { value: 'sup_c', viewValue: 'Superior completo' },
-        { value: 'pos', viewValue: 'Pós Graduação' },
-    ];
-
-    necessitys = [
-        { value: 0, viewValue: 'Sim' },
-        { value: 1, viewValue: 'Não' },
-    ];
-    selectedNecessity: number = 1;
-
-
     autocompleteAdressFromApi() {
         this.correiosService.getAddress(this.myCep).subscribe(data => {
-            this.completeAddress = data.cidade + " - " + data.estado + ", " + data.bairro + ", " + data.tipoDeLogradouro + " " + data.logradouro;
+            this.completeAddress = `${data.cidade} - ${data.estado}, ${data.bairro}, ${data.tipoDeLogradouro} ${data.logradouro}`;
         });
     }
 
@@ -115,7 +132,7 @@ export class WorkersDataComponent {
     }
 
     savePersonalDataWorker(safetyCard) {
-        console.log(this.myForm.controls);
+        //se não passar, descomentar: console.log(this.myForm.controls);
         if (this.myForm.valid) {
             safetyCard.close();
         }
