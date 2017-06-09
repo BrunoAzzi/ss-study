@@ -167,14 +167,11 @@ import { CardConstructionSiteComponent } from './components/mysconstructionsites
 
         // Obras
         MyConstructionSitesLandingPageComponent,
-<<<<<<< HEAD
-        MyConstructionSitesPhaserComponent,
         HealthComponent,
-=======
         MyConstructionSitesShowComponent,
         LineConstructionSiteComponent,
         CardConstructionSiteComponent
->>>>>>> master
+
     ],
     imports: [
         // Notification Module

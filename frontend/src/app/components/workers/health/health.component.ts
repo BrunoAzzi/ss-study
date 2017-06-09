@@ -26,7 +26,6 @@ export class HealthComponent {
         })
     }
 
-
     bloodTypes = [
         {value: 0, viewValue: 'A+'},
         {value: 1, viewValue: 'A-'},

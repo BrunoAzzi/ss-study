@@ -90,12 +90,8 @@
                     <tr>
                         <td>
                             <md-input-container>
-<<<<<<< HEAD
-                                <input mdInput formControlName="cbo" placeholder="CBO" id="cbo" name="cbo" [(ngModel)]="mycbo" mask="0000-00" (ngModelChange)="checkCboEmpty()"
-                                    (blur)="autocompleteRoleFromMock()">
-=======
                                 <input mdInput formControlName="cbo" required placeholder="CBO" id="cbo" name="cbo" [(ngModel)]="mycbo" mask="0000-00" (ngModelChange)="checkCboEmpty()" (blur)="autocompleteRoleFromMock()">
->>>>>>> master
+
                                 <md-error *ngIf="myForm.controls.fullname.hasError('required')">Campo Obrigatório.</md-error>
                             </md-input-container>
                         </td>
