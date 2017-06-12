@@ -9,6 +9,7 @@
 
 html {
     height: 100vh;
+    overflow: hidden;
 }
 
 body {
@@ -18,21 +19,10 @@ body {
     font-family: 'Lato', sans-serif;
 }
 
-.body-content {
-    padding: 20px;
-    box-sizing: border-box;
-    overflow: auto;
-}
-
 ul {
     padding: 0;
     margin: 0;
     list-style-type: none;
-}
-
-.main-content {
-    height: 100vh;
-    overflow: hidden;
 }
 
 .leaflet-control-attribution {

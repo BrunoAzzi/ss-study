@@ -1,4 +1,3 @@
-
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -38,7 +37,6 @@ import { ToolboxComponent } from './components/toolbox/toolbox.component';
 import { BarLevelComponent } from './components/bar-level/bar-level.component';
 
 import { PPEComponent } from "./views/ppe/ppe.component";
-import { MyConstructionSitesComponent } from "./views/myconstructionsites/myconstructionsites.component";
 import { ReportsComponent } from "./views/reports/reports.component";
 import { RepositoriesComponent } from "./views/repositories/repositories.component";
 import { ThirdPartiesComponent } from "./views/thirdparties/thirdparties.component";
@@ -65,10 +63,11 @@ import { Floor } from './models/floor.model';
 import { Coordinate } from './models/coordinate.model';
 
 // Layouts
-
 import { LoginComponent } from "./views/login/login.component";
 import { PasswordRecoveryComponent } from "./views/password-recovery/password-recovery.component";
 import { PasswordUpdateComponent } from "./views/password-update/password-update.component";
+
+import { BasicTopnavbarLayout } from './components/common/layouts/basic-topnavbar/basic-topnavbar.component';
 
 import { BlankComponent } from "./components/common/layouts/blank/blank.component";
 import { BasicComponent } from "./components/common/layouts/basic/basic.component";
@@ -125,7 +124,6 @@ import { ConstructionSiteDataComponent } from './components/mysconstructionsites
         AppComponent,
         CompaniesComponent,
         PPEComponent,
-        MyConstructionSitesComponent,
         ReportsComponent,
         RepositoriesComponent,
         ThirdPartiesComponent,
@@ -150,13 +148,13 @@ import { ConstructionSiteDataComponent } from './components/mysconstructionsites
         SummaryComponent,
         RiskGraphComponent,
         FloorNavigationComponent,
-
         ContentElementDialog,
 
         // Layouts
         BlankComponent,
         BasicComponent,
         ConstructionSiteComponent,
+        BasicTopnavbarLayout,
 
         // Painel Emocional
         PainelEmocionalComponent,
