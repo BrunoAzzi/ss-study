@@ -1,10 +1,12 @@
 <div class="workbench">
     <floor-navigation (change)="floorChanged($event)" currentIndex=0></floor-navigation>
-    <blueprint 
-        class="blueprint" 
-        mapType="Monitoring" 
-        (changeMap)="changedMap($event)" 
-        (changeMapLayer)="changedMapLayer($event)"
-        (changeImageMap)="changedImageMap($event)"
-    ></blueprint>
+    <div class="workspace">
+        <blueprint 
+            mapType="Monitoring" 
+            (changeMap)="changedMap($event)" 
+            (changeMapLayer)="changedMapLayer($event)"
+            (changeImageMap)="changedImageMap($event)"
+        ></blueprint>
+        <app-filters></app-filters>
+    </div>
 </div>

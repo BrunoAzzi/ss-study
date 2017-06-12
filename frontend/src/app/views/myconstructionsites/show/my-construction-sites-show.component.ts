@@ -1,3 +1,4 @@
+import { ConstructionsService } from './../../../services/constructions.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { ConstructionSite } from "../../../mocks/construction-site/construction-site";
 import { Router, ActivatedRoute } from '@angular/router';
@@ -14,9 +15,11 @@ export class MyConstructionSitesShowComponent implements OnInit {
 	constructionSiteList: ConstructionSite[];
     filteredConstructionSiteList: ConstructionSite[] = this.constructionSiteList;
 
-    showOnGoingConstructionSites: boolean = true;
-    showStoppedConstructionSites: boolean = true;
-    showEndedConstructionSites: boolean = true;
+    private activeFilters = {
+        onGoing: false,
+        paralized: false,
+        finished: false,
+    }
 
     showSearch: boolean = false;
     textFilter: string = "";
@@ -31,7 +34,7 @@ export class MyConstructionSitesShowComponent implements OnInit {
 		{ name: "Primeiros cadastrados", code: this.FIRST_SAVED }
 	];
 
-	constructor(private router: Router, private route: ActivatedRoute) { }
+	constructor(private router: Router, private route: ActivatedRoute, private service: ConstructionsService) { }
 
     ngOnInit() {
         this.route.data
@@ -49,34 +52,35 @@ export class MyConstructionSitesShowComponent implements OnInit {
         this.showSearch = !this.showSearch;
     }
 
-    filterByText(event) { }
+    filterByText(event) { 
+
+    }
+
+    getFilteredConstructions() {
+        return this.service.constructions.filter(construction => {
+            return (
+                !(this.activeFilters.onGoing && construction.status === "em andamento") &&
+                !(this.activeFilters.paralized && construction.status === "paralizada") &&
+                !(this.activeFilters.finished && construction.status === "finalizada")
+            )
+        })
+    }
+
+    toggleActiveFilter(filterName) {
+        this.activeFilters = {
+            ...this.activeFilters,
+            [filterName]: !this.activeFilters[filterName]
+        }
+    }
 
 	orderBy(order: string) {
 		// TODO improve to a more explicit implementation using date
 		this.filteredConstructionSiteList.reverse();
 	}
 
-    toggleOnGoingFilter() {
-        this.showOnGoingConstructionSites = !this.showOnGoingConstructionSites;
-        this.makeList();
-    }
-
-    toggleStoppedFilter() {
-        this.showStoppedConstructionSites = !this.showStoppedConstructionSites;
-        this.makeList();
-    }
-
-    toggleEndedFilter() {
-        this.showEndedConstructionSites = !this.showEndedConstructionSites;
-        this.makeList();
-    }
-
     makeList() {
         this.filteredConstructionSiteList = this.constructionSiteList
 
-        if (!this.showOnGoingConstructionSites) this.filterOnGoingConstructionSites();
-        if (!this.showStoppedConstructionSites) this.filterStoppedConstructionSites();
-        if (!this.showEndedConstructionSites) this.filterEndedConstructionSites()
         if (this.showSearch) this.filterTextExpression();
     }
 

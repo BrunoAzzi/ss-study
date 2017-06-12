@@ -11,15 +11,15 @@
             <input mdInput floatPlaceholder="never" [(ngModel)]="textFilter" (input)="makeList()">
         </md-input-container>
         <md-chip-list>
-            <md-chip [ngClass]="{ warn: showOnGoingConstructionSites, disabled: !showOnGoingConstructionSites }" fxLayout fxLayoutAlign="start center" (click)="toggleOnGoingFilter()">
+            <md-chip class="warn" [ngClass]="{ disabled: activeFilters.onGoing }" fxLayout fxLayoutAlign="start center" (click)="toggleActiveFilter('onGoing')">
                 <md-icon fxLayout fxLayoutAlign="center center">check_circle</md-icon>
                 <span>Em andamento</span>
             </md-chip>
-            <md-chip [ngClass]="{ danger: showStoppedConstructionSites, disabled: !showStoppedConstructionSites }" fxLayout fxLayoutAlign="start center" (click)="toggleStoppedFilter()">
+            <md-chip class="danger" [ngClass]="{ disabled: activeFilters.paralized }" fxLayout fxLayoutAlign="start center" (click)="toggleActiveFilter('paralized')">
                 <md-icon fxLayout fxLayoutAlign="center center">remove</md-icon>
                 <span>Paralizadas</span>
             </md-chip>
-            <md-chip [ngClass]="{ success: showEndedConstructionSites, disabled: !showEndedConstructionSites }" fxLayout fxLayoutAlign="start center" (click)="toggleEndedFilter()">
+            <md-chip class="success" [ngClass]="{ disabled: activeFilters.finished }" fxLayout fxLayoutAlign="start center" (click)="toggleActiveFilter('finished')">
                 <md-icon fxLayout fxLayoutAlign="center center">check</md-icon>
                 <span>Finalizadas</span>
             </md-chip>
@@ -27,25 +27,25 @@
     </div>
     <div fxLayout fxLayoutAlign="end center" class="right-actionbar">
         <md-select [ngModel]="order" (ngModelChange)="orderBy(order)" floatPlaceholder="never" class="order">
-            <md-option *ngFor="let state of states" [value]="state.code">{{ state.name }}</md-option>
+            <md-option *ngFor="let state of states" (value)="state.code">{{ state.name }}</md-option>
         </md-select>
         <button md-icon-button (click)="setListView()" type="button" name="button">
-                <md-icon [ngClass]="{actived: listActived}">list</md-icon>
-            </button>
+            <md-icon [ngClass]="{actived: listActived}">list</md-icon>
+        </button>
         <button md-icon-button (click)="setBlockView()" type="button" name="button">
-                <md-icon [ngClass]="{actived: blockActived}">view_module</md-icon>
-            </button>
+            <md-icon [ngClass]="{actived: blockActived}">view_module</md-icon>
+        </button>
     </div>
 </div>
 
 <div *ngIf="listActived; else blockView" class="list-wrapper">
-    <div *ngFor="let constructionSite of filteredConstructionSiteList">
+    <div *ngFor="let constructionSite of getFilteredConstructions()">
         <line-construction-site fxFlex fxLayout fxLayoutAlign="space-between center" *ngIf="constructionSite" [constructionSite]="constructionSite"></line-construction-site>
     </div>
 </div>
 
 <ng-template #blockView>
-    <div *ngFor="let constructionSite of filteredConstructionSiteList">
+    <div *ngFor="let constructionSite of getFilteredConstructions()">
         <card-construction-site *ngIf="constructionSite" [constructionSite]="constructionSite"></card-construction-site>
     </div>
     <div class="" fxLayout fxLayoutAlign="center center">

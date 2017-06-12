@@ -47,6 +47,8 @@ md-chip {
     text-align: left;
     text-transform: uppercase;
     color: white !important;
+    outline: none;
+    cursor: pointer;
 
     md-icon {
         margin-right: 5px;
@@ -92,4 +94,8 @@ md-chip {
 
 .warn {
     background-color: $sunflower !important;
+}
+
+.disabled {
+    background-color: #e0e0e0 !important;
 }

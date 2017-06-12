@@ -1,3 +1,4 @@
+import { ConstructionsService } from './services/constructions.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -109,6 +110,7 @@ import { MyConstructionSitesAddComponent } from './views/myconstructionsites/add
 import { LineConstructionSiteComponent } from './components/mysconstructionsites/line-construction-site/line-construction-site.component';
 import { CardConstructionSiteComponent } from './components/mysconstructionsites/card-construction-site/card-construction-site.component';
 import { ConstructionSiteDataComponent } from './components/mysconstructionsites/construction-site-data/construction-site-data.component';
+import { FiltersComponent } from './components/area-monitoring/filters/filters.component';
 
 @NgModule({
     declarations: [
@@ -175,6 +177,7 @@ import { ConstructionSiteDataComponent } from './components/mysconstructionsites
         LineConstructionSiteComponent,
         CardConstructionSiteComponent,
         ConstructionSiteDataComponent,
+        FiltersComponent,
     ],
     imports: [
         // Notification Module
@@ -229,6 +232,7 @@ import { ConstructionSiteDataComponent } from './components/mysconstructionsites
         PasswordService,
         MdSnackBar,
         ConstructionService,
+        ConstructionsService,
         { provide: LocationStrategy, useClass: HashLocationStrategy }],
     bootstrap: [AppComponent]
 })
