@@ -1,3 +1,4 @@
+/*
 ::-webkit-input-placeholder {
     color: red;
 }
@@ -24,42 +25,12 @@ table {
     border-spacing: 8px;
 }
 
-.mat-input-suffix {
-    margin-left: 10px;
+td textarea {
+    border: none;
 }
 
-.form-content {
-    width: 90%;
-    display: flex;
-
-    .image-upload {
-        width: 20%;
-        height: 18vw;
-        min-height: 75px;
-        margin-right: 15px;
-        background-color: white;
-    }
-
-    .table-form {
-        width: 90%;
-
-        md-input-container {
-            width: 100%;
-        }
-
-        td {
-            padding-left: 6px;
-            padding-right: 6px;
-        }
-    }
-
-    md-input-container md-select {
-        width: 100%;
-        font-family: Lato;
-        font-size: 12px;
-        font-weight: bold;
-        color: #3c3c3c;
-    }
+.mat-input-suffix {
+    margin-left: 10px;
 }
 
 .formato-material {
@@ -115,3 +86,4 @@ table {
         text-align: center;
     }
 }
+*/
