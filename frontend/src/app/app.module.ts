@@ -1,4 +1,3 @@
-
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -41,7 +40,6 @@ import { ToolboxComponent } from './components/toolbox/toolbox.component';
 import { BarLevelComponent } from './components/bar-level/bar-level.component';
 
 import { PPEComponent } from "./views/ppe/ppe.component";
-import { MyConstructionSitesComponent } from "./views/myconstructionsites/myconstructionsites.component";
 import { ReportsComponent } from "./views/reports/reports.component";
 import { RepositoriesComponent } from "./views/repositories/repositories.component";
 import { ThirdPartiesComponent } from "./views/thirdparties/thirdparties.component";
@@ -68,10 +66,11 @@ import { Floor } from './models/floor.model';
 import { Coordinate } from './models/coordinate.model';
 
 // Layouts
-
 import { LoginComponent } from "./views/login/login.component";
 import { PasswordRecoveryComponent } from "./views/password-recovery/password-recovery.component";
 import { PasswordUpdateComponent } from "./views/password-update/password-update.component";
+
+import { BasicTopnavbarLayout } from './components/common/layouts/basic-topnavbar/basic-topnavbar.component';
 
 import { BlankComponent } from "./components/common/layouts/blank/blank.component";
 import { BasicComponent } from "./components/common/layouts/basic/basic.component";
@@ -104,12 +103,15 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 // Safety custom modules
 import { SafetyCardModule } from "./components/common/safety-card";
 import { CategoryDividerModule } from "./components/common/category-divider";
+import { FabComponent } from "./components/common/floating-action-button/fab.component";
 
 import { InputFile } from "./components/common/input-file/input-file.component";
 import { MyConstructionSitesLandingPageComponent } from './views/myconstructionsites/landing-page/my-construction-sites-landing-page.component';
 import { MyConstructionSitesShowComponent } from './views/myconstructionsites/show/my-construction-sites-show.component';
+import { MyConstructionSitesAddComponent } from './views/myconstructionsites/add/add.component';
 import { LineConstructionSiteComponent } from './components/mysconstructionsites/line-construction-site/line-construction-site.component';
 import { CardConstructionSiteComponent } from './components/mysconstructionsites/card-construction-site/card-construction-site.component';
+import { ConstructionSiteDataComponent } from './components/mysconstructionsites/construction-site-data/construction-site-data.component';
 
 @NgModule({
     declarations: [
@@ -117,12 +119,14 @@ import { CardConstructionSiteComponent } from './components/mysconstructionsites
         KeysPipe,
         DataTablePipe,
 
+        // Custom Components
+        FabComponent,
+
         // Components
         DateRangeComponent,
         AppComponent,
         CompaniesComponent,
         PPEComponent,
-        MyConstructionSitesComponent,
         ReportsComponent,
         RepositoriesComponent,
         ThirdPartiesComponent,
@@ -147,13 +151,13 @@ import { CardConstructionSiteComponent } from './components/mysconstructionsites
         SummaryComponent,
         RiskGraphComponent,
         FloorNavigationComponent,
-
         ContentElementDialog,
 
         // Layouts
         BlankComponent,
         BasicComponent,
         ConstructionSiteComponent,
+        BasicTopnavbarLayout,
 
         // Painel Emocional
         PainelEmocionalComponent,
@@ -171,9 +175,10 @@ import { CardConstructionSiteComponent } from './components/mysconstructionsites
         MyConstructionSitesLandingPageComponent,
         HealthComponent,
         MyConstructionSitesShowComponent,
+        MyConstructionSitesAddComponent,
         LineConstructionSiteComponent,
-        CardConstructionSiteComponent
-
+        CardConstructionSiteComponent,
+        ConstructionSiteDataComponent,
     ],
     imports: [
         // Notification Module

@@ -1,10 +1,15 @@
 $pale-gray: #f8fafb;
 $warm-grey-four: #999999;
 
-md-card.custom-header {
-    padding: 0px !important;
+:host {
+    display: flex;
+    flex-direction: column;
+}
 
-    > *:not(md-toolbar){
+md-card.custom-header {
+    padding: 0 !important;
+
+    > *:not(md-toolbar) {
         padding: 24px;
     }
 }

@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from "@angular/router";
-import { AuthGuard } from './guards/index';
+import { AuthGuard } from './guards';
+import { HasConstructionSitesGuard } from './guards/hasConstructionSites.guard';
 
 import { CompaniesComponent } from "./views/companies/companies.component";
 import { PPEComponent } from "./views/ppe/ppe.component";
-import { MyConstructionSitesComponent } from "./views/myconstructionsites/myconstructionsites.component";
 import { ReportsComponent } from "./views/reports/reports.component";
 import { RepositoriesComponent } from "./views/repositories/repositories.component";
 import { ThirdPartiesComponent } from "./views/thirdparties/thirdparties.component";
@@ -23,36 +23,50 @@ import { ConstructionSiteComponent } from "./components/common/layouts/construct
 
 import { MyConstructionSitesLandingPageComponent } from "./views/myconstructionsites/landing-page/my-construction-sites-landing-page.component";
 import { MyConstructionSitesShowComponent } from './views/myconstructionsites/show/my-construction-sites-show.component';
+import { MyConstructionSitesAddComponent } from './views/myconstructionsites/add/add.component';
+import { ConstructionSiteService } from './services/construction-site/construction-site.service';
+import { ConstructionSiteResolver } from './resolves/construction-site-resolver.service';
+
+import { BasicTopnavbarLayout } from './components/common/layouts/basic-topnavbar/basic-topnavbar.component';
 
 const routes: Routes = [
     // Main redirect
-    { path: '', redirectTo: 'myconstructionsites/1', pathMatch: 'full', canActivate: [AuthGuard] },
+    { path: '', redirectTo: 'myconstructionsites', pathMatch: 'full', canActivate: [AuthGuard] },
 
     // App views
     {
         path: '', component: BasicComponent,
         children: [
-            { path: 'companies', component: CompaniesComponent, canActivate: [AuthGuard] },
-            { path: 'epis', component: PPEComponent, canActivate: [AuthGuard] },
-            { path: 'reports', component: ReportsComponent, canActivate: [AuthGuard] },
-            { path: 'repositories', component: RepositoriesComponent, canActivate: [AuthGuard] },
-            { path: 'thirdparties', component: ThirdPartiesComponent, canActivate: [AuthGuard] },
-            { path: 'training', component: TrainingComponent, canActivate: [AuthGuard] },
-            { path: 'workers', component: WorkersComponent, canActivate: [AuthGuard] },
             {
-                path: 'myconstructionsites', component: MyConstructionSitesComponent, canActivate: [AuthGuard], children: [
-                    { path: '', component: MyConstructionSitesLandingPageComponent, canActivate: [AuthGuard] },
-                    { path: 'list', component: MyConstructionSitesShowComponent, canActivate: [AuthGuard] },
+                path: '', component: BasicTopnavbarLayout, children: [
+                    { path: 'companies', data: { breadcrumb: "Empresas" }, component: CompaniesComponent, canActivate: [AuthGuard] },
+                    { path: 'epis', data: { breadcrumb: "EPI's" }, component: PPEComponent, canActivate: [AuthGuard] },
+                    { path: 'reports', data: { breadcrumb: "Relatórios" }, component: ReportsComponent, canActivate: [AuthGuard] },
+                    { path: 'repositories', data: { breadcrumb: "Repositório" }, component: RepositoriesComponent, canActivate: [AuthGuard] },
+                    { path: 'thirdparties', data: { breadcrumb: "Terceiros" }, component: ThirdPartiesComponent, canActivate: [AuthGuard] },
+                    { path: 'training', data: { breadcrumb: "Treinamento" }, component: TrainingComponent, canActivate: [AuthGuard] },
+                    { path: 'workers', data: { breadcrumb: "Trabalhadores" }, component: WorkersComponent, canActivate: [AuthGuard] },
+                    {
+                        path: 'myconstructionsites', data: { breadcrumb: "Minhas Obras" }, canActivate: [AuthGuard],
+                        children: [
+                            { path: '', pathMatch: 'prefix', redirectTo: 'list' },
+                            { path: 'landing-page', component: MyConstructionSitesLandingPageComponent, canActivate: [AuthGuard, HasConstructionSitesGuard] },
+                            { path: 'list', component: MyConstructionSitesShowComponent, canActivate: [AuthGuard], resolve: { constructionSiteList: ConstructionSiteResolver } },
+                            { path: 'add', data: { breadcrumb: "Cadastro Obra" }, component: MyConstructionSitesAddComponent, canActivate: [AuthGuard] }
+                        ]
+                    }
                 ]
             },
             {
-                path: 'myconstructionsites/:id', component: ConstructionSiteComponent, canActivate: [AuthGuard], children: [
-                    { path: 'monitoring', component: MonitoringComponent, canActivate: [AuthGuard] },
-                    { path: 'emotionalProfile', component: PainelEmocionalComponent, canActivate: [AuthGuard] },
+                path: 'myconstructionsites/:id', component: ConstructionSiteComponent, children: [
+                    { path: '', pathMatch: 'prefix', redirectTo: 'monitoring' },
+					{ path: 'monitoring', component: MonitoringComponent, canActivate: [AuthGuard] },
+					{ path: 'emotionalProfile', component: PainelEmocionalComponent, canActivate: [AuthGuard] },
                 ]
-            },
+            }
         ]
     },
+
     {
         path: '', component: BlankComponent,
         children: [
@@ -68,6 +82,7 @@ const routes: Routes = [
 
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule]
+    exports: [RouterModule],
+    providers: [ConstructionSiteService, ConstructionSiteResolver, HasConstructionSitesGuard]
 })
 export class AppRoutingModule { }
