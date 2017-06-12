@@ -9,7 +9,7 @@ import { Floor } from './../../models/floor.model';
     styleUrls: ['bar-level.component.scss']
 })
 
-export class BarLevelComponent implements OnChanges, OnInit, OnDestroy {
+export class BarLevelComponent implements OnChanges {
 
     @Input() startIndex: number;
     @Output() change: EventEmitter<any> = new EventEmitter();
@@ -17,18 +17,7 @@ export class BarLevelComponent implements OnChanges, OnInit, OnDestroy {
     floors: Array<Floor>;
     private selectedFloor: Floor = null;
 
-    private constructionSubscription: BehaviorSubject<any>;
-
     constructor(private service: ConstructionService) {
-        this.constructionSubscription = service.getConstruction();
-    }
-
-    ngOnInit() {
-        this.constructionSubscription.subscribe(this.onUpdateConstruction.bind(this));
-    }
-
-    ngOnDestroy() {
-        this.constructionSubscription.unsubscribe();
     }
 
     onUpdateConstruction(construction) {

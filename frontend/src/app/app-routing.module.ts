@@ -46,22 +46,14 @@ const routes: Routes = [
                     { path: 'thirdparties', data: { breadcrumb: "Terceiros" }, component: ThirdPartiesComponent, canActivate: [AuthGuard] },
                     { path: 'training', data: { breadcrumb: "Treinamento" }, component: TrainingComponent, canActivate: [AuthGuard] },
                     { path: 'workers', data: { breadcrumb: "Trabalhadores" }, component: WorkersComponent, canActivate: [AuthGuard] },
-                    {
-                        path: 'myconstructionsites', data: { breadcrumb: "Minhas Obras" }, canActivate: [AuthGuard],
-                        children: [
-                            { path: '', pathMatch: 'prefix', redirectTo: 'list' },
-                            { path: 'landing-page', component: MyConstructionSitesLandingPageComponent, canActivate: [AuthGuard, HasConstructionSitesGuard] },
-                            { path: 'list', component: MyConstructionSitesShowComponent, canActivate: [AuthGuard], resolve: { constructionSiteList: ConstructionSiteResolver } },
-                            { path: 'add', data: { breadcrumb: "Cadastro Obra" }, component: MyConstructionSitesAddComponent, canActivate: [AuthGuard] }
-                        ]
-                    }
                 ]
             },
+            { path: 'constructions', component: MyConstructionSitesShowComponent, canActivate: [AuthGuard], resolve: { constructionSiteList: ConstructionSiteResolver } },
             {
-                path: 'myconstructionsites/:id', component: ConstructionSiteComponent, children: [
+                path: 'constructions/:id', component: ConstructionSiteComponent, children: [
                     { path: '', pathMatch: 'prefix', redirectTo: 'monitoring' },
-					{ path: 'monitoring', component: MonitoringComponent, canActivate: [AuthGuard] },
-					{ path: 'emotionalProfile', component: PainelEmocionalComponent, canActivate: [AuthGuard] },
+                    { path: 'monitoring', component: MonitoringComponent, canActivate: [AuthGuard] },
+                    { path: 'emotionalProfile', component: PainelEmocionalComponent, canActivate: [AuthGuard] },
                 ]
             }
         ]

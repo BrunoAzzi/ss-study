@@ -12,17 +12,12 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 export class FloorNavigationComponent implements OnInit {
     @Output() change: EventEmitter<any> = new EventEmitter();
 
-    // private floors: Array<Floor> = [];
     private selectedFloor: Floor = null;
-
     private toggleableSections: Array<any>;
-    // private constructionSubscription: BehaviorSubject<any>;
 
-    constructor(private service: ConstructionService) {
-    }
+    constructor(private service: ConstructionService) {}
 
     ngOnInit() {
-        // this.constructionSubscription.subscribe(this.onUpdateConstruction.bind(this));
         this.toggleableSections = this.toggleableSections || this.getSections().map(sectionName => ({ name: sectionName, hidden: false }))
     }
 
