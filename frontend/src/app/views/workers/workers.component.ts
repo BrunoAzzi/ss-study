@@ -13,6 +13,11 @@ export class WorkersComponent {
     isValid: boolean = false;
     skillList = [];
 
+    constructor() {
+        if (this.skillList.length < 1) this.skillList.push(new Skill());
+        this.maximunLength = this.skillNames.length;
+    }
+
     addSkill() {
         if (this.skillList.length < this.maximunLength) this.skillList.push(new Skill());
     }
@@ -31,10 +36,5 @@ export class WorkersComponent {
 
     saveSkills(safetyCard) {
         if (this.isValid) safetyCard.close();
-    }
-
-    constructor() {
-        if (this.skillList.length < 1) this.skillList.push(new Skill());
-        this.maximunLength = this.skillNames.length;
     }
 }

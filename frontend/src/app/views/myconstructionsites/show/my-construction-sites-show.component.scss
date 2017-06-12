@@ -1,11 +1,7 @@
 @import "../../../../scss/components/color.scss";
 
-:host {
-    overflow: auto;
-}
-
 .top-actionbar {
-    padding: 20px;
+    padding: 20px 0;
     margin: 5px;
 
     .right-actionbar {
@@ -32,7 +28,7 @@
 }
 
 .list-wrapper {
-    margin: 0 35px;
+    margin: 0 15px;
 
     & > div {
         margin: 16px 0;

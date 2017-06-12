@@ -1,15 +1,13 @@
-import { Component, Input } from '@angular/core';
-import { ConstructionSiteService } from "../../../services/construction-site/construction-site.service";
+import { Component, Input, OnInit } from '@angular/core';
 import { ConstructionSite } from "../../../mocks/construction-site/construction-site";
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'my-construction-sites-show',
     templateUrl: './my-construction-sites-show.template.html',
-    styleUrls: ['./my-construction-sites-show.component.scss'],
-    providers: [ConstructionSiteService]
+    styleUrls: ['./my-construction-sites-show.component.scss']
 })
-export class MyConstructionSitesShowComponent {
+export class MyConstructionSitesShowComponent implements OnInit {
     LAST_SAVED = "last_saved";
     FIRST_SAVED = "first_saved";
 
@@ -33,16 +31,15 @@ export class MyConstructionSitesShowComponent {
 		{ name: "Primeiros cadastrados", code: this.FIRST_SAVED }
 	];
 
-	constructor(
-        private constructionSiteService: ConstructionSiteService,
-        private router: Router,
-        private route: ActivatedRoute
-    ) {
-		constructionSiteService.getConstructionSite().subscribe(data => {
-            this.constructionSiteList = data;
-            this.filteredConstructionSiteList = this.constructionSiteList;
-        });
-	}
+	constructor(private router: Router, private route: ActivatedRoute) { }
+
+    ngOnInit() {
+        this.route.data
+			.subscribe((data: { constructionSiteList: ConstructionSite[] }) => {
+				this.constructionSiteList = data.constructionSiteList;
+				this.filteredConstructionSiteList = this.constructionSiteList
+			});
+    }
 
     addConstructionSite() {
         this.router.navigate(['../add'], { relativeTo: this.route });
@@ -55,7 +52,7 @@ export class MyConstructionSitesShowComponent {
     filterByText(event) { }
 
 	orderBy(order: string) {
-		// TODO improve to a more explicit implementation
+		// TODO improve to a more explicit implementation using date
 		this.filteredConstructionSiteList.reverse();
 	}
 
