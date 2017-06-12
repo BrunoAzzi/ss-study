@@ -9,7 +9,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
     styleUrls: ['floor-navigation.component.scss']
 })
 
-export class FloorNavigationComponent implements OnInit, OnDestroy {
+export class FloorNavigationComponent implements OnInit {
     @Output() change: EventEmitter<any> = new EventEmitter();
 
     // private floors: Array<Floor> = [];
@@ -19,15 +19,11 @@ export class FloorNavigationComponent implements OnInit, OnDestroy {
     // private constructionSubscription: BehaviorSubject<any>;
 
     constructor(private service: ConstructionService) {
-        // this.constructionSubscription = service.getConstruction();
     }
 
     ngOnInit() {
         // this.constructionSubscription.subscribe(this.onUpdateConstruction.bind(this));
-    }
-
-    ngOnDestroy() {
-        // this.constructionSubscription.unsubscribe();
+        this.toggleableSections = this.toggleableSections || this.getSections().map(sectionName => ({ name: sectionName, hidden: false }))
     }
 
     getFloors() {
@@ -36,7 +32,6 @@ export class FloorNavigationComponent implements OnInit, OnDestroy {
 
     onUpdateConstruction(construction) {
         this.service.constructionObject.floors = construction.floors;
-        this.toggleableSections = this.toggleableSections || this.getSections().map(sectionName => ({ name: sectionName, hidden: false }))
     }
 
     isSectionHidden(sectionName) {
@@ -45,7 +40,6 @@ export class FloorNavigationComponent implements OnInit, OnDestroy {
 
     toggleSection(sectionName) {
         let section = this.toggleableSections.find(toggleableSection => (toggleableSection.name === sectionName))
-        section.hidden = !section.hidden
     }
 
     getSections() {
