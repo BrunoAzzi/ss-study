@@ -1,15 +1,5 @@
 :host {
-    overflow-y: hidden;
     display: flex;
-    flex: 1;
     flex-direction: row;
-    min-height: 100%;
-}
-
-.main-nav {
-    background-color: #3f3f3f;
-}
-
-.main-content {
     background-color: #e9eced;
 }

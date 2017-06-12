@@ -28,7 +28,6 @@ export class StatusDiaComponent implements OnInit {
         today.setHours(0, 0, 0, 0);
 
         this.colaboradorService.getColaborador().subscribe(response => {
-            console.log("painel" + response);
             this.totaldecolaboradores = response.length;
             response.forEach(colaborador => {
                 colaborador.pesquisaEmocional.forEach(pesquisa => {
