@@ -57,4 +57,3 @@ Scenario: Exclude sector
      Then The system should display a message asking if I really wnat to delete that sector
      And I click on "Yes"
      Then The sector are delete of the system
-     
