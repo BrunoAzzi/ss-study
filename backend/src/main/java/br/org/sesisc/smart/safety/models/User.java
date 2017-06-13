@@ -23,6 +23,7 @@ public class User {
     private String email;
 
     @NotNull(message="Senha é um campo obrigatório.")
+    @Pattern(message="Senha deve ter entre 6 e 20 caracteres.", regexp = "^[\\p{Alnum}]{6,20}$")
     private String password;
 
     private boolean active;
