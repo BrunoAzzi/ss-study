@@ -6,4 +6,4 @@ import { Router } from '@angular/router';
     templateUrl: './add.template.html',
     styleUrls: ['./add.component.scss']
 })
-export class MyConstructionSitesAddComponent { }
+export class ConstructionsAddComponent { }

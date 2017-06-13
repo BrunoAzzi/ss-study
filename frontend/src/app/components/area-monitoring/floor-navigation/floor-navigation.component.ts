@@ -1,6 +1,6 @@
 import { Floor } from './../../../models/floor.model';
 import { Component, Output, EventEmitter, Input, OnInit, OnDestroy } from '@angular/core';
-import { ConstructionService } from './../../../services/construction.service';
+import { ConstructionsService } from './../../../services/constructions.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Component({
@@ -15,17 +15,25 @@ export class FloorNavigationComponent implements OnInit {
     private selectedFloor: Floor = null;
     private toggleableSections: Array<any>;
 
-    constructor(private service: ConstructionService) {
-        this.service.getConstruction(1);
-    }
+    constructor(private service: ConstructionsService) {}
 
     ngOnInit() {
-        
         this.toggleableSections = this.toggleableSections || this.getSections().map(sectionName => ({ name: sectionName, hidden: false }))
     }
 
+    getConstruction() {
+        return this.service.construction
+    }
+
     getFloors() {
-        return this.service.construction.floors
+        return this.getConstruction() ? this.getConstruction().floors : []
+    }
+
+    getSections() {
+        return this.getFloors().reduce((sections, floor) => { 
+            if (sections.indexOf(floor.sectionName) < 0) sections.push(floor.sectionName)
+            return sections
+        }, [])
     }
 
     onUpdateConstruction(construction) {
@@ -40,12 +48,7 @@ export class FloorNavigationComponent implements OnInit {
         let section = this.toggleableSections.find(toggleableSection => (toggleableSection.name === sectionName))
     }
 
-    getSections() {
-        return this.service.construction.floors.reduce((sections, floor) => { 
-            if (sections.indexOf(floor.sectionName) < 0) sections.push(floor.sectionName)
-            return sections
-        }, [])
-    }
+    
 
     summaryBySection(sectionName) {
         return this.service.construction.floors.filter(floor => floor.sectionName === sectionName).reduce((sum, floor) => {

@@ -6,6 +6,6 @@ import { Router } from '@angular/router';
     templateUrl: './my-construction-sites-landing-page.component.html',
     styleUrls: ['./my-construction-sites-landing-page.component.scss']
 })
-export class MyConstructionSitesLandingPageComponent {
+export class ConstructionsLandingPageComponent {
     constructor(public router: Router) { }
 }

@@ -3,11 +3,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-    selector: 'my-construction-sites-show',
-    templateUrl: './my-construction-sites-show.template.html',
-    styleUrls: ['./my-construction-sites-show.component.scss']
+    selector: 'constructions-list',
+    templateUrl: './constructions-list.template.html',
+    styleUrls: ['./constructions-list.component.scss']
 })
-export class MyConstructionSitesShowComponent implements OnInit {
+export class ConstructionsListComponent implements OnInit {
     LAST_SAVED = "last_saved";
     FIRST_SAVED = "first_saved";
 

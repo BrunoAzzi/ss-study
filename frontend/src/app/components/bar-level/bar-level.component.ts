@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter, Input, OnChanges, SimpleChanges, OnInit, OnDestroy } from '@angular/core';
-import { ConstructionService } from './../../services/construction.service';
+import { ConstructionsService } from './../../services/constructions.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Floor } from './../../models/floor.model';
 
@@ -16,14 +16,18 @@ export class BarLevelComponent implements OnChanges {
 
     private selectedFloor: Floor = null;
 
-    constructor(private service: ConstructionService) {}
+    constructor(private service: ConstructionsService) {}
 
     onUpdateConstruction(construction) {
         this.service.construction.floors = construction.floors;
     }
 
+    getFloors() {
+        return this.service.construction ? this.service.construction.floors : []
+    }
+
     ngOnChanges(changes: SimpleChanges): void {
-        if (changes.startIndex.previousValue !== undefined) {
+        if (changes.startIndex.previousValue !== undefined && this.getFloors().length > 0) {
             this.changeFloor(this.service.construction.floors[changes.startIndex.currentValue]);
         }
     }

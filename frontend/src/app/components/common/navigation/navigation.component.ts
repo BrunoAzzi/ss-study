@@ -15,7 +15,7 @@ export class NavigationComponent {
 
     menuItems = {
         main: [
-            { route: 'constructions', icon: 'assets/myconstructionsites.png', label: 'Minhas Obras' },
+            { route: 'constructions', icon: 'assets/constructions.png', label: 'Minhas Obras' },
             { route: 'reports', icon: 'assets/reports.png', label: 'Relatórios' },
         ],
         setup: [

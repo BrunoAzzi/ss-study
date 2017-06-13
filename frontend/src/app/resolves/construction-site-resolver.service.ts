@@ -20,7 +20,7 @@ export class ConstructionSiteResolver implements Resolve<any> {
 	resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
         return this.constructionSiteService.getConstructionSite().map(data => {
             if (data.length === 0) {
-                this.router.navigate(['/myconstructionsites/landing-page']);
+                this.router.navigate(['/constructions/landing-page']);
             }
             return data;
         });

@@ -15,7 +15,7 @@ export class HasConstructionSitesGuard implements CanActivate {
             if (data.length === 0) {
                 return true;
             } else {
-                this.router.navigate(['/myconstructionsites/list']);
+                this.router.navigate(['/constructions/list']);
                 return false;
             }
         });

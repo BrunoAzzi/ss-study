@@ -6,7 +6,7 @@ import { ConstructionSite } from "../../../mocks/construction-site/construction-
     templateUrl: './line-construction-site.template.html',
     styleUrls: ['./line-construction-site.component.scss']
 })
-export class LineConstructionSiteComponent {
+export class LineConstructionDetailComponent {
     @Input() constructionSite: ConstructionSite;
     status: any = {};
     statusIcon: any = "";

@@ -1,6 +1,6 @@
 import { Component, NgZone, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { MdDialog, MdDialogRef, MdButton, MdToolbar } from '@angular/material';
-import { ConstructionService } from './../../services/construction.service';
+import { ConstructionsService } from './../../services/constructions.service';
 import { Icon } from './../../models/icon.model';
 import { Coordinate } from './../../models/coordinate.model';
 import { Floor } from './../../models/floor.model';
@@ -26,7 +26,7 @@ export class AreaMappingComponent {
     private currentFloor: Floor;
     private currentPosition: any = { old: null, new: null };
 
-    constructor(public dialog: MdDialog, private _ngZone: NgZone, private service: ConstructionService) {
+    constructor(public dialog: MdDialog, private _ngZone: NgZone, private service: ConstructionsService) {
         window['angularComponent'] = { removeMark: this.removeMark, zone: this._ngZone };
     }
 

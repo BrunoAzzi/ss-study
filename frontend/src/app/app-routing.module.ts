@@ -1,3 +1,5 @@
+import { ConstructionDetailComponent } from './views/constructions/detail/construction-detail.component';
+import { ConstructionResolver } from './resolves/construction.resolver';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from "@angular/router";
 import { AuthGuard } from './guards';
@@ -10,8 +12,8 @@ import { RepositoriesComponent } from "./views/repositories/repositories.compone
 import { ThirdPartiesComponent } from "./views/thirdparties/thirdparties.component";
 import { TrainingComponent } from "./views/training/training.component";
 import { WorkersComponent } from "./views/workers/workers.component";
-import { PainelEmocionalComponent } from './views/painelEmocional/painelEmocional.component';
-import { MonitoringComponent } from './views/myconstructionsites/monitoring/monitoring.component';
+import { EmotionalPanelComponent } from './views/constructions/detail/emotional-panel/emotional-panel.component';
+import { MonitoringComponent } from './views/constructions/detail/monitoring/monitoring.component';
 
 import { LoginComponent } from "./views/login/login.component";
 import { PasswordRecoveryComponent } from "./views/password-recovery/password-recovery.component";
@@ -19,11 +21,9 @@ import { PasswordUpdateComponent } from "./views/password-update/password-update
 
 import { BlankComponent } from "./components/common/layouts/blank/blank.component";
 import { BasicComponent } from "./components/common/layouts/basic/basic.component";
-import { ConstructionSiteComponent } from "./components/common/layouts/construction-site/construction-site.component";
 
-import { MyConstructionSitesLandingPageComponent } from "./views/myconstructionsites/landing-page/my-construction-sites-landing-page.component";
-import { MyConstructionSitesShowComponent } from './views/myconstructionsites/show/my-construction-sites-show.component';
-import { MyConstructionSitesAddComponent } from './views/myconstructionsites/add/add.component';
+import { ConstructionsListComponent } from './views/constructions/list/constructions-list.component';
+import { ConstructionsAddComponent } from './views/constructions/add/add.component';
 import { ConstructionSiteService } from './services/construction-site/construction-site.service';
 import { ConstructionSiteResolver } from './resolves/construction-site-resolver.service';
 
@@ -31,7 +31,7 @@ import { BasicTopnavbarLayout } from './components/common/layouts/basic-topnavba
 
 const routes: Routes = [
     // Main redirect
-    { path: '', redirectTo: 'myconstructionsites', pathMatch: 'full', canActivate: [AuthGuard] },
+    { path: '', redirectTo: 'constructions', pathMatch: 'full', canActivate: [AuthGuard] },
 
     // App views
     {
@@ -48,12 +48,12 @@ const routes: Routes = [
                     { path: 'workers', data: { breadcrumb: "Trabalhadores" }, component: WorkersComponent, canActivate: [AuthGuard] },
                 ]
             },
-            { path: 'constructions', component: MyConstructionSitesShowComponent, canActivate: [AuthGuard] },
+            { path: 'constructions', component: ConstructionsListComponent, canActivate: [AuthGuard] },
             {
-                path: 'constructions/:id', component: ConstructionSiteComponent, children: [
+                path: 'constructions/:id', component: ConstructionDetailComponent, resolve: { construction: ConstructionResolver } , children: [
                     { path: '', pathMatch: 'prefix', redirectTo: 'monitoring' },
                     { path: 'monitoring', component: MonitoringComponent, canActivate: [AuthGuard] },
-                    { path: 'emotionalProfile', component: PainelEmocionalComponent, canActivate: [AuthGuard] },
+                    { path: 'emiotional-profile', component: EmotionalPanelComponent, canActivate: [AuthGuard] },
                 ]
             }
         ]
@@ -68,7 +68,7 @@ const routes: Routes = [
     },
 
     // Handle all other routes
-    { path: '**', redirectTo: 'myconstructionsites', pathMatch: 'full', canActivate: [AuthGuard] }
+    { path: '**', redirectTo: 'constructions', pathMatch: 'full', canActivate: [AuthGuard] }
 ];
 
 @NgModule({

@@ -7,6 +7,6 @@
             (changeMapLayer)="changedMapLayer($event)"
             (changeImageMap)="changedImageMap($event)"
         ></blueprint>
-        <app-filters></app-filters>
+        <app-filters (filterChanged)="onFilterChanged"></app-filters>
     </div>
 </div>

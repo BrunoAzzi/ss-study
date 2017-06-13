@@ -1,3 +1,6 @@
+import { ActivatedRoute } from '@angular/router';
+import { OnInit } from '@angular/core';
+import { ConstructionsService } from './../../services/constructions.service';
 import { Floor } from './../../models/floor.model';
 import { Coordinate } from './../../models/coordinate.model';
 import { Component } from '@angular/core';
@@ -9,7 +12,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
     styleUrls: ['area-monitoring.component.scss']
 })
 
-export class AreaMonitoringComponent {
+export class AreaMonitoringComponent implements OnInit {
 
     private map: any;
     private mapLayer: L.LayerGroup;
@@ -20,7 +23,11 @@ export class AreaMonitoringComponent {
     private currentMark: any;
     private currentFloor: Floor;
 
-    constructor() {}
+    constructor(private service: ConstructionsService, private route : ActivatedRoute) {}
+
+    ngOnInit() {
+        console.log('construction', this.service.construction)
+    }
 
     floorChanged(e) {
         this.mapLayer.clearLayers();
@@ -66,5 +73,9 @@ export class AreaMonitoringComponent {
 
     changedImageMap(imageMap) {
         this.imageMap = imageMap;
+    }
+
+    onFilterChanged() {
+
     }
 }

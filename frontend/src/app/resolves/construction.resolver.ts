@@ -1,3 +1,4 @@
+import { Construction } from './../models/construction.model';
 import { ConstructionsService } from './../services/constructions.service';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
@@ -10,17 +11,14 @@ import {
 } from '@angular/router';
 
 @Injectable()
-export class ConstructionsResolver implements Resolve<any> {
+export class ConstructionResolver implements Resolve<Construction> {
 	constructor(
         private service: ConstructionsService,
         private router: Router,
         private route: ActivatedRoute
     ) { }
 
-	resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
-        return this.service.getConstructions().map(data => {
-            this.service.constructions = data.constructions;
-            return data;
-        });
+	resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+        return this.service.getConstruction(route.params['id'])
 	}
 }
