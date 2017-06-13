@@ -4,7 +4,7 @@ Feature: Validation of works registration screen
   As a user
   I need to register the necessary data
 
-  Scenario: Validation of the registration of a work with success
+  Scenario Outline: Validation of the registration of a work with success
     Given  That I am on the work registry screen
       When  I Inform in the fields <Nome do Empreendimento>,
                                    <CEP>,
