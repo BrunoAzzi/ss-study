@@ -48,7 +48,7 @@ const routes: Routes = [
                     { path: 'workers', data: { breadcrumb: "Trabalhadores" }, component: WorkersComponent, canActivate: [AuthGuard] },
                 ]
             },
-            { path: 'constructions', component: MyConstructionSitesShowComponent, canActivate: [AuthGuard], resolve: { constructionSiteList: ConstructionSiteResolver } },
+            { path: 'constructions', component: MyConstructionSitesShowComponent, canActivate: [AuthGuard] },
             {
                 path: 'constructions/:id', component: ConstructionSiteComponent, children: [
                     { path: '', pathMatch: 'prefix', redirectTo: 'monitoring' },
@@ -58,7 +58,6 @@ const routes: Routes = [
             }
         ]
     },
-
     {
         path: '', component: BlankComponent,
         children: [

@@ -12,7 +12,17 @@ import { SessionsService } from "./services/sessions.service";
 import { PasswordService } from "./services/password.service";
 import { ConstructionService } from "./services/construction.service";
 import { AuthGuard } from './guards/index';
-import { MdSnackBar, MdDialogModule, MdToolbarModule, MdButtonModule } from '@angular/material';
+
+import { 
+    MdSnackBar, 
+    MdDialogModule, 
+    MdToolbarModule, 
+    MdButtonModule, 
+    MdSelectModule, 
+    MdInputModule, 
+    MdChipsModule 
+} from '@angular/material';
+
 import { CommonModule } from '@angular/common';
 
 import { AppComponent } from './app.component';
@@ -217,6 +227,9 @@ import { FiltersComponent } from './components/area-monitoring/filters/filters.c
         MdDialogModule,
         MdToolbarModule,
         MdButtonModule,
+        MdSelectModule,
+        MdInputModule,
+        MdChipsModule,
 
         // Flex Layout
         FlexLayoutModule,

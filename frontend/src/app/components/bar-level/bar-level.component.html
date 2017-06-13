@@ -2,5 +2,5 @@
     <div class="tower">Torre 1</div>
     <div class="tower">Torre 2</div>
     <div class="floor-title">Andares</div>
-    <div class="floor" *ngFor="let floor of service.constructionObject.floors" [ngClass]="{ active: isSelectedFloor(floor.name) }" (click)="changeFloor(floor)">{{ floor.name }}</div>
+    <div class="floor" *ngFor="let floor of service.construction.floors" [ngClass]="{ active: isSelectedFloor(floor.name) }" (click)="changeFloor(floor)">{{ floor.name }}</div>
 </div>

@@ -15,18 +15,21 @@ export class FloorNavigationComponent implements OnInit {
     private selectedFloor: Floor = null;
     private toggleableSections: Array<any>;
 
-    constructor(private service: ConstructionService) {}
+    constructor(private service: ConstructionService) {
+        this.service.getConstruction(1);
+    }
 
     ngOnInit() {
+        
         this.toggleableSections = this.toggleableSections || this.getSections().map(sectionName => ({ name: sectionName, hidden: false }))
     }
 
     getFloors() {
-        return this.service.constructionObject.floors
+        return this.service.construction.floors
     }
 
     onUpdateConstruction(construction) {
-        this.service.constructionObject.floors = construction.floors;
+        this.service.construction.floors = construction.floors;
     }
 
     isSectionHidden(sectionName) {
@@ -38,14 +41,14 @@ export class FloorNavigationComponent implements OnInit {
     }
 
     getSections() {
-        return this.service.constructionObject.floors.reduce((sections, floor) => { 
+        return this.service.construction.floors.reduce((sections, floor) => { 
             if (sections.indexOf(floor.sectionName) < 0) sections.push(floor.sectionName)
             return sections
         }, [])
     }
 
     summaryBySection(sectionName) {
-        return this.service.constructionObject.floors.filter(floor => floor.sectionName === sectionName).reduce((sum, floor) => {
+        return this.service.construction.floors.filter(floor => floor.sectionName === sectionName).reduce((sum, floor) => {
             return {
                 alerts: sum.alerts + floor.alertsNumber(),
                 cones: sum.cones + floor.conesNumber(),

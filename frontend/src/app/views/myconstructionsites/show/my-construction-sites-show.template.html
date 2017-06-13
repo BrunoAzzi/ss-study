@@ -5,11 +5,13 @@
 <div fxLayout fxLayoutAlign="space-between center" class="top-actionbar">
     <div fxLayout fxLayoutAlign="start center">
         <button md-icon-button type="button" (click)="toggleSearch()" fxLayout fxLayoutAlign="center center">
-                <md-icon class="search">search</md-icon>
-            </button>
+            <md-icon class="search">search</md-icon>
+        </button>
+
         <md-input-container *ngIf="showSearch" class="search-input">
-            <input mdInput floatPlaceholder="never" [(ngModel)]="textFilter" (input)="makeList()">
+            <input #textFilterInput mdInput floatPlaceholder="never" (input)="filterByText(textFilterInput.value)">
         </md-input-container>
+
         <md-chip-list>
             <md-chip class="warn" [ngClass]="{ disabled: activeFilters.onGoing }" fxLayout fxLayoutAlign="start center" (click)="toggleActiveFilter('onGoing')">
                 <md-icon fxLayout fxLayoutAlign="center center">check_circle</md-icon>
@@ -25,32 +27,24 @@
             </md-chip>
         </md-chip-list>
     </div>
+    
     <div fxLayout fxLayoutAlign="end center" class="right-actionbar">
-        <md-select [ngModel]="order" (ngModelChange)="orderBy(order)" floatPlaceholder="never" class="order">
-            <md-option *ngFor="let state of states" (value)="state.code">{{ state.name }}</md-option>
+        <md-select [(ngModel)]="selectedOrder" floatPlaceholder="never" class="order">
+            <md-option *ngFor="let orderStyle of availableOrders" [value]="orderStyle.code">
+                {{ orderStyle.name }}
+            </md-option>
         </md-select>
-        <button md-icon-button (click)="setListView()" type="button" name="button">
-            <md-icon [ngClass]="{actived: listActived}">list</md-icon>
-        </button>
-        <button md-icon-button (click)="setBlockView()" type="button" name="button">
-            <md-icon [ngClass]="{actived: blockActived}">view_module</md-icon>
+
+        <button md-icon-button type="button" name="button">
+            <md-icon class="actived">list</md-icon>
         </button>
     </div>
 </div>
 
-<div *ngIf="listActived; else blockView" class="list-wrapper">
+<div class="list-wrapper">
     <div *ngFor="let constructionSite of getFilteredConstructions()">
         <line-construction-site fxFlex fxLayout fxLayoutAlign="space-between center" *ngIf="constructionSite" [constructionSite]="constructionSite"></line-construction-site>
     </div>
 </div>
-
-<ng-template #blockView>
-    <div *ngFor="let constructionSite of getFilteredConstructions()">
-        <card-construction-site *ngIf="constructionSite" [constructionSite]="constructionSite"></card-construction-site>
-    </div>
-    <div class="" fxLayout fxLayoutAlign="center center">
-        <p>There is no card implementation yet</p>
-    </div>
-</ng-template>
 
 <fab mdTooltip="Adicionar obra" mdTooltipPosition="before" (click)="addConstructionSite()"></fab>

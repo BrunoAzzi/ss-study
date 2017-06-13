@@ -7,6 +7,7 @@ export class Construction {
     status: string;
     image: string;
     title: string;
+    
     description: string;
 
     address: string;
@@ -28,5 +29,9 @@ export class Construction {
         this.title = title;
         this.address = address;
         this.sponsor = sponsor;
+    }
+
+    setFloors(floors : Array<Floor>) {
+        this.floors = floors;
     }
 }

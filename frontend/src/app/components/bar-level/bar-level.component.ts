@@ -14,19 +14,17 @@ export class BarLevelComponent implements OnChanges {
     @Input() startIndex: number;
     @Output() change: EventEmitter<any> = new EventEmitter();
 
-    floors: Array<Floor>;
     private selectedFloor: Floor = null;
 
-    constructor(private service: ConstructionService) {
-    }
+    constructor(private service: ConstructionService) {}
 
     onUpdateConstruction(construction) {
-        this.floors = construction.floors;
+        this.service.construction.floors = construction.floors;
     }
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes.startIndex.previousValue !== undefined) {
-            this.changeFloor(this.floors[changes.startIndex.currentValue]);
+            this.changeFloor(this.service.construction.floors[changes.startIndex.currentValue]);
         }
     }
 
