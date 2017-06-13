@@ -1,5 +1,4 @@
-
-export class PersonalDataWorker {
+export class WorkersData {
     name: string;
     cpf: string;
     sex: string;
@@ -9,17 +8,21 @@ export class PersonalDataWorker {
     completeAddress: string;
     complement: string;
     contact: string;
-    labor: string;
-    function: string;
-    specialNecessity: string;
+    cbo: string;
+    laborCBO: string;
+    laborDescription: string;
+    specialNecessity: boolean;
     status: string;
-    hiredType: string;
+    ownContracting: boolean;
     company: string;
     photoPath: string;
     admissionDate: Date;
     birthDate: Date;
     ctps: number;
     age: number;
+
+
+    //cbo
 
     constructor() {
         this.admissionDate = null;
@@ -35,11 +38,12 @@ export class PersonalDataWorker {
         this.completeAddress = "";
         this.complement = "";
         this.contact = "";
-        this.labor = "";
-        this.function = "";
-        this.specialNecessity = "";
+        this.cbo = "";
+        this.laborCBO = "";
+        this.laborDescription = "";
+        this.specialNecessity = false;
         this.status = "";
-        this.hiredType = "";
+        this.ownContracting = true;
         this.company = "";
         this.photoPath = "";
     }

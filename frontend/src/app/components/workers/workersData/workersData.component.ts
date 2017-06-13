@@ -1,18 +1,18 @@
 import { Component, Inject, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { PersonalDataWorker } from '../../../mocks/personalDataWorker/personalDataWorker';
 import { CorreiosService } from "../../../services/correios.service";
 import { Endereco_completo } from '../../../mocks/endereco_completo/endereco_completo';
 import { CommonModule} from '@angular/common';
 import { CustomValidators } from './customValidators';
 import { CBOService } from "../../../services/cbo.service";
+import { WorkersDataService } from "../../../services/workers/workersData.service";
 import { IMyDpOptions } from 'mydatepicker';
 
 @Component({
     selector: 'workers-data',
     templateUrl: 'workersData.template.html',
     styleUrls: ['./workersData.component.scss'],
-    providers: [CorreiosService, CBOService]
+    providers: [CorreiosService, CBOService, WorkersDataService]
 })
 export class WorkersDataComponent {
     disabled = true;
@@ -20,13 +20,18 @@ export class WorkersDataComponent {
     mycbonumber = 0;
     myCep = '';
     cpf = '';
+    birthDateModel = null;
+    masc = true;
+    fem = !this.masc;
+     model: Object = { date: { year: 2018, month: 10, day: 9 } };
+    sexModel = 'm';
     fullname = '';
     hiredType = true;
     isValid = false;
     myForm: FormGroup;
-    worker: PersonalDataWorker;
     completeAddress: string;
     selectedStatusValue: string;
+    selectedScholarityValue: string;
 
     myDatePickerOptions: IMyDpOptions = {
         dateFormat: 'dd/mm/yyyy',
@@ -67,6 +72,7 @@ export class WorkersDataComponent {
         { value: 'pos', viewValue: 'Pós Graduação' },
     ];
 
+
     necessitys = [
         { value: 0, viewValue: 'Sim' },
         { value: 1, viewValue: 'Não' },
@@ -77,8 +83,9 @@ export class WorkersDataComponent {
     nitMask = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, /\d/, /\d/, '.', /\d/, /\d/, '-', /\d/];
     cepMask = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
     cboMask = [/\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/];
+    
 
-    constructor(private correiosService: CorreiosService, private cboService: CBOService, private fb: FormBuilder) {
+    constructor(private correiosService: CorreiosService, private cboService: CBOService, private workersService: WorkersDataService, private fb: FormBuilder) {
 
         this.myForm = this.fb.group({
             fullname: new FormControl('', Validators.compose([Validators.required, CustomValidators.onlytext])),
@@ -110,6 +117,29 @@ export class WorkersDataComponent {
         });
     }
 
+    autoCompleteWorker(){
+        this.workersService.getWorker("199.942.366-60").subscribe(
+            (response) => {
+                this.fullname = response.name,
+                this.fem = (response.sex=="f")? true : false;
+                this.masc = !this.fem;
+                this.selectedScholarityValue = response.scholarity;
+                let date = new Date(response.birthDate);
+                this.birthDateModel = 
+                        {
+                            date: {
+                                    year: date.getFullYear(),
+                                    month: date.getMonth() + 1,
+                                    day: date.getDate()
+                                  }
+                        
+                       };
+            },
+        );
+        
+
+    }
+
     autocompleteRoleFromMock() {
 
         this.cboService.getCBO("6125-05").subscribe(
@@ -133,7 +163,9 @@ export class WorkersDataComponent {
 
     savePersonalDataWorker(safetyCard) {
         //se não passar, descomentar: console.log(this.myForm.controls);
+        console.log(this.myForm.value.sex);
         if (this.myForm.valid) {
+
             safetyCard.close();
         }
     }

@@ -10,7 +10,7 @@
                     <tr>
                         <td>
                             <md-input-container>
-                                <input mdInput formControlName="cpf" required placeholder="CPF" id="cpf" name="cpf" [textMask]="{mask: cpfMask}"  [(ngModel)]="cpf">
+                                <input mdInput formControlName="cpf" required placeholder="CPF" id="cpf" name="cpf" (blur)="autoCompleteWorker()" [textMask]="{mask: cpfMask}"  [(ngModel)]="cpf">
                                 <md-error *ngIf="myForm.controls.cpf.hasError('required')">Campo Obrigatório.</md-error>
                                 <md-error *ngIf="myForm.controls.cpf.hasError('cpf')">CPF inválido.</md-error>
                             </md-input-container>
@@ -25,10 +25,10 @@
                         <td colspan="1">
                             <div class="formato-material radio-material">
                                 <p>Sexo:</p>
-                                <md-radio-group formControlName="sex" layout-gt-md="row">
+                                <md-radio-group formControlName="sex" layout-gt-md="row" [(ngModel)]="sexModel">
                                     <div fxLayout="row" fxLayoutAlign="space-around center">
-                                        <md-radio-button value="m" checked="checked">Masculino</md-radio-button>
-                                        <md-radio-button value="f">Feminino</md-radio-button>
+                                        <md-radio-button [(checked)]="masc" value="m">Masculino</md-radio-button>
+                                        <md-radio-button [(checked)]="fem" value="f">Feminino</md-radio-button>
                                     </div>
                                 </md-radio-group>
                             </div>
@@ -37,7 +37,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <my-date-picker formControlName="birthDate" name="birthDate" [options]="myDatePickerOptions" placeholder="Data da Realização"></my-date-picker>
+                            <my-date-picker formControlName="birthDate"  name="birthDate" name="birthDate" [(ngModel)]="birthDateModel"  [options]="myDatePickerOptions" placeholder="Data de Nascimento"></my-date-picker>
                         </td>
                         <td>
                             <md-input-container>
@@ -45,7 +45,7 @@
                             </md-input-container>
                         </td>
                         <td>
-                            <md-select formControlName="scholarity" class="full-width" placeholder="Escolaridade" name="scholarity" id="scholarity">
+                            <md-select formControlName="scholarity" [(ngModel)]="selectedScholarityValue" class="full-width" placeholder="Escolaridade" name="scholarity" id="scholarity">
                                 <md-option *ngFor="let scholarity of scholaritys" [value]="scholarity.value">
                                     {{ scholarity.viewValue }}
                                 </md-option>

@@ -44,7 +44,9 @@
             <column name="database_password" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="active" type="boolean" defaultValueBoolean="true"/>
+            <column name="active" type="boolean" defaultValueBoolean="true">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
         <addAutoIncrement catalogName="ssafety_db"
                           columnDataType="int"
@@ -60,5 +62,48 @@
             <column name="recoverpass_token" type="varchar(255)"/>
         </addColumn>
     </changeSet>
+
+    <changeSet id="4" author="rdlorbieski">
+        <createTable tableName="company">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="cnpj" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="corporate_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fantasy_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cnae" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cnae_description" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cep" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="adress" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="complement" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="url" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addAutoIncrement catalogName="ssafety_db"
+                          columnDataType="int"
+                          columnName="id"
+                          incrementBy="1"
+                          schemaName="public"
+                          startWith="1"
+                          tableName="company"/>
+    </changeSet>
+
 
 </databaseChangeLog>
