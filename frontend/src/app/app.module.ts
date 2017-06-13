@@ -109,6 +109,8 @@ import { MyConstructionSitesAddComponent } from './views/myconstructionsites/add
 import { LineConstructionSiteComponent } from './components/mysconstructionsites/line-construction-site/line-construction-site.component';
 import { CardConstructionSiteComponent } from './components/mysconstructionsites/card-construction-site/card-construction-site.component';
 import { ConstructionSiteDataComponent } from './components/mysconstructionsites/construction-site-data/construction-site-data.component';
+import { DragFileComponent } from './components/common/drag-file/drag-file.component';
+import { DropFileComponent } from './components/common/drop-file/drop-file.component';
 
 @NgModule({
     declarations: [
@@ -149,6 +151,7 @@ import { ConstructionSiteDataComponent } from './components/mysconstructionsites
         RiskGraphComponent,
         FloorNavigationComponent,
         ContentElementDialog,
+        DropFileComponent,
 
         // Layouts
         BlankComponent,
