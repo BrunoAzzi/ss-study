@@ -24,12 +24,14 @@ export class SecurityWorksComponent {
         { value: 0, viewValue: 'Sim' },
         { value: 1, viewValue: 'Não' },
     ];
+
     selectedBrigadista: number = 1;
 
     cipeiros = [
         { value: 0, viewValue: 'Sim' },
         { value: 1, viewValue: 'Não' },
     ];
+
     selectedCipeiro: number = 1;
 
 
@@ -40,6 +42,7 @@ export class SecurityWorksComponent {
         { value: 3, viewValue: 'Vice Presidente' },
         { value: 4, viewValue: 'Secretário' },
     ];
+
     selectedCipaLabor: number = 5;
 
     cipeiroChange(deviceValue, dateRange) {
@@ -54,13 +57,12 @@ export class SecurityWorksComponent {
         }
     }
 
-    saveSecurityForm(safetyCard, dateRange, btnsave) {
+    saveSecurityForm(safetyCard, dateRange) {
         this.submitted = true;
-        let date = dateRange.getDate();
-        if (date == '' || date == null) { this.invalidDate = true; }
-        else { this.invalidDate = false; }
+        const date = dateRange.getDate();
+        this.invalidDate = date === '' || date === null;
 
-        if (this.securityForm.valid && this.selectedCipeiro == 0 && !this.invalidDate) {
+        if (this.securityForm.valid && this.selectedCipeiro === 0 && !this.invalidDate) {
             safetyCard.close();
         }
     }

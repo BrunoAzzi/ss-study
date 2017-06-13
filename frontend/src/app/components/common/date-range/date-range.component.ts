@@ -26,7 +26,7 @@ export class DateRangeComponent {
         return this.selectedTextNormal;
     }
 
-    private myDateRangePickerOptionsNormal = {
+    myDateRangePickerOptionsNormal = {
         dateFormat: 'dd/mmm/yyyy',
         firstDayOfWeek: 'mo',
         sunHighlight: true,
@@ -151,15 +151,10 @@ export class DateRangeComponent {
         this.myDateRangePickerOptionsNormal = copy;
     }
 
-
-
     onDateRangeChanged(event: any) {
-        //console.log('onDateRangeChanged(): Begin: ', event.beginDate, ' - beginJsDate: ', new Date(event.beginJsDate).toLocaleDateString(), ' - End: ', event.endDate, ' - endJsDate: ', new Date(event.endJsDate).toLocaleDateString(), ' - formatted: ', event.formatted, ' - beginEpoc timestamp: ', event.beginEpoc, ' - endEpoc timestamp: ', event.endEpoc);
         if (event.formatted !== '') {
-            //this.selectedTextNormal = 'Formatted: ' + event.formatted;
             this.selectedTextNormal = event.formatted;
             this.border = '1px solid #CCC';
-
             this.selectedDateRangeNormal = { beginDate: event.beginDate, endDate: event.endDate };
         }
         else {
@@ -169,15 +164,12 @@ export class DateRangeComponent {
     }
 
     onInputFieldChanged(event: any) {
-        //        console.log('onInputFieldChanged(): Value: ', event.value, ' - dateRangeFormat: ', event.dateRangeFormat, ' - valid: ', event.valid);
     }
 
     onCalendarViewChanged(event: any) {
-        ///    console.log('onCalendarViewChanged(): Year: ', event.year, ' - month: ', event.month, ' - first: ', event.first, ' - last: ', event.last);
     }
 
     onDateSelected(event: any) {
-        //    console.log('onDateSelected(): Value: ', event);
     }
 
     getCopyOfOptions(): any {

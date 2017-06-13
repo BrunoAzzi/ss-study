@@ -5,24 +5,19 @@
     <safety-card-content>
         <form [formGroup]="myForm" (submit)="savePersonalDataWorker(safetyCard)" id="formBasicData" name="formBasicData">
             <div class="form-content">
-
-
-
                 <md-card class="image-upload"></md-card>
-
-
                 <table class="table-form">
                     <tr>
                         <td>
                             <md-input-container>
-                                <input mdInput formControlName="cpf" placeholder="CPF" id="cpf" name="cpf" mask='000.000.000-00' [(ngModel)]="cpf">
+                                <input mdInput formControlName="cpf" required placeholder="CPF" id="cpf" name="cpf" [textMask]="{mask: cpfMask}"  [(ngModel)]="cpf">
                                 <md-error *ngIf="myForm.controls.cpf.hasError('required')">Campo Obrigatório.</md-error>
                                 <md-error *ngIf="myForm.controls.cpf.hasError('cpf')">CPF inválido.</md-error>
                             </md-input-container>
                         </td>
                         <td colspan="2">
                             <md-input-container>
-                                <input mdInput formControlName="fullname" placeholder="Nome" id="name" name="name" [(ngModel)]="fullname">
+                                <input mdInput formControlName="fullname" required placeholder="Nome" id="name" name="name" [(ngModel)]="fullname">
                                 <md-error *ngIf="myForm.controls.fullname.hasError('required')">Campo Obrigatório.</md-error>
                                 <md-error *ngIf="myForm.controls.fullname.hasError('onlytext')">São permitidos apenas letras.</md-error>
                             </md-input-container>
@@ -42,9 +37,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <md-input-container>
-                                <input mdInput formControlName="birthDate" placeholder="Data de Nascimento" mask='00/00/0000' name="birthDate" id="birthDate">
-                            </md-input-container>
+                            <my-date-picker formControlName="birthDate" name="birthDate" [options]="myDatePickerOptions" placeholder="Data da Realização"></my-date-picker>
                         </td>
                         <td>
                             <md-input-container>
@@ -60,7 +53,7 @@
                         </td>
                         <td>
                             <md-input-container>
-                                <input mdInput formControlName="nit" placeholder="NIT" id="nit" name="nit" mask='000.00000.00-0'>
+                                <input mdInput formControlName="nit" placeholder="NIT" id="nit" name="nit" [textMask]="{mask: nitMask}" >
                                 <md-error *ngIf="myForm.controls.nit.hasError('onlyPositiveNumbers')">São permitidos apenas valores maiores ou igual a 0.</md-error>
                             </md-input-container>
                         </td>
@@ -70,12 +63,11 @@
                                 <md-error *ngIf="myForm.controls.ctps.hasError('onlyPositiveNumbers')">São permitidos apenas valores maiores ou igual a 0.</md-error>
                             </md-input-container>
                         </td>
-
                     </tr>
                     <tr>
                         <td>
                             <md-input-container>
-                                <input mdInput placeholder="CEP" formControlName="cep" id="cep" [(ngModel)]="myCep" name="cep" mask="00.000-000" (blur)="autocompleteAdressFromApi()">
+                                <input mdInput placeholder="CEP" formControlName="cep" id="cep" [(ngModel)]="myCep" name="cep" [textMask]="{mask: cepMask}"  (blur)="autocompleteAdressFromApi()">
                             </md-input-container>
                         </td>
                         <td colspan="2">
@@ -96,10 +88,8 @@
                     </tr>
                     <tr>
                         <td>
-
-
                             <md-input-container>
-                                <input mdInput formControlName="cbo" placeholder="CBO" id="cbo" name="cbo" [(ngModel)]="mycbo" mask="0000-00" (ngModelChange)="checkCboEmpty()" (blur)="autocompleteRoleFromMock()">
+                                <input mdInput formControlName="cbo" required placeholder="CBO" id="cbo" name="cbo" [(ngModel)]="mycbo" [textMask]="{mask: cboMask}"  (ngModelChange)="checkCboEmpty()" (blur)="autocompleteRoleFromMock()">
                                 <md-error *ngIf="myForm.controls.fullname.hasError('required')">Campo Obrigatório.</md-error>
                             </md-input-container>
                         </td>
@@ -119,7 +109,6 @@
                             </div>
                         </td>
                     </tr>
-
                     <tr>
                         <td>
                             <md-select class="full-width" formControlName="necessitys" placeholder="Portador de Nec. Especiais?">
@@ -129,9 +118,7 @@
                             </md-select>
                         </td>
                         <td>
-                            <md-input-container>
-                                <input mdInput formControlName="admissionDate" placeholder="Data de Admissão" mask='00/00/0000' id="admissionDate" name="admissionDate">
-                            </md-input-container>
+                            <my-date-picker formControlName="admissionDate" name="admissionDate" [options]="myDatePickerOptions" placeholder="Data de Admissão"></my-date-picker>
                         </td>
                         <td>
                             <md-select class="full-width" [(ngModel)]="selectedStatusValue" formControlName="status" placeholder="Status">
@@ -139,43 +126,35 @@
                                     {{ statu.viewValue }}
                                 </md-option>
                             </md-select>
-
                             <p *ngIf="selectedStatusValue=='demitido'">{{selectedStatusValue}}</p>
                         </td>
                     </tr>
-
                     <tr>
                         <td>
                             <div class="formato-material radio-material">
                                 <p>Tipo de Contratação:</p>
-                                <md-radio-group name="hiredType" formControlName="hiredTypeRadio" (change)="hiredChange($event.value)">
+                                <md-radio-group name="hiredType" formControlName="hiredTypeRadio" (change)="hiredChange()">
                                     <div fxLayout="row" fxLayoutAlign="space-around center">
                                         <md-radio-button name="own" value="true" checked="true">Próprio</md-radio-button>
                                         <md-radio-button name="outsourced" value="false">Terceiro</md-radio-button>
                                     </div>
                                 </md-radio-group>
-
                             </div>
                         </td>
                         <td style="align-text: center" colspan="2">
 
                             <md-input-container>
-                                <input mdInput formControlName="company" placeholder="Empresa" id="company" name="company" [mdTooltip]="hiredType ? 'Digite o nome da empresa' : 'Não é necessário escrever o nome da própria empresa'">
+                                <input mdInput formControlName="company" placeholder="Empresa" id="company" name="company">
                             </md-input-container>
                         </td>
                     </tr>
-
-
                 </table>
-
-
             </div>
             <div fxLayout="row" fxLayoutAlign="end center">
                 <button class="save-and-continue" md-raised-button type="submit">
                         <span>Salvar e continuar</span>
                 </button>
             </div>
-
         </form>
     </safety-card-content>
 </safety-card>

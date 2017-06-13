@@ -12,10 +12,10 @@ $title-grey: #f7f9fc;
     justify-content: space-between;
     width: 55%;
     background-image: url("../../../assets/login-background.png");
-    background-repeat:no-repeat;
-    background-size:cover;
+    background-repeat: no-repeat;
+    background-size: cover;
 
-    .titles {    
+    .titles {
         margin-top: 30%;
 
         .separator {
@@ -26,8 +26,8 @@ $title-grey: #f7f9fc;
 
         h1 {
             margin-left: 18%;
-            margin-bottom: 0px;
-            margin-top: 0px;
+            margin-bottom: 0;
+            margin-top: 0;
             width: 328px;
             height: 55px;
             font-family: Lato;
@@ -48,11 +48,11 @@ $title-grey: #f7f9fc;
             font-family: Lato;
             text-align: left;
             color: $title-grey;
-            
+
             &.description {
                 font-size: 24px;
                 line-height: 1.25;
-                margin-bottom: 0px;
+                margin-bottom: 0;
                 font-weight: 300;
 
                 span {
@@ -65,7 +65,7 @@ $title-grey: #f7f9fc;
                 line-height: 1.67;
                 margin-top: 5px;
                 font-weight: 200;
-                
+
                 a {
                     color: white;
                 }
@@ -76,13 +76,13 @@ $title-grey: #f7f9fc;
     footer {
         margin-left: 18%;
         margin-bottom: 5%;
-        
+
         #sesi {
             height: 11px;
         }
 
         #safety {
-            height: 12px;    
+            height: 12px;
             margin-left: 10px;
             margin-bottom: -2px;
         }
@@ -109,7 +109,7 @@ $title-grey: #f7f9fc;
                 font-weight: 300;
                 text-align: center;
                 color: #3c3c3c;
-                margin-bottom: 0px;
+                margin-bottom: 0;
 
                 span {
                     font-weight: 900;
@@ -159,7 +159,7 @@ $title-grey: #f7f9fc;
                     opacity: 0.5;
                 }
 
-                a { 
+                a {
                     font-family: Lato;
                     font-size: 10px;
                     font-weight: bold;
@@ -171,13 +171,13 @@ $title-grey: #f7f9fc;
         }
     }
 }
-
-
-@media screen and (max-width: 768px) { 
+@media screen and (max-width: 768px) {
     .main-container {
         display: block;
-    } 
-    .card-container, .title-container {
+    }
+
+    .card-container,
+    .title-container {
         width: 100%;
     }
 }
