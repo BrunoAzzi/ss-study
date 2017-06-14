@@ -10,7 +10,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 public class UserControllerTest_IT extends BaseControllerTest_IT {
 
-    @Ignore("This test will run only once, or after remove the user 'admin@test.com' from database.")
+    @Ignore("This test will pass only once, or after remove the user 'admin@test.com' from database.")
     @Test
     public void registerUser_whenAllMandatoryDateAreValid() throws Exception {
 
@@ -23,14 +23,16 @@ public class UserControllerTest_IT extends BaseControllerTest_IT {
 
         JSONObject jsonObject = new JSONObject(responseJson);
 
-        Assert.assertEquals("Should return a not null token.","null",jsonObject.getJSONObject("user").get("token").toString());
+        String tokenResponse =  jsonObject.getJSONObject("user").get("token").toString();
+        String expectedToken = "null";
+        Assert.assertEquals("Should return a null token.",expectedToken,tokenResponse);
 
-        String expectedEmail = "admin@test.com";
-        Assert.assertEquals("Should return the expected email.",expectedEmail,jsonObject.getJSONObject("user").get("email").toString());
+        String userEmailResponse = jsonObject.getJSONObject("user").get("email").toString();
+        Assert.assertEquals("Should return the expected email when the register is succeed.","admin@test.com",userEmailResponse);
     }
 
     /**
-     * This test will pass after create the @user: admin@test.com
+     * This test will pass after create the user: admin@test.com
      * If user is not created, this test will pass in the second attempt.
      * @throws Exception
      */
@@ -47,7 +49,7 @@ public class UserControllerTest_IT extends BaseControllerTest_IT {
         JSONObject jsonObject = new JSONObject(responseJson);
 
         String errorMessage = jsonObject.getJSONArray("errors").getJSONObject(0).getString("message");
-        Assert.assertEquals("Should return an error message.","Usuário já existente.", errorMessage);
+        Assert.assertEquals("Should return an error message when user is already existed.","Usuário já existente.", errorMessage);
     }
 
     @Test
@@ -62,7 +64,7 @@ public class UserControllerTest_IT extends BaseControllerTest_IT {
         JSONObject jsonObject = new JSONObject(responseJson);
 
         String errorMessage = jsonObject.getJSONArray("errors").getJSONObject(0).getString("message");
-        Assert.assertEquals("Should return an error message.","Email não está no formato correto.", errorMessage);
+        Assert.assertEquals("Should return an error message when email has invalid regex rule.","Email não está no formato correto.", errorMessage);
     }
 
     @Test
@@ -77,6 +79,6 @@ public class UserControllerTest_IT extends BaseControllerTest_IT {
         JSONObject jsonObject = new JSONObject(responseJson);
 
         String errorMessage = jsonObject.getJSONArray("errors").getJSONObject(0).getString("message");
-        Assert.assertEquals("Should return an error message.","Senha deve ter entre 6 e 20 caracteres.", errorMessage);
+        Assert.assertEquals("Should return an error message, when password is too short.","Senha deve ter entre 6 e 20 caracteres.", errorMessage);
     }
 }

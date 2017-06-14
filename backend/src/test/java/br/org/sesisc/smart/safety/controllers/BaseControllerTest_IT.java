@@ -12,7 +12,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
 import java.nio.charset.Charset;
 import br.org.sesisc.smart.safety.models.User;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -26,12 +25,9 @@ public class BaseControllerTest_IT {
 
     protected MockMvc mockMvc;
 
-    @Autowired
-    protected WebApplicationContext webApplicationContext;
+    protected final String VALID_EMAIL = "admin@test.com"; // Email that will be saved for signIn tests.
 
-    protected final String VALID_EMAIL = "admin@test.com";
-
-    protected final String VALID_PASSWORD = "123123";
+    protected final String VALID_PASSWORD = "123123"; // Password that will be saved for signIn tests.
 
     protected final String INVALID_EMAIL = "error@test.com";
 
@@ -41,15 +37,12 @@ public class BaseControllerTest_IT {
 
     protected final String INCORRECT_PASSWORD_LENGTH = "123";
 
+    @Autowired
+    protected WebApplicationContext webApplicationContext;
+
     @Before
     public void setup() throws Exception {
         this.mockMvc = webAppContextSetup(webApplicationContext).build();
-    }
-
-    private void registerUserForTest() throws Exception {
-        mockMvc.perform(post("/users")
-                .content(getValidUserRequestJson(VALID_EMAIL,VALID_PASSWORD))
-                .contentType(contentType));
     }
 
     protected String getValidUserRequestJson(String email, String password) {
@@ -60,7 +53,6 @@ public class BaseControllerTest_IT {
 
         Gson gson = new Gson();
         String requestJson = gson.toJson(user);
-
 
         return requestJson;
     }

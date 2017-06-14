@@ -19,5 +19,4 @@ public class CompanyControllerTest_IT extends BaseControllerTest_IT {
         mockMvc.perform(get("/companies"))
                 .andExpect(status().isOk());
     }
-
 }
