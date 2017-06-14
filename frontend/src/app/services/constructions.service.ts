@@ -29,7 +29,7 @@ export class ConstructionsService {
             new Construction(10, "paralizada", "alameda-domo.jpg", "Alameda Domo Club & Residence", "Novo Campeche, Florianópolis - SC", "João da Silva"),
             new Construction(11, "finalizada", "koerich.jpg", "Koerich Beiramar Office", "Novo Campeche, Florianópolis - SC", "João da Silva"),
             new Construction(12, "em andamento", "simple-koerich.jpg", "Koerich Empresarial Rio Branco", "Novo Campeche, Florianópolis - SC", "João da Silva"),
-        ]).delay(1000).subscribe((constructions) => {
+        ]).delay(5000).subscribe((constructions) => {
             this.constructions = constructions
             o.unsubscribe()
         })

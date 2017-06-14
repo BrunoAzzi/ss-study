@@ -1,3 +1,4 @@
+import { ConstructionsLandingPageComponent } from './views/constructions/list/landing-page/my-construction-sites-landing-page.component';
 import { ConstructionDetailComponent } from './views/constructions/detail/construction-detail.component';
 import { ConstructionResolver } from './resolves/construction.resolver';
 import { ConstructionsService } from './services/constructions.service';
@@ -115,7 +116,7 @@ import { FabComponent } from "./components/common/floating-action-button/fab.com
 
 import { InputFile } from "./components/common/input-file/input-file.component";
 import { ConstructionsListComponent } from './views/constructions/list/constructions-list.component';
-import { ConstructionsAddComponent } from './views/constructions/add/add.component';
+import { ConstructionFormComponent } from './views/constructions/form/construction-form.component';
 import { LineConstructionDetailComponent } from './components/mysconstructionsites/line-construction-site/line-construction-site.component';
 import { CardConstructionDetailComponent } from './components/mysconstructionsites/card-construction-site/card-construction-site.component';
 import { ConstructionSiteDataComponent } from './components/mysconstructionsites/construction-site-data/construction-site-data.component';
@@ -181,11 +182,12 @@ import { FiltersComponent } from './components/area-monitoring/filters/filters.c
         // Obras
         ConstructionDetailComponent,
         ConstructionsListComponent,
-        ConstructionsAddComponent,
+        ConstructionFormComponent,
         LineConstructionDetailComponent,
         CardConstructionDetailComponent,
         ConstructionSiteDataComponent,
         FiltersComponent,
+        ConstructionsLandingPageComponent,
     ],
     imports: [
         // Notification Module

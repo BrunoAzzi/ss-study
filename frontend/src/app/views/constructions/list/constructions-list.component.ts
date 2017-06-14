@@ -11,7 +11,7 @@ export class ConstructionsListComponent implements OnInit {
     LAST_SAVED = "last_saved";
     FIRST_SAVED = "first_saved";
 
-    private activeFilters = {
+    activeFilters = {
         text: "",
         onGoing: false,
         paralized: false,
@@ -31,7 +31,7 @@ export class ConstructionsListComponent implements OnInit {
     ngOnInit() { }
 
     addConstructionSite() {
-        this.router.navigate(['../add'], { relativeTo: this.route });
+        this.router.navigate(['./new'], { relativeTo: this.route });
     }
 
     toggleSearch() {

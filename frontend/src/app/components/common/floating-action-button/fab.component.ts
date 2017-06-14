@@ -7,5 +7,5 @@ import { Component, Output, EventEmitter } from '@angular/core';
 })
 
 export class FabComponent {
-    // @Output() click: EventEmitter<any> = new EventEmitter();
+    @Output() click: EventEmitter<any> = new EventEmitter();
 }

@@ -1,3 +1,4 @@
+import { ConstructionFormComponent } from './views/constructions/form/construction-form.component';
 import { ConstructionDetailComponent } from './views/constructions/detail/construction-detail.component';
 import { ConstructionResolver } from './resolves/construction.resolver';
 import { NgModule } from '@angular/core';
@@ -23,8 +24,6 @@ import { BlankComponent } from "./components/common/layouts/blank/blank.componen
 import { BasicComponent } from "./components/common/layouts/basic/basic.component";
 
 import { ConstructionsListComponent } from './views/constructions/list/constructions-list.component';
-import { ConstructionsAddComponent } from './views/constructions/add/add.component';
-import { ConstructionSiteService } from './services/construction-site/construction-site.service';
 import { ConstructionSiteResolver } from './resolves/construction-site-resolver.service';
 
 import { BasicTopnavbarLayout } from './components/common/layouts/basic-topnavbar/basic-topnavbar.component';
@@ -49,9 +48,13 @@ const routes: Routes = [
                 ]
             },
             { path: 'constructions', component: ConstructionsListComponent, canActivate: [AuthGuard] },
+            { path: 'constructions/new', component: ConstructionFormComponent, canActivate: [AuthGuard] },
             {
                 path: 'constructions/:id', component: ConstructionDetailComponent, resolve: { construction: ConstructionResolver } , children: [
+
                     { path: '', pathMatch: 'prefix', redirectTo: 'monitoring' },
+                    { path: 'edit', component: ConstructionFormComponent, canActivate: [AuthGuard] },
+
                     { path: 'monitoring', component: MonitoringComponent, canActivate: [AuthGuard] },
                     { path: 'emiotional-profile', component: EmotionalPanelComponent, canActivate: [AuthGuard] },
                 ]
@@ -74,6 +77,6 @@ const routes: Routes = [
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule],
-    providers: [ConstructionSiteService, ConstructionSiteResolver, HasConstructionSitesGuard]
+    providers: [ConstructionSiteResolver, HasConstructionSitesGuard]
 })
 export class AppRoutingModule { }
