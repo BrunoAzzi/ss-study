@@ -61,7 +61,9 @@ import { SummaryItemComponent } from './components/area-monitoring/summary-item/
 import { SummaryComponent } from './components/area-monitoring/summary/summary.component';
 import { RiskGraphComponent } from './components/area-monitoring/risk-graph/risk-graph.component';
 import { FloorNavigationComponent } from './components/area-monitoring/floor-navigation/floor-navigation.component';
-import { WorkersOverviewComponent } from './components/workers/workers-overview/workers-overview.component';
+import { WorkersOverviewComponent } from './components/overview/workers-overview/workers-overview.component';
+import { ConstructionsStatusComponent } from './components/overview/constructions-status/constructions-status.component';
+
 
 // Painel Emocional
 import { EmotionalPanelComponent } from './views/constructions/detail/emotional-panel/emotional-panel.component';
@@ -162,6 +164,7 @@ import { FiltersComponent } from './components/area-monitoring/filters/filters.c
         RiskGraphComponent,
         FloorNavigationComponent,
         WorkersOverviewComponent,
+        ConstructionsStatusComponent,
         ContentElementDialog,
 
         // Layouts

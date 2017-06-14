@@ -1,0 +1,74 @@
+$very-bad: #FF7F80;
+$bad: #FF9777;
+$bad-medium: #FFB569;
+$good-medium: #FFCD5F;
+$good: #A3C67F;
+$very-good: #4EBFA2;
+$warm-grey: #9a9a9a;
+
+md-card.custom-header {
+    padding: 0 !important;
+
+    > *:not(md-toolbar) {
+        padding: 24px;
+    }
+}
+
+.mat-card-content {
+    display: flex;
+
+    .bars {
+        width: 65%;
+        margin-right: 15px;
+        background-color: gray;
+    }
+
+    span {
+        text-transform: uppercase;
+        font-family: Lato, sans-serif;
+        font-size: 11px;
+        font-weight: 900;
+        line-height: 1.4;
+        color: $warm-grey;
+    }
+}
+
+.mat-toolbar {
+    min-height: 50px;
+    text-transform: uppercase;
+    font-family: Lato, sans-serif;
+    font-size: 10px;
+    font-weight: 900;
+    line-height: 1.4;
+    letter-spacing: 0.5px;
+    text-align: left;
+    color: white;
+}
+
+.very-bad {
+    background-color: $very-bad;
+}
+
+.bad {
+    background-color: $bad;
+}
+
+.bad-medium {
+    background-color: $bad-medium;
+}
+
+.good-medium {
+    background-color: $good-medium;
+}
+
+.good {
+    background-color: $good;
+}
+
+.very-good {
+    background-color: $very-good;
+}
+
+:host /deep/ md-toolbar-row {
+    height: 50px !important;
+}
