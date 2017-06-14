@@ -65,4 +65,93 @@
         <addUniqueConstraint tableName="users" columnNames="email" />
     </changeSet>
 
+    <changeSet id="5" author="rrosseti">
+        <createTable tableName="states">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(100)" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="acronym" type="varchar(2)" >
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addAutoIncrement catalogName="ssafety_db"
+                          columnDataType="int"
+                          columnName="id"
+                          incrementBy="1"
+                          schemaName="public"
+                          startWith="1"
+                          tableName="states"/>
+    </changeSet>
+
+    <changeSet id="6" author="rrosseti">
+        <createTable tableName="cities">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(100)" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="state_id" type="int" >
+                <constraints foreignKeyName="city_state_id" nullable="false" deleteCascade="false"/>
+            </column>
+        </createTable>
+        <addAutoIncrement catalogName="ssafety_db"
+                          columnDataType="int"
+                          columnName="id"
+                          incrementBy="1"
+                          schemaName="public"
+                          startWith="1"
+                          tableName="cities"/>
+    </changeSet>
+
+    <changeSet id="7" author="rrosseti">
+        <createTable tableName="constructions">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="city_id" type="int" >
+                <constraints foreignKeyName="fk_construction_city" nullable="false" deleteCascade="false"/>
+            </column>
+            <column name="cep" type="varchar(100)" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="varchar(100)" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="address" type="varchar(255)" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="varchar(100)" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="varchar(255)" > </column>
+            <column name="highlight_url" type="varchar(255)" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="logo_url" type="varchar(255)" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="cei_url" type="varchar(255)" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="cei_code" type="varchar(100)" >
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addAutoIncrement catalogName="ssafety_db"
+                          columnDataType="int"
+                          columnName="id"
+                          incrementBy="1"
+                          schemaName="public"
+                          startWith="1"
+                          tableName="constructions"/>
+    </changeSet>
+
+    <!--<changeSet id="8" author="rrosseti">-->
+        <!--<sqlFile path="./seed_cities_and_states.sql"></sqlFile>-->
+    <!--</changeSet>-->
+
 </databaseChangeLog>

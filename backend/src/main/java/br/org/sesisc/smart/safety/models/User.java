@@ -11,7 +11,7 @@ import java.util.Date;
 
 public class User {
 
-    /*
+    /**
      * Properties
      */
 
@@ -30,7 +30,7 @@ public class User {
     private String token;
     private String recoverPassToken;
 
-    /*
+    /**
      * Getters & Setters
      */
 
@@ -82,7 +82,7 @@ public class User {
         this.recoverPassToken = recoverPassToken;
     }
 
-    /*
+    /**
      * Actions
      */
 

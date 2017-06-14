@@ -15,7 +15,7 @@ public class UserControllerTest_IT extends BaseControllerTest_IT {
     public void registerUser_whenAllMandatoryDateAreValid() throws Exception {
 
         MvcResult result = mockMvc.perform(post("/users")
-                .content(getValidUserRequestJson(VALID_EMAIL,VALID_PASSWORD))
+                .content(getUserRequestJson(VALID_EMAIL,VALID_PASSWORD))
                 .contentType(contentType))
                 .andExpect(status().isCreated())
                 .andReturn();
@@ -41,7 +41,7 @@ public class UserControllerTest_IT extends BaseControllerTest_IT {
     public void registerUser_whenUserIsAlreadyExisted() throws Exception {
 
         MvcResult result = mockMvc.perform(post("/users")
-                .content(getValidUserRequestJson(VALID_EMAIL,VALID_PASSWORD))
+                .content(getUserRequestJson(VALID_EMAIL,VALID_PASSWORD))
                 .contentType(contentType))
                 .andExpect(status().isUnprocessableEntity())
                 .andReturn();
@@ -56,7 +56,7 @@ public class UserControllerTest_IT extends BaseControllerTest_IT {
     public void registerUser_whenEmailHasInvalidRegex() throws Exception {
 
         MvcResult result = mockMvc.perform(post("/users")
-                .content(getValidUserRequestJson(INCORRECT_EMAIL_REGEX_RULE,VALID_PASSWORD))
+                .content(getUserRequestJson(INCORRECT_EMAIL_REGEX_RULE,VALID_PASSWORD))
                 .contentType(contentType))
                 .andExpect(status().isUnprocessableEntity())
                 .andReturn();
@@ -71,7 +71,7 @@ public class UserControllerTest_IT extends BaseControllerTest_IT {
     public void registerUser_whenPasswordHasInvalidRegex() throws Exception {
 
         MvcResult result = mockMvc.perform(post("/users")
-                .content(getValidUserRequestJson(VALID_EMAIL, INCORRECT_PASSWORD_LENGTH))
+                .content(getUserRequestJson(VALID_EMAIL, INCORRECT_PASSWORD_LENGTH))
                 .contentType(contentType))
                 .andExpect(status().isUnprocessableEntity())
                 .andReturn();

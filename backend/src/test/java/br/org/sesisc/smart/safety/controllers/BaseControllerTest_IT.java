@@ -1,6 +1,8 @@
 package br.org.sesisc.smart.safety.controllers;
 
+import br.org.sesisc.smart.safety.models.Construction;
 import com.google.gson.Gson;
+import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,8 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 @SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.MOCK)
 @WebAppConfiguration
 public class BaseControllerTest_IT {
+
+    protected static Logger LOG = Logger.getLogger(BaseControllerTest_IT.class.getName());
 
     protected MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(),
             MediaType.APPLICATION_JSON.getSubtype(),
@@ -45,7 +49,7 @@ public class BaseControllerTest_IT {
         this.mockMvc = webAppContextSetup(webApplicationContext).build();
     }
 
-    protected String getValidUserRequestJson(String email, String password) {
+    protected String getUserRequestJson(String email, String password) {
         User user = new User();
         user.setActive(true);
         user.setEmail(email);
@@ -56,6 +60,7 @@ public class BaseControllerTest_IT {
 
         return requestJson;
     }
+
 }
 
 

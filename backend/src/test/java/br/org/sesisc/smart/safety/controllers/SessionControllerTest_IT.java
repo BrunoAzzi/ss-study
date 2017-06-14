@@ -13,7 +13,7 @@ public class SessionControllerTest_IT extends BaseControllerTest_IT {
     public void signIn_whenAllMandatoryDateAreValid() throws Exception {
 
         MvcResult result = mockMvc.perform(post("/sessions")
-                .content(getValidUserRequestJson(VALID_EMAIL,VALID_PASSWORD))
+                .content(getUserRequestJson(VALID_EMAIL,VALID_PASSWORD))
                 .contentType(contentType))
                 .andExpect(status().isOk())
                 .andReturn();
@@ -32,7 +32,7 @@ public class SessionControllerTest_IT extends BaseControllerTest_IT {
     public void signIn_whenPasswordIsInvalid() throws Exception {
 
         MvcResult result = mockMvc.perform(post("/sessions")
-                .content(getValidUserRequestJson(VALID_EMAIL,INVALID_PASSWORD))
+                .content(getUserRequestJson(VALID_EMAIL,INVALID_PASSWORD))
                 .contentType(contentType))
                 .andExpect(status().isUnprocessableEntity())
                 .andReturn();
@@ -48,7 +48,7 @@ public class SessionControllerTest_IT extends BaseControllerTest_IT {
     public void signIn_whenEmailIsInvalid() throws Exception {
 
         MvcResult result = mockMvc.perform(post("/sessions")
-                .content(getValidUserRequestJson(INVALID_EMAIL,VALID_PASSWORD))
+                .content(getUserRequestJson(INVALID_EMAIL,VALID_PASSWORD))
                 .contentType(contentType))
                 .andExpect(status().isUnprocessableEntity())
                 .andReturn();
