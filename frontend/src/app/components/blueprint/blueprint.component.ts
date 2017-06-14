@@ -33,8 +33,34 @@ export class BlueprintComponent implements AfterContentChecked, OnChanges {
      }
 
     ngOnChanges() {
-        this.changeFloor(this.floor)
-        this.changeTool(this.tool)
+        if (!this.firstTime) {
+            this.changeFloor(this.floor)
+            this.changeTool(this.tool)
+        }
+    }
+
+    ngAfterContentChecked(): void {
+        const element = document.getElementById(`sheet${this.mapType}`);
+        if (this.firstTime && element !== null && element !== undefined) {
+            this.firstTime = false;
+
+            this.map = L.map(`sheet${this.mapType}`, {
+                crs: L.CRS.Simple,
+                maxZoom: 3
+            });
+            this.map.on('click', (e) => { this.setMarkByEvent(e); });
+
+            const bounds = new L.LatLngBounds([0, 0], [413, 186]);
+            this.imageMap = L.imageOverlay('', bounds);
+            this.imageMap.addTo(this.map);
+            this.map.fitBounds(bounds);
+
+            this.mapLayer = new L.LayerGroup([]);
+            this.mapLayer.addTo(this.map);
+
+            this.changeFloor(this.floor)
+            this.changeTool(this.tool)
+        }
     }
 
     changeTool(tool: any) {
@@ -60,73 +86,12 @@ export class BlueprintComponent implements AfterContentChecked, OnChanges {
         }
     }
 
-    filterCoordinates(coordinates) {
-        return this.filteredMarkers ? coordinates.filter(coordinate => {
-            return (this.filteredMarkers.map(filter => filter.name).indexOf(coordinate.type) === -1)
-        }) : coordinates
-    }
-
-    private setMarkByList(coordinates: Array<Marker>) {
-        this.filterCoordinates(coordinates).forEach((coordinate, index, array) => {
-            const mark = L.icon({
-                iconUrl: `assets/maps/markers/${coordinate.icon.name}.png`,
-                iconSize: coordinate.icon.size,
-            });
-            this.createMarker(coordinate.position, mark);
-        });
-    }
-
-    editable() {
-        return (this.mapType === "Mapping")
-    }
-
-    private createMarker(position: [number, number], mark: any) {
-        const marker = L.marker(position, { icon: mark, draggable: this.editable(), pane: 'markerPane' });
-        this.editable() && marker.bindPopup(`<a onclick="window.angularComponent.removeMark('${position['lat']},${position['lng']}')">Remover</a>`);
-        this.mapLayer.addLayer(marker);
-        if (this.editable()) {
-            marker.on('move', (event: any) => {
-                this.currentPosition = { old: event.oldLatLng, new: event.latlng };
-            });
-            marker.on('moveend', () => { this.updateMark(); });
-        }
-    }
-
-    private updateMark() {
-        const index = this.floor.coordinates.findIndex(coordinate => coordinate.position === this.currentPosition.old);
-        if (index > -1) {
-            this.floor.coordinates[index].position = this.currentPosition.new;
-        }
-    }
-
-    ngAfterContentChecked(): void {
-        const element = document.getElementById(`sheet${this.mapType}`);
-        if (this.firstTime && element !== null && element !== undefined) {
-            this.firstTime = false;
-
-            this.map = L.map(`sheet${this.mapType}`, {
-                crs: L.CRS.Simple,
-                maxZoom: 3
-            });
-            this.map.on('click', (e) => { this.setMarkByEvent(e); });
-
-            const bounds = new L.LatLngBounds([0, 0], [413, 186]);
-            this.imageMap = L.imageOverlay('', bounds);
-            this.imageMap.addTo(this.map);
-            this.map.fitBounds(bounds);
-
-            this.mapLayer = new L.LayerGroup([]);
-            this.mapLayer.addTo(this.map);
-        }
-    }
-
-    private setMarkByEvent(e) {
-        if (this.currentMark) {
-            const position = e.latlng;
-            const icon = new Icon(this.tool.name, this.tool.size);
-            this.floor.coordinates.push(new Marker(position, icon, this.tool.name));
-            this.updateFloor.next(this.floor)
-            this.createMarker(position, this.currentMark);
+    changePositionToRemove(e) {
+        const value = e.target.value;
+        if (value !== '') {
+            const position = value.split(',');
+            const latLng = { lat: Number(position[0]), lng: Number(position[1]) };
+            this.destroyMark(latLng);
         }
     }
 
@@ -142,6 +107,55 @@ export class BlueprintComponent implements AfterContentChecked, OnChanges {
         }
     }
 
+    private filterCoordinates(coordinates) {
+        return this.filteredMarkers ? coordinates.filter(coordinate => {
+            return (this.filteredMarkers.map(filter => filter.name).indexOf(coordinate.type) === -1)
+        }) : coordinates
+    }
+
+    private setMarkByList(coordinates: Array<Marker>) {
+        this.filterCoordinates(coordinates).forEach((coordinate, index, array) => {
+            const mark = L.icon({
+                iconUrl: `assets/maps/markers/${coordinate.icon.name}.png`,
+                iconSize: coordinate.icon.size,
+            });
+            this.createMarker(coordinate.position, mark);
+        });
+    }
+
+    private isEditable() {
+        return (this.mapType === "Mapping")
+    }
+
+    private createMarker(position: [number, number], mark: any) {
+        const marker = L.marker(position, { icon: mark, draggable: this.isEditable(), pane: 'markerPane' });
+        this.isEditable() && marker.bindPopup(`<a onclick="window.angularComponent.removeMark('${position['lat']},${position['lng']}')">Remover</a>`);
+        this.mapLayer.addLayer(marker);
+        if (this.isEditable()) {
+            marker.on('move', (event: any) => {
+                this.currentPosition = { old: event.oldLatLng, new: event.latlng };
+            });
+            marker.on('moveend', () => { this.updateMark(); });
+        }
+    }
+
+    private updateMark() {
+        const index = this.floor.coordinates.findIndex(coordinate => coordinate.position === this.currentPosition.old);
+        if (index > -1) {
+            this.floor.coordinates[index].position = this.currentPosition.new;
+        }
+    }
+
+    private setMarkByEvent(e) {
+        if (this.currentMark) {
+            const position = e.latlng;
+            const icon = new Icon(this.tool.name, this.tool.size);
+            this.floor.coordinates.push(new Marker(position, icon, this.tool.name));
+            this.updateFloor.next(this.floor)
+            this.createMarker(position, this.currentMark);
+        }
+    }
+
     private destroyMark(latLng: any) {
         this.mapLayer.eachLayer((layer: L.Layer) => {
             const layerLatLng = layer['_latlng'];
@@ -154,14 +168,4 @@ export class BlueprintComponent implements AfterContentChecked, OnChanges {
             coordinate.position['lat'] !== latLng.lat && coordinate.position['lng'] !== latLng.lng
         );
     }
-
-    changePositionToRemove(e) {
-        const value = e.target.value;
-        if (value !== '') {
-            const position = value.split(',');
-            const latLng = { lat: Number(position[0]), lng: Number(position[1]) };
-            this.destroyMark(latLng);
-        }
-    }
-
 }

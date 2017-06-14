@@ -17,8 +17,15 @@
         padding: 0;
         list-style: none;
         overflow: hidden;
+
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        align-items: stretch;
+
         li {
-            float: left;
+            flex-grow: 1;
+            flex-basis: 0;
             background-color: #ffffff;
             border-left: 1px solid #e8e8e8;
             width: 6.19%;

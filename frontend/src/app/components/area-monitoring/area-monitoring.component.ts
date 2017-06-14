@@ -17,10 +17,10 @@ export class AreaMonitoringComponent {
     public activeFilters : Array<any> = [];
     public currentFloor : Floor;
 
-    constructor(public service: ConstructionsService, private route : ActivatedRoute) {}
+    constructor(public service: ConstructionsService) {}
 
-    floorChanged(floor : Floor) {
-        this.currentFloor = floor;
+    onFloorChanged(floor : Floor) {
+        this.currentFloor = floor
     }
 
     onFilterChanged(filters) {

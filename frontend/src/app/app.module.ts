@@ -61,7 +61,7 @@ import { AreaMonitoringComponent } from './components/area-monitoring/area-monit
 import { SummaryItemComponent } from './components/area-monitoring/summary-item/summary-item.component';
 import { SummaryComponent } from './components/area-monitoring/summary/summary.component';
 import { RiskGraphComponent } from './components/area-monitoring/risk-graph/risk-graph.component';
-import { FloorNavigationComponent } from './components/area-monitoring/floor-navigation/floor-navigation.component';
+import { FloorsSummaryComponent } from './components/floors-summary/floors-summary.component';
 
 // Painel Emocional
 import { EmotionalPanelComponent } from './views/constructions/detail/emotional-panel/emotional-panel.component';
@@ -154,7 +154,7 @@ import { FiltersComponent } from './components/area-monitoring/filters/filters.c
         SummaryItemComponent,
         SummaryComponent,
         RiskGraphComponent,
-        FloorNavigationComponent,
+        FloorsSummaryComponent,
         ContentElementDialog,
 
         // Layouts

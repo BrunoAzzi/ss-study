@@ -1,16 +1,15 @@
-import { Construction } from './../../../models/construction.model';
-import { Floor } from './../../../models/floor.model';
+import { Floor } from './../../models/floor.model';
+import { Construction } from './../../models/construction.model';
 import { Component, Output, EventEmitter, Input, OnInit, OnDestroy } from '@angular/core';
-import { ConstructionsService } from './../../../services/constructions.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Component({
-    selector: 'floor-navigation',
-    templateUrl: 'floor-navigation.component.html',
-    styleUrls: ['floor-navigation.component.scss']
+    selector: 'floors-summary',
+    templateUrl: 'floors-summary.component.html',
+    styleUrls: ['floors-summary.component.scss']
 })
 
-export class FloorNavigationComponent implements OnInit {
+export class FloorsSummaryComponent implements OnInit {
 
     @Input() construction : Construction;
     @Output() change: EventEmitter<Floor> = new EventEmitter();
@@ -22,6 +21,7 @@ export class FloorNavigationComponent implements OnInit {
 
     ngOnInit() {
         this.toggleableSections = this.toggleableSections || this.getSections().map(sectionName => ({ name: sectionName, hidden: false }))
+        !this.selectedFloor && this.changeFloor(this.construction.floors[0])
     }
 
     getConstruction() {
@@ -51,7 +51,6 @@ export class FloorNavigationComponent implements OnInit {
         let section = this.toggleableSections.find(toggleableSection => (toggleableSection.name === sectionName))
         section.hidden = !section.hidden
     }
-    
 
     summaryBySection(sectionName) {
         return this.construction.floors.filter(floor => floor.sectionName === sectionName).reduce((sum, floor) => {
