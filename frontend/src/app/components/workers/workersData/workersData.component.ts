@@ -16,21 +16,37 @@ import { IMyDpOptions } from 'mydatepicker';
 })
 export class WorkersDataComponent {
     disabled = true;
+
     mycbo = '';
     mycbonumber = 0;
-    myCep = '';
+    modelCEP = '';
     cpf = '';
+    modelCompleteAdress = '';
+    modelAge = '';
+    modelNit = '';
+    modelCTPS = '';
+    modelComplement = '';
+    modelContact = '';
+    modelFunction = '';
+    modelCompany = '';
+    selectedLabor = '';
+    selectedStatusValue = '';
     birthDateModel = null;
+    admissionDateModel = null;
+    modelSpecialNecessitys = '';
+
+    own = true;
+    outsource = !this.own;
     masc = true;
     fem = !this.masc;
-     model: Object = { date: { year: 2018, month: 10, day: 9 } };
+
+    model: Object = { date: { year: 2018, month: 10, day: 9 } };
     sexModel = 'm';
     fullname = '';
     hiredType = true;
     isValid = false;
     myForm: FormGroup;
     completeAddress: string;
-    selectedStatusValue: string;
     selectedScholarityValue: string;
 
     myDatePickerOptions: IMyDpOptions = {
@@ -55,9 +71,7 @@ export class WorkersDataComponent {
 
     status = [
         { value: 'ativo', viewValue: 'Ativo' },
-        { value: 'ferias', viewValue: 'Férias' },
-        { value: 'afastado', viewValue: 'Afastado' },
-        { value: 'demitido', viewValue: 'Demitido' },
+        { value: 'inativo', viewValue: 'Inativo' },
     ];
 
     labors = [];
@@ -112,7 +126,7 @@ export class WorkersDataComponent {
     }
 
     autocompleteAdressFromApi() {
-        this.correiosService.getAddress(this.myCep).subscribe(data => {
+        this.correiosService.getAddress(this.modelCEP).subscribe(data => {
             this.completeAddress = `${data.cidade} - ${data.estado}, ${data.bairro}, ${data.tipoDeLogradouro} ${data.logradouro}`;
         });
     }
@@ -121,19 +135,58 @@ export class WorkersDataComponent {
         this.workersService.getWorker("199.942.366-60").subscribe(
             (response) => {
                 this.fullname = response.name,
+                 this.modelCEP = response.cep;
+                this.modelCompleteAdress = response.completeAddress;
+                this.modelAge = response.age;
+                this.modelNit = response.nit;
+                this.modelCTPS = response.ctps;
+                this.modelComplement = response.complement;
+                this.modelContact = response.contact;
+                this.modelFunction = response.cboDescription;
+                this.mycbo = response.cbo;
+                this.modelCompany = response.company;
+
                 this.fem = (response.sex=="f")? true : false;
                 this.masc = !this.fem;
+                this.outsource = (response.hiredType=="outsource")? true : false;
+                this.own = !this.outsource;
+   
                 this.selectedScholarityValue = response.scholarity;
-                let date = new Date(response.birthDate);
+                this.modelSpecialNecessitys = response.specialNecessity;
+                this.selectedStatusValue = response.status;
+                this.cboService.getCBO("6125-05").subscribe(
+                        (response) => {
+                             console.log(response);
+                            this.labors = response.map((label, index) => {
+                                 
+                                return { value: response.laborCBO, viewValue: label };
+                            });
+                        },
+                    );
+                    
+                
+                //this.selectedLabor =  response.laborCBO;
+               
+                let bdate = new Date(response.birthDate);
                 this.birthDateModel = 
                         {
                             date: {
-                                    year: date.getFullYear(),
-                                    month: date.getMonth() + 1,
-                                    day: date.getDate()
+                                    year: bdate.getFullYear(),
+                                    month: bdate.getMonth() + 1,
+                                    day: bdate.getDate()
                                   }
                         
                        };
+                       
+                let addate = new Date(response.admissionDate);
+                this.admissionDateModel = { 
+                            date: {
+                                    year: addate.getFullYear(),
+                                    month: addate.getMonth() + 1,
+                                    day: addate.getDate()
+                            }
+                }
+               
             },
         );
         
@@ -163,7 +216,7 @@ export class WorkersDataComponent {
 
     savePersonalDataWorker(safetyCard) {
         //se não passar, descomentar: console.log(this.myForm.controls);
-        console.log(this.myForm.value.sex);
+    
         if (this.myForm.valid) {
 
             safetyCard.close();

@@ -41,7 +41,7 @@
                         </td>
                         <td>
                             <md-input-container>
-                                <input mdInput formControlName="age" name="age" placeholder="Idade" id="age" type="number">
+                                <input mdInput formControlName="age" name="age" placeholder="Idade" id="age"  [(ngModel)]="modelAge" type="number">
                             </md-input-container>
                         </td>
                         <td>
@@ -53,13 +53,13 @@
                         </td>
                         <td>
                             <md-input-container>
-                                <input mdInput formControlName="nit" placeholder="NIT" id="nit" name="nit" [textMask]="{mask: nitMask}" >
+                                <input mdInput formControlName="nit" [(ngModel)]="modelNit" placeholder="NIT" id="nit" name="nit" [textMask]="{mask: nitMask}" >
                                 <md-error *ngIf="myForm.controls.nit.hasError('onlyPositiveNumbers')">São permitidos apenas valores maiores ou igual a 0.</md-error>
                             </md-input-container>
                         </td>
                         <td>
                             <md-input-container>
-                                <input mdInput type="number" formControlName="ctps" placeholder="CTPS" id="ctps" name="ctps">
+                                <input mdInput formControlName="ctps"  [(ngModel)]="modelCTPS"  placeholder="CTPS" id="ctps" name="ctps">
                                 <md-error *ngIf="myForm.controls.ctps.hasError('onlyPositiveNumbers')">São permitidos apenas valores maiores ou igual a 0.</md-error>
                             </md-input-container>
                         </td>
@@ -67,22 +67,22 @@
                     <tr>
                         <td>
                             <md-input-container>
-                                <input mdInput placeholder="CEP" formControlName="cep" id="cep" [(ngModel)]="myCep" name="cep" [textMask]="{mask: cepMask}"  (blur)="autocompleteAdressFromApi()">
+                                <input mdInput placeholder="CEP" formControlName="cep" id="cep"  [(ngModel)]="modelCEP" name="cep" [textMask]="{mask: cepMask}"  (blur)="autocompleteAdressFromApi()">
                             </md-input-container>
                         </td>
                         <td colspan="2">
                             <md-input-container>
-                                <input mdInput placeholder="Endereço Completo" formControlName="completeAddress" id="completeAddress" name="completeAddress" value="{{completeAddress}}">
+                                <input mdInput placeholder="Endereço Completo" formControlName="completeAddress" [(ngModel)]="modelCompleteAdress" id="completeAddress" name="completeAddress" value="{{completeAddress}}">
                             </md-input-container>
                         </td>
                         <td>
                             <md-input-container>
-                                <input mdInput placeholder="Complemento" id="complement" name="complement" formControlName="complement">
+                                <input mdInput placeholder="Complemento" id="complement"  [(ngModel)]="modelComplement" name="complement" formControlName="complement">
                             </md-input-container>
                         </td>
                         <td>
                             <md-input-container>
-                                <input mdInput placeholder="Contato" id="contact" name="contact" formControlName="contact">
+                                <input mdInput placeholder="Contato" id="contact" [(ngModel)]="modelContact" name="contact" formControlName="contact">
                             </md-input-container>
                         </td>
                     </tr>
@@ -95,7 +95,7 @@
                         </td>
                         <td colspan="2">
 
-                            <md-select class="full-width" formControlName="role" placeholder="Cargo" [mdTooltip]="disabled ? 'Digite um CBO válido!' : 'Selecione um cargo'">
+                            <md-select class="full-width" formControlName="role" placeholder="Cargo" [(ngModel)]="selectedLabor" [mdTooltip]="disabled ? 'Digite um CBO válido!' : 'Selecione um cargo'">
                                 <md-option *ngFor="let labor of labors" [value]="labor.value">
                                     {{ labor.viewValue }}
                                 </md-option>
@@ -104,21 +104,21 @@
                         <td class="textColumn" colspan="2" rowspan="3">
                             <div fxLayout="row" fxLayoutAlign="end start">
                                 <md-input-container>
-                                    <textarea mdInput formControlName="textArea" placeholder="Descrição da Função" name="textArea"></textarea>
+                                    <textarea mdInput formControlName="textArea" [(ngModel)]="modelFunction" placeholder="Descrição da Função" name="textArea"></textarea>
                                 </md-input-container>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <md-select class="full-width" formControlName="necessitys" placeholder="Portador de Nec. Especiais?">
+                            <md-select class="full-width" [(ngModel)]="modelSpecialNecessitys" formControlName="necessitys" placeholder="Portador de Nec. Especiais?">
                                 <md-option *ngFor="let necessity of necessitys" [value]="necessity.value">
                                     {{ necessity.viewValue }}
                                 </md-option>
                             </md-select>
                         </td>
                         <td>
-                            <my-date-picker formControlName="admissionDate" name="admissionDate" [options]="myDatePickerOptions" placeholder="Data de Admissão"></my-date-picker>
+                            <my-date-picker formControlName="admissionDate" name="admissionDate" [(ngModel)]="admissionDateModel"  [options]="myDatePickerOptions" placeholder="Data de Admissão"></my-date-picker>
                         </td>
                         <td>
                             <md-select class="full-width" [(ngModel)]="selectedStatusValue" formControlName="status" placeholder="Status">
@@ -135,8 +135,8 @@
                                 <p>Tipo de Contratação:</p>
                                 <md-radio-group name="hiredType" formControlName="hiredTypeRadio" (change)="hiredChange()">
                                     <div fxLayout="row" fxLayoutAlign="space-around center">
-                                        <md-radio-button name="own" value="true" checked="true">Próprio</md-radio-button>
-                                        <md-radio-button name="outsourced" value="false">Terceiro</md-radio-button>
+                                        <md-radio-button name="own" value="true" [(checked)]="own">Próprio</md-radio-button>
+                                        <md-radio-button name="outsourced" value="false" [(checked)]="outsource">Terceiro</md-radio-button>
                                     </div>
                                 </md-radio-group>
                             </div>
@@ -144,7 +144,7 @@
                         <td style="align-text: center" colspan="2">
 
                             <md-input-container>
-                                <input mdInput formControlName="company" placeholder="Empresa" id="company" name="company">
+                                <input mdInput formControlName="company" [(ngModel)]="modelCompany" placeholder="Empresa" id="company" name="company">
                             </md-input-container>
                         </td>
                     </tr>
