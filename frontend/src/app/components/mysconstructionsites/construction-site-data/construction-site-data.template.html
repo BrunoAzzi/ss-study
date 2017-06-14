@@ -1,24 +1,28 @@
-<safety-card>
+<safety-card #constructionData>
     <safety-card-header>dados da obra</safety-card-header>
-    <safety-card-content></safety-card-content>
+    <safety-card-content>
+        <construction-site-data-form (onShowNext)="showManagersForm()"></construction-site-data-form>
+    </safety-card-content>
 </safety-card>
 
-<safety-card>
+<safety-card #managersData>
     <safety-card-header>dados dos responsáveis</safety-card-header>
-    <safety-card-content></safety-card-content>
+    <safety-card-content>
+        <managers-data-form></managers-data-form>
+    </safety-card-content>
 </safety-card>
 
-<safety-card>
+<safety-card #floorData>
     <safety-card-header>plantas</safety-card-header>
     <safety-card-content></safety-card-content>
 </safety-card>
 
-<safety-card>
+<safety-card #goodsData>
     <safety-card-header>maquinas e equipamentos</safety-card-header>
     <safety-card-content></safety-card-content>
 </safety-card>
 
-<safety-card>
+<safety-card #workersData>
     <safety-card-header>trabalhadores</safety-card-header>
     <safety-card-content></safety-card-content>
 </safety-card>

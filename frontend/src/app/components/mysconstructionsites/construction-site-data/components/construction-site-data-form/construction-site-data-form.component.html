@@ -1,0 +1,40 @@
+<form class="full-width" #f="ngForm" (ngSubmit)="save(f)" novalidate>
+    <div class="form-content">
+        <section>
+            <md-input-container>
+                <input mdInput placeholder="NOME DO EMPREENDIMENTO"
+                       ngModel name="name"
+                >
+            </md-input-container>
+            <cep-picker class="half" (onSearch)="onCepSearch(f, $event)"></cep-picker>
+            <md-input-container class="half">
+                <input mdInput placeholder="CIDADE / ESTADO"
+                       ngModel name="city"
+                >
+            </md-input-container>
+            <md-input-container>
+                <input mdInput placeholder="ENDEREÇO COMPLETO (RUA, NÚMERO, COMPLEMENTO)"
+                       ngModel name="address"
+                >
+            </md-input-container>
+            <md-input-container class="half">
+                <input mdInput placeholder="CEI"
+                       ngModel name="cei"
+                >
+            </md-input-container>
+            <construction-status-picker></construction-status-picker>
+        </section>
+        <section>
+            <md-input-container>
+                <textarea mdInput placeholder="DESCRIÇÃO DA OBRA"
+                          name="description"
+                ></textarea>
+            </md-input-container>
+            <drop-file class="half" [label]="'LOGO DA OBRA'" (onChange)="onLogoChange($event)"></drop-file>
+            <drop-file class="half" [label]="'IMAGEM DESTAQUE'" (onChange)="onFeaturedChange($event)"></drop-file>
+        </section>
+    </div>
+    <div class="form-bottom">
+        <button md-raised-button [disabled]="!f.valid">SALVAR E CONTINUAR</button>
+    </div>
+</form>

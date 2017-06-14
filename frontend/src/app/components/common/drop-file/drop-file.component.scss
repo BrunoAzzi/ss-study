@@ -1,0 +1,18 @@
+.custom-component-drop-zone {
+  width: 78px;
+  height: 78px;
+  border: dashed 2px #f2f6f7;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  cursor: pointer;
+}
+
+img {
+  max-width: 78px;
+  max-height: 78px;
+}
+
+input {
+  display: none
+}
