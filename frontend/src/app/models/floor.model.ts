@@ -1,4 +1,4 @@
-import { Coordinate } from './coordinate.model';
+import { Marker } from './marker.model';
 
 export class Floor {
 
@@ -6,7 +6,7 @@ export class Floor {
     name: string;
     bounds: [number, number][];
     imagePath: string;
-    coordinates: Array<Coordinate> = [];
+    coordinates: Array<Marker> = [];
     alerts: Array<any> = []
     sectionName: string;
 

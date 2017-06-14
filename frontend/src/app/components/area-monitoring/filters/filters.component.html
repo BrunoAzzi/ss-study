@@ -1,8 +1,8 @@
 <div class="filter-box">
     <span>Filtros: </span>
     <ul class="filters">
-        <li *ngFor="let filter of filters">
-            <a>
+        <li *ngFor="let filter of filters" [ngClass]="{ active: !filter.active }">
+            <a (click)="toggleActive(filter)">
                 <img src="assets/maps/icons/{{ filter.icon }}.png" srcset="assets/maps/icons/{{ filter.icon }}@2x.png 2x, assets/maps/icons/{{ filter.icon }}@3x.png 3x">
                 {{ filter.title }}
             </a>

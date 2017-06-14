@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-filters',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./filters.component.scss']
 })
 export class FiltersComponent implements OnInit {
+
+  @Output() filterChanged : EventEmitter<Array<any>> = new EventEmitter();
 
   filters: Array<any> = [
         { name: 'checkpoint', size: [53, 51], icon: 'cone', title: 'Cone' },
@@ -25,9 +27,15 @@ export class FiltersComponent implements OnInit {
         { name: 'totem', size: [53, 51], icon: 'totem', title: 'Totem' },
     ];
 
-  constructor() { }
+  constructor() {}
+
+  toggleActive(filter) {
+    filter.active = !filter.active
+    this.filterChanged.emit(this.filters.filter(filter => filter.active))
+  }
 
   ngOnInit() {
+
   }
 
 }

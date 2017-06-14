@@ -70,11 +70,6 @@ import { StatusDiaComponent } from "./components/perfil_emocional/status_dia/sta
 import { StatusTrabalhadoresComponent } from "./components/perfil_emocional/status_trabalhadores/status_trabalhadores.component";
 import { StatusAnoComponent } from "./components/perfil_emocional/status_ano/status_ano.component";
 
-//Models
-
-import { Floor } from './models/floor.model';
-import { Coordinate } from './models/coordinate.model';
-
 // Layouts
 import { LoginComponent } from "./views/login/login.component";
 import { PasswordRecoveryComponent } from "./views/password-recovery/password-recovery.component";

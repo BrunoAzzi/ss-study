@@ -17,7 +17,7 @@
                 <li class="floor" *ngFor="let floor of getFloors()" [ngClass]="{ active: isSelectedFloor(floor.name) }"><a (click)="changeFloor(floor)">
                     <span class="name">{{ floor.name }}</span>
                     <summary alerts="{{ floor.alertsNumber() }}" cones="{{ floor.conesNumber() }}" workers="{{ floor.workersNumber() }}"></summary>
-                    <risk-graph></risk-graph>
+                    <risk-graph [floor]="floor"></risk-graph>
                 </a></li>
             </ul>
         </li>

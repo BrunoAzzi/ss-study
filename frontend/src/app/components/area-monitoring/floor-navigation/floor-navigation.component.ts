@@ -1,3 +1,4 @@
+import { Construction } from './../../../models/construction.model';
 import { Floor } from './../../../models/floor.model';
 import { Component, Output, EventEmitter, Input, OnInit, OnDestroy } from '@angular/core';
 import { ConstructionsService } from './../../../services/constructions.service';
@@ -10,19 +11,21 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 })
 
 export class FloorNavigationComponent implements OnInit {
-    @Output() change: EventEmitter<any> = new EventEmitter();
+
+    @Input() construction : Construction;
+    @Output() change: EventEmitter<Floor> = new EventEmitter();
 
     private selectedFloor: Floor = null;
     private toggleableSections: Array<any>;
 
-    constructor(private service: ConstructionsService) {}
+    constructor() {}
 
     ngOnInit() {
         this.toggleableSections = this.toggleableSections || this.getSections().map(sectionName => ({ name: sectionName, hidden: false }))
     }
 
     getConstruction() {
-        return this.service.construction
+        return this.construction
     }
 
     getFloors() {
@@ -37,7 +40,7 @@ export class FloorNavigationComponent implements OnInit {
     }
 
     onUpdateConstruction(construction) {
-        this.service.construction.floors = construction.floors;
+        this.construction.floors = construction.floors;
     }
 
     isSectionHidden(sectionName) {
@@ -46,12 +49,12 @@ export class FloorNavigationComponent implements OnInit {
 
     toggleSection(sectionName) {
         let section = this.toggleableSections.find(toggleableSection => (toggleableSection.name === sectionName))
+        section.hidden = !section.hidden
     }
-
     
 
     summaryBySection(sectionName) {
-        return this.service.construction.floors.filter(floor => floor.sectionName === sectionName).reduce((sum, floor) => {
+        return this.construction.floors.filter(floor => floor.sectionName === sectionName).reduce((sum, floor) => {
             return {
                 alerts: sum.alerts + floor.alertsNumber(),
                 cones: sum.cones + floor.conesNumber(),
@@ -66,7 +69,7 @@ export class FloorNavigationComponent implements OnInit {
 
     changeFloor(floor: Floor): void {
         this.selectedFloor = floor;
-        this.change.next({ floor: floor });
+        this.change.next(floor);
     }
 
     isSelectedFloor(floorName: string) {
