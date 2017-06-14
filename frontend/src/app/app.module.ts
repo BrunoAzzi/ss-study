@@ -1,4 +1,4 @@
-import { ConstructionDetailComponent } from './views/constructions/detail/construction-detail.component';
+import { OverviewComponent } from './views/constructions/detail/overview/overview.component';import { ConstructionDetailComponent } from './views/constructions/detail/construction-detail.component';
 import { ConstructionResolver } from './resolves/construction.resolver';
 import { ConstructionsService } from './services/constructions.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -61,6 +61,7 @@ import { SummaryItemComponent } from './components/area-monitoring/summary-item/
 import { SummaryComponent } from './components/area-monitoring/summary/summary.component';
 import { RiskGraphComponent } from './components/area-monitoring/risk-graph/risk-graph.component';
 import { FloorNavigationComponent } from './components/area-monitoring/floor-navigation/floor-navigation.component';
+import { WorkersOverviewComponent } from './components/workers/workers-overview/workers-overview.component';
 
 // Painel Emocional
 import { EmotionalPanelComponent } from './views/constructions/detail/emotional-panel/emotional-panel.component';
@@ -150,6 +151,7 @@ import { FiltersComponent } from './components/area-monitoring/filters/filters.c
         SecurityWorksComponent,
         BoxMessageComponent,
         MonitoringComponent,
+        OverviewComponent,
         BlueprintComponent,
         ToolboxComponent,
         BarLevelComponent,
@@ -159,6 +161,7 @@ import { FiltersComponent } from './components/area-monitoring/filters/filters.c
         SummaryComponent,
         RiskGraphComponent,
         FloorNavigationComponent,
+        WorkersOverviewComponent,
         ContentElementDialog,
 
         // Layouts

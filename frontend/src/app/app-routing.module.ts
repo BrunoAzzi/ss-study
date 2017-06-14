@@ -14,6 +14,7 @@ import { TrainingComponent } from "./views/training/training.component";
 import { WorkersComponent } from "./views/workers/workers.component";
 import { EmotionalPanelComponent } from './views/constructions/detail/emotional-panel/emotional-panel.component';
 import { MonitoringComponent } from './views/constructions/detail/monitoring/monitoring.component';
+import { OverviewComponent } from './views/constructions/detail/overview/overview.component';
 
 import { LoginComponent } from "./views/login/login.component";
 import { PasswordRecoveryComponent } from "./views/password-recovery/password-recovery.component";
@@ -52,6 +53,7 @@ const routes: Routes = [
             {
                 path: 'constructions/:id', component: ConstructionDetailComponent, resolve: { construction: ConstructionResolver } , children: [
                     { path: '', pathMatch: 'prefix', redirectTo: 'monitoring' },
+                    { path: 'overview', component: OverviewComponent, canActivate: [AuthGuard] },
                     { path: 'monitoring', component: MonitoringComponent, canActivate: [AuthGuard] },
                     { path: 'emiotional-profile', component: EmotionalPanelComponent, canActivate: [AuthGuard] },
                 ]
