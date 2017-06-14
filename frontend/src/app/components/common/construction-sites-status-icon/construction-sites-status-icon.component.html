@@ -1,0 +1,4 @@
+<md-icon *ngIf="statusIcon" fxLayout fxLayoutAlign="center center" [ngClass]="status"> {{statusIcon}}</md-icon>
+<div *ngIf="!statusIcon" class="icon-wrapper warn" fxLayout fxLayoutAlign="center center">
+  <img src="assets/icon/myconstructionsite/em-execucao.png" alt="">
+</div>

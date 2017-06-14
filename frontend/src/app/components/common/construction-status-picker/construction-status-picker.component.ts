@@ -10,7 +10,7 @@ export class ConstructionStatusPickerComponent {
 
     @ViewChild('statusInput') statusInput;
 
-    availableStatus = ['finalizada', 'paralizada', 'em andamento'];
+    availableStatus = ['finalizada', 'paralisada', 'em andamento'];
 
     onChange(value) {
         this.statusInput.nativeElement.value = value;

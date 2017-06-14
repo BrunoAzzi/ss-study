@@ -1,0 +1,13 @@
+@import "../../../../scss/components/color.scss";
+
+.success {
+  background-color: $green-blue !important;
+}
+
+.danger {
+  background-color: $grapefruit !important;
+}
+
+.warn {
+  background-color: $sunflower !important;
+}

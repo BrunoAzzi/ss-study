@@ -97,7 +97,7 @@ export class MyConstructionSitesShowComponent implements OnInit {
     filterStoppedConstructionSites() {
         this.filteredConstructionSiteList = this.filteredConstructionSiteList.filter(constructionSite => {
             // TODO same as "em andamento"
-            return constructionSite.status !== "paralizada";
+            return constructionSite.status !== "paralisada";
         });
     }
 

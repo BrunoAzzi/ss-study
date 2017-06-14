@@ -115,6 +115,7 @@ import { ConstructionSiteDataFormComponent } from './components/mysconstructions
 import { CepPickerComponent } from './components/common/cep-picker/cep-picker.component';
 import { ManagersDataFormComponent } from './components/mysconstructionsites/construction-site-data/components/managers-data-form/managers-data-form.component';
 import { ConstructionStatusPickerComponent } from './components/common/construction-status-picker/construction-status-picker.component';
+import {ConstructionSitesStatusIconComponent} from "./components/common/construction-sites-status-icon/construction-sites-status-icon.component";
 
 @NgModule({
     declarations: [
@@ -186,6 +187,7 @@ import { ConstructionStatusPickerComponent } from './components/common/construct
         CepPickerComponent,
         ManagersDataFormComponent,
         ConstructionStatusPickerComponent,
+        ConstructionSitesStatusIconComponent,
     ],
     imports: [
         // Notification Module
