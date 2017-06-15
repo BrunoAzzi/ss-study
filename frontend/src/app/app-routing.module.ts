@@ -42,12 +42,7 @@ const routes: Routes = [
                     { path: 'epis', data: { breadcrumb: "EPI's" }, component: PPEComponent },
                     { path: 'reports', data: { breadcrumb: "Relatórios" }, component: ReportsComponent },
                     { path: 'repositories', data: { breadcrumb: "Repositório" }, component: RepositoriesComponent },
-                    {
-						path: 'thirdparties', children: [
-                            { path: '', redirectTo: 'list', pathMatch: 'prefix' },
-							{ path: 'list', data: { breadcrumb: "Gerenciamento de Fornecedores" }, component: ThirdPartiesComponent }
-						]
-					},
+                    { path: 'thirdparties', data: { breadcrumb: "Terceiros" }, component: ThirdPartiesComponent },
                     { path: 'training', data: { breadcrumb: "Treinamento" }, component: TrainingComponent },
                     { path: 'workers', data: { breadcrumb: "Trabalhadores" }, component: WorkersComponent },
                     {
