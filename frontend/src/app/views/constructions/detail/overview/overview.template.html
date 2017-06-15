@@ -1,6 +1,6 @@
 <div class="overview">
     <div class="column">
-        <floor-navigation></floor-navigation>
+        <floors-summary [construction]="service.construction" (change)="onFloorChanged($event)"></floors-summary>
     </div>
 
     <div class="column">
@@ -41,30 +41,11 @@
                 <safety-card-content>
                     <div class="scrollable">
                             <ul>
-                                <li>
-                                    <p>Entrada de pessoa não autorizada |</p>
-                                    <p>13:30</p>
-                                </li>
-                                <li>
-                                    <p>Entrada de pessoa não autorizada |</p>
-                                    <p>13:30</p>
-                                </li>
-                                <li>
-                                    <p>Entrada de pessoa não autorizada |</p>
-                                    <p>13:30</p>
-                                </li>
-                                <li>
-                                    <p>Entrada de pessoa não autorizada |</p>
-                                    <p>13:30</p>
-                                </li>
-                                <li>
-                                    <p>Entrada de pessoa não autorizada |</p>
-                                    <p>13:30</p>
-                                </li>
-                                <li>
-                                    <p>Entrada de pessoa não autorizada |</p>
-                                    <p>13:30</p>
-                                </li>
+                                <list-cell *ngFor="let maturity of forthcomingMaturities"  
+                                            text="{{maturity.text}}"
+                                            icon="{{maturity.icon}}"
+                                            display="right" >
+                                </list-cell>
                             </ul>
                     </div>
                 </safety-card-content>
@@ -81,30 +62,10 @@
                 <safety-card-content>
                     <div class="scrollable">
                             <ul>
-                                <li>
-                                    <p>Entrada de pessoa não autorizada |</p>
-                                    <p>13:30</p>
-                                </li>
-                                <li>
-                                    <p>Entrada de pessoa não autorizada |</p>
-                                    <p>13:30</p>
-                                </li>
-                                <li>
-                                    <p>Entrada de pessoa não autorizada |</p>
-                                    <p>13:30</p>
-                                </li>
-                                <li>
-                                    <p>Entrada de pessoa não autorizada |</p>
-                                    <p>13:30</p>
-                                </li>
-                                <li>
-                                    <p>Entrada de pessoa não autorizada |</p>
-                                    <p>13:30</p>
-                                </li>
-                                <li>
-                                    <p>Entrada de pessoa não autorizada |</p>
-                                    <p>13:30</p>
-                                </li>
+                                <list-cell *ngFor="let training of forthcomingTrainings" 
+                                            text="{{training.text}}"
+                                            display="none">
+                                </list-cell>
                             </ul>
                     </div>
                 </safety-card-content>
@@ -119,30 +80,9 @@
                 <safety-card-content>
                     <div class="scrollable">
                             <ul>
-                                <li>
-                                    <p>Entrada de pessoa não autorizada |</p>
-                                    <p>13:30</p>
-                                </li>
-                                <li>
-                                    <p>Entrada de pessoa não autorizada |</p>
-                                    <p>13:30</p>
-                                </li>
-                                <li>
-                                    <p>Entrada de pessoa não autorizada |</p>
-                                    <p>13:30</p>
-                                </li>
-                                <li>
-                                    <p>Entrada de pessoa não autorizada |</p>
-                                    <p>13:30</p>
-                                </li>
-                                <li>
-                                    <p>Entrada de pessoa não autorizada |</p>
-                                    <p>13:30</p>
-                                </li>
-                                <li>
-                                    <p>Entrada de pessoa não autorizada |</p>
-                                    <p>13:30</p>
-                                </li>
+                                <checklist-cell *ngFor="let task of tasks" 
+                                            text="{{task.text}}">
+                                </checklist-cell>
                             </ul>
                     </div>
                 </safety-card-content>

@@ -10,7 +10,7 @@ export class ListCellComponent{
     @Input() text: string = "";
     @Input() time: string = "";
     @Input() icon: string = "";
-    @Input() position: string = "left";
+    @Input() display: string = "left";
 
     constructor() { }
 }

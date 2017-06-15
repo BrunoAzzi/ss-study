@@ -1,10 +1,8 @@
-<<<<<<< HEAD
+import { ChecklistCellComponent } from './components/common/checklist-cell/checklist-cell.component';
 import { ListCellComponent } from './components/common/list-cell/list-cell.component';
-import { OverviewComponent } from './views/constructions/detail/overview/overview.component';import { ConstructionDetailComponent } from './views/constructions/detail/construction-detail.component';
-=======
-import { ConstructionsLandingPageComponent } from './components/landing-page/landing-page.component';
+import { OverviewComponent } from './views/constructions/detail/overview/overview.component';
 import { ConstructionDetailComponent } from './views/constructions/detail/construction-detail.component';
->>>>>>> master
+import { ConstructionsLandingPageComponent } from './components/landing-page/landing-page.component';
 import { ConstructionResolver } from './resolves/construction.resolver';
 import { ConstructionsService } from './services/constructions.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -164,6 +162,7 @@ import { FiltersComponent } from './components/area-monitoring/filters/filters.c
         RiskGraphComponent,
         WorkersOverviewComponent,
         ListCellComponent,
+        ChecklistCellComponent,
         ConstructionsStatusComponent,
         FloorsSummaryComponent,
         ContentElementDialog,
