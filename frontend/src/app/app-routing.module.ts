@@ -10,11 +10,17 @@ import { CompaniesComponent } from "./views/companies/companies.component";
 import { PPEComponent } from "./views/ppe/ppe.component";
 import { ReportsComponent } from "./views/reports/reports.component";
 import { RepositoriesComponent } from "./views/repositories/repositories.component";
-import { ThirdPartiesComponent } from "./views/thirdparties/thirdparties.component";
 import { TrainingComponent } from "./views/training/training.component";
 import { WorkersComponent } from "./views/workers/workers.component";
 import { EmotionalPanelComponent } from './views/constructions/detail/emotional-panel/emotional-panel.component';
 import { MonitoringComponent } from './views/constructions/detail/monitoring/monitoring.component';
+
+// Provider
+import { ProviderListComponent } from "./views/providers/list/list.component";
+import { ProviderFormComponent } from "./views/providers/form/form.component";
+import { ProviderListResolver } from "./resolves/provider-list.resolver";
+import { ProviderResolver } from "./resolves/provider.resolver";
+import { ProviderService } from "./services/provider.service";
 
 import { LoginComponent } from "./views/login/login.component";
 import { PasswordRecoveryComponent } from "./views/password-recovery/password-recovery.component";
@@ -42,7 +48,13 @@ const routes: Routes = [
                     { path: 'epis', data: { breadcrumb: "EPI's" }, component: PPEComponent, canActivate: [AuthGuard] },
                     { path: 'reports', data: { breadcrumb: "Relatórios" }, component: ReportsComponent, canActivate: [AuthGuard] },
                     { path: 'repositories', data: { breadcrumb: "Repositório" }, component: RepositoriesComponent, canActivate: [AuthGuard] },
-                    { path: 'thirdparties', data: { breadcrumb: "Terceiros" }, component: ThirdPartiesComponent, canActivate: [AuthGuard] },
+                    {
+						path: 'providers', children: [
+                            { path: '', data: { breadcrumb: "Gerenciamento de Fornecedores" }, component: ProviderListComponent, resolve: { providers: ProviderListResolver } },
+                            { path: 'new', data: { breadcrumb: "Cadastro de Fornecedor" }, component: ProviderFormComponent },
+                            { path: ':id/edit', data: { breadcrumb: "Alteração de Fornecedor" }, component: ProviderFormComponent, resolve: { provider: ProviderResolver } },
+						]
+					},
                     { path: 'training', data: { breadcrumb: "Treinamento" }, component: TrainingComponent, canActivate: [AuthGuard] },
                     { path: 'workers', data: { breadcrumb: "Trabalhadores" }, component: WorkersComponent, canActivate: [AuthGuard] },
                     {
@@ -79,6 +91,12 @@ const routes: Routes = [
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule],
-    providers: [ConstructionsListResolver, ConstructionsGuard]
+    providers: [
+        ConstructionsListResolver,
+        ProviderListResolver,
+        ConstructionsGuard,
+        ProviderService,
+        ProviderResolver,
+    ]
 })
 export class AppRoutingModule { }

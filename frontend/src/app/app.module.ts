@@ -52,7 +52,6 @@ import { BarLevelComponent } from './components/bar-level/bar-level.component';
 import { PPEComponent } from "./views/ppe/ppe.component";
 import { ReportsComponent } from "./views/reports/reports.component";
 import { RepositoriesComponent } from "./views/repositories/repositories.component";
-import { ThirdPartiesComponent } from "./views/thirdparties/thirdparties.component";
 import { TrainingComponent } from "./views/training/training.component";
 import { WorkersComponent } from "./views/workers/workers.component";
 import { MonitoringComponent } from './views/constructions/detail/monitoring/monitoring.component';
@@ -62,6 +61,11 @@ import { SummaryItemComponent } from './components/area-monitoring/summary-item/
 import { SummaryComponent } from './components/area-monitoring/summary/summary.component';
 import { RiskGraphComponent } from './components/area-monitoring/risk-graph/risk-graph.component';
 import { FloorsSummaryComponent } from './components/floors-summary/floors-summary.component';
+
+// Providers
+import { ProviderListComponent } from "./views/providers/list/list.component";
+import { ProviderFormComponent } from "./views/providers/form/form.component";
+import { LineProviderDetailComponent } from "./components/providers/line-provider/line-provider.component";
 
 // Painel Emocional
 import { EmotionalPanelComponent } from './views/constructions/detail/emotional-panel/emotional-panel.component';
@@ -133,7 +137,6 @@ import { FiltersComponent } from './components/area-monitoring/filters/filters.c
         PPEComponent,
         ReportsComponent,
         RepositoriesComponent,
-        ThirdPartiesComponent,
         TrainingComponent,
         WorkersComponent,
         LoginComponent,
@@ -156,6 +159,11 @@ import { FiltersComponent } from './components/area-monitoring/filters/filters.c
         RiskGraphComponent,
         FloorsSummaryComponent,
         ContentElementDialog,
+
+        // Providers
+        ProviderListComponent,
+        LineProviderDetailComponent,
+        ProviderFormComponent,
 
         // Layouts
         BlankComponent,

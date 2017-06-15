@@ -22,7 +22,7 @@ export class NavigationComponent {
             { route: 'companies', icon: 'assets/companies.png', label: 'Empresa' },
             { route: 'workers', icon: 'assets/workers.png', label: 'Trabalhadores' },
             { route: 'epis', icon: 'assets/epis.png', label: 'EPI' },
-            { route: 'thirdparties', icon: 'assets/thirdparties.png', label: 'Fornecedores' },
+            { route: 'providers', icon: 'assets/thirdparties.png', label: 'Fornecedores' },
             { route: 'repositories', icon: 'assets/repositories.png', label: 'Repositório' },
             { route: 'training', icon: 'assets/training.png', label: 'Treinamentos' },
         ]

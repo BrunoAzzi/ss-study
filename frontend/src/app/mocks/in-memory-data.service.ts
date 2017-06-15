@@ -4,6 +4,7 @@ import { COMPANY } from './company/mock';
 import { COLABORADORES } from "./colaborador/mock";
 import { CBOS } from './CBO/mock';
 import { CONSTRUCTIONS } from "./constructions/mock";
+import { PROVIDERS } from "./provider/mock";
 
 export class InMemoryDataService implements InMemoryDbService {
     createDb() {
@@ -12,7 +13,8 @@ export class InMemoryDataService implements InMemoryDbService {
             notifications: NOTIFICATIONS,
             company: COMPANY,
             cbo: CBOS,
-            constructionSiteList: CONSTRUCTIONS
+            constructionSiteList: CONSTRUCTIONS,
+            provider: PROVIDERS,
         };
 
         return mocks;
