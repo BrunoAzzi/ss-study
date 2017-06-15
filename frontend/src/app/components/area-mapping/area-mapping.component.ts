@@ -1,4 +1,6 @@
-import { Component, NgZone, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { OutputEmitter } from '@angular/compiler/src/output/abstract_emitter';
+import { Construction } from './../../models/construction.model';
+import { Component, NgZone, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { MdDialog, MdDialogRef, MdButton, MdToolbar } from '@angular/material';
 import { ConstructionsService } from './../../services/constructions.service';
 import { Icon } from './../../models/icon.model';
@@ -15,24 +17,24 @@ import * as L from 'leaflet';
 
 export class AreaMappingComponent {
 
-    barLevelStartIndex: any = new BehaviorSubject('');
+    @Input() construction: Construction;
+    @Output() updateFloor : EventEmitter<Floor> = new EventEmitter();
 
     public currentFloor: Floor;
-
-    public currentMark: any;
     public currentTool: any;
 
-    constructor(public dialog: MdDialog, public service: ConstructionsService) {}
+    constructor(public dialog: MdDialog) {}
 
     onFloorUpdated(floor : Floor) {
-        this.service.updateFloor(floor)
+        this.currentFloor = floor
+        this.updateFloor.next(floor)
     }
 
     toolChanged(e) {
         this.currentTool = e.tool;
     }
 
-    floorChanged(floor : Floor) {
+    onFloorChanged(floor : Floor) {
         this.currentFloor = floor;
     }
 }

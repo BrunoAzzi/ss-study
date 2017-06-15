@@ -12,6 +12,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 export class FloorsSummaryComponent implements OnInit {
 
     @Input() construction: Construction;
+    @Input() mini: Boolean;
     @Output() change: EventEmitter<Floor> = new EventEmitter();
 
     private selectedFloor: Floor = null;

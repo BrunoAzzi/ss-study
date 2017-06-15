@@ -1,9 +1,9 @@
 <md-tab-group #tabGroup>
     <md-tab id="tab4" label="Monitorar">
-        <area-monitoring></area-monitoring>
+        <area-monitoring [construction]="service.construction"></area-monitoring>
     </md-tab>
     <md-tab id="tab5" label="Mapear Áreas">
-        <area-mapping></area-mapping>
+        <area-mapping [construction]="service.construction" (updateFloor)="onFloorUpdated($event)"></area-mapping>
     </md-tab>
     <md-tab id="tab5" label="Wearables/Checkpoints"></md-tab>
 </md-tab-group>

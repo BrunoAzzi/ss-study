@@ -30,7 +30,7 @@ export class BlueprintComponent implements AfterContentChecked, OnChanges {
 
     constructor(private _ngZone: NgZone) {
         window['angularComponent'] = { removeMark: this.removeMark, zone: this._ngZone };
-     }
+    }
 
     ngOnChanges() {
         if (!this.firstTime) {

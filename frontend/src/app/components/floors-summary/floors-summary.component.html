@@ -1,4 +1,4 @@
-<div class="floor-navigation">
+<div class="floor-navigation" [ngClass]="{ mini: mini }">
     <ul class="sections">
         <li *ngFor="let sectionName of getSections()" class="section">
             <a (click)="toggleSection(sectionName)">
@@ -16,7 +16,7 @@
                     <span>Risco</span>
                 </li>
                 <li class="floor" *ngFor="let floor of getFloors()" [ngClass]="{ active: isSelectedFloor(floor.name) }"><a (click)="changeFloor(floor)">
-                    <span class="name">{{ floor.name }}</span>
+                    <span class="name">{{ floor.acronym }}</span>
                     <summary 
                         alerts="{{ floor.alertsNumber() }}" 
                         cones="{{ floor.conesNumber() }}" 

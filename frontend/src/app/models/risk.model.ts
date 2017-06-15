@@ -1,4 +1,4 @@
-export class Floor {
+export class Risk {
 
     type : string
     level: string
