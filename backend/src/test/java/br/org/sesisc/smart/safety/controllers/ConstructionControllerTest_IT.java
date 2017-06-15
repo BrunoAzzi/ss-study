@@ -1,6 +1,8 @@
 package br.org.sesisc.smart.safety.controllers;
 
+import br.org.sesisc.smart.safety.common.ManagerType;
 import br.org.sesisc.smart.safety.models.Construction;
+import br.org.sesisc.smart.safety.models.Manager;
 import com.google.gson.Gson;
 import org.json.JSONObject;
 import org.junit.Assert;
@@ -10,7 +12,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MvcResult;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+
+import static br.org.sesisc.smart.safety.common.ManagerType.CIVIL_ENGINEER;
+import static br.org.sesisc.smart.safety.common.ManagerType.WORK_SAFETY;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -31,6 +36,8 @@ public class ConstructionControllerTest_IT extends BaseControllerTest_IT {
         String responseJson = result.getResponse().getContentAsString();
         JSONObject jsonObject = new JSONObject(responseJson);
 
+        System.out.println("Response: " + responseJson);
+
         String constructionName = jsonObject.getJSONObject("construction").get("name").toString();
         Assert.assertEquals("Should return the expected name when register construction is succeed.",
                 "name - test",constructionName);
@@ -49,6 +56,7 @@ public class ConstructionControllerTest_IT extends BaseControllerTest_IT {
         String responseJson = result.getResponse().getContentAsString();
         JSONObject jsonObject = new JSONObject(responseJson);
 
+        System.out.println("Response: " + responseJson);
 
         String errorMessage = jsonObject.getJSONArray("errors").getJSONObject(0).getString("message");
         Assert.assertEquals("Should return an error message, when name is null.","Nome é um campo obrigatório.", errorMessage);
@@ -67,6 +75,24 @@ public class ConstructionControllerTest_IT extends BaseControllerTest_IT {
         String responseJson = result.getResponse().getContentAsString();
         JSONObject jsonObject = new JSONObject(responseJson);
 
+        System.out.println("Response: " + responseJson);
+
+        String errorMessage = jsonObject.getJSONArray("errors").getJSONObject(0).getString("message");
+        Assert.assertEquals("Should return an error message, when status is null.","Status é um campo obrigatório.", errorMessage);
+    }
+
+    @Test
+    public void registerManager_whenAllMandatoryDataAreValid() throws Exception {
+        MvcResult result = mockMvc.perform(put("/constructions")
+                .content(getManagerRequestJson(CIVIL_ENGINEER,"test@demo.com", "phone - test"))
+                .contentType(contentType))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        String responseJson = result.getResponse().getContentAsString();
+        JSONObject jsonObject = new JSONObject(responseJson);
+
+        System.out.println("Response: " + responseJson);
 
         String errorMessage = jsonObject.getJSONArray("errors").getJSONObject(0).getString("message");
         Assert.assertEquals("Should return an error message, when status is null.","Status é um campo obrigatório.", errorMessage);
@@ -79,6 +105,17 @@ public class ConstructionControllerTest_IT extends BaseControllerTest_IT {
 
         Gson gson = new Gson();
         String requestJson = gson.toJson(construction);
+        System.out.println("Request: " + requestJson);
+
+        return requestJson;
+    }
+
+    private String getManagerRequestJson(ManagerType type, String email, String phone) {
+        Manager manager = new Manager(type, email, phone);
+
+        Gson gson = new Gson();
+        String requestJson = gson.toJson(manager);
+        System.out.println("Request: " + requestJson);
 
         return requestJson;
     }

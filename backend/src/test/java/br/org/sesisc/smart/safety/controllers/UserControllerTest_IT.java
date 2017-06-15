@@ -20,8 +20,9 @@ public class UserControllerTest_IT extends BaseControllerTest_IT {
                 .andExpect(status().isCreated())
                 .andReturn();
         String responseJson = result.getResponse().getContentAsString();
-
         JSONObject jsonObject = new JSONObject(responseJson);
+
+        System.out.println("Response: " + responseJson);
 
         String tokenResponse =  jsonObject.getJSONObject("user").get("token").toString();
         String expectedToken = "null";
@@ -48,6 +49,8 @@ public class UserControllerTest_IT extends BaseControllerTest_IT {
         String responseJson = result.getResponse().getContentAsString();
         JSONObject jsonObject = new JSONObject(responseJson);
 
+        System.out.println("Response: " + responseJson);
+
         String errorMessage = jsonObject.getJSONArray("errors").getJSONObject(0).getString("message");
         Assert.assertEquals("Should return an error message when user is already existed.","Usuário já existente.", errorMessage);
     }
@@ -63,6 +66,8 @@ public class UserControllerTest_IT extends BaseControllerTest_IT {
         String responseJson = result.getResponse().getContentAsString();
         JSONObject jsonObject = new JSONObject(responseJson);
 
+        System.out.println("Response: " + responseJson);
+
         String errorMessage = jsonObject.getJSONArray("errors").getJSONObject(0).getString("message");
         Assert.assertEquals("Should return an error message when email has invalid regex rule.","Email não está no formato correto.", errorMessage);
     }
@@ -77,6 +82,8 @@ public class UserControllerTest_IT extends BaseControllerTest_IT {
                 .andReturn();
         String responseJson = result.getResponse().getContentAsString();
         JSONObject jsonObject = new JSONObject(responseJson);
+
+        System.out.println("Response: " + responseJson);
 
         String errorMessage = jsonObject.getJSONArray("errors").getJSONObject(0).getString("message");
         Assert.assertEquals("Should return an error message, when password is too short.","Senha deve ter pelo menos 6 caracteres.", errorMessage);

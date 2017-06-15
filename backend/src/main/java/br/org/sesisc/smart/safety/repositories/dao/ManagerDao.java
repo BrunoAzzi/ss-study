@@ -1,7 +1,7 @@
 package br.org.sesisc.smart.safety.repositories.dao;
 
-import br.org.sesisc.smart.safety.models.Construction;
-import br.org.sesisc.smart.safety.repositories.ConstructionRepository;
+import br.org.sesisc.smart.safety.models.Manager;
+import br.org.sesisc.smart.safety.repositories.ManagerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
@@ -14,38 +14,31 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
-@Repository("ConstructionRepository")
-public class ConstructionDao implements ConstructionRepository {
+@Repository("ManagerRepository")
+public class ManagerDao implements ManagerRepository {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public Construction create(Construction construction) {
+    public Manager create(Manager manager) {
         KeyHolder holder = new GeneratedKeyHolder();
         jdbcTemplate.update(new PreparedStatementCreator() {
             @Override
             public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
-                final String sql = "INSERT INTO constructions(name, cep, address, status, description, highlight_url, " +
-                        "logo_url, cei_url, cei_code) values (?,?,?,?,?,?,?,?,?)";
+                final String sql = "INSERT INTO managers(manager_type, email, phone) values (?,?,?)";
                 PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-                ps.setString(1, construction.getName());
-                ps.setString(2, construction.getCep());
-                ps.setString(3, construction.getAddress());
-                ps.setString(4, construction.getStatus());
-                ps.setString(5, construction.getDescription());
-                ps.setString(6, construction.getHighlightUrl());
-                ps.setString(7, construction.getLogoUrl());
-                ps.setString(8, construction.getCeiUrl());
-                ps.setString(9, construction.getCeiCode());
+                ps.setString(1, manager.getManagerType().getContent());
+                ps.setString(2, manager.getEmail());
+                ps.setString(3, manager.getPhone());
                 return ps;
             }
         }, holder);
 
         long newConstructionId = holder.getKey().intValue();
-        construction.setId(newConstructionId);
+        manager.setId(newConstructionId);
 
-        return construction;
+        return manager;
     }
 
     @Override
@@ -54,7 +47,7 @@ public class ConstructionDao implements ConstructionRepository {
     }
 
     @Override
-    public List<Construction> findAll() {
+    public List<Manager> findAll() {
         return null;
     }
 
@@ -64,7 +57,7 @@ public class ConstructionDao implements ConstructionRepository {
     }
 
     @Override
-    public Construction findBy(String[] properties, Object[] values) {
+    public Manager findBy(String[] properties, Object[] values) {
         return null;
     }
 }

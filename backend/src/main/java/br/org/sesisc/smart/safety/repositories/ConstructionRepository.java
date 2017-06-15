@@ -1,4 +1,4 @@
-package br.org.sesisc.smart.safety.repositories.mapper;
+package br.org.sesisc.smart.safety.repositories;
 
 import br.org.sesisc.smart.safety.models.Construction;
 

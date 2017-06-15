@@ -5,22 +5,18 @@ import javax.validation.constraints.Pattern;
 
 public class Construction {
 
-    private final String NAME_ERROR_MESSAGE = "Nome é um campo obrigatório.";
-
-    private final String STATUS_ERROR_MESSAGE = "Status é um campo obrigatório.";
-
     private Long id;
 
-    @NotNull(message=NAME_ERROR_MESSAGE)
-    @Pattern(message=NAME_ERROR_MESSAGE, regexp = "^(?!\\s*$).+")
+    @NotNull(message="Nome é um campo obrigatório.")
+    @Pattern(message="Nome é um campo obrigatório.", regexp = "^(?!\\s*$).+")
     private String name;
 
     private String cep;
 
     private String address;
 
-    @NotNull(message=STATUS_ERROR_MESSAGE)
-    @Pattern(message=STATUS_ERROR_MESSAGE, regexp = "^(?!\\s*$).+")
+    @NotNull(message="Status é um campo obrigatório.")
+    @Pattern(message="Status é um campo obrigatório.", regexp = "^(?!\\s*$).+")
     private String status;
 
     private String description;

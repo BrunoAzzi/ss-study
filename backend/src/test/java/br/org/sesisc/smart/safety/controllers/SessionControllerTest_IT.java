@@ -20,6 +20,8 @@ public class SessionControllerTest_IT extends BaseControllerTest_IT {
         String responseJson = result.getResponse().getContentAsString();
         JSONObject jsonObject = new JSONObject(responseJson);
 
+        System.out.println("Response: " + responseJson);
+
         int expectedLength = "$2a$10$NSPDkD2TTi2L2zpcQVR1eeiMwYW1hOiZ5yf9uAWyLusu1hOECtEr6".length();
         int tokenLength = jsonObject.getJSONObject("user").get("token").toString().length();
         Assert.assertEquals("Should return a not null token when signIn is succeed.",expectedLength,tokenLength);
@@ -40,6 +42,8 @@ public class SessionControllerTest_IT extends BaseControllerTest_IT {
         String responseJson = result.getResponse().getContentAsString();
         JSONObject jsonObject = new JSONObject(responseJson);
 
+        System.out.println("Response: " + responseJson);
+
         String errorMessage = jsonObject.getJSONArray("errors").getJSONObject(0).getString("message");
         Assert.assertEquals("Should return an user error message when password is invalid.","Usuario e/ou senha inválido!", errorMessage);
     }
@@ -55,6 +59,8 @@ public class SessionControllerTest_IT extends BaseControllerTest_IT {
 
         String responseJson = result.getResponse().getContentAsString();
         JSONObject jsonObject = new JSONObject(responseJson);
+
+        System.out.println("Response: " + responseJson);
 
         String errorMessage = jsonObject.getJSONArray("errors").getJSONObject(0).getString("message");
         Assert.assertEquals("Should return an user error message when email is invalid.","Usuario e/ou senha inválido!", errorMessage);

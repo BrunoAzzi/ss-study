@@ -1,7 +1,9 @@
 package br.org.sesisc.smart.safety.controllers;
 
 import br.org.sesisc.smart.safety.models.Construction;
-import br.org.sesisc.smart.safety.repositories.mapper.ConstructionRepository;
+import br.org.sesisc.smart.safety.models.Manager;
+import br.org.sesisc.smart.safety.repositories.ConstructionRepository;
+import br.org.sesisc.smart.safety.repositories.ManagerRepository;
 import br.org.sesisc.smart.safety.responses.ErrorResponse;
 import br.org.sesisc.smart.safety.responses.SuccessResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +18,10 @@ import javax.validation.Valid;
 public class ConstructionController {
 
     @Autowired
-    ConstructionRepository serviceContruction;
+    ConstructionRepository serviceConstruction;
+
+    @Autowired
+    ManagerRepository serviceManager;
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> create(@Valid @RequestBody final Construction cParams, Errors errors) {
@@ -35,12 +40,32 @@ public class ConstructionController {
                 cParams.getCeiUrl(),
                 cParams.getCeiCode());
 
-        serviceContruction.create(construction);
+        serviceConstruction.create(construction);
 
         return SuccessResponse.handle(
                 new String[] {"construction"},
                 new Object[] {construction},
                 HttpStatus.CREATED
+        );
+    }
+
+    @RequestMapping(method = RequestMethod.PUT)
+    public ResponseEntity<?> update(@Valid @RequestBody final Manager mParams, Errors errors) {
+        if (errors.hasErrors()) {
+            return ErrorResponse.handle(errors, HttpStatus.UNPROCESSABLE_ENTITY);
+        }
+
+        Manager manager = new Manager(
+                mParams.getManagerType(),
+                mParams.getEmail(),
+                mParams.getPhone());
+
+        serviceManager.create(manager);
+
+        return SuccessResponse.handle(
+                new String[] {"manager"},
+                new Object[] {manager},
+                HttpStatus.OK
         );
     }
 

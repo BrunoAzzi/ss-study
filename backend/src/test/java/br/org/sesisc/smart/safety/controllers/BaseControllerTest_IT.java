@@ -57,6 +57,7 @@ public class BaseControllerTest_IT {
 
         Gson gson = new Gson();
         String requestJson = gson.toJson(user);
+        System.out.println("Request: " + requestJson);
 
         return requestJson;
     }
