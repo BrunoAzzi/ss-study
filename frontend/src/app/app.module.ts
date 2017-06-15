@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import { ListCellComponent } from './components/common/list-cell/list-cell.component';
 import { OverviewComponent } from './views/constructions/detail/overview/overview.component';import { ConstructionDetailComponent } from './views/constructions/detail/construction-detail.component';
+=======
+import { ConstructionsLandingPageComponent } from './components/landing-page/landing-page.component';
+import { ConstructionDetailComponent } from './views/constructions/detail/construction-detail.component';
+>>>>>>> master
 import { ConstructionResolver } from './resolves/construction.resolver';
 import { ConstructionsService } from './services/constructions.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -15,14 +20,14 @@ import { SessionsService } from "./services/sessions.service";
 import { PasswordService } from "./services/password.service";
 import { AuthGuard } from './guards/index';
 
-import { 
-    MdSnackBar, 
-    MdDialogModule, 
-    MdToolbarModule, 
-    MdButtonModule, 
-    MdSelectModule, 
-    MdInputModule, 
-    MdChipsModule 
+import {
+    MdSnackBar,
+    MdDialogModule,
+    MdToolbarModule,
+    MdButtonModule,
+    MdSelectModule,
+    MdInputModule,
+    MdChipsModule
 } from '@angular/material';
 
 import { CommonModule } from '@angular/common';
@@ -61,10 +66,9 @@ import { AreaMonitoringComponent } from './components/area-monitoring/area-monit
 import { SummaryItemComponent } from './components/area-monitoring/summary-item/summary-item.component';
 import { SummaryComponent } from './components/area-monitoring/summary/summary.component';
 import { RiskGraphComponent } from './components/area-monitoring/risk-graph/risk-graph.component';
-import { FloorNavigationComponent } from './components/area-monitoring/floor-navigation/floor-navigation.component';
 import { WorkersOverviewComponent } from './components/overview/workers-overview/workers-overview.component';
 import { ConstructionsStatusComponent } from './components/overview/constructions-status/constructions-status.component';
-
+import { FloorsSummaryComponent } from './components/floors-summary/floors-summary.component';
 
 // Painel Emocional
 import { EmotionalPanelComponent } from './views/constructions/detail/emotional-panel/emotional-panel.component';
@@ -72,11 +76,6 @@ import { CompBaseStatusDia } from "./components/perfil_emocional/comp_base/comp-
 import { StatusDiaComponent } from "./components/perfil_emocional/status_dia/status_dia.component";
 import { StatusTrabalhadoresComponent } from "./components/perfil_emocional/status_trabalhadores/status_trabalhadores.component";
 import { StatusAnoComponent } from "./components/perfil_emocional/status_ano/status_ano.component";
-
-//Models
-
-import { Floor } from './models/floor.model';
-import { Coordinate } from './models/coordinate.model';
 
 // Layouts
 import { LoginComponent } from "./views/login/login.component";
@@ -119,7 +118,7 @@ import { FabComponent } from "./components/common/floating-action-button/fab.com
 
 import { InputFile } from "./components/common/input-file/input-file.component";
 import { ConstructionsListComponent } from './views/constructions/list/constructions-list.component';
-import { ConstructionsAddComponent } from './views/constructions/add/add.component';
+import { ConstructionFormComponent } from './views/constructions/form/construction-form.component';
 import { LineConstructionDetailComponent } from './components/mysconstructionsites/line-construction-site/line-construction-site.component';
 import { CardConstructionDetailComponent } from './components/mysconstructionsites/card-construction-site/card-construction-site.component';
 import { ConstructionSiteDataComponent } from './components/mysconstructionsites/construction-site-data/construction-site-data.component';
@@ -163,10 +162,14 @@ import { FiltersComponent } from './components/area-monitoring/filters/filters.c
         SummaryItemComponent,
         SummaryComponent,
         RiskGraphComponent,
+<<<<<<< HEAD
         FloorNavigationComponent,
         WorkersOverviewComponent,
         ListCellComponent,
         ConstructionsStatusComponent,
+=======
+        FloorsSummaryComponent,
+>>>>>>> master
         ContentElementDialog,
 
         // Layouts
@@ -189,11 +192,12 @@ import { FiltersComponent } from './components/area-monitoring/filters/filters.c
         // Obras
         ConstructionDetailComponent,
         ConstructionsListComponent,
-        ConstructionsAddComponent,
+        ConstructionFormComponent,
         LineConstructionDetailComponent,
         CardConstructionDetailComponent,
         ConstructionSiteDataComponent,
         FiltersComponent,
+        ConstructionsLandingPageComponent,
     ],
     imports: [
         // Notification Module
@@ -223,7 +227,6 @@ import { FiltersComponent } from './components/area-monitoring/filters/filters.c
 
         // Mocks
         InMemoryWebApiModule.forRoot(InMemoryDataService, { passThruUnknownUrl: true }),
-
 
         //Calendar Range
         MyDateRangePickerModule,

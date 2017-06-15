@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ConstructionSite } from "../../../mocks/construction-site/construction-site";
+import { Construction } from "../../../models/construction.model";
 
 @Component({
     selector: 'line-construction-site',
@@ -7,7 +7,7 @@ import { ConstructionSite } from "../../../mocks/construction-site/construction-
     styleUrls: ['./line-construction-site.component.scss']
 })
 export class LineConstructionDetailComponent {
-    @Input() constructionSite: ConstructionSite;
+    @Input() constructionSite: Construction;
     status: any = {};
     statusIcon: any = "";
 

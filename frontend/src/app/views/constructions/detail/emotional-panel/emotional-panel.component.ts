@@ -11,6 +11,7 @@ export class EmotionalPanelComponent {
 
     canvas: any;
     ctx: any;
+
     myDatePickerOptions: IMyDpOptions = {
         dateFormat: 'mm/yyyy',
         dayLabels: { su: 'Dom', mo: 'Seg', tu: 'Ter', we: 'Qua', th: 'Qui', fr: 'Sex', sa: 'Sab' },

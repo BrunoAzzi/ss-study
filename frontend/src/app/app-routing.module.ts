@@ -1,9 +1,10 @@
+import { ConstructionFormComponent } from './views/constructions/form/construction-form.component';
 import { ConstructionDetailComponent } from './views/constructions/detail/construction-detail.component';
 import { ConstructionResolver } from './resolves/construction.resolver';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from "@angular/router";
 import { AuthGuard } from './guards';
-import { HasConstructionSitesGuard } from './guards/hasConstructionSites.guard';
+import { ConstructionsGuard } from './guards/constructions.guard';
 
 import { CompaniesComponent } from "./views/companies/companies.component";
 import { PPEComponent } from "./views/ppe/ppe.component";
@@ -24,9 +25,7 @@ import { BlankComponent } from "./components/common/layouts/blank/blank.componen
 import { BasicComponent } from "./components/common/layouts/basic/basic.component";
 
 import { ConstructionsListComponent } from './views/constructions/list/constructions-list.component';
-import { ConstructionsAddComponent } from './views/constructions/add/add.component';
-import { ConstructionSiteService } from './services/construction-site/construction-site.service';
-import { ConstructionSiteResolver } from './resolves/construction-site-resolver.service';
+import { ConstructionsListResolver } from './resolves/construction-list.resolver';
 
 import { BasicTopnavbarLayout } from './components/common/layouts/basic-topnavbar/basic-topnavbar.component';
 
@@ -47,13 +46,19 @@ const routes: Routes = [
                     { path: 'thirdparties', data: { breadcrumb: "Terceiros" }, component: ThirdPartiesComponent, canActivate: [AuthGuard] },
                     { path: 'training', data: { breadcrumb: "Treinamento" }, component: TrainingComponent, canActivate: [AuthGuard] },
                     { path: 'workers', data: { breadcrumb: "Trabalhadores" }, component: WorkersComponent, canActivate: [AuthGuard] },
+                    {
+						path: 'constructions', canActivate: [AuthGuard], children: [
+                            { path: '', data: { breadcrumb: "Minhas Obras" }, component: ConstructionsListComponent, canActivate: [AuthGuard], resolve: { constructions: ConstructionsListResolver } },
+                            { path: 'new', data: { breadcrumb: "Minhas Obras" }, component: ConstructionFormComponent, canActivate: [AuthGuard] },
+                        ]
+                    },
                 ]
             },
-            { path: 'constructions', component: ConstructionsListComponent, canActivate: [AuthGuard] },
             {
-                path: 'constructions/:id', component: ConstructionDetailComponent, resolve: { construction: ConstructionResolver } , children: [
+                path: 'constructions/:id', component: ConstructionDetailComponent, resolve: { construction: ConstructionResolver }, children: [
                     { path: '', pathMatch: 'prefix', redirectTo: 'monitoring' },
                     { path: 'overview', component: OverviewComponent, canActivate: [AuthGuard] },
+                    { path: 'edit', component: ConstructionFormComponent, canActivate: [AuthGuard] },
                     { path: 'monitoring', component: MonitoringComponent, canActivate: [AuthGuard] },
                     { path: 'emiotional-profile', component: EmotionalPanelComponent, canActivate: [AuthGuard] },
                 ]
@@ -76,6 +81,6 @@ const routes: Routes = [
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule],
-    providers: [ConstructionSiteService, ConstructionSiteResolver, HasConstructionSitesGuard]
+    providers: [ConstructionsListResolver, ConstructionsGuard]
 })
 export class AppRoutingModule { }

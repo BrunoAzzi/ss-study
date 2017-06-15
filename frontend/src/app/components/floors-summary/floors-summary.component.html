@@ -6,7 +6,8 @@
                 <summary 
                     alerts="{{ summaryBySection(sectionName).alerts }}" 
                     cones="{{ summaryBySection(sectionName).cones }}" 
-                    workers="{{ summaryBySection(sectionName).workers }}"></summary>
+                    workers="{{ summaryBySection(sectionName).workers }}">
+                </summary>
                 <md-icon>keyboard_arrow_down</md-icon>
             </a>
             <ul class="floors" [ngClass]="{ hidden: isSectionHidden(sectionName) }">
@@ -16,8 +17,12 @@
                 </li>
                 <li class="floor" *ngFor="let floor of getFloors()" [ngClass]="{ active: isSelectedFloor(floor.name) }"><a (click)="changeFloor(floor)">
                     <span class="name">{{ floor.name }}</span>
-                    <summary alerts="{{ floor.alertsNumber() }}" cones="{{ floor.conesNumber() }}" workers="{{ floor.workersNumber() }}"></summary>
-                    <risk-graph></risk-graph>
+                    <summary 
+                        alerts="{{ floor.alertsNumber() }}" 
+                        cones="{{ floor.conesNumber() }}" 
+                        workers="{{ floor.workersNumber() }}">
+                    </summary>
+                    <risk-graph [floor]="floor"></risk-graph>
                 </a></li>
             </ul>
         </li>

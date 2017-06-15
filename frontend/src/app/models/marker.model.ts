@@ -1,5 +1,5 @@
 import { Icon } from './icon.model';
-export class Coordinate {
+export class Marker {
     id: number;
     icon: Icon;
     lastPosition: [number, number];

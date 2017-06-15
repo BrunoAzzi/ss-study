@@ -11,7 +11,7 @@ export class ConstructionsListComponent implements OnInit {
     LAST_SAVED = "last_saved";
     FIRST_SAVED = "first_saved";
 
-    private activeFilters = {
+    activeFilters = {
         text: "",
         onGoing: false,
         paralized: false,
@@ -26,12 +26,12 @@ export class ConstructionsListComponent implements OnInit {
 		{ name: "Primeiros cadastrados", code: this.FIRST_SAVED }
 	];
 
-	constructor(private router: Router, private route: ActivatedRoute, private service: ConstructionsService) { }
+	constructor(private router: Router, private route: ActivatedRoute, public service: ConstructionsService) { }
 
     ngOnInit() { }
 
     addConstructionSite() {
-        this.router.navigate(['../add'], { relativeTo: this.route });
+        this.router.navigate(['./new'], { relativeTo: this.route });
     }
 
     toggleSearch() {
