@@ -1,3 +1,4 @@
+import { ListCellComponent } from './components/common/list-cell/list-cell.component';
 import { OverviewComponent } from './views/constructions/detail/overview/overview.component';import { ConstructionDetailComponent } from './views/constructions/detail/construction-detail.component';
 import { ConstructionResolver } from './resolves/construction.resolver';
 import { ConstructionsService } from './services/constructions.service';
@@ -164,6 +165,7 @@ import { FiltersComponent } from './components/area-monitoring/filters/filters.c
         RiskGraphComponent,
         FloorNavigationComponent,
         WorkersOverviewComponent,
+        ListCellComponent,
         ConstructionsStatusComponent,
         ContentElementDialog,
 

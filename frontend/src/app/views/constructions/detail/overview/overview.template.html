@@ -12,30 +12,11 @@
                 <safety-card-content>
                     <div class="scrollable">
                             <ul>
-                                <li>
-                                    <p>Entrada de pessoa não autorizada |</p>
-                                    <p>13:30</p>
-                                </li>
-                                <li>
-                                    <p>Entrada de pessoa não autorizada |</p>
-                                    <p>13:30</p>
-                                </li>
-                                <li>
-                                    <p>Entrada de pessoa não autorizada |</p>
-                                    <p>13:30</p>
-                                </li>
-                                <li>
-                                    <p>Entrada de pessoa não autorizada |</p>
-                                    <p>13:30</p>
-                                </li>
-                                <li>
-                                    <p>Entrada de pessoa não autorizada |</p>
-                                    <p>13:30</p>
-                                </li>
-                                <li>
-                                    <p>Entrada de pessoa não autorizada |</p>
-                                    <p>13:30</p>
-                                </li>
+                                <list-cell *ngFor="let alert of lastAlerts" 
+                                            text="{{alert.text}}" 
+                                            time="{{alert.time}}" 
+                                            icon="{{alert.icon}}" >
+                                </list-cell>
                             </ul>
                     </div>
                 </safety-card-content>
