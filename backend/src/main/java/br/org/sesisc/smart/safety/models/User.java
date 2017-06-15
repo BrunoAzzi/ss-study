@@ -19,11 +19,11 @@ public class User {
 
     @NotNull(message="Email é um campo obrigatório.")
     @Pattern(message="Email não está no formato correto.",
-            regexp="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$")
+            regexp="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")
     private String email;
 
     @NotNull(message="Senha é um campo obrigatório.")
-    @Pattern(message="Senha deve ter entre 6 e 20 caracteres.", regexp = "^[\\p{Alnum}]{6,20}$")
+    @Pattern(message="Senha deve ter pelo menos 6 caracteres.", regexp = "^[\\p{Alnum}]{6,}$")
     private String password;
 
     private boolean active;

@@ -112,34 +112,19 @@
             <column name="id" type="int">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="city_id" type="int" >
-                <constraints foreignKeyName="fk_construction_city" nullable="false" deleteCascade="false"/>
-            </column>
-            <column name="cep" type="varchar(100)" >
-                <constraints nullable="false"/>
-            </column>
+            <column name="cep" type="varchar(100)" ></column>
             <column name="name" type="varchar(100)" >
                 <constraints nullable="false"/>
             </column>
-            <column name="address" type="varchar(255)" >
-                <constraints nullable="false"/>
-            </column>
+            <column name="address" type="varchar(255)" > </column>
             <column name="status" type="varchar(100)" >
                 <constraints nullable="false"/>
             </column>
             <column name="description" type="varchar(255)" > </column>
-            <column name="highlight_url" type="varchar(255)" >
-                <constraints nullable="false"/>
-            </column>
-            <column name="logo_url" type="varchar(255)" >
-                <constraints nullable="false"/>
-            </column>
-            <column name="cei_url" type="varchar(255)" >
-                <constraints nullable="false"/>
-            </column>
-            <column name="cei_code" type="varchar(100)" >
-                <constraints nullable="false"/>
-            </column>
+            <column name="highlight_url" type="varchar(255)" ></column>
+            <column name="logo_url" type="varchar(255)" ></column>
+            <column name="cei_url" type="varchar(255)" ></column>
+            <column name="cei_code" type="varchar(100)" ></column>
         </createTable>
         <addAutoIncrement catalogName="ssafety_db"
                           columnDataType="int"

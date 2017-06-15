@@ -1,20 +1,26 @@
 package br.org.sesisc.smart.safety.models;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 public class Construction {
 
+    private final String NAME_ERROR_MESSAGE = "Nome é um campo obrigatório.";
+
+    private final String STATUS_ERROR_MESSAGE = "Status é um campo obrigatório.";
+
     private Long id;
 
-    @NotNull(message="Nome é um campo obrigatório.")
+    @NotNull(message=NAME_ERROR_MESSAGE)
+    @Pattern(message=NAME_ERROR_MESSAGE, regexp = "^(?!\\s*$).+")
     private String name;
-
-    private Long cityId; //TODO : Create object
 
     private String cep;
 
     private String address;
 
+    @NotNull(message=STATUS_ERROR_MESSAGE)
+    @Pattern(message=STATUS_ERROR_MESSAGE, regexp = "^(?!\\s*$).+")
     private String status;
 
     private String description;
@@ -31,10 +37,9 @@ public class Construction {
 
     }
 
-    public Construction(String name, Long cityId, String cep, String address, String status, String description,
+    public Construction(String name, String cep, String address, String status, String description,
     String highlightUrl, String logoUrl, String ceiUrl, String ceiCode) {
         this.name = name;
-        this.cityId = cityId;
         this.cep = cep;
         this.address = address;
         this.status = status;
@@ -59,14 +64,6 @@ public class Construction {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Long getCityId() {
-        return cityId;
-    }
-
-    public void setCityId(Long cityId) {
-        this.cityId = cityId;
     }
 
     public String getCep() {

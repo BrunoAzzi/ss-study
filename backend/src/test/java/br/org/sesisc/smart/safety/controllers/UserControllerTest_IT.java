@@ -79,6 +79,6 @@ public class UserControllerTest_IT extends BaseControllerTest_IT {
         JSONObject jsonObject = new JSONObject(responseJson);
 
         String errorMessage = jsonObject.getJSONArray("errors").getJSONObject(0).getString("message");
-        Assert.assertEquals("Should return an error message, when password is too short.","Senha deve ter entre 6 e 20 caracteres.", errorMessage);
+        Assert.assertEquals("Should return an error message, when password is too short.","Senha deve ter pelo menos 6 caracteres.", errorMessage);
     }
 }

@@ -1,8 +1,6 @@
 package br.org.sesisc.smart.safety.repositories.mapper;
 
 import br.org.sesisc.smart.safety.models.Construction;
-import br.org.sesisc.smart.safety.models.User;
-import br.org.sesisc.smart.safety.repositories.UserException;
 
 import java.util.List;
 
