@@ -31,7 +31,7 @@ export class ConstructionsListComponent implements OnInit {
     ngOnInit() { }
 
     addConstructionSite() {
-        this.router.navigate(['./new'], { relativeTo: this.route });
+        this.router.navigate(['../new'], { relativeTo: this.route });
     }
 
     toggleSearch() {

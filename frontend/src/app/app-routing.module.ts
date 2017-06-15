@@ -51,6 +51,7 @@ const routes: Routes = [
                             { path: '', component: ConstructionsLandingPageComponent, canActivate: [AuthGuard, ConstructionsGuard], },
                             { path: 'list', component: ConstructionsListComponent, canActivate: [AuthGuard], resolve: { constructions: ConstructionsListResolver } },
                             { path: 'new', component: ConstructionFormComponent, canActivate: [AuthGuard] },
+                            { path: 'edit', component: ConstructionFormComponent, canActivate: [AuthGuard] },
                         ]
                     },
                 ]
@@ -58,7 +59,6 @@ const routes: Routes = [
             {
                 path: 'constructions/:id', component: ConstructionDetailComponent, resolve: { construction: ConstructionResolver }, children: [
                     { path: '', pathMatch: 'prefix', redirectTo: 'monitoring' },
-                    { path: 'edit', component: ConstructionFormComponent, canActivate: [AuthGuard] },
                     { path: 'monitoring', component: MonitoringComponent, canActivate: [AuthGuard] },
                     { path: 'emiotional-profile', component: EmotionalPanelComponent, canActivate: [AuthGuard] },
                 ]
