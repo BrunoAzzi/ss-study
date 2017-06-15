@@ -34,21 +34,26 @@ const routes: Routes = [
 
     // App views
     {
-        path: '', component: BasicComponent,
+        path: '', component: BasicComponent, canActivate: [AuthGuard],
         children: [
             {
                 path: '', component: BasicTopnavbarLayout, children: [
-                    { path: 'companies', data: { breadcrumb: "Empresas" }, component: CompaniesComponent, canActivate: [AuthGuard] },
-                    { path: 'epis', data: { breadcrumb: "EPI's" }, component: PPEComponent, canActivate: [AuthGuard] },
-                    { path: 'reports', data: { breadcrumb: "Relatórios" }, component: ReportsComponent, canActivate: [AuthGuard] },
-                    { path: 'repositories', data: { breadcrumb: "Repositório" }, component: RepositoriesComponent, canActivate: [AuthGuard] },
-                    { path: 'thirdparties', data: { breadcrumb: "Terceiros" }, component: ThirdPartiesComponent, canActivate: [AuthGuard] },
-                    { path: 'training', data: { breadcrumb: "Treinamento" }, component: TrainingComponent, canActivate: [AuthGuard] },
-                    { path: 'workers', data: { breadcrumb: "Trabalhadores" }, component: WorkersComponent, canActivate: [AuthGuard] },
+                    { path: 'companies', data: { breadcrumb: "Empresas" }, component: CompaniesComponent },
+                    { path: 'epis', data: { breadcrumb: "EPI's" }, component: PPEComponent },
+                    { path: 'reports', data: { breadcrumb: "Relatórios" }, component: ReportsComponent },
+                    { path: 'repositories', data: { breadcrumb: "Repositório" }, component: RepositoriesComponent },
                     {
-						path: 'constructions', canActivate: [AuthGuard], children: [
-                            { path: '', data: { breadcrumb: "Minhas Obras" }, component: ConstructionsListComponent, canActivate: [AuthGuard], resolve: { constructions: ConstructionsListResolver } },
-                            { path: 'new', data: { breadcrumb: "Minhas Obras" }, component: ConstructionFormComponent, canActivate: [AuthGuard] },
+						path: 'thirdparties', children: [
+                            { path: '', redirectTo: 'list', pathMatch: 'prefix' },
+							{ path: 'list', data: { breadcrumb: "Gerenciamento de Fornecedores" }, component: ThirdPartiesComponent }
+						]
+					},
+                    { path: 'training', data: { breadcrumb: "Treinamento" }, component: TrainingComponent },
+                    { path: 'workers', data: { breadcrumb: "Trabalhadores" }, component: WorkersComponent },
+                    {
+						path: 'constructions', children: [
+                            { path: '', data: { breadcrumb: "Minhas Obras" }, component: ConstructionsListComponent, resolve: { constructions: ConstructionsListResolver } },
+                            { path: 'new', data: { breadcrumb: "Minhas Obras" }, component: ConstructionFormComponent },
                         ]
                     },
                 ]
@@ -56,9 +61,9 @@ const routes: Routes = [
             {
                 path: 'constructions/:id', component: ConstructionDetailComponent, resolve: { construction: ConstructionResolver }, children: [
                     { path: '', pathMatch: 'prefix', redirectTo: 'monitoring' },
-                    { path: 'edit', component: ConstructionFormComponent, canActivate: [AuthGuard] },
-                    { path: 'monitoring', component: MonitoringComponent, canActivate: [AuthGuard] },
-                    { path: 'emiotional-profile', component: EmotionalPanelComponent, canActivate: [AuthGuard] },
+                    { path: 'edit', component: ConstructionFormComponent },
+                    { path: 'monitoring', component: MonitoringComponent },
+                    { path: 'emiotional-profile', component: EmotionalPanelComponent },
                 ]
             }
         ]
