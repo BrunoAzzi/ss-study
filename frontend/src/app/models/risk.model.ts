@@ -1,13 +1,14 @@
 export class Risk {
 
-    type : string
+    id: number
+    type: string
     level: string
     factor: string
 
-
-    constructor(obj = {}) {
-        Object.keys(obj).forEach((key, value) => {
-            this[key] = value
-        })
+    constructor(data : any) {
+        this.id = data.id
+        this.type = data.type
+        this.level = data.level
+        this.factor = data.factor
     }
 }

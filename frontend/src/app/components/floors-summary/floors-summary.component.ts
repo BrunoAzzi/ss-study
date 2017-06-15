@@ -33,6 +33,12 @@ export class FloorsSummaryComponent implements OnInit {
         return this.getConstruction() ? this.getConstruction().floors : []
     }
 
+    getFloorsBySectionName(sectionName) {
+        return this.getFloors().filter(floor => {
+            return floor.sectionName === sectionName
+        })
+    }
+
     getSections() {
         return this.getFloors().reduce((sections, floor) => {
             if (sections.indexOf(floor.sectionName) < 0) sections.push(floor.sectionName)

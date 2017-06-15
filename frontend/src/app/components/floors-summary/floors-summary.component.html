@@ -15,7 +15,7 @@
                     <span>Andares</span>
                     <span>Risco</span>
                 </li>
-                <li class="floor" *ngFor="let floor of getFloors()" [ngClass]="{ active: isSelectedFloor(floor.name) }"><a (click)="changeFloor(floor)">
+                <li class="floor" *ngFor="let floor of getFloorsBySectionName(sectionName)" [ngClass]="{ active: isSelectedFloor(floor.name) }"><a (click)="changeFloor(floor)">
                     <span class="name">{{ floor.acronym }}</span>
                     <summary 
                         alerts="{{ floor.alertsNumber() }}" 

@@ -1,3 +1,4 @@
+import { Section } from './section.model';
 import { Alert } from './alert.model';
 import { Marker } from './marker.model';
 
@@ -7,6 +8,7 @@ export interface IFloor {
     acronym: string;
     bounds: [number, number][];
     imagePath: string;
+    sectionName: string;
     conesNumber(): number;
     workersNumber(): number;
     alertsNumber(): number;
@@ -17,18 +19,23 @@ export class Floor implements IFloor {
     id: number;
     name: string;
     acronym: string;
-    bounds: [number, number][];
-    imagePath: string;
-    coordinates: Array<Marker> = [];
-    alerts: Array<Alert> = []
     sectionName: string;
 
+    bounds: [number, number][];
+    imagePath: string;
+
+    coordinates: Array<Marker> = [];
+    alerts: Array<Alert> = []
+    section: Section;
+
     constructor(data: IFloor) {
+        this.id = data.id
         this.name = data.name;
         this.acronym = data.acronym;
         this.bounds = data.bounds;
         this.imagePath = data.imagePath;
-        this.sectionName = "Torre 1";
+
+        this.sectionName = (this.id % 2 > 0) ? "Torre 1" : "Área Comum"
 
         this.alerts = [
             new Alert({ type: "WRONG_ACCESS", cone: "12842", worker: "Rodrigo Vicente", time: "10:10" }),
