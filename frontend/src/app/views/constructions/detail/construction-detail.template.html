@@ -1,0 +1,23 @@
+<topnavbar notification>
+    <h1>Minhas obras</h1>
+    <ul class="navigation-items">
+        <li><a routerLink="/constructions">Visão Geral</a></li>
+        <li>
+            <a [ngClass]="{active: activeRoute('monitoring')}" routerLink="/constructions/1/monitoring">
+                <span>Monitoramento</span>
+            </a>
+        </li>
+        <li>
+            <a [ngClass]="{active: activeRoute('emotionalProfile')}" routerLink="/constructions/1/emotionalProfile">
+                <span>Trabalhadores</span>
+            </a>
+        </li>
+        <li><a routerLink="/constructions">Atividades</a></li>
+        <li><a routerLink="/constructions">Relatórios</a></li>
+        <li><a routerLink="/constructions">Documentos</a></li>
+    </ul>
+</topnavbar>
+
+<notification-sidenav-container fxFlex>
+    <router-outlet></router-outlet>
+</notification-sidenav-container>

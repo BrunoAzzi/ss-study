@@ -2,15 +2,16 @@ import { Component, ViewChild} from '@angular/core';
 import { IMyDpOptions } from 'mydatepicker';
 
 @Component({
-    selector: 'painelEmocional',
-    templateUrl: 'painelEmocional.template.html',
-    styleUrls: ['./painelEmocional.component.scss']
+    selector: 'emotional-panel',
+    templateUrl: 'emotional-panel.template.html',
+    styleUrls: ['./emotional-panel.component.scss']
 })
-export class PainelEmocionalComponent {
+export class EmotionalPanelComponent {
     @ViewChild('tabGroup') tabGroup;
 
     canvas: any;
     ctx: any;
+
     myDatePickerOptions: IMyDpOptions = {
         dateFormat: 'mm/yyyy',
         dayLabels: { su: 'Dom', mo: 'Seg', tu: 'Ter', we: 'Qua', th: 'Qui', fr: 'Sex', sa: 'Sab' },

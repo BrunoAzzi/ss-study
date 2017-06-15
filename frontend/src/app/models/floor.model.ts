@@ -1,34 +1,45 @@
-import { Coordinate } from './coordinate.model';
+import { Marker } from './marker.model';
 
-export class Floor {
+export interface IFloor {
+    id: number;
+    name: string;
+    bounds: [number, number][];
+    imagePath: string;
+    conesNumber(): number;
+    workersNumber(): number;
+    alertsNumber(): number;
+}
+
+export class Floor implements IFloor {
 
     id: number;
     name: string;
     bounds: [number, number][];
     imagePath: string;
-    coordinates: Array<Coordinate> = [];
+    coordinates: Array<Marker> = [];
     alerts: Array<any> = []
     sectionName: string;
 
-    constructor(name: string, bounds: [number, number][], imagePath: string) {
-        this.name = name;
-        this.bounds = bounds;
-        this.imagePath = imagePath;
+    constructor(data: IFloor) {
+        this.name = data.name;
+        this.bounds = data.bounds;
+        this.imagePath = data.imagePath;
+        this.sectionName = "Torre 1";
     }
 
-    conesNumber() {
+    conesNumber(): number {
         return this.coordinates.filter((coordinate) => {
             return coordinate.type === "checkpoint"
         }).length;
     }
 
-    workersNumber() {
+    workersNumber(): number {
         return this.coordinates.filter((coordinate) => {
             return coordinate.type === "worker"
         }).length;
     }
 
-    alertsNumber() {
+    alertsNumber(): number {
         return this.alerts.length;
     }
 }

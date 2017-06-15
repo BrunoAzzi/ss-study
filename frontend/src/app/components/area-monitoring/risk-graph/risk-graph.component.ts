@@ -1,3 +1,4 @@
+import { Floor } from './../../../models/floor.model';
 import { Component, Input } from '@angular/core';
 
 @Component({
@@ -7,6 +8,8 @@ import { Component, Input } from '@angular/core';
 })
 
 export class RiskGraphComponent {
+
+    @Input() floor : Floor
 
     constructor() { }
 }
