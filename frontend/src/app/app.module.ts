@@ -1,4 +1,4 @@
-import { ConstructionsLandingPageComponent } from './views/constructions/landing-page/landing-page.component';
+import { ConstructionsLandingPageComponent } from './components/landing-page/landing-page.component';
 import { ConstructionDetailComponent } from './views/constructions/detail/construction-detail.component';
 import { ConstructionResolver } from './resolves/construction.resolver';
 import { ConstructionsService } from './services/constructions.service';

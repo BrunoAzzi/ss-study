@@ -25,7 +25,6 @@ import { BasicComponent } from "./components/common/layouts/basic/basic.componen
 
 import { ConstructionsListComponent } from './views/constructions/list/constructions-list.component';
 import { ConstructionsListResolver } from './resolves/construction-list.resolver';
-import { ConstructionsLandingPageComponent } from './views/constructions/landing-page/landing-page.component';
 
 import { BasicTopnavbarLayout } from './components/common/layouts/basic-topnavbar/basic-topnavbar.component';
 
@@ -47,11 +46,9 @@ const routes: Routes = [
                     { path: 'training', data: { breadcrumb: "Treinamento" }, component: TrainingComponent, canActivate: [AuthGuard] },
                     { path: 'workers', data: { breadcrumb: "Trabalhadores" }, component: WorkersComponent, canActivate: [AuthGuard] },
                     {
-						path: 'constructions', data: { breadcrumb: "Minhas Obras" }, canActivate: [AuthGuard], children: [
-                            { path: '', component: ConstructionsLandingPageComponent, canActivate: [AuthGuard, ConstructionsGuard], },
-                            { path: 'list', component: ConstructionsListComponent, canActivate: [AuthGuard], resolve: { constructions: ConstructionsListResolver } },
-                            { path: 'new', component: ConstructionFormComponent, canActivate: [AuthGuard] },
-                            { path: 'edit', component: ConstructionFormComponent, canActivate: [AuthGuard] },
+						path: 'constructions', canActivate: [AuthGuard], children: [
+                            { path: '', data: { breadcrumb: "Minhas Obras" }, component: ConstructionsListComponent, canActivate: [AuthGuard], resolve: { constructions: ConstructionsListResolver } },
+                            { path: 'new', data: { breadcrumb: "Minhas Obras" }, component: ConstructionFormComponent, canActivate: [AuthGuard] },
                         ]
                     },
                 ]
@@ -59,6 +56,7 @@ const routes: Routes = [
             {
                 path: 'constructions/:id', component: ConstructionDetailComponent, resolve: { construction: ConstructionResolver }, children: [
                     { path: '', pathMatch: 'prefix', redirectTo: 'monitoring' },
+                    { path: 'edit', component: ConstructionFormComponent, canActivate: [AuthGuard] },
                     { path: 'monitoring', component: MonitoringComponent, canActivate: [AuthGuard] },
                     { path: 'emiotional-profile', component: EmotionalPanelComponent, canActivate: [AuthGuard] },
                 ]

@@ -1,6 +1,6 @@
 import { Floor } from './../models/floor.model';
 import { Observable } from 'rxjs/Observable';
-import { Construction } from './../models/construction.model';
+import { Construction, IConstruction } from './../models/construction.model';
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 
@@ -11,14 +11,17 @@ export class ConstructionsService {
     public constructions: Array<Construction> = []
     public construction: Construction
 
-    constructor(private http: Http) {
-        this.getConstructionList()
-    }
+    constructor(private http: Http) { }
 
     getConstructionList() {
 		return this.http.get(this.url)
             .map(response => response.json().data)
-            .map(data => this.constructions = data.map(value => this.serializeConstruction(value)))
+            .map(data => {
+                return this.constructions = data.map(value => {
+                    console.log(value)
+                    return this.serializeConstruction(value)
+                })
+            })
 	}
 
 	getConstruction(id) {
@@ -27,8 +30,8 @@ export class ConstructionsService {
             .map(data => this.construction = this.serializeConstruction(data))
 	}
 
-    serializeConstruction(construction) {
-        return new Construction(construction);
+    serializeConstruction(construction : IConstruction) {
+        return new Construction(construction)
     }
 
 	updateFloor(floor: Floor) {

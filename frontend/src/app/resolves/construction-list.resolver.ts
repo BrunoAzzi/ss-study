@@ -19,9 +19,6 @@ export class ConstructionsListResolver implements Resolve<Construction[]> {
 
 	resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         return this.service.getConstructionList().map(data => {
-            if (data.length === 0) {
-                this.router.navigate(['/constructions']);
-            }
             return data;
         });
 	}
