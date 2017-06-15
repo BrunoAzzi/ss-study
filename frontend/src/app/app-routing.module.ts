@@ -45,16 +45,18 @@ const routes: Routes = [
                     { path: 'thirdparties', data: { breadcrumb: "Terceiros" }, component: ThirdPartiesComponent, canActivate: [AuthGuard] },
                     { path: 'training', data: { breadcrumb: "Treinamento" }, component: TrainingComponent, canActivate: [AuthGuard] },
                     { path: 'workers', data: { breadcrumb: "Trabalhadores" }, component: WorkersComponent, canActivate: [AuthGuard] },
+                    {
+						path: 'constructions', data: { breadcrumb: "Minhas Obras" }, canActivate: [AuthGuard], children: [
+                            { path: '', component: ConstructionsListComponent, canActivate: [AuthGuard] },
+                            { path: 'new', component: ConstructionFormComponent, canActivate: [AuthGuard] },
+                        ]
+                    },
                 ]
             },
-            { path: 'constructions', component: ConstructionsListComponent, canActivate: [AuthGuard] },
-            { path: 'constructions/new', component: ConstructionFormComponent, canActivate: [AuthGuard] },
             {
-                path: 'constructions/:id', component: ConstructionDetailComponent, resolve: { construction: ConstructionResolver } , children: [
-
+                path: 'constructions/:id', component: ConstructionDetailComponent, resolve: { construction: ConstructionResolver }, children: [
                     { path: '', pathMatch: 'prefix', redirectTo: 'monitoring' },
                     { path: 'edit', component: ConstructionFormComponent, canActivate: [AuthGuard] },
-
                     { path: 'monitoring', component: MonitoringComponent, canActivate: [AuthGuard] },
                     { path: 'emiotional-profile', component: EmotionalPanelComponent, canActivate: [AuthGuard] },
                 ]

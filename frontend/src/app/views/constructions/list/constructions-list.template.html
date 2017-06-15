@@ -1,7 +1,3 @@
-<topnavbar notification>
-    <h1>Minhas obras</h1>
-</topnavbar>
-
 <div fxLayout fxLayoutAlign="space-between center" class="top-actionbar">
     <div fxLayout fxLayoutAlign="start center">
         <button md-icon-button type="button" (click)="toggleSearch()" fxLayout fxLayoutAlign="center center">
@@ -27,7 +23,7 @@
             </md-chip>
         </md-chip-list>
     </div>
-    
+
     <div fxLayout fxLayoutAlign="end center" class="right-actionbar">
         <md-select [(ngModel)]="selectedOrder" floatPlaceholder="never" class="order">
             <md-option *ngFor="let orderStyle of availableOrders" [value]="orderStyle.code">
