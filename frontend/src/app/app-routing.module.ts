@@ -4,7 +4,7 @@ import { ConstructionResolver } from './resolves/construction.resolver';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from "@angular/router";
 import { AuthGuard } from './guards';
-import { HasConstructionSitesGuard } from './guards/hasConstructionSites.guard';
+import { ConstructionsGuard } from './guards/constructions.guard';
 
 import { CompaniesComponent } from "./views/companies/companies.component";
 import { PPEComponent } from "./views/ppe/ppe.component";
@@ -24,7 +24,8 @@ import { BlankComponent } from "./components/common/layouts/blank/blank.componen
 import { BasicComponent } from "./components/common/layouts/basic/basic.component";
 
 import { ConstructionsListComponent } from './views/constructions/list/constructions-list.component';
-import { ConstructionSiteResolver } from './resolves/construction-site-resolver.service';
+import { ConstructionsListResolver } from './resolves/construction-list.resolver';
+import { ConstructionsLandingPageComponent } from './views/constructions/landing-page/landing-page.component';
 
 import { BasicTopnavbarLayout } from './components/common/layouts/basic-topnavbar/basic-topnavbar.component';
 
@@ -47,7 +48,8 @@ const routes: Routes = [
                     { path: 'workers', data: { breadcrumb: "Trabalhadores" }, component: WorkersComponent, canActivate: [AuthGuard] },
                     {
 						path: 'constructions', data: { breadcrumb: "Minhas Obras" }, canActivate: [AuthGuard], children: [
-                            { path: '', component: ConstructionsListComponent, canActivate: [AuthGuard] },
+                            { path: '', component: ConstructionsLandingPageComponent, canActivate: [AuthGuard, ConstructionsGuard], },
+                            { path: 'list', component: ConstructionsListComponent, canActivate: [AuthGuard], resolve: { constructions: ConstructionsListResolver } },
                             { path: 'new', component: ConstructionFormComponent, canActivate: [AuthGuard] },
                         ]
                     },
@@ -79,6 +81,6 @@ const routes: Routes = [
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule],
-    providers: [ConstructionSiteResolver, HasConstructionSitesGuard]
+    providers: [ConstructionsListResolver, ConstructionsGuard]
 })
 export class AppRoutingModule { }

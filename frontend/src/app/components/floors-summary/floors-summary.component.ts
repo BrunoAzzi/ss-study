@@ -11,13 +11,13 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 export class FloorsSummaryComponent implements OnInit {
 
-    @Input() construction : Construction;
+    @Input() construction: Construction;
     @Output() change: EventEmitter<Floor> = new EventEmitter();
 
     private selectedFloor: Floor = null;
     private toggleableSections: Array<any>;
 
-    constructor() {}
+    constructor() { }
 
     ngOnInit() {
         this.toggleableSections = this.toggleableSections || this.getSections().map(sectionName => ({ name: sectionName, hidden: false }))
@@ -33,7 +33,7 @@ export class FloorsSummaryComponent implements OnInit {
     }
 
     getSections() {
-        return this.getFloors().reduce((sections, floor) => { 
+        return this.getFloors().reduce((sections, floor) => {
             if (sections.indexOf(floor.sectionName) < 0) sections.push(floor.sectionName)
             return sections
         }, [])
@@ -60,10 +60,10 @@ export class FloorsSummaryComponent implements OnInit {
                 workers: sum.workers + floor.workersNumber()
             }
         }, {
-            alerts: 0,
-            cones: 0,
-            workers: 0
-        })
+				alerts: 0,
+				cones: 0,
+				workers: 0
+			})
     }
 
     changeFloor(floor: Floor): void {

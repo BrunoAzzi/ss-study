@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ConstructionSite } from "../../../mocks/construction-site/construction-site";
+import { Construction } from "../../../models/construction.model";
 
 @Component({
     selector: 'card-construction-site',
@@ -7,5 +7,5 @@ import { ConstructionSite } from "../../../mocks/construction-site/construction-
     styleUrls: ['./card-construction-site.component.scss']
 })
 export class CardConstructionDetailComponent {
-    @Input() constructionSite: ConstructionSite;
+    @Input() constructionSite: Construction;
 }

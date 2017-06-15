@@ -1,4 +1,4 @@
-import { ConstructionsLandingPageComponent } from './views/constructions/list/landing-page/my-construction-sites-landing-page.component';
+import { ConstructionsLandingPageComponent } from './views/constructions/landing-page/landing-page.component';
 import { ConstructionDetailComponent } from './views/constructions/detail/construction-detail.component';
 import { ConstructionResolver } from './resolves/construction.resolver';
 import { ConstructionsService } from './services/constructions.service';
@@ -15,14 +15,14 @@ import { SessionsService } from "./services/sessions.service";
 import { PasswordService } from "./services/password.service";
 import { AuthGuard } from './guards/index';
 
-import { 
-    MdSnackBar, 
-    MdDialogModule, 
-    MdToolbarModule, 
-    MdButtonModule, 
-    MdSelectModule, 
-    MdInputModule, 
-    MdChipsModule 
+import {
+    MdSnackBar,
+    MdDialogModule,
+    MdToolbarModule,
+    MdButtonModule,
+    MdSelectModule,
+    MdInputModule,
+    MdChipsModule
 } from '@angular/material';
 
 import { CommonModule } from '@angular/common';
@@ -212,7 +212,6 @@ import { FiltersComponent } from './components/area-monitoring/filters/filters.c
 
         // Mocks
         InMemoryWebApiModule.forRoot(InMemoryDataService, { passThruUnknownUrl: true }),
-
 
         //Calendar Range
         MyDateRangePickerModule,
