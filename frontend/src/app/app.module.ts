@@ -162,14 +162,10 @@ import { FiltersComponent } from './components/area-monitoring/filters/filters.c
         SummaryItemComponent,
         SummaryComponent,
         RiskGraphComponent,
-<<<<<<< HEAD
-        FloorNavigationComponent,
         WorkersOverviewComponent,
         ListCellComponent,
         ConstructionsStatusComponent,
-=======
         FloorsSummaryComponent,
->>>>>>> master
         ContentElementDialog,
 
         // Layouts
