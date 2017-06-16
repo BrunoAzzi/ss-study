@@ -8,9 +8,9 @@
     <span class="cpf">{{worker.cpf}}</span>
     <span class="horizontal-divider">|</span>
     <span class="phone">{{worker.phone}}</span>
-    <div *ngIf="worker.isThirdParty">
+    <div *ngIf="worker.isThirdparty">
         <span class="horizontal-divider">|</span>
-        <span class="cpf">{{worker.thirdpartyName}}</span>
+        <span class="thirdparty-name">{{worker.thirdpartyName}}</span>
     </div>
 </div>
 <div fxLayout fxLayoutAlign="end center" class="tools">
