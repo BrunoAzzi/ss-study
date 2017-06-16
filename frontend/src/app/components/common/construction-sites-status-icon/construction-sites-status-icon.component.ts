@@ -18,8 +18,8 @@ export class ConstructionSitesStatusIconComponent implements OnInit {
     statusClass;
 
     ngOnInit() {
-        this.statusIcon = values[status].statusIcon;
-        this.statusClass = values[status].statusClass;
+        this.statusIcon = values[this.status].statusIcon;
+        this.statusClass = values[this.status].statusClass;
     }
 
 }

@@ -1,0 +1,27 @@
+@import "../../../../scss/components/color";
+
+.separator {
+  background-color: $light-gray;
+  height: 1px;
+  flex: 1;
+}
+
+p {
+  color: $light-gray;;
+  margin-left: 20px;
+  margin-right: 20px;
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 1.17;
+  letter-spacing: 0.6px;
+  text-align: center;
+  cursor: pointer;
+  -webkit-user-select: none; /* Chrome/Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+ */
+}
+
+.container {
+  display: flex;
+  align-items: center;
+}

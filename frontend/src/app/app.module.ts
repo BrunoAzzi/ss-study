@@ -116,6 +116,9 @@ import { CepPickerComponent } from './components/common/cep-picker/cep-picker.co
 import { ManagersDataFormComponent } from './components/mysconstructionsites/construction-site-data/components/managers-data-form/managers-data-form.component';
 import { ConstructionStatusPickerComponent } from './components/common/construction-status-picker/construction-status-picker.component';
 import {ConstructionSitesStatusIconComponent} from "./components/common/construction-sites-status-icon/construction-sites-status-icon.component";
+import { CollaboratorDataFormComponent } from './components/mysconstructionsites/construction-site-data/components/collaborator-data-form/collaborator-data-form.component';
+import { GoodsFormComponent } from './components/mysconstructionsites/construction-site-data/components/goods-form/goods-form.component';
+import { AddNewCategoryComponent } from './components/common/add-new-category/add-new-category.component';
 
 @NgModule({
     declarations: [
@@ -188,6 +191,9 @@ import {ConstructionSitesStatusIconComponent} from "./components/common/construc
         ManagersDataFormComponent,
         ConstructionStatusPickerComponent,
         ConstructionSitesStatusIconComponent,
+        CollaboratorDataFormComponent,
+        GoodsFormComponent,
+        AddNewCategoryComponent,
     ],
     imports: [
         // Notification Module
