@@ -1,6 +1,6 @@
 import { Floor } from './floor.model';
 
-export class Section {
+export class Sector {
 
     id: number
     name: string

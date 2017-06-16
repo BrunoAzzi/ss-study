@@ -19,9 +19,18 @@
         display: flex;
         flex-direction: column;
 
+        floors-summary {
+            flex-grow: 0;
+            flex-shrink: 0;
+        }
+
         blueprint {
             flex-grow: 1;
             position: relative;
         }
     }
+}
+
+/deep/ .leaflet-popup-close-button  {
+    display: none;
 }

@@ -127,16 +127,30 @@ export class BlueprintComponent implements AfterContentChecked, OnChanges {
         return (this.mapType === "Mapping")
     }
 
-    private createMarker(position: [number, number], mark: any) {
+    private createMarker(position: [number, number], mark: any) : void {
         const marker = L.marker(position, { icon: mark, draggable: this.isEditable(), pane: 'markerPane' });
-        this.isEditable() && marker.bindPopup(`<a onclick="window.angularComponent.removeMark('${position['lat']},${position['lng']}')">Remover</a>`);
-        this.mapLayer.addLayer(marker);
-        if (this.isEditable()) {
+
+        if (this.isEditable()){
+            marker.bindPopup(`<a onclick="window.angularComponent.removeMark('${position['lat']},${position['lng']}')">Remover</a>`)
             marker.on('move', (event: any) => {
                 this.currentPosition = { old: event.oldLatLng, new: event.latlng };
             });
             marker.on('moveend', () => { this.updateMark(); });
+        } else {
+            marker.bindPopup(`
+                <h1>João da Silva Antunes</h1>
+                <p>10:09 - 10/05</p>
+                <p>Cone 02381</p>
+            `)
+            marker.on('mouseover', function (e) {
+                this.openPopup();
+            })
+            marker.on('mouseout', function (e) {
+                this.closePopup();
+            })
         }
+
+        this.mapLayer.addLayer(marker);
     }
 
     private updateMark() {

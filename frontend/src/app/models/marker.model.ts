@@ -1,4 +1,5 @@
 import { Icon } from './icon.model';
+
 export class Marker {
     id: number;
     icon: Icon;

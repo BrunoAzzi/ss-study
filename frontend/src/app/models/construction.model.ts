@@ -1,4 +1,4 @@
-import { Floor } from './floor.model';
+import { Sector } from './sector.model';
 
 export interface IConstruction {
     id: number;
@@ -7,7 +7,7 @@ export interface IConstruction {
     title: string;
     address: string;
     sponsor: string;
-    floors: Array<Floor>;
+    sectors: Array<Sector>;
 }
 
 export class Construction implements IConstruction {
@@ -22,7 +22,7 @@ export class Construction implements IConstruction {
     address: string;
     sponsor: string;
 
-    floors: Array<Floor> = [];
+    sectors: Array<Sector>;
 
     constructor(data: IConstruction) {
         this.id = data.id;
@@ -31,6 +31,6 @@ export class Construction implements IConstruction {
 		this.title = data.title;
 		this.address = data.address;
 		this.sponsor = data.sponsor;
-		this.floors = data.floors.map(value => new Floor(value));
+        this.sectors = data.sectors.map(value => new Sector(value));
     }
 }
