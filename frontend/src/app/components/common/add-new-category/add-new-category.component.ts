@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, Output, ViewChild} from '@angular/core';
 
 @Component({
     selector: 'add-new-category',
@@ -8,4 +8,13 @@ import {Component, EventEmitter, Output} from '@angular/core';
 export class AddNewCategoryComponent {
     @Output() onAdd = new EventEmitter();
     editing = false;
+    categoryName = '';
+
+    labelClick(input) {
+        setTimeout(() => {
+            input.focus();
+        }, 100);
+        this.editing = true;
+        this.categoryName = '';
+    }
 }

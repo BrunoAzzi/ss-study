@@ -1,10 +1,10 @@
 <div class="container">
 
     <div class="separator"></div>
-    <input #input [hidden]="!editing" #categoryName="ngModel" ngModel
+    <input #input [hidden]="!editing" [(ngModel)]="categoryName"
            (keyup.enter)="onAdd.emit(categoryName); editing = false"
            (keyup.esc)="editing = false">
-    <p *ngIf="!editing" (click)="editing = true; input.focus()">
+    <p *ngIf="!editing" (click)="labelClick(input)">
         CLIQUE AQUI PARA
         <br>
         ADICIONAR NOVA CATEGORIA
