@@ -5,9 +5,6 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import java.sql.Timestamp;
-import java.util.Calendar;
-import java.util.Date;
 
 public class User {
 
@@ -23,7 +20,6 @@ public class User {
     private String email;
 
     @NotNull(message="Senha é um campo obrigatório.")
-    @Pattern(message="Senha deve ter pelo menos 6 caracteres.", regexp = "^[\\p{Alnum}]{6,}$")
     private String password;
 
     private boolean active;

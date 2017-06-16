@@ -26,11 +26,12 @@ public class ManagerDao implements ManagerRepository {
         jdbcTemplate.update(new PreparedStatementCreator() {
             @Override
             public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
-                final String sql = "INSERT INTO managers(manager_type, email, phone) values (?,?,?)";
+                final String sql = "INSERT INTO managers(manager_type, email, phone) values (?,?,?,?)";
                 PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                 ps.setString(1, manager.getManagerType().getContent());
                 ps.setString(2, manager.getEmail());
                 ps.setString(3, manager.getPhone());
+                ps.setLong(4, manager.getContructionId());
                 return ps;
             }
         }, holder);

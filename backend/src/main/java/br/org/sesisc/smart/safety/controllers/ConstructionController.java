@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/constructions")
 public class ConstructionController {
 
     @Autowired
@@ -23,24 +22,14 @@ public class ConstructionController {
     @Autowired
     ManagerRepository serviceManager;
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value ="/constructions",method = RequestMethod.POST)
     public ResponseEntity<?> create(@Valid @RequestBody final Construction cParams, Errors errors) {
         if (errors.hasErrors()) {
             return ErrorResponse.handle(errors, HttpStatus.UNPROCESSABLE_ENTITY);
         }
 
-        Construction construction = new Construction(
-                cParams.getName(),
-                cParams.getCep(),
-                cParams.getAddress(),
-                cParams.getStatus(),
-                cParams.getDescription(),
-                cParams.getHighlightUrl(),
-                cParams.getLogoUrl(),
-                cParams.getCeiUrl(),
-                cParams.getCeiCode());
 
-        serviceConstruction.create(construction);
+        Construction construction = serviceConstruction.create(cParams);
 
         return SuccessResponse.handle(
                 new String[] {"construction"},
@@ -49,22 +38,17 @@ public class ConstructionController {
         );
     }
 
-    @RequestMapping(method = RequestMethod.PUT)
-    public ResponseEntity<?> update(@Valid @RequestBody final Manager mParams, Errors errors) {
+    @RequestMapping(value ="/constructions/{constructionId}", method = RequestMethod.PUT)
+    public ResponseEntity<?> update(@PathVariable long constructionId, @RequestBody final Construction cParams,Errors errors) {
         if (errors.hasErrors()) {
             return ErrorResponse.handle(errors, HttpStatus.UNPROCESSABLE_ENTITY);
         }
 
-        Manager manager = new Manager(
-                mParams.getManagerType(),
-                mParams.getEmail(),
-                mParams.getPhone());
-
-        serviceManager.create(manager);
+        Construction construction = serviceConstruction.update(constructionId,cParams);
 
         return SuccessResponse.handle(
-                new String[] {"manager"},
-                new Object[] {manager},
+                new String[] {"construction"},
+                new Object[] {construction},
                 HttpStatus.OK
         );
     }

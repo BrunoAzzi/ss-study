@@ -2,6 +2,7 @@ package br.org.sesisc.smart.safety.repositories.dao;
 
 import br.org.sesisc.smart.safety.models.Construction;
 import br.org.sesisc.smart.safety.repositories.ConstructionRepository;
+import br.org.sesisc.smart.safety.repositories.mapper.ConstructionMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
@@ -12,6 +13,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Repository("ConstructionRepository")
@@ -50,7 +53,41 @@ public class ConstructionDao implements ConstructionRepository {
 
     @Override
     public void update(long id, String[] properties, Object[] values) {
+        String sql = "UPDATE constructions SET";
 
+        if (properties.length == values.length) {
+            List<String> assignments = new ArrayList<>();
+            for (String property : properties) {
+                assignments.add(String.format("%s = ?", property));
+            }
+            sql = String.format("%s %s WHERE id = ?", sql, String.join(", ", assignments));
+
+            final Object[] valuesWithId = Arrays.copyOf(values, values.length + 1);
+            valuesWithId[values.length] = id;
+
+            jdbcTemplate.update(sql, valuesWithId);
+        }
+    }
+
+    @Override
+    public Construction update(long id, final Construction cParams) {
+        String sql = "UPDATE constructions SET";
+        String[] properties = {"name","cep","address","status","description","highlight_url","logo_url","cei_url","cei_code"};
+        Object[] values = {cParams.getName(),cParams.getCep(),cParams.getAddress(),cParams.getStatus(), cParams.getDescription(),
+                cParams.getHighlightUrl(), cParams.getLogoUrl(),cParams.getCeiUrl(),cParams.getCeiCode()};
+        if (properties.length == values.length) {
+            List<String> assignments = new ArrayList<>();
+            for (String property : properties) {
+                assignments.add(String.format("%s = ?", property));
+            }
+            sql = String.format("%s %s WHERE id = ?", sql, String.join(", ", assignments));
+
+            final Object[] valuesWithId = Arrays.copyOf(values, values.length + 1);
+            valuesWithId[values.length] = id;
+
+            jdbcTemplate.update(sql, valuesWithId);
+        }
+        return (Construction) findById(id);
     }
 
     @Override
@@ -60,7 +97,7 @@ public class ConstructionDao implements ConstructionRepository {
 
     @Override
     public Object findById(long id) {
-        return null;
+        return jdbcTemplate.queryForObject("SELECT * FROM constructions WHERE id = ?", new Object[] { id }, new ConstructionMapper());
     }
 
     @Override

@@ -26,11 +26,7 @@ public class UserController {
             return ErrorResponse.handle(errors, HttpStatus.UNPROCESSABLE_ENTITY);
         }
 
-        User user = new User();
-        user.setEmail(userParams.getEmail());
-        user.digestPassword(userParams.getPassword());
-        user.setActive(true);
-        serviceUser.create(user);
+        User user = serviceUser.create(userParams);
 
         return SuccessResponse.handle(
                 new String[] {"user"},

@@ -71,21 +71,4 @@ public class UserControllerTest_IT extends BaseControllerTest_IT {
         String errorMessage = jsonObject.getJSONArray("errors").getJSONObject(0).getString("message");
         Assert.assertEquals("Should return an error message when email has invalid regex rule.","Email não está no formato correto.", errorMessage);
     }
-
-    @Test
-    public void registerUser_whenPasswordHasInvalidRegex() throws Exception {
-
-        MvcResult result = mockMvc.perform(post("/users")
-                .content(getUserRequestJson(VALID_EMAIL, INCORRECT_PASSWORD_LENGTH))
-                .contentType(contentType))
-                .andExpect(status().isUnprocessableEntity())
-                .andReturn();
-        String responseJson = result.getResponse().getContentAsString();
-        JSONObject jsonObject = new JSONObject(responseJson);
-
-        System.out.println("Response: " + responseJson);
-
-        String errorMessage = jsonObject.getJSONArray("errors").getJSONObject(0).getString("message");
-        Assert.assertEquals("Should return an error message, when password is too short.","Senha deve ter pelo menos 6 caracteres.", errorMessage);
-    }
 }
