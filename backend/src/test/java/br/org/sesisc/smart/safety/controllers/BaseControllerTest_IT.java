@@ -1,6 +1,5 @@
 package br.org.sesisc.smart.safety.controllers;
 
-import br.org.sesisc.smart.safety.models.Construction;
 import com.google.gson.Gson;
 import org.apache.log4j.Logger;
 import org.junit.Before;

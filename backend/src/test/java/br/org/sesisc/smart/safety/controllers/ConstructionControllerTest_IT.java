@@ -80,8 +80,16 @@ public class ConstructionControllerTest_IT extends BaseControllerTest_IT {
 
     @Test
     public void updateConstruction_whenAllMandatoryDataAreValid() throws Exception {
+        mockMvc.perform(put("/constructions/1")
+                .content(getConstructionRequestJson("name - test","cep - test","address - test",
+                        "", "description - test","highlightUrl - test",
+                        "logoUrl - test","ceiUrl - test","ceiCode - test"))
+                .contentType(contentType))
+                .andExpect(status().isOk())
+                .andReturn();
+
         MvcResult result = mockMvc.perform(put("/constructions/1")
-                .content(getConstructionRequestJson("new name 3 - test","cep - test","address - test",
+                .content(getConstructionRequestJson("new name - test","cep - test","address - test",
                         "", "description - test","highlightUrl - test",
                         "logoUrl - test","ceiUrl - test","ceiCode - test"))
                 .contentType(contentType))
@@ -95,7 +103,7 @@ public class ConstructionControllerTest_IT extends BaseControllerTest_IT {
 
         String constructionName = jsonObject.getJSONObject("construction").get("name").toString();
         Assert.assertEquals("Should return the expected name when register construction is succeed.",
-                "new name 3 - test",constructionName);
+                "new name - test",constructionName);
     }
 
     private String getConstructionRequestJson(String name, String cep, String address, String status,
