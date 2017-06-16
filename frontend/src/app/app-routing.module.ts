@@ -46,8 +46,8 @@ const routes: Routes = [
                     { path: 'training', data: { breadcrumb: "Treinamento" }, component: TrainingComponent, canActivate: [AuthGuard] },
                     { path: 'workers', data: { breadcrumb: "Trabalhadores" }, component: WorkersComponent, canActivate: [AuthGuard] },
                     {
-						path: 'constructions', canActivate: [AuthGuard], children: [
-                            { path: '', data: { breadcrumb: "Minhas Obras" }, component: ConstructionsListComponent, canActivate: [AuthGuard], resolve: { constructions: ConstructionsListResolver } },
+						path: 'constructions', data: { breadcrumb: "Minhas Obras" }, canActivate: [AuthGuard], children: [
+                            { path: '', pathMatch: 'prefix', data: { breadcrumb: "Minhas Obras" }, component: ConstructionsListComponent, canActivate: [AuthGuard], resolve: { constructions: ConstructionsListResolver } },
                             { path: 'new', data: { breadcrumb: "Minhas Obras" }, component: ConstructionFormComponent, canActivate: [AuthGuard] },
                         ]
                     },
@@ -58,7 +58,7 @@ const routes: Routes = [
                     { path: '', pathMatch: 'prefix', redirectTo: 'monitoring' },
                     { path: 'edit', component: ConstructionFormComponent, canActivate: [AuthGuard] },
                     { path: 'monitoring', component: MonitoringComponent, canActivate: [AuthGuard] },
-                    { path: 'emiotional-profile', component: EmotionalPanelComponent, canActivate: [AuthGuard] },
+                    { path: 'emotional-profile', component: EmotionalPanelComponent, canActivate: [AuthGuard] },
                 ]
             }
         ]

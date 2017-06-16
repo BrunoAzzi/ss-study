@@ -1,6 +1,6 @@
 <toolbox (change)="toolChanged($event)"></toolbox>
 <div class="workbench">
-    <bar-level class="bar-level" [construction]="service.construction" (change)="floorChanged($event)" startIndex="{{barLevelStartIndex | async}}"></bar-level>
+    <floors-summary class="bar-level" [mini]="true" [construction]="construction" (change)="onFloorChanged($event)"></floors-summary>
     <blueprint 
         class="blueprint" 
         mapType="Mapping"

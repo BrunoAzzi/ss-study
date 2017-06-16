@@ -17,7 +17,7 @@
       "test": "test.ts",
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
-      "prefix": "app",
+      "prefix": "safety",
       "styles": [
           "scss/styles.scss",
           "../node_modules/leaflet/dist/leaflet.css"
