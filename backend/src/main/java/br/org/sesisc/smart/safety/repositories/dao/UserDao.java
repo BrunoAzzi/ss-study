@@ -36,7 +36,6 @@ public class UserDao implements UserRepository {
                     ps.setString(2, user.getPassword());
                     ps.setBoolean(3, user.getActive());
 
-
                     return ps;
                 }
             }, holder);

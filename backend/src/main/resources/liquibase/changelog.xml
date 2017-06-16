@@ -18,13 +18,7 @@
             <column name="active" type="boolean" defaultValueBoolean="true"/>
             <column name="token" type="varchar(200)"/>
         </createTable>
-        <addAutoIncrement catalogName="ssafety_db"
-                          columnDataType="int"
-                          columnName="id"
-                          incrementBy="1"
-                          schemaName="public"
-                          startWith="1"
-                          tableName="users"/>
+        <addAutoIncrement tableName="users" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
     </changeSet>
 
     <changeSet id="2" author="fpileggi">
@@ -46,13 +40,7 @@
             </column>
             <column name="active" type="boolean" defaultValueBoolean="true"/>
         </createTable>
-        <addAutoIncrement catalogName="ssafety_db"
-                          columnDataType="int"
-                          columnName="id"
-                          incrementBy="1"
-                          schemaName="public"
-                          startWith="1"
-                          tableName="tenants"/>
+        <addAutoIncrement tableName="tenants" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
     </changeSet>
 
     <changeSet id="3" author="fpileggi">
@@ -77,16 +65,8 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <addAutoIncrement catalogName="ssafety_db"
-                          columnDataType="int"
-                          columnName="id"
-                          incrementBy="1"
-                          schemaName="public"
-                          startWith="1"
-                          tableName="states"/>
-    </changeSet>
+        <addAutoIncrement tableName="states" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
 
-    <changeSet id="6" author="rrosseti">
         <createTable tableName="cities">
             <column name="id" type="int">
                 <constraints primaryKey="true" nullable="false"/>
@@ -95,16 +75,22 @@
                 <constraints nullable="false"/>
             </column>
             <column name="state_id" type="int" >
-                <constraints foreignKeyName="city_state_id" nullable="false" deleteCascade="false"/>
+                <constraints nullable="false" />
             </column>
         </createTable>
-        <addAutoIncrement catalogName="ssafety_db"
-                          columnDataType="int"
-                          columnName="id"
-                          incrementBy="1"
-                          schemaName="public"
-                          startWith="1"
-                          tableName="cities"/>
+        <addForeignKeyConstraint
+                baseTableName="cities"
+                baseColumnNames="state_id"
+                constraintName="fk_city_state"
+                referencedTableName="states"
+                referencedColumnNames="id"
+                onDelete="NO ACTION"
+                onUpdate="RESTRICT" />
+        <addAutoIncrement tableName="cities" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
+    </changeSet>
+
+    <changeSet id="6" author="fpileggi">
+        <sqlFile path="/liquibase/seed/cities_and_states.sql"/>
     </changeSet>
 
     <changeSet id="7" author="rrosseti">
@@ -112,27 +98,21 @@
             <column name="id" type="int">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="cep" type="varchar(100)" ></column>
             <column name="name" type="varchar(100)" >
                 <constraints nullable="false"/>
             </column>
-            <column name="address" type="varchar(255)" > </column>
             <column name="status" type="varchar(100)" >
                 <constraints nullable="false"/>
             </column>
-            <column name="description" type="varchar(255)" > </column>
-            <column name="highlight_url" type="varchar(255)" ></column>
-            <column name="logo_url" type="varchar(255)" ></column>
-            <column name="cei_url" type="varchar(255)" ></column>
-            <column name="cei_code" type="varchar(100)" ></column>
+            <column name="cep" type="varchar(100)"/>
+            <column name="address" type="varchar(255)" />
+            <column name="description" type="varchar(255)"/>
+            <column name="highlight_url" type="varchar(255)"/>
+            <column name="logo_url" type="varchar(255)"/>
+            <column name="cei_url" type="varchar(255)"/>
+            <column name="cei_code" type="varchar(100)"/>
         </createTable>
-        <addAutoIncrement catalogName="ssafety_db"
-                          columnDataType="int"
-                          columnName="id"
-                          incrementBy="1"
-                          schemaName="public"
-                          startWith="1"
-                          tableName="constructions"/>
+        <addAutoIncrement tableName="constructions" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
     </changeSet>
 
 </databaseChangeLog>
