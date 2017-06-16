@@ -1,5 +1,8 @@
+import { Construction } from './../../models/construction.model';
+import { Observable } from 'rxjs/Observable';
+import { ActivatedRoute } from '@angular/router';
+import { Input, OnChanges, OnInit } from '@angular/core';
 import { Floor } from './../../models/floor.model';
-import { Coordinate } from './../../models/coordinate.model';
 import { Component } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
@@ -9,63 +12,24 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
     styleUrls: ['area-monitoring.component.scss']
 })
 
-export class AreaMonitoringComponent {
+export class AreaMonitoringComponent implements OnInit {
 
-    private map: any;
-    private mapLayer: L.LayerGroup;
-    private imageMap: any;
+    @Input() construction: Construction;
 
-    private floors: Array<Floor>;
-    private sections: Array<any>;
-
-    private currentMark: any;
-    private currentFloor: Floor;
+    public activeFilters : Array<any> = [];
+    public currentFloor : Floor;
 
     constructor() {}
 
-    floorChanged(e) {
-        this.mapLayer.clearLayers();
-        const floor: Floor = e.floor;
-        if (floor !== null) {
-            const bounds = new L.LatLngBounds(floor.bounds);
-            this.imageMap.remove();
-            this.imageMap = L.imageOverlay(floor.imagePath, bounds);
-            this.imageMap.addTo(this.map);
-            this.map.fitBounds(bounds);
-            this.setMarkByList(floor.coordinates);
-        }
+    ngOnInit() {
+        this.currentFloor = this.currentFloor || this.construction.floors[0]
     }
 
-    private setMarkByList(coordinates: Array<Coordinate>) {
-        coordinates.forEach((coordinate, index, array) => {
-            const mark = L.icon({
-                iconUrl: `assets/maps/markers/${coordinate.icon.name}.png`,
-                iconSize: coordinate.icon.size,
-            });
-            this.createMarker(coordinate.position, mark);
-        });
+    onFloorChanged(floor : Floor) {
+        this.currentFloor = floor
     }
 
-    private createMarker(position: [number, number], mark: any) {
-        const marker = L.marker(position, { icon: mark, draggable: true, pane: 'markerPane' });
-        this.mapLayer.addLayer(marker);
-    }
-
-    changedMap(map) {
-        this.map = map;
-        this.map.on('click', (e) => {
-            if (this.currentMark) {
-                const marker = L.marker(e.latlng, {icon: this.currentMark, draggable: false, pane: 'markerPane'});
-                this.mapLayer.addLayer(marker);
-            }
-        });
-    }
-
-    changedMapLayer(mapLayer) {
-        this.mapLayer = mapLayer;
-    }
-
-    changedImageMap(imageMap) {
-        this.imageMap = imageMap;
+    onFilterChanged(filters) {
+        this.activeFilters = filters
     }
 }
