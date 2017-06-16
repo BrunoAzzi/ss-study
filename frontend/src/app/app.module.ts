@@ -47,7 +47,6 @@ import { RecyclingComponent } from "./components/workers/recycling/recycling.com
 import { BoxMessageComponent } from "./components/common/box-message/box-message.component";
 import { BlueprintComponent } from './components/blueprint/blueprint.component';
 import { ToolboxComponent } from './components/toolbox/toolbox.component';
-import { BarLevelComponent } from './components/bar-level/bar-level.component';
 
 import { PPEComponent } from "./views/ppe/ppe.component";
 import { ReportsComponent } from "./views/reports/reports.component";
@@ -150,7 +149,6 @@ import { AlertsTabItemComponent } from './components/area-monitoring/alerts-tab-
         MonitoringComponent,
         BlueprintComponent,
         ToolboxComponent,
-        BarLevelComponent,
         AreaMappingComponent,
         AreaMonitoringComponent,
         SummaryItemComponent,

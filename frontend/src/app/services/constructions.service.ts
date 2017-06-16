@@ -36,13 +36,15 @@ export class ConstructionsService {
 
 	updateFloor(floor: Floor) {
         let section = this.construction.sectors.find((sector) => {
-            return sector.id === floor.section.id
+            return sector.id === floor.sector.id
         })
-        section.floors = section.floors.map(f => {
-			if (f.name === floor.name) {
-				return floor
-			}
-			return f
-		})
+        if (section) {
+            section.floors = section.floors.map(f => {
+            if (f.name === floor.name) {
+                    return floor
+                }
+                return f
+            })
+        }
 	}
 }
