@@ -1,5 +1,6 @@
 <div class="workbench">
-    <floors-summary [construction]="service.construction" (change)="onFloorChanged($event)"></floors-summary>
+    <safety-alerts-tab [alerts]="currentFloor.alerts"></safety-alerts-tab>
+    <floors-summary [construction]="construction" (change)="onFloorChanged($event)"></floors-summary>
     <div class="workspace">
         <blueprint
             mapType="Monitoring"

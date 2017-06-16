@@ -47,7 +47,7 @@ const routes: Routes = [
                     { path: 'workers', data: { breadcrumb: "Trabalhadores" }, component: WorkersComponent },
                     {
 						path: 'constructions', children: [
-                            { path: '', data: { breadcrumb: "Minhas Obras" }, component: ConstructionsListComponent, resolve: { constructions: ConstructionsListResolver } },
+                            { path: '', pathMatch: 'prefix', data: { breadcrumb: "Minhas Obras" }, component: ConstructionsListComponent, resolve: { constructions: ConstructionsListResolver } },
                             { path: 'new', data: { breadcrumb: "Minhas Obras" }, component: ConstructionFormComponent },
                         ]
                     },
@@ -58,7 +58,7 @@ const routes: Routes = [
                     { path: '', pathMatch: 'prefix', redirectTo: 'monitoring' },
                     { path: 'edit', component: ConstructionFormComponent },
                     { path: 'monitoring', component: MonitoringComponent },
-                    { path: 'emiotional-profile', component: EmotionalPanelComponent },
+                    { path: 'emotional-profile', component: EmotionalPanelComponent },
                 ]
             }
         ]
