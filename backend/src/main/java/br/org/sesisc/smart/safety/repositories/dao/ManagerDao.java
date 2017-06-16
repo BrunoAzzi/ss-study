@@ -31,7 +31,7 @@ public class ManagerDao implements ManagerRepository {
                 ps.setString(1, manager.getManagerType().getContent());
                 ps.setString(2, manager.getEmail());
                 ps.setString(3, manager.getPhone());
-                ps.setLong(4, manager.getContructionId());
+                ps.setLong(4, manager.getConstructionId());
                 return ps;
             }
         }, holder);

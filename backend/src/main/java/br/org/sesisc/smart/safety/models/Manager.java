@@ -18,7 +18,7 @@ public class Manager {
 
     private String phone;
 
-    private long contructionId;
+    private long constructionId;
 
     public Manager(ManagerType managerType, String email, String phone) {
         this.managerType = managerType;
@@ -62,11 +62,11 @@ public class Manager {
         this.phone = phone;
     }
 
-    public long getContructionId() {
-        return contructionId;
+    public long getConstructionId() {
+        return constructionId;
     }
 
-    public void setContructionId(long contructionId) {
-        this.contructionId = contructionId;
+    public void setConstructionId(long constructionId) {
+        this.constructionId = constructionId;
     }
 }

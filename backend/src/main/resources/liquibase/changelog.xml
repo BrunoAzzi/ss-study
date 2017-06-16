@@ -135,28 +135,4 @@
                           tableName="constructions"/>
     </changeSet>
 
-    <changeSet id="8" author="rrosseti">
-        <createTable tableName="managers">
-            <column name="id" type="int">
-                <constraints primaryKey="true" nullable="false"/>
-            </column>
-            <column name="construction_id" type="int" >
-                <constraints foreignKeyName="manager_construction_id" nullable="false" deleteCascade="false"/>
-            </column>
-            <column name="email" type="varchar(100)" ></column>
-            <column name="phone" type="varchar(100)" ></column>
-        </createTable>
-        <addAutoIncrement catalogName="ssafety_db"
-                          columnDataType="int"
-                          columnName="id"
-                          incrementBy="1"
-                          schemaName="public"
-                          startWith="1"
-                          tableName="constructions"/>
-    </changeSet>
-
-    <!--<changeSet id="9" author="rrosseti">-->
-        <!--<sqlFile path="./seed_cities_and_states.sql"></sqlFile>-->
-    <!--</changeSet>-->
-
 </databaseChangeLog>
