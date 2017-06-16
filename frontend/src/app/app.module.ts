@@ -117,7 +117,6 @@ import { CardConstructionDetailComponent } from './components/mysconstructionsit
 import { ConstructionSiteDataComponent } from './components/mysconstructionsites/construction-site-data/construction-site-data.component';
 import { FiltersComponent } from './components/area-monitoring/filters/filters.component';
 import { AlertsTabComponent } from './components/area-monitoring/alerts-tab/alerts-tab.component';
-import { AlertsTabDropdownComponent } from './components/area-monitoring/alerts-tab-dropdown/alerts-tab-dropdown.component';
 import { AlertsTabItemComponent } from './components/area-monitoring/alerts-tab-item/alerts-tab-item.component';
 
 @NgModule({
@@ -187,7 +186,6 @@ import { AlertsTabItemComponent } from './components/area-monitoring/alerts-tab-
         FiltersComponent,
         ConstructionsLandingPageComponent,
         AlertsTabComponent,
-        AlertsTabDropdownComponent,
         AlertsTabItemComponent,
     ],
     imports: [
