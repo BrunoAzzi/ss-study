@@ -27,8 +27,9 @@ import { DataTablePipe } from "./components/perfil_emocional/status_trabalhadore
 import { SecurityWorksComponent } from "./components/workers/securityWorks/securityWorks.component";
 import { WorkersDataComponent } from "./components/workers/workersData/workersData.component";
 import { CompaniesComponent } from "./views/companies/companies.component";
-import { CompanyDetailsComponent } from  "./components/forms/company-details/company-details.component";
+import { CompanyDetailsComponent } from "./components/forms/company-details/company-details.component";
 import { HealthComponent } from "./components/workers/health/health.component";
+import { AsoItemComponent } from "./components/workers/asoItem/asoItem.component";
 //import { CategoryDividerComponent } from "./components/common/category-divider/category-divider.component";
 
 import { DateRangeComponent } from "./components/common/date-range/date-range.component";
@@ -170,10 +171,11 @@ import { ConstructionSiteDataComponent } from './components/mysconstructionsites
         SkillComponent,
         RecyclingComponent,
         InputFile,
+        AsoItemComponent,
+        HealthComponent,
 
         // Obras
         MyConstructionSitesLandingPageComponent,
-        HealthComponent,
         MyConstructionSitesShowComponent,
         MyConstructionSitesAddComponent,
         LineConstructionSiteComponent,

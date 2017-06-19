@@ -2,6 +2,7 @@ import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {GlobalValidators} from '../../globalValidators';
+import { IMyDpOptions } from 'mydatepicker';
 
 
 @Component({
@@ -11,9 +12,15 @@ import {GlobalValidators} from '../../globalValidators';
 })
 export class HealthComponent {
     myForm: FormGroup;
-    addAso: Boolean;
-    asoList: Object[] = [];
+    showAso: boolean;
+    asoList:Array<Object>[]=[];
 
+     myDatePickerOptions: IMyDpOptions = {
+        dateFormat: 'dd/mm/yyyy',
+        dayLabels: { su: 'Dom', mo: 'Seg', tu: 'Ter', we: 'Qua', th: 'Qui', fr: 'Sex', sa: 'Sab' },
+        monthLabels: { 1: 'Jan', 2: 'Fev', 3: 'Mar', 4: 'Abr', 5: 'Mai', 6: 'Jun', 7: 'Jul', 8: 'Ago', 9: 'Set', 10: 'Out', 11: 'Nov', 12: 'Dez' },
+        todayBtnTxt: 'Hoje'
+    };
 
     constructor(private fb: FormBuilder) {
         this.myForm = this.fb.group({
@@ -60,9 +67,15 @@ export class HealthComponent {
         {value: 11, viewValue: 'Cada 12 Meses'},
     ]
 
-    showAso() {
-        this.addAso = true;
+    addAso() {
+        this.showAso = true;
+        this.asoList.push(this.asoTypes);
+
+        return this.asoTypes;
     }
 
+    addTypeOfAso(){
+        console.log( this.asoTypes.values);
+    }
 }
 

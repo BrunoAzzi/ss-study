@@ -34,37 +34,25 @@
                             </md-input-container>
                         </td>
                     </tr>
-                    <tr *ngIf="addAso">
+                    <tr *ngFor="let aso of asoList">
                         <td>
-                            <md-select formControlName="asoTypes" placeholder="aso">
+                            <md-select formControlName="asoTypes" placeholder="aso" >
                                 <md-option *ngFor="let asoType of asoTypes" [value]="asoType.value">
                                     {{asoType.viewValue}}
                                 </md-option>
                             </md-select>
                         </td>
-                        <td>
-                            <md-input-container>
-                                <input mdInput formControlName="dateHealth" placeholder="Data" mask='00/00/0000'>
-                            </md-input-container>
+                     
+                        <td colspan="3">
+                             <asoItemComponent></asoItemComponent>
                         </td>
-                        <td>
-                            <md-select formControlName="recyclingPriorities" placeholder="Prioridade de Reciclagem">
-                                <md-option *ngFor="let recyclingPriority of recyclingPriorities"
-                                           [value]="recyclingPriority.value">
-                                    {{recyclingPriority.viewValue}}
-                                </md-option>
-                            </md-select>
-                        </td>
-                        <td>
-                            <input-file (onFileSelect)="onFileSelect($event)"
-                                        [accept]="'.doc,.docx,.png,.pdf'"></input-file>
-                        </td>
-                        <a class="action" (click)="removeMyself()">excluir</a>
+                      
                     </tr>
                 </table>
+            
             </div>
             <div fxFill fxLayout fxLayoutAlign="start right">
-                <a class="action" (click)="showAso()">
+                <a class="action" (click)="addAso()">
                     Adicicionar ASO
                 </a>
             </div>
