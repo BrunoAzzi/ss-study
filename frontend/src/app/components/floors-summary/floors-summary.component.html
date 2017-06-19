@@ -1,0 +1,30 @@
+<div class="floor-navigation" [ngClass]="{ mini: mini }">
+    <ul class="sections">
+        <li *ngFor="let sectionName of getSections()" class="section">
+            <a (click)="toggleSection(sectionName)">
+                <span class="name">{{ sectionName }}</span>
+                <summary 
+                    alerts="{{ summaryBySection(sectionName).alerts }}" 
+                    cones="{{ summaryBySection(sectionName).cones }}" 
+                    workers="{{ summaryBySection(sectionName).workers }}">
+                </summary>
+                <md-icon>keyboard_arrow_down</md-icon>
+            </a>
+            <ul class="floors" [ngClass]="{ hidden: isSectionHidden(sectionName) }">
+                <li class="header">
+                    <span>Andares</span>
+                    <span>Risco</span>
+                </li>
+                <li class="floor" *ngFor="let floor of getFloorsBySectionName(sectionName)" [ngClass]="{ active: isSelectedFloor(floor.name) }"><a (click)="changeFloor(floor)">
+                    <span class="name">{{ floor.acronym }}</span>
+                    <summary 
+                        alerts="{{ floor.alertsNumber() }}" 
+                        cones="{{ floor.conesNumber() }}" 
+                        workers="{{ floor.workersNumber() }}">
+                    </summary>
+                    <risk-graph [floor]="floor"></risk-graph>
+                </a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
