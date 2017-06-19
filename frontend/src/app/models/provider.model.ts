@@ -25,4 +25,9 @@ export class Provider implements IProvider {
 		this.sponsor = data && data.sponsor || undefined;
 		this.phone = data && data.phone || undefined;
     }
+
+    constains(value: string) {
+        let NOT_FIND = -1;
+        return this.title.toLowerCase().indexOf(value.toLowerCase()) === NOT_FIND
+    }
 }

@@ -34,11 +34,8 @@ export class ProviderListComponent implements OnInit {
     }
 
     getFilteredProviders() {
-        return this.providerList.filter(construction => {
-			return (
-				!(this.activeFilters.text.length > 0 && construction.title.toLowerCase().indexOf(this.activeFilters.text.toLowerCase()) === -1)
-			)
-		})
+        let hasTextActiveFilter = this.activeFilters.text.length > 0;
+        return this.providerList.filter(provider => !(hasTextActiveFilter && provider.constains(this.activeFilters.text)))
     }
 
     filterByText(text) {
