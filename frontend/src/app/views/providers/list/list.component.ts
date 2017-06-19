@@ -34,8 +34,7 @@ export class ProviderListComponent implements OnInit {
     }
 
     getFilteredProviders() {
-        let hasTextActiveFilter = this.activeFilters.text.length > 0;
-        return this.providerList.filter(provider => !(hasTextActiveFilter && provider.constains(this.activeFilters.text)))
+        return this.providerList.filter(provider => provider.constains(this.activeFilters.text))
     }
 
     filterByText(text) {

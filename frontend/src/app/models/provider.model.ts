@@ -28,6 +28,11 @@ export class Provider implements IProvider {
 
     constains(value: string) {
         let NOT_FIND = -1;
-        return this.title.toLowerCase().indexOf(value.toLowerCase()) === NOT_FIND
+
+        let containsCnpj = this.cnpj.toLowerCase().indexOf(value.toLowerCase()) !== NOT_FIND
+        let containsReason = this.reason.toLowerCase().indexOf(value.toLowerCase()) !== NOT_FIND
+        let containsTitle = this.title.toLowerCase().indexOf(value.toLowerCase()) !== NOT_FIND
+
+        return (containsCnpj || containsReason || containsTitle)
     }
 }
