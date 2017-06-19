@@ -12,6 +12,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 export class FloorsSummaryComponent implements OnInit {
 
     @Input() construction: Construction;
+    @Input() mini: Boolean;
     @Output() change: EventEmitter<Floor> = new EventEmitter();
 
     private selectedFloor: Floor = null;
@@ -30,6 +31,12 @@ export class FloorsSummaryComponent implements OnInit {
 
     getFloors() {
         return this.getConstruction() ? this.getConstruction().floors : []
+    }
+
+    getFloorsBySectionName(sectionName) {
+        return this.getFloors().filter(floor => {
+            return floor.sectionName === sectionName
+        })
     }
 
     getSections() {
