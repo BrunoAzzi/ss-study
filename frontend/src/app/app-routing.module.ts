@@ -12,9 +12,13 @@ import { ReportsComponent } from "./views/reports/reports.component";
 import { RepositoriesComponent } from "./views/repositories/repositories.component";
 import { ThirdPartiesComponent } from "./views/thirdparties/thirdparties.component";
 import { TrainingComponent } from "./views/training/training.component";
-import { WorkersComponent } from "./views/workers/workers.component";
 import { EmotionalPanelComponent } from './views/constructions/detail/emotional-panel/emotional-panel.component';
 import { MonitoringComponent } from './views/constructions/detail/monitoring/monitoring.component';
+
+// Wroker
+import { WorkerListResolver } from "./resolves/worker-list.resolver";
+import { WorkerService } from "./services/worker.service";
+import { WorkerListComponent } from "./views/workers/list/list.component";
 
 import { LoginComponent } from "./views/login/login.component";
 import { PasswordRecoveryComponent } from "./views/password-recovery/password-recovery.component";
@@ -38,13 +42,18 @@ const routes: Routes = [
         children: [
             {
                 path: '', component: BasicTopnavbarLayout, children: [
+
                     { path: 'companies', data: { breadcrumb: "Empresas" }, component: CompaniesComponent },
                     { path: 'epis', data: { breadcrumb: "EPI's" }, component: PPEComponent },
                     { path: 'reports', data: { breadcrumb: "Relatórios" }, component: ReportsComponent },
                     { path: 'repositories', data: { breadcrumb: "Repositório" }, component: RepositoriesComponent },
                     { path: 'thirdparties', data: { breadcrumb: "Terceiros" }, component: ThirdPartiesComponent },
                     { path: 'training', data: { breadcrumb: "Treinamento" }, component: TrainingComponent },
-                    { path: 'workers', data: { breadcrumb: "Trabalhadores" }, component: WorkersComponent },
+                    {
+						path: 'workers', children: [
+							{ path: '', data: { breadcrumb: "Gerenciamento de Trabalhadores" }, component: WorkerListComponent, resolve: { workerList: WorkerListResolver } },
+						]
+					},
                     {
 						path: 'constructions', children: [
                             { path: '', pathMatch: 'prefix', data: { breadcrumb: "Minhas Obras" }, component: ConstructionsListComponent, resolve: { constructions: ConstructionsListResolver } },
@@ -79,6 +88,11 @@ const routes: Routes = [
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule],
-    providers: [ConstructionsListResolver, ConstructionsGuard]
+    providers: [
+        ConstructionsListResolver,
+        ConstructionsGuard,
+        WorkerListResolver,
+        WorkerService,
+    ]
 })
 export class AppRoutingModule { }

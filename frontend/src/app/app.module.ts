@@ -54,7 +54,12 @@ import { ReportsComponent } from "./views/reports/reports.component";
 import { RepositoriesComponent } from "./views/repositories/repositories.component";
 import { ThirdPartiesComponent } from "./views/thirdparties/thirdparties.component";
 import { TrainingComponent } from "./views/training/training.component";
+
+//Worker
 import { WorkersComponent } from "./views/workers/workers.component";
+import { WorkerListComponent } from "./views/workers/list/list.component";
+import { LineWorkerDetailComponent } from "./components/workers/line-worker-detail/line-worker-detail.component";
+
 import { MonitoringComponent } from './views/constructions/detail/monitoring/monitoring.component';
 import { AreaMappingComponent, ContentElementDialog } from './components/area-mapping/area-mapping.component';
 import { AreaMonitoringComponent } from './components/area-monitoring/area-monitoring.component';
@@ -137,7 +142,12 @@ import { AlertsTabItemComponent } from './components/area-monitoring/alerts-tab-
         RepositoriesComponent,
         ThirdPartiesComponent,
         TrainingComponent,
+
+        // Worker
         WorkersComponent,
+        WorkerListComponent,
+        LineWorkerDetailComponent,
+
         LoginComponent,
         PasswordRecoveryComponent,
         PasswordUpdateComponent,
