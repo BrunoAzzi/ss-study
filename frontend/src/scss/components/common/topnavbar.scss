@@ -1,58 +1,57 @@
 .main-toolbar {
-  box-sizing: border-box;
-  padding: 0 1em;
-  display: flex;
-  flex-direction: row;
-  width: 100%;
+    box-sizing: border-box;
+    padding: 0 1em;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
 
-  h1 {
-    margin: 0;
-    font-weight: lighter;
-    margin-right: 1em;
-  }
-
-  ul {
-    padding: 0;
-    margin: 0;
-    list-style-type: none;
-    li {
-      padding-left: 1.5em;
-      display: inline-block;
-      a {
-        display: block;
-        box-sizing: border-box;
-        height: 100%;
-
-        font-size: 0.85em;
-        text-transform: uppercase;
-        text-decoration: none;
-        font-family: 'Lato';
-        font-weight: 900;
-        color: #999;
-        &.active {
-          color: #3c3c3c;
-          position: relative;
-          &:before {
-            content: "";
-            display: block;
-            height: 3px;
-            width: 100%;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            background-color: #3c3c3c;
-          }
-        }
-      }
+    h1 {
+        margin: 0;
+        font-weight: lighter;
+        margin-right: 1em;
     }
-  }
 
-  .navigation-items {
-    flex-grow: 1;
-  }
+    ul {
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+        li {
+            padding-left: 1.5em;
+            display: inline-block;
+            a {
+                display: block;
+                box-sizing: border-box;
+                height: 100%;
+                font-size: 0.85em;
+                text-transform: uppercase;
+                text-decoration: none;
+                font-family: 'Lato';
+                font-weight: 900;
+                color: #999;
+                &.active {
+                    color: #3c3c3c;
+                    position: relative;
+                    &:before {
+                        content: "";
+                        display: block;
+                        height: 3px;
+                        width: 100%;
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        background-color: #3c3c3c;
+                    }
+                }
+            }
+        }
+    }
 
-  .profile-info {
-    flex-grow: 0;
-    align-self: flex-end;
-  }
+    .navigation-items {
+        flex-grow: 1;
+    }
+
+    .profile-info {
+        flex-grow: 0;
+        align-self: flex-end;
+    }
 }

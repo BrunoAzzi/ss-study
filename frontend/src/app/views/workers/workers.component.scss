@@ -1,24 +1,3 @@
-::-webkit-input-placeholder {
-    color: red;
-}
-
-.action {
-    padding: 20px;
-}
-
 safety-card /deep/ md-card {
     margin-bottom: 20px;
-}
-
-safety-card-content div {
-    margin-bottom: 10px;
-}
-
-safety-card-content > :last-child {
-    margin-bottom: 0;
-}
-
-.save-and-continue {
-    color: white;
-    background-color: #a1abb0;
 }

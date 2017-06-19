@@ -8,22 +8,36 @@
         <workers-data></workers-data>
         <br>
         <safety-card #safetyCard>
+
             <safety-card-header>
                 <span>habilitações</span>
             </safety-card-header>
+
             <safety-card-content>
-                <form fxLayout="column" #form novalidate id="form1" name="form1">
-                    <skill [form]="form" fxLayout fxLayoutAlign="space-around center" [skill]="skill" (removed)="removeSkill(skill)" [(skillNames)]="skillNames" *ngFor="let skill of skillList"></skill>
-                    <div fxFill fxLayout fxLayoutAlign="start center">
+                <form #form novalidate id="form1" name="form1">
+
+                    <skill [form]="form" fxLayout fxLayoutAlign="space-around center" [skill]="skill"
+                           (removed)="removeSkill(skill)" [(skillNames)]="skillNames"
+                           *ngFor="let skill of skillList">
+                    </skill>
                         <a class="action" (click)="addSkill()">
                             Adicicionar habilitação
                         </a>
+
+
+                    <div class="grid-column">
+                        <div class="grid-row">
+
+                            <div class="button-default">
+                                <button type="submit" class="button-default" md-raised-button
+                                        (click)="saveSkills(safetyCard)">
+                                    Salvar e continuar
+                                </button>
+                            </div>
+
+                        </div>
                     </div>
-                    <div fxFill fxLayout fxLayoutAlign="end center">
-                        <button (click)="saveSkills(safetyCard)" class="save-and-continue" md-raised-button type="submit">
-                            <span>Salvar e continuar</span>
-                        </button>
-                    </div>
+
                 </form>
             </safety-card-content>
         </safety-card>
@@ -34,8 +48,7 @@
             <safety-card-header>
                 <span>Dados de saúde</span>
             </safety-card-header>
-            <safety-card-content>
-            </safety-card-content>
+            <safety-card-content></safety-card-content>
         </safety-card>
     </div>
 </div>

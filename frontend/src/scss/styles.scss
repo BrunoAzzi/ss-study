@@ -1,10 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&subset=latin-ext');
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
-@import 'components/color.scss';
 @import 'components/common/topnavbar.scss';
 @import 'components/common/button.scss';
-@import 'components/common/input.scss';
+@import 'components/common/inputs.scss';
 @import 'components/common/select.scss';
+@import 'components/color.scss';
+@import 'components/grid.scss';
 
 html {
     height: 100%;
@@ -44,233 +45,6 @@ a {
     color: $grapefruit
 }
 
-md-error {
-    position: relative;
-    font-size: 7pt;
-    font-weight: bold;
-    text-transform: uppercase;
-    margin-top: 11px;
-    padding: 5px 0 5px 0;
-}
-
-md-input-container, md-select {
-    background-color: $pale-gray;
-    padding: 10px 15px 0 15px;
-    font-family: 'Lato', sans-serif;
-    border: 1px solid $pale-gray;
-    text-transform: uppercase;
-    transition: all 800ms ease-in;
-    -moz-transition: all 800ms ease-in;
-    -webkit-transition: all 800ms ease-in;
-    &:hover {
-        border: 1px solid #D0D0D0;
-        transition: all 75ms ease-in;
-        -moz-transition: all 75ms ease-in;
-        -webkit-transition: all 75ms ease-in;
-    }
-}
-
-.mat-input-container {
-    height: 50px;
-    .mat-input-underline, .mat-select-underline {
-        position: relative;
-        border-style: none;
-        padding: 0;
-        margin: 0;
-    }
-    .mat-input-element {
-        font-size: 12pt;
-        font-weight: normal;
-        color: $greyish-brown;
-        margin-top: 0;
-        margin-bottom: -8px;
-    }
-    .mat-input-placeholder.mat-empty {
-        font-family: 'Lato', sans-serif;
-        color: $greyish-brown;
-        font-size: 10pt;
-    }
-    .mat-focused .mat-input-placeholder .mat-float,
-    .mat-input-placeholder.mat-float {
-        font-family: 'Lato', sans-serif;
-        color: $greyish-brown;
-        font-size: 10pt;
-    }
-    .mat-input-placeholder .mat-float,
-    .mat-input-placeholder.mat-float:not(.mat-empty) {
-        font-family: 'Lato', sans-serif;
-        color: $greyish;
-        font-size: 10pt;
-    }
-    .mat-input-placeholder .mat-input-ripple,
-    .mat-input-placeholder.mat-input-ripple:not(.mat-empty) {
-        font-family: 'Lato', sans-serif;
-        color: $greyish;
-    }
-    .mat-input-underline .mat-input-ripple {
-        height: 1px;
-        top: 10px;
-    }
-}
-
-textarea {
-    min-height: 100px;
-}
-.textarea-continer{
-    display: flex;
-    -ms-flex: 1;
-    -webkit-flex: 1;
-    height: auto;
-    min-height: 132px;
-}
-
-md-select {
-    display: flex;
-    -ms-flex: 1;
-    -webkit-flex: 1;
-    height: 35px;
-    padding-top: 25px;
-    .mat-select-underline {
-        height: 0;
-    }
-    .mat-select-trigger .mat-select-placeholder {
-        font-size: 10pt;
-        font-family: 'Lato', sans-serif;
-        color: $greyish-brown;
-    }
-    md-select .mat-select-trigger .mat-select-placeholder {
-        font-size: 10pt;
-        font-family: 'Lato', sans-serif;
-        color: $greyish;
-    }
-    .mat-select-trigger {
-        width: 100%;
-        display: flex;
-        -ms-flex: 1;
-        -webkit-flex: 1;
-    }
-    .mat-select-value-text {
-        font-size: 10pt;
-        font-family: 'Lato', sans-serif;
-        color: $greyish-brown;
-    }
-    .mat-select-value {
-    }
-    .mat-select .mat-select-arrow {
-        height: 60px;
-    }
-    .mat-select-arrow {
-        margin: auto 0;
-    }
-}
-
-.cdk-overlay-pane {
-    margin-top: 60px;
-}
-
-md-radio-group {
-    min-height: 62px;
-    display: flex;
-    -ms-flex: 1;
-    -webkit-flex: 1;
-    flex-wrap: wrap;
-    padding: 0 15px 0 15px;
-    align-items: flex-start;
-    font-family: 'Lato', sans-serif;
-    text-transform: uppercase;
-    font-weight: normal;
-    color: $greyish-brown;
-    p {
-        font-size: 10pt;
-        display: inline-block;
-        width: 100%;
-        margin-top: 0;
-        margin-bottom: 6px;
-    }
-    md-radio-button {
-        padding-right: 15px;
-    }
-    .mat-radio-label-content {
-        align-self: center;
-        color: $greyish-brown;
-        font-size: 9pt;
-        padding-top: 1.5px;
-    }
-    .mat-radio-inner-circle {
-        background-color: $grapefruit;
-    }
-    .mat-radio-outer-circle {
-        border-color: #D0D0D0;
-    }
-    .mat-radio-checked .mat-radio-outer-circle {
-        border-color: $grapefruit;
-    }
-}
-
-my-date-picker {
-    min-width: 10%;
-    display: flex;
-    -ms-flex: 1;
-    -webkit-flex: 1;
-    padding: 0 15px 0 15px;
-    background-color: $pale-gray;
-    border: 1px solid $pale-gray;
-    transition: all 800ms ease-in;
-    -moz-transition: all 800ms ease-in;
-    -webkit-transition: all 800ms ease-in;
-    &:hover {
-        border: 1px solid #D0D0D0;
-        transition: all 75ms ease-in;
-        -moz-transition: all 75ms ease-in;
-        -webkit-transition: all 75ms ease-in;
-    }
-    .mydp,
-    .mydp .selection,
-    .mydp .selectiongroup,
-    .mydp .selector {
-        height: 60px;
-        padding-left: 0;
-        background-color: $pale-gray;
-        border-radius: 0;
-        border: none;
-    }
-    .mydp * {
-        font-family: 'Lato', sans-serif;
-        font-weight: normal;
-        text-transform: uppercase;
-        color: $greyish-brown;
-    }
-    .mydp .selection {
-        background-color: $pale-gray;
-        margin-top: 13px;
-    }
-    .mydp .btnclear,
-    .mydp .btndecrease,
-    .mydp .btnincrease,
-    .mydp .btnpicker {
-        width: 49px;
-        height: 60px;
-        background-color: #EFEFEF;
-        border-radius: 0;
-        margin-right: -15.5px;
-    }
-    .mydp .btnclear {
-        margin-right: 1.5px;
-        &:hover {
-            background-color: #FF9999;
-            .icon-mydpremove {
-                color: white;
-            }
-        }
-    }
-    .mydp .icon-mydpdown,
-    .mydp .icon-mydpleft,
-    .mydp .icon-mydpright,
-    .mydp .icon-mydpup {
-        color: $grapefruit;
-    }
-}
-
 md-card {
     .image-upload {
         background: url("../../src/assets/ic-image.png") no-repeat center;
@@ -278,8 +52,8 @@ md-card {
         width: 200px;
         height: 100%;
         max-width: 400px;
-        min-width: 200px;
-        min-height: 200px;
+        min-width: 120px;
+        min-height: 120px;
         //padding: 0 0 32px 0;
 
         md-card-content img {
@@ -300,18 +74,3 @@ md-card {
     }
 }
 
-.button-default {
-    width: 100%;
-    text-align: right;
-    button {
-        opacity: 1;
-        background-color: $cool-grey;
-        color: white;
-        font-family: 'Lato', sans-serif;
-        font-size: 11px;
-        text-transform: uppercase;
-    }
-    button[disabled] {
-        opacity: 0.5;
-    }
-}
