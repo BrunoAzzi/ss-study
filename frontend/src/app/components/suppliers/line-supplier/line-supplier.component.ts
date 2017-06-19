@@ -1,14 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Provider } from "../../../models/provider.model";
+import { Supplier } from "../../../models/supplier.model";
 
 @Component({
-    selector: 'line-provider',
-    templateUrl: './line-provider.template.html',
-    styleUrls: ['./line-provider.component.scss']
+    selector: 'line-supplier',
+    templateUrl: './line-supplier.template.html',
+    styleUrls: ['./line-supplier.component.scss']
 })
-export class LineProviderDetailComponent {
-    @Input() provider: Provider;
+export class LineSupplierDetailComponent {
+    @Input() supplier: Supplier;
 
     constructor(
         private router: Router,

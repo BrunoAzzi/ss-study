@@ -14,12 +14,12 @@ import { TrainingComponent } from "./views/training/training.component";
 import { EmotionalPanelComponent } from './views/constructions/detail/emotional-panel/emotional-panel.component';
 import { MonitoringComponent } from './views/constructions/detail/monitoring/monitoring.component';
 
-// Provider
-import { ProviderListComponent } from "./views/providers/list/list.component";
-import { ProviderFormComponent } from "./views/providers/form/form.component";
-import { ProviderListResolver } from "./resolves/provider-list.resolver";
-import { ProviderResolver } from "./resolves/provider.resolver";
-import { ProviderService } from "./services/provider.service";
+// Supplier
+import { SupplierListComponent } from "./views/suppliers/list/list.component";
+import { SupplierFormComponent } from "./views/suppliers/form/form.component";
+import { SupplierListResolver } from "./resolves/supplier-list.resolver";
+import { SupplierResolver } from "./resolves/supplier.resolver";
+import { SupplierService } from "./services/supplier.service";
 
 // Wroker
 import { WorkerListResolver } from "./resolves/worker-list.resolver";
@@ -60,10 +60,10 @@ const routes: Routes = [
 						]
 					},
                     {
-						path: 'providers', children: [
-                            { path: '', data: { breadcrumb: "Gerenciamento de Fornecedores" }, component: ProviderListComponent, resolve: { providers: ProviderListResolver } },
-                            { path: 'new', data: { breadcrumb: "Cadastro de Fornecedor" }, component: ProviderFormComponent },
-                            { path: ':id/edit', data: { breadcrumb: "Alteração de Fornecedor" }, component: ProviderFormComponent, resolve: { provider: ProviderResolver } },
+						path: 'suppliers', children: [
+                            { path: '', data: { breadcrumb: "Gerenciamento de Fornecedores" }, component: SupplierListComponent, resolve: { suppliers: SupplierListResolver } },
+                            { path: 'new', data: { breadcrumb: "Cadastro de Fornecedor" }, component: SupplierFormComponent },
+                            { path: ':id/edit', data: { breadcrumb: "Alteração de Fornecedor" }, component: SupplierFormComponent, resolve: { supplier: SupplierResolver } },
 						]
 					},
                     {
@@ -103,9 +103,9 @@ const routes: Routes = [
     providers: [
         ConstructionsListResolver,
         ConstructionsGuard,
-        ProviderListResolver,
-        ProviderService,
-        ProviderResolver,
+        SupplierListResolver,
+        SupplierService,
+        SupplierResolver,
         WorkerListResolver,
         WorkerService,
     ]

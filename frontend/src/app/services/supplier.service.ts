@@ -1,23 +1,23 @@
-import { Provider } from './../models/provider.model';
+import { Supplier } from './../models/supplier.model';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 
 @Injectable()
-export class ProviderService {
+export class SupplierService {
 
-    private url = "api/provider"
+    private url = "api/supplier"
 
     constructor(private http: Http) { }
 
-    getProviderList() {
+    getSupplierList() {
 		return this.http.get(this.url)
             .map(response => response.json().data)
-            .map(data => data.map(value => new Provider(value)))
+            .map(data => data.map(value => new Supplier(value)))
 	}
 
-	getProvider(id) {
+	getSupplier(id) {
         return this.http.get(this.url + "/" + id)
             .map(response => response.json().data)
-            .map(data => new Provider(data))
+            .map(data => new Supplier(data))
 	}
 }

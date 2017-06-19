@@ -1,4 +1,4 @@
-export interface IProvider {
+export interface ISupplier {
     id: number;
     reason: string;
     title: string;
@@ -7,7 +7,7 @@ export interface IProvider {
     phone: string;
 }
 
-export class Provider implements IProvider {
+export class Supplier implements ISupplier {
     id: number;
     reason: string;
     title: string;
@@ -16,7 +16,7 @@ export class Provider implements IProvider {
     phone: string;
 
     constructor()
-    constructor(data: IProvider)
+    constructor(data: ISupplier)
     constructor(data?: any) {
 		this.id = data && data.id || undefined;
 		this.reason = data && data.reason || undefined;

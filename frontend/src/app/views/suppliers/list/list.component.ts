@@ -1,13 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Provider } from "../../../models/provider.model";
+import { Supplier } from "../../../models/supplier.model";
 
 @Component({
-    selector: 'provider-list',
+    selector: 'supplier-list',
     templateUrl: 'list.template.html',
     styleUrls: ['./list.component.scss']
 })
-export class ProviderListComponent implements OnInit {
+export class SupplierListComponent implements OnInit {
     LAST_SAVED = "last_saved";
     FIRST_SAVED = "first_saved";
 
@@ -15,7 +15,7 @@ export class ProviderListComponent implements OnInit {
         text: ""
     }
 
-    providerList: Provider[] = [];
+    supplierList: Supplier[] = [];
 
 	selectedOrder: string = this.LAST_SAVED;
 	availableOrders = [
@@ -26,15 +26,15 @@ export class ProviderListComponent implements OnInit {
 	constructor(private router: Router, private route: ActivatedRoute) { }
 
     ngOnInit() {
-        this.route.data.subscribe(data => this.providerList = data.providers)
+        this.route.data.subscribe(data => this.supplierList = data.suppliers)
     }
 
     redirectTo(route) {
         this.router.navigate([route], { relativeTo: this.route });
     }
 
-    getFilteredProviders() {
-        return this.providerList.filter(provider => provider.constains(this.activeFilters.text))
+    getFilteredSuppliers() {
+        return this.supplierList.filter(supplier => supplier.constains(this.activeFilters.text))
     }
 
     filterByText(text) {

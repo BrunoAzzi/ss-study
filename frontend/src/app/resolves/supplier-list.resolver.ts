@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Provider } from './../models/provider.model';
-import { ProviderService } from './../services/provider.service';
+import { Supplier } from './../models/supplier.model';
+import { SupplierService } from './../services/supplier.service';
 import {
     Router,
     Resolve,
@@ -10,14 +10,14 @@ import {
 } from '@angular/router';
 
 @Injectable()
-export class ProviderListResolver implements Resolve<Provider[]> {
+export class SupplierListResolver implements Resolve<Supplier[]> {
 	constructor(
-        private service: ProviderService,
+        private service: SupplierService,
         private router: Router,
         private route: ActivatedRoute
     ) { }
 
 	resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        return this.service.getProviderList()
+        return this.service.getSupplierList()
 	}
 }

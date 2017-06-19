@@ -67,10 +67,10 @@ import { SummaryComponent } from './components/summary/summary.component';
 import { RiskGraphComponent } from './components/area-monitoring/risk-graph/risk-graph.component';
 import { FloorsSummaryComponent } from './components/floors-summary/floors-summary.component';
 
-// Providers
-import { ProviderListComponent } from "./views/providers/list/list.component";
-import { ProviderFormComponent } from "./views/providers/form/form.component";
-import { LineProviderDetailComponent } from "./components/providers/line-provider/line-provider.component";
+// Suppliers
+import { SupplierListComponent } from "./views/suppliers/list/list.component";
+import { SupplierFormComponent } from "./views/suppliers/form/form.component";
+import { LineSupplierDetailComponent } from "./components/suppliers/line-supplier/line-supplier.component";
 
 // Painel Emocional
 import { EmotionalPanelComponent } from './views/constructions/detail/emotional-panel/emotional-panel.component';
@@ -172,10 +172,10 @@ import { AlertsTabItemComponent } from './components/area-monitoring/alerts-tab-
         FloorsSummaryComponent,
         ContentElementDialog,
 
-        // Providers
-        ProviderListComponent,
-        LineProviderDetailComponent,
-        ProviderFormComponent,
+        // Suppliers
+        SupplierListComponent,
+        LineSupplierDetailComponent,
+        SupplierFormComponent,
 
         // Layouts
         BlankComponent,

@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Provider } from "../../../models/provider.model";
+import { Supplier } from "../../../models/supplier.model";
 
 @Component({
     templateUrl: 'form.template.html',
     styleUrls: ['./form.component.scss']
 })
-export class ProviderFormComponent implements OnInit {
+export class SupplierFormComponent implements OnInit {
 
-    provider: Provider = new Provider();
+    supplier: Supplier = new Supplier();
 
 	constructor(private router: Router, private route: ActivatedRoute) { }
 
     ngOnInit() {
-        this.route.data.subscribe(data => this.provider = data.provider)
+        this.route.data.subscribe(data => this.supplier = data.supplier)
     }
 
 }
