@@ -115,3 +115,17 @@ table {
         text-align: center;
     }
 }
+
+.position{
+ // display:flex;
+ min-width: 100%;
+ justify-content:space-between ;
+}
+
+.aling-div{
+    display: inline-flex;
+    justify-content: space-between;
+    div {
+        padding-right: 20px;
+    }
+}

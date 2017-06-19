@@ -1,14 +1,16 @@
-<safety-card-content>
-    <form [formGroup]="myForm" id="formAso">
-        <div class="position">
-            <div class="vintep"></div>
-            <div class="vintep"></div>
-            <div class="vintep"></div>
-            <div class="vintep"></div>
-            <div class="vintep"><my-date-picker style="min-width: 100%;" name="realizationDate" [options]="myDatePickerOptions" placeholder="Data de Realização"></my-date-picker></div>       
-        </div>
-        <div>
-            
-        </div>
-    </form>
-</safety-card-content>
+<div class="aling-div">
+    <div class="itens-data">
+        <my-date-picker name="realizationDate" [options]="myDatePickerOptions" placeholder="Data de Realização"></my-date-picker>
+        <input-file (onFileSelect)="onFileSelect($event)" [accept]="'.doc,.docx,.png,.pdf'"></input-file>
+    </div>
+    <div>
+        <md-radio-button value="true">Apto</md-radio-button>
+        <md-radio-button value="false">Inapto</md-radio-button>
+    </div>
+    <div>
+         <my-date-picker name="realizationDate" [options]="myDatePickerOptions" placeholder="Próximo Exame"></my-date-picker>
+    </div>
+    <div>
+        <a class="action" (click)="removeMyself()">excluir</a>
+    </div>
+</div>

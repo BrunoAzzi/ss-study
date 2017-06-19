@@ -23,8 +23,7 @@
                         <td>
                             <md-input-container>
                                 <input mdInput placeholder="Alergias">
-                                <md-error *ngIf="myForm.controls.allergies.hasError('onlytext')">São permitidos apenas
-                                    letras.
+                                <md-error *ngIf="myForm.controls.allergies.hasError('onlytext')">São permitidos apenas letras.
                                 </md-error>
                             </md-input-container>
                         </td>
@@ -34,23 +33,20 @@
                             </md-input-container>
                         </td>
                     </tr>
-                    <tr *ngFor="let aso of asoList">
-                        <td>
-                            <md-select formControlName="asoTypes" placeholder="aso" >
-                                <md-option *ngFor="let asoType of asoTypes" [value]="asoType.value">
+                </table>
+            </div>
+                 <div class = "aling-div" *ngFor="let aso of asoList">
+                        <div>
+                            <md-select formControlName="asoTypes" placeholder="aso">
+                                <md-option *ngFor="let asoType of asoTypes" [value]="asoType.value" >
                                     {{asoType.viewValue}}
                                 </md-option>
                             </md-select>
-                        </td>
-                     
-                        <td colspan="3">
-                             <asoItemComponent></asoItemComponent>
-                        </td>
-                      
-                    </tr>
-                </table>
-            
-            </div>
+                        </div>
+                            <div >
+                                <asoItemComponent></asoItemComponent>
+                            </div>
+                    </div>
             <div fxFill fxLayout fxLayoutAlign="start right">
                 <a class="action" (click)="addAso()">
                     Adicicionar ASO

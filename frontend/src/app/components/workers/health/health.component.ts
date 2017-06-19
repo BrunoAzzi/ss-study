@@ -13,6 +13,7 @@ import { IMyDpOptions } from 'mydatepicker';
 export class HealthComponent {
     myForm: FormGroup;
     showAso: boolean;
+    selectedItem: boolean = false;
     asoList:Array<Object>[]=[];
 
      myDatePickerOptions: IMyDpOptions = {
@@ -68,14 +69,12 @@ export class HealthComponent {
     ]
 
     addAso() {
-        this.showAso = true;
         this.asoList.push(this.asoTypes);
-
-        return this.asoTypes;
+       
     }
 
     addTypeOfAso(){
-        console.log( this.asoTypes.values);
+         this.selectedItem = this.selectedItem = true;
     }
 }
 
