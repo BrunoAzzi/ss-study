@@ -1,24 +1,32 @@
-import {Component, Inject} from '@angular/core';
+import {Component, Inject, Input, OnDestroy} from '@angular/core';
 import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import { CommonModule} from '@angular/common';
+import { WorkersDataService } from "../../../services/workers/workersData.service";
+import { Subscription }   from 'rxjs/Subscription';
 
 @Component({
     selector: 'security-works',
     templateUrl: 'securityWorks.template.html',
     styleUrls: ['./securityWorks.component.scss'],
+    providers: [WorkersDataService]
 })
 export class SecurityWorksComponent {
+     @Input() cpf: string;
     securityForm: FormGroup;
     submitted: boolean = false;
     invalidDate: boolean = true;
 
-    constructor(private fb: FormBuilder) {
+
+    constructor(private fb: FormBuilder, private workersService: WorkersDataService) {
         this.securityForm = this.fb.group({
             brigadistas: new FormControl('', Validators.required),
             cipeiros: new FormControl('', Validators.required),
             laborsInCipa: new FormControl('', Validators.required),
-        })
+        });
+     
     }
+
+    
 
     brigadistas = [
         { value: 0, viewValue: 'Sim' },
@@ -43,7 +51,7 @@ export class SecurityWorksComponent {
         { value: 4, viewValue: 'Secretário' },
     ];
 
-    selectedCipaLabor: number = 5;
+    //selectedCipaLabor: number = 5;
 
     cipeiroChange(deviceValue, dateRange) {
         if (deviceValue === 0) {
@@ -58,6 +66,7 @@ export class SecurityWorksComponent {
     }
 
     saveSecurityForm(safetyCard, dateRange) {
+        console.log(this.cpf)
         this.submitted = true;
         const date = dateRange.getDate();
         this.invalidDate = date === '' || date === null;

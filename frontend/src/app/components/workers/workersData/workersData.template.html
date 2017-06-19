@@ -10,6 +10,7 @@
                     <tr>
                         <td>
                             <md-input-container>
+                              
                                 <input mdInput formControlName="cpf" required placeholder="CPF" id="cpf" name="cpf" (blur)="autoCompleteWorker()" [textMask]="{mask: cpfMask}"  [(ngModel)]="cpf">
                                 <md-error *ngIf="myForm.controls.cpf.hasError('required')">Campo Obrigatório.</md-error>
                                 <md-error *ngIf="myForm.controls.cpf.hasError('cpf')">CPF inválido.</md-error>

@@ -4,7 +4,8 @@
     </safety-card-header>
     <safety-card-content>
         <form id="securityForm" [formGroup]="securityForm" (submit)="saveSecurityForm(safetyCard, dateRange)" name="securityForm">
-            <div class="form-content">
+                        <div class="form-content">
+                          
                 <div class="square">
                     <md-select formControlName="cipeiros" required name="cipeiros" class="maxWidthSimNao" [(ngModel)]="selectedCipeiro" (ngModelChange)="cipeiroChange(selectedCipeiro, dateRange)" placeholder="Trabalhador é cipeiro?">
                         <md-option *ngFor="let cipeiro of cipeiros" [value]="cipeiro.value">

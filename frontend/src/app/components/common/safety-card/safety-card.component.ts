@@ -70,3 +70,4 @@ export class SafetyCardHeaderComponent { }
     template: '<ng-content></ng-content>',
 })
 export class SafetyCardContentComponent { }
+

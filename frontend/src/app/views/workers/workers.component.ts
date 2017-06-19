@@ -8,6 +8,7 @@ import { Skill } from '../../mocks/skill/skill';
 })
 export class WorkersComponent {
 
+    cpf: string = "";
     isReciclagem: boolean = false;
     maximunLength: number;
     isValid: boolean = false;
@@ -29,7 +30,13 @@ export class WorkersComponent {
         "NR 33",
     ];
 
+    cpfValue(cpf: string){
+        this.cpf = cpf;
+        console.log("cpf no componente pai:"+cpf);
+    }
+
     saveSkills(safetyCard) {
+        
         if (this.isValid) safetyCard.close();
     }
 

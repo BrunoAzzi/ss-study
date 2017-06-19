@@ -1,4 +1,4 @@
-import { Component, Inject, EventEmitter } from '@angular/core';
+import { Component, Inject, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { CorreiosService } from "../../../services/correios.service";
 import { Endereco_completo } from '../../../mocks/endereco_completo/endereco_completo';
@@ -15,6 +15,8 @@ import { IMyDpOptions } from 'mydatepicker';
     providers: [CorreiosService, CBOService, WorkersDataService]
 })
 export class WorkersDataComponent {
+    @Output() cpfValue = new EventEmitter<string>();
+    
     disabled = true;
 
     mycbo = '';
@@ -131,11 +133,14 @@ export class WorkersDataComponent {
         });
     }
 
+   
     autoCompleteWorker(){
-        this.workersService.getWorker("199.942.366-60").subscribe(
+        this.cpfValue.emit(this.cpf);
+        this.workersService.getWorker(this.cpf).subscribe(
             (response) => {
+                
                 this.fullname = response.name,
-                 this.modelCEP = response.cep;
+                this.modelCEP = response.cep;
                 this.modelCompleteAdress = response.completeAddress;
                 this.modelAge = response.age;
                 this.modelNit = response.nit;
