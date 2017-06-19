@@ -10,10 +10,16 @@ import { CompaniesComponent } from "./views/companies/companies.component";
 import { PPEComponent } from "./views/ppe/ppe.component";
 import { ReportsComponent } from "./views/reports/reports.component";
 import { RepositoriesComponent } from "./views/repositories/repositories.component";
-import { ThirdPartiesComponent } from "./views/thirdparties/thirdparties.component";
 import { TrainingComponent } from "./views/training/training.component";
 import { EmotionalPanelComponent } from './views/constructions/detail/emotional-panel/emotional-panel.component';
 import { MonitoringComponent } from './views/constructions/detail/monitoring/monitoring.component';
+
+// Supplier
+import { SupplierListComponent } from "./views/suppliers/list/list.component";
+import { SupplierFormComponent } from "./views/suppliers/form/form.component";
+import { SupplierListResolver } from "./resolves/supplier-list.resolver";
+import { SupplierResolver } from "./resolves/supplier.resolver";
+import { SupplierService } from "./services/supplier.service";
 
 // Wroker
 import { WorkerListResolver } from "./resolves/worker-list.resolver";
@@ -47,11 +53,17 @@ const routes: Routes = [
                     { path: 'epis', data: { breadcrumb: "EPI's" }, component: PPEComponent },
                     { path: 'reports', data: { breadcrumb: "Relatórios" }, component: ReportsComponent },
                     { path: 'repositories', data: { breadcrumb: "Repositório" }, component: RepositoriesComponent },
-                    { path: 'thirdparties', data: { breadcrumb: "Terceiros" }, component: ThirdPartiesComponent },
                     { path: 'training', data: { breadcrumb: "Treinamento" }, component: TrainingComponent },
                     {
 						path: 'workers', children: [
 							{ path: '', data: { breadcrumb: "Gerenciamento de Trabalhadores" }, component: WorkerListComponent, resolve: { workerList: WorkerListResolver } },
+						]
+					},
+                    {
+						path: 'suppliers', children: [
+                            { path: '', data: { breadcrumb: "Gerenciamento de Fornecedores" }, component: SupplierListComponent, resolve: { suppliers: SupplierListResolver } },
+                            { path: 'new', data: { breadcrumb: "Cadastro de Fornecedor" }, component: SupplierFormComponent },
+                            { path: ':id/edit', data: { breadcrumb: "Alteração de Fornecedor" }, component: SupplierFormComponent, resolve: { supplier: SupplierResolver } },
 						]
 					},
                     {
@@ -91,6 +103,9 @@ const routes: Routes = [
     providers: [
         ConstructionsListResolver,
         ConstructionsGuard,
+        SupplierListResolver,
+        SupplierService,
+        SupplierResolver,
         WorkerListResolver,
         WorkerService,
     ]

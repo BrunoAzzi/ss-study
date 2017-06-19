@@ -132,7 +132,6 @@ export class WorkersDataComponent {
     }
 
     savePersonalDataWorker(safetyCard) {
-        //se não passar, descomentar: console.log(this.myForm.controls);
         if (this.myForm.valid) {
             safetyCard.close();
         }

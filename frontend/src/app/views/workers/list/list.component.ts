@@ -55,8 +55,6 @@ export class WorkerListComponent {
             ...this.activeFilters,
 			[filterName]: !this.activeFilters[filterName]
 		}
-
-        console.log(this.activeFilters[filterName])
 	}
 
 	filterByText(text) {

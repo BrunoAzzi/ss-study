@@ -52,7 +52,6 @@ import { BarLevelComponent } from './components/bar-level/bar-level.component';
 import { PPEComponent } from "./views/ppe/ppe.component";
 import { ReportsComponent } from "./views/reports/reports.component";
 import { RepositoriesComponent } from "./views/repositories/repositories.component";
-import { ThirdPartiesComponent } from "./views/thirdparties/thirdparties.component";
 import { TrainingComponent } from "./views/training/training.component";
 
 //Worker
@@ -67,6 +66,11 @@ import { SummaryItemComponent } from './components/summary-item/summary-item.com
 import { SummaryComponent } from './components/summary/summary.component';
 import { RiskGraphComponent } from './components/area-monitoring/risk-graph/risk-graph.component';
 import { FloorsSummaryComponent } from './components/floors-summary/floors-summary.component';
+
+// Suppliers
+import { SupplierListComponent } from "./views/suppliers/list/list.component";
+import { SupplierFormComponent } from "./views/suppliers/form/form.component";
+import { LineSupplierDetailComponent } from "./components/suppliers/line-supplier/line-supplier.component";
 
 // Painel Emocional
 import { EmotionalPanelComponent } from './views/constructions/detail/emotional-panel/emotional-panel.component';
@@ -140,7 +144,6 @@ import { AlertsTabItemComponent } from './components/area-monitoring/alerts-tab-
         PPEComponent,
         ReportsComponent,
         RepositoriesComponent,
-        ThirdPartiesComponent,
         TrainingComponent,
 
         // Worker
@@ -168,6 +171,11 @@ import { AlertsTabItemComponent } from './components/area-monitoring/alerts-tab-
         RiskGraphComponent,
         FloorsSummaryComponent,
         ContentElementDialog,
+
+        // Suppliers
+        SupplierListComponent,
+        LineSupplierDetailComponent,
+        SupplierFormComponent,
 
         // Layouts
         BlankComponent,
