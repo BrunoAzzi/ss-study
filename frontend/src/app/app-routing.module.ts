@@ -11,7 +11,6 @@ import { PPEComponent } from "./views/ppe/ppe.component";
 import { ReportsComponent } from "./views/reports/reports.component";
 import { RepositoriesComponent } from "./views/repositories/repositories.component";
 import { TrainingComponent } from "./views/training/training.component";
-import { WorkersComponent } from "./views/workers/workers.component";
 import { EmotionalPanelComponent } from './views/constructions/detail/emotional-panel/emotional-panel.component';
 import { MonitoringComponent } from './views/constructions/detail/monitoring/monitoring.component';
 
@@ -21,6 +20,11 @@ import { ProviderFormComponent } from "./views/providers/form/form.component";
 import { ProviderListResolver } from "./resolves/provider-list.resolver";
 import { ProviderResolver } from "./resolves/provider.resolver";
 import { ProviderService } from "./services/provider.service";
+
+// Wroker
+import { WorkerListResolver } from "./resolves/worker-list.resolver";
+import { WorkerService } from "./services/worker.service";
+import { WorkerListComponent } from "./views/workers/list/list.component";
 
 import { LoginComponent } from "./views/login/login.component";
 import { PasswordRecoveryComponent } from "./views/password-recovery/password-recovery.component";
@@ -40,14 +44,21 @@ const routes: Routes = [
 
     // App views
     {
-        path: '', component: BasicComponent,
+        path: '', component: BasicComponent, canActivate: [AuthGuard],
         children: [
             {
                 path: '', component: BasicTopnavbarLayout, children: [
-                    { path: 'companies', data: { breadcrumb: "Empresas" }, component: CompaniesComponent, canActivate: [AuthGuard] },
-                    { path: 'epis', data: { breadcrumb: "EPI's" }, component: PPEComponent, canActivate: [AuthGuard] },
-                    { path: 'reports', data: { breadcrumb: "Relatórios" }, component: ReportsComponent, canActivate: [AuthGuard] },
-                    { path: 'repositories', data: { breadcrumb: "Repositório" }, component: RepositoriesComponent, canActivate: [AuthGuard] },
+
+                    { path: 'companies', data: { breadcrumb: "Empresas" }, component: CompaniesComponent },
+                    { path: 'epis', data: { breadcrumb: "EPI's" }, component: PPEComponent },
+                    { path: 'reports', data: { breadcrumb: "Relatórios" }, component: ReportsComponent },
+                    { path: 'repositories', data: { breadcrumb: "Repositório" }, component: RepositoriesComponent },
+                    { path: 'training', data: { breadcrumb: "Treinamento" }, component: TrainingComponent },
+                    {
+						path: 'workers', children: [
+							{ path: '', data: { breadcrumb: "Gerenciamento de Trabalhadores" }, component: WorkerListComponent, resolve: { workerList: WorkerListResolver } },
+						]
+					},
                     {
 						path: 'providers', children: [
                             { path: '', data: { breadcrumb: "Gerenciamento de Fornecedores" }, component: ProviderListComponent, resolve: { providers: ProviderListResolver } },
@@ -55,12 +66,10 @@ const routes: Routes = [
                             { path: ':id/edit', data: { breadcrumb: "Alteração de Fornecedor" }, component: ProviderFormComponent, resolve: { provider: ProviderResolver } },
 						]
 					},
-                    { path: 'training', data: { breadcrumb: "Treinamento" }, component: TrainingComponent, canActivate: [AuthGuard] },
-                    { path: 'workers', data: { breadcrumb: "Trabalhadores" }, component: WorkersComponent, canActivate: [AuthGuard] },
                     {
-						path: 'constructions', canActivate: [AuthGuard], children: [
-                            { path: '', data: { breadcrumb: "Minhas Obras" }, component: ConstructionsListComponent, canActivate: [AuthGuard], resolve: { constructions: ConstructionsListResolver } },
-                            { path: 'new', data: { breadcrumb: "Minhas Obras" }, component: ConstructionFormComponent, canActivate: [AuthGuard] },
+						path: 'constructions', children: [
+                            { path: '', pathMatch: 'prefix', data: { breadcrumb: "Minhas Obras" }, component: ConstructionsListComponent, resolve: { constructions: ConstructionsListResolver } },
+                            { path: 'new', data: { breadcrumb: "Minhas Obras" }, component: ConstructionFormComponent },
                         ]
                     },
                 ]
@@ -68,9 +77,9 @@ const routes: Routes = [
             {
                 path: 'constructions/:id', component: ConstructionDetailComponent, resolve: { construction: ConstructionResolver }, children: [
                     { path: '', pathMatch: 'prefix', redirectTo: 'monitoring' },
-                    { path: 'edit', component: ConstructionFormComponent, canActivate: [AuthGuard] },
-                    { path: 'monitoring', component: MonitoringComponent, canActivate: [AuthGuard] },
-                    { path: 'emiotional-profile', component: EmotionalPanelComponent, canActivate: [AuthGuard] },
+                    { path: 'edit', component: ConstructionFormComponent },
+                    { path: 'monitoring', component: MonitoringComponent },
+                    { path: 'emotional-profile', component: EmotionalPanelComponent },
                 ]
             }
         ]
@@ -93,10 +102,12 @@ const routes: Routes = [
     exports: [RouterModule],
     providers: [
         ConstructionsListResolver,
-        ProviderListResolver,
         ConstructionsGuard,
+        ProviderListResolver,
         ProviderService,
         ProviderResolver,
+        WorkerListResolver,
+        WorkerService,
     ]
 })
 export class AppRoutingModule { }

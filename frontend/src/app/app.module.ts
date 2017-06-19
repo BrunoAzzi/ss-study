@@ -53,12 +53,17 @@ import { PPEComponent } from "./views/ppe/ppe.component";
 import { ReportsComponent } from "./views/reports/reports.component";
 import { RepositoriesComponent } from "./views/repositories/repositories.component";
 import { TrainingComponent } from "./views/training/training.component";
+
+//Worker
 import { WorkersComponent } from "./views/workers/workers.component";
+import { WorkerListComponent } from "./views/workers/list/list.component";
+import { LineWorkerDetailComponent } from "./components/workers/line-worker-detail/line-worker-detail.component";
+
 import { MonitoringComponent } from './views/constructions/detail/monitoring/monitoring.component';
 import { AreaMappingComponent, ContentElementDialog } from './components/area-mapping/area-mapping.component';
 import { AreaMonitoringComponent } from './components/area-monitoring/area-monitoring.component';
-import { SummaryItemComponent } from './components/area-monitoring/summary-item/summary-item.component';
-import { SummaryComponent } from './components/area-monitoring/summary/summary.component';
+import { SummaryItemComponent } from './components/summary-item/summary-item.component';
+import { SummaryComponent } from './components/summary/summary.component';
 import { RiskGraphComponent } from './components/area-monitoring/risk-graph/risk-graph.component';
 import { FloorsSummaryComponent } from './components/floors-summary/floors-summary.component';
 
@@ -120,6 +125,8 @@ import { LineConstructionDetailComponent } from './components/mysconstructionsit
 import { CardConstructionDetailComponent } from './components/mysconstructionsites/card-construction-site/card-construction-site.component';
 import { ConstructionSiteDataComponent } from './components/mysconstructionsites/construction-site-data/construction-site-data.component';
 import { FiltersComponent } from './components/area-monitoring/filters/filters.component';
+import { AlertsTabComponent } from './components/area-monitoring/alerts-tab/alerts-tab.component';
+import { AlertsTabItemComponent } from './components/area-monitoring/alerts-tab-item/alerts-tab-item.component';
 
 @NgModule({
     declarations: [
@@ -138,7 +145,12 @@ import { FiltersComponent } from './components/area-monitoring/filters/filters.c
         ReportsComponent,
         RepositoriesComponent,
         TrainingComponent,
+
+        // Worker
         WorkersComponent,
+        WorkerListComponent,
+        LineWorkerDetailComponent,
+
         LoginComponent,
         PasswordRecoveryComponent,
         PasswordUpdateComponent,
@@ -191,6 +203,8 @@ import { FiltersComponent } from './components/area-monitoring/filters/filters.c
         ConstructionSiteDataComponent,
         FiltersComponent,
         ConstructionsLandingPageComponent,
+        AlertsTabComponent,
+        AlertsTabItemComponent,
     ],
     imports: [
         // Notification Module

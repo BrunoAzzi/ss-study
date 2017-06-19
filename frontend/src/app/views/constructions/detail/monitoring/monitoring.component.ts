@@ -1,3 +1,5 @@
+import { Floor } from './../../../../models/floor.model';
+import { ConstructionsService } from './../../../../services/constructions.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class MonitoringComponent implements OnInit {
-    constructor() { }
+
+    constructor(public service: ConstructionsService) { }
 
     ngOnInit() { }
+
+    public onFloorUpdated(floor: Floor) {
+        this.service.updateFloor(floor)
+    }
 }
