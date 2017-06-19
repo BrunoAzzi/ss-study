@@ -3,15 +3,22 @@ package br.org.sesisc.smart.safety.controllers;
 import br.org.sesisc.smart.safety.common.ManagerType;
 import br.org.sesisc.smart.safety.models.Construction;
 import br.org.sesisc.smart.safety.models.Manager;
+import br.org.sesisc.smart.safety.service.StorageService;
 import com.google.gson.Gson;
 import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.request.MockMultipartHttpServletRequestBuilder;
+import org.springframework.test.web.servlet.request.RequestPostProcessor;
+import static org.mockito.BDDMockito.then;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -20,8 +27,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebAppConfiguration
 public class ConstructionControllerTest_IT extends BaseControllerTest_IT {
 
+    @MockBean
+    private StorageService storageService;
+
     @Test
     public void registerConstruction_whenAllMandatoryDataAreValid() throws Exception {
+
         MvcResult result = mockMvc.perform(post("/constructions")
                 .content(getConstructionRequestJson("name - test","cep - test","address - test",
                         "status - test", "description - test","highlightUrl - test",
@@ -38,6 +49,44 @@ public class ConstructionControllerTest_IT extends BaseControllerTest_IT {
         String constructionName = jsonObject.getJSONObject("construction").get("name").toString();
         Assert.assertEquals("Should return the expected name when register construction is succeed.",
                 "name - test",constructionName);
+    }
+
+    @Test
+    public void uploadLogo_whenSucceed() throws Exception {
+        MockMultipartFile fileLogo = new MockMultipartFile("logo", "logo.png", "image/png", "Spring Framework".getBytes());
+
+        MockMultipartHttpServletRequestBuilder builder = fileUpload("/constructions/1/upload/logo");
+        builder.with(new RequestPostProcessor() {
+            @Override
+            public MockHttpServletRequest postProcessRequest(MockHttpServletRequest request) {
+                request.setMethod("PUT");
+                return request;
+            }
+        });
+
+        mockMvc.perform(builder.file(fileLogo))
+                .andExpect(status().isOk());
+
+        then(storageService).should().store(fileLogo);
+    }
+
+    @Test
+    public void uploadCei_whenSucceed() throws Exception {
+        MockMultipartFile fileCei = new MockMultipartFile("cei", "cei.pdf", "application/pdf", "Spring Framework".getBytes());
+
+        MockMultipartHttpServletRequestBuilder builder = fileUpload("/constructions/1/upload/cei");
+        builder.with(new RequestPostProcessor() {
+            @Override
+            public MockHttpServletRequest postProcessRequest(MockHttpServletRequest request) {
+                request.setMethod("PUT");
+                return request;
+            }
+        });
+
+        mockMvc.perform(builder.file(fileCei))
+                .andExpect(status().isOk());
+
+        then(storageService).should().store(fileCei);
     }
 
     @Test

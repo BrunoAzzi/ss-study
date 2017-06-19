@@ -25,6 +25,7 @@
 # Maven
 log/
 target/
+/upload-dir/
 
 # MariaDB
 mariadb/

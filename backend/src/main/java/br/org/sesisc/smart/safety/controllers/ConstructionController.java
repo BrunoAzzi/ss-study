@@ -29,19 +29,7 @@ public class ConstructionController {
     StorageService storageService;
 
     @RequestMapping(value ="/constructions",method = RequestMethod.POST)
-    public ResponseEntity<?> create(@Valid final Construction cParams, @RequestParam(value = "logo") final MultipartFile logo,
-                                    @RequestParam(value = "highlight") final MultipartFile highlight, Errors errors) {
-
-        if (logo != null) {
-            storageService.store(logo);
-            cParams.setLogoUrl(logo.getOriginalFilename());
-
-        }
-
-        if(highlight != null) {
-            storageService.store(highlight);
-            cParams.setHighlightUrl(highlight.getOriginalFilename());
-        }
+    public ResponseEntity<?> create(@RequestBody @Valid final Construction cParams, Errors errors) {
 
         if (errors.hasErrors()) {
             return ErrorResponse.handle(errors, HttpStatus.UNPROCESSABLE_ENTITY);
@@ -56,19 +44,22 @@ public class ConstructionController {
         );
     }
 
-    @RequestMapping(value ="/constructions/{constructionId}", method = RequestMethod.PUT)
-    public ResponseEntity<?> update(@PathVariable long constructionId, @RequestBody final Construction cParams,Errors errors) {
-        if (errors.hasErrors()) {
-            return ErrorResponse.handle(errors, HttpStatus.UNPROCESSABLE_ENTITY);
-        }
+    @RequestMapping(value = "/constructions/{id}/upload/logo", method = RequestMethod.PUT)
+    public ResponseEntity<?> uploadLogo(@PathVariable("id") long id,
+                                        @RequestParam("logo") MultipartFile logo) {
 
-        Construction construction = serviceConstruction.findById(constructionId);
+        Construction construction = serviceConstruction.findById(id);
 
-        if (construction != null) {
-            construction = cParams;
-            construction.setId(constructionId);
-            serviceConstruction.update(constructionId,new String[] {"name","cep","address","status","description","highlight_url","logo_url","cei_url","cei_code"},new Object[] {cParams.getName(),cParams.getCep(),cParams.getAddress(),cParams.getStatus(), cParams.getDescription(),
-                    cParams.getHighlightUrl(), cParams.getLogoUrl(),cParams.getCeiUrl(),cParams.getCeiCode()});
+        if (construction != null
+                && logo != null
+                && ("image/png".equals(logo.getContentType())
+                || "image/jpeg".equals(logo.getContentType()))) {
+            storageService.store(logo);
+            serviceConstruction.update(id,new String[] {"logo_url"},new Object[] {logo.getName()});
+            System.out.println("Name: "+logo.getName());
+            System.out.println("Content Type: "+logo.getContentType());
+        } else {
+            return ErrorResponse.handle("Incompatible file.", getClass(), HttpStatus.UNPROCESSABLE_ENTITY);
         }
 
         return SuccessResponse.handle(
@@ -78,5 +69,49 @@ public class ConstructionController {
         );
     }
 
+    @RequestMapping(value = "/constructions/{id}/upload/cei", method = RequestMethod.PUT)
+    public ResponseEntity<?> uploadCei(@PathVariable("id") long id,
+                                        @RequestParam("cei") MultipartFile cei) {
+
+        Construction construction = serviceConstruction.findById(id);
+
+        if (construction != null
+                && cei != null
+                && "application/pdf".equals(cei.getContentType())) {
+            storageService.store(cei);
+            serviceConstruction.update(id,new String[] {"cei_url"},new Object[] {cei.getName()});
+        } else {
+            return ErrorResponse.handle("Incompatible file.", getClass(), HttpStatus.UNPROCESSABLE_ENTITY);
+        }
+
+        return SuccessResponse.handle(
+                new String[] {"construction"},
+                new Object[] {construction},
+                HttpStatus.OK
+        );
+    }
+
+    @RequestMapping(value ="/constructions/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<?> update(@PathVariable("id") long id, @RequestBody final Construction cParams,Errors errors) {
+
+        if (errors.hasErrors()) {
+            return ErrorResponse.handle(errors, HttpStatus.UNPROCESSABLE_ENTITY);
+        }
+
+        Construction construction = serviceConstruction.findById(id);
+
+        if (construction != null) {
+            construction = cParams;
+            construction.setId(id);
+            serviceConstruction.update(id,new String[] {"name","cep","address","status","description","highlight_url","logo_url","cei_url","cei_code"},new Object[] {cParams.getName(),cParams.getCep(),cParams.getAddress(),cParams.getStatus(), cParams.getDescription(),
+                    cParams.getHighlightUrl(), cParams.getLogoUrl(),cParams.getCeiUrl(),cParams.getCeiCode()});
+        }
+
+        return SuccessResponse.handle(
+                new String[] {"construction"},
+                new Object[] {construction},
+                HttpStatus.OK
+        );
+    }
 
 }

@@ -26,6 +26,10 @@ public class BaseControllerTest_IT {
             MediaType.APPLICATION_JSON.getSubtype(),
             Charset.forName("utf8"));
 
+    protected MediaType contentTypeMultiPart = new MediaType(MediaType.MULTIPART_FORM_DATA.getType(),
+            MediaType.MULTIPART_FORM_DATA.getSubtype(),
+            Charset.forName("utf8"));
+
     protected MockMvc mockMvc;
 
     protected final String VALID_EMAIL = "admin@test.com"; // Email that will be saved for signIn tests.

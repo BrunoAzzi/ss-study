@@ -5,6 +5,8 @@ import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Date;
+
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
@@ -19,7 +21,8 @@ public class StorageServiceImpl implements StorageService {
     @Override
     public void store(MultipartFile file){
         try {
-            Files.copy(file.getInputStream(), this.rootLocation.resolve(file.getOriginalFilename()));
+            Date date = new Date();
+            Files.copy(file.getInputStream(), this.rootLocation.resolve(String.valueOf(date.getTime())));
         } catch (Exception e) {
             throw new RuntimeException("FAIL!");
         }
