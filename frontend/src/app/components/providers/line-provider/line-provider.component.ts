@@ -16,7 +16,6 @@ export class LineProviderDetailComponent {
     ) { }
 
     redirectTo(url) {
-        console.log(url)
         this.router.navigate([url], { relativeTo: this.activatedRoute });
     }
 }
