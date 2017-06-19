@@ -5,48 +5,36 @@
 
     <div class="column">
         <div id="last-alerts">
-            <safety-card>
+            <safety-card toggleDisable>
                 <safety-card-header>
                     <span>Situação da Obra</span>
                 </safety-card-header>
                 <safety-card-content>
                     <div class="scrollable">
-                            <ul>
-                                <list-cell *ngFor="let alert of lastAlerts" 
-                                            text="{{alert.text}}" 
-                                            time="{{alert.time}}" 
-                                            icon="{{alert.icon}}" >
-                                </list-cell>
-                            </ul>
+                        <section-list [sections]=lastAlerts></section-list>
                     </div>
                 </safety-card-content>
             </safety-card>
         </div>
 
         <div id="constructions-status">
-            <constructions-status></constructions-status>
+            <constructions-status status="4"></constructions-status>
         </div>
         
         <div id="workers">
-            <workers-overview></workers-overview>
+            <workers-overview [results]=workers.results [total]=workers.total></workers-overview>
         </div>
     </div>
     
     <div class="column">
         <div id="forthcoming-maturities">
-            <safety-card>
+            <safety-card toggleDisable>
                 <safety-card-header>
                     <span>Próximos Vencimentos</span>
                 </safety-card-header>
                 <safety-card-content>
                     <div class="scrollable">
-                            <ul>
-                                <list-cell *ngFor="let maturity of forthcomingMaturities"  
-                                            text="{{maturity.text}}"
-                                            icon="{{maturity.icon}}"
-                                            display="right" >
-                                </list-cell>
-                            </ul>
+                        <section-list [sections]=forthcomingMaturities></section-list>
                     </div>
                 </safety-card-content>
             </safety-card>
@@ -55,25 +43,20 @@
     
     <div class="column">
         <div id="forthcoming-trainings">
-            <safety-card>
+            <safety-card toggleDisable>
                 <safety-card-header>
                     <span>Próximos Treinamentos</span>
                 </safety-card-header>
                 <safety-card-content>
                     <div class="scrollable">
-                            <ul>
-                                <list-cell *ngFor="let training of forthcomingTrainings" 
-                                            text="{{training.text}}"
-                                            display="none">
-                                </list-cell>
-                            </ul>
+                        <section-list [sections]=forthcomingTrainings></section-list>
                     </div>
                 </safety-card-content>
             </safety-card>
         </div>
         
         <div id="tasks">
-            <safety-card>
+            <safety-card toggleDisable>
                 <safety-card-header>
                     <span>Tarefas</span>
                 </safety-card-header>

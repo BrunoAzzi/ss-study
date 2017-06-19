@@ -1,3 +1,4 @@
+import { SectionListComponent } from './components/common/section-list/section-list.component';
 import { ChecklistCellComponent } from './components/common/checklist-cell/checklist-cell.component';
 import { ListCellComponent } from './components/common/list-cell/list-cell.component';
 import { OverviewComponent } from './views/constructions/detail/overview/overview.component';
@@ -164,6 +165,7 @@ import { AlertsTabItemComponent } from './components/area-monitoring/alerts-tab-
         RiskGraphComponent,
         WorkersOverviewComponent,
         ListCellComponent,
+        SectionListComponent,
         ChecklistCellComponent,
         ConstructionsStatusComponent,
         FloorsSummaryComponent,

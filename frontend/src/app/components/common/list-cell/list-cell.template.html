@@ -1,4 +1,4 @@
 <li class="{{display}}">
-    <img src="{{icon}}">
+    <img *ngIf="icon != ''" src="{{icon}}">
     <span> {{text}} {{time}} </span>
 </li>

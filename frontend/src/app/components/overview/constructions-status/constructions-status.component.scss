@@ -16,11 +16,29 @@ md-card.custom-header {
 
 .mat-card-content {
     display: flex;
+    align-items: center;
 
     .bars {
+        position: relative;
         width: 65%;
         margin-right: 15px;
-        background-color: gray;
+        
+        #background {
+            width: 100%;
+        }
+
+        #arrow {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 29.5%;
+            bottom: -18px;
+            width: 30%;
+            height: 60%;
+            display: block;
+            margin: auto;
+            transform-origin: 100% 100%;
+        }
     }
 
     span {
@@ -46,27 +64,63 @@ md-card.custom-header {
 }
 
 .very-bad {
-    background-color: $very-bad;
+    md-toolbar {
+        background-color: $very-bad;
+    }
+
+    #arrow {
+        transform: rotate(-70deg) translate(50%, 0%);
+    }
 }
 
 .bad {
-    background-color: $bad;
+    md-toolbar {
+        background-color: $bad;
+    }
+
+    #arrow {
+        transform: rotate(-40deg) translate(50%, 0%);
+    }
 }
 
 .bad-medium {
-    background-color: $bad-medium;
+    md-toolbar {
+        background-color: $bad-medium;
+    }
+
+    #arrow {
+        transform: rotate(-10deg) translate(50%, 0%);
+    }
 }
 
 .good-medium {
-    background-color: $good-medium;
+    md-toolbar {
+        background-color: $good-medium;
+    }
+
+    #arrow {
+        transform: rotate(15deg) translate(50%, 0%);
+    }
 }
 
 .good {
-    background-color: $good;
+    md-toolbar {
+        background-color: $good;
+    }
+
+    #arrow {
+        transform: rotate(40deg) translate(50%, 0%);
+    }
 }
 
 .very-good {
-    background-color: $very-good;
+    md-toolbar {
+        background-color: $very-good;
+    }
+
+    #arrow {
+        transform: rotate(70deg) translate(50%, 0%);
+    }
 }
 
 :host /deep/ md-toolbar-row {

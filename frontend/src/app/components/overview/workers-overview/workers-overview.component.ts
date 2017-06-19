@@ -7,6 +7,6 @@ import { Component, Input } from '@angular/core';
     templateUrl: 'workers-overview.template.html',
 })
 export class WorkersOverviewComponent {
-    results = new EmotionalResult(20, 76, 34, 250, 20);
-    total: number = 360;
+    @Input() results : EmotionalResult;
+    @Input() total: number = 0;
 }
