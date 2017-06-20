@@ -3,6 +3,7 @@ package br.org.sesisc.smart.safety.controllers;
 import br.org.sesisc.smart.safety.common.ManagerType;
 import br.org.sesisc.smart.safety.models.Construction;
 import br.org.sesisc.smart.safety.models.Manager;
+import br.org.sesisc.smart.safety.models.enums.ConstructionStatus;
 import br.org.sesisc.smart.safety.service.StorageService;
 import com.google.gson.Gson;
 import org.json.JSONObject;
@@ -35,7 +36,7 @@ public class ConstructionControllerTest_IT extends BaseControllerTest_IT {
 
         MvcResult result = mockMvc.perform(post("/constructions")
                 .content(getConstructionRequestJson("name - test","cep - test","address - test",
-                        "status - test", "description - test","highlightUrl - test",
+                        ConstructionStatus.IN_PROGRESS.getValue(), "description - test",
                         "logoUrl - test","ceiUrl - test","ceiCode - test"))
                 .contentType(contentType))
                 .andExpect(status().isCreated())
@@ -93,7 +94,7 @@ public class ConstructionControllerTest_IT extends BaseControllerTest_IT {
     public void registerConstruction_whenNameConstructionIsEmpty() throws Exception {
         MvcResult result = mockMvc.perform(post("/constructions")
                 .content(getConstructionRequestJson("","cep - test","address - test",
-                        "status - test", "description - test","highlightUrl - test",
+                        ConstructionStatus.IN_PROGRESS.getValue(), "description - test",
                         "logoUrl - test","ceiUrl - test","ceiCode - test"))
                 .contentType(contentType))
                 .andExpect(status().isUnprocessableEntity())
@@ -112,7 +113,7 @@ public class ConstructionControllerTest_IT extends BaseControllerTest_IT {
     public void registerConstruction_whenStatusConstructionIsEmpty() throws Exception {
         MvcResult result = mockMvc.perform(post("/constructions")
                 .content(getConstructionRequestJson("name - test","cep - test","address - test",
-                        "", "description - test","highlightUrl - test",
+                        1, "description - test",
                         "logoUrl - test","ceiUrl - test","ceiCode - test"))
                 .contentType(contentType))
                 .andExpect(status().isUnprocessableEntity())
@@ -131,7 +132,7 @@ public class ConstructionControllerTest_IT extends BaseControllerTest_IT {
     public void updateConstruction_whenAllMandatoryDataAreValid() throws Exception {
         mockMvc.perform(put("/constructions/1")
                 .content(getConstructionRequestJson("name - test","cep - test","address - test",
-                        "", "description - test","highlightUrl - test",
+                        1, "description - test",
                         "logoUrl - test","ceiUrl - test","ceiCode - test"))
                 .contentType(contentType))
                 .andExpect(status().isOk())
@@ -139,7 +140,7 @@ public class ConstructionControllerTest_IT extends BaseControllerTest_IT {
 
         MvcResult result = mockMvc.perform(put("/constructions/1")
                 .content(getConstructionRequestJson("new name - test","cep - test","address - test",
-                        "", "description - test","highlightUrl - test",
+                        ConstructionStatus.IN_PROGRESS.getValue(), "description - test",
                         "logoUrl - test","ceiUrl - test","ceiCode - test"))
                 .contentType(contentType))
                 .andExpect(status().isOk())
@@ -155,10 +156,10 @@ public class ConstructionControllerTest_IT extends BaseControllerTest_IT {
                 "new name - test",constructionName);
     }
 
-    private String getConstructionRequestJson(String name, String cep, String address, String status,
-                                                String description, String highlightUrl, String logoUrl, String ceiUrl,
+    private String getConstructionRequestJson(String name, String cep, String address, int status,
+                                                String description, String logoUrl, String ceiUrl,
                                                 String ceiCode) {
-        Construction construction = new Construction(name, cep, address, status, description, highlightUrl, logoUrl, ceiUrl, ceiCode);
+        Construction construction = new Construction(name, cep, address, status, description, logoUrl, ceiUrl, ceiCode);
 
         Gson gson = new Gson();
         String requestJson = gson.toJson(construction);

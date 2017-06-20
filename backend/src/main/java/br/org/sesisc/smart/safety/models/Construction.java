@@ -1,9 +1,59 @@
 package br.org.sesisc.smart.safety.models;
 
+import br.org.sesisc.smart.safety.models.enums.ConstructionStatus;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 public class Construction {
+
+    public Construction() {
+
+    }
+
+    public Construction(
+            String name,
+            String cep,
+            String address,
+            ConstructionStatus status,
+            String description,
+            String logoUrl,
+            String ceiUrl,
+            String ceiCode
+    ) {
+        this.name = name;
+        this.cep = cep;
+        this.address = address;
+        this.status = status;
+        this.description = description;
+        this.logoUrl = logoUrl;
+        this.ceiUrl = ceiUrl;
+        this.ceiCode = ceiCode;
+    }
+
+    public Construction(
+            String name,
+            String cep,
+            String address,
+            int status,
+            String description,
+            String logoUrl,
+            String ceiUrl,
+            String ceiCode
+    ) {
+        this.name = name;
+        this.cep = cep;
+        this.address = address;
+        this.status = ConstructionStatus.fromInt(status);
+        this.description = description;
+        this.logoUrl = logoUrl;
+        this.ceiUrl = ceiUrl;
+        this.ceiCode = ceiCode;
+    }
+
+    /**
+     * Properties
+     */
 
     private Long id;
 
@@ -16,12 +66,9 @@ public class Construction {
     private String address;
 
     @NotNull(message="Status é um campo obrigatório.")
-    @Pattern(message="Status é um campo obrigatório.", regexp = "^(?!\\s*$).+")
-    private String status;
+    private ConstructionStatus status;
 
     private String description;
-
-    private String highlightUrl;
 
     private String logoUrl;
 
@@ -29,22 +76,9 @@ public class Construction {
 
     private String ceiCode;
 
-    public Construction() {
-
-    }
-
-    public Construction(String name, String cep, String address, String status, String description,
-    String highlightUrl, String logoUrl, String ceiUrl, String ceiCode) {
-        this.name = name;
-        this.cep = cep;
-        this.address = address;
-        this.status = status;
-        this.description = description;
-        this.highlightUrl = highlightUrl;
-        this.logoUrl = logoUrl;
-        this.ceiUrl = ceiUrl;
-        this.ceiCode = ceiCode;
-    }
+    /**
+     * Getters & Setters
+     */
 
     public Long getId() {
         return id;
@@ -78,12 +112,20 @@ public class Construction {
         this.address = address;
     }
 
-    public String getStatus() {
+    public ConstructionStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public int getStatusValue() {
+        return status.getValue();
+    }
+
+    public void setStatus(ConstructionStatus status) {
         this.status = status;
+    }
+
+    public void setStatus(int status) {
+        this.status = ConstructionStatus.fromInt(status);
     }
 
     public String getDescription() {
@@ -92,14 +134,6 @@ public class Construction {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getHighlightUrl() {
-        return highlightUrl;
-    }
-
-    public void setHighlightUrl(String highlightUrl) {
-        this.highlightUrl = highlightUrl;
     }
 
     public String getLogoUrl() {
@@ -125,4 +159,10 @@ public class Construction {
     public void setCeiCode(String ceiCode) {
         this.ceiCode = ceiCode;
     }
+
+    /*
+     * Actions
+     */
+
+
 }
