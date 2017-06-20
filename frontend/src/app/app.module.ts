@@ -53,7 +53,6 @@ import { BoxMessageComponent } from './components/common/box-message/box-message
 import { BlueprintComponent } from './components/blueprint/blueprint.component';
 import { ToolboxComponent } from './components/toolbox/toolbox.component';
 
-import { ThirdPartiesComponent } from './views/thirdparties/thirdparties.component';
 import { PPEComponent } from "./views/ppe/ppe.component";
 import { ReportsComponent } from "./views/reports/reports.component";
 import { RepositoriesComponent } from "./views/repositories/repositories.component";
@@ -272,7 +271,7 @@ import { AlertsTabItemComponent } from './components/area-monitoring/alerts-tab-
 
         // Mocks
         InMemoryWebApiModule.forRoot(InMemoryDataService, { passThruUnknownUrl: true }),
-        
+
         // File Drop
         Ng2FileDropModule,
 

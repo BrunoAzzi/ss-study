@@ -13,9 +13,16 @@ export interface IConstruction {
 export class Construction implements IConstruction {
     id: number
 
-    status: string
-    image: string
-    title: string
+    name: string;
+    cep: string;
+    city: string;
+    cei: string;
+    logo: any;
+    featured: any;
+
+    status: string;
+    image: string;
+    title: string;
 
     description: string
 
@@ -24,7 +31,7 @@ export class Construction implements IConstruction {
 
     sectors: Array<Sector>
 
-    constructor(data: IConstruction) {
+    public setConstruction(data: IConstruction) {
         this.id = data.id
 		this.status = data.status
 		this.image = data.image
@@ -32,5 +39,9 @@ export class Construction implements IConstruction {
 		this.address = data.address
 		this.sponsor = data.sponsor
         this.sectors = data.sectors ? data.sectors.map(sector => new Sector(sector, this)) : []
+    }
+
+    public toJson() {
+        return JSON.stringify(this);
     }
 }

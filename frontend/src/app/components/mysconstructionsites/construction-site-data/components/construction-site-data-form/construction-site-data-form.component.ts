@@ -1,7 +1,7 @@
+import { Construction } from './../../../../../models/construction.model';
+import { ConstructionsService } from './../../../../../services/constructions.service';
 import {Component, EventEmitter, Output} from '@angular/core';
 import {NgForm} from '@angular/forms';
-import {ConstructionSiteService} from '../../../../../services/construction-site/construction-site.service';
-import {ConstructionSite} from '../../../../../models/construction-site.model';
 import {MdSnackBar} from '@angular/material';
 
 @Component({
@@ -15,7 +15,7 @@ export class ConstructionSiteDataFormComponent {
     logo: any;
     featured: any;
 
-    constructor(private service: ConstructionSiteService, public snackBar: MdSnackBar) {
+    constructor(private service: ConstructionsService, public snackBar: MdSnackBar) {
     }
 
     //noinspection JSMethodCanBeStatic
@@ -42,15 +42,15 @@ export class ConstructionSiteDataFormComponent {
     }
 
     save(f: NgForm) {
-        const constructionSite = Object.assign(
-            new ConstructionSite(),
+        const construction = Object.assign(
+            new Construction(),
             {
                 ...f.value,
                 logo: this.logo,
                 featured: this.featured
             }
         );
-        this.service.saveConstructionSite(constructionSite)
+        this.service.saveConstructionSite(construction)
             .then(() => this.onShowNext.emit())
             .catch(() => this.snackBar.open('Falha ao salvar os dados da obra!', null, {duration: 3000}));
     }
