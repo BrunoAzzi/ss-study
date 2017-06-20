@@ -22,7 +22,7 @@ export class AreaMonitoringComponent implements OnInit {
     constructor() {}
 
     ngOnInit() {
-        this.currentFloor = this.currentFloor || this.construction.floors[0]
+        this.currentFloor = this.currentFloor || this.construction.sectors[0].floors[0]
     }
 
     onFloorChanged(floor : Floor) {

@@ -1,4 +1,5 @@
 .workbench {
+    height: 100%;
     display: flex;
     flex-direction: row;
     align-items: stretch;
@@ -18,9 +19,18 @@
         display: flex;
         flex-direction: column;
 
+        floors-summary {
+            flex-grow: 0;
+            flex-shrink: 0;
+        }
+
         blueprint {
             flex-grow: 1;
             position: relative;
         }
     }
+}
+
+/deep/ .leaflet-popup-close-button  {
+    display: none;
 }

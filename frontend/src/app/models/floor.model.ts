@@ -1,41 +1,46 @@
-import { Section } from './section.model';
-import { Alert } from './alert.model';
-import { Marker } from './marker.model';
+import { Sector } from './sector.model'
+import { Alert } from './alert.model'
+import { Marker } from './marker.model'
 
 export interface IFloor {
-    id: number;
-    name: string;
-    acronym: string;
-    bounds: [number, number][];
-    imagePath: string;
-    sectionName: string;
-    conesNumber(): number;
-    workersNumber(): number;
-    alertsNumber(): number;
+    id: number
+    name: string
+    acronym: string
+    bounds: [number, number][]
+    imagePath: string
+    sectionName: string
+    sector: Sector
+    markers: Array<any>
+    conesNumber(): number
+    workersNumber(): number
+    alertsNumber(): number
 }
 
 export class Floor implements IFloor {
 
-    id: number;
-    name: string;
-    acronym: string;
-    sectionName: string;
+    id: number
+    name: string
+    acronym: string
+    sectionName: string
 
-    bounds: [number, number][];
-    imagePath: string;
+    bounds: [number, number][]
+    imagePath: string
 
-    coordinates: Array<Marker> = [];
+    markers: Array<Marker> = []
     alerts: Array<Alert> = []
-    section: Section;
+    sector: Sector
 
-    constructor(data: IFloor) {
+    constructor(data: IFloor, parentSector: Sector) {
+
         this.id = data.id
-        this.name = data.name;
-        this.acronym = data.acronym;
-        this.bounds = data.bounds;
-        this.imagePath = data.imagePath;
+        this.name = data.name
+        this.acronym = data.acronym
+        
+        this.bounds = data.bounds
+        this.imagePath = data.imagePath
+        this.sector = parentSector
 
-        this.sectionName = (this.id % 2 > 0) ? "Torre 1" : "Área Comum"
+        // this.markers = data.markers.map(marker => new Marker(marker))
 
         this.alerts = [
             new Alert({ type: "WRONG_ACCESS", cone: "12842", worker: "Rodrigo Vicente", time: "10:10" }),
@@ -47,18 +52,18 @@ export class Floor implements IFloor {
     }
 
     conesNumber(): number {
-        return this.coordinates.filter((coordinate) => {
+        return this.markers.filter((coordinate) => {
             return coordinate.type === "checkpoint"
-        }).length;
+        }).length
     }
 
     workersNumber(): number {
-        return this.coordinates.filter((coordinate) => {
+        return this.markers.filter((coordinate) => {
             return coordinate.type === "worker"
-        }).length;
+        }).length
     }
 
     alertsNumber(): number {
-        return this.alerts.length;
+        return this.alerts.length
     }
 }
