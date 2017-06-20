@@ -31,9 +31,11 @@ export class Floor implements IFloor {
     sector: Sector
 
     constructor(data: IFloor, parentSector: Sector) {
+
         this.id = data.id
         this.name = data.name
         this.acronym = data.acronym
+        
         this.bounds = data.bounds
         this.imagePath = data.imagePath
         this.sector = parentSector
