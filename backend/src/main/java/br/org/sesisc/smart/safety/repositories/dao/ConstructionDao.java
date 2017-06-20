@@ -70,34 +70,13 @@ public class ConstructionDao implements ConstructionRepository {
     }
 
     @Override
-    public Construction update(long id, final Construction cParams) {
-        String sql = "UPDATE constructions SET";
-        String[] properties = {"name","cep","address","status","description","highlight_url","logo_url","cei_url","cei_code"};
-        Object[] values = {cParams.getName(),cParams.getCep(),cParams.getAddress(),cParams.getStatus(), cParams.getDescription(),
-                cParams.getHighlightUrl(), cParams.getLogoUrl(),cParams.getCeiUrl(),cParams.getCeiCode()};
-        if (properties.length == values.length) {
-            List<String> assignments = new ArrayList<>();
-            for (String property : properties) {
-                assignments.add(String.format("%s = ?", property));
-            }
-            sql = String.format("%s %s WHERE id = ?", sql, String.join(", ", assignments));
-
-            final Object[] valuesWithId = Arrays.copyOf(values, values.length + 1);
-            valuesWithId[values.length] = id;
-
-            jdbcTemplate.update(sql, valuesWithId);
-        }
-        return (Construction) findById(id);
-    }
-
-    @Override
     public List<Construction> findAll() {
         return null;
     }
 
     @Override
-    public Object findById(long id) {
-        return jdbcTemplate.queryForObject("SELECT * FROM constructions WHERE id = ?", new Object[] { id }, new ConstructionMapper());
+    public Construction findById(long id) {
+        return (Construction) jdbcTemplate.queryForObject("SELECT * FROM constructions WHERE id = ?", new Object[] { id }, new ConstructionMapper());
     }
 
     @Override

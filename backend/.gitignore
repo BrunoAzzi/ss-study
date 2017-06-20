@@ -4,6 +4,9 @@
 
 # Log file
 *.log
+*.png
+*.jpg
+*.jpeg
 
 # Eclipse
 .project

@@ -1,6 +1,5 @@
 package br.org.sesisc.smart.safety.controllers;
 
-import br.org.sesisc.smart.safety.models.Construction;
 import com.google.gson.Gson;
 import org.apache.log4j.Logger;
 import org.junit.Before;
@@ -25,6 +24,10 @@ public class BaseControllerTest_IT {
 
     protected MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(),
             MediaType.APPLICATION_JSON.getSubtype(),
+            Charset.forName("utf8"));
+
+    protected MediaType contentTypeMultiPart = new MediaType(MediaType.MULTIPART_FORM_DATA.getType(),
+            MediaType.MULTIPART_FORM_DATA.getSubtype(),
             Charset.forName("utf8"));
 
     protected MockMvc mockMvc;
