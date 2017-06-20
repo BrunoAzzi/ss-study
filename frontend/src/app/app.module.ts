@@ -1,5 +1,9 @@
-import { ConstructionsLandingPageComponent } from './components/landing-page/landing-page.component';
+import { SectionListComponent } from './components/common/section-list/section-list.component';
+import { ChecklistCellComponent } from './components/common/checklist-cell/checklist-cell.component';
+import { ListCellComponent } from './components/common/list-cell/list-cell.component';
+import { OverviewComponent } from './views/constructions/detail/overview/overview.component';
 import { ConstructionDetailComponent } from './views/constructions/detail/construction-detail.component';
+import { ConstructionsLandingPageComponent } from './components/landing-page/landing-page.component';
 import { ConstructionResolver } from './resolves/construction.resolver';
 import { ConstructionsService } from './services/constructions.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -51,16 +55,27 @@ import { ToolboxComponent } from './components/toolbox/toolbox.component';
 import { PPEComponent } from "./views/ppe/ppe.component";
 import { ReportsComponent } from "./views/reports/reports.component";
 import { RepositoriesComponent } from "./views/repositories/repositories.component";
-import { ThirdPartiesComponent } from "./views/thirdparties/thirdparties.component";
 import { TrainingComponent } from "./views/training/training.component";
+
+//Worker
 import { WorkersComponent } from "./views/workers/workers.component";
+import { WorkerListComponent } from "./views/workers/list/list.component";
+import { LineWorkerDetailComponent } from "./components/workers/line-worker-detail/line-worker-detail.component";
+
 import { MonitoringComponent } from './views/constructions/detail/monitoring/monitoring.component';
 import { AreaMappingComponent, ContentElementDialog } from './components/area-mapping/area-mapping.component';
 import { AreaMonitoringComponent } from './components/area-monitoring/area-monitoring.component';
 import { SummaryItemComponent } from './components/summary-item/summary-item.component';
 import { SummaryComponent } from './components/summary/summary.component';
 import { RiskGraphComponent } from './components/area-monitoring/risk-graph/risk-graph.component';
+import { WorkersOverviewComponent } from './components/overview/workers-overview/workers-overview.component';
+import { ConstructionsStatusComponent } from './components/overview/constructions-status/constructions-status.component';
 import { FloorsSummaryComponent } from './components/floors-summary/floors-summary.component';
+
+// Suppliers
+import { SupplierListComponent } from "./views/suppliers/list/list.component";
+import { SupplierFormComponent } from "./views/suppliers/form/form.component";
+import { LineSupplierDetailComponent } from "./components/suppliers/line-supplier/line-supplier.component";
 
 // Painel Emocional
 import { EmotionalPanelComponent } from './views/constructions/detail/emotional-panel/emotional-panel.component';
@@ -74,7 +89,7 @@ import { LoginComponent } from "./views/login/login.component";
 import { PasswordRecoveryComponent } from "./views/password-recovery/password-recovery.component";
 import { PasswordUpdateComponent } from "./views/password-update/password-update.component";
 
-import { BasicTopnavbarLayout } from './components/common/layouts/basic-topnavbar/basic-topnavbar.component';
+import { BasicTopNavBarLayout } from './components/common/layouts/basic-topnavbar/basic-topnavbar.component';
 
 import { BlankComponent } from "./components/common/layouts/blank/blank.component";
 import { BasicComponent } from "./components/common/layouts/basic/basic.component";
@@ -134,9 +149,13 @@ import { AlertsTabItemComponent } from './components/area-monitoring/alerts-tab-
         PPEComponent,
         ReportsComponent,
         RepositoriesComponent,
-        ThirdPartiesComponent,
         TrainingComponent,
+
+        // Worker
         WorkersComponent,
+        WorkerListComponent,
+        LineWorkerDetailComponent,
+
         LoginComponent,
         PasswordRecoveryComponent,
         PasswordUpdateComponent,
@@ -147,6 +166,7 @@ import { AlertsTabItemComponent } from './components/area-monitoring/alerts-tab-
         SecurityWorksComponent,
         BoxMessageComponent,
         MonitoringComponent,
+        OverviewComponent,
         BlueprintComponent,
         ToolboxComponent,
         AreaMappingComponent,
@@ -154,13 +174,23 @@ import { AlertsTabItemComponent } from './components/area-monitoring/alerts-tab-
         SummaryItemComponent,
         SummaryComponent,
         RiskGraphComponent,
+        WorkersOverviewComponent,
+        ListCellComponent,
+        SectionListComponent,
+        ChecklistCellComponent,
+        ConstructionsStatusComponent,
         FloorsSummaryComponent,
         ContentElementDialog,
+
+        // Suppliers
+        SupplierListComponent,
+        LineSupplierDetailComponent,
+        SupplierFormComponent,
 
         // Layouts
         BlankComponent,
         BasicComponent,
-        BasicTopnavbarLayout,
+        BasicTopNavBarLayout,
 
         // Painel Emocional
         EmotionalPanelComponent,

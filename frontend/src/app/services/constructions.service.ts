@@ -18,7 +18,6 @@ export class ConstructionsService {
             .map(response => response.json().data)
             .map(data => {
                 return this.constructions = data.map(value => {
-                    console.log(value)
                     return this.serializeConstruction(value)
                 })
             })
@@ -30,7 +29,7 @@ export class ConstructionsService {
             .map(data => this.construction = this.serializeConstruction(data))
 	}
 
-    serializeConstruction(construction : IConstruction) {
+    serializeConstruction(construction: IConstruction) {
         return new Construction(construction)
     }
 
