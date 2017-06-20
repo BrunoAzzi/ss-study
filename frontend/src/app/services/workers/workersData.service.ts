@@ -14,6 +14,9 @@ export class WorkersDataService {
         })
     }
 
+    
+   
+
      setCPF(cpfValue: string) {
         console.log(cpfValue);
         this.cpf = cpfValue;

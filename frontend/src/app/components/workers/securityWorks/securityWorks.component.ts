@@ -2,13 +2,14 @@ import {Component, Inject, Input, OnDestroy} from '@angular/core';
 import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import { CommonModule} from '@angular/common';
 import { WorkersDataService } from "../../../services/workers/workersData.service";
+import { SecurityWorksService } from "../../../services/workers/securityWorks.service";
 import { Subscription }   from 'rxjs/Subscription';
 
 @Component({
     selector: 'security-works',
     templateUrl: 'securityWorks.template.html',
     styleUrls: ['./securityWorks.component.scss'],
-    providers: [WorkersDataService]
+    providers: [SecurityWorksService]
 })
 export class SecurityWorksComponent {
      @Input() cpf: string;
@@ -17,7 +18,7 @@ export class SecurityWorksComponent {
     invalidDate: boolean = true;
 
 
-    constructor(private fb: FormBuilder, private workersService: WorkersDataService) {
+    constructor(private fb: FormBuilder, private secService: SecurityWorksService) {
         this.securityForm = this.fb.group({
             brigadistas: new FormControl('', Validators.required),
             cipeiros: new FormControl('', Validators.required),
@@ -27,34 +28,43 @@ export class SecurityWorksComponent {
     }
 
     
+    setDatawithCPF(dateRange){
+        this.secService.getSecurityWorker().subscribe(
+            (response) => {
+                this.selectedCipeiro = response.cipeiro;
+                this.selectedCipaLabor = response.laborOnCipa;
+                this.selectedBrigadista = response.brigade;
+            },
+        );
+    }
 
     brigadistas = [
-        { value: 0, viewValue: 'Sim' },
-        { value: 1, viewValue: 'Não' },
+        { value: 1, viewValue: 'Sim' },
+        { value: 2, viewValue: 'Não' },
     ];
 
-    selectedBrigadista: number = 1;
+    selectedBrigadista: number;
 
     cipeiros = [
-        { value: 0, viewValue: 'Sim' },
-        { value: 1, viewValue: 'Não' },
+        { value: 1, viewValue: 'Sim' },
+        { value: 2, viewValue: 'Não' },
     ];
 
-    selectedCipeiro: number = 1;
+    selectedCipeiro: number=2;
 
 
     laborsInCipa = [
-        { value: 0, viewValue: 'Membro Suplente' },
-        { value: 1, viewValue: 'Membro Efetivo' },
-        { value: 2, viewValue: 'Presidente' },
-        { value: 3, viewValue: 'Vice Presidente' },
-        { value: 4, viewValue: 'Secretário' },
+        { value: 1, viewValue: 'Membro Suplente' },
+        { value: 2, viewValue: 'Membro Efetivo' },
+        { value: 3, viewValue: 'Presidente' },
+        { value: 4, viewValue: 'Vice Presidente' },
+        { value: 5, viewValue: 'Secretário' },
     ];
 
-    //selectedCipaLabor: number = 5;
+    selectedCipaLabor: number;
 
     cipeiroChange(deviceValue, dateRange) {
-        if (deviceValue === 0) {
+        if (deviceValue === 1) {
             this.securityForm.controls.laborsInCipa.enable();
             this.securityForm.controls.brigadistas.enable();
             dateRange.enable();

@@ -8,6 +8,7 @@ import {Component, Input} from '@angular/core';
 
 export class DateRangeComponent {
     @Input() disabled: boolean = true;
+    
     range: any;
 
     disable() {
@@ -25,6 +26,25 @@ export class DateRangeComponent {
     getDate() {
         return this.selectedTextNormal;
     }
+
+    setDateRange(dbegin: string, dend: string): void 
+    {
+        // Set date range (today) using the setValue function
+        let dateb = new Date(dbegin);
+        let datee = new Date(dend);
+       this.selectedDateRangeNormal = {  
+            beginDate: {
+                year: dateb.getFullYear(),
+                month: dateb.getMonth() + 1,
+                day: dateb.getDate()
+            }, 
+            endDate: {
+                year: datee.getFullYear(),
+                month: datee.getMonth() + 1,
+                day: datee.getDate()
+            }
+        };
+   }
 
     myDateRangePickerOptionsNormal = {
         dateFormat: 'dd/mmm/yyyy',

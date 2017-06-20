@@ -1,0 +1,43 @@
+@import '../../../../scss/components/color.scss';
+
+:host {
+    background-color: white;
+    min-height: 50px;
+}
+
+.checkbox {
+    margin: 0 20px;
+}
+
+.supplier-info {
+    a {
+        text-decoration: none;
+    }
+
+    span {
+        font-family: Lato;
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 1.21;
+        text-align: left;
+        color: $greyish-brown-two;
+        margin: 0 5px;
+    }
+
+    .reason {
+        font-weight: bold;
+    }
+
+    .title {
+        font-weight: 500;
+    }
+}
+
+.tools {
+    margin: 0 5px;
+
+    md-icon {
+        color: $silver2;
+        font-size: 20px;
+    }
+}

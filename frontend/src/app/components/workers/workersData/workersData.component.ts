@@ -91,8 +91,8 @@ export class WorkersDataComponent {
 
 
     necessitys = [
-        { value: 0, viewValue: 'Sim' },
-        { value: 1, viewValue: 'Não' },
+        { value: 1, viewValue: 'Sim' },
+        { value: 2, viewValue: 'Não' },
     ];
     selectedNecessity: number = 1;
 

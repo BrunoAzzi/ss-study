@@ -1,4 +1,11 @@
-
+import { SectionListComponent } from './components/common/section-list/section-list.component';
+import { ChecklistCellComponent } from './components/common/checklist-cell/checklist-cell.component';
+import { ListCellComponent } from './components/common/list-cell/list-cell.component';
+import { OverviewComponent } from './views/constructions/detail/overview/overview.component';
+import { ConstructionDetailComponent } from './views/constructions/detail/construction-detail.component';
+import { ConstructionsLandingPageComponent } from './components/landing-page/landing-page.component';
+import { ConstructionResolver } from './resolves/construction.resolver';
+import { ConstructionsService } from './services/constructions.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -10,9 +17,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientService } from "./services/http-client.service";
 import { SessionsService } from "./services/sessions.service";
 import { PasswordService } from "./services/password.service";
-import { ConstructionService } from "./services/construction.service";
 import { AuthGuard } from './guards/index';
-import { MdSnackBar, MdDialogModule, MdToolbarModule, MdButtonModule } from '@angular/material';
+
+import {
+    MdSnackBar,
+    MdDialogModule,
+    MdToolbarModule,
+    MdButtonModule,
+    MdSelectModule,
+    MdInputModule,
+    MdChipsModule
+} from '@angular/material';
+
 import { CommonModule } from '@angular/common';
 
 import { AppComponent } from './app.component';
@@ -38,41 +54,46 @@ import { ToolboxComponent } from './components/toolbox/toolbox.component';
 import { BarLevelComponent } from './components/bar-level/bar-level.component';
 
 import { PPEComponent } from "./views/ppe/ppe.component";
-import { MyConstructionSitesComponent } from "./views/myconstructionsites/myconstructionsites.component";
 import { ReportsComponent } from "./views/reports/reports.component";
 import { RepositoriesComponent } from "./views/repositories/repositories.component";
-import { ThirdPartiesComponent } from "./views/thirdparties/thirdparties.component";
 import { TrainingComponent } from "./views/training/training.component";
+
+//Worker
 import { WorkersComponent } from "./views/workers/workers.component";
-import { MonitoringComponent } from './views/myconstructionsites/monitoring/monitoring.component';
+import { WorkerListComponent } from "./views/workers/list/list.component";
+import { LineWorkerDetailComponent } from "./components/workers/line-worker-detail/line-worker-detail.component";
+
+import { MonitoringComponent } from './views/constructions/detail/monitoring/monitoring.component';
 import { AreaMappingComponent, ContentElementDialog } from './components/area-mapping/area-mapping.component';
 import { AreaMonitoringComponent } from './components/area-monitoring/area-monitoring.component';
-import { SummaryItemComponent } from './components/area-monitoring/summary-item/summary-item.component';
-import { SummaryComponent } from './components/area-monitoring/summary/summary.component';
+import { SummaryItemComponent } from './components/summary-item/summary-item.component';
+import { SummaryComponent } from './components/summary/summary.component';
 import { RiskGraphComponent } from './components/area-monitoring/risk-graph/risk-graph.component';
-import { FloorNavigationComponent } from './components/area-monitoring/floor-navigation/floor-navigation.component';
+import { WorkersOverviewComponent } from './components/overview/workers-overview/workers-overview.component';
+import { ConstructionsStatusComponent } from './components/overview/constructions-status/constructions-status.component';
+import { FloorsSummaryComponent } from './components/floors-summary/floors-summary.component';
+
+// Suppliers
+import { SupplierListComponent } from "./views/suppliers/list/list.component";
+import { SupplierFormComponent } from "./views/suppliers/form/form.component";
+import { LineSupplierDetailComponent } from "./components/suppliers/line-supplier/line-supplier.component";
 
 // Painel Emocional
-import { PainelEmocionalComponent } from './views/painelEmocional/painelEmocional.component';
+import { EmotionalPanelComponent } from './views/constructions/detail/emotional-panel/emotional-panel.component';
 import { CompBaseStatusDia } from "./components/perfil_emocional/comp_base/comp-base-status-dia.component";
 import { StatusDiaComponent } from "./components/perfil_emocional/status_dia/status_dia.component";
 import { StatusTrabalhadoresComponent } from "./components/perfil_emocional/status_trabalhadores/status_trabalhadores.component";
 import { StatusAnoComponent } from "./components/perfil_emocional/status_ano/status_ano.component";
 
-//Models
-
-import { Floor } from './models/floor.model';
-import { Coordinate } from './models/coordinate.model';
-
 // Layouts
-
 import { LoginComponent } from "./views/login/login.component";
 import { PasswordRecoveryComponent } from "./views/password-recovery/password-recovery.component";
 import { PasswordUpdateComponent } from "./views/password-update/password-update.component";
 
+import { BasicTopNavBarLayout } from './components/common/layouts/basic-topnavbar/basic-topnavbar.component';
+
 import { BlankComponent } from "./components/common/layouts/blank/blank.component";
 import { BasicComponent } from "./components/common/layouts/basic/basic.component";
-import { ConstructionSiteComponent } from "./components/common/layouts/construction-site/construction-site.component";
 import { TopnavbarComponent } from "./components/common/topnavbar/topnavbar.component";
 import { NavigationComponent } from "./components/common/navigation/navigation.component";
 
@@ -104,12 +125,14 @@ import { CategoryDividerModule } from "./components/common/category-divider";
 import { FabComponent } from "./components/common/floating-action-button/fab.component";
 
 import { InputFile } from "./components/common/input-file/input-file.component";
-import { MyConstructionSitesLandingPageComponent } from './views/myconstructionsites/landing-page/my-construction-sites-landing-page.component';
-import { MyConstructionSitesShowComponent } from './views/myconstructionsites/show/my-construction-sites-show.component';
-import { MyConstructionSitesAddComponent } from './views/myconstructionsites/add/add.component';
-import { LineConstructionSiteComponent } from './components/mysconstructionsites/line-construction-site/line-construction-site.component';
-import { CardConstructionSiteComponent } from './components/mysconstructionsites/card-construction-site/card-construction-site.component';
+import { ConstructionsListComponent } from './views/constructions/list/constructions-list.component';
+import { ConstructionFormComponent } from './views/constructions/form/construction-form.component';
+import { LineConstructionDetailComponent } from './components/mysconstructionsites/line-construction-site/line-construction-site.component';
+import { CardConstructionDetailComponent } from './components/mysconstructionsites/card-construction-site/card-construction-site.component';
 import { ConstructionSiteDataComponent } from './components/mysconstructionsites/construction-site-data/construction-site-data.component';
+import { FiltersComponent } from './components/area-monitoring/filters/filters.component';
+import { AlertsTabComponent } from './components/area-monitoring/alerts-tab/alerts-tab.component';
+import { AlertsTabItemComponent } from './components/area-monitoring/alerts-tab-item/alerts-tab-item.component';
 
 @NgModule({
     declarations: [
@@ -125,12 +148,15 @@ import { ConstructionSiteDataComponent } from './components/mysconstructionsites
         AppComponent,
         CompaniesComponent,
         PPEComponent,
-        MyConstructionSitesComponent,
         ReportsComponent,
         RepositoriesComponent,
-        ThirdPartiesComponent,
         TrainingComponent,
+
+        // Worker
         WorkersComponent,
+        WorkerListComponent,
+        LineWorkerDetailComponent,
+
         LoginComponent,
         PasswordRecoveryComponent,
         PasswordUpdateComponent,
@@ -141,6 +167,7 @@ import { ConstructionSiteDataComponent } from './components/mysconstructionsites
         SecurityWorksComponent,
         BoxMessageComponent,
         MonitoringComponent,
+        OverviewComponent,
         BlueprintComponent,
         ToolboxComponent,
         BarLevelComponent,
@@ -149,17 +176,26 @@ import { ConstructionSiteDataComponent } from './components/mysconstructionsites
         SummaryItemComponent,
         SummaryComponent,
         RiskGraphComponent,
-        FloorNavigationComponent,
-
+        WorkersOverviewComponent,
+        ListCellComponent,
+        SectionListComponent,
+        ChecklistCellComponent,
+        ConstructionsStatusComponent,
+        FloorsSummaryComponent,
         ContentElementDialog,
+
+        // Suppliers
+        SupplierListComponent,
+        LineSupplierDetailComponent,
+        SupplierFormComponent,
 
         // Layouts
         BlankComponent,
         BasicComponent,
-        ConstructionSiteComponent,
+        BasicTopNavBarLayout,
 
         // Painel Emocional
-        PainelEmocionalComponent,
+        EmotionalPanelComponent,
         StatusDiaComponent,
         StatusTrabalhadoresComponent,
         StatusAnoComponent,
@@ -171,12 +207,16 @@ import { ConstructionSiteDataComponent } from './components/mysconstructionsites
         InputFile,
 
         // Obras
-        MyConstructionSitesLandingPageComponent,
-        MyConstructionSitesShowComponent,
-        MyConstructionSitesAddComponent,
-        LineConstructionSiteComponent,
-        CardConstructionSiteComponent,
+        ConstructionDetailComponent,
+        ConstructionsListComponent,
+        ConstructionFormComponent,
+        LineConstructionDetailComponent,
+        CardConstructionDetailComponent,
         ConstructionSiteDataComponent,
+        FiltersComponent,
+        ConstructionsLandingPageComponent,
+        AlertsTabComponent,
+        AlertsTabItemComponent,
     ],
     imports: [
         // Notification Module
@@ -207,7 +247,6 @@ import { ConstructionSiteDataComponent } from './components/mysconstructionsites
         // Mocks
         InMemoryWebApiModule.forRoot(InMemoryDataService, { passThruUnknownUrl: true }),
 
-
         //Calendar Range
         MyDateRangePickerModule,
 
@@ -216,6 +255,9 @@ import { ConstructionSiteDataComponent } from './components/mysconstructionsites
         MdDialogModule,
         MdToolbarModule,
         MdButtonModule,
+        MdSelectModule,
+        MdInputModule,
+        MdChipsModule,
 
         // Flex Layout
         FlexLayoutModule,
@@ -230,7 +272,8 @@ import { ConstructionSiteDataComponent } from './components/mysconstructionsites
         SessionsService,
         PasswordService,
         MdSnackBar,
-        ConstructionService,
+        ConstructionResolver,
+        ConstructionsService,
         { provide: LocationStrategy, useClass: HashLocationStrategy }],
     bootstrap: [AppComponent]
 })

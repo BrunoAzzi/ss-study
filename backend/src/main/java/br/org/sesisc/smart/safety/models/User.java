@@ -5,13 +5,10 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import java.sql.Timestamp;
-import java.util.Calendar;
-import java.util.Date;
 
 public class User {
 
-    /*
+    /**
      * Properties
      */
 
@@ -19,7 +16,7 @@ public class User {
 
     @NotNull(message="Email é um campo obrigatório.")
     @Pattern(message="Email não está no formato correto.",
-            regexp="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$")
+            regexp="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")
     private String email;
 
     @NotNull(message="Senha é um campo obrigatório.")
@@ -29,7 +26,7 @@ public class User {
     private String token;
     private String recoverPassToken;
 
-    /*
+    /**
      * Getters & Setters
      */
 
@@ -81,7 +78,7 @@ public class User {
         this.recoverPassToken = recoverPassToken;
     }
 
-    /*
+    /**
      * Actions
      */
 

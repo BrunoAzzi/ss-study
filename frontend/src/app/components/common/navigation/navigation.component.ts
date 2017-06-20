@@ -15,14 +15,14 @@ export class NavigationComponent {
 
     menuItems = {
         main: [
-            { route: 'myconstructionsites', icon: 'assets/myconstructionsites.png', label: 'Minhas Obras' },
+            { route: 'constructions', icon: 'assets/constructions.png', label: 'Minhas Obras' },
             { route: 'reports', icon: 'assets/reports.png', label: 'Relatórios' },
         ],
         setup: [
             { route: 'companies', icon: 'assets/companies.png', label: 'Empresa' },
             { route: 'workers', icon: 'assets/workers.png', label: 'Trabalhadores' },
             { route: 'epis', icon: 'assets/epis.png', label: 'EPI' },
-            { route: 'thirdparties', icon: 'assets/thirdparties.png', label: 'Fornecedores' },
+            { route: 'suppliers', icon: 'assets/thirdparties.png', label: 'Fornecedores' },
             { route: 'repositories', icon: 'assets/repositories.png', label: 'Repositório' },
             { route: 'training', icon: 'assets/training.png', label: 'Treinamentos' },
         ]

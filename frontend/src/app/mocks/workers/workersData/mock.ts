@@ -18,7 +18,7 @@ export const WORKERS_DATA = {
     cep: "88.054-300",
     completeAddress: "Florianópolis - SC, Canasvieiras, Rua das Flores",
     age: 19,
-    specialNecessity: 1,
+    specialNecessity: 2,
     status: "inativo",
     company: "Açougue do Márcio",
 };
