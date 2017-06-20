@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
-import { ConstructionSite } from "../../../mocks/construction-site/construction-site";
+import { Construction } from "../../../models/construction.model";
 
 @Component({
     selector: 'card-construction-site',
     templateUrl: './card-construction-site.template.html',
     styleUrls: ['./card-construction-site.component.scss']
 })
-export class CardConstructionSiteComponent {
-    @Input() constructionSite: ConstructionSite;
+export class CardConstructionDetailComponent {
+    @Input() constructionSite: Construction;
 }
