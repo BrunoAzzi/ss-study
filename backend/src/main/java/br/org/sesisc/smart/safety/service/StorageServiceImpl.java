@@ -19,13 +19,15 @@ public class StorageServiceImpl implements StorageService {
     private final Path rootLocation = Paths.get("upload-dir");
 
     @Override
-    public void store(MultipartFile file){
+    public String store(MultipartFile file) {
+        String fileName = null;
         try {
-            Date date = new Date();
-            Files.copy(file.getInputStream(), this.rootLocation.resolve(String.valueOf(date.getTime())));
+            fileName = String.valueOf(new Date().getTime());
+            Files.copy(file.getInputStream(), this.rootLocation.resolve(fileName));
         } catch (Exception e) {
             throw new RuntimeException("FAIL!");
         }
+        return fileName;
     }
 
     @Override

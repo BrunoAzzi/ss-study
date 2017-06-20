@@ -4,6 +4,9 @@
 
 # Log file
 *.log
+*.png
+*.jpg
+*.jpeg
 
 # Eclipse
 .project
@@ -25,7 +28,6 @@
 # Maven
 log/
 target/
-/upload-dir/
 
 # MariaDB
 mariadb/

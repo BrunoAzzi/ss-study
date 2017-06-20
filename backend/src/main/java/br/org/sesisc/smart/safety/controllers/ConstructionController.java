@@ -54,8 +54,8 @@ public class ConstructionController {
                 && logo != null
                 && ("image/png".equals(logo.getContentType())
                 || "image/jpeg".equals(logo.getContentType()))) {
-            storageService.store(logo);
-            serviceConstruction.update(id,new String[] {"logo_url"},new Object[] {logo.getName()});
+            String fileName = storageService.store(logo);
+            serviceConstruction.update(id,new String[] {"logo_url"},new Object[] {fileName});
             System.out.println("Name: "+logo.getName());
             System.out.println("Content Type: "+logo.getContentType());
         } else {
