@@ -6,7 +6,7 @@ import { Router, ActivatedRoute, NavigationEnd, Params, PRIMARY_OUTLET } from '@
     templateUrl: './basic-topnavbar.template.html',
     styleUrls: ['./basic-topnavbar.component.scss']
 })
-export class BasicTopnavbarLayout implements OnInit {
+export class BasicTopNavBarLayout implements OnInit {
     breadcrumb: string = "";
 
     constructor(private router: Router, private activatedRoute: ActivatedRoute) { }

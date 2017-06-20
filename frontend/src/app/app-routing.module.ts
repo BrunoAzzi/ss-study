@@ -10,12 +10,22 @@ import { CompaniesComponent } from "./views/companies/companies.component";
 import { PPEComponent } from "./views/ppe/ppe.component";
 import { ReportsComponent } from "./views/reports/reports.component";
 import { RepositoriesComponent } from "./views/repositories/repositories.component";
-import { ThirdPartiesComponent } from "./views/thirdparties/thirdparties.component";
 import { TrainingComponent } from "./views/training/training.component";
-import { WorkersComponent } from "./views/workers/workers.component";
 import { EmotionalPanelComponent } from './views/constructions/detail/emotional-panel/emotional-panel.component';
 import { MonitoringComponent } from './views/constructions/detail/monitoring/monitoring.component';
 import { OverviewComponent } from './views/constructions/detail/overview/overview.component';
+
+// Supplier
+import { SupplierListComponent } from "./views/suppliers/list/list.component";
+import { SupplierFormComponent } from "./views/suppliers/form/form.component";
+import { SupplierListResolver } from "./resolves/supplier-list.resolver";
+import { SupplierResolver } from "./resolves/supplier.resolver";
+import { SupplierService } from "./services/supplier.service";
+
+// Wroker
+import { WorkerListResolver } from "./resolves/worker-list.resolver";
+import { WorkerService } from "./services/worker.service";
+import { WorkerListComponent } from "./views/workers/list/list.component";
 
 import { LoginComponent } from "./views/login/login.component";
 import { PasswordRecoveryComponent } from "./views/password-recovery/password-recovery.component";
@@ -27,7 +37,7 @@ import { BasicComponent } from "./components/common/layouts/basic/basic.componen
 import { ConstructionsListComponent } from './views/constructions/list/constructions-list.component';
 import { ConstructionsListResolver } from './resolves/construction-list.resolver';
 
-import { BasicTopnavbarLayout } from './components/common/layouts/basic-topnavbar/basic-topnavbar.component';
+import { BasicTopNavBarLayout } from './components/common/layouts/basic-topnavbar/basic-topnavbar.component';
 
 const routes: Routes = [
     // Main redirect
@@ -35,21 +45,32 @@ const routes: Routes = [
 
     // App views
     {
-        path: '', component: BasicComponent,
+        path: '', component: BasicComponent, canActivate: [AuthGuard],
         children: [
             {
-                path: '', component: BasicTopnavbarLayout, children: [
-                    { path: 'companies', data: { breadcrumb: "Empresas" }, component: CompaniesComponent, canActivate: [AuthGuard] },
-                    { path: 'epis', data: { breadcrumb: "EPI's" }, component: PPEComponent, canActivate: [AuthGuard] },
-                    { path: 'reports', data: { breadcrumb: "Relatórios" }, component: ReportsComponent, canActivate: [AuthGuard] },
-                    { path: 'repositories', data: { breadcrumb: "Repositório" }, component: RepositoriesComponent, canActivate: [AuthGuard] },
-                    { path: 'thirdparties', data: { breadcrumb: "Terceiros" }, component: ThirdPartiesComponent, canActivate: [AuthGuard] },
-                    { path: 'training', data: { breadcrumb: "Treinamento" }, component: TrainingComponent, canActivate: [AuthGuard] },
-                    { path: 'workers', data: { breadcrumb: "Trabalhadores" }, component: WorkersComponent, canActivate: [AuthGuard] },
+                path: '', component: BasicTopNavBarLayout, children: [
+
+                    { path: 'companies', data: { breadcrumb: "Empresas" }, component: CompaniesComponent },
+                    { path: 'epis', data: { breadcrumb: "EPI's" }, component: PPEComponent },
+                    { path: 'reports', data: { breadcrumb: "Relatórios" }, component: ReportsComponent },
+                    { path: 'repositories', data: { breadcrumb: "Repositório" }, component: RepositoriesComponent },
+                    { path: 'training', data: { breadcrumb: "Treinamento" }, component: TrainingComponent },
                     {
-						path: 'constructions', data: { breadcrumb: "Minhas Obras" }, canActivate: [AuthGuard], children: [
-                            { path: '', pathMatch: 'prefix', data: { breadcrumb: "Minhas Obras" }, component: ConstructionsListComponent, canActivate: [AuthGuard], resolve: { constructions: ConstructionsListResolver } },
-                            { path: 'new', data: { breadcrumb: "Minhas Obras" }, component: ConstructionFormComponent, canActivate: [AuthGuard] },
+						path: 'workers', children: [
+							{ path: '', data: { breadcrumb: "Gerenciamento de Trabalhadores" }, component: WorkerListComponent, resolve: { workerList: WorkerListResolver } },
+						]
+					},
+                    {
+						path: 'suppliers', children: [
+                            { path: '', data: { breadcrumb: "Gerenciamento de Fornecedores" }, component: SupplierListComponent, resolve: { suppliers: SupplierListResolver } },
+                            { path: 'new', data: { breadcrumb: "Cadastro de Fornecedor" }, component: SupplierFormComponent },
+                            { path: ':id/edit', data: { breadcrumb: "Alteração de Fornecedor" }, component: SupplierFormComponent, resolve: { supplier: SupplierResolver } },
+						]
+					},
+                    {
+						path: 'constructions', children: [
+                            { path: '', pathMatch: 'prefix', data: { breadcrumb: "Minhas Obras" }, component: ConstructionsListComponent, resolve: { constructions: ConstructionsListResolver } },
+                            { path: 'new', data: { breadcrumb: "Minhas Obras" }, component: ConstructionFormComponent },
                         ]
                     },
                 ]
@@ -81,6 +102,14 @@ const routes: Routes = [
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule],
-    providers: [ConstructionsListResolver, ConstructionsGuard]
+    providers: [
+        ConstructionsListResolver,
+        ConstructionsGuard,
+        SupplierListResolver,
+        SupplierService,
+        SupplierResolver,
+        WorkerListResolver,
+        WorkerService,
+    ]
 })
 export class AppRoutingModule { }
