@@ -1,5 +1,9 @@
-import { ConstructionsLandingPageComponent } from './components/landing-page/landing-page.component';
+import { SectionListComponent } from './components/common/section-list/section-list.component';
+import { ChecklistCellComponent } from './components/common/checklist-cell/checklist-cell.component';
+import { ListCellComponent } from './components/common/list-cell/list-cell.component';
+import { OverviewComponent } from './views/constructions/detail/overview/overview.component';
 import { ConstructionDetailComponent } from './views/constructions/detail/construction-detail.component';
+import { ConstructionsLandingPageComponent } from './components/landing-page/landing-page.component';
 import { ConstructionResolver } from './resolves/construction.resolver';
 import { ConstructionsService } from './services/constructions.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -65,6 +69,8 @@ import { AreaMonitoringComponent } from './components/area-monitoring/area-monit
 import { SummaryItemComponent } from './components/summary-item/summary-item.component';
 import { SummaryComponent } from './components/summary/summary.component';
 import { RiskGraphComponent } from './components/area-monitoring/risk-graph/risk-graph.component';
+import { WorkersOverviewComponent } from './components/overview/workers-overview/workers-overview.component';
+import { ConstructionsStatusComponent } from './components/overview/constructions-status/constructions-status.component';
 import { FloorsSummaryComponent } from './components/floors-summary/floors-summary.component';
 
 // Suppliers
@@ -84,7 +90,7 @@ import { LoginComponent } from "./views/login/login.component";
 import { PasswordRecoveryComponent } from "./views/password-recovery/password-recovery.component";
 import { PasswordUpdateComponent } from "./views/password-update/password-update.component";
 
-import { BasicTopnavbarLayout } from './components/common/layouts/basic-topnavbar/basic-topnavbar.component';
+import { BasicTopNavBarLayout } from './components/common/layouts/basic-topnavbar/basic-topnavbar.component';
 
 import { BlankComponent } from "./components/common/layouts/blank/blank.component";
 import { BasicComponent } from "./components/common/layouts/basic/basic.component";
@@ -161,6 +167,7 @@ import { AlertsTabItemComponent } from './components/area-monitoring/alerts-tab-
         SecurityWorksComponent,
         BoxMessageComponent,
         MonitoringComponent,
+        OverviewComponent,
         BlueprintComponent,
         ToolboxComponent,
         BarLevelComponent,
@@ -169,6 +176,11 @@ import { AlertsTabItemComponent } from './components/area-monitoring/alerts-tab-
         SummaryItemComponent,
         SummaryComponent,
         RiskGraphComponent,
+        WorkersOverviewComponent,
+        ListCellComponent,
+        SectionListComponent,
+        ChecklistCellComponent,
+        ConstructionsStatusComponent,
         FloorsSummaryComponent,
         ContentElementDialog,
 
@@ -180,7 +192,7 @@ import { AlertsTabItemComponent } from './components/area-monitoring/alerts-tab-
         // Layouts
         BlankComponent,
         BasicComponent,
-        BasicTopnavbarLayout,
+        BasicTopNavBarLayout,
 
         // Painel Emocional
         EmotionalPanelComponent,
