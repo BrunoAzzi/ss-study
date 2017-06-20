@@ -35,20 +35,18 @@
                     </tr>
                 </table>
             </div>
-                 <div class = "aling-div" *ngFor="let aso of asoList" >
-                       
-                        <div>
-                            <md-select  formControlName="asoTypes" placeholder="aso" [(ngModel)]="itemSelected">
-                                <md-option *ngFor="let asoType of asoTypes" [value]="asoType.value" >
-                                    {{asoType.viewValue}}
-                                </md-option>
-                            </md-select>
-                      
-                        </div>
-                            <div *ngIf="itemSelected  != false">
-                                <asoItemComponent [itemSelected]="itemSelected"></asoItemComponent>
-                            </div>
-                    </div>
+            <div class="aling-div" *ngFor="let aso of asoList">
+                <div>
+                    <md-select formControlName="asoTypes" placeholder="aso" [(ngModel)]="itemSelected" >
+                        <md-option *ngFor="let asoType of asoTypes" [value]="asoType.value" (click)="nameParameter()">
+                            {{asoType.viewValue}}
+                        </md-option>
+                    </md-select>
+                </div>
+                <div *ngIf="itemSelected >= 0">
+                    <asoItemComponent [itemSelected]="itemSelected" [itemName]="name"></asoItemComponent>
+                </div>
+            </div>
             <div fxFill fxLayout fxLayoutAlign="start right">
                 <a class="action" (click)="addAso()">
                     Adicicionar ASO

@@ -11,8 +11,10 @@ import { IMyDpOptions } from 'mydatepicker';
 })
 export class AsoItemComponent {
     myForm: FormGroup;
-     @Input() itemSelected: number;
-    
+    @Input() itemSelected: number;
+    @Input() itemName: String;   
+
+
     myDatePickerOptions: IMyDpOptions = {
         dateFormat: 'dd/mm/yyyy',
         dayLabels: { su: 'Dom', mo: 'Seg', tu: 'Ter', we: 'Qua', th: 'Qui', fr: 'Sex', sa: 'Sab' },
@@ -20,9 +22,12 @@ export class AsoItemComponent {
         todayBtnTxt: 'Hoje'
     };
 
+
+
     constructor(private fb: FormBuilder) {
-       this.myForm = this.fb.group({
+        this.myForm = this.fb.group({
 
         })
     }
+
 }

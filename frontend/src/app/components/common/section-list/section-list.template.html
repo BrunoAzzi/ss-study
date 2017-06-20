@@ -1,0 +1,9 @@
+<ul *ngFor="let section of sections">
+    <li>{{section.title}}</li>
+    <list-cell *ngFor="let item of section.items" 
+        text="{{item.text}}" 
+        time="{{item.time}}" 
+        icon="{{item.icon}}"
+        display="{{item.display}} ? '' : null" >
+    </list-cell>
+</ul>
