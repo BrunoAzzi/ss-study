@@ -30,6 +30,7 @@ export class SafetyCardComponent {
     state: string = "active";
     private toggleIcon: string = "keyboard_arrow_up"
     @Input() isHidden: boolean = false;
+    @Input() noPadding: boolean = false;
     toggleDisabled: boolean = false;
 
     @Input()

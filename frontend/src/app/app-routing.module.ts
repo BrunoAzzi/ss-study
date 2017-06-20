@@ -70,7 +70,7 @@ const routes: Routes = [
                     {
 						path: 'constructions', children: [
                             { path: '', pathMatch: 'prefix', data: { breadcrumb: "Minhas Obras" }, component: ConstructionsListComponent, resolve: { constructions: ConstructionsListResolver } },
-                            { path: 'new', data: { breadcrumb: "Minhas Obras" }, component: ConstructionFormComponent },
+                            { path: 'new', data: { breadcrumb: "Nova Obra" }, component: ConstructionFormComponent },
                         ]
                     },
                 ]
@@ -78,7 +78,7 @@ const routes: Routes = [
             {
                 path: 'constructions/:id', component: ConstructionDetailComponent, resolve: { construction: ConstructionResolver }, children: [
                     { path: '', pathMatch: 'prefix', redirectTo: 'overview' },
-                    { path: 'overview', component: OverviewComponent, canActivate: [AuthGuard] },
+                    { path: 'overview', data: { breadcrumb: "Dashboard" }, component: OverviewComponent, canActivate: [AuthGuard] },
                     { path: 'edit', component: ConstructionFormComponent, canActivate: [AuthGuard] },
                     { path: 'monitoring', component: MonitoringComponent, canActivate: [AuthGuard] },
                     { path: 'emotional-profile', component: EmotionalPanelComponent, canActivate: [AuthGuard] },
