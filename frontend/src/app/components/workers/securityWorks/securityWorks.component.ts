@@ -43,7 +43,7 @@ export class SecurityWorksComponent {
         { value: 4, viewValue: 'Secretário' },
     ];
 
-    selectedCipaLabor: number = 5;
+    // selectedCipaLabor: number = 5;
 
     cipeiroChange(deviceValue, dateRange) {
         if (deviceValue === 0) {
@@ -61,7 +61,6 @@ export class SecurityWorksComponent {
         this.submitted = true;
         const date = dateRange.getDate();
         this.invalidDate = date === '' || date === null;
-
         if (this.securityForm.valid && this.selectedCipeiro === 0 && !this.invalidDate) {
             safetyCard.close();
         }

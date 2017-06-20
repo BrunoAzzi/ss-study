@@ -1,11 +1,12 @@
 <div class="grid-container">
-    <div class="grid-column">
 
+    <div class="grid-column">
         <div class="grid-row">
+
             <div class="grid-row-0 align-md-icons">
-                <md-icon *ngIf="skill.overdue"              class="danger">     error</md-icon>
-                <md-icon *ngIf="skill.overdue == false"     class="success">    check_circle</md-icon>
-                <md-icon *ngIf="skill.overdue == undefined" class="disabled">   panorama_fish_eye</md-icon>
+                <md-icon *ngIf="skill.overdue" class="danger"> error</md-icon>
+                <md-icon *ngIf="skill.overdue == false" class="success"> check_circle</md-icon>
+                <md-icon *ngIf="skill.overdue == undefined" class="disabled"> panorama_fish_eye</md-icon>
             </div>
             <md-select #skillName required (change)="toggleName(skillName.selected.value)"
                        placeholder="Habilitação">
@@ -17,6 +18,12 @@
                             (ngModelChange)="setValidityStart($event)"
                             placeholder="Data da Realização">
             </my-date-picker>
+
+        </div>
+    </div>
+
+    <div class="grid-column">
+        <div class="grid-row">
 
             <md-input-container>
                 <input class="periodicity" [ngModel]="skill.periodicity" min="0" mdInput type="number"
@@ -35,6 +42,7 @@
                 <input-file (onFileSelect)="onFileSelect($event)" [accept]="'.doc,.docx,.png,.pdf'"></input-file>
                 <a class="action" (click)="removeMyself()">excluir</a>
             </div>
+
         </div>
 
     </div>
