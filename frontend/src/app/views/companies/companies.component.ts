@@ -21,9 +21,5 @@ export class CompaniesComponent {
 		// this.canvas.refresh();
 		document.body.appendChild(this.canvas);
 		this.ctx = this.canvas.getContext("2d");
-
-		console.log(this.canvas);
-		console.log('event => ', $event);
-		console.log('index => ', $event.index);
     }
 }
