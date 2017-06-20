@@ -1,1 +1,6 @@
-<add-new-category (onAdd)="addNewCategory($event)"></add-new-category>
+<ul>
+    <li *ngFor="let category of categories">
+        <add-new-category (added)="addNewCategory($event)" [category]="category"></add-new-category>
+    </li>
+</ul>
+<add-new-category (added)="addNewCategory($event)"></add-new-category>

@@ -12,4 +12,7 @@ export class ManagersDataFormComponent implements OnInit {
   ngOnInit() {
   }
 
+  save(f) {
+  }
+
 }

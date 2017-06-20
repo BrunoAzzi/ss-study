@@ -15,14 +15,14 @@ const filterByString = value =>
 })
 export class CollaboratorDataFormComponent implements OnInit {
 
-    private collaborators: Array<Collaborator> = [];
-    private filteredCollaborators: Array<Collaborator> = [];
-    private selectedCollaborators: Array<Collaborator> = [];
-    private filteredSelectedCollaborators: Array<Collaborator> = [];
-    private selectedToAdd = [];
-    private selectedToRemove = [];
-    private allSearch: String = '';
-    private selectedSearch: String = '';
+    collaborators: Array<Collaborator> = [];
+    filteredCollaborators: Array<Collaborator> = [];
+    selectedCollaborators: Array<Collaborator> = [];
+    filteredSelectedCollaborators: Array<Collaborator> = [];
+    selectedToAdd = [];
+    selectedToRemove = [];
+    allSearch: String = '';
+    selectedSearch: String = '';
 
     constructor(private service: CollaboratorService) {
         service.getAllCollaborators().then(collaborators => {
@@ -76,6 +76,6 @@ export class CollaboratorDataFormComponent implements OnInit {
     }
 
     ngOnInit() {
-    }
 
+    }
 }

@@ -14,7 +14,7 @@ export class ConstructionSiteDataComponent implements OnInit {
     @ViewChild('goodsData') goodsData: SafetyCardComponent;
     @ViewChild('workersData') workersData: SafetyCardComponent;
 
-    private elements: Array<SafetyCardComponent>;
+    elements: Array<SafetyCardComponent>;
 
     ngOnInit(): void {
         this.elements = [this.constructionData, this.managersData, this.floorData, this.goodsData, this.workersData];
@@ -27,7 +27,7 @@ export class ConstructionSiteDataComponent implements OnInit {
         this.managersData.open();
     }
 
-    private closeAll() {
+    closeAll() {
         this.elements.forEach(e => e.close());
     }
 }

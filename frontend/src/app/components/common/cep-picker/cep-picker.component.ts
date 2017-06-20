@@ -12,7 +12,7 @@ export class CepPickerComponent {
 
     loadingCep = false;
 
-    private cepMask = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
+    cepMask = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
 
     constructor(public snackBar: MdSnackBar) {
     }

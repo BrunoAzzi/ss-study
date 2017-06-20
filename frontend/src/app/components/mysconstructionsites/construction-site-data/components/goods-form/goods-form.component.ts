@@ -7,8 +7,11 @@ import {Component} from '@angular/core';
 })
 export class GoodsFormComponent {
 
+    categories : Array<string> = [];
+
     addNewCategory(category) {
-        console.log('add new category: ' + category);
+        console.log(category)
+        this.categories = [...this.categories, category];
     }
 
 }
