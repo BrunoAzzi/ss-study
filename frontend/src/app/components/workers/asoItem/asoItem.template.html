@@ -3,7 +3,7 @@
         <my-date-picker name="realizationDate" [options]="myDatePickerOptions" placeholder="Data de Realização"></my-date-picker>
         <input-file (onFileSelect)="onFileSelect($event)" [accept]="'.doc,.docx,.png,.pdf'"></input-file>
     </div>
-    <div>
+    <div *ngIf="itemSelected != 1 ">
         <md-radio-button value="true">Apto</md-radio-button>
         <md-radio-button value="false">Inapto</md-radio-button>
     </div>

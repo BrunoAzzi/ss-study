@@ -13,7 +13,7 @@ import { IMyDpOptions } from 'mydatepicker';
 export class HealthComponent {
     myForm: FormGroup;
     showAso: boolean;
-    selectedItem: boolean = false;
+    itemSelected: boolean = false;
     asoList:Array<Object>[]=[];
 
      myDatePickerOptions: IMyDpOptions = {
@@ -53,28 +53,11 @@ export class HealthComponent {
         {value: 4, viewValue: 'Retorno ao Trabalho'},
     ];
 
-    recyclingPriorities = [
-        {value: 0, viewValue: 'Cada 1 Mês'},
-        {value: 1, viewValue: 'Cada 2 Meses'},
-        {value: 2, viewValue: 'Cada 3 Meses'},
-        {value: 3, viewValue: 'Cada 4 Meses'},
-        {value: 4, viewValue: 'Cada 5 Meses'},
-        {value: 5, viewValue: 'Cada 6 Meses'},
-        {value: 6, viewValue: 'Cada 7 Meses'},
-        {value: 7, viewValue: 'Cada 8 Meses'},
-        {value: 8, viewValue: 'Cada 9 Meses'},
-        {value: 9, viewValue: 'Cada 10 Meses'},
-        {value: 10, viewValue: 'Cada 11 Meses'},
-        {value: 11, viewValue: 'Cada 12 Meses'},
-    ]
+
 
     addAso() {
         this.asoList.push(this.asoTypes);
-       
     }
 
-    addTypeOfAso(){
-         this.selectedItem = this.selectedItem = true;
-    }
 }
 

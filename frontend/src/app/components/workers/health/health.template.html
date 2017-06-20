@@ -35,16 +35,18 @@
                     </tr>
                 </table>
             </div>
-                 <div class = "aling-div" *ngFor="let aso of asoList">
+                 <div class = "aling-div" *ngFor="let aso of asoList" >
+                       
                         <div>
-                            <md-select formControlName="asoTypes" placeholder="aso">
+                            <md-select  formControlName="asoTypes" placeholder="aso" [(ngModel)]="itemSelected">
                                 <md-option *ngFor="let asoType of asoTypes" [value]="asoType.value" >
                                     {{asoType.viewValue}}
                                 </md-option>
                             </md-select>
+                      
                         </div>
-                            <div >
-                                <asoItemComponent></asoItemComponent>
+                            <div *ngIf="itemSelected  != false">
+                                <asoItemComponent [itemSelected]="itemSelected"></asoItemComponent>
                             </div>
                     </div>
             <div fxFill fxLayout fxLayoutAlign="start right">

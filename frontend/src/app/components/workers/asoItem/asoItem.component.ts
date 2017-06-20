@@ -11,6 +11,7 @@ import { IMyDpOptions } from 'mydatepicker';
 })
 export class AsoItemComponent {
     myForm: FormGroup;
+     @Input() itemSelected: number;
     
     myDatePickerOptions: IMyDpOptions = {
         dateFormat: 'dd/mm/yyyy',
