@@ -1,5 +1,5 @@
 .grid-container {
-    border: 1px solid #3C3C3C;
+    //border: 1px solid #3C3C3C;
 
     display: flex;
     margin-bottom: 20px;
@@ -9,7 +9,7 @@
     -webkit-justify-content: space-between;
     .grid-column,
     .grid-column-min {
-        border: 1px solid #7ab000;
+        //border: 1px solid #7ab000;
 
         width: 100%;
         margin-right: 20px;
@@ -21,7 +21,7 @@
             margin-bottom: 0;
         }
         .grid-row {
-            border: 1px solid #4c9fff;
+            //border: 1px solid #4c9fff;
 
             display: inline-flex;
             justify-content: space-between;
@@ -32,7 +32,7 @@
                 margin-bottom: 0;
             }
             > * {
-                border: 1px solid #eeba34;
+                //border: 1px solid #eeba34;
 
                 width: 100%;
                 margin-right: 20px;

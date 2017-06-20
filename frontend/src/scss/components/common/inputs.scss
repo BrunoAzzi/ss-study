@@ -108,9 +108,7 @@ md-select {
     margin: 0;
     .mat-select-trigger {
         width: 100%;
-        //justify-content: space-between;
         height: auto;
-        //max-width: 0;
         min-height: 0;
         display: inline-flex;
         padding-left: 15px;
@@ -284,7 +282,6 @@ date-range {
         height: 60px;
         background-color: #EFEFEF;
         border-radius: 0;
-        //margin-right: -15.5px;
     }
     .mydrp .btnclear {
         margin-right: 2.5px;
