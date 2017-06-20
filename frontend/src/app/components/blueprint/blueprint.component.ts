@@ -1,7 +1,7 @@
 import { Component, AfterContentChecked, Input, Output, EventEmitter, OnInit, OnDestroy, OnChanges, NgZone } from '@angular/core';
 import { MdDialog, MdDialogRef} from '@angular/material';
 
-import { MappingDialog } from './../checkpoint-mapping/mapping-dialog/mapping-dialog.component';
+import { MappingDialog } from './../area-mapping/cone/mapping-dialog/mapping-dialog.component';
 import { Icon } from './../../models/icon.model';
 import { Marker } from './../../models/marker.model';
 import { Observable } from 'rxjs/Observable';

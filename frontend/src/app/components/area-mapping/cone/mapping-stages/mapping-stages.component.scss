@@ -1,4 +1,4 @@
-@import '../../../../scss/components/color.scss';
+@import '../../../../../scss/components/color.scss';
 
 img {
     width: 17px;
@@ -8,14 +8,13 @@ img {
 }
 
 .back {
-    position: absolute;
-    top: 55px;
     float: left;
     clear: both;
     opacity: 0.6;
     background: transparent !important;
     border: 0;
     outline: 0;
+    margin-right: 50px;
 
     &:hover, &:focus {
         opacity: 1;

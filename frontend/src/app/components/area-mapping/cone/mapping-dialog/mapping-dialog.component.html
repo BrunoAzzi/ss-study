@@ -13,7 +13,7 @@
                 totalSteps="{{totalSteps}}"
                 (updateStepStage)="updateStepStage($event)"
             ></mapping-stages>
-            <data *ngIf="currentStageStep == 1"></data>
+            <sensor-identification *ngIf="currentStageStep == 1"></sensor-identification>
             <related-risks *ngIf="currentStageStep == 2"></related-risks>
             <permissions *ngIf="currentStageStep == 3"></permissions>
         </div>

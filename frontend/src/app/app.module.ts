@@ -65,11 +65,11 @@ import { LineWorkerDetailComponent } from "./components/workers/line-worker-deta
 
 import { MonitoringComponent } from './views/constructions/detail/monitoring/monitoring.component';
 import { AreaMappingComponent } from './components/area-mapping/area-mapping.component';
-import { MappingDialog } from './components/checkpoint-mapping/mapping-dialog/mapping-dialog.component';
-import { MappingStages } from './components/checkpoint-mapping/mapping-stages/mapping-stages.component';
-import { Data } from './components/checkpoint-mapping/data/data.component';
-import { RelatedRisks } from './components/checkpoint-mapping/related-risks/related-risks.component';
-import { Permissions } from './components/checkpoint-mapping/permissions/permissions.component';
+import { MappingDialog } from './components/area-mapping/cone/mapping-dialog/mapping-dialog.component';
+import { MappingStages } from './components/area-mapping/cone/mapping-stages/mapping-stages.component';
+import { SensorIdentification } from './components/area-mapping/cone/sensor-identification/sensor-identification.component';
+import { RelatedRisks } from './components/area-mapping/cone/related-risks/related-risks.component';
+import { Permissions } from './components/area-mapping/cone/permissions/permissions.component';
 import { AreaMonitoringComponent } from './components/area-monitoring/area-monitoring.component';
 import { SummaryItemComponent } from './components/summary-item/summary-item.component';
 import { SummaryComponent } from './components/summary/summary.component';
@@ -184,7 +184,7 @@ import { AlertsTabItemComponent } from './components/area-monitoring/alerts-tab-
         FloorsSummaryComponent,        
         MappingDialog,
         MappingStages,
-        Data,
+        SensorIdentification,
         Permissions,
         RelatedRisks,
         WorkersOverviewComponent,

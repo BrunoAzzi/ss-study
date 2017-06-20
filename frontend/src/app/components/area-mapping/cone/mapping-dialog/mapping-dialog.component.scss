@@ -1,4 +1,4 @@
-@import '../../../../scss/components/color.scss';
+@import '../../../../../scss/components/color.scss';
 
 img {
       max-width: 100%;
@@ -11,9 +11,6 @@ h2[md-dialog-title] {
     line-height: 1.4;
     letter-spacing: 0.5px;
     color: $greyish-brown-two;
-    position: absolute;
-    top: 15px;
-    left: 23px;
 }
 
 .title-container {
