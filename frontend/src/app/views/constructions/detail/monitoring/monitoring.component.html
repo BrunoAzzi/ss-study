@@ -5,7 +5,7 @@
     <md-tab id="tab5" label="Mapear Áreas">
         <area-mapping [construction]="service.construction" (updateFloor)="onFloorUpdated($event)"></area-mapping>
     </md-tab>
-    <md-tab id="tab5" label="Wearables/Checkpoints"></md-tab>
+    <!--<md-tab id="tab5" label="Wearables/Checkpoints"></md-tab>-->
 </md-tab-group>
 
 <p *ngIf="service.construction.sectors.length === 0">Não há setores cadastrados</p>

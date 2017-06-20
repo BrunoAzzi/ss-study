@@ -35,10 +35,11 @@ export class Floor implements IFloor {
         this.id = data.id
         this.name = data.name
         this.acronym = data.acronym
-        
+        this.sector = parentSector
+
         this.bounds = data.bounds
         this.imagePath = data.imagePath
-        this.sector = parentSector
+        
 
         // this.markers = data.markers.map(marker => new Marker(marker))
 

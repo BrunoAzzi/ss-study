@@ -77,7 +77,7 @@ const routes: Routes = [
             },
             {
                 path: 'constructions/:id', component: ConstructionDetailComponent, resolve: { construction: ConstructionResolver }, children: [
-                    { path: '', pathMatch: 'prefix', redirectTo: 'monitoring' },
+                    { path: '', pathMatch: 'prefix', redirectTo: 'overview' },
                     { path: 'overview', component: OverviewComponent, canActivate: [AuthGuard] },
                     { path: 'edit', component: ConstructionFormComponent, canActivate: [AuthGuard] },
                     { path: 'monitoring', component: MonitoringComponent, canActivate: [AuthGuard] },

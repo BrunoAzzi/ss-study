@@ -7,6 +7,7 @@ import {SafetyCardComponent} from '../../common/safety-card/safety-card.componen
     styleUrls: ['./construction-site-data.component.scss']
 })
 export class ConstructionSiteDataComponent implements OnInit {
+    
     @ViewChild('constructionData') constructionData: SafetyCardComponent;
     @ViewChild('managersData') managersData: SafetyCardComponent;
     @ViewChild('floorData') floorData: SafetyCardComponent;
