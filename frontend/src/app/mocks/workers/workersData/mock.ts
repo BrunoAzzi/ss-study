@@ -11,7 +11,7 @@ export const WORKERS_DATA = {
     contact: "Carlos",
     cbo: "8805-41",
     laborCBO: "abmat",
-    cboDescription: "Colhe Abacaxis",
+    cboDescription: "Abate animais",
     birthDate: "1999-7-12",
     hiredType: "outsource",
     admissionDate: "2016-8-8",
@@ -20,40 +20,5 @@ export const WORKERS_DATA = {
     age: 19,
     specialNecessity: 1,
     status: "inativo",
-    company: "Companhia do abacaxi",
-   /* laborCBO: string
-    laborDescription: string;
-    function: string;
-    specialNecessity: string;
-    status: "ativo";
-    hiredType: string;
-    company: string;
-    photoPath: string;
-    admissionDate: Date;
-    birthDate: Date;
-    ctps: number;
-    age: number;
-    cbo: string;
-    cargoCBO: string;
-    cboDescription: string;
-
-
-        scholarity: string;
-    nit: string;
-    cep: string;
-    completeAddress: string;
-    complement: string;
-    contact: string;
-    cbo: string;
-    laborCBO: string;
-    laborDescription: string;
-    specialNecessity: boolean;
-    status: string;
-    ownContracting: boolean;
-    company: string;
-    photoPath: string;
-    admissionDate: Date;
-    birthDate: Date;
-    ctps: number;
-    age: number;*/
+    company: "Açougue do Márcio",
 };

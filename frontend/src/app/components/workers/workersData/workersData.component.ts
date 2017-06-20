@@ -16,7 +16,7 @@ import { IMyDpOptions } from 'mydatepicker';
 })
 export class WorkersDataComponent {
     @Output() cpfValue = new EventEmitter<string>();
-    
+
     disabled = true;
 
     mycbo = '';
@@ -31,7 +31,7 @@ export class WorkersDataComponent {
     modelContact = '';
     modelFunction = '';
     modelCompany = '';
-    selectedLabor = '';
+     
     selectedStatusValue = '';
     birthDateModel = null;
     admissionDateModel = null;
@@ -50,6 +50,7 @@ export class WorkersDataComponent {
     myForm: FormGroup;
     completeAddress: string;
     selectedScholarityValue: string;
+    selectedLabor: string;
 
     myDatePickerOptions: IMyDpOptions = {
         dateFormat: 'dd/mm/yyyy',
@@ -76,7 +77,7 @@ export class WorkersDataComponent {
         { value: 'inativo', viewValue: 'Inativo' },
     ];
 
-    labors = [];
+    labors = [{ value: '', viewValue: '' }];
 
     scholaritys = [
         { value: 'fund_i', viewValue: 'Fundamental incompleto' },
@@ -99,10 +100,9 @@ export class WorkersDataComponent {
     nitMask = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, /\d/, /\d/, '.', /\d/, /\d/, '-', /\d/];
     cepMask = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
     cboMask = [/\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/];
-    
+
 
     constructor(private correiosService: CorreiosService, private cboService: CBOService, private workersService: WorkersDataService, private fb: FormBuilder) {
-
         this.myForm = this.fb.group({
             fullname: new FormControl('', Validators.compose([Validators.required, CustomValidators.onlytext])),
             cpf: new FormControl('', Validators.compose([Validators.required, CustomValidators.cpf])),
@@ -133,14 +133,14 @@ export class WorkersDataComponent {
         });
     }
 
-   
-    autoCompleteWorker(){
+
+    autoCompleteWorker() {
         this.cpfValue.emit(this.cpf);
         this.workersService.getWorker(this.cpf).subscribe(
             (response) => {
-                
+
                 this.fullname = response.name,
-                this.modelCEP = response.cep;
+                    this.modelCEP = response.cep;
                 this.modelCompleteAdress = response.completeAddress;
                 this.modelAge = response.age;
                 this.modelNit = response.nit;
@@ -151,50 +151,47 @@ export class WorkersDataComponent {
                 this.mycbo = response.cbo;
                 this.modelCompany = response.company;
 
-                this.fem = (response.sex=="f")? true : false;
+                this.fem = (response.sex == "f") ? true : false;
                 this.masc = !this.fem;
-                this.outsource = (response.hiredType=="outsource")? true : false;
+                this.outsource = (response.hiredType == "outsource") ? true : false;
                 this.own = !this.outsource;
-   
+
                 this.selectedScholarityValue = response.scholarity;
+
                 this.modelSpecialNecessitys = response.specialNecessity;
                 this.selectedStatusValue = response.status;
-                this.cboService.getCBO("6125-05").subscribe(
-                        (response) => {
-                             console.log(response);
-                            this.labors = response.map((label, index) => {
-                                 
-                                return { value: response.laborCBO, viewValue: label };
-                            });
-                        },
-                    );
-                    
-                
-                //this.selectedLabor =  response.laborCBO;
+              
+                this.cboService.getCBO(this.mycbo).subscribe(
+                            (response) => {
+                                this.labors = response;
+                            },
+                );
                
+                 this.selectedLabor = response.laborCBO;
+
                 let bdate = new Date(response.birthDate);
-                this.birthDateModel = 
-                        {
-                            date: {
-                                    year: bdate.getFullYear(),
-                                    month: bdate.getMonth() + 1,
-                                    day: bdate.getDate()
-                                  }
-                        
-                       };
-                       
+                this.birthDateModel =
+                    {
+                        date: {
+                            year: bdate.getFullYear(),
+                            month: bdate.getMonth() + 1,
+                            day: bdate.getDate()
+                        }
+
+                    };
+
                 let addate = new Date(response.admissionDate);
-                this.admissionDateModel = { 
-                            date: {
-                                    year: addate.getFullYear(),
-                                    month: addate.getMonth() + 1,
-                                    day: addate.getDate()
-                            }
+                this.admissionDateModel = {
+                    date: {
+                        year: addate.getFullYear(),
+                        month: addate.getMonth() + 1,
+                        day: addate.getDate()
+                    }
                 }
-               
+
             },
         );
-        
+
 
     }
 
@@ -202,9 +199,7 @@ export class WorkersDataComponent {
 
         this.cboService.getCBO("6125-05").subscribe(
             (response) => {
-                this.labors = response.map((label, index) => {
-                    return { value: index, viewValue: label };
-                });
+                this.labors = response;
             },
         );
     }
@@ -221,7 +216,7 @@ export class WorkersDataComponent {
 
     savePersonalDataWorker(safetyCard) {
         //se não passar, descomentar: console.log(this.myForm.controls);
-    
+
         if (this.myForm.valid) {
 
             safetyCard.close();

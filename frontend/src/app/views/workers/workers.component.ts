@@ -30,13 +30,13 @@ export class WorkersComponent {
         "NR 33",
     ];
 
-    cpfValue(cpf: string){
+    cpfValue(cpf: string) {
         this.cpf = cpf;
-        console.log("cpf no componente pai:"+cpf);
+        //console.log("cpf no componente pai:"+cpf);
     }
 
     saveSkills(safetyCard) {
-        
+
         if (this.isValid) safetyCard.close();
     }
 
