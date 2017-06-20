@@ -56,7 +56,12 @@ import { ThirdPartiesComponent } from "./views/thirdparties/thirdparties.compone
 import { TrainingComponent } from "./views/training/training.component";
 import { WorkersComponent } from "./views/workers/workers.component";
 import { MonitoringComponent } from './views/constructions/detail/monitoring/monitoring.component';
-import { AreaMappingComponent, ContentElementDialog } from './components/area-mapping/area-mapping.component';
+import { AreaMappingComponent } from './components/area-mapping/area-mapping.component';
+import { MappingDialog } from './components/checkpoint-mapping/mapping-dialog/mapping-dialog.component';
+import { MappingStages } from './components/checkpoint-mapping/mapping-stages/mapping-stages.component';
+import { Data } from './components/checkpoint-mapping/data/data.component';
+import { RelatedRisks } from './components/checkpoint-mapping/related-risks/related-risks.component';
+import { Permissions } from './components/checkpoint-mapping/permissions/permissions.component';
 import { AreaMonitoringComponent } from './components/area-monitoring/area-monitoring.component';
 import { SummaryItemComponent } from './components/summary-item/summary-item.component';
 import { SummaryComponent } from './components/summary/summary.component';
@@ -156,8 +161,12 @@ import { AlertsTabItemComponent } from './components/area-monitoring/alerts-tab-
         SummaryItemComponent,
         SummaryComponent,
         RiskGraphComponent,
-        FloorsSummaryComponent,
-        ContentElementDialog,
+        FloorsSummaryComponent,        
+        MappingDialog,
+        MappingStages,
+        Data,
+        Permissions,
+        RelatedRisks,
 
         // Layouts
         BlankComponent,
@@ -235,7 +244,7 @@ import { AlertsTabItemComponent } from './components/area-monitoring/alerts-tab-
         // Routes
         AppRoutingModule,
     ],
-    entryComponents: [ContentElementDialog],
+    entryComponents: [MappingDialog],
     providers: [
         HttpClientService,
         AuthGuard,

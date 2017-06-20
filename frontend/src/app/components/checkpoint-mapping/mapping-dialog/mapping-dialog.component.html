@@ -1,0 +1,25 @@
+<md-toolbar class="title-container">
+    <span><h2 md-dialog-title>MAPEAR</h2></span>
+    <span class="spacer"></span>
+    <button class="close" md-icon-button md-dialog-close>
+        <md-icon>clear</md-icon>
+    </button>
+</md-toolbar>
+<form>
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <mapping-stages 
+                stageStepChild="{{currentStageStep}}" 
+                totalSteps="{{totalSteps}}"
+                (updateStepStage)="updateStepStage($event)"
+            ></mapping-stages>
+            <data *ngIf="currentStageStep == 1"></data>
+            <related-risks *ngIf="currentStageStep == 2"></related-risks>
+            <permissions *ngIf="currentStageStep == 3"></permissions>
+        </div>
+    </md-dialog-content>
+
+    <md-dialog-actions fxLayout fxLayoutAlign="center center" layout="row" [ngClass]="{'final-action': currentStageStep == totalSteps}">              
+        <button md-button (click)="updateStepStage('next')">{{actionButton}}</button>      
+    </md-dialog-actions>
+</form> 
