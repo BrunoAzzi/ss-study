@@ -25,9 +25,13 @@ public class Construction {
 
     private String logoUrl;
 
-    private String ceiUrl;
+    private String logoFileName;
 
     private String ceiCode;
+
+    private String ceiUrl;
+
+    private String ceiFileName;
 
     public Construction() {
 
@@ -124,5 +128,21 @@ public class Construction {
 
     public void setCeiCode(String ceiCode) {
         this.ceiCode = ceiCode;
+    }
+
+    public String getLogoFileName() {
+        return logoFileName;
+    }
+
+    public void setLogoFileName(String logoFileName) {
+        this.logoFileName = logoFileName;
+    }
+
+    public String getCeiFileName() {
+        return ceiFileName;
+    }
+
+    public void setCeiFileName(String ceiFileName) {
+        this.ceiFileName = ceiFileName;
     }
 }

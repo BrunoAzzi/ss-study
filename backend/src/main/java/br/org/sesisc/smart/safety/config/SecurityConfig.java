@@ -28,7 +28,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring()
                 .antMatchers("/sessions")
                 .antMatchers("/users")
-                .antMatchers("/password/**");
+                .antMatchers("/password/**")
+                .antMatchers("/constructions/**/logo");
     }
 
     @Override

@@ -135,4 +135,11 @@
                           tableName="constructions"/>
     </changeSet>
 
+    <changeSet id="8" author="rrosseti">
+        <addColumn tableName="constructions">
+            <column name="logo_file_name" type="varchar(255)"></column>
+            <column name="cei_file_name" type="varchar(255)"></column>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>
