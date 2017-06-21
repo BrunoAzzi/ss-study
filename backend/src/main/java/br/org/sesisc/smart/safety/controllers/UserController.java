@@ -21,13 +21,13 @@ public class UserController {
     private UserRepository serviceUser;
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<?> create(@Valid @RequestBody User userParams, Errors errors) {
+    public ResponseEntity<?> create(@Valid @RequestBody User params, Errors errors) {
         if (errors.hasErrors()) {
             return ErrorResponse.handle(errors, HttpStatus.UNPROCESSABLE_ENTITY);
         }
 
-        userParams.digestPassword(userParams.getPassword());
-        User user = serviceUser.create(userParams);
+        params.digestPassword(params.getPassword());
+        User user = serviceUser.create(params);
 
         return SuccessResponse.handle(
                 new String[] {"user"},

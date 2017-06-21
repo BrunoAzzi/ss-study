@@ -1,0 +1,65 @@
+@import '../../../../scss/components/color.scss';
+
+:host {
+    background-color: white;
+    min-height: 50px;
+}
+
+.worker-info {
+    span {
+        font-family: Lato;
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 1.21;
+        text-align: left;
+        color: $greyish-brown-two;
+        margin: 0 5px;
+    }
+
+    .checkbox {
+        margin: 0 15px;
+    }
+
+    .name {
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .cbo {
+        font-weight: normal;
+    }
+
+    md-icon {
+        width: 22px;
+        height: 22px;
+        font-size: 10px;
+        color: white;
+        margin: 0 15px;
+        background-color: $green-blue;
+    }
+}
+
+.tools {
+    padding: 0 10px;
+
+    & > md-icon {
+        color: $silver2;
+        font-size: 20px;
+    }
+
+    .pencil {
+        margin: 0 5px;
+    }
+}
+
+.success {
+    background-color: $green-blue !important;
+}
+
+.danger {
+    background-color: $grapefruit !important;
+}
+
+.warn {
+    background-color: $sunflower !important;
+}

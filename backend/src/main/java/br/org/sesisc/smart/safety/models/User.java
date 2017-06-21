@@ -1,6 +1,7 @@
 package br.org.sesisc.smart.safety.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.mindrot.jbcrypt.BCrypt;
 
 import javax.validation.constraints.NotNull;

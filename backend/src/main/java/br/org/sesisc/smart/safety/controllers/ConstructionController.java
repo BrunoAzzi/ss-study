@@ -1,12 +1,13 @@
 package br.org.sesisc.smart.safety.controllers;
 
+import br.org.sesisc.smart.safety.helpers.ClassHelper;
 import br.org.sesisc.smart.safety.models.Construction;
 import br.org.sesisc.smart.safety.repositories.ConstructionException;
 import br.org.sesisc.smart.safety.repositories.ConstructionRepository;
-import br.org.sesisc.smart.safety.repositories.ManagerRepository;
 import br.org.sesisc.smart.safety.responses.ErrorResponse;
 import br.org.sesisc.smart.safety.responses.SuccessResponse;
 import br.org.sesisc.smart.safety.service.StorageService;
+import com.sun.xml.internal.fastinfoset.util.CharArrayString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -18,6 +19,8 @@ import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.multipart.MultipartFile;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.List;
+
 import static br.org.sesisc.smart.safety.common.FileUtils.JPEG_TYPE;
 import static br.org.sesisc.smart.safety.common.FileUtils.PDF_TYPE;
 import static br.org.sesisc.smart.safety.common.FileUtils.PNG_TYPE;
@@ -27,13 +30,11 @@ import static br.org.sesisc.smart.safety.common.FileUtils.PNG_TYPE;
 public class ConstructionController {
 
     @Autowired
-    ConstructionRepository serviceConstruction;
-
-    @Autowired
-    ManagerRepository serviceManager;
+    ConstructionRepository repository;
 
     @Autowired
     StorageService storageService;
+
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> create(@RequestBody @Valid final Construction cParams, Errors errors) {
@@ -42,7 +43,7 @@ public class ConstructionController {
             return ErrorResponse.handle(errors, HttpStatus.UNPROCESSABLE_ENTITY);
         }
 
-        Construction construction = serviceConstruction.create(cParams);
+        Construction construction = repository.create(cParams);
 
         return SuccessResponse.handle(
                 new String[] {"construction"},
@@ -55,7 +56,7 @@ public class ConstructionController {
     public ResponseEntity<Resource> loadFile(@PathVariable("id") long id,
                                               @PathVariable("type") String type) {
 
-        Construction construction = serviceConstruction.findById(id);
+        Construction construction = repository.findById(id);
 
         Resource file = null;
 
@@ -89,11 +90,12 @@ public class ConstructionController {
 
     }
 
-    @RequestMapping(value = "/{id}/files/logo", method = RequestMethod.PUT)
+
+    @RequestMapping(value = "/{id}/upload/logo", method = RequestMethod.PUT)
     public ResponseEntity<?> uploadLogo(@PathVariable("id") long id,
                                         @RequestParam("logo") MultipartFile logo) {
 
-        Construction construction = serviceConstruction.findById(id);
+        Construction construction = repository.findById(id);
 
         if (construction != null
                 && logo != null
@@ -104,7 +106,7 @@ public class ConstructionController {
             construction.setLogoFileName(fileName);
             construction.setLogoUrl(String.format("/constructions/%d/logo", id));
 
-            serviceConstruction.update(
+            repository.update(
                     id,
                     new String[] {"logo_url", "logo_file_name"},
                     new Object[] {construction.getLogoUrl(), construction.getLogoFileName()}
@@ -125,7 +127,7 @@ public class ConstructionController {
     public ResponseEntity<?> uploadCei(@PathVariable("id") long id,
                                         @RequestParam("cei") MultipartFile cei) {
 
-        Construction construction = serviceConstruction.findById(id);
+        Construction construction = repository.findById(id);
 
         if (construction != null
                 && cei != null
@@ -135,11 +137,10 @@ public class ConstructionController {
             construction.setCeiFileName(fileName);
             construction.setCeiUrl(String.format("/constructions/%d/cei", id));
 
-            serviceConstruction.update(id,
+            repository.update(id,
                     new String[] {"cei_url","cei_file_name"},
                     new Object[] {construction.getCeiUrl(), construction.getCeiFileName()}
             );
-
         } else {
             throw new ConstructionException("Arquivo incompatível.");
         }
@@ -151,29 +152,38 @@ public class ConstructionController {
         );
     }
 
-    @RequestMapping(value ="/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<?> update(@PathVariable("id") long id, @RequestBody final Construction cParams,Errors errors) {
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<?> update(@PathVariable("id") long id, @RequestBody final Construction cParams, Errors errors) {
 
         if (errors.hasErrors()) {
             return ErrorResponse.handle(errors, HttpStatus.UNPROCESSABLE_ENTITY);
         }
 
-        Construction construction = serviceConstruction.findById(id);
+        Construction construction = repository.findById(id);
 
         if (construction != null) {
-            construction = cParams;
-            construction.setId(id);
-            serviceConstruction.update(id,new String[] {"name","cep","address","status","description","highlight_url","logo_url","cei_url","cei_code"},new Object[] {cParams.getName(),cParams.getCep(),cParams.getAddress(),cParams.getStatus(), cParams.getDescription(),
-                    cParams.getHighlightUrl(), cParams.getLogoUrl(),cParams.getCeiUrl(),cParams.getCeiCode()});
-        } else {
-            throw new ConstructionException("Não foi possível atualizar a obra.");
-        }
+            ClassHelper.Pair<List<String>, List<Object>> changes = ClassHelper.merge(construction, cParams);
+            if (changes != null) {
+                String[] names = new String[changes.getLeft().size()];
+                names = changes.getLeft().toArray(names);
+                Object[] values = new Object[changes.getRight().size()];
+                values = changes.getRight().toArray(values);
+                repository.update(id, names, values);
+            }
 
-        return SuccessResponse.handle(
-                new String[] {"construction"},
-                new Object[] {construction},
-                HttpStatus.OK
-        );
+            return SuccessResponse.handle(
+                    new String[] {"construction"},
+                    new Object[] {construction},
+                    HttpStatus.OK
+            );
+        } else {
+            return ErrorResponse.handle(
+                    new String[] {"Construção não encontrada."},
+                    Construction.class,
+                    HttpStatus.NOT_FOUND
+            );
+        }
     }
 
     @ExceptionHandler({ConstructionException.class, MultipartException.class})

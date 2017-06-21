@@ -1,0 +1,29 @@
+<div fxLayout fxLayoutAlign="space-between center" class="top-actionbar">
+    <div fxLayout fxLayoutAlign="start center">
+        <md-icon class="search">search</md-icon>
+
+        <md-input-container class="search-input" floatPlaceholder="never">
+            <input #textFilterInput mdInput (input)="filterByText(textFilterInput.value)" placeholder="Buscar fornecedores">
+        </md-input-container>
+    </div>
+
+    <div fxLayout fxLayoutAlign="end center" class="right-actionbar">
+        <md-select [(ngModel)]="selectedOrder" floatPlaceholder="never" class="order">
+            <md-option *ngFor="let orderStyle of availableOrders" [value]="orderStyle.code">
+                {{ orderStyle.name }}
+            </md-option>
+        </md-select>
+
+        <button md-icon-button type="button" name="button">
+            <md-icon class="actived">list</md-icon>
+        </button>
+    </div>
+</div>
+
+<div class="list-wrapper">
+    <div *ngFor="let supplier of getFilteredSuppliers()">
+        <line-supplier fxFlex fxLayout fxLayoutAlign="space-between center" *ngIf="supplier" [supplier]="supplier"></line-supplier>
+    </div>
+</div>
+
+<fab mdTooltip="Adicionar fornecedor" mdTooltipPosition="before" (click)="redirectTo('./new')"></fab>

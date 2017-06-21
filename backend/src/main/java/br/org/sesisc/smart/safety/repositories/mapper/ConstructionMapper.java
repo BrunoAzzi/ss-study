@@ -16,9 +16,8 @@ public class ConstructionMapper implements RowMapper {
         construction.setName(rs.getString("name"));
         construction.setCep(rs.getString("cep"));
         construction.setAddress(rs.getString("address"));
-        construction.setStatus(rs.getString("status"));
+        construction.setStatus(rs.getInt("status"));
         construction.setDescription(rs.getString("description"));
-        construction.setHighlightUrl(rs.getString("highlight_url"));
         construction.setLogoUrl(rs.getString("logo_url"));
         construction.setLogoFileName(rs.getString("logo_file_name"));
         construction.setCeiUrl(rs.getString("cei_url"));

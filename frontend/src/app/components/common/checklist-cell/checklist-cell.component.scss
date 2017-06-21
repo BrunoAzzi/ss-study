@@ -1,0 +1,35 @@
+$greyish-brown-two: #3c3c3c;
+
+li {
+    display: flex;
+    align-items: center;
+    height: 44px;
+    border-bottom: 1px solid #e8e8e8;
+
+    &.none img {
+        display: none;
+    }
+
+    &.right img {
+        order: 2;
+        right: 0;
+    }
+}
+
+img { 
+    width: 15.6px;
+    height: 17.3px;
+    object-fit: contain;
+    margin-right: 15px;
+}
+
+span {
+    width: calc(100% - 45px);
+    height: 26px;
+    margin-right: 15px;
+    font-family: Lato;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.15;
+    color: $greyish-brown-two;
+}

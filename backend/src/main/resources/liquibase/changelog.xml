@@ -17,14 +17,14 @@
             </column>
             <column name="active" type="boolean" defaultValueBoolean="true"/>
             <column name="token" type="varchar(200)"/>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
-        <addAutoIncrement catalogName="ssafety_db"
-                          columnDataType="int"
-                          columnName="id"
-                          incrementBy="1"
-                          schemaName="public"
-                          startWith="1"
-                          tableName="users"/>
+        <addAutoIncrement tableName="users" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
     </changeSet>
 
     <changeSet id="2" author="fpileggi">
@@ -45,14 +45,14 @@
                 <constraints nullable="false"/>
             </column>
             <column name="active" type="boolean" defaultValueBoolean="true"/>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
-        <addAutoIncrement catalogName="ssafety_db"
-                          columnDataType="int"
-                          columnName="id"
-                          incrementBy="1"
-                          schemaName="public"
-                          startWith="1"
-                          tableName="tenants"/>
+        <addAutoIncrement tableName="tenants" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
     </changeSet>
 
     <changeSet id="3" author="fpileggi">
@@ -77,16 +77,8 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <addAutoIncrement catalogName="ssafety_db"
-                          columnDataType="int"
-                          columnName="id"
-                          incrementBy="1"
-                          schemaName="public"
-                          startWith="1"
-                          tableName="states"/>
-    </changeSet>
+        <addAutoIncrement tableName="states" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
 
-    <changeSet id="6" author="rrosseti">
         <createTable tableName="cities">
             <column name="id" type="int">
                 <constraints primaryKey="true" nullable="false"/>
@@ -95,16 +87,22 @@
                 <constraints nullable="false"/>
             </column>
             <column name="state_id" type="int" >
-                <constraints foreignKeyName="city_state_id" nullable="false" deleteCascade="false"/>
+                <constraints nullable="false" />
             </column>
         </createTable>
-        <addAutoIncrement catalogName="ssafety_db"
-                          columnDataType="int"
-                          columnName="id"
-                          incrementBy="1"
-                          schemaName="public"
-                          startWith="1"
-                          tableName="cities"/>
+        <addForeignKeyConstraint
+                baseTableName="cities"
+                baseColumnNames="state_id"
+                constraintName="fk_city_state"
+                referencedTableName="states"
+                referencedColumnNames="id"
+                onDelete="NO ACTION"
+                onUpdate="RESTRICT" />
+        <addAutoIncrement tableName="cities" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
+    </changeSet>
+
+    <changeSet id="6" author="fpileggi">
+        <sqlFile path="/liquibase/seed/cities_and_states.sql"/>
     </changeSet>
 
     <changeSet id="7" author="rrosseti">
@@ -112,30 +110,286 @@
             <column name="id" type="int">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="cep" type="varchar(100)" ></column>
             <column name="name" type="varchar(100)" >
                 <constraints nullable="false"/>
             </column>
-            <column name="address" type="varchar(255)" > </column>
             <column name="status" type="varchar(100)" >
                 <constraints nullable="false"/>
             </column>
-            <column name="description" type="varchar(255)" > </column>
-            <column name="highlight_url" type="varchar(255)" ></column>
-            <column name="logo_url" type="varchar(255)" ></column>
-            <column name="cei_url" type="varchar(255)" ></column>
-            <column name="cei_code" type="varchar(100)" ></column>
+            <column name="cep" type="varchar(100)"/>
+            <column name="address" type="varchar(255)" />
+            <column name="description" type="varchar(255)"/>
+            <column name="highlight_url" type="varchar(255)"/>
+            <column name="logo_url" type="varchar(255)"/>
+            <column name="cei_url" type="varchar(255)"/>
+            <column name="cei_code" type="varchar(100)"/>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
-        <addAutoIncrement catalogName="ssafety_db"
-                          columnDataType="int"
-                          columnName="id"
-                          incrementBy="1"
-                          schemaName="public"
-                          startWith="1"
-                          tableName="constructions"/>
+        <addAutoIncrement tableName="constructions" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
     </changeSet>
 
-    <changeSet id="8" author="rrosseti">
+    <changeSet id="8" author="fpileggi">
+        <createTable tableName="sectors">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="construction_id" type="int" >
+                <constraints nullable="false" />
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addAutoIncrement tableName="sectors" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
+        <addForeignKeyConstraint
+                baseTableName="sectors"
+                baseColumnNames="construction_id"
+                constraintName="fk_construction_sector"
+                referencedTableName="constructions"
+                referencedColumnNames="id"
+                onDelete="CASCADE"
+                onUpdate="RESTRICT" />
+
+        <createTable tableName="floors">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="sector_id" type="int" >
+                <constraints nullable="false" />
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="acronym" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addAutoIncrement tableName="floors" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
+        <addForeignKeyConstraint
+                baseTableName="floors"
+                baseColumnNames="sector_id"
+                constraintName="fk_sector_floor"
+                referencedTableName="sectors"
+                referencedColumnNames="id"
+                onDelete="CASCADE"
+                onUpdate="RESTRICT" />
+    </changeSet>
+
+    <changeSet id="9" author="fpileggi">
+        <createTable tableName="icons">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+        <addAutoIncrement tableName="icons" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
+
+        <createTable tableName="markers">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="floor_id" type="int">
+                <constraints nullable="false" />
+            </column>
+            <column name="icon_id" type="int">
+                <constraints nullable="false" />
+            </column>
+            <column name="latitude" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="longitude" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addAutoIncrement tableName="markers" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
+
+        <addForeignKeyConstraint
+                baseTableName="markers"
+                baseColumnNames="floor_id"
+                constraintName="fk_floor_marker"
+                referencedTableName="floors"
+                referencedColumnNames="id"
+                onDelete="CASCADE"
+                onUpdate="RESTRICT" />
+
+        <addForeignKeyConstraint
+                baseTableName="markers"
+                baseColumnNames="icon_id"
+                constraintName="fk_icon_marker"
+                referencedTableName="icons"
+                referencedColumnNames="id"
+                onDelete="CASCADE"
+                onUpdate="RESTRICT" />
+    </changeSet>
+
+    <changeSet id="10" author="fpileggi">
+        <sqlFile path="/liquibase/seed/icons.sql"/>
+    </changeSet>
+
+    <changeSet id="11" author="fpileggi">
+        <createTable tableName="cones">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="marker_id" type="int">
+                <constraints nullable="false" />
+            </column>
+            <column name="title" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="identification" type="varchar(255)">
+                <constraints nullable="false" unique="true" />
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addAutoIncrement tableName="cones" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
+
+        <createTable tableName="risk_factors">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addAutoIncrement tableName="risk_factors" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
+
+        <createTable tableName="risks">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="cone_id" type="int">
+                <constraints nullable="false" />
+            </column>
+            <column name="risk_factor_id" type="int">
+                <constraints nullable="false" />
+            </column>
+            <column name="level" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addAutoIncrement tableName="risks" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
+
+        <addForeignKeyConstraint
+                baseTableName="risks"
+                baseColumnNames="cone_id"
+                constraintName="fk_cone_risk"
+                referencedTableName="cones"
+                referencedColumnNames="id"
+                onDelete="CASCADE"
+                onUpdate="RESTRICT" />
+
+        <addForeignKeyConstraint
+                baseTableName="risks"
+                baseColumnNames="risk_factor_id"
+                constraintName="fk_risk_factor_risk"
+                referencedTableName="risk_factors"
+                referencedColumnNames="id"
+                onDelete="CASCADE"
+                onUpdate="RESTRICT" />
+    </changeSet>
+
+    <changeSet id="12" author="fpileggi">
+        <createTable tableName="workers">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addAutoIncrement tableName="workers" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
+    </changeSet>
+
+    <changeSet id="13" author="fpileggi">
+        <createTable tableName="alerts">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="marker_id" type="int">
+                <constraints nullable="false" />
+            </column>
+            <column name="worker_id" type="int">
+                <constraints nullable="false" />
+            </column>
+            <column name="message" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="level" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addAutoIncrement tableName="alerts" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
+
+        <addForeignKeyConstraint
+                baseTableName="alerts"
+                baseColumnNames="marker_id"
+                constraintName="fk_marker_alert"
+                referencedTableName="markers"
+                referencedColumnNames="id"
+                onDelete="CASCADE"
+                onUpdate="RESTRICT" />
+
+        <addForeignKeyConstraint
+                baseTableName="alerts"
+                baseColumnNames="worker_id"
+                constraintName="fk_worker_alert"
+                referencedTableName="workers"
+                referencedColumnNames="id"
+                onDelete="CASCADE"
+                onUpdate="RESTRICT" />
+
+    </changeSet>
+
+    <changeSet id="14" author="rrosseti">
         <addColumn tableName="constructions">
             <column name="logo_file_name" type="varchar(255)"></column>
             <column name="cei_file_name" type="varchar(255)"></column>

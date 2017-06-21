@@ -25,6 +25,7 @@ public class UserDao implements UserRepository {
 
     @Override
     public User create(User user) {
+        user.digestPassword(user.getPassword());
         KeyHolder holder = new GeneratedKeyHolder();
         try {
             jdbcTemplate.update(new PreparedStatementCreator() {
@@ -34,8 +35,7 @@ public class UserDao implements UserRepository {
                     PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                     ps.setString(1, user.getEmail());
                     ps.setString(2, user.getPassword());
-                    ps.setBoolean(3, user.getActive());
-
+                    ps.setBoolean(3, true);
 
                     return ps;
                 }
