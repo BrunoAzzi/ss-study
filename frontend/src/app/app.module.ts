@@ -69,7 +69,7 @@ import { AreaMonitoringComponent } from './components/area-monitoring/area-monit
 import { SummaryItemComponent } from './components/summary-item/summary-item.component';
 import { SummaryComponent } from './components/summary/summary.component';
 import { RiskGraphComponent } from './components/area-monitoring/risk-graph/risk-graph.component';
-import { Ng2FileDropModule }  from 'ng2-file-drop';
+// import { Ng2FileDropModule }  from 'ng2-file-drop';
 
 // Painel Emocional
 import { WorkersOverviewComponent } from './components/overview/workers-overview/workers-overview.component';
@@ -273,7 +273,7 @@ import { AlertsTabItemComponent } from './components/area-monitoring/alerts-tab-
         InMemoryWebApiModule.forRoot(InMemoryDataService, { passThruUnknownUrl: true }),
 
         // File Drop
-        Ng2FileDropModule,
+        // Ng2FileDropModule,
 
         // Calendar Range
         MyDateRangePickerModule,

@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
-import {Ng2FileDropAcceptedFile, Ng2FileDropRejectedFile} from 'ng2-file-drop';
+// import {Ng2FileDropAcceptedFile, Ng2FileDropRejectedFile} from 'ng2-file-drop';
 
 @Component({
     selector: 'drop-file',
@@ -24,13 +24,13 @@ export class DropFileComponent {
 
     imageShown: boolean;
 
-    dragFileAccepted(acceptedFile: Ng2FileDropAcceptedFile) {
-        this.processFile(acceptedFile.file);
-    }
-
-    dragFileRejected(rejectedFile: Ng2FileDropRejectedFile) {
-        console.log(rejectedFile.rejectionReason);
-    }
+    // dragFileAccepted(acceptedFile: Ng2FileDropAcceptedFile) {
+    //     this.processFile(acceptedFile.file);
+    // }
+    //
+    // dragFileRejected(rejectedFile: Ng2FileDropRejectedFile) {
+    //     console.log(rejectedFile.rejectionReason);
+    // }
 
     showInput() {
         this.input.nativeElement.click();
