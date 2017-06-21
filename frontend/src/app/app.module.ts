@@ -69,7 +69,7 @@ import { AreaMonitoringComponent } from './components/area-monitoring/area-monit
 import { SummaryItemComponent } from './components/summary-item/summary-item.component';
 import { SummaryComponent } from './components/summary/summary.component';
 import { RiskGraphComponent } from './components/area-monitoring/risk-graph/risk-graph.component';
-// import { Ng2FileDropModule }  from 'ng2-file-drop';
+import { Ng2FileDropModule }  from 'ng2-file-drop';
 
 // Painel Emocional
 import { WorkersOverviewComponent } from './components/overview/workers-overview/workers-overview.component';
@@ -127,7 +127,6 @@ import { SafetyCardModule } from './components/common/safety-card';
 import { CategoryDividerModule } from './components/common/category-divider';
 import { FabComponent } from './components/common/floating-action-button/fab.component';
 
-// ADSON's
 import { DropFileComponent } from './components/common/drop-file/drop-file.component';
 import { ConstructionSiteDataFormComponent } from './components/mysconstructionsites/construction-site-data/components/construction-site-data-form/construction-site-data-form.component';
 import { CepPickerComponent } from './components/common/cep-picker/cep-picker.component';
@@ -237,7 +236,6 @@ import { AlertsTabItemComponent } from './components/area-monitoring/alerts-tab-
         GoodsFormComponent,
         AddNewCategoryComponent,
 
-        // ADSON's
         FiltersComponent,
         ConstructionsLandingPageComponent,
         AlertsTabComponent,
@@ -273,7 +271,7 @@ import { AlertsTabItemComponent } from './components/area-monitoring/alerts-tab-
         InMemoryWebApiModule.forRoot(InMemoryDataService, { passThruUnknownUrl: true }),
 
         // File Drop
-        // Ng2FileDropModule,
+        Ng2FileDropModule,
 
         // Calendar Range
         MyDateRangePickerModule,

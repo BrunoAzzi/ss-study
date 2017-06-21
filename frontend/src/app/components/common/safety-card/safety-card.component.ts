@@ -21,8 +21,8 @@ import {
             state('active', style({
                 height: '*'
             })),
-            transition('inactive => active', animate('100ms ease-in')),
-            transition('active => inactive', animate('100ms ease-out'))
+            // transition('inactive => active', animate('100ms ease-in')),
+            // transition('active => inactive', animate('100ms ease-out'))
         ])
     ]
 })

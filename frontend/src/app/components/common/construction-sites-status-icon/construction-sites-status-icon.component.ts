@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 
 const values = {
-    'finalizada': {statusIcon: 'check', statusClass: 'success'},
-    'paralisada': {statusIcon: 'remove', statusClass: 'danger'},
-    'em andamento': {statusIcon: false, statusClass: 'warn'}
+    'finalizada': { statusIcon: 'check', statusClass: 'success'},
+    'paralisada': { statusIcon: 'remove', statusClass: 'danger'},
+    'em andamento': { statusIcon: false, statusClass: 'warn'}
 };
 
 @Component({
@@ -14,6 +14,7 @@ const values = {
 export class ConstructionSitesStatusIconComponent implements OnInit {
 
     @Input() status;
+    
     statusIcon;
     statusClass;
 
