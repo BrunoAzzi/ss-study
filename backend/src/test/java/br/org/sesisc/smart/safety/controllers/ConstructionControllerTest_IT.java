@@ -9,7 +9,6 @@ import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.core.io.Resource;
@@ -23,8 +22,6 @@ import org.springframework.test.web.servlet.request.RequestPostProcessor;
 import static br.org.sesisc.smart.safety.common.FileUtils.PATH_DIR;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.BDDMockito.when;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.mock;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
