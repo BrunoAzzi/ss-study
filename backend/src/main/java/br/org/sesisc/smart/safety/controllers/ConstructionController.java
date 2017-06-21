@@ -133,9 +133,12 @@ public class ConstructionController {
 
             String fileName =  storageService.store(cei);
             construction.setCeiFileName(fileName);
-            construction.setCeiUrl(String.format("/constructions/%d/logo", id));
+            construction.setCeiUrl(String.format("/constructions/%d/cei", id));
 
-            serviceConstruction.update(id,new String[] {"cei_url"},new Object[] {fileName});
+            serviceConstruction.update(id,
+                    new String[] {"cei_url","cei_file_name"},
+                    new Object[] {construction.getCeiUrl(), construction.getCeiFileName()}
+            );
 
         } else {
             throw new ConstructionException("Arquivo incompatível.");
