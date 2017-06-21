@@ -7,8 +7,12 @@ import { Component, Input } from '@angular/core';
 })
 
 export class ChecklistCellComponent{
-    @Input() text: string = "";
-    @Input() date: string = "";
+    @Input() text: string = ""
+    @Input() date: string = ""
+
+    display : string = ""
+    icon : string = ""
+    time : string = ""
 
     constructor() { }
 }

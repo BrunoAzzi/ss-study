@@ -10,7 +10,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
-import { RouterModule } from "@angular/router";
+import { RouterModule } from '@angular/router';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -26,32 +26,32 @@ import {
     MdButtonModule,
     MdSelectModule,
     MdInputModule,
-    MdChipsModule
+    MdChipsModule,
+    MdProgressSpinnerModule
 } from '@angular/material';
 
 import { CommonModule } from '@angular/common';
 
 import { AppComponent } from './app.component';
-import { ChartsModule } from "ng2-charts";
+import { ChartsModule } from 'ng2-charts';
 import { MyDatePickerModule } from 'mydatepicker';
 import { CookieService } from 'ng2-cookies';
 
 // Pipe
-import { KeysPipe } from "./pipes/keys.pipe";
-import { DataTablePipe } from "./components/perfil_emocional/status_trabalhadores/DataTablePipe.pipe";
+import { KeysPipe } from './pipes/keys.pipe';
+import { DataTablePipe } from './components/perfil_emocional/status_trabalhadores/DataTablePipe.pipe';
 
 // Components
-import { SecurityWorksComponent } from "./components/workers/securityWorks/securityWorks.component";
-import { WorkersDataComponent } from "./components/workers/workersData/workersData.component";
-import { CompaniesComponent } from "./views/companies/companies.component";
-import { CompanyDetailsComponent } from  "./components/forms/company-details/company-details.component";
-import { DateRangeComponent } from "./components/common/date-range/date-range.component";
-import { SkillComponent } from "./components/workers/skill/skill.component";
-import { RecyclingComponent } from "./components/workers/recycling/recycling.component";
-import { BoxMessageComponent } from "./components/common/box-message/box-message.component";
+import { SecurityWorksComponent } from './components/workers/securityWorks/securityWorks.component';
+import { WorkersDataComponent } from './components/workers/workersData/workersData.component';
+import { CompaniesComponent } from './views/companies/companies.component';
+import { CompanyDetailsComponent } from  './components/forms/company-details/company-details.component';
+import { DateRangeComponent } from './components/common/date-range/date-range.component';
+import { SkillComponent } from './components/workers/skill/skill.component';
+import { RecyclingComponent } from './components/workers/recycling/recycling.component';
+import { BoxMessageComponent } from './components/common/box-message/box-message.component';
 import { BlueprintComponent } from './components/blueprint/blueprint.component';
 import { ToolboxComponent } from './components/toolbox/toolbox.component';
-import { BarLevelComponent } from './components/bar-level/bar-level.component';
 
 import { PPEComponent } from "./views/ppe/ppe.component";
 import { ReportsComponent } from "./views/reports/reports.component";
@@ -69,6 +69,9 @@ import { AreaMonitoringComponent } from './components/area-monitoring/area-monit
 import { SummaryItemComponent } from './components/summary-item/summary-item.component';
 import { SummaryComponent } from './components/summary/summary.component';
 import { RiskGraphComponent } from './components/area-monitoring/risk-graph/risk-graph.component';
+// import { Ng2FileDropModule }  from 'ng2-file-drop';
+
+// Painel Emocional
 import { WorkersOverviewComponent } from './components/overview/workers-overview/workers-overview.component';
 import { ConstructionsStatusComponent } from './components/overview/constructions-status/constructions-status.component';
 import { FloorsSummaryComponent } from './components/floors-summary/floors-summary.component';
@@ -86,9 +89,9 @@ import { StatusTrabalhadoresComponent } from "./components/perfil_emocional/stat
 import { StatusAnoComponent } from "./components/perfil_emocional/status_ano/status_ano.component";
 
 // Layouts
-import { LoginComponent } from "./views/login/login.component";
-import { PasswordRecoveryComponent } from "./views/password-recovery/password-recovery.component";
-import { PasswordUpdateComponent } from "./views/password-update/password-update.component";
+import { LoginComponent } from './views/login/login.component';
+import { PasswordRecoveryComponent } from './views/password-recovery/password-recovery.component';
+import { PasswordUpdateComponent } from './views/password-update/password-update.component';
 
 import { BasicTopNavBarLayout } from './components/common/layouts/basic-topnavbar/basic-topnavbar.component';
 
@@ -98,31 +101,42 @@ import { TopnavbarComponent } from "./components/common/topnavbar/topnavbar.comp
 import { NavigationComponent } from "./components/common/navigation/navigation.component";
 
 // Notifications
-import { NotificationSidenavContainerModule } from "./components/common/notifications";
+import { NotificationSidenavContainerModule } from './components/common/notifications';
 
 //Masks
 import { TextMaskModule } from 'angular2-text-mask';
 
 // Routing module
-import { AppRoutingModule } from "./app-routing.module";
+import { AppRoutingModule } from './app-routing.module';
 
 // Calendar Range
-import { MyDateRangePickerModule } from "mydaterangepicker";
+import { MyDateRangePickerModule } from 'mydaterangepicker';
 
 // In memory data api
 import { InMemoryDataService } from './mocks/in-memory-data.service';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 // Angular Material Module
-import { MaterialModule } from "./modules/material/material.module";
+import { MaterialModule } from './modules/material/material.module';
 
 // Flex Layout
-import { FlexLayoutModule } from "@angular/flex-layout";
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 // Safety custom modules
-import { SafetyCardModule } from "./components/common/safety-card";
-import { CategoryDividerModule } from "./components/common/category-divider";
-import { FabComponent } from "./components/common/floating-action-button/fab.component";
+import { SafetyCardModule } from './components/common/safety-card';
+import { CategoryDividerModule } from './components/common/category-divider';
+import { FabComponent } from './components/common/floating-action-button/fab.component';
+
+// ADSON's
+import { DropFileComponent } from './components/common/drop-file/drop-file.component';
+import { ConstructionSiteDataFormComponent } from './components/mysconstructionsites/construction-site-data/components/construction-site-data-form/construction-site-data-form.component';
+import { CepPickerComponent } from './components/common/cep-picker/cep-picker.component';
+import { ManagersDataFormComponent } from './components/mysconstructionsites/construction-site-data/components/managers-data-form/managers-data-form.component';
+import { ConstructionStatusPickerComponent } from './components/common/construction-status-picker/construction-status-picker.component';
+import {ConstructionSitesStatusIconComponent} from "./components/common/construction-sites-status-icon/construction-sites-status-icon.component";
+import { CollaboratorDataFormComponent } from './components/mysconstructionsites/construction-site-data/components/collaborator-data-form/collaborator-data-form.component';
+import { GoodsFormComponent } from './components/mysconstructionsites/construction-site-data/components/goods-form/goods-form.component';
+import { AddNewCategoryComponent } from './components/common/add-new-category/add-new-category.component';
 
 import { InputFile } from "./components/common/input-file/input-file.component";
 import { ConstructionsListComponent } from './views/constructions/list/constructions-list.component';
@@ -170,7 +184,6 @@ import { AlertsTabItemComponent } from './components/area-monitoring/alerts-tab-
         OverviewComponent,
         BlueprintComponent,
         ToolboxComponent,
-        BarLevelComponent,
         AreaMappingComponent,
         AreaMonitoringComponent,
         SummaryItemComponent,
@@ -183,6 +196,7 @@ import { AlertsTabItemComponent } from './components/area-monitoring/alerts-tab-
         ConstructionsStatusComponent,
         FloorsSummaryComponent,
         ContentElementDialog,
+        DropFileComponent,
 
         // Suppliers
         SupplierListComponent,
@@ -213,6 +227,17 @@ import { AlertsTabItemComponent } from './components/area-monitoring/alerts-tab-
         LineConstructionDetailComponent,
         CardConstructionDetailComponent,
         ConstructionSiteDataComponent,
+
+        ConstructionSiteDataFormComponent,
+        CepPickerComponent,
+        ManagersDataFormComponent,
+        ConstructionStatusPickerComponent,
+        ConstructionSitesStatusIconComponent,
+        CollaboratorDataFormComponent,
+        GoodsFormComponent,
+        AddNewCategoryComponent,
+
+        // ADSON's
         FiltersComponent,
         ConstructionsLandingPageComponent,
         AlertsTabComponent,
@@ -247,7 +272,10 @@ import { AlertsTabItemComponent } from './components/area-monitoring/alerts-tab-
         // Mocks
         InMemoryWebApiModule.forRoot(InMemoryDataService, { passThruUnknownUrl: true }),
 
-        //Calendar Range
+        // File Drop
+        // Ng2FileDropModule,
+
+        // Calendar Range
         MyDateRangePickerModule,
 
         // Angular Material
@@ -255,6 +283,7 @@ import { AlertsTabItemComponent } from './components/area-monitoring/alerts-tab-
         MdDialogModule,
         MdToolbarModule,
         MdButtonModule,
+        MdProgressSpinnerModule,
         MdSelectModule,
         MdInputModule,
         MdChipsModule,

@@ -43,16 +43,19 @@
     .alerts-dropdown {
         display: block;
         height: 0;
+        overflow: hidden;
 
+        max-height: 280px;
+        
         &.active {
             height: auto;
+            overflow: scroll;
         }
 
         position: absolute;
         top: 5.5em;
         right: 0;
-        overflow: hidden;
-
+        
         width: 30em;
 
         background-color: white;

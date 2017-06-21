@@ -21,33 +21,16 @@ export class FloorsSummaryComponent implements OnInit {
     constructor() { }
 
     ngOnInit() {
-        this.toggleableSections = this.toggleableSections || this.getSections().map(sectionName => ({ name: sectionName, hidden: false }))
-        !this.selectedFloor && this.changeFloor(this.construction.floors[0])
+        this.toggleableSections = this.toggleableSections || this.construction.sectors.map(sector => ({ name: sector.name, hidden: false }))
+        !this.selectedFloor && this.construction.sectors[0] && this.changeFloor(this.construction.sectors[0].floors[0])
     }
 
     getConstruction() {
         return this.construction
     }
 
-    getFloors() {
-        return this.getConstruction() ? this.getConstruction().floors : []
-    }
-
-    getFloorsBySectionName(sectionName) {
-        return this.getFloors().filter(floor => {
-            return floor.sectionName === sectionName
-        })
-    }
-
-    getSections() {
-        return this.getFloors().reduce((sections, floor) => {
-            if (sections.indexOf(floor.sectionName) < 0) sections.push(floor.sectionName)
-            return sections
-        }, [])
-    }
-
     onUpdateConstruction(construction) {
-        this.construction.floors = construction.floors;
+        this.construction.sectors = construction.sectors;
     }
 
     isSectionHidden(sectionName) {
@@ -59,8 +42,8 @@ export class FloorsSummaryComponent implements OnInit {
         section.hidden = !section.hidden
     }
 
-    summaryBySection(sectionName) {
-        return this.construction.floors.filter(floor => floor.sectionName === sectionName).reduce((sum, floor) => {
+    summaryBySector(sector) {
+        return sector.floors.reduce((sum, floor) => {
             return {
                 alerts: sum.alerts + floor.alertsNumber(),
                 cones: sum.cones + floor.conesNumber(),

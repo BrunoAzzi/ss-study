@@ -1,21 +1,21 @@
 <div class="floor-navigation" [ngClass]="{ mini: mini }">
     <ul class="sections">
-        <li *ngFor="let sectionName of getSections()" class="section">
-            <a (click)="toggleSection(sectionName)">
-                <span class="name">{{ sectionName }}</span>
+        <li *ngFor="let sector of construction.sectors" class="section">
+            <a (click)="toggleSection(sector.name)">
+                <span class="name">{{ sector.name }}</span>
                 <summary 
-                    alerts="{{ summaryBySection(sectionName).alerts }}" 
-                    cones="{{ summaryBySection(sectionName).cones }}" 
-                    workers="{{ summaryBySection(sectionName).workers }}">
+                    alerts="{{ summaryBySector(sector).alerts }}" 
+                    cones="{{ summaryBySector(sector).cones }}" 
+                    workers="{{ summaryBySector(sector).workers }}">
                 </summary>
-                <md-icon>keyboard_arrow_down</md-icon>
+                <md-icon *ngIf="sector.floors.length > 0">keyboard_arrow_down</md-icon>
             </a>
-            <ul class="floors" [ngClass]="{ hidden: isSectionHidden(sectionName) }">
-                <li class="header">
+            <ul class="floors" [ngClass]="{ hidden: isSectionHidden(sector.name) }">
+                <li class="header" *ngIf="sector.floors.length > 0">
                     <span>Andares</span>
                     <span>Risco</span>
                 </li>
-                <li class="floor" *ngFor="let floor of getFloorsBySectionName(sectionName)" [ngClass]="{ active: isSelectedFloor(floor.name) }"><a (click)="changeFloor(floor)">
+                <li class="floor" *ngFor="let floor of sector.floors" [ngClass]="{ active: isSelectedFloor(floor.name) }"><a (click)="changeFloor(floor)">
                     <span class="name">{{ floor.acronym }}</span>
                     <summary 
                         alerts="{{ floor.alertsNumber() }}" 
