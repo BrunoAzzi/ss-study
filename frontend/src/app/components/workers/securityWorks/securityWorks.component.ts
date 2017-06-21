@@ -34,6 +34,7 @@ export class SecurityWorksComponent {
                 this.selectedCipeiro = response.cipeiro;
                 this.selectedCipaLabor = response.laborOnCipa;
                 this.selectedBrigadista = response.brigade;
+                dateRange.setDateRange(response.termBegin, response.termEnd);
             },
         );
     }

@@ -29,10 +29,16 @@ export class DateRangeComponent {
 
     setDateRange(dbegin: string, dend: string): void 
     {
+        console.log(dbegin+'  '+dend)
         // Set date range (today) using the setValue function
         let dateb = new Date(dbegin);
         let datee = new Date(dend);
-       this.selectedDateRangeNormal = {  
+        this.selectedDateRangeNormal = { beginDate: { year: 2018, month: 10, day: 9 }, endDate: { year: 2018, month: 10, day: 19 } };
+      /*  model: Object = {
+                         beginDate: {year: 2018, month: 11, day: 9},
+                         endDate: {year: 2018, month: 10, day: 19}
+                        };*/
+      /* this.selectedDateRangeNormal = {  
             beginDate: {
                 year: dateb.getFullYear(),
                 month: dateb.getMonth() + 1,
@@ -43,7 +49,7 @@ export class DateRangeComponent {
                 month: datee.getMonth() + 1,
                 day: datee.getDate()
             }
-        };
+        };*/
    }
 
     myDateRangePickerOptionsNormal = {
