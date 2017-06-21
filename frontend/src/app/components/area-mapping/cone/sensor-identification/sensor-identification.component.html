@@ -1,3 +1,17 @@
 <span>1 - Identificação do sensor</span>
-<input type="text" placeholder="TÍTULO">
-<input type="text" placeholder="ID (EX-0281)">
+<!--input mdInput placeholder="TÍTULO">
+<input mdInput placeholder="ID (EX-0281)" -->
+<div fxLayout="column" fxLayoutAlign="space-around center">
+    <md-input-container class="no-underline mapping" >
+        <md-placeholder >        
+            <md-hint>Título</md-hint>
+        </md-placeholder>
+        <input mdInput>
+    </md-input-container>
+    <md-input-container class="no-underline mapping" >
+        <md-placeholder >        
+            <md-hint>ID <sup>(EX-0281)</sup></md-hint>
+        </md-placeholder>
+        <input mdInput>
+    </md-input-container>
+</div>

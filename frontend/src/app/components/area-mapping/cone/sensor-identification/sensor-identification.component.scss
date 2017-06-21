@@ -1,12 +1,13 @@
 @import '../../../../../scss/components/color.scss';
 
 span {
-    width: 171px;
+    display: block;    
     height: 14px;    
     font-family: Lato;
     font-size: 18px;
     font-weight: 300;
     line-height: 0.78;
+    margin-bottom: 13px;
     color: $warm-grey-four;    
 }
 
@@ -14,8 +15,7 @@ input {
     width: 396px;
     height: 34px;
     background-color: $pale-gray-two;
-    border: none;
-    margin-bottom: 9px;
+    border: none;    
     padding: 0 14px;
     outline: 0;
     display: block;
@@ -26,14 +26,6 @@ input {
     color: $greyish-brown-two;
     text-transform: uppercase;
 
-    &:first-of-type {
-        margin-top: 13px;
-    }
-
-    &:last-child {
-        margin-bottom: 0px;
-    }
-
     &::placeholder {
         opacity: 0.5;
     }
@@ -42,4 +34,14 @@ input {
         opacity: 0.9;
     }
 
+}
+
+sup {
+    font-size: 10px;
+    font-weight: bold;
+    line-height: 1.4;
+    color: #787878;
+    position: absolute;
+    top: 10px;
+    left: 15px;
 }

@@ -18,7 +18,6 @@
             <permissions *ngIf="currentStageStep == 3"></permissions>
         </div>
     </md-dialog-content>
-
     <md-dialog-actions fxLayout fxLayoutAlign="center center" layout="row" [ngClass]="{'final-action': currentStageStep == totalSteps}">              
         <button md-button (click)="updateStepStage('next')">{{actionButton}}</button>      
     </md-dialog-actions>

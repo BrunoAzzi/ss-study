@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MdSelectModule } from '@angular/material';
 
 @Component({
   selector: 'permissions',
@@ -7,5 +8,10 @@ import { Component } from '@angular/core';
 })
 
 export class Permissions {
-
+    permissions = [
+        {value: 'epi', viewValue: 'EPI'},
+        {value: 'function', viewValue: 'FUNÇÃO'},
+        {value: 'person', viewValue: 'PESSOA'},
+        {value: 'enabling', viewValue: 'HABILITAÇÃO'}
+    ];
 }

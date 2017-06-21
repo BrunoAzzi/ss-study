@@ -4,13 +4,14 @@ img {
       max-width: 100%;
     }
 
-h2[md-dialog-title] {
+.mat-dialog-title{
     font-family: Lato;
     font-size: 10px;
     font-weight: 900;
     line-height: 1.4;
     letter-spacing: 0.5px;
     color: $greyish-brown-two;
+    margin-bottom: 0px;
 }
 
 .title-container {
