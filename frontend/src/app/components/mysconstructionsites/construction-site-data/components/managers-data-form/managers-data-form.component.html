@@ -1,0 +1,41 @@
+<form class="full-width" #f="ngForm" (ngSubmit)="save(f)" novalidate>
+    <div class="form-content">
+        <section>
+            <md-input-container>
+                <input mdInput placeholder="RESPONSÁVEL PELA OBRA (ENG. CIVIL)"
+                       ngModel name="name"
+                >
+            </md-input-container>
+            <md-input-container class="half">
+                <input mdInput placeholder="TELEFONE"
+                       ngModel name="city"
+                >
+            </md-input-container>
+            <md-input-container class="half">
+                <input mdInput placeholder="E-MAIL"
+                       ngModel name="city"
+                >
+            </md-input-container>
+        </section>
+        <section>
+            <md-input-container>
+                <input mdInput placeholder="RESPONSÁVEL PELA OBRA (SEGURANÇA DO TRABALHO)"
+                       ngModel name="name"
+                >
+            </md-input-container>
+            <md-input-container class="half">
+                <input mdInput placeholder="TELEFONE"
+                       ngModel name="city"
+                >
+            </md-input-container>
+            <md-input-container class="half">
+                <input mdInput placeholder="E-MAIL"
+                       ngModel name="city"
+                >
+            </md-input-container>
+        </section>
+    </div>
+    <div class="form-bottom">
+        <button md-raised-button [disabled]="!f.valid">SALVAR E CONTINUAR</button>
+    </div>
+</form>

@@ -6,6 +6,7 @@
 @import 'components/common/input.scss';
 @import 'components/common/select.scss';
 @import 'components/common/tab.scss';
+@import 'components/common/leaflet.scss';
 
 html {
     height: 100vh;
@@ -70,3 +71,8 @@ ul {
         margin: 0 !important;
     }
 }
+monitoring, mapping {
+    .mat-tab-body-wrapper {
+        height: 100%;
+    }
+} 

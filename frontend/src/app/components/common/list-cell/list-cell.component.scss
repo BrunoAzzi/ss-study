@@ -1,9 +1,15 @@
 $greyish-brown-two: #3c3c3c;
 
+:host {
+    display: block;
+}
+
 li {
     display: flex;
     align-items: center;
-    height: 44px;
+
+    padding: 0.5em 1em 0.5em 1em;
+
     border-bottom: 1px solid #e8e8e8;
 
     &.none img {
@@ -20,7 +26,7 @@ img {
     width: 15.6px;
     height: 17.3px;
     object-fit: contain;
-    margin-right: 15px;
+    margin-right: 1em;
 }
 
 span {

@@ -1,0 +1,31 @@
+$drop-zone-size: 90px;
+
+.custom-component-drop-zone {
+  width: $drop-zone-size;
+  height: $drop-zone-size;
+  box-sizing: border-box;
+  border: dashed 2px #f2f6f7;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(black, 0.05);
+    border-color: transparent;
+  }
+}
+
+.label {
+  display: block;
+  margin-bottom: 1em;
+}
+
+img {
+  max-width: $drop-zone-size;
+  max-height: $drop-zone-size;
+}
+
+input {
+  display: none
+}

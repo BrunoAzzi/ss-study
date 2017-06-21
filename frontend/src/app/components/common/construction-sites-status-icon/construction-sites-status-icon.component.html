@@ -1,0 +1,6 @@
+<div [ngClass]="'icon ' + statusClass" >
+    <md-icon *ngIf="statusIcon">{{ statusIcon }}</md-icon>
+    <div *ngIf="!statusIcon" class="icon-wrapper warn">
+        <img src="assets/icon/myconstructionsite/em-execucao.png" alt="">
+    </div>
+</div>

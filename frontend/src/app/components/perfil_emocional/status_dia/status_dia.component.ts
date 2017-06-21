@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Colaborador } from "../../../mocks/colaborador/colaborador";
-import { ColaboradorService } from "../../../services/colaborador/colaborador.service";
+import { CollaboratorService } from "../../../services/colaborador/collaborator.service";
 import { Resultado } from "../../../mocks/resultado/resultado";
 
+
+// TODO REVER CLASSES COM NOME EM PORTUGUÊS
 @Component({
     selector: 'status-dia',
     templateUrl: 'status_dia.template.html',
     styleUrls: ['./status_dia.component.scss'],
-    providers: [ColaboradorService]
+    providers: [CollaboratorService]
 })
 export class StatusDiaComponent implements OnInit {
     totaldecolaboradores: number = 0;
@@ -15,7 +17,7 @@ export class StatusDiaComponent implements OnInit {
 
     pesquisasDeHoje;
 
-    constructor(private colaboradorService: ColaboradorService) { }
+    constructor(private colaboradorService: CollaboratorService) { }
 
     ngOnInit(): void {
         this.getColaboradores();

@@ -1,0 +1,24 @@
+<div class="container">
+
+    <div class="separator"></div>
+
+    <div class="section-area">
+
+        <input #input [hidden]="!editing" [(ngModel)]="category"
+            (keyup.enter)="submit(category)"
+            (keyup.esc)="editing = false">
+
+        <span *ngIf="!editing && category.length === 0" (click)="startEditing(input)">
+            CLIQUE AQUI PARA
+            <br>
+            ADICIONAR NOVA CATEGORIA
+        </span>
+
+        <span *ngIf="!editing && category.length > 0" (click)="startEditing(input)">
+            {{ category }}
+        </span>
+    </div>
+
+
+    <div class="separator"></div>
+</div>
