@@ -20,14 +20,8 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 @WebAppConfiguration
 public class BaseControllerTest_IT {
 
-    protected static Logger LOG = Logger.getLogger(BaseControllerTest_IT.class.getName());
-
     protected MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(),
             MediaType.APPLICATION_JSON.getSubtype(),
-            Charset.forName("utf8"));
-
-    protected MediaType contentTypeMultiPart = new MediaType(MediaType.MULTIPART_FORM_DATA.getType(),
-            MediaType.MULTIPART_FORM_DATA.getSubtype(),
             Charset.forName("utf8"));
 
     protected MockMvc mockMvc;

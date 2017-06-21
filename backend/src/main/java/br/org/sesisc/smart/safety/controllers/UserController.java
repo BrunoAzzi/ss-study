@@ -26,6 +26,7 @@ public class UserController {
             return ErrorResponse.handle(errors, HttpStatus.UNPROCESSABLE_ENTITY);
         }
 
+        params.digestPassword(params.getPassword());
         User user = serviceUser.create(params);
 
         return SuccessResponse.handle(

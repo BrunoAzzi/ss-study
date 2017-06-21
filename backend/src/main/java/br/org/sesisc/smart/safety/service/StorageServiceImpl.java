@@ -6,26 +6,30 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
-
+import br.org.sesisc.smart.safety.common.FileUtils;
+import br.org.sesisc.smart.safety.repositories.ConstructionException;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
+import static br.org.sesisc.smart.safety.common.FileUtils.PATH_DIR;
 
 @Service("StorageService")
 public class StorageServiceImpl implements StorageService {
 
-    private final Path rootLocation = Paths.get("upload-dir");
+    private final Path rootLocation = Paths.get(PATH_DIR);
+
 
     @Override
     public String store(MultipartFile file) {
         String fileName = null;
         try {
-            fileName = String.valueOf(new Date().getTime());
+            Date date = new Date();
+            fileName = String.valueOf(date.getTime() + FileUtils.getNameType(file.getContentType()));
             Files.copy(file.getInputStream(), this.rootLocation.resolve(fileName));
         } catch (Exception e) {
-            throw new RuntimeException("FAIL!");
+            throw new ConstructionException("Erro ao armazenar o arquivo.");
         }
         return fileName;
     }
@@ -37,20 +41,22 @@ public class StorageServiceImpl implements StorageService {
             Resource resource = new UrlResource(file.toUri());
             if(resource.exists() || resource.isReadable()) {
                 return resource;
-            } else{
-                throw new RuntimeException("FAIL!");
+            } else {
+                throw new ConstructionException("Falha ao carregar o arquivo.");
             }
         } catch (MalformedURLException e) {
-            throw new RuntimeException("FAIL!");
+            throw new ConstructionException("Falha ao carregar o arquivo.");
         }
     }
 
     @Override
     public void init() {
         try {
-            Files.createDirectory(rootLocation);
+            if (!Files.exists(rootLocation)) {
+                Files.createDirectory(rootLocation);
+            }
         } catch (IOException e) {
-            throw new RuntimeException("Could not initialize storage!");
+            throw new ConstructionException("Could not initialize storage!");
         }
     }
 
