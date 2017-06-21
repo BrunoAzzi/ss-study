@@ -2,12 +2,11 @@ package br.org.sesisc.smart.safety.controllers;
 
 import br.org.sesisc.smart.safety.helpers.ClassHelper;
 import br.org.sesisc.smart.safety.models.Construction;
-import br.org.sesisc.smart.safety.repositories.ConstructionException;
+import br.org.sesisc.smart.safety.repositories.exceptions.ConstructionException;
 import br.org.sesisc.smart.safety.repositories.ConstructionRepository;
 import br.org.sesisc.smart.safety.responses.ErrorResponse;
 import br.org.sesisc.smart.safety.responses.SuccessResponse;
 import br.org.sesisc.smart.safety.service.StorageService;
-import com.sun.xml.internal.fastinfoset.util.CharArrayString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;

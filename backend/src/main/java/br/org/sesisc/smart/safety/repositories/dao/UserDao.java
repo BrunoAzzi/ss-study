@@ -1,6 +1,6 @@
 package br.org.sesisc.smart.safety.repositories.dao;
 
-import br.org.sesisc.smart.safety.repositories.UserException;
+import br.org.sesisc.smart.safety.repositories.exceptions.UserException;
 import br.org.sesisc.smart.safety.repositories.UserRepository;
 import br.org.sesisc.smart.safety.repositories.mapper.UserMapper;
 import br.org.sesisc.smart.safety.models.User;

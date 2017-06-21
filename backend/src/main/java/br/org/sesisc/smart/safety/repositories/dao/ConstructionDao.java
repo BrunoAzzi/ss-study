@@ -35,7 +35,7 @@ public class ConstructionDao implements ConstructionRepository {
                 ps.setString(1, construction.getName());
                 ps.setString(2, construction.getCep());
                 ps.setString(3, construction.getAddress());
-                ps.setInt(4, construction.getStatusValue());
+                ps.setInt(4, construction.getStatus().getValue());
                 ps.setString(5, construction.getDescription());
                 ps.setString(6, construction.getLogoUrl());
                 ps.setString(7, construction.getCeiUrl());

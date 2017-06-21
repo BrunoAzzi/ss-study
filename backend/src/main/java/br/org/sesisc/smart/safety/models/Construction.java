@@ -119,7 +119,7 @@ public class Construction {
         return status;
     }
 
-    public int getStatusValue() {
+    public int _getStatus() {
         return status.getValue();
     }
 

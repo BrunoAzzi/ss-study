@@ -1,4 +1,4 @@
-package br.org.sesisc.smart.safety.repositories;
+package br.org.sesisc.smart.safety.repositories.exceptions;
 
 
 public class UserException extends RuntimeException {

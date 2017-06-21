@@ -1,6 +1,7 @@
 package br.org.sesisc.smart.safety.repositories;
 
 import br.org.sesisc.smart.safety.models.User;
+import br.org.sesisc.smart.safety.repositories.exceptions.UserException;
 
 import java.util.List;
 

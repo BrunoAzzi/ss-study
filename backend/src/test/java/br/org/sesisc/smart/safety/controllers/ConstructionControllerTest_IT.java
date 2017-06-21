@@ -210,7 +210,7 @@ public class ConstructionControllerTest_IT extends BaseControllerTest_IT {
 
         MvcResult result = mockMvc.perform(put("/constructions/1")
                 .content(getConstructionRequestJson("new name - test","cep - test","address - test",
-                        ConstructionStatus.IN_PROGRESS.getValue(), "description - test",
+                        ConstructionStatus.FINISHED.getValue(), "description - test",
                         "logoUrl - test","ceiUrltest","ceiCode - test"))
                 .contentType(contentType))
                 .andExpect(status().isOk())
@@ -234,7 +234,7 @@ public class ConstructionControllerTest_IT extends BaseControllerTest_IT {
         Gson gson = new Gson();
         String requestJson = gson.toJson(construction).replace("IN_PROGRESS","0").replace("PAUSED","1").replace("FINISHED","2");
         System.out.println("Request: " + requestJson);
-        return "{\"name\":\"name - test\",\"cep\":\"cep - test\",\"address\":\"address - test\",\"status\":1,\"description\":\"description - test\",\"logoUrl\":\"logoUrl - test\",\"ceiCode\":\"ceiCode - test\",\"ceiUrl\":\"ceiUrltest\"}";
+        return requestJson;
     }
 
     private String getManagerRequestJson(ManagerType type, String email, String phone) {

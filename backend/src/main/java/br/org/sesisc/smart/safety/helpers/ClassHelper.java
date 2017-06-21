@@ -48,18 +48,18 @@ public class ClassHelper {
                     && fromMethod.getName().startsWith("get")) {
                 final String fromName = fromMethod.getName();
                 final String toName = fromName.replace("get", "set");
-                final String propertyName = StringUtils.capitalize(fromName.replace("get",""));
+                String dbName = fromName.replaceAll("([A-Z])", "_$1").toLowerCase().replace("get_","");
 
                 try {
                     if(fromMethod.getReturnType() instanceof Class && ((Class<?>)fromMethod.getReturnType()).isEnum()) {
-                        fromMethod = destiny.getClass().getMethod(fromName+"Value");
+                        fromMethod = destiny.getClass().getMethod("_"+fromName);
                     }
 
                     Method toMethod = destiny.getClass().getMethod(toName, fromMethod.getReturnType());
                     Object oldValue = fromMethod.invoke(destiny, (Object[])null);
                     Object newValue = fromMethod.invoke(origin, (Object[])null);
                     if(newValue != null && newValue != oldValue) {
-                        listNames.add(propertyName.substring(0,1).toLowerCase() + propertyName.substring(1));
+                        listNames.add(dbName);
                         listValues.add(newValue);
                         toMethod.invoke(destiny, newValue);
                     }
