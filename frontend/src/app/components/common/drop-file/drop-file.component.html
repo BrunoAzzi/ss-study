@@ -1,7 +1,7 @@
 <span class="label" *ngIf="label">
     {{label}}
 </span>
-<!-- <div ng2FileDrop
+<div ng2FileDrop
      class="custom-component-drop-zone"
      [ng2FileDropSupportedFileTypes]="supportedFileTypes"
      (ng2FileDropFileAccepted)="dragFileAccepted($event)"
@@ -9,4 +9,4 @@
      (click)="showInput()">
     <img [src]="image || '/assets/plus.svg'"/>
     <input #fileInput type="file" (change)="onFileChange($event)" [accept]="supportedFileTypes.join(', ')"/>
-</div> -->
+</div>

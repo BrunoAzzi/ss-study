@@ -5,7 +5,7 @@
     <div class="section-area">
 
         <input #input [hidden]="!editing" [(ngModel)]="category"
-            (keyup.enter)="addCategory(category)"
+            (keyup.enter)="submit(category)"
             (keyup.esc)="editing = false">
 
         <span *ngIf="!editing && category.length === 0" (click)="startEditing(input)">
