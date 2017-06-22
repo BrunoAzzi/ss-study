@@ -1,0 +1,49 @@
+@import "../../../../scss/components/color";
+
+
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin: 2em 0;
+
+  .separator {
+    background-color: $light-gray;
+    height: 1px;
+    flex: 1;
+    flex-grow: 1;
+  }
+
+  .section-area {
+    flex-grow: 0;
+    flex-shrink: 0;
+    padding: 0 2em;
+    box-sizing: border-box;
+  }
+}
+
+span {
+  width: 100%;
+  display: block;
+  color: $light-gray;
+  font-size: 1em;
+  font-weight: 900;
+  text-align: center;
+  cursor: pointer;
+}
+
+input {
+  width: 100%;
+  box-sizing: border-box;
+  border: 2px solid $light-gray !important;
+  outline: none;
+  background-color: transparent !important;
+
+  text-align: center;
+  padding: 1em 2em;
+
+  font-size: 12px;
+  font-weight: 900;
+}

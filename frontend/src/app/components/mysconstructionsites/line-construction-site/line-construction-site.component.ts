@@ -16,7 +16,7 @@ export class LineConstructionDetailComponent {
             case "finalizada":
                 this.statusIcon = "check";
                 break;
-            case "paralizada":
+            case "paralisada":
                 this.statusIcon = "remove";
                 break;
             case "em andamento":
@@ -27,7 +27,7 @@ export class LineConstructionDetailComponent {
         this.status = {
             "success": this.constructionSite.status == "finalizada",
             "warn": this.constructionSite.status == "em andamento",
-            "danger": this.constructionSite.status == "paralizada"
+            "danger": this.constructionSite.status == "paralisada"
         }
     }
 }
