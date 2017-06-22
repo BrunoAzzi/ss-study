@@ -19,7 +19,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
-
 import static br.org.sesisc.smart.safety.common.FileUtils.JPEG_TYPE;
 import static br.org.sesisc.smart.safety.common.FileUtils.PDF_TYPE;
 import static br.org.sesisc.smart.safety.common.FileUtils.PNG_TYPE;
@@ -90,7 +89,7 @@ public class ConstructionController {
     }
 
 
-    @RequestMapping(value = "/{id}/upload/logo", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{id}/files/logo", method = RequestMethod.PUT)
     public ResponseEntity<?> uploadLogo(@PathVariable("id") long id,
                                         @RequestParam("logo") MultipartFile logo) {
 

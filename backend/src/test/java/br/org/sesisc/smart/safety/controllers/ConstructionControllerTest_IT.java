@@ -66,7 +66,7 @@ public class ConstructionControllerTest_IT extends BaseControllerTest_IT {
     @Test
     public void registerConstruction_whenNameConstructionIsEmpty() throws Exception {
         MvcResult result = mockMvc.perform(post("/constructions")
-                .content(getConstructionRequestJson("name - test","cep - test","address - test",
+                .content(getConstructionRequestJson("","cep - test","address - test",
                         1, "description - test",
                         "logoUrl - test","ceiUrl - test","ceiCode - test"))
                 .contentType(contentType))
@@ -80,24 +80,6 @@ public class ConstructionControllerTest_IT extends BaseControllerTest_IT {
 
         String errorMessage = jsonObject.getJSONArray("errors").getJSONObject(0).getString("message");
         Assert.assertEquals("Should return an error message, when name is null.","Nome é um campo obrigatório.", errorMessage);
-    }
-
-    @Test
-    public void registerConstruction_whenStatusConstructionIsEmpty() throws Exception {
-        MvcResult result = mockMvc.perform(post("/constructions")
-                .content(getConstructionRequestJson("name - test","cep - test","address - test",
-                        1, "description - test",
-                        "logoUrl - test","ceiUrl - test","ceiCode - test"))
-                .contentType(contentType))
-                .andExpect(status().isUnprocessableEntity())
-                .andReturn();
-        String responseJson = result.getResponse().getContentAsString();
-        JSONObject jsonObject = new JSONObject(responseJson);
-
-        System.out.println("Response: " + responseJson);
-
-        String errorMessage = jsonObject.getJSONArray("errors").getJSONObject(0).getString("message");
-        Assert.assertEquals("Should return an error message, when status is null.","Status é um campo obrigatório.", errorMessage);
     }
 
     /**
