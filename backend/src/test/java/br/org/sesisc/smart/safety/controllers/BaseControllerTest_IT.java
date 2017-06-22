@@ -20,6 +20,8 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 @WebAppConfiguration
 public class BaseControllerTest_IT {
 
+    protected static Logger LOG = Logger.getLogger(BaseControllerTest_IT.class.getName());
+
     protected MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(),
             MediaType.APPLICATION_JSON.getSubtype(),
             Charset.forName("utf8"));
@@ -35,8 +37,6 @@ public class BaseControllerTest_IT {
     protected final String INVALID_PASSWORD = "passwordNotValid";
 
     protected final String INCORRECT_EMAIL_REGEX_RULE = "admin@test";
-
-    protected final String INCORRECT_PASSWORD_LENGTH = "123";
 
     @Autowired
     protected WebApplicationContext webApplicationContext;

@@ -1,6 +1,5 @@
 package br.org.sesisc.smart.safety.controllers;
 
-import br.org.sesisc.smart.safety.common.ManagerType;
 import br.org.sesisc.smart.safety.models.Construction;
 import br.org.sesisc.smart.safety.models.Manager;
 import br.org.sesisc.smart.safety.models.enums.ConstructionStatus;
@@ -20,7 +19,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMultipartHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.RequestPostProcessor;
-import static br.org.sesisc.smart.safety.common.FileUtils.PATH_DIR;
+import static br.org.sesisc.smart.safety.helpers.FileHelper.PATH_DIR;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.BDDMockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -219,7 +218,7 @@ public class ConstructionControllerTest_IT extends BaseControllerTest_IT {
         return requestJson;
     }
 
-    private String getManagerRequestJson(ManagerType type, String email, String phone) {
+    private String getManagerRequestJson(String type, String email, String phone) {
         Manager manager = new Manager(type, email, phone);
 
         Gson gson = new Gson();

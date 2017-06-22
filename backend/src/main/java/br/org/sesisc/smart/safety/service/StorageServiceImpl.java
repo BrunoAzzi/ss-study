@@ -6,14 +6,14 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
-import br.org.sesisc.smart.safety.common.FileUtils;
+import br.org.sesisc.smart.safety.helpers.FileHelper;
 import br.org.sesisc.smart.safety.repositories.exceptions.ConstructionException;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
-import static br.org.sesisc.smart.safety.common.FileUtils.PATH_DIR;
+import static br.org.sesisc.smart.safety.helpers.FileHelper.PATH_DIR;
 
 @Service("StorageService")
 public class StorageServiceImpl implements StorageService {
@@ -26,7 +26,7 @@ public class StorageServiceImpl implements StorageService {
         String fileName = null;
         try {
             Date date = new Date();
-            fileName = String.valueOf(date.getTime() + FileUtils.getNameType(file.getContentType()));
+            fileName = String.valueOf(date.getTime() + FileHelper.getNameType(file.getContentType()));
             Files.copy(file.getInputStream(), this.rootLocation.resolve(fileName));
         } catch (Exception e) {
             throw new ConstructionException("Erro ao armazenar o arquivo.");

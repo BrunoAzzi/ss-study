@@ -1,6 +1,6 @@
-package br.org.sesisc.smart.safety.common;
+package br.org.sesisc.smart.safety.helpers;
 
-public class FileUtils {
+public class FileHelper {
 
     public static final String PDF_TYPE = "application/pdf";
 

@@ -19,9 +19,9 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
-import static br.org.sesisc.smart.safety.common.FileUtils.JPEG_TYPE;
-import static br.org.sesisc.smart.safety.common.FileUtils.PDF_TYPE;
-import static br.org.sesisc.smart.safety.common.FileUtils.PNG_TYPE;
+import static br.org.sesisc.smart.safety.helpers.FileHelper.JPEG_TYPE;
+import static br.org.sesisc.smart.safety.helpers.FileHelper.PDF_TYPE;
+import static br.org.sesisc.smart.safety.helpers.FileHelper.PNG_TYPE;
 
 @RestController
 @RequestMapping("/constructions")
