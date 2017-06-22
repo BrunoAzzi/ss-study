@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'sensor-identification',
@@ -7,5 +7,8 @@ import { Component } from '@angular/core';
 })
 
 export class SensorIdentification {
+
+    title: string;
+    id: string;  
 
 }

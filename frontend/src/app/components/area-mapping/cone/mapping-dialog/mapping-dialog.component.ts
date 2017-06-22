@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
 import { MdDialog, MdDialogRef, MdButton, MdToolbar } from '@angular/material';
 
+import { Cone } from './../../../../models/cone.model';
+
 @Component({
   selector: 'mapping-dialog',
   styleUrls: ['mapping-dialog.component.scss'],
   templateUrl: 'mapping-dialog.component.html'
 })
+
 export class MappingDialog {
   ACTION_NEXT = "PRÓXIMO";
   ACTION_FINISH = "FINALIZAR MAPEAMENTO";
@@ -14,8 +17,10 @@ export class MappingDialog {
   currentStageStep: number;
   stageStepChild: number;
   totalSteps: number;
+  cone: Cone;
+  data: any;
 
-  constructor(public dialog: MdDialog) { }
+  constructor() { }
 
     ngOnInit() {
         this.currentStageStep = 1;        
@@ -28,7 +33,7 @@ export class MappingDialog {
       this.totalSteps = _totalSteps;
     }
 
-    updateStepStage(_actionType: string) {      
+    updateStepStage(_actionType: string) {
         if(_actionType == 'next') {
           if(this.currentStageStep < this.totalSteps) {
             this.currentStageStep++;            
@@ -43,6 +48,18 @@ export class MappingDialog {
             this.actionButton = this.ACTION_NEXT;                 
           }
         }
+    }
+
+    updateSensorIdentification(_data: any) {
+      
+    }
+
+    updateRisks(_data: any) {
+
+    }
+
+    updatePermissions(_data: any) {
+
     }
 
 }

@@ -32,6 +32,13 @@ export class CollaboratorEditableList implements OnInit {
       this.filteredCollaborators = this.collaborators.filter(filterByString(value));
   }
 
+  toggleSelect = function(event) {
+      this.allCollaborators = event.target.firstChild.checked;      
+      this.collaborators.forEach(element => {
+          element.selected = !event.target.firstChild.checked;
+      });
+  }
+
   ngOnInit() {
 
   }

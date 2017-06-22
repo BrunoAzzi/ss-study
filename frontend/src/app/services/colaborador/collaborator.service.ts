@@ -19,14 +19,14 @@ export class CollaboratorService {
     getAllCollaborators() {
         return new Promise<Array<Collaborator>>((resolve, reject) => {
             resolve([
-                new Collaborator(1, 'MARIA CRESCENCIO', 'SERVENTE', '039.987.789-20'),
-                new Collaborator(2, 'JOÃO CRESCENCIO', 'SERVENTE', '039.987.789-20'),
-                new Collaborator(3, 'JOÃO CRESCENCIO', 'SERVENTE', '039.987.789-20'),
-                new Collaborator(4, 'JOÃO CRESCENCIO', 'SERVENTE', '039.987.789-20'),
-                new Collaborator(5, 'JOÃO CRESCENCIO', 'SERVENTE', '039.987.789-20'),
-                new Collaborator(6, 'JOÃO CRESCENCIO', 'SERVENTE', '039.987.789-20'),
-                new Collaborator(7, 'JOÃO CRESCENCIO', 'CARPINTEIRO', '039.987.789-20'),
-                new Collaborator(8, 'JOÃO CRESCENCIO', 'SERVENTE', '039.987.789-20'),
+                new Collaborator(1, 'MARIA CRESCENCIO', 'SERVENTE', '039.987.789-21'),
+                new Collaborator(2, 'JOÃO CRESCENCIO', 'SERVENTE', '039.987.789-22'),
+                new Collaborator(3, 'JOÃO LIMA DA SILVA', 'SERVENTE', '039.987.789-23'),
+                new Collaborator(4, 'PAULO PLANTIO', 'SERVENTE', '039.987.789-24'),
+                new Collaborator(5, 'FLORIANO JEREMY', 'SERVENTE', '039.987.789-25'),
+                new Collaborator(6, 'APARECIDA HESS', 'SERVENTE', '039.987.789-26'),
+                new Collaborator(7, 'EDSON DO NASCIMENTOS', 'CARPINTEIRO', '039.987.789-27'),
+                new Collaborator(8, 'FRANCISCO ELNO HERCULANO', 'LIDER', '039.987.789-28'),
             ]);
         });
     }

@@ -16,8 +16,16 @@
             <tr>
                 <thead>
                     <th>
-                        <md-checkbox color="primary" class="checkbox"></md-checkbox>
-                        Todos
+                        <md-checkbox 
+                            id="allCollaborators"
+                            name="allCollaborators"
+                            value="allCollaborators"
+                            color="primary" 
+                            class="checkbox"
+                            (click)="toggleSelect($event)"
+                            >
+                        </md-checkbox>
+                        <label for="allCollaborators">Todos</label>                        
                     </th>
                 </thead>
             </tr>
@@ -27,8 +35,16 @@
             <tr *ngFor="let c of filteredCollaborators; let i = index"
             >
                 <td> 
-                    <md-checkbox [(ngModel)]="c.selected" color="primary" class="checkbox"></md-checkbox>
-                    {{c.name}}
+                    <md-checkbox 
+                        [(ngModel)]="c.selected" 
+                        color="primary" 
+                        class="checkbox" 
+                        id="{{c.id}}"
+                        name="{{c.id}}"
+                        value="{{c.selected}}"
+                        [checked]="c.selected">
+                    </md-checkbox>
+                    <label for="{{c.id}}">{{c.name}}</label>                    
                 </td>
                 <td>{{c.cpf}}</td>
                 <td>{{c.occupation}}</td>
