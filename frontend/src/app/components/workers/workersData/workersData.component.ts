@@ -1,4 +1,4 @@
-import { Component, Inject, EventEmitter, Output } from '@angular/core';
+import { Component, Inject, EventEmitter, Output, Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { CorreiosService } from "../../../services/correios.service";
 import { Endereco_completo } from '../../../mocks/endereco_completo/endereco_completo';
@@ -15,42 +15,17 @@ import { IMyDpOptions } from 'mydatepicker';
     providers: [CorreiosService, CBOService, WorkersDataService]
 })
 export class WorkersDataComponent {
-    @Output() cpfValue = new EventEmitter<string>();
+    @Input() worker;
+    @Output() cpfUpdated = new EventEmitter<string>();
 
     disabled = true;
-
     mycbo = '';
     mycbonumber = 0;
     modelCEP = '';
     cpf = '';
-    modelCompleteAdress = '';
-    modelAge = '';
-    modelNit = '';
-    modelCTPS = '';
-    modelComplement = '';
-    modelContact = '';
-    modelFunction = '';
-    modelCompany = '';
-     
-    selectedStatusValue = '';
-    birthDateModel = null;
-    admissionDateModel = null;
-    modelSpecialNecessitys = '';
-
-    own = true;
-    outsource = !this.own;
-    masc = true;
-    fem = !this.masc;
-
-    model: Object = { date: { year: 2018, month: 10, day: 9 } };
-    sexModel = 'm';
-    fullname = '';
     hiredType = true;
-    isValid = false;
     myForm: FormGroup;
     completeAddress: string;
-    selectedScholarityValue: string;
-    selectedLabor: string;
 
     myDatePickerOptions: IMyDpOptions = {
         dateFormat: 'dd/mm/yyyy',
@@ -78,6 +53,9 @@ export class WorkersDataComponent {
     ];
 
     labors = [{ value: '', viewValue: '' }];
+
+    sexs = ['Masculino','Feminino'];
+    hireds = ['Próprio','Terceiro'];
 
     scholaritys = [
         { value: 'fund_i', viewValue: 'Fundamental incompleto' },
@@ -135,68 +113,15 @@ export class WorkersDataComponent {
 
 
     autoCompleteWorker() {
-        this.cpfValue.emit(this.cpf);
-        this.workersService.getWorker(this.cpf).subscribe(
+        this.cpfUpdated.emit(this.cpf);
+        this.cboService.getCBO(this.mycbo).subscribe(
             (response) => {
-
-                this.fullname = response.name,
-                    this.modelCEP = response.cep;
-                this.modelCompleteAdress = response.completeAddress;
-                this.modelAge = response.age;
-                this.modelNit = response.nit;
-                this.modelCTPS = response.ctps;
-                this.modelComplement = response.complement;
-                this.modelContact = response.contact;
-                this.modelFunction = response.cboDescription;
-                this.mycbo = response.cbo;
-                this.modelCompany = response.company;
-
-                this.fem = (response.sex == "f") ? true : false;
-                this.masc = !this.fem;
-                this.outsource = (response.hiredType == "outsource") ? true : false;
-                this.own = !this.outsource;
-
-                this.selectedScholarityValue = response.scholarity;
-
-                this.modelSpecialNecessitys = response.specialNecessity;
-                this.selectedStatusValue = response.status;
-              
-                this.cboService.getCBO(this.mycbo).subscribe(
-                            (response) => {
-                                this.labors = response;
-                            },
-                );
-               
-                 this.selectedLabor = response.laborCBO;
-
-                let bdate = new Date(response.birthDate);
-                this.birthDateModel =
-                    {
-                        date: {
-                            year: bdate.getFullYear(),
-                            month: bdate.getMonth() + 1,
-                            day: bdate.getDate()
-                        }
-
-                    };
-
-                let addate = new Date(response.admissionDate);
-                this.admissionDateModel = {
-                    date: {
-                        year: addate.getFullYear(),
-                        month: addate.getMonth() + 1,
-                        day: addate.getDate()
-                    }
-                }
-
+                this.labors = response;
             },
         );
-
-
     }
 
     autocompleteRoleFromMock() {
-
         this.cboService.getCBO("6125-05").subscribe(
             (response) => {
                 this.labors = response;
@@ -215,10 +140,7 @@ export class WorkersDataComponent {
     }
 
     savePersonalDataWorker(safetyCard) {
-        //se não passar, descomentar: console.log(this.myForm.controls);
-
         if (this.myForm.valid) {
-
             safetyCard.close();
         }
     }

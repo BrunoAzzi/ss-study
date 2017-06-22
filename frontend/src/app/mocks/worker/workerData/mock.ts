@@ -1,10 +1,8 @@
-//import { WorkersData } from './workersData';
-
 export const WORKERS_DATA = {
     name: "Bia",
     cpf: "199.942.366-60",
-    sex: "f",
-    scholarity: "fund_i",
+    sexOption: "f",
+    scholarity: "fund_c",
     nit: "12312345123",
     ctps: "01521689153",
     complement: "Casa",
@@ -13,12 +11,12 @@ export const WORKERS_DATA = {
     laborCBO: "abmat",
     cboDescription: "Abate animais",
     birthDate: "1999-7-12",
-    hiredType: "outsource",
-    admissionDate: "2016-8-8",
+    ownContracting: "Terceiro",
+    admissionDate: "2016-1-1",
     cep: "88.054-300",
     completeAddress: "Florianópolis - SC, Canasvieiras, Rua das Flores",
     age: 19,
-    specialNecessity: 2,
+    specialNecessity: 1,
     status: "inativo",
     company: "Açougue do Márcio",
 };

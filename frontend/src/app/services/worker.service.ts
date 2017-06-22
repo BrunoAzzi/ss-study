@@ -19,4 +19,9 @@ export class WorkerService {
 			.map(response => response.json().data)
 			.map(data => new Worker(data))
 	}
+
+	getWorkerByCpf(cpf: string) {
+		return this.getWorker(1);
+//		return this.getWorkerList().map(workerlist => workerList.map(worker => if (worker.cpf === cpf) return worker));
+	}
 }
