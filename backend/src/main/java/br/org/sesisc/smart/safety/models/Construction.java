@@ -80,6 +80,10 @@ public class Construction {
 
     private String ceiFileName;
 
+    private Responsible responsibleEngineer;
+    
+    private Responsible responsibleSafety;
+
     /**
      * Getters & Setters
      */
@@ -177,6 +181,22 @@ public class Construction {
 
     public void setCeiFileName(String ceiFileName) {
         this.ceiFileName = ceiFileName;
+    }
+
+    public Responsible getResponsibleEngineer() {
+        return responsibleEngineer;
+    }
+
+    public void setResponsibleEngineer(Responsible responsibleEngineer) {
+        this.responsibleEngineer = responsibleEngineer;
+    }
+
+    public Responsible getResponsibleSafety() {
+        return responsibleSafety;
+    }
+
+    public void setResponsibleSafety(Responsible responsibleSafety) {
+        this.responsibleSafety = responsibleSafety;
     }
 
     /*
