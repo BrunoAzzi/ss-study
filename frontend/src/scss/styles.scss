@@ -7,34 +7,39 @@
 @import 'components/color.scss';
 @import 'components/grid.scss';
 
+*,
+html, body, title, body, h1, h2, h3, h4, h5, h6, p,
+form, input, textarea, button, select, optgroup, option, label, fieldset, legend, datalist, keygen, output,
+a, link, nav,
+ul, ol, li, dir, dl, dt, dd, menu, menuitem,
+table, caption, th, tr, td, thead, tbody, tfoot, col, colgroup,
+div, span, header, footer, main, section, article, aside, details, dialog, summary, data {
+    font-family: 'Lato', sans-serif;
+}
+
 html {
     height: 100%;
 }
 
 body {
     display: flex;
-    -ms-flex: 1;
-    -webkit-flex: 1;
-    overflow: hidden;
-    flex: 1;
+    display: -webkit-flex;
     flex-direction: column;
+    -webkit-flex-direction: column;
+    overflow: hidden;
     min-height: 100%;
     max-height: 100%;
     margin: 0;
     padding: 0;
-    font-family: 'Lato', sans-serif;
 }
 
 .body-content {
     position: relative;
     padding: 20px;
-    max-height: 100%;
+    height: 100%;
     overflow-y: auto;
+    overflow: -moz-scrollbars-vertical;
     box-sizing: border-box;
-}
-
-h1, h2, h3, h4, h5, h6, p, a, input, label, span {
-    font-family: 'Lato', sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6, p {
@@ -42,7 +47,10 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 a {
-    color: $grapefruit
+    color: $link;
+    &:hover {
+        color: $grapefruit;
+    }
 }
 
 md-card {
@@ -54,8 +62,6 @@ md-card {
         max-width: 400px;
         min-width: 120px;
         min-height: 120px;
-        //padding: 0 0 32px 0;
-
         md-card-content img {
             width: 100%;
             height: auto;

@@ -1,174 +1,112 @@
 @import '../color.scss';
 
-md-error {
-    position: relative;
-    font-size: 7pt;
-    font-weight: bold;
-    text-transform: uppercase;
-    margin-top: 11px;
-    padding: 5px 0 5px 0;
-}
-
+.mat-input-container,
+md-error,
 md-select,
 md-radio-group,
 my-date-picker,
+md-input-container,
 date-range,
-md-input-container {
-    background-color: $pale-gray;
-    color: $greyish-brown;
-    font-family: 'Lato', sans-serif;
+input {
     text-transform: uppercase;
-    border: 1px solid $pale-gray;
-    transition: all 800ms ease-in;
-    -moz-transition: all 800ms ease-in;
-    -webkit-transition: all 800ms ease-in;
-    &:hover {
-        border: 1px solid #D0D0D0;
-        background-color: #F6F6F6;
-        transition: all 75ms ease-in;
-        -moz-transition: all 75ms ease-in;
-        -webkit-transition: all 75ms ease-in;
-    }
-    &:active {
-        border: 1px solid #DEDEDE;
-        background-color: #F0F0F0;
+    font-family: 'Lato', sans-serif;
+    color: $greyish-brown;
+    * {
+        text-transform: uppercase;
+        font-family: 'Lato', sans-serif;
+        color: $greyish-brown;
     }
 }
 
+md-error {
+    position: relative;
+    margin-top: 5px;
+    padding-left: 0;
+    font-size: 7pt;
+    font-weight: bold;
+}
+
 .mat-input-container {
-    height: 50px;
-    padding: 10px 15px 0 15px;
+    font-size: 10pt;
+    .mat-input-wrapper {
+        margin-bottom: 0;
+    }
     .mat-input-underline,
     .mat-select-underline {
-        position: relative;
-        border-style: none;
-        padding: 0;
-        margin: 0;
+        border-color: $greyish-brown;
     }
-    .mat-input-placeholder,
-    .mat-input-underline {
-        color: #eeba34;
-    }
-    .mat-input-element {
-        font-size: 12pt;
-        font-weight: normal;
-        color: $greyish-brown;
-        margin-top: 0;
-        margin-bottom: -8px;
-    }
-    .mat-input-placeholder.mat-empty {
-        font-family: 'Lato', sans-serif;
-        color: $greyish-brown;
-        font-size: 10pt;
-    }
+    .mat-input-element,
+    .mat-input-placeholder.mat-empty,
     .mat-focused .mat-input-placeholder .mat-float,
     .mat-input-placeholder.mat-float {
         font-family: 'Lato', sans-serif;
         color: $greyish-brown;
-        font-size: 10pt;
     }
-    .mat-input-placeholder .mat-float,
-    .mat-input-placeholder.mat-float:not(.mat-empty) {
-        font-family: 'Lato', sans-serif;
-        color: $greyish;
-        font-size: 10pt;
-    }
-    .mat-input-placeholder .mat-input-ripple,
-    .mat-input-placeholder.mat-input-ripple:not(.mat-empty) {
-        font-family: 'Lato', sans-serif;
-        color: $greyish;
-    }
-    .mat-input-underline .mat-input-ripple {
-        height: 1px;
-        top: 10px;
-    }
-    .mat-input-underline.mat-disabled {
-        background-size: 0;
-    }
-}
-
-textarea {
-    min-height: 100px;
-}
-
-.textarea-continer {
-    display: inline-flex;
-    height: auto;
-    min-height: 132px;
 }
 
 md-select {
     width: 100%;
-    height: 35px;
     min-width: 0;
     display: inline-flex;
-    padding-top: 25px;
-    padding-right: 0;
-    padding-left: 0;
-    margin: 0;
+    padding-top: 13px;
+    .mat-select-placeholder.mat-floating-placeholder {
+        top: -16px !important;
+    }
     .mat-select-trigger {
         width: 100%;
         height: auto;
-        min-height: 0;
         display: inline-flex;
-        padding-left: 15px;
-        padding-right: 15px;
-        align-items: center;
     }
-    .mat-select-underline {
-        height: 0;
-    }
-    .mat-select-placeholder {
-        padding: 0;
-    }
-    .mat-select-trigger .mat-select-placeholder {
-        font-size: 10pt;
-        font-family: 'Lato', sans-serif;
-        color: $greyish-brown;
-    }
-    md-select .mat-select-trigger .mat-select-placeholder {
-        font-size: 10pt;
-        font-family: 'Lato', sans-serif;
-        color: $greyish;
-    }
+    .mat-select-trigger .mat-select-placeholder,
+    md-select .mat-select-trigger .mat-select-placeholder,
     .mat-select-value-text {
+        padding-left: 0;
         font-size: 10pt;
         font-family: 'Lato', sans-serif;
         color: $greyish-brown;
-        padding-left: 15px;
-    }
-    .mat-select-value {
-    }
-    .mat-select-arrow {
-        margin: 0;
     }
     .mat-select-arrow,
     .mat-select:focus:not(.mat-select-disabled).mat-primary .mat-select-arrow,
     .mat-select:focus:not(.mat-select-disabled).mat-primary .mat-select-trigger {
         color: $grapefruit !important;
     }
+    .mat-select-underline {
+        background-color: $greyish-brown;
+    }
+    .mat-select-placeholder {
+        padding-bottom: 5px;
+    }
 }
+
 .mat-option.mat-selected.mat-primary,
 .mat-primary .mat-option.mat-selected {
     color: $grapefruit !important;
 }
+
+.mat-option {
+    height: 38px !important;
+    line-height: 38px !important;
+    font-size: 10pt !important;
+    text-transform: uppercase;
+    border-bottom: 1px solid #F5F5F5;
+}
+
 .cdk-overlay-pane {
-    margin-top: 50px;
+    margin-top: 40px;
 }
 
 md-radio-group {
-    min-height: 60px;
-    display: inline-flex;
+    min-height: 51px;
+    display: inline-block;
     flex-wrap: wrap;
-    padding: 0 15px 0 15px;
     align-items: flex-start;
     p {
         width: 100%;
-        margin-top: 10px;
-        margin-bottom: 4px;
-        color: $greyish;
-        font-size: 10px;
         display: inline-block;
+        margin-top: 0;
+        margin-bottom: 4px;
+        color: $greyish-brown;
+        font-size: 10px;
     }
     md-radio-button {
         padding-right: 15px;
@@ -191,42 +129,37 @@ md-radio-group {
 }
 
 my-date-picker {
-    min-width: 10%;
-    max-height: 60px;
-    display: inline-flex;
-    padding: 0 15px 0 15px;
-    .mydp,
-    .mydp .selection,
-    .mydp .selectiongroup,
-    .mydp .selector {
-        height: 60px;
-        padding-left: 0;
-        background-color: transparent;
-        border-radius: 0;
-        border: none;
-    }
     .mydp * {
         font-family: 'Lato', sans-serif;
         font-weight: normal;
-        text-transform: uppercase;
         color: $greyish-brown;
     }
+    .mydp .invaliddate {
+        border-bottom: 2px solid #f44336 !important;
+    }
     .mydp .selection {
+        padding-left: 0;
+        color: $greyish-brown;
+    }
+    .mydp,
+    .mydp .headertodaybtn,
+    .mydp .selection,
+    .mydp .selectiongroup,
+    .mydp .selector {
+        border-width: 0 0 1px 0;
+        border-radius: 0;
+        border-color: $greyish-brown;
         background-color: transparent;
-        margin-top: 13px;
     }
     .mydp .btnclear,
     .mydp .btndecrease,
     .mydp .btnincrease,
     .mydp .btnpicker {
-        width: 40px;
-        height: 60px;
-        background-color: #EFEFEF;
+        width: 30px;
         border-radius: 0;
-        margin-right: -15.5px;
+        background-color: white;
     }
     .mydp .btnclear {
-        margin-right: 2.5px;
         &:hover {
             background-color: #FF9999;
             .icon-mydpremove {
@@ -243,48 +176,40 @@ my-date-picker {
 }
 
 date-range {
-    min-width: 10%;
-    max-height: 60px;
-    display: block;
-    padding: 0 0 0 15px;
     .mydrp {
         min-width: 100%;
-    }
-    .mydrp,
-    .mydrp .selection,
-    .mydrp .selectiongroup,
-    .mydrp .selector {
-        height: 60px;
-        padding-left: 0;
-        background-color: transparent;
-        border-radius: 0;
-        border: none;
-        vertical-align: inherit;
-    }
-    .mydrp .selection {
-        padding: 0;
     }
     .mydrp * {
         font-family: 'Lato', sans-serif;
         font-weight: normal;
-        text-transform: uppercase;
         color: $greyish-brown;
     }
     .mydrp .selection {
+        padding-left: 0;
+        color: $greyish-brown;
+    }
+    .mydrp .invaliddate {
+        border-bottom: 2px solid #f44336 !important;
+    }
+    .mydrp,
+    .mydrp .headertodaybtn,
+    .mydrp .selection,
+    .mydrp .selectiongroup,
+    .mydrp .selector {
+        border-width: 0 0 1px 0;
+        border-radius: 0;
+        border-color: $greyish-brown;
         background-color: transparent;
-        margin-top: 13px;
     }
     .mydrp .btnclear,
     .mydrp .btndecrease,
     .mydrp .btnincrease,
     .mydrp .btnpicker {
-        width: 40px;
-        height: 60px;
-        background-color: #EFEFEF;
+        width: 30px;
+        background-color: white;
         border-radius: 0;
     }
     .mydrp .btnclear {
-        margin-right: 2.5px;
         &:hover {
             background-color: #FF9999;
             .icon-mydrpremove {

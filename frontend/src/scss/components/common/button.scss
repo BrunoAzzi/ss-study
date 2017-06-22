@@ -10,7 +10,6 @@
     text-decoration: none;
     max-width: 200px;
     cursor: pointer;
-
     &:hover {
         background-color: darken($grapefruit, 5);
     }
@@ -34,7 +33,21 @@ a.action {
         opacity: 1;
         background-color: $cool-grey;
         color: white;
-        font-family: 'Lato', sans-serif;
+        font-size: 11px;
+        text-transform: uppercase;
+    }
+    button[disabled] {
+        opacity: 0.5;
+    }
+}
+
+.button-red {
+    width: auto;
+    text-align: right;
+    button {
+        opacity: 1;
+        background-color: $grapefruit;
+        color: white;
         font-size: 11px;
         text-transform: uppercase;
     }
