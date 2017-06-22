@@ -5,6 +5,9 @@
     <safety-card-content>
         <form [formGroup]="myForm" id="formHealth" (submit)="saveHealthComponent(safetyCard)">
             <div class="form-content">
+                <div *ngIf="errorMsg != undefined">
+                {{errorMsg}}
+                </div>
                 <table class="table-form">
                     <tr>
                         <th></th>
@@ -37,17 +40,17 @@
             </div>
             <div class="aling-div" *ngFor="let aso of asoList">
                 <div>
-                    <md-select formControlName="asoTypes" placeholder="aso" [(ngModel)]="itemSelected" >
-                        <md-option *ngFor="let asoType of asoTypes" [value]="asoType.value" (click)="nameParameter()">
+                    <md-select formControlName="asoTypes" placeholder="aso" (change)="changeSelected(aso, $event)">
+                        <md-option *ngFor="let asoType of asoTypes" [value]="asoType.value">
                             {{asoType.viewValue}}
                         </md-option>
                     </md-select>
                 </div>
-                <div *ngIf="itemSelected >= 0">
-                    <asoItemComponent [itemSelected]="itemSelected" [itemName]="name"></asoItemComponent>
+                <div *ngIf="aso.selected >= 0">
+                    <asoItemComponent [itemSelected]="aso.selected" [itemName]="aso.name"></asoItemComponent>
                 </div>
             </div>
-            <div fxFill fxLayout fxLayoutAlign="start right">
+            <div fxLayout="row" fxLayoutAlign="start right">
                 <a class="action" (click)="addAso()">
                     Adicicionar ASO
                 </a>

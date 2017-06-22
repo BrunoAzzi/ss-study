@@ -14,11 +14,8 @@ import { IMyDpOptions } from 'mydatepicker';
 })
 export class HealthComponent {
     myForm: FormGroup;
-    showAso: boolean;
-    itemSelected: number;
-    asoList: Array<Object>[] = [];
-     @Input() name: String;   
-  
+    asoList: Array<Object> = [];
+    errorMsg: String = undefined;
 
     myDatePickerOptions: IMyDpOptions = {
         dateFormat: 'dd/mm/yyyy',
@@ -50,38 +47,31 @@ export class HealthComponent {
     ];
 
     asoTypes = [
-        { value: 0, viewValue: 'Admissional' },
-        { value: 1, viewValue: 'Demissional' },
-        { value: 2, viewValue: 'Periódico' },
-        { value: 3, viewValue: 'Mudança de Função' },
-        { value: 4, viewValue: 'Retorno ao Trabalho' },
+        { value: 0, viewValue: 'Admissional', name: "Data Periódico" },
+        { value: 1, viewValue: 'Demissional', name: "Data Demissão" },
+        { value: 2, viewValue: 'Periódico', name: "Proxímo Exame" },
+        { value: 3, viewValue: 'Mudança de Função', name: "Data Periódico" },
+        { value: 4, viewValue: 'Retorno ao Trabalho', name: "Data Periódico" },
     ];
 
-
-
     addAso() {
-        this.asoList.push(this.asoTypes);
+        let json = {
+            //list: this.asoTypes,
+            selected: undefined,
+            name: undefined
+        };
+        this.asoList.push(json);
+        console.log(json);
     }
-    
-      nameParameter() {
-        switch (this.itemSelected) {
-            case 0:
-                this.name = "Data Periódico"
-                break;
-            case 1:
-                this.name = "Data Demissão"
-                break;
-            case 2:
-                this.name = "Proxímo Exame"
-                break;
-            case 3:
-            case 4:
-                this.name = "Data Periódico"
-                break;
-            default:
-                break;
+
+    changeSelected(aso, value) {
+        aso.selected = value.value;
+        aso.name = this.asoTypes[value.value].name;
+        if(aso.selected == 1){
+            this.errorMsg = "Seu burro";
+        }else{
+            this.errorMsg = undefined;
         }
     }
-
 }
 
