@@ -37,11 +37,7 @@
     </div>
 </div>
 
-<div class="list-wrapper">
-    <div *ngFor="let constructionSite of getFilteredConstructions()">
-        <line-construction-site fxFlex fxLayout fxLayoutAlign="space-between center" *ngIf="constructionSite" [constructionSite]="constructionSite"></line-construction-site>
-    </div>
-    <constructions-landing-page *ngIf="service.constructions.length === 0"></constructions-landing-page>
-</div>
+<line-construction-site *ngFor="let constructionSite of getFilteredConstructions()" [constructionSite]="constructionSite"></line-construction-site>
+<constructions-landing-page *ngIf="service.constructions.length === 0"></constructions-landing-page>
 
 <fab mdTooltip="Adicionar obra" mdTooltipPosition="before" (click)="addConstructionSite()"></fab>
