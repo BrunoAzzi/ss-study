@@ -34,7 +34,7 @@ export class CollaboratorEditableList implements OnInit {
 
   toggleSelect = function(event) {
       this.allCollaborators = event.target.firstChild.checked;      
-      this.collaborators.forEach(element => {
+      this.filteredCollaborators.forEach(element => {
           element.selected = !event.target.firstChild.checked;
       });
   }

@@ -1,10 +1,25 @@
 @import '../../../../../scss/components/color.scss';
 
-input {
+.mat-input-container {
+    background-color: $pale-gray2;
     width: 410px;
     height: 46px;
     padding: 0 14px;
-    background-color: $pale-gray2;
+
+    .mat-input-element {
+       position: absolute;
+       top: 1.5em;
+       text-transform: uppercase;
+       font-size: 11px;
+       font-weight: bold;
+       line-height: 1.27;
+       color: $greyish-brown-two; 
+    }
+
+    .mat-input-placeholder {
+        left: 30px !important; 
+    }
+
 }
 
 a {
