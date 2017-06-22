@@ -70,6 +70,7 @@ import { MappingStages } from './components/area-mapping/cone/mapping-stages/map
 import { SensorIdentification } from './components/area-mapping/cone/sensor-identification/sensor-identification.component';
 import { RelatedRisks } from './components/area-mapping/cone/related-risks/related-risks.component';
 import { Permissions } from './components/area-mapping/cone/permissions/permissions.component';
+import { CollaboratorEditableList } from './components/common/collaborator/collaborator-editable-list/collaborator-editable-list.component';
 import { AreaMonitoringComponent } from './components/area-monitoring/area-monitoring.component';
 import { SummaryItemComponent } from './components/summary-item/summary-item.component';
 import { SummaryComponent } from './components/summary/summary.component';
@@ -199,6 +200,7 @@ import { AlertsTabItemComponent } from './components/area-monitoring/alerts-tab-
         SensorIdentification,
         Permissions,
         RelatedRisks,
+        CollaboratorEditableList,
         WorkersOverviewComponent,
         ListCellComponent,
         SectionListComponent,

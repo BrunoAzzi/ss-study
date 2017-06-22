@@ -1,0 +1,38 @@
+<div fxLayout="column" fxLayoutAlign="space-between stretch">
+    <div fxLayout fxLayoutAlign="space-between center">
+        <md-input-container class="no-underline mapping mapping-icon" >
+            <md-placeholder >
+                <md-icon>search</md-icon>
+                <md-hint>BUSCAR POR NOME, CPF OU FUNÇÃO</md-hint>
+            </md-placeholder>
+        <input mdInput [(ngModel)]="allSearch"
+                        (ngModelChange)="allSearchChange($event)">
+        </md-input-container>
+            <a href="#">Adicionar a lista</a>
+            <a href="#">Excluir colaborador</a>
+    </div>
+    <div fxLayout fxLayoutAlign="space-between end">
+        <table>
+            <tr>
+                <thead>
+                    <th>
+                        <md-checkbox color="primary" class="checkbox"></md-checkbox>
+                        Todos
+                    </th>
+                </thead>
+            </tr>
+            <tr class="bordered">
+                <td></td><td></td><td></td>
+            </tr>
+            <tr *ngFor="let c of filteredCollaborators; let i = index"
+            >
+                <td> 
+                    <md-checkbox [(ngModel)]="c.selected" color="primary" class="checkbox"></md-checkbox>
+                    {{c.name}}
+                </td>
+                <td>{{c.cpf}}</td>
+                <td>{{c.occupation}}</td>
+            </tr>
+        </table>        
+    </div>
+</div>

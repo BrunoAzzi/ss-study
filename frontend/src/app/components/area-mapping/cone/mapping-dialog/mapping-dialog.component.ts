@@ -1,11 +1,6 @@
 import { Component } from '@angular/core';
 import { MdDialog, MdDialogRef, MdButton, MdToolbar } from '@angular/material';
 
-import { MappingStages } from './../mapping-stages/mapping-stages.component'
-import { SensorIdentification } from './../sensor-identification/sensor-identification.component';
-import { Permissions } from './../permissions/permissions.component';
-import { RelatedRisks } from './../related-risks/related-risks.component';
-
 @Component({
   selector: 'mapping-dialog',
   styleUrls: ['mapping-dialog.component.scss'],

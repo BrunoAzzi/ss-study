@@ -19,24 +19,3 @@ span {
     padding: 8px 14px;  
     margin-bottom: 15px;
 }
-
-input {
-    width: 410px;
-    height: 46px;
-    padding: 0 14px;
-    background-color: $pale-gray2;
-}
-
-a {
-    text-transform: uppercase;
-    color: $grapefruit;
-    font-size: 10px;
-    font-weight: bold;
-    margin-left: 22px;
-    margin-right: 41px;
-
-    &:last-child {
-        margin-right: 0px;
-        opacity: 0.6;
-    }
-}

@@ -2,14 +2,4 @@
 <md-select id="mapping" placeholder="TIPO DE PERMISSÃO" floatPlaceholder="never" class="no-underline">
     <md-option *ngFor="let permission of permissions" [value]="permission.value">{{permission.viewValue}}</md-option>
 </md-select>
-<div fxLayout fxLayoutAlign="space-between center">
-    <md-input-container class="no-underline mapping mapping-icon" >
-        <md-placeholder >
-            <md-icon>search</md-icon>
-            <md-hint>BUSCAR POR NOME, CPF OU FUNÇÃO</md-hint>
-        </md-placeholder>
-    <input mdInput>
-    </md-input-container>
-        <a href="#">Adicionar a lista</a>
-        <a href="#">Excluir colaborador</a>
-</div>
+<collaborator-editable-list></collaborator-editable-list>
