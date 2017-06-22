@@ -218,8 +218,8 @@ public class ConstructionControllerTest_IT extends BaseControllerTest_IT {
         return requestJson;
     }
 
-    private String getManagerRequestJson(String type, String email, String phone) {
-        Responsible responsible = new Responsible(type, email, phone);
+    private String getResponsibleRequestJson(String type, String name, String email, String phone) {
+        Responsible responsible = new Responsible(type, name, email, phone);
 
         Gson gson = new Gson();
         String requestJson = gson.toJson(responsible);

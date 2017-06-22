@@ -35,10 +35,11 @@ public class ResponsibleDao implements ResponsibleRepository {
                         "responsible_safeties";
                 final String sql = "INSERT INTO" +
                         responsibleTable +
-                        "(email, phone) values (?,?)";
+                        "(name,email, phone) values (?,?,?)";
                 PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-                ps.setString(1, responsible.getEmail());
-                ps.setString(2, responsible.getPhone());
+                ps.setString(1, responsible.getName());
+                ps.setString(2, responsible.getEmail());
+                ps.setString(3, responsible.getPhone());
                 return ps;
             }
         }, holder);

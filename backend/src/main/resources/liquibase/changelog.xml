@@ -401,10 +401,8 @@
             <column name="id" type="int">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="construction_id" type="int">
-                <constraints nullable="false" foreignKeyName="fk_responsible_engineer_construction" references="responsible_engineers(id)"/>
-            </column>
             <column name="name" type="varchar(255)"></column>
+            <column name="email" type="varchar(255)"></column>
             <column name="phone" type="varchar(255)"></column>
         </createTable>
     </changeSet>
@@ -414,12 +412,21 @@
             <column name="id" type="int">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="construction_id" type="int">
-                <constraints nullable="false" foreignKeyName="fk_responsible_safety_construction" references="responsible_safeties(id)"/>
-            </column>
             <column name="name" type="varchar(255)"></column>
+            <column name="email" type="varchar(255)"></column>
             <column name="phone" type="varchar(255)"></column>
         </createTable>
+    </changeSet>
+
+    <changeSet id="17" author="rrosseti">
+        <addColumn tableName="constructions">
+            <column name="responsible_engineer_id" type="int">
+                <constraints foreignKeyName="fk_construction_responsible_engineer" references="constructions(id)"/>
+            </column>
+            <column name="responsible_safety_id" type="int">
+                <constraints foreignKeyName="fk_construction_responsible_safety" references="constructions(id)"/>
+            </column>
+        </addColumn>
     </changeSet>
 
 </databaseChangeLog>

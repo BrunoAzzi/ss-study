@@ -12,14 +12,15 @@ public class Responsible {
     @NotNull(message="Responsável desconhecido.")
     private ResponsibleType responsibleType;
 
+    private String name;
+
     private String email;
 
     private String phone;
 
-    private long constructionId;
-
-    public Responsible(String responsibleType, String email, String phone) {
+    public Responsible(String responsibleType, String name, String email, String phone) {
         this.responsibleType = ResponsibleType.fromText(responsibleType);
+        this.name = name;
         this.email = email;
         this.phone = phone;
     }
@@ -56,11 +57,11 @@ public class Responsible {
         this.phone = phone;
     }
 
-    public long getConstructionId() {
-        return constructionId;
+    public String getName() {
+        return name;
     }
 
-    public void setConstructionId(long constructionId) {
-        this.constructionId = constructionId;
+    public void setName(String name) {
+        this.name = name;
     }
 }
