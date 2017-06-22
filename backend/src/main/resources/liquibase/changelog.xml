@@ -396,4 +396,30 @@
         </addColumn>
     </changeSet>
 
+    <changeSet id="15" author="rrosseti">
+        <createTable tableName="responsible_engineers">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="construction_id" type="int">
+                <constraints nullable="false" foreignKeyName="fk_responsible_engineer_construction" references="responsible_engineers(id)"/>
+            </column>
+            <column name="name" type="varchar(255)"></column>
+            <column name="phone" type="varchar(255)"></column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="16" author="rrosseti">
+        <createTable tableName="responsible_safeties">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="construction_id" type="int">
+                <constraints nullable="false" foreignKeyName="fk_responsible_safety_construction" references="responsible_safeties(id)"/>
+            </column>
+            <column name="name" type="varchar(255)"></column>
+            <column name="phone" type="varchar(255)"></column>
+        </createTable>
+    </changeSet>
+
 </databaseChangeLog>

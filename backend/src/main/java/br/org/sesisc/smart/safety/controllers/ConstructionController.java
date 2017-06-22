@@ -2,6 +2,7 @@ package br.org.sesisc.smart.safety.controllers;
 
 import br.org.sesisc.smart.safety.helpers.ClassHelper;
 import br.org.sesisc.smart.safety.models.Construction;
+import br.org.sesisc.smart.safety.repositories.ResponsibleRepository;
 import br.org.sesisc.smart.safety.repositories.exceptions.ConstructionException;
 import br.org.sesisc.smart.safety.repositories.ConstructionRepository;
 import br.org.sesisc.smart.safety.responses.ErrorResponse;
@@ -29,6 +30,9 @@ public class ConstructionController {
 
     @Autowired
     ConstructionRepository repository;
+
+    @Autowired
+    ResponsibleRepository responsibleRepository;
 
     @Autowired
     StorageService storageService;

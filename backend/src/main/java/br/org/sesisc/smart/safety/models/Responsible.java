@@ -1,14 +1,16 @@
 package br.org.sesisc.smart.safety.models;
 
 
+import br.org.sesisc.smart.safety.models.enums.ResponsibleType;
+
 import javax.validation.constraints.NotNull;
 
-public class Manager {
+public class Responsible {
 
     private long id;
 
     @NotNull(message="Responsável desconhecido.")
-    private String managerType;
+    private ResponsibleType responsibleType;
 
     private String email;
 
@@ -16,8 +18,8 @@ public class Manager {
 
     private long constructionId;
 
-    public Manager(String managerType, String email, String phone) {
-        this.managerType = managerType;
+    public Responsible(String responsibleType, String email, String phone) {
+        this.responsibleType = ResponsibleType.fromText(responsibleType);
         this.email = email;
         this.phone = phone;
     }
@@ -30,16 +32,12 @@ public class Manager {
         this.id = id;
     }
 
-    public String getManagerType() {
-        return managerType;
+    public ResponsibleType getResponsibleType() {
+        return responsibleType;
     }
 
-    public void setManagerType(String managerTypeText) {
-        if("civil_engineer".equals(managerTypeText)) {
-            this.managerType = "";
-        } else if ("work_safety".equals(managerTypeText)) {
-            this.managerType = "";
-        }
+    public void setResponsibleType(ResponsibleType responsibleType) {
+        this.responsibleType = responsibleType;
     }
 
     public String getEmail() {

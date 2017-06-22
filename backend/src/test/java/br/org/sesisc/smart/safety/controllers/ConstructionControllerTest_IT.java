@@ -1,7 +1,7 @@
 package br.org.sesisc.smart.safety.controllers;
 
 import br.org.sesisc.smart.safety.models.Construction;
-import br.org.sesisc.smart.safety.models.Manager;
+import br.org.sesisc.smart.safety.models.Responsible;
 import br.org.sesisc.smart.safety.models.enums.ConstructionStatus;
 import br.org.sesisc.smart.safety.service.StorageService;
 import com.google.gson.Gson;
@@ -219,10 +219,10 @@ public class ConstructionControllerTest_IT extends BaseControllerTest_IT {
     }
 
     private String getManagerRequestJson(String type, String email, String phone) {
-        Manager manager = new Manager(type, email, phone);
+        Responsible responsible = new Responsible(type, email, phone);
 
         Gson gson = new Gson();
-        String requestJson = gson.toJson(manager);
+        String requestJson = gson.toJson(responsible);
         System.out.println("Request: " + requestJson);
 
         return requestJson;
