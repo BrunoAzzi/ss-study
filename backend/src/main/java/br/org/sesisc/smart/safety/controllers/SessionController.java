@@ -1,8 +1,8 @@
 package br.org.sesisc.smart.safety.controllers;
 
 import br.org.sesisc.smart.safety.helpers.TokenHelper;
-import br.org.sesisc.smart.safety.repositories.UserRepository;
 import br.org.sesisc.smart.safety.models.User;
+import br.org.sesisc.smart.safety.repositories.UserRepository;
 import br.org.sesisc.smart.safety.responses.ErrorResponse;
 import br.org.sesisc.smart.safety.responses.SuccessResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
 import javax.validation.Valid;
 
 @RestController

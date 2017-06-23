@@ -19,9 +19,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import com.google.common.base.Optional;
-import org.springframework.web.util.UrlPathHelper;
-
 public class AuthenticationFilter extends GenericFilterBean {
 
     public static final String TOKEN_SESSION_KEY = "token";

@@ -35,6 +35,12 @@ public class Construction {
     @JoinColumn(name = "construction_id")
     private Set<Sector> sectors = new HashSet<Sector>();
 
+    @OneToOne
+    private ResponsibleEngineer responsibleEngineer;
+
+    @OneToOne
+    private ResponsibleSafety responsibleSafety;
+
     public Construction() { }
 
     public Construction(
@@ -79,6 +85,27 @@ public class Construction {
 
     public Construction(Set<Sector> sectors) {
         this.sectors = sectors;
+    }
+
+    public Construction(ResponsibleEngineer responsibleEngineer, ResponsibleSafety responsibleSafety) {
+        this.responsibleEngineer = responsibleEngineer;
+        this.responsibleSafety = responsibleSafety;
+    }
+
+    public Construction(String name, String cep, String address, ConstructionStatus status, String description, String logoUrl, String logoFileName, String ceiCode, String ceiUrl, String ceiFileName, Set<Sector> sectors, ResponsibleEngineer responsibleEngineer, ResponsibleSafety responsibleSafety) {
+        this.name = name;
+        this.cep = cep;
+        this.address = address;
+        this.status = status;
+        this.description = description;
+        this.logoUrl = logoUrl;
+        this.logoFileName = logoFileName;
+        this.ceiCode = ceiCode;
+        this.ceiUrl = ceiUrl;
+        this.ceiFileName = ceiFileName;
+        this.sectors = sectors;
+        this.responsibleEngineer = responsibleEngineer;
+        this.responsibleSafety = responsibleSafety;
     }
 
     /**
@@ -188,7 +215,19 @@ public class Construction {
         this.sectors = sectors;
     }
 
-    /*
-     * Actions
-     */
+    public ResponsibleEngineer getResponsibleEngineer() {
+        return responsibleEngineer;
+    }
+
+    public void setResponsibleEngineer(ResponsibleEngineer responsibleEngineer) {
+        this.responsibleEngineer = responsibleEngineer;
+    }
+
+    public ResponsibleSafety getResponsibleSafety() {
+        return responsibleSafety;
+    }
+
+    public void setResponsibleSafety(ResponsibleSafety responsibleSafety) {
+        this.responsibleSafety = responsibleSafety;
+    }
 }

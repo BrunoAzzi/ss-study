@@ -1,8 +1,8 @@
 package br.org.sesisc.smart.safety.controllers;
 
+import br.org.sesisc.smart.safety.exceptions.ConstructionException;
 import br.org.sesisc.smart.safety.models.Construction;
 import br.org.sesisc.smart.safety.repositories.ConstructionRepository;
-import br.org.sesisc.smart.safety.exceptions.ConstructionException;
 import br.org.sesisc.smart.safety.responses.ErrorResponse;
 import br.org.sesisc.smart.safety.responses.SuccessResponse;
 import br.org.sesisc.smart.safety.service.StorageService;
@@ -22,9 +22,7 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.util.Set;
 
-import static br.org.sesisc.smart.safety.common.FileUtils.JPEG_TYPE;
-import static br.org.sesisc.smart.safety.common.FileUtils.PDF_TYPE;
-import static br.org.sesisc.smart.safety.common.FileUtils.PNG_TYPE;
+import static br.org.sesisc.smart.safety.helpers.FileHelper.*;
 
 @RestController
 @RequestMapping("/constructions")
@@ -117,7 +115,7 @@ public class ConstructionController {
     }
 
 
-    @RequestMapping(value = "/{id}/upload/logo", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{id}/files/logo", method = RequestMethod.PUT)
     public ResponseEntity<?> uploadLogo(@PathVariable("id") long id,
                                         @RequestParam("logo") MultipartFile logo) {
 
