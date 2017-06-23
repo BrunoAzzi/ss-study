@@ -382,6 +382,7 @@
             <column name="email" type="varchar(255)"/>
             <column name="phone" type="varchar(255)"/>
         </createTable>
+        <addAutoIncrement tableName="responsible_engineers" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
 
         <createTable tableName="responsible_safeties">
             <column name="id" type="int">
@@ -391,6 +392,7 @@
             <column name="email" type="varchar(255)"/>
             <column name="phone" type="varchar(255)"/>
         </createTable>
+        <addAutoIncrement tableName="responsible_safeties" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
 
         <addColumn tableName="constructions">
             <column name="responsible_engineer_id" type="int"/>
