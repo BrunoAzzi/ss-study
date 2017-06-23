@@ -23,7 +23,7 @@
 
                         <div>
                             <md-select name="laborsInCipa" required formControlName="laborsInCipa"
-                                       [(ngModel)]="selectedCipaLabor" placeholder="Cargo na CIPA">
+                                        placeholder="Cargo na CIPA">
                                 <md-option *ngFor="let labor of laborsInCipa " [value]="labor.value">
                                     {{ labor.viewValue }}
                                 </md-option>

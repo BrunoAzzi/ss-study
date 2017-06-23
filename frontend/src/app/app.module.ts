@@ -51,6 +51,8 @@ import { SummaryItemComponent } from './components/area-monitoring/summary-item/
 import { SummaryComponent } from './components/area-monitoring/summary/summary.component';
 import { RiskGraphComponent } from './components/area-monitoring/risk-graph/risk-graph.component';
 import { FloorNavigationComponent } from './components/area-monitoring/floor-navigation/floor-navigation.component';
+import { ResponsableDataComponent } from './components/company/responsable-data/responsable-data.component';
+import { AddInformationComponent } from './components/company/add-information/add-information.component';
 
 // Painel Emocional
 import { PainelEmocionalComponent } from './views/painelEmocional/painelEmocional.component';
@@ -144,6 +146,8 @@ import { CardConstructionSiteComponent } from './components/mysconstructionsites
         SummaryComponent,
         RiskGraphComponent,
         FloorNavigationComponent,
+        ResponsableDataComponent,
+        AddInformationComponent,
 
         ContentElementDialog,
 

@@ -1,6 +1,5 @@
 import {Component, Inject} from '@angular/core';
 import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
-import { CommonModule} from '@angular/common';
 
 @Component({
     selector: 'security-works',
@@ -34,7 +33,6 @@ export class SecurityWorksComponent {
 
     selectedCipeiro: number = 1;
 
-
     laborsInCipa = [
         { value: 0, viewValue: 'Membro Suplente' },
         { value: 1, viewValue: 'Membro Efetivo' },
@@ -42,8 +40,6 @@ export class SecurityWorksComponent {
         { value: 3, viewValue: 'Vice Presidente' },
         { value: 4, viewValue: 'Secretário' },
     ];
-
-    // selectedCipaLabor: number = 5;
 
     cipeiroChange(deviceValue, dateRange) {
         if (deviceValue === 0) {
