@@ -42,4 +42,15 @@ public class ErrorResponse {
         return new ResponseEntity<HashMap>(result, status);
     }
 
+    public static ResponseEntity<HashMap> handle(String message, Class<?> klass, HttpStatus status) {
+        final List<MessageError> errors = new ArrayList<MessageError>();
+
+        errors.add(new MessageError(klass.getSimpleName(), "global", message));
+
+        HashMap<String, List<MessageError>> result = new HashMap<String, List<MessageError>>();
+        result.put("errors", errors);
+
+        return new ResponseEntity<HashMap>(result, status);
+    }
+
 }

@@ -6,6 +6,8 @@
 @import 'components/common/select.scss';
 @import 'components/color.scss';
 @import 'components/grid.scss';
+@import 'components/common/tab.scss';
+@import 'components/common/leaflet.scss';
 
 *,
 html, body, title, body, h1, h2, h3, h4, h5, h6, p,
@@ -18,7 +20,8 @@ div, span, header, footer, main, section, article, aside, details, dialog, summa
 }
 
 html {
-    height: 100%;
+    height: 100vh;
+    overflow: hidden;
 }
 
 body {
@@ -80,3 +83,14 @@ md-card {
     }
 }
 
+ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+monitoring, mapping {
+    .mat-tab-body-wrapper {
+        height: 100%;
+    }
+}

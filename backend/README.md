@@ -13,7 +13,8 @@ In order to run the docker-composer.yml you need to:
     - `8080`, usually an former installation of apache tomcat run in this port;
     - `3306`, usually an former installation of mysql/mariadb run in this port;
 2. Install [Docker](https://docs.docker.com/engine/installation/) and [Docker Compose](https://docs.docker.com/compose/install/);
-3. Inside `SmartSafety/backend` run the command `docker-compose up -d`;
+3. Inside `SmartSafety/backend` run the commands `sudo service mysql stop` and
+`sudo docker-compose up --build`;
 
 ## Usage
 At this point of the development there a no saved user profiles, in order to create a user you will need to:

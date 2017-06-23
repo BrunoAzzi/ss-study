@@ -1,0 +1,38 @@
+:host {
+    overflow: hidden;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.overview {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: row;
+
+    .column {
+        margin: 0 10px;
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+section-list {
+    display: block;
+}
+
+safety-card-content {
+    overflow: scroll;
+}
+
+#last-alerts, #constructions-status, #forthcoming-trainings, #tasks {
+    margin-bottom: 20px;
+}
+
+#last-alerts {
+    flex-grow: 1;
+}

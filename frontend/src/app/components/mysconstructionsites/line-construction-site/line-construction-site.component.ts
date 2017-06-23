@@ -1,13 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ConstructionSite } from "../../../mocks/construction-site/construction-site";
+import { Construction } from "../../../models/construction.model";
 
 @Component({
     selector: 'line-construction-site',
     templateUrl: './line-construction-site.template.html',
     styleUrls: ['./line-construction-site.component.scss']
 })
-export class LineConstructionSiteComponent {
-    @Input() constructionSite: ConstructionSite;
+export class LineConstructionDetailComponent {
+    @Input() constructionSite: Construction;
     status: any = {};
     statusIcon: any = "";
 
@@ -16,7 +16,7 @@ export class LineConstructionSiteComponent {
             case "finalizada":
                 this.statusIcon = "check";
                 break;
-            case "paralizada":
+            case "paralisada":
                 this.statusIcon = "remove";
                 break;
             case "em andamento":
@@ -27,7 +27,7 @@ export class LineConstructionSiteComponent {
         this.status = {
             "success": this.constructionSite.status == "finalizada",
             "warn": this.constructionSite.status == "em andamento",
-            "danger": this.constructionSite.status == "paralizada"
+            "danger": this.constructionSite.status == "paralisada"
         }
     }
 }

@@ -1,10 +1,12 @@
 <div class="workbench">
-    <floor-navigation (change)="floorChanged($event)" currentIndex=0></floor-navigation>
-    <blueprint 
-        class="blueprint" 
-        mapType="Monitoring" 
-        (changeMap)="changedMap($event)" 
-        (changeMapLayer)="changedMapLayer($event)"
-        (changeImageMap)="changedImageMap($event)"
-    ></blueprint>
+    <safety-alerts-tab [alerts]="currentFloor?.alerts"></safety-alerts-tab>
+    <floors-summary [construction]="construction" (change)="onFloorChanged($event)"></floors-summary>
+    <div class="workspace">
+        <blueprint
+            mapType="Monitoring"
+            [floor]="currentFloor"
+            [filteredMarkers]="activeFilters"
+        ></blueprint>
+        <app-filters (filterChanged)="onFilterChanged($event)"></app-filters>
+    </div>
 </div>

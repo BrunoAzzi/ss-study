@@ -1,16 +1,25 @@
 $pale-gray: #f8fafb;
 $warm-grey-four: #999999;
 
+:host {
+    display: flex;
+    flex-direction: column;
+}
+
 md-card.custom-header {
     padding: 0 !important;
 
-    > *:not(md-toolbar){
+    > *:not(md-toolbar) {
         padding: 24px;
     }
 }
 
 md-card {
-    overflow: hidden;
+    min-height: 50px;
+}
+
+.no-padding {
+    padding: 0 !important;
 }
 
 .mat-toolbar {

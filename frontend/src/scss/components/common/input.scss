@@ -1,0 +1,24 @@
+.mat-input-container {
+    font-family: "Lato", sans-serif !important;
+
+    .mat-input-placeholder {
+        text-transform: uppercase;
+        color: black !important;
+    }
+
+    .mat-input-underline, .mat-input-ripple {
+        background-color: black !important;
+    }
+
+    .mat-input-suffix {
+        color: $greyish;
+    }
+
+    .mat-input-underline.mat-disabled {
+        background-image: linear-gradient(to right,black 0,black 33%,transparent 0) !important;
+    }
+}
+
+.label {
+    text-transform: uppercase;
+}

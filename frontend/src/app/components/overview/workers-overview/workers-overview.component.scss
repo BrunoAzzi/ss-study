@@ -1,0 +1,15 @@
+.number {
+    font-size: 25px;
+    font-weight: 400;
+    margin-right: 10px;
+}
+
+.items {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+    .emoticon {
+        width: 20%;
+    }
+}

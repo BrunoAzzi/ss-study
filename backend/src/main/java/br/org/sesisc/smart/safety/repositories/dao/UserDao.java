@@ -1,5 +1,6 @@
 package br.org.sesisc.smart.safety.repositories.dao;
 
+import br.org.sesisc.smart.safety.repositories.UserException;
 import br.org.sesisc.smart.safety.repositories.UserRepository;
 import br.org.sesisc.smart.safety.repositories.mapper.UserMapper;
 import br.org.sesisc.smart.safety.models.User;
@@ -25,18 +26,23 @@ public class UserDao implements UserRepository {
     @Override
     public User create(User user) {
         KeyHolder holder = new GeneratedKeyHolder();
-        jdbcTemplate.update(new PreparedStatementCreator() {
-            @Override
-            public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
-                final String sql = "INSERT INTO users(email, password, active) values (?,?,?)";
-                PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-                ps.setString(1, user.getEmail());
-                ps.setString(2, user.getPassword());
-                ps.setBoolean(3, user.getActive());
-                return ps;
-            }
-        }, holder);
+        try {
+            jdbcTemplate.update(new PreparedStatementCreator() {
+                @Override
+                public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+                    final String sql = "INSERT INTO users(email, password, active) values (?,?,?)";
+                    PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                    ps.setString(1, user.getEmail());
+                    ps.setString(2, user.getPassword());
+                    ps.setBoolean(3, user.getActive());
 
+
+                    return ps;
+                }
+            }, holder);
+        } catch (Exception e) {
+            throw new UserException("Usuário já existente.");
+        }
         long newUserId = holder.getKey().intValue();
         user.setId(newUserId);
         return user;

@@ -1,3 +1,16 @@
+:host {
+    display: flex;
+    overflow: auto;
+}
+
+::-webkit-input-placeholder {
+    color: red;
+}
+
+.action {
+    padding: 20px;
+}
+
 safety-card /deep/ md-card {
     margin-bottom: 20px;
 }

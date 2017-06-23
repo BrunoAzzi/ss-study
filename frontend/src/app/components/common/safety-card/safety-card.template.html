@@ -4,7 +4,7 @@
         <a md-icon-button fxFlexAlign="right center" *ngIf="!toggleDisabled" (click)="toggleState()"><md-icon>{{toggleIcon}}</md-icon></a>
     </md-toolbar>
 
-    <md-card-content [@heroState]="state">
+    <md-card-content [ngClass]="{ 'no-padding': noPadding }" [@heroState]="state">
         <ng-content select="safety-card-content"></ng-content>
     </md-card-content>
 </md-card>
