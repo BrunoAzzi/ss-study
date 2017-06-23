@@ -1,7 +1,7 @@
 package br.org.sesisc.smart.safety.controllers;
 
-import br.org.sesisc.smart.safety.repositories.exceptions.UserException;
 import br.org.sesisc.smart.safety.repositories.UserRepository;
+import br.org.sesisc.smart.safety.exceptions.UserException;
 import br.org.sesisc.smart.safety.models.User;
 import br.org.sesisc.smart.safety.responses.ErrorResponse;
 import br.org.sesisc.smart.safety.responses.SuccessResponse;
@@ -18,7 +18,7 @@ import java.io.IOException;
 public class UserController {
 
     @Autowired
-    private UserRepository serviceUser;
+    private UserRepository repository;
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> create(@Valid @RequestBody User params, Errors errors) {
@@ -26,8 +26,9 @@ public class UserController {
             return ErrorResponse.handle(errors, HttpStatus.UNPROCESSABLE_ENTITY);
         }
 
+        params.setActive(true);
         params.digestPassword(params.getPassword());
-        User user = serviceUser.create(params);
+        User user = repository.save(params);
 
         return SuccessResponse.handle(
                 new String[] {"user"},

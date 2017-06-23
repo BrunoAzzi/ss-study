@@ -7,7 +7,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
 import br.org.sesisc.smart.safety.common.FileUtils;
-import br.org.sesisc.smart.safety.repositories.exceptions.ConstructionException;
+import br.org.sesisc.smart.safety.exceptions.ConstructionException;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;

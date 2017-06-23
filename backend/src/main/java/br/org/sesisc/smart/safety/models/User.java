@@ -1,18 +1,18 @@
 package br.org.sesisc.smart.safety.models;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.mindrot.jbcrypt.BCrypt;
 
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+@Entity
+@Table(name = "users")
 public class User {
 
-    /**
-     * Properties
-     */
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NotNull(message="Email é um campo obrigatório.")
@@ -69,6 +69,14 @@ public class User {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     public String getRecoverPassToken() {

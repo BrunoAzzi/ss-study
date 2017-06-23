@@ -1,11 +1,31 @@
 package br.org.sesisc.smart.safety.models;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "floors")
 public class Floor {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
     private String name;
     private String acronym;
     private String imageUrl;
+
+    public Floor() { }
+
+    public Floor(String name, String acronym) {
+        this.name = name;
+        this.acronym = acronym;
+    }
+
+    public Floor(String name, String acronym, String imageUrl) {
+        this.name = name;
+        this.acronym = acronym;
+        this.imageUrl = imageUrl;
+    }
 
     public long getId() {
         return id;

@@ -53,7 +53,7 @@ public class AuthenticationFilter extends GenericFilterBean {
             httpResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, authenticationException.getMessage());
         } catch (Exception e) {
             SecurityContextHolder.clearContext();
-            httpResponse.sendError(HttpServletResponse.SC_NOT_IMPLEMENTED);
+            httpResponse.sendError(HttpServletResponse.SC_BAD_REQUEST);
         } finally {
             MDC.remove(TOKEN_SESSION_KEY);
         }

@@ -1,12 +1,12 @@
 package br.org.sesisc.smart.safety.controllers;
 
-import br.org.sesisc.smart.safety.helpers.ClassHelper;
 import br.org.sesisc.smart.safety.models.Construction;
-import br.org.sesisc.smart.safety.repositories.exceptions.ConstructionException;
 import br.org.sesisc.smart.safety.repositories.ConstructionRepository;
+import br.org.sesisc.smart.safety.exceptions.ConstructionException;
 import br.org.sesisc.smart.safety.responses.ErrorResponse;
 import br.org.sesisc.smart.safety.responses.SuccessResponse;
 import br.org.sesisc.smart.safety.service.StorageService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -16,9 +16,11 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.IOException;
-import java.util.List;
+import java.util.Set;
 
 import static br.org.sesisc.smart.safety.common.FileUtils.JPEG_TYPE;
 import static br.org.sesisc.smart.safety.common.FileUtils.PDF_TYPE;
@@ -34,10 +36,24 @@ public class ConstructionController {
     @Autowired
     StorageService storageService;
 
+    @Autowired
+    ObjectMapper objectMapper;
+
+
+    @GetMapping("/")
+    public ResponseEntity<?> index() {
+        Set<Construction> constructions = repository.findAll();
+
+        return SuccessResponse.handle(
+                new String[] {"constructions"},
+                new Object[] {constructions},
+                HttpStatus.OK
+        );
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> show(@PathVariable("id") long id) {
-        Construction construction = repository.findById(id);
+        Construction construction = repository.findOne(id);
 
         return SuccessResponse.handle(
                 new String[] {"construction"},
@@ -53,7 +69,7 @@ public class ConstructionController {
             return ErrorResponse.handle(errors, HttpStatus.UNPROCESSABLE_ENTITY);
         }
 
-        Construction construction = repository.create(cParams);
+        Construction construction = repository.save(cParams);
 
         return SuccessResponse.handle(
                 new String[] {"construction"},
@@ -66,7 +82,7 @@ public class ConstructionController {
     public ResponseEntity<Resource> loadFile(@PathVariable("id") long id,
                                               @PathVariable("type") String type) {
 
-        Construction construction = repository.findById(id);
+        Construction construction = repository.findOne(id);
 
         Resource file = null;
 
@@ -105,7 +121,7 @@ public class ConstructionController {
     public ResponseEntity<?> uploadLogo(@PathVariable("id") long id,
                                         @RequestParam("logo") MultipartFile logo) {
 
-        Construction construction = repository.findById(id);
+        Construction construction = repository.findOne(id);
 
         if (construction != null
                 && logo != null
@@ -116,11 +132,7 @@ public class ConstructionController {
             construction.setLogoFileName(fileName);
             construction.setLogoUrl(String.format("/constructions/%d/logo", id));
 
-            repository.update(
-                    id,
-                    new String[] {"logo_url", "logo_file_name"},
-                    new Object[] {construction.getLogoUrl(), construction.getLogoFileName()}
-            );
+            repository.save(construction);
 
         } else {
             throw new ConstructionException("Arquivo incompatível.");
@@ -137,7 +149,7 @@ public class ConstructionController {
     public ResponseEntity<?> uploadCei(@PathVariable("id") long id,
                                         @RequestParam("cei") MultipartFile cei) {
 
-        Construction construction = repository.findById(id);
+        Construction construction = repository.findOne(id);
 
         if (construction != null
                 && cei != null
@@ -147,10 +159,7 @@ public class ConstructionController {
             construction.setCeiFileName(fileName);
             construction.setCeiUrl(String.format("/constructions/%d/cei", id));
 
-            repository.update(id,
-                    new String[] {"cei_url","cei_file_name"},
-                    new Object[] {construction.getCeiUrl(), construction.getCeiFileName()}
-            );
+            repository.save(construction);
         } else {
             throw new ConstructionException("Arquivo incompatível.");
         }
@@ -164,29 +173,16 @@ public class ConstructionController {
 
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<?> update(@PathVariable("id") long id, @RequestBody final Construction cParams, Errors errors) {
+    public ResponseEntity<?> update(@PathVariable("id") long id, HttpServletRequest request) throws IOException {
 
-        if (errors.hasErrors()) {
-            return ErrorResponse.handle(errors, HttpStatus.UNPROCESSABLE_ENTITY);
-        }
-
-        Construction construction = repository.findById(id);
+        Construction construction = repository.findOne(id);
 
         if (construction != null) {
-            ClassHelper.Pair<List<String>, List<Object>> changes = ClassHelper.merge(construction, cParams);
-            if (changes != null) {
-                String[] names = new String[changes.getLeft().size()];
-                names = changes.getLeft().toArray(names);
-                Object[] values = new Object[changes.getRight().size()];
-                values = changes.getRight().toArray(values);
-                repository.update(id, names, values);
-            }
+            Construction updatedConstruction = objectMapper.readerForUpdating(construction).readValue(request.getReader());
 
-            return SuccessResponse.handle(
-                    new String[] {"construction"},
-                    new Object[] {construction},
-                    HttpStatus.OK
-            );
+            repository.save(updatedConstruction);
+
+            return new ResponseEntity<>(updatedConstruction, HttpStatus.ACCEPTED);
         } else {
             return ErrorResponse.handle(
                     new String[] {"Construção não encontrada."},

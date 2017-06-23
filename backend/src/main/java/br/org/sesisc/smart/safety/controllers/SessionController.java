@@ -23,15 +23,15 @@ public class SessionController {
     private UserRepository repository;
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<?> create(@Valid @RequestBody final User userParams, Errors errors) {
+    public ResponseEntity<?> create(@Valid @RequestBody final User params, Errors errors) {
         if (errors.hasErrors()) {
             return ErrorResponse.handle(errors, HttpStatus.UNPROCESSABLE_ENTITY);
         }
 
-        User user = repository.findBy(new String[] {"email"}, new Object[] {userParams.getEmail()});
-        if (user != null && user.authenticate(userParams.getPassword())) {
+        User user = repository.findByEmail(params.getEmail());
+        if (user != null && user.authenticate(params.getPassword())) {
             user.setToken(TokenHelper.getInstance().generateToken());
-            repository.update(user.getId(), new String[] { "token" }, new Object[] { user.getToken() });
+            repository.save(user);
 
             return SuccessResponse.handle(
                     new String[] {"user"},

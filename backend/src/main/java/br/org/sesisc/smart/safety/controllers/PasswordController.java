@@ -31,11 +31,11 @@ public class PasswordController {
             return ErrorResponse.handle(errors, HttpStatus.UNPROCESSABLE_ENTITY);
         }
 
-        User user = repository.findBy(new String[] {"email"}, new Object[] {params.getEmail()});
+        User user = repository.findByEmail(params.getEmail());
         if (user != null) {
             final String token = TokenHelper.getInstance().generateExpirableToken(user.getId().toString());
             user.setRecoverPassToken(token);
-            repository.update(user.getId(), new String[] {"recoverpass_token"}, new Object[] {user.getRecoverPassToken()});
+            repository.save(user);
             boolean sent = mailer.sendRecoverPassword(user);
             if(!sent) {
                 return ErrorResponse.handle(
@@ -55,12 +55,12 @@ public class PasswordController {
             return ErrorResponse.handle(errors, HttpStatus.UNPROCESSABLE_ENTITY);
         }
 
-        User user = repository.findBy(new String[] {"recoverpass_token"}, new Object[] {params.getToken()});
+        User user = repository.findByRecoverPassToken(params.getToken());
         if (user != null) {
             if (TokenHelper.getInstance().isValidExpirableToken(user.getId().toString(), user.getRecoverPassToken())) {
                 user.digestPassword(params.getPassword());
                 user.setToken(TokenHelper.getInstance().generateToken());
-                repository.update(user.getId(), new String[] {"password", "token"}, new Object[] {user.getPassword(), user.getToken()});
+                repository.save(user);
 
                 return SuccessResponse.handle(
                         new String[] {"user"},

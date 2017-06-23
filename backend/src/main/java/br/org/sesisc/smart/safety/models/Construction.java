@@ -1,20 +1,41 @@
 package br.org.sesisc.smart.safety.models;
 
 import br.org.sesisc.smart.safety.models.enums.ConstructionStatus;
-import br.org.sesisc.smart.safety.repositories.SectorRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-@Component("Construction")
+@Entity
+@Table(name = "constructions")
 public class Construction {
 
-    public Construction() {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-    }
+    @NotNull(message="Nome é um campo obrigatório.")
+    @Pattern(message="Nome é um campo obrigatório.", regexp = "^(?!\\s*$).+")
+    private String name;
+    private String cep;
+    private String address;
+
+    @NotNull(message="Status é um campo obrigatório.")
+    private ConstructionStatus status;
+    private String description;
+    private String logoUrl;
+    private String logoFileName;
+    private String ceiCode;
+    private String ceiUrl;
+    private String ceiFileName;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "construction_id")
+    private Set<Sector> sectors = new HashSet<Sector>();
+
+    public Construction() { }
 
     public Construction(
             String name,
@@ -56,36 +77,9 @@ public class Construction {
         this.ceiCode = ceiCode;
     }
 
-    /**
-     * Properties
-     */
-
-    private Long id;
-
-    @NotNull(message="Nome é um campo obrigatório.")
-    @Pattern(message="Nome é um campo obrigatório.", regexp = "^(?!\\s*$).+")
-    private String name;
-
-    private String cep;
-
-    private String address;
-
-    @NotNull(message="Status é um campo obrigatório.")
-    private ConstructionStatus status;
-
-    private String description;
-
-    private String logoUrl;
-
-    private String logoFileName;
-
-    private String ceiCode;
-
-    private String ceiUrl;
-
-    private String ceiFileName;
-
-    private List<Sector> sectors;
+    public Construction(Set<Sector> sectors) {
+        this.sectors = sectors;
+    }
 
     /**
      * Getters & Setters
@@ -186,11 +180,11 @@ public class Construction {
         this.ceiFileName = ceiFileName;
     }
 
-    public List<Sector> getSectors() {
+    public Set<Sector> getSectors() {
         return sectors;
     }
 
-    public void setSectors(List<Sector> sectors) {
+    public void setSectors(Set<Sector> sectors) {
         this.sectors = sectors;
     }
 
