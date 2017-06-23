@@ -16,10 +16,25 @@ span {
     border: dashed 1px #d2d9db;
     font-family: Lato;
     margin-top: 8px;
+    padding: 10px 0 0;
     text-transform: uppercase;
 
     &:first-of-type {
         margin-top: 11px;        
+    }
+
+    .close {
+        position: relative;
+        right: -30px;
+        top: -50px;
+
+        .mat-icon {
+            color: #aab0b2;
+
+            &:focus, &:hover {
+                cursor: pointer;
+            }
+        }
     }
 
 }
