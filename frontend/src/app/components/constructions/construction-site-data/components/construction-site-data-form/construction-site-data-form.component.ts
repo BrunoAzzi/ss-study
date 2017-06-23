@@ -1,6 +1,7 @@
+import { OnInit } from '@angular/core';
 import { Construction } from './../../../../../models/construction.model';
 import { ConstructionsService } from './../../../../../services/constructions.service';
-import {Component, EventEmitter, Output} from '@angular/core';
+import { Component, EventEmitter, Output, Input } from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {MdSnackBar} from '@angular/material';
 
@@ -11,11 +12,13 @@ import {MdSnackBar} from '@angular/material';
 })
 export class ConstructionSiteDataFormComponent {
 
-    @Output() onShowNext = new EventEmitter();
+    @Input() construction : Construction
+    @Output() saved : EventEmitter<Construction> = new EventEmitter()
+
     logo: any;
     featured: any;
 
-    constructor(private service: ConstructionsService, public snackBar: MdSnackBar) {
+    constructor() {
     }
 
     //noinspection JSMethodCanBeStatic
@@ -38,22 +41,19 @@ export class ConstructionSiteDataFormComponent {
     //noinspection JSMethodCanBeStatic
     statusChanged(event, f: NgForm) {
         const status = event.value;
-        f.setValue({...f.value, status});
+        f.setValue({ ...f.value, status });
     }
 
     save(f: NgForm) {
         const construction = Object.assign(
             new Construction(),
+            this.construction,
             {
                 ...f.value,
                 logo: this.logo,
                 featured: this.featured
             }
-        );
-        this.service.saveConstructionSite(construction)
-            .then(() => this.onShowNext.emit())
-            .catch(() => this.snackBar.open('Falha ao salvar os dados da obra!', null, {duration: 3000}));
+        )
+        this.saved.emit(construction)
     }
-
-
 }

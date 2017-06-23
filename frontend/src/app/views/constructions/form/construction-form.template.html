@@ -1,7 +1,7 @@
 <div class="body-content">
     <md-tab-group disableRipple>
         <md-tab label="dados da obra">
-            <construction-site-data></construction-site-data>
+            <construction-site-data [construction]="service.construction" (updatedConstruction)="onConstructionUpdated($event)"></construction-site-data>
         </md-tab>
         <!--<md-tab label="cronograma da obra">
              <construction-site-schedule></construction-site-schedule> 

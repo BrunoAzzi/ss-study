@@ -15,18 +15,7 @@
     <span class="sponsor">Responsável: {{constructionSite.sponsor}}</span>
 </div>
 <div fxLayout fxLayoutAlign="end center" class="tools">
-    <div fxLayout="column" class="labeled-icon">
-        <img src="assets/icon/myconstructionsite/danger.png" alt="">
-        <span>12</span>
-    </div>
-    <div fxLayout="column" class="labeled-icon">
-        <img src="assets/icon/myconstructionsite/cone.png" alt="">
-        <span>30</span>
-    </div>
-    <div fxLayout="column" class="labeled-icon">
-        <img src="assets/icon/myconstructionsite/forma.png" alt="">
-        <span>70</span>
-    </div>
+    <safety-construction-summary [construction]="constructionSite"></safety-construction-summary>
     <md-icon class="bell" fxLayout fxLayoutAlign="center center">notifications</md-icon>
-    <md-icon fxLayout fxLayoutAlign="center center">edit</md-icon>
+    <md-icon fxLayout fxLayoutAlign="center center" (click)="toEdit.emit(constructionSite)">edit</md-icon>
 </div>

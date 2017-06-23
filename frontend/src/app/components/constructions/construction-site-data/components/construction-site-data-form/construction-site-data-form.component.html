@@ -3,23 +3,23 @@
         <section>
             <md-input-container>
                 <input mdInput placeholder="Nome do Empreendimento"
-                       ngModel name="name"
+                       [(ngModel)]="construction.title" name="title"
                 >
             </md-input-container>
-            <cep-picker class="half" (onSearch)="onCepSearch(f, $event)"></cep-picker>
+            <cep-picker [(cep)]="construction.cep" class="half" (onSearch)="onCepSearch(f, $event)"></cep-picker>
             <md-input-container class="half">
                 <input mdInput placeholder="Cidade / Estado"
-                       ngModel name="city"
+                       [(ngModel)]="construction.city" name="city"
                 >
             </md-input-container>
             <md-input-container>
                 <input mdInput placeholder="Endereço Completo (Rua, Número, Complemento)"
-                       ngModel name="address"
+                       [(ngModel)]="construction.address" name="address"
                 >
             </md-input-container>
             <md-input-container class="half">
                 <input mdInput placeholder="CEI"
-                       ngModel name="cei"
+                       [(ngModel)]="construction.cei" name="cei"
                 >
             </md-input-container>
             <construction-status-picker class="half"></construction-status-picker>
@@ -27,6 +27,7 @@
         <section>
             <md-input-container>
                 <textarea mdInput placeholder="Descrição da Obra"
+                          [(ngModel)]="construction.description"
                           name="description"
                           rows="5"
                 ></textarea>

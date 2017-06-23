@@ -146,6 +146,8 @@ import { ConstructionSiteDataComponent } from './components/mysconstructionsites
 import { FiltersComponent } from './components/area-monitoring/filters/filters.component';
 import { AlertsTabComponent } from './components/area-monitoring/alerts-tab/alerts-tab.component';
 import { AlertsTabItemComponent } from './components/area-monitoring/alerts-tab-item/alerts-tab-item.component';
+import { ConstructionSummaryComponent } from './components/construction-summary/construction-summary.component';
+import { SectorSummaryComponent } from './components/sector-summary/sector-summary.component';
 
 @NgModule({
     declarations: [
@@ -240,6 +242,8 @@ import { AlertsTabItemComponent } from './components/area-monitoring/alerts-tab-
         ConstructionsLandingPageComponent,
         AlertsTabComponent,
         AlertsTabItemComponent,
+        ConstructionSummaryComponent,
+        SectorSummaryComponent,
     ],
     imports: [
         // Notification Module

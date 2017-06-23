@@ -61,7 +61,12 @@
 
     & > md-icon {
         color: $silver2;
+        cursor: pointer;
         font-size: 20px;
+
+        &:hover {
+            color: black;
+        }
     }
 
     .bell {

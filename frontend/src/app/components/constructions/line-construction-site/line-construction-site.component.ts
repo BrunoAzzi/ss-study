@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 import { Construction } from "../../../models/construction.model";
 
 @Component({
@@ -7,7 +7,10 @@ import { Construction } from "../../../models/construction.model";
     styleUrls: ['./line-construction-site.component.scss']
 })
 export class LineConstructionDetailComponent {
+    
     @Input() constructionSite: Construction;
+    @Output() toEdit : EventEmitter<Construction> = new EventEmitter();
+    
     status: any = {};
     statusIcon: any = "";
 
@@ -30,4 +33,6 @@ export class LineConstructionDetailComponent {
             "danger": this.constructionSite.status == "paralisada"
         }
     }
+
+
 }

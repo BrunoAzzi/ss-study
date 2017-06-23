@@ -5,43 +5,64 @@ export interface IConstruction {
     status: string
     image: string
     title: string
-    address: string
     sponsor: string
+    address: string
+    number: string
+    complement: string
+    cep: string
     sectors: Array<Sector>
 }
 
 export class Construction implements IConstruction {
     id: number
 
-    name: string;
-    cep: string;
-    city: string;
-    cei: string;
+    name: string = "";
+    cei: string = "";
     logo: any;
     featured: any;
 
-    status: string;
-    image: string;
-    title: string;
+    status: string = "";
+    image: string = "";
+    title: string = "";
 
-    description: string
+    description: string = ""
 
-    address: string
-    sponsor: string
+    address: string = ""
+    cep: string = ""
+    city: string = ""
+    number: string = ""
+    complement: string = ""
 
-    sectors: Array<Sector>
+    sponsor: string = ""
+    sectors: Array<Sector> = []
+
 
     public setConstruction(data: IConstruction) {
         this.id = data.id
-		this.status = data.status
-		this.image = data.image
-		this.title = data.title
-		this.address = data.address
-		this.sponsor = data.sponsor
+        this.status = data.status
+        this.image = data.image
+        this.title = data.title
+        this.address = data.address
+        this.sponsor = data.sponsor
+        this.cep = data.cep
         this.sectors = data.sectors ? data.sectors.map(sector => new Sector(sector, this)) : []
     }
 
     public toJson() {
         return JSON.stringify(this);
+    }
+
+    getSummary() {
+        return this.sectors.reduce((sum, sector) => {
+            return {
+                alerts: sum.alerts + sector.getSummary().alerts,
+                cones: sum.cones + sector.getSummary().cones,
+                workers: sum.workers + sector.getSummary().workers,
+            } 
+        }, {
+            alerts: 0,
+            cones: 0,
+            workers: 0
+        })
     }
 }

@@ -1,14 +1,14 @@
 <safety-card #constructionData>
     <safety-card-header>dados da obra</safety-card-header>
     <safety-card-content>
-        <construction-site-data-form (onShowNext)="showManagersForm()"></construction-site-data-form>
+        <construction-site-data-form [construction]="construction" (saved)="onConstructionDetailsSaved($event)"></construction-site-data-form>
     </safety-card-content>
 </safety-card>
 
 <safety-card #managersData>
     <safety-card-header>dados dos responsáveis</safety-card-header>
     <safety-card-content>
-        <managers-data-form></managers-data-form>
+        <managers-data-form [construction]="construction" (saved)="onConstructionManagersSaved($event)"></managers-data-form>
     </safety-card-content>
 </safety-card>
 

@@ -37,7 +37,8 @@
     </div>
 </div>
 
-<line-construction-site *ngFor="let constructionSite of getFilteredConstructions()" [constructionSite]="constructionSite"></line-construction-site>
+<line-construction-site *ngFor="let construction of filterConstructions(service.constructions)" [constructionSite]="construction" (toEdit)="editConstruction($event.id)"></line-construction-site>
+
 <constructions-landing-page *ngIf="service.constructions.length === 0"></constructions-landing-page>
 
-<fab mdTooltip="Adicionar obra" mdTooltipPosition="before" (click)="addConstructionSite()"></fab>
+<fab mdTooltip="Adicionar obra" mdTooltipPosition="before" (click)="addConstruction()"></fab>

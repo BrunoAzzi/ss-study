@@ -13,7 +13,15 @@ export class ConstructionsService {
 
     constructor(private http: Http) { }
 
+    getConstruction(id : number) {
+
+        return this.http.get(this.url + "/" + id)
+            .map(response => response.json().data)
+            .map(data => this.construction = this.serializeConstruction(data))
+	}
+
     getConstructionList() {
+
 		return this.http.get(this.url)
             .map(response => response.json().data)
             .map(data => {
@@ -23,24 +31,29 @@ export class ConstructionsService {
             })
 	}
 
-    // TODO: adicionar serviço quando a api estiver pronta
-    saveConstructionSite(construction: Construction) {
-        return new Promise((resolve, reject) => {
-            console.log(construction.toJson());
-            resolve();
-        });
+    saveConstruction(construction : Construction) {
+        if (construction.id) {
+            this.updateConstruction(construction)
+        } else {
+            this.createConstruction(construction)
+        }
     }
 
-	getConstruction(id) {
-        return this.http.get(this.url + "/" + id)
-            .map(response => response.json().data)
-            .map(data => this.construction = this.serializeConstruction(data))
-	}
+    createConstruction(construction : Construction) {
+        construction.id = Math.max.apply(this.constructions.map(c => c.id)) + 1
+        this.constructions.push(construction)
+    }
 
-    serializeConstruction(construction: IConstruction) {
-        let c = new Construction()
-        c.setConstruction(construction)
-        return c
+    updateConstruction(construction : Construction) {
+        const i = this.constructions.findIndex((c, index, array) => {
+            return c.id === construction.id
+        })
+        this.constructions[i] = construction
+    }
+
+    newConstruction() {
+        this.construction = new Construction()
+        return this.construction
     }
 
 	updateFloor(floor: Floor) {
@@ -49,11 +62,17 @@ export class ConstructionsService {
         })
         if (section) {
             section.floors = section.floors.map(f => {
-            if (f.name === floor.name) {
+                if (f.name === floor.name) {
                     return floor
                 }
                 return f
             })
         }
 	}
+
+    private serializeConstruction(construction: IConstruction) {
+        let c = new Construction()
+        c.setConstruction(construction)
+        return c
+    }
 }

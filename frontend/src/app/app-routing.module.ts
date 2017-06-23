@@ -4,7 +4,6 @@ import { ConstructionResolver } from './resolves/construction.resolver';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from "@angular/router";
 import { AuthGuard } from './guards';
-import { ConstructionsGuard } from './guards/constructions.guard';
 
 import { CompaniesComponent } from "./views/companies/companies.component";
 import { PPEComponent } from "./views/ppe/ppe.component";
@@ -70,7 +69,7 @@ const routes: Routes = [
                     {
 						path: 'constructions', children: [
                             { path: '', pathMatch: 'prefix', data: { breadcrumb: "Minhas Obras" }, component: ConstructionsListComponent, resolve: { constructions: ConstructionsListResolver } },
-                            { path: 'new', data: { breadcrumb: "Nova Obra" }, component: ConstructionFormComponent },
+                            { path: 'new', data: { breadcrumb: "Nova Obra" }, component: ConstructionFormComponent, resolve: { construction: ConstructionResolver } },
                         ]
                     },
                 ]
@@ -104,7 +103,6 @@ const routes: Routes = [
     exports: [RouterModule],
     providers: [
         ConstructionsListResolver,
-        ConstructionsGuard,
         SupplierListResolver,
         SupplierService,
         SupplierResolver,

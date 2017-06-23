@@ -3,11 +3,7 @@
         <li *ngFor="let sector of construction.sectors" class="section">
             <a (click)="toggleSection(sector.name)">
                 <span class="name">{{ sector.name }}</span>
-                <summary 
-                    alerts="{{ summaryBySector(sector).alerts }}" 
-                    cones="{{ summaryBySector(sector).cones }}" 
-                    workers="{{ summaryBySector(sector).workers }}">
-                </summary>
+                <safety-sector-summary [sector]="sector"></safety-sector-summary>
                 <md-icon *ngIf="sector.floors.length > 0">keyboard_arrow_down</md-icon>
             </a>
             <ul class="floors" [ngClass]="{ hidden: isSectionHidden(sector.name) }">

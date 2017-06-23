@@ -1,5 +1,6 @@
+import { Construction } from './../../../models/construction.model';
 import { ConstructionsService } from './../../../services/constructions.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -7,7 +8,7 @@ import { Router, ActivatedRoute } from '@angular/router';
     templateUrl: './constructions-list.template.html',
     styleUrls: ['./constructions-list.component.scss']
 })
-export class ConstructionsListComponent implements OnInit {
+export class ConstructionsListComponent  {
     LAST_SAVED = "last_saved";
     FIRST_SAVED = "first_saved";
 
@@ -28,9 +29,11 @@ export class ConstructionsListComponent implements OnInit {
 
 	constructor(private router: Router, private route: ActivatedRoute, public service: ConstructionsService) { }
 
-    ngOnInit() { }
+    editConstruction(id : number) {
+        this.router.navigate([id, 'edit'], { relativeTo: this.route });
+    }
 
-    addConstructionSite() {
+    addConstruction() {
         this.router.navigate(['./new'], { relativeTo: this.route });
     }
 
@@ -38,12 +41,12 @@ export class ConstructionsListComponent implements OnInit {
         this.showSearch = !this.showSearch;
     }
 
-    getFilteredConstructions() {
-        return this.service.constructions
+    filterConstructions(constructions : Array<Construction>) {
+        return constructions
             .filter(construction => {
                 return (
                     !(this.activeFilters.onGoing && construction.status === "em andamento") &&
-                    !(this.activeFilters.paralized && construction.status === "paralizada") &&
+                    !(this.activeFilters.paralized && construction.status === "paralisada") &&
                     !(this.activeFilters.finished && construction.status === "finalizada") &&
                     !(this.activeFilters.text.length > 0 && construction.title.toLowerCase().indexOf(this.activeFilters.text.toLowerCase()) === -1)
                 )
