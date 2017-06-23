@@ -1,10 +1,15 @@
 package br.org.sesisc.smart.safety.models;
 
 import br.org.sesisc.smart.safety.models.enums.ConstructionStatus;
+import br.org.sesisc.smart.safety.repositories.SectorRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.util.List;
 
+@Component("Construction")
 public class Construction {
 
     public Construction() {
@@ -79,6 +84,8 @@ public class Construction {
     private String ceiUrl;
 
     private String ceiFileName;
+
+    private List<Sector> sectors;
 
     /**
      * Getters & Setters
@@ -177,6 +184,14 @@ public class Construction {
 
     public void setCeiFileName(String ceiFileName) {
         this.ceiFileName = ceiFileName;
+    }
+
+    public List<Sector> getSectors() {
+        return sectors;
+    }
+
+    public void setSectors(List<Sector> sectors) {
+        this.sectors = sectors;
     }
 
     /*

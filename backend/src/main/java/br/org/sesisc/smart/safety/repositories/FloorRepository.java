@@ -10,4 +10,5 @@ public interface FloorRepository {
     List<Floor> findAll();
     Object findById(final long id);
     Floor findBy(final String[] properties, final Object[] values);
+    List<Floor> where(final String[] properties, final Object[] values);
 }

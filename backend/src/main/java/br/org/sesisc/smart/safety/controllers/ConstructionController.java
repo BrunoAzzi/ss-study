@@ -35,6 +35,17 @@ public class ConstructionController {
     StorageService storageService;
 
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> show(@PathVariable("id") long id) {
+        Construction construction = repository.findById(id);
+
+        return SuccessResponse.handle(
+                new String[] {"construction"},
+                new Object[] {construction},
+                HttpStatus.OK
+        );
+    }
+
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> create(@RequestBody @Valid final Construction cParams, Errors errors) {
 

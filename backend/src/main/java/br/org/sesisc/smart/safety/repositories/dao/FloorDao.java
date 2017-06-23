@@ -1,8 +1,8 @@
 package br.org.sesisc.smart.safety.repositories.dao;
 
-import br.org.sesisc.smart.safety.models.Sector;
-import br.org.sesisc.smart.safety.repositories.SectorRepository;
-import br.org.sesisc.smart.safety.repositories.mapper.SectorMapper;
+import br.org.sesisc.smart.safety.models.Floor;
+import br.org.sesisc.smart.safety.repositories.FloorRepository;
+import br.org.sesisc.smart.safety.repositories.mapper.FloorMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -19,36 +19,36 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@Repository("SectorRepository")
-public class SectorDao implements SectorRepository {
+@Repository("FloorRepository")
+public class FloorDao implements FloorRepository {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public Sector create(Sector sector) {
+    public Floor create(Floor floor) {
         KeyHolder holder = new GeneratedKeyHolder();
 
         jdbcTemplate.update(new PreparedStatementCreator() {
             @Override
             public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
-                final String sql = "INSERT INTO sectors(name) values (?)";
+                final String sql = "INSERT INTO floors(name) values (?)";
                 PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-                ps.setString(1, sector.getName());
+                ps.setString(1, floor.getName());
 
                 return ps;
             }
         }, holder);
 
-        long newSectorId = holder.getKey().intValue();
-        sector.setId(newSectorId);
+        long newFloorId = holder.getKey().intValue();
+        floor.setId(newFloorId);
 
-        return sector;
+        return floor;
     }
 
     @Override
     public void update(final long id, final String[] properties, final Object[] values) {
-        String sql = "UPDATE sectors SET";
+        String sql = "UPDATE floors SET";
 
         if (properties.length == values.length) {
             List<String> assignments = new ArrayList<>();
@@ -65,18 +65,18 @@ public class SectorDao implements SectorRepository {
     }
 
     @Override
-    public List<Sector> findAll() {
-        return jdbcTemplate.query("SELECT * FROM sectors", new SectorMapper());
+    public List<Floor> findAll() {
+        return jdbcTemplate.query("SELECT * FROM floors", new FloorMapper());
     }
 
     @Override
     public Object findById(final long id) {
-        return jdbcTemplate.queryForObject("SELECT * FROM sectors WHERE id = ?", new Object[] { id }, new SectorMapper());
+        return jdbcTemplate.queryForObject("SELECT * FROM floors WHERE id = ?", new Object[] { id }, new FloorMapper());
     }
 
     @Override
-    public Sector findBy(final String[] properties, final Object[] values) {
-        String query = "SELECT * FROM sectors WHERE 1=1";
+    public Floor findBy(final String[] properties, final Object[] values) {
+        String query = "SELECT * FROM floors WHERE 1=1";
 
         if (properties.length == values.length) {
             for (String property : properties) {
@@ -85,7 +85,7 @@ public class SectorDao implements SectorRepository {
             query = String.format("%s LIMIT 1", query);
 
             try {
-                return (Sector) jdbcTemplate.queryForObject(query, values, new SectorMapper());
+                return (Floor) jdbcTemplate.queryForObject(query, values, new FloorMapper());
             } catch (EmptyResultDataAccessException e) {
                 return null;
             }
@@ -95,8 +95,8 @@ public class SectorDao implements SectorRepository {
     }
 
     @Override
-    public List<Sector> where(final String[] properties, final Object[] values) {
-        String query = "SELECT * FROM sectors WHERE 1=1";
+    public List<Floor> where(final String[] properties, final Object[] values) {
+        String query = "SELECT * FROM floors WHERE 1=1";
 
         if (properties.length == values.length) {
             for (String property : properties) {
@@ -104,13 +104,13 @@ public class SectorDao implements SectorRepository {
             }
 
             try {
-                return new ArrayList<Sector>();
+                return new ArrayList<Floor>();
             } catch (EmptyResultDataAccessException | NullPointerException e) {
-                return new ArrayList<Sector>();
+                return new ArrayList<Floor>();
             }
         }
 
         return null;
     }
-    
+
 }

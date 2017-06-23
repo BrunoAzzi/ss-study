@@ -51,8 +51,10 @@ public class ClassHelper {
                 String dbName = fromName.replaceAll("([A-Z])", "_$1").toLowerCase().replace("get_","");
 
                 try {
-                    if(fromMethod.getReturnType() instanceof Class && ((Class<?>)fromMethod.getReturnType()).isEnum()) {
-                        fromMethod = destiny.getClass().getMethod("_"+fromName);
+                    if(fromMethod.getReturnType() instanceof Class) {
+                        if (((Class<?>)fromMethod.getReturnType()).isEnum()) {
+                            fromMethod = destiny.getClass().getMethod("_"+fromName);
+                        }
                     }
 
                     Method toMethod = destiny.getClass().getMethod(toName, fromMethod.getReturnType());

@@ -10,4 +10,5 @@ public interface SectorRepository {
     List<Sector> findAll();
     Object findById(final long id);
     Sector findBy(final String[] properties, final Object[] values);
+    List<Sector> where(final String[] properties, final Object[] values);
 }
