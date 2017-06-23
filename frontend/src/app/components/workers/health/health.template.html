@@ -3,11 +3,11 @@
         <span>Dados de saúde</span>
     </safety-card-header>
     <safety-card-content>
+        <div class="message-errors" *ngIf="errorMsg != undefined">
+            {{errorMsg}}
+        </div>
         <form [formGroup]="myForm" id="formHealth" (submit)="saveHealthComponent(safetyCard)">
             <div class="form-content">
-                <div *ngIf="errorMsg != undefined">
-                {{errorMsg}}
-                </div>
                 <table class="table-form">
                     <tr>
                         <th></th>
@@ -26,8 +26,6 @@
                         <td>
                             <md-input-container>
                                 <input mdInput placeholder="Alergias">
-                                <md-error *ngIf="myForm.controls.allergies.hasError('onlytext')">São permitidos apenas letras.
-                                </md-error>
                             </md-input-container>
                         </td>
                         <td>
@@ -40,14 +38,14 @@
             </div>
             <div class="aling-div" *ngFor="let aso of asoList">
                 <div>
-                    <md-select formControlName="asoTypes" placeholder="aso" (change)="changeSelected(aso, $event)">
+                    <md-select formControlName="asoTypes" required placeholder="aso" (change)="changeSelected(aso, $event)">
                         <md-option *ngFor="let asoType of asoTypes" [value]="asoType.value">
                             {{asoType.viewValue}}
                         </md-option>
                     </md-select>
                 </div>
                 <div *ngIf="aso.selected >= 0">
-                    <asoItemComponent [itemSelected]="aso.selected" [itemName]="aso.name"></asoItemComponent>
+                    <asoItemComponent [itemSelected]="aso.selected" [itemName]="aso.name" (removed)="removeAsoItem(aso)"></asoItemComponent>
                 </div>
             </div>
             <div fxLayout="row" fxLayoutAlign="start right">

@@ -1,14 +1,16 @@
-<div class="aling-div">
+<div class="aling-div" *ngIf="itemSelected != undefined">
     <div class="itens-data">
         <my-date-picker name="realizationDate" [options]="myDatePickerOptions" placeholder="Data de Realização"></my-date-picker>
         <input-file (onFileSelect)="onFileSelect($event)" [accept]="'.doc,.docx,.png,.pdf'"></input-file>
     </div>
-    <div *ngIf="itemSelected > 1 && itemSelected <= 4" >
-        <md-radio-button value="true">Apto</md-radio-button>
-        <md-radio-button value="false">Inapto</md-radio-button>
+    <div *ngIf="itemSelected > 1 && itemSelected <= 4">
+        <md-radio-group>
+            <md-radio-button value="true">Apto</md-radio-button>
+            <md-radio-button value="false">Inapto</md-radio-button>
+        </md-radio-group>
     </div>
     <div>
-         <my-date-picker name="realizationDate" [options]="myDatePickerOptions" placeholder= {{itemName}}  ></my-date-picker>
+        <my-date-picker name="realizationDate" [options]="myDatePickerOptions" placeholder= {{itemName}}></my-date-picker>
     </div>
     <div>
         <a class="action" (click)="removeMyself()">excluir</a>

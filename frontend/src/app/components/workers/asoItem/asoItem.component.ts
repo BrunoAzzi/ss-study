@@ -1,8 +1,10 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { GlobalValidators } from '../../globalValidators';
 import { IMyDpOptions } from 'mydatepicker';
+import { MdDialog, MdDialogRef } from '@angular/material';
+
 
 @Component({
     selector: 'asoItemComponent',
@@ -12,8 +14,10 @@ import { IMyDpOptions } from 'mydatepicker';
 export class AsoItemComponent {
     myForm: FormGroup;
     @Input() itemSelected: number;
-    @Input() itemName: String;   
+    @Input() itemName: String;
+    @Output() removed = new EventEmitter();
 
+    itemList: Array<any> = [];
 
     myDatePickerOptions: IMyDpOptions = {
         dateFormat: 'dd/mm/yyyy',
@@ -22,12 +26,14 @@ export class AsoItemComponent {
         todayBtnTxt: 'Hoje'
     };
 
-
-
     constructor(private fb: FormBuilder) {
         this.myForm = this.fb.group({
 
         })
+    }
+
+    removeMyself() {
+        this.removed.emit(this);
     }
 
 }

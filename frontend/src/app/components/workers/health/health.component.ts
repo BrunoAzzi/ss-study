@@ -5,8 +5,6 @@ import { CommonModule } from '@angular/common';
 import { GlobalValidators } from '../../globalValidators';
 import { IMyDpOptions } from 'mydatepicker';
 
-
-
 @Component({
     selector: 'healthComponent',
     templateUrl: 'health.template.html',
@@ -14,8 +12,11 @@ import { IMyDpOptions } from 'mydatepicker';
 })
 export class HealthComponent {
     myForm: FormGroup;
-    asoList: Array<Object> = [];
+    asoList: Array<any> = [];
     errorMsg: String = undefined;
+    canAddNew: Boolean = true;
+    allergies: '';
+    diseases: '';
 
     myDatePickerOptions: IMyDpOptions = {
         dateFormat: 'dd/mm/yyyy',
@@ -28,10 +29,6 @@ export class HealthComponent {
         this.myForm = this.fb.group({
             bloodTypes: [''],
             asoTypes: [''],
-            // allergies: new FormControl('',GlobalValidators.onlytext),
-            allergies: new FormControl('', Validators.compose([Validators.required, GlobalValidators.onlytext])),
-            dateHealth: null,
-            recyclingPriorities: [''],
         })
     }
 
@@ -44,6 +41,7 @@ export class HealthComponent {
         { value: 5, viewValue: 'AB-' },
         { value: 6, viewValue: 'O+' },
         { value: 7, viewValue: 'O-' },
+        { value: 8, viewValue: '' },
     ];
 
     asoTypes = [
@@ -55,23 +53,47 @@ export class HealthComponent {
     ];
 
     addAso() {
-        let json = {
-            //list: this.asoTypes,
-            selected: undefined,
-            name: undefined
-        };
-        this.asoList.push(json);
-        console.log(json);
+        if (this.canAddNew) {
+            let json = {
+                selected: undefined,
+                name: undefined
+            };
+            this.asoList.push(json);
+        }
+    }
+    removeAsoItem(aso) {
+        //Call modal to cofirm
+        let index = this.asoList.indexOf(aso);
+        if (index > -1) this.asoList.splice(index, 1);
+        this.checkAsoSelected();
     }
 
     changeSelected(aso, value) {
         aso.selected = value.value;
         aso.name = this.asoTypes[value.value].name;
-        if(aso.selected == 1){
-            this.errorMsg = "Seu burro";
-        }else{
+        this.checkAsoSelected();
+    }
+
+    checkAsoSelected() {
+        let countAdm = 0;
+        let countDem = 0;
+        for (var index = 0; index < this.asoList.length; index++) {
+            if (this.asoList[index].selected == 0) { countAdm += 1; }
+            else if (this.asoList[index].selected == 1) { countDem += 1; }
+        }
+        if (countAdm != 1 && countAdm > countDem + 1) {
+            this.errorMsg = "Para adicionar um novo aso do tipo admissional é necessário adicionar um novo aso demissional";
+            this.canAddNew = false;
+        } else if (countDem > countAdm) {
+            this.errorMsg = "Para adicionar um novo aso do tipo demissional é necessário adicionar um aso admissional";
+            this.canAddNew = false;
+        } else {
             this.errorMsg = undefined;
+            this.canAddNew = true;
         }
     }
+
+
+
 }
 
