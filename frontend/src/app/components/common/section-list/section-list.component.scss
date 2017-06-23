@@ -1,12 +1,16 @@
 li {
-    height: 20px;
-    align-items: center;
-    display: flex;
+    display: block;
+
     border-bottom: 1px solid #e8e8e8;
+
     font-family: Lato;
-    font-size: 11px;
+    font-size: 0.8em;
+    line-height: 2em;
+    height: 2em;
+
     font-weight: bold;
-    line-height: 1.36;
     text-align: left;
     color: #ff4c4c;
+
+    padding-left: 1em;
 }

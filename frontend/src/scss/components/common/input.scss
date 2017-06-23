@@ -3,18 +3,22 @@
 
     .mat-input-placeholder {
         text-transform: uppercase;
-        color: black;
+        color: black !important;
+    }
+
+    .mat-input-underline, .mat-input-ripple {
+        background-color: black !important;
     }
 
     .mat-input-suffix {
         color: $greyish;
     }
 
-    .mat-input-underline {
-        border-color: black !important;
-
-        &.mat-disabled {
-            background-image: linear-gradient(to right,black 0,black 33%,transparent 0) !important;
-        }
+    .mat-input-underline.mat-disabled {
+        background-image: linear-gradient(to right,black 0,black 33%,transparent 0) !important;
     }
+}
+
+.label {
+    text-transform: uppercase;
 }

@@ -1,5 +1,5 @@
 <div class="workbench">
-    <safety-alerts-tab [alerts]="currentFloor.alerts"></safety-alerts-tab>
+    <safety-alerts-tab [alerts]="currentFloor?.alerts"></safety-alerts-tab>
     <floors-summary [construction]="construction" (change)="onFloorChanged($event)"></floors-summary>
     <div class="workspace">
         <blueprint

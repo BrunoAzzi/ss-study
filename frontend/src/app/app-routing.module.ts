@@ -59,6 +59,7 @@ const routes: Routes = [
                     {
 						path: 'workers', children: [
 							{ path: '', data: { breadcrumb: "Gerenciamento de Trabalhadores" }, component: WorkersComponent, resolve: { workerList: WorkerListResolver } },
+
 						]
 					},
                     {
@@ -71,15 +72,15 @@ const routes: Routes = [
                     {
 						path: 'constructions', children: [
                             { path: '', pathMatch: 'prefix', data: { breadcrumb: "Minhas Obras" }, component: ConstructionsListComponent, resolve: { constructions: ConstructionsListResolver } },
-                            { path: 'new', data: { breadcrumb: "Minhas Obras" }, component: ConstructionFormComponent },
+                            { path: 'new', data: { breadcrumb: "Nova Obra" }, component: ConstructionFormComponent },
                         ]
                     },
                 ]
             },
             {
                 path: 'constructions/:id', component: ConstructionDetailComponent, resolve: { construction: ConstructionResolver }, children: [
-                    { path: '', pathMatch: 'prefix', redirectTo: 'monitoring' },
-                    { path: 'overview', component: OverviewComponent, canActivate: [AuthGuard] },
+                    { path: '', pathMatch: 'prefix', redirectTo: 'overview' },
+                    { path: 'overview', data: { breadcrumb: "Dashboard" }, component: OverviewComponent, canActivate: [AuthGuard] },
                     { path: 'edit', component: ConstructionFormComponent, canActivate: [AuthGuard] },
                     { path: 'monitoring', component: MonitoringComponent, canActivate: [AuthGuard] },
                     { path: 'emotional-profile', component: EmotionalPanelComponent, canActivate: [AuthGuard] },

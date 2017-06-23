@@ -2,7 +2,6 @@
     <div class="column">
         <floors-summary [construction]="service.construction" (change)="onFloorChanged($event)"></floors-summary>
     </div>
-
     <div class="column">
         <div id="last-alerts">
             <safety-card toggleDisable>
@@ -20,12 +19,12 @@
         <div id="constructions-status">
             <constructions-status status="4"></constructions-status>
         </div>
-        
+
         <div id="workers">
             <workers-overview [results]=workers.results [total]=workers.total></workers-overview>
         </div>
     </div>
-    
+
     <div class="column">
         <div id="forthcoming-maturities">
             <safety-card toggleDisable>
@@ -40,7 +39,6 @@
             </safety-card>
         </div>
     </div>
-    
     <div class="column">
         <div id="forthcoming-trainings">
             <safety-card toggleDisable>
@@ -54,7 +52,6 @@
                 </safety-card-content>
             </safety-card>
         </div>
-        
         <div id="tasks">
             <safety-card toggleDisable>
                 <safety-card-header>
@@ -62,11 +59,10 @@
                 </safety-card-header>
                 <safety-card-content>
                     <div class="scrollable">
-                            <ul>
-                                <checklist-cell *ngFor="let task of tasks" 
-                                            text="{{task.text}}">
-                                </checklist-cell>
-                            </ul>
+                        <ul>
+                            <checklist-cell *ngFor="let task of tasks" text="{{task.text}}">
+                            </checklist-cell>
+                        </ul>
                     </div>
                 </safety-card-content>
             </safety-card>
