@@ -35,10 +35,12 @@ public class Construction {
     @JoinColumn(name = "construction_id")
     private Set<Sector> sectors = new HashSet<Sector>();
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "responsible_engineer_id")
     private ResponsibleEngineer responsibleEngineer;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "responsible_safety_id")
     private ResponsibleSafety responsibleSafety;
 
     public Construction() { }
