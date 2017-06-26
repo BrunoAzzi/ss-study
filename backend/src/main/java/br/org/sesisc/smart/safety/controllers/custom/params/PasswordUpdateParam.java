@@ -1,7 +1,6 @@
 package br.org.sesisc.smart.safety.controllers.custom.params;
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 
 public class PasswordUpdateParam {
     @NotNull(message="Senha é um campo obrigatório.")

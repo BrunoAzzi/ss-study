@@ -1,9 +1,14 @@
 ### Java ###
 # Compiled class file
 *.class
+upload-dir/*
 
 # Log file
 *.log
+*.png
+*.jpg
+*.jpeg
+*.pdf
 
 # Eclipse
 .project
