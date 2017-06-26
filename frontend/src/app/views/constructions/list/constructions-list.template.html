@@ -37,7 +37,7 @@
     </div>
 </div>
 
-<line-construction-site *ngFor="let construction of filterConstructions(service.constructions)" [constructionSite]="construction" (toEdit)="editConstruction($event.id)"></line-construction-site>
+<construction-list-item *ngFor="let construction of filterConstructions(service.constructions)" [constructionSite]="construction" (toEdit)="editConstruction($event.id)"></construction-list-item>
 
 <constructions-landing-page *ngIf="service.constructions.length === 0"></constructions-landing-page>
 

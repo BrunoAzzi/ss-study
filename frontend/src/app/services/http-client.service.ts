@@ -23,4 +23,11 @@ export class HttpClientService {
       });
   }
 
+  get(path: string) {
+    return this.http.get(this.url + path, this.standardHeaders())
+      .map((response: Response) => {
+        return response.json()
+      })
+  }
+
 }

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {CollaboratorService} from '../../../../../services/colaborador/collaborator.service';
-import {Collaborator} from '../../../../../models/colLaborator.model';
+import {CollaboratorService} from '../../../../services/colaborador/collaborator.service';
+import {Collaborator} from '../../../../models/colLaborator.model';
 
 const includesString = (toCheck, value) => toCheck.toLowerCase().includes(value.toLowerCase());
 
@@ -8,12 +8,12 @@ const filterByString = value =>
     ({name, cpf, occupation}) => [name, cpf, occupation].reduce(((prev, toCheck) => prev || includesString(toCheck, value)), false);
 
 @Component({
-    selector: 'collaborator-data-form',
-    templateUrl: './collaborator-data-form.component.html',
-    styleUrls: ['./collaborator-data-form.component.scss'],
+    selector: 'construction-workers-form',
+    templateUrl: './construction-workers-form.component.html',
+    styleUrls: ['./construction-workers-form.component.scss'],
     providers: [CollaboratorService]
 })
-export class CollaboratorDataFormComponent implements OnInit {
+export class ConstructionWorkersFormComponent implements OnInit {
 
     collaborators: Array<Collaborator> = [];
     filteredCollaborators: Array<Collaborator> = [];

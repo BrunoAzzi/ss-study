@@ -6,9 +6,10 @@
 
         <input #input [hidden]="!editing" [(ngModel)]="category"
             (keyup.enter)="submit(category)"
-            (keyup.esc)="editing = false">
+            (focusout)="editing = false;"
+            (keyup.esc)="editing = false;">
 
-        <span *ngIf="!editing && category.length === 0" (click)="startEditing(input)">
+        <span *ngIf="!editing && category.length === 0" class="new" (click)="startEditing(input)">
             CLIQUE AQUI PARA
             <br>
             ADICIONAR NOVA CATEGORIA
@@ -19,6 +20,6 @@
         </span>
     </div>
 
-
     <div class="separator"></div>
+    
 </div>

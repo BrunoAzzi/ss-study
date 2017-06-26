@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Construction } from "../../../models/construction.model";
+import { Construction } from "../../models/construction.model";
 
 @Component({
     selector: 'card-construction-site',

@@ -1,16 +1,16 @@
 import { OnInit } from '@angular/core';
-import { Construction } from './../../../../../models/construction.model';
-import { ConstructionsService } from './../../../../../services/constructions.service';
+import { Construction } from './../../../../models/construction.model';
+import { ConstructionsService } from './../../../../services/constructions.service';
 import { Component, EventEmitter, Output, Input } from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {MdSnackBar} from '@angular/material';
 
 @Component({
-    selector: 'construction-site-data-form',
-    templateUrl: './construction-site-data-form.component.html',
-    styleUrls: ['./construction-site-data-form.component.scss']
+    selector: 'construction-details-form',
+    templateUrl: './construction-details-form.component.html',
+    styleUrls: ['./construction-details-form.component.scss']
 })
-export class ConstructionSiteDataFormComponent {
+export class ConstructionDetailsFormComponent {
 
     @Input() construction : Construction
     @Output() saved : EventEmitter<Construction> = new EventEmitter()

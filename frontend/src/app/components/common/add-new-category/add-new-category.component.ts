@@ -8,18 +8,17 @@ import { Component, EventEmitter, Output, ViewChild, Input } from '@angular/core
 export class AddNewCategoryComponent {
 
     @Output() added = new EventEmitter();
+    @Output() edited = new EventEmitter();
+    
     @Input() category = '';
+    @Input() index = 0;
 
     editing = false;
 
-    newCategory : boolean = false;
+    constructor() {}
 
-    constructor() {
-        if (this.category.length > 0) {
-            this.newCategory = false
-        } else {
-            this.newCategory = true
-        }
+    isNew() {
+        return (this.index === 0);
     }
 
     startEditing(input) {
@@ -33,14 +32,17 @@ export class AddNewCategoryComponent {
     
     addCategory(category) {
         this.added.emit(category)
-        this.category = '';
-        this.editing = false
+        this.category = ''
+    }
+
+    editCategory(category) {
+        this.edited.emit({ category, index: this.index })
     }
 
     submit(category) {
-        if (this.newCategory) {
+        if (this.isNew()) {
             this.addCategory(category)
-            this.newCategory = false
         }
+        this.editing = false
     }
 }

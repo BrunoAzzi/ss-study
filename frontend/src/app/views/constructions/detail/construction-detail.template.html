@@ -2,17 +2,17 @@
     <h1>Minhas obras</h1>
     <ul class="navigation-items">
         <li>
-            <a [ngClass]="{active: activeRoute('overview')}" routerLink="/constructions/1/overview">
+            <a [ngClass]="{active: activeRoute('overview')}" routerLink="/constructions/{{ service.construction.id }}/overview">
                 <span>Visão Geral</span>
             </a>
         </li>
         <li>
-            <a [ngClass]="{active: activeRoute('monitoring')}" routerLink="/constructions/1/monitoring">
+            <a [ngClass]="{active: activeRoute('monitoring')}" routerLink="/constructions/{{ service.construction.id }}/monitoring">
                 <span>Monitoramento</span>
             </a>
         </li>
         <li>
-            <a [ngClass]="{active: activeRoute('emotional-profile')}" routerLink="/constructions/1/emotional-profile">
+            <a [ngClass]="{active: activeRoute('emotional-profile')}" routerLink="/constructions/{{ service.construction.id }}/emotional-profile">
                 <span>Trabalhadores</span>
             </a>
         </li>

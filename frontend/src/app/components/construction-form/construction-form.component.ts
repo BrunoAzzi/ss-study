@@ -1,13 +1,13 @@
-import { Construction } from './../../../models/construction.model';
+import { Construction } from './../../models/construction.model';
 import { Component, OnInit, ViewChild, Input, EventEmitter, Output } from '@angular/core';
-import {SafetyCardComponent} from '../../common/safety-card/safety-card.component';
+import {SafetyCardComponent} from '../common/safety-card/safety-card.component';
 
 @Component({
-    selector: 'construction-site-data',
-    templateUrl: './construction-site-data.template.html',
-    styleUrls: ['./construction-site-data.component.scss']
+    selector: 'construction-form',
+    templateUrl: './construction-form.template.html',
+    styleUrls: ['./construction-form.component.scss']
 })
-export class ConstructionSiteDataComponent implements OnInit {
+export class ConstructionFormComponent implements OnInit {
 
     @Input() construction : Construction;
 

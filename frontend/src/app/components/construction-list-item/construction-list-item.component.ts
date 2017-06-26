@@ -1,12 +1,12 @@
 import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
-import { Construction } from "../../../models/construction.model";
+import { Construction } from "../../models/construction.model";
 
 @Component({
-    selector: 'line-construction-site',
-    templateUrl: './line-construction-site.template.html',
-    styleUrls: ['./line-construction-site.component.scss']
+    selector: 'construction-list-item',
+    templateUrl: './construction-list-item.template.html',
+    styleUrls: ['./construction-list-item.component.scss']
 })
-export class LineConstructionDetailComponent {
+export class ConstructionListItemComponent {
     
     @Input() constructionSite: Construction;
     @Output() toEdit : EventEmitter<Construction> = new EventEmitter();

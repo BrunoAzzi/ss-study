@@ -25,7 +25,11 @@ export class LoginComponent {
 				this.router.navigate(["/"]);
 			},
 			error => {
-				this.showErrorBar(error.json().errors[0].message);
+                if (error.json() && error.json().errors && error.json().errors.length > 0) {
+                    this.showErrorBar(error.json().errors[0].message);
+                } else {
+                    this.showErrorBar('Erro no servidor!');
+                }
 				this.loading = false;
 			});
     }
