@@ -12,7 +12,8 @@ import { Subscription }   from 'rxjs/Subscription';
     providers: [SecurityWorksService]
 })
 export class SecurityWorksComponent {
-     @Input() cpf: string;
+    // @Input() cpf: string;
+      @Input() worker;
     securityForm: FormGroup;
     submitted: boolean = false;
     invalidDate: boolean = true;
