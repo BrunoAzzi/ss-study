@@ -48,7 +48,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="updated_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
-                <constraints nullable="false"/>
+			<constraints nullable="false"/>
             </column>
         </createTable>
         <addAutoIncrement tableName="tenants" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
@@ -415,5 +415,4 @@
                 referencedColumnNames="id"
                 onDelete="CASCADE" />
     </changeSet>
-
 </databaseChangeLog>

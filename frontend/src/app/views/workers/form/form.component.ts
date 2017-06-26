@@ -1,19 +1,24 @@
 import { Component, EventEmitter  } from '@angular/core';
-import { Skill } from '../../mocks/skill/skill';
+import { WorkerService } from '../../../services/worker.service';
+import { Skill } from '../../../mocks/skill/skill';
 
 @Component({
-    selector: 'workers',
-    templateUrl: 'workers.template.html',
-    styleUrls: ['./workers.component.scss'],
+    templateUrl: 'form.template.html',
+    styleUrls: ['./form.component.scss'],
 })
-export class WorkersComponent {
+export class WorkerFormComponent {
 
+    cpf: string = "";
     isReciclagem: boolean = false;
     maximunLength: number;
     isValid: boolean = false;
     skillList = [];
 
-    constructor() {
+    worker: any = { personalData: {} };
+
+    constructor(
+        private service: WorkerService
+    ) {
         if (this.skillList.length < 1) this.skillList.push(new Skill());
         this.maximunLength = this.skillNames.length;
     }
@@ -33,6 +38,10 @@ export class WorkersComponent {
         "NR 18",
         "NR 33",
     ];
+
+    getWorkerByCpf(cpf: string) {
+        this.service.getWorkerByCpf(cpf).subscribe(subscribedworker => { this.worker = subscribedworker  } );       
+    }
 
     saveSkills(safetyCard) {
         if (this.isValid) safetyCard.close();
