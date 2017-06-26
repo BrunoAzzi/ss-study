@@ -69,7 +69,6 @@ import { AreaMonitoringComponent } from './components/area-monitoring/area-monit
 import { SummaryItemComponent } from './components/summary-item/summary-item.component';
 import { SummaryComponent } from './components/summary/summary.component';
 import { RiskGraphComponent } from './components/area-monitoring/risk-graph/risk-graph.component';
-// import { FloorNavigationComponent } from "./components/area-monitoring/floor-navigation/floor-navigation.component";
 import { ResponsableDataComponent } from './components/company/responsable-data/responsable-data.component';
 import { AddInformationComponent } from './components/company/add-information/add-information.component';
 import { Ng2FileDropModule } from 'ng2-file-drop';
@@ -191,7 +190,6 @@ import { AlertsTabItemComponent } from './components/area-monitoring/alerts-tab-
         SummaryItemComponent,
         SummaryComponent,
         RiskGraphComponent,
-        // FloorNavigationComponent,
         ResponsableDataComponent,
         AddInformationComponent,
 
