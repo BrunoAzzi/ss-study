@@ -5,7 +5,7 @@
         <md-icon>clear</md-icon>
     </button>
 </md-toolbar>
-<form>
+<form >
     <md-dialog-content>
         <div class="md-dialog-content">
             <mapping-stages 
@@ -13,7 +13,11 @@
                 totalSteps="{{totalSteps}}"
                 (updateStepStage)="updateStepStage($event)"
             ></mapping-stages>
-            <sensor-identification *ngIf="currentStageStep == 1"></sensor-identification>
+            <sensor-identification 
+                *ngIf="currentStageStep == 1"
+                [dataConeChild]="dataCone"
+                (updateSensorIdentification)="updateSensorIdentification($event)">                
+            </sensor-identification>
             <related-risks *ngIf="currentStageStep == 2"></related-risks>
             <permissions *ngIf="currentStageStep == 3"></permissions>
         </div>

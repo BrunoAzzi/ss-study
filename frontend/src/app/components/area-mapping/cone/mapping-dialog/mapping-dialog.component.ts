@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MdDialog, MdDialogRef, MdButton, MdToolbar } from '@angular/material';
 
 import { Cone } from './../../../../models/cone.model';
+import { Risk } from './../../../../models/risk.model';
 
 @Component({
   selector: 'mapping-dialog',
@@ -15,22 +16,22 @@ export class MappingDialog {
 
   actionButton: string;
   currentStageStep: number;
-  stageStepChild: number;
   totalSteps: number;
   cone: Cone;
-  data: any;
+  dataCone: Object = {
+    title: '',
+    identification: '',
+    risks: [],
+    permissionType: ''
+  } ;
 
   constructor() { }
 
     ngOnInit() {
         this.currentStageStep = 1;        
         this.totalSteps = 3;
-        this.actionButton = this.ACTION_NEXT;
-    }
-
-    setStageStep(_stageStepChild: number, _totalSteps: number) {
-      this.stageStepChild = _stageStepChild;
-      this.totalSteps = _totalSteps;
+        this.actionButton = this.ACTION_NEXT;        
+        //this.cone = new Cone(this.dataCone);
     }
 
     updateStepStage(_actionType: string) {
@@ -50,16 +51,20 @@ export class MappingDialog {
         }
     }
 
-    updateSensorIdentification(_data: any) {
-      
+    updateSensorIdentification(_dataCone: any) {      
+      this.dataCone['title'] = _dataCone.title;
+      this.dataCone['identification'] = _dataCone.identification;      
     }
 
-    updateRisks(_data: any) {
+    updateRisks(_dataCone: any) {
 
     }
 
-    updatePermissions(_data: any) {
-
+    updatePermissions(_dataCone: any) {
+      this.dataCone['permissionType'] = _dataCone.permissionType;
+      this.cone = new Cone(this.dataCone);
+      //TODO submit form with values
+      console.log(this.cone);      
     }
 
 }

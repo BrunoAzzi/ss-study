@@ -1,5 +1,5 @@
 <span>3 - Permissões</span>
-<md-select id="mapping" placeholder="TIPO DE PERMISSÃO" floatPlaceholder="never" class="no-underline">
+<md-select placeholder="TIPO DE PERMISSÃO" floatPlaceholder="never" class="mapping">
     <md-option *ngFor="let permission of permissions" [value]="permission.value">{{permission.viewValue}}</md-option>
 </md-select>
 <collaborator-editable-list></collaborator-editable-list>

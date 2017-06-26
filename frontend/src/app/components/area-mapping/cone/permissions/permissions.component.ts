@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { MdSelectModule } from '@angular/material';
 
 @Component({
@@ -8,10 +8,20 @@ import { MdSelectModule } from '@angular/material';
 })
 
 export class Permissions {
+
+    permissionType: string;
+
+    @Input() dataConeChild: any;
+
     permissions = [
         {value: 'epi', viewValue: 'EPI'},
         {value: 'function', viewValue: 'FUNÇÃO'},
         {value: 'person', viewValue: 'PESSOA'},
         {value: 'enabling', viewValue: 'HABILITAÇÃO'}
     ];
+
+    sendData():void { 
+        this.dataConeChild.permissionType = this.permissionType;
+        
+    }    
 }

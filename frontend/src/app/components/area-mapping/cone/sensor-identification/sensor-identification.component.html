@@ -2,16 +2,16 @@
 <!--input mdInput placeholder="TÍTULO">
 <input mdInput placeholder="ID (EX-0281)" -->
 <div fxLayout="column" fxLayoutAlign="space-around center">
-    <md-input-container class="no-underline mapping" floatPlaceholder="never">
+    <md-input-container class="mapping" >
         <md-placeholder >        
             <md-hint>Título</md-hint>
         </md-placeholder>
-        <input mdInput [(ngModel)]="title">
+        <input mdInput [(ngModel)]="title" (keyup)="sendData()" >
     </md-input-container>
-    <md-input-container class="no-underline mapping" floatPlaceholder="never">
+    <md-input-container class="mapping" >
         <md-placeholder >        
             <md-hint>ID <sup>(EX-0281)</sup></md-hint>
         </md-placeholder>
-        <input mdInput [(ngModel)]="id">
+        <input mdInput [(ngModel)]="identification" (keyup)="sendData()">
     </md-input-container>
 </div>

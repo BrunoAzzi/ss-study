@@ -1,4 +1,4 @@
-import { Component, Input, Output } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'sensor-identification',
@@ -9,6 +9,20 @@ import { Component, Input, Output } from '@angular/core';
 export class SensorIdentification {
 
     title: string;
-    id: string;  
+    identification: string;
+    @Input() dataConeChild: any;
+
+    @Output() updateSensorIdentification = new EventEmitter<string>();
+
+    ngOnInit() {
+      this.title = this.dataConeChild.title;
+      this.identification = this.dataConeChild.identification;
+    }  
+
+    sendData():void {      
+      this.dataConeChild.identification = this.identification;
+      this.dataConeChild.title = this.title;      
+      this.updateSensorIdentification.emit(this.dataConeChild);
+    }
 
 }
