@@ -1,8 +1,8 @@
 package br.org.sesisc.smart.safety.controllers;
 
 import br.org.sesisc.smart.safety.helpers.TokenHelper;
-import br.org.sesisc.smart.safety.repositories.UserRepository;
 import br.org.sesisc.smart.safety.models.User;
+import br.org.sesisc.smart.safety.repositories.UserRepository;
 import br.org.sesisc.smart.safety.responses.ErrorResponse;
 import br.org.sesisc.smart.safety.responses.SuccessResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
 import javax.validation.Valid;
 
 @RestController
@@ -23,15 +24,15 @@ public class SessionController {
     private UserRepository repository;
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<?> create(@Valid @RequestBody final User userParams, Errors errors) {
+    public ResponseEntity<?> create(@Valid @RequestBody final User params, Errors errors) {
         if (errors.hasErrors()) {
             return ErrorResponse.handle(errors, HttpStatus.UNPROCESSABLE_ENTITY);
         }
 
-        User user = repository.findBy(new String[] {"email"}, new Object[] {userParams.getEmail()});
-        if (user != null && user.authenticate(userParams.getPassword())) {
+        User user = repository.findByEmail(params.getEmail());
+        if (user != null && user.authenticate(params.getPassword())) {
             user.setToken(TokenHelper.getInstance().generateToken());
-            repository.update(user.getId(), new String[] { "token" }, new Object[] { user.getToken() });
+            repository.save(user);
 
             return SuccessResponse.handle(
                     new String[] {"user"},
