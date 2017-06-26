@@ -1,0 +1,16 @@
+INSERT INTO icons (name) VALUES ('accommodation');
+INSERT INTO icons (name) VALUES ('carpentry');
+INSERT INTO icons (name) VALUES ('cone');
+INSERT INTO icons (name) VALUES ('crane');
+INSERT INTO icons (name) VALUES ('cup_holders');
+INSERT INTO icons (name) VALUES ('elevator');
+INSERT INTO icons (name) VALUES ('er');
+INSERT INTO icons (name) VALUES ('extinguisher');
+INSERT INTO icons (name) VALUES ('laundry');
+INSERT INTO icons (name) VALUES ('others');
+INSERT INTO icons (name) VALUES ('recreation');
+INSERT INTO icons (name) VALUES ('refectory');
+INSERT INTO icons (name) VALUES ('totem');
+INSERT INTO icons (name) VALUES ('tray');
+INSERT INTO icons (name) VALUES ('water');
+INSERT INTO icons (name) VALUES ('wc');
