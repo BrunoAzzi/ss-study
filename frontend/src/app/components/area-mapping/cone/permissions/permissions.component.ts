@@ -10,8 +10,9 @@ import { MdSelectModule } from '@angular/material';
 export class Permissions {
 
     permissionType: string;
-
     @Input() dataConeChild: any;
+
+    @Output() updatePermissions = new EventEmitter<string>();
 
     permissions = [
         {value: 'epi', viewValue: 'EPI'},
@@ -20,8 +21,12 @@ export class Permissions {
         {value: 'enabling', viewValue: 'HABILITAÇÃO'}
     ];
 
+    ngOnInit() {
+        this.permissionType = this.dataConeChild.permissionType;
+    }    
+
     sendData():void { 
         this.dataConeChild.permissionType = this.permissionType;
-        
+        this.updatePermissions.emit(this.dataConeChild);
     }    
 }

@@ -53,7 +53,8 @@ export class MappingDialog {
 
     updateSensorIdentification(_dataCone: any) {      
       this.dataCone['title'] = _dataCone.title;
-      this.dataCone['identification'] = _dataCone.identification;      
+      this.dataCone['identification'] = _dataCone.identification;    
+      console.log(this.dataCone); 
     }
 
     updateRisks(_dataCone: any) {
@@ -64,7 +65,7 @@ export class MappingDialog {
       this.dataCone['permissionType'] = _dataCone.permissionType;
       this.cone = new Cone(this.dataCone);
       //TODO submit form with values
-      console.log(this.cone);      
+      console.log(this.dataCone);      
     }
 
 }

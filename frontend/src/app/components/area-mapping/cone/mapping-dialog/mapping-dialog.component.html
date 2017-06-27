@@ -19,7 +19,10 @@
                 (updateSensorIdentification)="updateSensorIdentification($event)">                
             </sensor-identification>
             <related-risks *ngIf="currentStageStep == 2"></related-risks>
-            <permissions *ngIf="currentStageStep == 3"></permissions>
+            <permissions 
+                *ngIf="currentStageStep == 3"
+                [dataConeChild]="dataCone"
+                (updatePermissions)="updatePermissions($event)"></permissions>
         </div>
     </md-dialog-content>
     <md-dialog-actions fxLayout fxLayoutAlign="center center" layout="row" [ngClass]="{'final-action': currentStageStep == totalSteps}">              
