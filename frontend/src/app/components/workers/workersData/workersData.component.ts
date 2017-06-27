@@ -1,32 +1,31 @@
-import { Component, Inject, EventEmitter } from '@angular/core';
+import { Component, Inject, EventEmitter, Output, Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { PersonalDataWorker } from '../../../mocks/personalDataWorker/personalDataWorker';
 import { CorreiosService } from "../../../services/correios.service";
 import { Endereco_completo } from '../../../mocks/endereco_completo/endereco_completo';
 import { CommonModule} from '@angular/common';
 import { CustomValidators } from './customValidators';
 import { CBOService } from "../../../services/cbo.service";
+import { WorkersDataService } from "../../../services/workers/workersData.service";
 import { IMyDpOptions } from 'mydatepicker';
 
 @Component({
     selector: 'workers-data',
     templateUrl: 'workersData.template.html',
     styleUrls: ['./workersData.component.scss'],
-    providers: [CorreiosService, CBOService]
+    providers: [CorreiosService, CBOService, WorkersDataService]
 })
 export class WorkersDataComponent {
+    @Input() worker;
+    @Output() cpfUpdated = new EventEmitter<string>();
+
     disabled = true;
     mycbo = '';
     mycbonumber = 0;
-    myCep = '';
+    modelCEP = '';
     cpf = '';
-    fullname = '';
     hiredType = true;
-    isValid = false;
     myForm: FormGroup;
-    worker: PersonalDataWorker;
     completeAddress: string;
-    selectedStatusValue: string;
 
     myDatePickerOptions: IMyDpOptions = {
         dateFormat: 'dd/mm/yyyy',
@@ -50,12 +49,13 @@ export class WorkersDataComponent {
 
     status = [
         { value: 'ativo', viewValue: 'Ativo' },
-        { value: 'ferias', viewValue: 'Férias' },
-        { value: 'afastado', viewValue: 'Afastado' },
-        { value: 'demitido', viewValue: 'Demitido' },
+        { value: 'inativo', viewValue: 'Inativo' },
     ];
 
-    labors = [];
+    labors = [{ value: '', viewValue: '' }];
+
+    sexs = ['Masculino','Feminino'];
+    hireds = ['Próprio','Terceiro'];
 
     scholaritys = [
         { value: 'fund_i', viewValue: 'Fundamental incompleto' },
@@ -67,9 +67,10 @@ export class WorkersDataComponent {
         { value: 'pos', viewValue: 'Pós Graduação' },
     ];
 
+
     necessitys = [
-        { value: 0, viewValue: 'Sim' },
-        { value: 1, viewValue: 'Não' },
+        { value: 1, viewValue: 'Sim' },
+        { value: 2, viewValue: 'Não' },
     ];
     selectedNecessity: number = 1;
 
@@ -78,8 +79,8 @@ export class WorkersDataComponent {
     cepMask = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
     cboMask = [/\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/];
 
-    constructor(private correiosService: CorreiosService, private cboService: CBOService, private fb: FormBuilder) {
 
+    constructor(private correiosService: CorreiosService, private cboService: CBOService, private workersService: WorkersDataService, private fb: FormBuilder) {
         this.myForm = this.fb.group({
             fullname: new FormControl('', Validators.compose([Validators.required, CustomValidators.onlytext])),
             cpf: new FormControl('', Validators.compose([Validators.required, CustomValidators.cpf])),
@@ -105,18 +106,25 @@ export class WorkersDataComponent {
     }
 
     autocompleteAdressFromApi() {
-        this.correiosService.getAddress(this.myCep).subscribe(data => {
+        this.correiosService.getAddress(this.modelCEP).subscribe(data => {
             this.completeAddress = `${data.cidade} - ${data.estado}, ${data.bairro}, ${data.tipoDeLogradouro} ${data.logradouro}`;
         });
     }
 
-    autocompleteRoleFromMock() {
 
+    autoCompleteWorker() {
+        this.cpfUpdated.emit(this.cpf);
+        this.cboService.getCBO(this.mycbo).subscribe(
+            (response) => {
+                this.labors = response;
+            },
+        );
+    }
+
+    autocompleteRoleFromMock() {
         this.cboService.getCBO("6125-05").subscribe(
             (response) => {
-                this.labors = response.map((label, index) => {
-                    return { value: index, viewValue: label };
-                });
+                this.labors = response;
             },
         );
     }
