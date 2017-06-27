@@ -38,7 +38,7 @@ public class ConstructionController {
     ObjectMapper objectMapper;
 
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<?> index() {
         Set<Construction> constructions = repository.findAll();
 
@@ -60,7 +60,7 @@ public class ConstructionController {
         );
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     public ResponseEntity<?> create(@RequestBody @Valid final Construction cParams, Errors errors) {
 
         if (errors.hasErrors()) {
@@ -76,99 +76,6 @@ public class ConstructionController {
         );
     }
 
-    @RequestMapping(value = "/{id}/{type}", method = RequestMethod.GET)
-    public ResponseEntity<Resource> loadFile(@PathVariable("id") long id,
-                                              @PathVariable("type") String type) {
-
-        Construction construction = repository.findOne(id);
-
-        Resource file = null;
-
-        if (construction != null) {
-            switch (type) {
-                case "logo":
-                    if(construction.getCeiFileName() != null) {
-                        file = storageService.loadFile(construction.getLogoFileName());
-                    } else {
-                        throw new ConstructionException("Arquivo não encontrado.");
-                    }
-                    break;
-                case "cei":
-                    if (construction.getCeiFileName() != null) {
-                        file = storageService.loadFile(construction.getCeiFileName());
-                    } else {
-                        throw new ConstructionException("Arquivo não encontrado.");
-                    }
-                    break;
-                default:
-                    break;
-            }
-
-            return ResponseEntity
-                    .ok()
-                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\""+file.getFilename()+"\"")
-                    .body(file);
-        } else {
-            throw new ConstructionException("Arquivo não encontrado.");
-        }
-
-    }
-
-
-    @RequestMapping(value = "/{id}/files/logo", method = RequestMethod.PUT)
-    public ResponseEntity<?> uploadLogo(@PathVariable("id") long id,
-                                        @RequestParam("logo") MultipartFile logo) {
-
-        Construction construction = repository.findOne(id);
-
-        if (construction != null
-                && logo != null
-                && (PNG_TYPE.equals(logo.getContentType())
-                || JPEG_TYPE.equals(logo.getContentType()))) {
-
-            String fileName = storageService.store(logo);
-            construction.setLogoFileName(fileName);
-            construction.setLogoUrl(String.format("/constructions/%d/logo", id));
-
-            repository.save(construction);
-
-        } else {
-            throw new ConstructionException("Arquivo incompatível.");
-        }
-
-        return SuccessResponse.handle(
-                new String[] {"construction"},
-                new Object[] {construction},
-                HttpStatus.OK
-        );
-    }
-
-    @RequestMapping(value = "/{id}/files/cei", method = RequestMethod.PUT)
-    public ResponseEntity<?> uploadCei(@PathVariable("id") long id,
-                                        @RequestParam("cei") MultipartFile cei) {
-
-        Construction construction = repository.findOne(id);
-
-        if (construction != null
-                && cei != null
-                && PDF_TYPE.equals(cei.getContentType())) {
-
-            String fileName =  storageService.store(cei);
-            construction.setCeiFileName(fileName);
-            construction.setCeiUrl(String.format("/constructions/%d/cei", id));
-
-            repository.save(construction);
-        } else {
-            throw new ConstructionException("Arquivo incompatível.");
-        }
-
-        return SuccessResponse.handle(
-                new String[] {"construction"},
-                new Object[] {construction},
-                HttpStatus.OK
-        );
-    }
-
 
     @PutMapping(value = "/{id}")
     public ResponseEntity<?> update(@PathVariable("id") long id, HttpServletRequest request) throws IOException {
@@ -180,7 +87,11 @@ public class ConstructionController {
 
             repository.save(updatedConstruction);
 
-            return new ResponseEntity<>(updatedConstruction, HttpStatus.ACCEPTED);
+            return SuccessResponse.handle(
+                new String[] {"construction"},
+                new Object[] {construction},
+                HttpStatus.ACCEPTED
+            );
         } else {
             return ErrorResponse.handle(
                     new String[] {"Construção não encontrada."},
@@ -188,6 +99,83 @@ public class ConstructionController {
                     HttpStatus.NOT_FOUND
             );
         }
+    }
+
+    @GetMapping("/{id}/{type}")
+    public ResponseEntity<?> loadFile(
+            @PathVariable("id") long id,
+            @PathVariable("type") String type
+    ) {
+        Construction construction = repository.findOne(id);
+
+        if (construction != null && Construction.checkType(type)){
+            String fileName = type.equals("logo") ? construction.getLogoFileName() : construction.getCeiFileName();
+            if (fileName != null && !fileName.isEmpty()) {
+                Resource file = storageService.loadFile(fileName);
+                if (file != null) {
+                    return ResponseEntity
+                            .ok()
+                            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\""+file.getFilename()+"\"")
+                            .body(file);
+                } else {
+                    return ErrorResponse.handle(
+                            new String[] {"Problema ao encontrar arquivo no servidor."},
+                            Construction.class,
+                            HttpStatus.NOT_FOUND
+                    );
+                }
+            } else {
+                return ErrorResponse.handle(
+                        new String[] {"Arquivo não encontrado."},
+                        Construction.class,
+                        HttpStatus.NOT_FOUND
+                );
+            }
+        }
+
+        return ErrorResponse.handle(
+                new String[] {"Construção não encontrada."},
+                Construction.class,
+                HttpStatus.NOT_FOUND
+        );
+
+    }
+
+    @PostMapping("/{id}/{type}")
+    public ResponseEntity<?> uploadFile(
+            @PathVariable("id") long id,
+            @PathVariable("type") String type,
+            @RequestParam("file") MultipartFile file
+    ) {
+        Construction construction = repository.findOne(id);
+
+        if (construction != null && file != null) {
+            if (Construction.checkTypeAndFileContent(type, file.getContentType())) {
+                String fileName = storageService.store(file);
+                construction.setLogoFileName(fileName);
+                construction.setLogoUrl(String.format("/constructions/%d/%s", id, type));
+
+                repository.save(construction);
+
+                return SuccessResponse.handle(
+                        new String[]{"construction"},
+                        new Object[]{construction},
+                        HttpStatus.OK
+                );
+            } else {
+                return ErrorResponse.handle(
+                        new String[] {"Arquivo incompatível."},
+                        Construction.class,
+                        HttpStatus.UNSUPPORTED_MEDIA_TYPE
+                );
+            }
+        }
+
+        return ErrorResponse.handle(
+                new String[] {"Construção não encontrada."},
+                Construction.class,
+                HttpStatus.NOT_FOUND
+        );
     }
 
     @ExceptionHandler({ConstructionException.class, MultipartException.class})
