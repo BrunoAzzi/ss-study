@@ -1,6 +1,8 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { MdSelectModule } from '@angular/material';
 
+import {Collaborator} from '../../../../models/colLaborator.model';
+
 @Component({
   selector: 'permissions',
   styleUrls: ['permissions.component.scss'],
@@ -10,6 +12,7 @@ import { MdSelectModule } from '@angular/material';
 export class Permissions {
 
     permissionType: string;
+    filteredSelectedCollaborators: Array<Collaborator> = [];
     @Input() dataConeChild: any;
 
     @Output() updatePermissions = new EventEmitter<string>();
@@ -23,10 +26,16 @@ export class Permissions {
 
     ngOnInit() {
         this.permissionType = this.dataConeChild.permissionType;
-    }    
+    }
+
+    updateCollaboratorList(_data: any) {
+        this.filteredSelectedCollaborators = _data;
+        this.sendData();
+    }
 
     sendData():void { 
         this.dataConeChild.permissionType = this.permissionType;
+        this.dataConeChild.filteredSelectedCollaborators = this.filteredSelectedCollaborators;
         this.updatePermissions.emit(this.dataConeChild);
     }    
 }

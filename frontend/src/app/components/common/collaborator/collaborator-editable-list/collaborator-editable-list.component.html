@@ -6,7 +6,8 @@
                id="allSearch"
                [(ngModel)]="allSearch"
                (ngModelChange)="allSearchChange($event)"
-               placeholder="Buscar por nome, CPF ou função"               
+               placeholder="Buscar por nome, CPF ou função"
+               (keyup)="sendData()"           
                >
         </md-input-container>
             <a href="#">Adicionar a lista</a>
@@ -24,7 +25,7 @@
                             color="primary" 
                             class="checkbox"
                             (click)="toggleSelect($event)"
-                            >
+                            (change)="sendData()">
                         </md-checkbox>
                         <label for="allCollaborators">Todos</label>                        
                     </th>
@@ -42,8 +43,9 @@
                         class="checkbox" 
                         id="{{c.id}}"
                         name="{{c.id}}"
-                        value="{{c.selected}}"
-                        [checked]="c.selected">
+                        value="{{c.selected}}"                        
+                        [checked]="c.selected"
+                        (change)="sendData()">
                     </md-checkbox>
                     <label for="{{c.id}}">{{c.name}}</label>                    
                 </td>
