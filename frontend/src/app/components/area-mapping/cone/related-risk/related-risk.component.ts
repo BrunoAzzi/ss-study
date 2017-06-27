@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { Risk, TYPES, RiskLevels } from '../../../../models/risk.model';
+import { Risk, TYPES, RiskLevels, RiskFactors } from '../../../../models/risk.model';
 
 @Component({
   selector: 'related-risk',
@@ -12,7 +12,11 @@ export class RelatedRisk {
 
   riskTypes: Array<any>;
   levelTypes: any;
+  factorTypes: any;
+
   riskType: string;  
+  levelType: string;
+  factorType: string;
 
   constructor() {}
 
@@ -23,7 +27,8 @@ export class RelatedRisk {
               {key: key, value: TYPES[key]}
             )
         }
-    this.levelTypes = RiskLevels;    
+    this.levelTypes = RiskLevels;
+    this.factorTypes = RiskFactors;
   }
 
 }

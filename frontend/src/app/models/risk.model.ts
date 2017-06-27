@@ -12,6 +12,12 @@ export enum RiskLevels {
     "GRAU TRÊS"
 }
 
+export enum RiskFactors {
+    "FATOR UM" = 1,
+    "FATOR DOIS",
+    "FATOR TRÊS"
+}
+
 export class Risk {
 
     id: number

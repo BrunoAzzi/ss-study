@@ -6,19 +6,20 @@
                    floatPlaceholder="never" >
             <md-option *ngFor="let riskType of riskTypes" [value]="riskType.key">{{riskType.value}}</md-option>
         </md-select>
-        <md-select class="mapping" 
+        <md-select class="mapping"
+                   [(ngModel)]="levelType"
                    placeholder="Grau" 
                    floatPlaceholder="never" >
-            <md-option *ngFor="let levelType of levelTypes | keys" [value]="levelType.key">{{levelType.value}}</md-option>
-            {{levelType}}
+            <md-option *ngFor="let levelType of levelTypes | keys" [value]="levelType.key">{{levelType.value}}</md-option>            
         </md-select>
-        <md-select class="mapping" 
+        <md-select class="mapping"
+                   [(ngModel)]="factorType"
                    placeholder="Fator De Risco" 
                    floatPlaceholder="never" >
-            <!--md-option *ngFor="let type of types" [value]="permission.value">{{permission.viewValue}}</md-option-->
+            <md-option *ngFor="let factorType of factorTypes | keys" [value]="factorType.key">{{factorType.value}}</md-option>
         </md-select>
     </section>
-    <section fxLayout="column" fxLayoutAlign="center center">    
+    <section fxLayout="column" fxLayoutAlign="center center">
         <span>Tipo</span>
            <ul class="type">
                <li class="chemical">
