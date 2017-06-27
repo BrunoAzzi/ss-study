@@ -19,7 +19,7 @@ export class SensorIdentification {
       this.identification = this.dataConeChild.identification;
     }  
 
-    sendData():void {      
+    sendData():void {
       this.dataConeChild.identification = this.identification;
       this.dataConeChild.title = this.title;      
       this.updateSensorIdentification.emit(this.dataConeChild);

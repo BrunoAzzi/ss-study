@@ -1,9 +1,9 @@
-export const TYPES = {
-    chemistry: 'Químico',
-    accident: 'Acidente',
-    ergonomic: 'Ergonômico',
-    biological: 'Biológico',
-    physical: 'Físico',
+export enum RiskTypes {
+    'Químico' = 1,
+    'Acidente',
+    'Ergonômico',
+    'Biológico',
+    'Físico',
 }
 
 export enum RiskLevels {
@@ -27,7 +27,7 @@ export class Risk {
 
     constructor(data : any) {
         this.id = data.id
-        this.type = TYPES[data.type]
+        this.type = data.type
         this.level = data.level
         this.factor = data.factor
     }

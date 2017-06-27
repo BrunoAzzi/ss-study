@@ -3,34 +3,37 @@
         <md-select class="mapping" 
                    [(ngModel)]="riskType" 
                    placeholder="Tipo De Risco" 
+                   (change)="sendData()" 
                    floatPlaceholder="never" >
-            <md-option *ngFor="let riskType of riskTypes" [value]="riskType.key">{{riskType.value}}</md-option>
+            <md-option *ngFor="let riskType of riskTypes | keys" [value]="riskType.key">{{riskType.value}}</md-option>
         </md-select>
         <md-select class="mapping"
                    [(ngModel)]="levelType"
                    placeholder="Grau" 
+                   (change)="sendData()" 
                    floatPlaceholder="never" >
             <md-option *ngFor="let levelType of levelTypes | keys" [value]="levelType.key">{{levelType.value}}</md-option>            
         </md-select>
         <md-select class="mapping"
                    [(ngModel)]="factorType"
                    placeholder="Fator De Risco" 
+                   (change)="sendData()" 
                    floatPlaceholder="never" >
             <md-option *ngFor="let factorType of factorTypes | keys" [value]="factorType.key">{{factorType.value}}</md-option>
         </md-select>
     </section>
     <section fxLayout="column" fxLayoutAlign="center center">
-        <span>Tipo</span>
+        <span>{{riskTypeLabel}}</span>
            <ul class="type">
-               <li class="chemical">
+               <li [ngClass] = "{'chemical': riskType == 1, 'accident': riskType == 2, 'erghonomic': riskType == 3, 'biological': riskType == 4, 'physical': riskType == 5}">
                   <ul class="size">
-                     <li class="low"></li>
-                     <li class="medium active"></li>
-                     <li class="high"></li>
+                     <li class="low" [ngClass] = "{'active': levelType == 1}"></li>
+                     <li class="medium" [ngClass] = "{'active': levelType == 2}"></li>
+                     <li class="high" [ngClass] = "{'active': levelType == 3}"></li>
                   </ul>
                </li>       
            </ul>    
-        <span>Grau</span>        
+        <span>{{levelTypeLabel}}</span>        
     </section>
     <button class="close" md-icon-button>
         <md-icon>clear</md-icon>
