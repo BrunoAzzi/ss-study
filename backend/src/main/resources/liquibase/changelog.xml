@@ -101,7 +101,7 @@
     </changeSet>
 
     <changeSet id="6" author="fpileggi">
-        <sqlFile path="/liquibase/seed/cities_and_states.sql"/>
+        <sqlFile path="liquibase/seed/cities_and_states.sql"/>
     </changeSet>
 
     <changeSet id="7" author="rrosseti">
@@ -237,7 +237,7 @@
     </changeSet>
 
     <changeSet id="10" author="fpileggi">
-        <sqlFile path="/liquibase/seed/icons.sql"/>
+        <sqlFile path="liquibase/seed/icons.sql"/>
     </changeSet>
 
     <changeSet id="11" author="fpileggi">
@@ -451,7 +451,7 @@
             <column name="nit" type="varchar(255)"/>
             <column name="degree" type="varchar(200)"/>
             <column name="ctps" type="varchar(255)"/>
-            <column name="admission_date" type="TIMESTAMP"> </column>
+            <column name="admission_date" type="TIMESTAMP" />
             <column name="contract_type" type="varchar(100)"/>
             <column name="special_needs" type="varchar(100)"/>
             <column name="photo_url" type="text"/>
@@ -461,5 +461,9 @@
             <column name="mandate_begin_date" type="TIMESTAMP"/>
             <column name="mandate_end_date" type="TIMESTAMP"/>
         </addColumn>
+    </changeSet>
+
+    <changeSet id="18" author="fpileggi">
+        <sqlFile path="liquibase/seed/risk_factors.sql"/>
     </changeSet>
 </databaseChangeLog>
