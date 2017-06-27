@@ -43,10 +43,10 @@ export class CollaboratorEditableList implements OnInit {
     }
   }
 
-  toggleSelect = function(event) {        
-      this.filteredCollaborators.forEach(element => {          
-          element.selected = !event.target.firstChild.checked;          
-      });
+  toggleSelect = function(event) {      
+      this.filteredCollaborators.forEach(element => {                    
+          element.selected = !event.target.firstElementChild.checked;         
+      });      
   }
 
   sendData():void { 
