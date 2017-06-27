@@ -16,10 +16,10 @@ export class NavigationComponent {
     menuItems = {
         main: [
             { route: 'constructions', icon: 'obra', label: 'Minhas Obras' },
-            // { route: 'reports', icon: 'assets/reports.png', label: 'Relatórios' },
+            // { route: 'reports', icon: 'dados', label: 'Relatórios' },
         ],
         setup: [
-            { route: 'companies', icon: 'dados', label: 'Empresa' },
+            { route: 'companies', icon: 'empresa', label: 'Empresa' },
             { route: 'workers', icon: 'worker', label: 'Trabalhadores' },
             // { route: 'epis', icon: 'assets/epis.png', label: 'EPI' },
             { route: 'suppliers', icon: 'gerenciamento', label: 'Fornecedores' },

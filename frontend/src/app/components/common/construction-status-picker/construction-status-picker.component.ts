@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
+import { Component, ViewChild, Output, EventEmitter } from '@angular/core';
 
 
 @Component({
@@ -8,6 +8,8 @@ import {Component, ViewChild} from '@angular/core';
 })
 export class ConstructionStatusPickerComponent {
 
+    @Output() selected : EventEmitter<string> = new EventEmitter()
+
     @ViewChild('statusInput') statusInput;
 
     availableStatus = ['finalizada', 'paralisada', 'em andamento'];
@@ -15,5 +17,4 @@ export class ConstructionStatusPickerComponent {
     onChange(value) {
         this.statusInput.nativeElement.value = value;
     }
-
 }

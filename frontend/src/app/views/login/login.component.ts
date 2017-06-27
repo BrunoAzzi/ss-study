@@ -21,13 +21,18 @@ export class LoginComponent {
         this.loading = true;
         this.sessionsService.login(this.model.email, this.model.password)
             .subscribe(
-			data => {
-				this.router.navigate(["/"]);
-			},
-			error => {
-				this.showErrorBar(error.json().errors[0].message);
-				this.loading = false;
-			});
+                data => {
+                    this.router.navigate(["/"]);
+                },
+                error => {
+                    if (error.json() && error.json().errors && error.json().errors.length > 0) {
+                        this.showErrorBar(error.json().errors[0].message);
+                    } else {
+                        this.showErrorBar('Erro no servidor!');
+                    }
+                    this.loading = false;
+                }
+            );
     }
 
     showErrorBar(error: string) {

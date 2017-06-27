@@ -18,5 +18,4 @@ export class CorreiosService {
     private cleanCEP(cep: string): string {
         return cep.trim().replace(/\D/g,'');
     }
-
 }
