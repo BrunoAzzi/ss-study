@@ -20,7 +20,8 @@ export class WorkerService {
 		return this.service.get(this.endpoint + "/" + id)
 			.map(jsonResponse => {
 				return new Worker()
-			} 
+			}
+		)
 	}
 
 	getWorkerByCpf(cpf: string) {

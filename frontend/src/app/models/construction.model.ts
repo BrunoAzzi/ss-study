@@ -2,15 +2,21 @@ import { Sector } from './sector.model'
 
 export interface IConstruction {
     id: number
-    status: string
+    status: number
     image: string
-    title: string
+    name: string
     sponsor: string
     address: string
     number: string
     complement: string
     cep: string
     sectors: Array<Sector>
+}
+
+const statuses = {
+    0: 'IN_PROGRESS',
+    1: 'PAUSED',
+    2: 'FINISHED'
 }
 
 export class Construction implements IConstruction {
@@ -21,9 +27,8 @@ export class Construction implements IConstruction {
     logo: any;
     featured: any;
 
-    status: string = "";
+    status: number = 0;
     image: string = "";
-    title: string = "";
 
     description: string = ""
 
@@ -36,24 +41,28 @@ export class Construction implements IConstruction {
     sponsor: string = ""
     sectors: Array<Sector> = []
 
+    public getStatus() {
+        return statuses[this.status]
+    }
+
     public setConstruction(data: IConstruction) {
         this.id = data.id
-        this.status = data.status
+        this.status = 0
         this.image = data.image
-        this.title = data.title
+        this.name = data.name
         this.address = data.address
         this.sponsor = data.sponsor
         this.cep = data.cep
         this.sectors = data.sectors ? data.sectors.map(sector => new Sector(sector, this)) : []
     }
 
-    public initializeWithJSON(json: any) {
+    public initializeWithJSON(json: any) : Construction {
         this.id = json.id
         this.name = json.name
-        this.title = json.name
         this.cep = json.cep
         this.address = json.address
-        this.status = json.status
+        // this.status = json.status
+        this.status = 0
         this.description = json.description
         this.image = json.logoUrl
         this.cei = json.ceiCode
@@ -64,6 +73,7 @@ export class Construction implements IConstruction {
         // sectors -> json.sectors
         // responsibleEngineer -> json.responsibleEngineer
         // responsibleSafety -> json.responsibleSafety
+        return this
     }
 
     public toJson() {

@@ -8,29 +8,29 @@ import { Construction } from "../../models/construction.model";
 })
 export class ConstructionListItemComponent {
     
-    @Input() constructionSite: Construction;
+    @Input() construction: Construction;
     @Output() toEdit : EventEmitter<Construction> = new EventEmitter();
     
     status: any = {};
     statusIcon: any = "";
 
     ngOnInit() {
-        switch (this.constructionSite.status) {
-            case "finalizada":
-                this.statusIcon = "check";
+        switch (this.construction.getStatus()) {
+            case "FINISHED":
+                this.statusIcon = "finalizadas";
                 break;
-            case "paralisada":
-                this.statusIcon = "remove";
+            case "PAUSED":
+                this.statusIcon = "paralizadas";
                 break;
-            case "em andamento":
-                this.statusIcon = false;
+            case "IN_PROGRESS":
+                this.statusIcon = "andamento";
                 break;
         }
 
         this.status = {
-            "success": this.constructionSite.status == "finalizada",
-            "warn": this.constructionSite.status == "em andamento",
-            "danger": this.constructionSite.status == "paralisada"
+            "success": this.construction.getStatus() == "FINISHED",
+            "warn": this.construction.getStatus() == "IN_PROGRESS",
+            "danger": this.construction.getStatus() == "PAUSED"
         }
     }
 

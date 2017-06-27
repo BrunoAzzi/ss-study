@@ -63,10 +63,10 @@ export class ConstructionsListComponent implements OnInit, OnDestroy {
         return constructions
             .filter(construction => {
                 return (
-                    !(this.activeFilters.onGoing && construction.status === "em andamento") &&
-                    !(this.activeFilters.paralized && construction.status === "paralisada") &&
-                    !(this.activeFilters.finished && construction.status === "finalizada") &&
-                    !(this.activeFilters.text.length > 0 && construction.title.toLowerCase().indexOf(this.activeFilters.text.toLowerCase()) === -1)
+                    !(this.activeFilters.onGoing && construction.getStatus() === "IN_PROGRESS") &&
+                    !(this.activeFilters.paralized && construction.getStatus() === "PAUSED") &&
+                    !(this.activeFilters.finished && construction.getStatus() === "FINISHED") &&
+                    !(this.activeFilters.text.length > 0 && construction.name.toLowerCase().indexOf(this.activeFilters.text.toLowerCase()) === -1)
                 )
             })
     }

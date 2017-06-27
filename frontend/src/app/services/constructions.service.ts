@@ -29,7 +29,7 @@ export class ConstructionsService {
         return this.service.get(this.endpoint)
             .map((jsonResponse) => {
                 return jsonResponse.constructions.map(construction => {
-                    return this.serializeConstruction(construction)
+                    return new Construction().initializeWithJSON(construction)
                 })
             });
 	}
@@ -62,17 +62,29 @@ export class ConstructionsService {
 	}
 
     private createConstruction(construction : Construction) {
-        construction.id = Math.max.apply(this.constructions.map(c => c.id)) + 1
-        this.constructions.push(construction)
-        return this.constructions
+        console.log('created', construction)
+        return this.service.post(this.endpoint, JSON.stringify(construction))
+            .map((jsonResponse) => {
+                console.log(jsonResponse)
+                return jsonResponse
+            });
+        // construction.id = Math.max.apply(this.constructions.map(c => c.id)) + 1
+        // this.constructions.push(construction)
+        // return this.constructions
     }
 
     private updateConstruction(construction : Construction) {
-        const i = this.constructions.findIndex((c, index, array) => {
-            return c.id === construction.id
-        })
-        this.constructions[i] = construction
-        return this.constructions
+        console.log('updated', construction)
+        return this.service.put(this.endpoint + '/' + construction.id, JSON.stringify(construction))
+            .map((jsonResponse) => {
+                console.log(jsonResponse)
+                return jsonResponse
+            });
+        // const i = this.constructions.findIndex((c, index, array) => {
+        //     return c.id === construction.id
+        // })
+        // this.constructions[i] = construction
+        // return this.constructions
     }
 
     private serializeConstruction(json: Object) {

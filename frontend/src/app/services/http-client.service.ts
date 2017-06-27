@@ -38,4 +38,11 @@ export class HttpClientService {
       })
   }
 
+  put(path: String, params) {
+    return this.http.put(this.url + path, params, this.standardHeaders())
+      .map((response: Response) => {
+        return response.text().length > 0 ? response.json() : {}
+      });
+  }
+
 }
