@@ -21,7 +21,8 @@ import { SupplierListResolver } from "./resolves/supplier-list.resolver";
 import { SupplierResolver } from "./resolves/supplier.resolver";
 import { SupplierService } from "./services/supplier.service";
 
-// Wroker
+// Worker
+import { WorkerFormComponent } from "./views/workers/form/form.component";
 import { WorkerListResolver } from "./resolves/worker-list.resolver";
 import { WorkerService } from "./services/worker.service";
 import { WorkerListComponent } from "./views/workers/list/list.component";
@@ -57,6 +58,8 @@ const routes: Routes = [
                     {
 						path: 'workers', children: [
 							{ path: '', data: { breadcrumb: "Gerenciamento de Trabalhadores" }, component: WorkerListComponent, resolve: { workerList: WorkerListResolver } },
+                            { path: 'new', data: { breadcrumb: "Cadastro de Trabalhadores" }, component: WorkerFormComponent },
+                             { path: ':id/edit', data: { breadcrumb: "Cadastro de Trabalhadores" }, component: WorkerFormComponent },
 						]
 					},
                     {
