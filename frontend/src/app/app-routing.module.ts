@@ -68,7 +68,7 @@ const routes: Routes = [
 					},
                     {
 						path: 'constructions', children: [
-                            { path: '', pathMatch: 'prefix', data: { breadcrumb: "Minhas Obras" }, component: ConstructionsListComponent, resolve: { constructions: ConstructionsListResolver } },
+                            { path: '', pathMatch: 'prefix', data: { breadcrumb: "Minhas Obras" }, component: ConstructionsListComponent },
                             { path: 'new', data: { breadcrumb: "Nova Obra" }, component: ConstructionFormContainer, resolve: { construction: ConstructionResolver } },
                         ]
                     },

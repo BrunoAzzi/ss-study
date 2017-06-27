@@ -17,32 +17,20 @@ export class ConstructionsService {
 
     getConstruction(id : number) {
 
-        return this.http.get(this.url + "/" + id)
-            .map(response => response.json().data)
-            .map(data => this.construction = this.serializeConstruction(data))
-
-        // return this.service.get(this.endpoint + "/" + id)
-        //     .map((obj) => {
-        //         console.log(obj)
-        //         return obj
-        //     });
+        return this.service.get(this.endpoint + "/" + id)
+            .map((jsonResponse) => {
+                return this.construction = this.serializeConstruction(jsonResponse.construction)
+            });
 	}
 
-    getConstructionList() {
+    getConstructionList() : Observable<Array<Construction>> {
 
-		return this.http.get(this.url)
-            .map(response => response.json().data)
-            .map(data => {
-                return this.constructions = data.map(value => {
-                    return this.serializeConstruction(value)
+        return this.service.get(this.endpoint)
+            .map((jsonResponse) => {
+                return jsonResponse.constructions.map(construction => {
+                    return this.serializeConstruction(construction)
                 })
-            })
-
-        // return this.service.get(this.endpoint)
-        //     .map((obj) => {
-        //         console.log(obj)
-        //         return obj
-        //     });
+            });
 	}
 
     newConstruction() {
@@ -52,9 +40,9 @@ export class ConstructionsService {
 
     saveConstruction(construction : Construction) {
         if (construction.id) {
-            this.updateConstruction(construction)
+            return this.updateConstruction(construction)
         } else {
-            this.createConstruction(construction)
+            return this.createConstruction(construction)
         }
     }
 
@@ -75,6 +63,7 @@ export class ConstructionsService {
     private createConstruction(construction : Construction) {
         construction.id = Math.max.apply(this.constructions.map(c => c.id)) + 1
         this.constructions.push(construction)
+        return this.constructions
     }
 
     private updateConstruction(construction : Construction) {
@@ -82,11 +71,12 @@ export class ConstructionsService {
             return c.id === construction.id
         })
         this.constructions[i] = construction
+        return this.constructions
     }
 
-    private serializeConstruction(construction: IConstruction) {
+    private serializeConstruction(json: Object) {
         let c = new Construction()
-        c.setConstruction(construction)
+        c.initializeWithJSON(json)
         return c
     }
 }

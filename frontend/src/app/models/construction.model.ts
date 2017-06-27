@@ -36,7 +36,6 @@ export class Construction implements IConstruction {
     sponsor: string = ""
     sectors: Array<Sector> = []
 
-
     public setConstruction(data: IConstruction) {
         this.id = data.id
         this.status = data.status
@@ -46,6 +45,25 @@ export class Construction implements IConstruction {
         this.sponsor = data.sponsor
         this.cep = data.cep
         this.sectors = data.sectors ? data.sectors.map(sector => new Sector(sector, this)) : []
+    }
+
+    public initializeWithJSON(json: any) {
+        this.id = json.id
+        this.name = json.name
+        this.title = json.name
+        this.cep = json.cep
+        this.address = json.address
+        this.status = json.status
+        this.description = json.description
+        this.image = json.logoUrl
+        this.cei = json.ceiCode
+
+        // TODO
+        // logoFileName -> json.logoFileName
+        // ceiFileName -> json.ceiFileName
+        // sectors -> json.sectors
+        // responsibleEngineer -> json.responsibleEngineer
+        // responsibleSafety -> json.responsibleSafety
     }
 
     public toJson() {

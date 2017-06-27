@@ -1,3 +1,5 @@
+import { OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 import { Construction } from './../../../models/construction.model';
 import { ConstructionsService } from './../../../services/constructions.service';
 import { Component, Input } from '@angular/core';
@@ -8,9 +10,15 @@ import { Router, ActivatedRoute } from '@angular/router';
     templateUrl: './constructions-list.template.html',
     styleUrls: ['./constructions-list.component.scss']
 })
-export class ConstructionsListComponent  {
+export class ConstructionsListComponent implements OnInit {
     LAST_SAVED = "last_saved";
     FIRST_SAVED = "first_saved";
+
+    public constructions : Observable<Array<Construction>>
+
+    ngOnInit() {
+        this.constructions = this.service.getConstructionList().startWith([])
+    }
 
     activeFilters = {
         text: "",

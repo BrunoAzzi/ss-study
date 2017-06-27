@@ -38,7 +38,7 @@ public class ConstructionController {
     ObjectMapper objectMapper;
 
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<?> index() {
         Set<Construction> constructions = repository.findAll();
 

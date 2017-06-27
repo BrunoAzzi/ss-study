@@ -1,4 +1,4 @@
-<div *ngIf="service.constructions.length > 0" fxLayout fxLayoutAlign="space-between center" class="top-actionbar">
+<div *ngIf="(constructions | async).length > 0" fxLayout fxLayoutAlign="space-between center" class="top-actionbar">
     <div fxLayout fxLayoutAlign="start center">
         <button md-icon-button type="button" (click)="toggleSearch()" fxLayout fxLayoutAlign="center center">
             <md-icon class="search">search</md-icon>
@@ -37,8 +37,8 @@
     </div>
 </div>
 
-<construction-list-item *ngFor="let construction of filterConstructions(service.constructions)" [constructionSite]="construction" (toEdit)="editConstruction($event.id)"></construction-list-item>
+<construction-list-item *ngFor="let construction of filterConstructions(constructions | async)" [constructionSite]="construction" (toEdit)="editConstruction($event.id)"></construction-list-item>
 
-<constructions-landing-page *ngIf="service.constructions.length === 0"></constructions-landing-page>
+<constructions-landing-page *ngIf="(constructions | async).length === 0"></constructions-landing-page>
 
 <fab mdTooltip="Adicionar obra" mdTooltipPosition="before" (click)="addConstruction()"></fab>
