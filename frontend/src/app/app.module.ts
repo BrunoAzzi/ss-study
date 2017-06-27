@@ -14,6 +14,7 @@ import { RouterModule } from '@angular/router';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
 import { HttpClientService } from "./services/http-client.service";
 import { SessionsService } from "./services/sessions.service";
 import { PasswordService } from "./services/password.service";
@@ -47,7 +48,7 @@ import { WorkersDataComponent } from "./components/workers/workersData/workersDa
 import { CompaniesComponent } from "./views/companies/companies.component";
 import { CompanyDetailsComponent } from "./components/forms/company-details/company-details.component";
 import { HealthComponent } from "./components/workers/health/health.component";
-import { AsoItemComponent } from "./components/workers/asoItem/asoItem.component";
+import { AsoItemComponent , ConfirmationDialogOverview } from "./components/workers/asoItem/asoItem.component";
 import { DateRangeComponent } from "./components/common/date-range/date-range.component";
 import { SkillComponent } from "./components/workers/skill/skill.component";
 import { RecyclingComponent } from "./components/workers/recycling/recycling.component";
@@ -71,7 +72,7 @@ import { AreaMonitoringComponent } from './components/area-monitoring/area-monit
 import { SummaryItemComponent } from './components/summary-item/summary-item.component';
 import { SummaryComponent } from './components/summary/summary.component';
 import { RiskGraphComponent } from './components/area-monitoring/risk-graph/risk-graph.component';
-import { Ng2FileDropModule }  from 'ng2-file-drop';
+import { Ng2FileDropModule } from 'ng2-file-drop';
 
 import { WorkersOverviewComponent } from './components/overview/workers-overview/workers-overview.component';
 import { ConstructionsStatusComponent } from './components/overview/constructions-status/constructions-status.component';
@@ -92,7 +93,7 @@ import { StatusAnoComponent } from "./components/perfil_emocional/status_ano/sta
 // Layouts
 import { LoginComponent } from './views/login/login.component';
 import { PasswordRecoveryComponent } from './views/password-recovery/password-recovery.component';
-import { PasswordUpdateComponent } from './views/password-update/password-update.component'; 
+import { PasswordUpdateComponent } from './views/password-update/password-update.component';
 
 import { BasicTopNavBarLayout } from './components/common/layouts/basic-topnavbar/basic-topnavbar.component';
 
@@ -133,7 +134,7 @@ import { ConstructionSiteDataFormComponent } from './components/mysconstructions
 import { CepPickerComponent } from './components/common/cep-picker/cep-picker.component';
 import { ManagersDataFormComponent } from './components/mysconstructionsites/construction-site-data/components/managers-data-form/managers-data-form.component';
 import { ConstructionStatusPickerComponent } from './components/common/construction-status-picker/construction-status-picker.component';
-import {ConstructionSitesStatusIconComponent} from "./components/common/construction-sites-status-icon/construction-sites-status-icon.component";
+import { ConstructionSitesStatusIconComponent } from "./components/common/construction-sites-status-icon/construction-sites-status-icon.component";
 import { CollaboratorDataFormComponent } from './components/mysconstructionsites/construction-site-data/components/collaborator-data-form/collaborator-data-form.component';
 import { GoodsFormComponent } from './components/mysconstructionsites/construction-site-data/components/goods-form/goods-form.component';
 import { AddNewCategoryComponent } from './components/common/add-new-category/add-new-category.component';
@@ -225,6 +226,7 @@ import { AlertsTabItemComponent } from './components/area-monitoring/alerts-tab-
         RecyclingComponent,
         InputFile,
         AsoItemComponent,
+        ConfirmationDialogOverview,
         HealthComponent,
 
         // Obras
@@ -300,7 +302,7 @@ import { AlertsTabItemComponent } from './components/area-monitoring/alerts-tab-
         // Routes
         AppRoutingModule,
     ],
-    entryComponents: [ContentElementDialog],
+    entryComponents: [ContentElementDialog,ConfirmationDialogOverview],
     providers: [
         HttpClientService,
         AuthGuard,

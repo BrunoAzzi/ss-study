@@ -1,10 +1,10 @@
-import { Component, Input, Output, EventEmitter, Inject } from '@angular/core';
+import { Component, Input, Output, EventEmitter, Inject, ViewChild, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { GlobalValidators } from '../../globalValidators';
 import { IMyDpOptions } from 'mydatepicker';
-import { MdDialog, MdDialogRef } from '@angular/material';
-
+import { DOCUMENT } from '@angular/platform-browser';
+import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 
 @Component({
     selector: 'asoItemComponent',
@@ -17,8 +17,6 @@ export class AsoItemComponent {
     @Input() itemName: String;
     @Output() removed = new EventEmitter();
 
-    itemList: Array<any> = [];
-
     myDatePickerOptions: IMyDpOptions = {
         dateFormat: 'dd/mm/yyyy',
         dayLabels: { su: 'Dom', mo: 'Seg', tu: 'Ter', we: 'Qua', th: 'Qui', fr: 'Sex', sa: 'Sab' },
@@ -26,10 +24,14 @@ export class AsoItemComponent {
         todayBtnTxt: 'Hoje'
     };
 
-    constructor(private fb: FormBuilder) {
-        this.myForm = this.fb.group({
+    constructor(private fb: FormBuilder, public dialog: MdDialog) {
+        this.myForm = this.fb.group({})
 
-        })
+    }
+
+    openDialog() {
+        this.dialog.open(ConfirmationDialogOverview);
+
     }
 
     removeMyself() {
@@ -37,3 +39,21 @@ export class AsoItemComponent {
     }
 
 }
+
+@Component({
+    selector: 'confirmationDialog',
+    templateUrl: 'confirmationDialog.template.html',
+})
+export class ConfirmationDialogOverview {
+
+
+}
+
+
+
+
+
+
+
+
+
