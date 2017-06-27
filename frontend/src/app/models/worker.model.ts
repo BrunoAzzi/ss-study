@@ -1,3 +1,5 @@
+import { WorkerData } from "./worker/personalData.model";
+
 export interface IWorker {
     id: number;
     name: string;
@@ -17,6 +19,7 @@ export class Worker implements IWorker {
     ocupation: string;
     isThirdparty: boolean = false;
     thirdpartyName: string;
+    personalData: WorkerData = new WorkerData();
 
     constructor()
     constructor(data: IWorker)
@@ -29,5 +32,6 @@ export class Worker implements IWorker {
         this.ocupation = data && data.ocupation || undefined
         this.isThirdparty = data && data.isThirdparty || false
         this.thirdpartyName = data && data.thirdpartyName || undefined
+        this.personalData = new WorkerData(data.personalData);
     }
 }
