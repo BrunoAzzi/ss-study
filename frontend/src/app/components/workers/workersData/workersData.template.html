@@ -74,7 +74,7 @@
                         <md-radio-group name="hiredType" [(ngModel)]="worker.personalData.ownContracting"
                                         formControlName="hiredTypeRadio" (change)="hiredChange()">
                             <p>Tipo de Contratação:</p>
-                            <md-radio-button class="example-radio-button" *ngFor="let hired of hireds"
+                            <md-radio-button *ngFor="let hired of hireds"
                                              [value]="hired">
                                 {{hired}}
                             </md-radio-button>
@@ -137,7 +137,7 @@
                                         [options]="myDatePickerOptions">
                         </my-date-picker>
                         <div>
-                            <md-select class="full-width" [(ngModel)]="worker.personalData.status"
+                            <md-select [(ngModel)]="worker.personalData.status"
                                        formControlName="status" placeholder="Status">
                                 <md-option *ngFor="let statu of status" [value]="statu.value">
                                     {{ statu.viewValue }}
@@ -160,7 +160,7 @@
                         <md-radio-group formControlName="sex"
                                         [(ngModel)]="worker.personalData.sexOption">
                             <p>Sexo:</p>
-                            <md-radio-button class="example-radio-button" *ngFor="let sex of sexs" [value]="sex">
+                            <md-radio-button *ngFor="let sex of sexs" [value]="sex">
                                 {{sex}}
                             </md-radio-button>
                         </md-radio-group>
