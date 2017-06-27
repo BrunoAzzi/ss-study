@@ -19,7 +19,8 @@ export class ConstructionsService {
 
         return this.service.get(this.endpoint + "/" + id)
             .map((jsonResponse) => {
-                return this.construction = this.serializeConstruction(jsonResponse.construction)
+                this.construction = this.serializeConstruction(jsonResponse.construction)
+                return Object.assign({}, this.construction)
             });
 	}
 

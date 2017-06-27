@@ -1,23 +1,33 @@
-import { OnInit } from '@angular/core';
+import { OnInit, OnDestroy } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import { arraysAreEqual } from 'tslint/lib/utils';
 import { Construction } from './../../../models/construction.model';
 import { ConstructionsService } from './../../../services/constructions.service';
-import { Component, Input } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'constructions-list',
     templateUrl: './constructions-list.template.html',
     styleUrls: ['./constructions-list.component.scss']
 })
-export class ConstructionsListComponent implements OnInit {
+export class ConstructionsListComponent implements OnInit, OnDestroy {
     LAST_SAVED = "last_saved";
     FIRST_SAVED = "first_saved";
 
-    public constructions : Observable<Array<Construction>>
+    public constructions : Array<Construction> = []
+    private sub : any
 
     ngOnInit() {
-        this.constructions = this.service.getConstructionList().startWith([])
+
+        this.sub = this.service.getConstructionList().subscribe((constructions) => {
+            this.constructions = constructions
+        })
+    }
+
+    ngOnDestroy() {
+
+        this.sub.unsubscribe()
     }
 
     activeFilters = {

@@ -21,7 +21,6 @@ export class HttpClientService {
   }
 
   setAuthToken(token : string) {
-    console.log(token)
     this.authToken = token
   }
 
