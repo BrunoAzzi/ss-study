@@ -5,18 +5,14 @@
   <ul>
     <li *ngFor="let menuItem of menuItems.main">
       <a [ngClass]="{active: activeRoute(menuItem.route)}" [routerLink]="['/' + menuItem.route]">
-        <div class="icon">
-          <img [src]="menuItem.icon" alt="helmet">
-        </div>
+        <i class="safety-icn-{{ menuItem.icon }}-svg"></i>
         <span class="label">{{menuItem.label}}</span>
       </a>
     </li>
     <li class="divisor">Cadastros</li>
     <li *ngFor="let menuItem of menuItems.setup">
       <a [ngClass]="{active: activeRoute(menuItem.route)}" [routerLink]="['/' + menuItem.route]">
-        <div class="icon">
-          <img [src]="menuItem.icon" alt="helmet">
-        </div>
+        <i class="safety-icn-{{ menuItem.icon }}-svg"></i>
         <span class="label">{{menuItem.label}}</span>
       </a>
     </li>

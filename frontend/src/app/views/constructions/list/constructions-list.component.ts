@@ -15,7 +15,7 @@ export class ConstructionsListComponent implements OnInit {
         text: "",
         onGoing: false,
         paralized: false,
-        finished: false,
+        finished: true,
     }
 
     showSearch: boolean = false;

@@ -18,6 +18,7 @@
 
         display: flex;
         flex-direction: column;
+        align-items: stretch;
     }
 }
 
@@ -29,10 +30,18 @@ safety-card-content {
     overflow: scroll;
 }
 
-#last-alerts, #constructions-status, #forthcoming-trainings, #tasks {
+#last-alerts, #constructions-status, #forthcoming-trainings {
     margin-bottom: 20px;
 }
 
 #last-alerts {
+    flex-grow: 1;
+}
+
+#last-alerts {
+    flex-grow: 1;
+}
+
+#forthcoming-trainings, #tasks {
     flex-grow: 1;
 }
