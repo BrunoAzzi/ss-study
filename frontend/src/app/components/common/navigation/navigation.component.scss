@@ -71,19 +71,13 @@
             display: block;
             padding: 1em 0.8em 0.5em;
         }
-        .icon {
+        i {
             display: inline-block;
             vertical-align: middle;
             width: $minimized-width;
             text-align: center;
             box-sizing: border-box;
-            line-height: 3em;
-            img {
-                display: inline-block;
-                width: 1.5em;
-                margin: auto;
-                vertical-align: middle;
-            }
+            font-size: 1.5em;
         }
         a {
             color: #a2a9ae;
@@ -103,7 +97,8 @@
                 color: #de4d4d;
                 background-color: #343434;
                 border-left: 3px solid #de4d4d;
-                .icon {
+
+                i {
                     width: $minimized-width - 3px;
                 }
             }

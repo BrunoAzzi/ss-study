@@ -83,5 +83,7 @@ export class OverviewComponent implements OnInit {
 
     constructor(public service: ConstructionsService) {}
 
-    ngOnInit() { }
+    ngOnInit() {
+        
+    }
 }

@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/Observable';
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Worker } from "../../../models/worker.model";
@@ -26,10 +27,13 @@ export class WorkerListComponent {
 		{ name: "Primeiros cadastrados", code: this.FIRST_SAVED }
 	];
 
+    workers : Observable<Array<Worker>>
+
 	constructor(private router: Router, private route: ActivatedRoute, public service: WorkerService) { }
 
     ngOnInit() {
-        this.route.data.subscribe(data => this.workerList = data.workerList)
+        this.workers = this.service.getWorkerList().startWith([])
+        // this.route.data.subscribe(data => this.workerList = data.workerList)
     }
 
     redirectTo(path) {
@@ -40,8 +44,9 @@ export class WorkerListComponent {
         this.showSearch = !this.showSearch;
     }
 
-    getFilteredWorkers() {
-        return this.workerList.filter(worker => {
+    getFilteredWorkers(workers : Array<Worker>) {
+        console.log(workers)
+        return workers.filter(worker => {
 			return (
                 !(this.activeFilters.personal && !worker.isThirdparty) &&
                 !(this.activeFilters.outsourced && worker.isThirdparty) &&

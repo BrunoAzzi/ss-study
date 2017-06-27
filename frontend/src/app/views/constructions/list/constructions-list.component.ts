@@ -1,21 +1,40 @@
+import { OnInit, OnDestroy } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+import { arraysAreEqual } from 'tslint/lib/utils';
+import { Construction } from './../../../models/construction.model';
 import { ConstructionsService } from './../../../services/constructions.service';
-import { Component, Input, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'constructions-list',
     templateUrl: './constructions-list.template.html',
     styleUrls: ['./constructions-list.component.scss']
 })
-export class ConstructionsListComponent implements OnInit {
+export class ConstructionsListComponent implements OnInit, OnDestroy {
     LAST_SAVED = "last_saved";
     FIRST_SAVED = "first_saved";
+
+    public constructions : Array<Construction> = []
+    private sub : any
+
+    ngOnInit() {
+
+        this.sub = this.service.getConstructionList().subscribe((constructions) => {
+            this.constructions = constructions
+        })
+    }
+
+    ngOnDestroy() {
+
+        this.sub.unsubscribe()
+    }
 
     activeFilters = {
         text: "",
         onGoing: false,
         paralized: false,
-        finished: false,
+        finished: true,
     }
 
     showSearch: boolean = false;
@@ -28,9 +47,11 @@ export class ConstructionsListComponent implements OnInit {
 
 	constructor(private router: Router, private route: ActivatedRoute, public service: ConstructionsService) { }
 
-    ngOnInit() { }
+    editConstruction(id : number) {
+        this.router.navigate([id, 'edit'], { relativeTo: this.route });
+    }
 
-    addConstructionSite() {
+    addConstruction() {
         this.router.navigate(['./new'], { relativeTo: this.route });
     }
 
@@ -38,14 +59,14 @@ export class ConstructionsListComponent implements OnInit {
         this.showSearch = !this.showSearch;
     }
 
-    getFilteredConstructions() {
-        return this.service.constructions
+    filterConstructions(constructions : Array<Construction>) {
+        return constructions
             .filter(construction => {
                 return (
-                    !(this.activeFilters.onGoing && construction.status === "em andamento") &&
-                    !(this.activeFilters.paralized && construction.status === "paralizada") &&
-                    !(this.activeFilters.finished && construction.status === "finalizada") &&
-                    !(this.activeFilters.text.length > 0 && construction.title.toLowerCase().indexOf(this.activeFilters.text.toLowerCase()) === -1)
+                    !(this.activeFilters.onGoing && construction.getStatus() === "IN_PROGRESS") &&
+                    !(this.activeFilters.paralized && construction.getStatus() === "PAUSED") &&
+                    !(this.activeFilters.finished && construction.getStatus() === "FINISHED") &&
+                    !(this.activeFilters.text.length > 0 && construction.name.toLowerCase().indexOf(this.activeFilters.text.toLowerCase()) === -1)
                 )
             })
     }

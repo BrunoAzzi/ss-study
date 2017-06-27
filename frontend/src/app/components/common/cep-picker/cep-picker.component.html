@@ -1,11 +1,10 @@
 <md-input-container class="with-action">
     <input mdInput placeholder="CEP"
-           ngModel name="cep"
+           [(ngModel)]="cep" name="cep"
            [textMask]="{mask: cepMask}"
-           #cep="ngModel"
     >
 </md-input-container>
-<md-icon *ngIf="!loadingCep" (click)="searchCep(cep.value)">
+<md-icon *ngIf="!loadingCep" (click)="searchCep(cep)">
     search
 </md-icon>
 <md-spinner *ngIf="loadingCep"></md-spinner>

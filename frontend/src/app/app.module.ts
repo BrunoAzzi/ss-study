@@ -1,3 +1,10 @@
+import { ConstructionFormContainer } from './views/constructions/form/construction-form.container';
+import { ConstructionFormComponent } from './components/construction-form/construction-form.component';
+import { ConstructionListItemComponent } from './components/construction-list-item/construction-list-item.component';
+import { ConstructionMaintenancesFormComponent } from './components/construction-form/components/construction-maintenances-form/construction-maintenances-form.component';
+import { ConstructionWorkersFormComponent } from './components/construction-form/components/construction-workers-form/construction-workers-form.component';
+import { ConstructionManagersFormComponent } from './components/construction-form/components/construction-managers-form/construction-managers-form.component';
+import { ConstructionDetailsFormComponent } from './components/construction-form/components/construction-details-form/construction-details-form.component';
 import { SectionListComponent } from './components/common/section-list/section-list.component';
 import { ChecklistCellComponent } from './components/common/checklist-cell/checklist-cell.component';
 import { ListCellComponent } from './components/common/list-cell/list-cell.component';
@@ -130,24 +137,20 @@ import { CategoryDividerModule } from './components/common/category-divider';
 import { FabComponent } from './components/common/floating-action-button/fab.component';
 
 import { DropFileComponent } from './components/common/drop-file/drop-file.component';
-import { ConstructionSiteDataFormComponent } from './components/mysconstructionsites/construction-site-data/components/construction-site-data-form/construction-site-data-form.component';
 import { CepPickerComponent } from './components/common/cep-picker/cep-picker.component';
-import { ManagersDataFormComponent } from './components/mysconstructionsites/construction-site-data/components/managers-data-form/managers-data-form.component';
 import { ConstructionStatusPickerComponent } from './components/common/construction-status-picker/construction-status-picker.component';
 import { ConstructionSitesStatusIconComponent } from './components/common/construction-sites-status-icon/construction-sites-status-icon.component';
-import { CollaboratorDataFormComponent } from './components/mysconstructionsites/construction-site-data/components/collaborator-data-form/collaborator-data-form.component';
-import { GoodsFormComponent } from './components/mysconstructionsites/construction-site-data/components/goods-form/goods-form.component';
 import { AddNewCategoryComponent } from './components/common/add-new-category/add-new-category.component';
 
 import { InputFile } from './components/common/input-file/input-file.component';
 import { ConstructionsListComponent } from './views/constructions/list/constructions-list.component';
-import { ConstructionFormComponent } from './views/constructions/form/construction-form.component';
-import { LineConstructionDetailComponent } from './components/mysconstructionsites/line-construction-site/line-construction-site.component';
-import { CardConstructionDetailComponent } from './components/mysconstructionsites/card-construction-site/card-construction-site.component';
-import { ConstructionSiteDataComponent } from './components/mysconstructionsites/construction-site-data/construction-site-data.component';
+import { CardConstructionDetailComponent } from './components/card-construction-site/card-construction-site.component';
 import { FiltersComponent } from './components/area-monitoring/filters/filters.component';
 import { AlertsTabComponent } from './components/area-monitoring/alerts-tab/alerts-tab.component';
 import { AlertsTabItemComponent } from './components/area-monitoring/alerts-tab-item/alerts-tab-item.component';
+import { ConstructionSummaryComponent } from './components/construction-summary/construction-summary.component';
+import { SectorSummaryComponent } from './components/sector-summary/sector-summary.component';
+import { MaintenanceInlineFormComponent } from './components/maintenance-inline-form/maintenance-inline-form.component';
 
 @NgModule({
     declarations: [
@@ -227,24 +230,27 @@ import { AlertsTabItemComponent } from './components/area-monitoring/alerts-tab-
         // Obras
         ConstructionDetailComponent,
         ConstructionsListComponent,
+        ConstructionFormContainer,
         ConstructionFormComponent,
-        LineConstructionDetailComponent,
+        ConstructionListItemComponent,
         CardConstructionDetailComponent,
-        ConstructionSiteDataComponent,
 
-        ConstructionSiteDataFormComponent,
+        ConstructionDetailsFormComponent,
         CepPickerComponent,
-        ManagersDataFormComponent,
+        ConstructionManagersFormComponent,
         ConstructionStatusPickerComponent,
         ConstructionSitesStatusIconComponent,
-        CollaboratorDataFormComponent,
-        GoodsFormComponent,
+        ConstructionWorkersFormComponent,
+        ConstructionMaintenancesFormComponent,
         AddNewCategoryComponent,
 
         FiltersComponent,
         ConstructionsLandingPageComponent,
         AlertsTabComponent,
         AlertsTabItemComponent,
+        ConstructionSummaryComponent,
+        SectorSummaryComponent,
+        MaintenanceInlineFormComponent,
     ],
     imports: [
         // Notification Module
