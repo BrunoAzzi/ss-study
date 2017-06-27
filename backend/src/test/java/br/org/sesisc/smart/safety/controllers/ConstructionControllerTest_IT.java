@@ -1,6 +1,7 @@
 package br.org.sesisc.smart.safety.controllers;
 
 import br.org.sesisc.smart.safety.models.Construction;
+import br.org.sesisc.smart.safety.models.Sector;
 import br.org.sesisc.smart.safety.models.enums.ConstructionStatus;
 import br.org.sesisc.smart.safety.service.StorageService;
 import com.google.gson.Gson;
@@ -18,7 +19,6 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMultipartHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.RequestPostProcessor;
-
 import static br.org.sesisc.smart.safety.helpers.FileHelper.PATH_DIR;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.BDDMockito.when;
@@ -108,6 +108,10 @@ public class ConstructionControllerTest_IT extends BaseControllerTest_IT {
         System.out.println("Response: " + responseJson);
 
         then(storageService).should().store(fileLogo);
+
+        JSONObject jsonObject = new JSONObject(responseJson);
+        String urlLogo = jsonObject.getJSONObject("construction").getString("logoUrl");
+        Assert.assertEquals("Should return the url logo.","/constructions/1/logo", urlLogo);
     }
 
     @Test
@@ -129,6 +133,10 @@ public class ConstructionControllerTest_IT extends BaseControllerTest_IT {
 
         String responseJson = result.getResponse().getContentAsString();
         System.out.println("Response: " + responseJson);
+
+        JSONObject jsonObject = new JSONObject(responseJson);
+        String errorMessage = jsonObject.getJSONArray("errors").getJSONObject(0).getString("message");
+        Assert.assertEquals("Should return an error message, when logo has invalid format.","Arquivo incompatível.", errorMessage);
     }
 
     @Test
@@ -152,6 +160,13 @@ public class ConstructionControllerTest_IT extends BaseControllerTest_IT {
 
         String responseJson = result.getResponse().getContentAsString();
         System.out.println("Response: " + responseJson);
+
+        JSONObject jsonObject = new JSONObject(responseJson).getJSONObject("construction");
+        String ceiUrl = jsonObject.getString("ceiUrl");
+        Assert.assertEquals("Should return the url logo.","/constructions/1/cei", ceiUrl);
+
+        String ceiFileName = jsonObject.getString("ceiFileName");
+        Assert.assertEquals("Should return the url logo.","upload-dir/cei.pdf", ceiFileName);
     }
 
     @Test
@@ -171,9 +186,13 @@ public class ConstructionControllerTest_IT extends BaseControllerTest_IT {
                 .andExpect(status().isUnprocessableEntity())
                 .andReturn();
 
-            String responseJson = result.getResponse().getContentAsString();
-            System.out.println("Response: " + responseJson);
-        }
+        String responseJson = result.getResponse().getContentAsString();
+        System.out.println("Response: " + responseJson);
+
+        JSONObject jsonObject = new JSONObject(responseJson);
+        String errorMessage = jsonObject.getJSONArray("errors").getJSONObject(0).getString("message");
+        Assert.assertEquals("Should return an error message, when logo has invalid format.","Arquivo incompatível.", errorMessage);
+    }
 
     /**
      * Update construction
@@ -207,6 +226,72 @@ public class ConstructionControllerTest_IT extends BaseControllerTest_IT {
                 "new name - test",constructionName);
     }
 
+    /**
+     * Create Sectors
+     */
+    @Test
+    public void createSector_whenAllMandatoryAreValid() throws Exception {
+
+        MvcResult result = mockMvc.perform(put("/constructions/1")
+                .content(getSectorRequestJson("new Sector"))
+                .contentType(contentType))
+                .andExpect(status().isAccepted())
+                .andReturn();
+
+        String responseJson = result.getResponse().getContentAsString();
+        JSONObject jsonObject = new JSONObject(responseJson);
+
+
+
+        System.out.println("Response: " + responseJson);
+
+        String sectorName = jsonObject.getJSONArray("sectors").getJSONObject(0).getString("name");
+
+        Assert.assertEquals("Should return the expected name when registration sector is succeed.",
+                "new Sector",sectorName);
+    }
+
+    @Test
+    public void createFloors_whenAllMandatoryAreValid() throws Exception {
+
+        MvcResult result = mockMvc.perform(put("/constructions/1")
+                .content(getSectorRequestJson("new Sector"))
+                .contentType(contentType))
+                .andExpect(status().isAccepted())
+                .andReturn();
+
+        String responseJson = result.getResponse().getContentAsString();
+        JSONObject jsonObject = new JSONObject(responseJson);
+
+
+
+        System.out.println("Response: " + responseJson);
+
+        String sectorName = jsonObject.getJSONArray("sectors").getJSONObject(0).getString("name");
+
+        Assert.assertEquals("Should return the expected name when registration sector is succeed.",
+                "new Sector",sectorName);
+    }
+
+    @Test
+    public void createFloors_whenConstructionIdIsInvalid() throws Exception {
+
+        MvcResult result = mockMvc.perform(put("/constructions/999999")
+                .content(getSectorRequestJson("new Sector"))
+                .contentType(contentType))
+                .andExpect(status().isNotFound())
+                .andReturn();
+
+        String responseJson = result.getResponse().getContentAsString();
+
+        System.out.println("Response: " + responseJson);
+
+        JSONObject jsonObject = new JSONObject(responseJson);
+        String errorMessage = jsonObject.getJSONArray("errors").getJSONObject(0).getString("message");
+        Assert.assertEquals("Should return an error message, when logo has invalid format.","Construção não encontrada.", errorMessage);
+
+    }
+
     private String getConstructionRequestJson(String name, String cep, String address, int status,
                                                 String description, String logoUrl, String ceiUrl,
                                                 String ceiCode) {
@@ -214,6 +299,32 @@ public class ConstructionControllerTest_IT extends BaseControllerTest_IT {
 
         Gson gson = new Gson();
         String requestJson = gson.toJson(construction).replace("IN_PROGRESS","0").replace("PAUSED","1").replace("FINISHED","2");
+        System.out.println("Request: " + requestJson);
+        return requestJson;
+    }
+
+    private String getSectorRequestJson(String name) {
+        Sector sector = new Sector(name);
+        sector.setId(1);
+        Construction construction = new Construction();
+        construction.getSectors().add(sector);
+
+        Gson gson = new Gson();
+
+        String requestJson = gson.toJson(construction);
+        System.out.println("Request: " + requestJson);
+        return requestJson;
+    }
+
+    private String getFloorRequestJson(String name) {
+        Sector sector = new Sector(name);
+        sector.setId(1);
+        Construction construction = new Construction();
+        construction.getSectors().add(sector);
+
+        Gson gson = new Gson();
+
+        String requestJson = gson.toJson(construction);
         System.out.println("Request: " + requestJson);
         return requestJson;
     }

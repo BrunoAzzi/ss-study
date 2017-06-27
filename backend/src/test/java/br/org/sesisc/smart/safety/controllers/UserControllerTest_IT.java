@@ -11,7 +11,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 public class UserControllerTest_IT extends BaseControllerTest_IT {
 
-    @Ignore("This test will pass only once, or after remove the user 'admin@test.com' from database.")
+//    @Ignore("This test will pass only once, or after remove the user 'admin@test.com' from database.")
     @Test
     public void registerUser_whenAllMandatoryDateAreValid() throws Exception {
 
