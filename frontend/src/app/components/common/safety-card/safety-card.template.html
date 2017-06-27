@@ -1,4 +1,5 @@
 <md-card fxLayout="column" class="custom-header">
+    
     <md-toolbar>
         <ng-content select="safety-card-header"></ng-content>
         <a md-icon-button fxFlexAlign="right center" *ngIf="!toggleDisabled" (click)="toggleState()"><md-icon>{{toggleIcon}}</md-icon></a>

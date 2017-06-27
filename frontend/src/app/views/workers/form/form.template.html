@@ -1,6 +1,6 @@
 <div fxLayout="column" fxFlex>
     <div class="body-content">
-        <workers-data></workers-data>
+        <workers-data [worker]="worker" (cpfUpdated)="getWorkerByCpf($event)"></workers-data>
         <br>
         <safety-card #safetyCard>
             <safety-card-header>
@@ -8,7 +8,8 @@
             </safety-card-header>
             <safety-card-content>
                 <form fxLayout="column" #form novalidate id="form1" name="form1">
-                    <skill [form]="form" fxLayout fxLayoutAlign="space-around center" [skill]="skill" (removed)="removeSkill(skill)" [(skillNames)]="skillNames" *ngFor="let skill of skillList"></skill>
+                    <skill [form]="form" fxLayout fxLayoutAlign="space-around center" [skill]="skill" (removed)="removeSkill(skill)" [(skillNames)]="skillNames"
+                        *ngFor="let skill of skillList"></skill>
                     <div fxFill fxLayout fxLayoutAlign="start center">
                         <a class="action" (click)="addSkill()">
                             Adicicionar habilitação
@@ -22,6 +23,10 @@
                 </form>
             </safety-card-content>
         </safety-card>
-        <healthComponent></healthComponent>
+        <security-works [cpf]="cpf"></security-works>
+        <br>
+        <safety-card-content>
+            <healthComponent></healthComponent>
+        </safety-card-content>
     </div>
 </div>

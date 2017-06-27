@@ -23,10 +23,11 @@ import { SupplierResolver } from "./resolves/supplier.resolver";
 import { SupplierService } from "./services/supplier.service";
 
 // Worker
+
+import { WorkerFormComponent } from "./views/workers/form/form.component";
 import { WorkerListResolver } from "./resolves/worker-list.resolver";
 import { WorkerService } from "./services/worker.service";
 import { WorkerListComponent } from "./views/workers/list/list.component";
-import { WorkersComponent } from "./views/workers/workers.component";
 
 import { LoginComponent } from "./views/login/login.component";
 import { PasswordRecoveryComponent } from "./views/password-recovery/password-recovery.component";
@@ -58,8 +59,10 @@ const routes: Routes = [
                     { path: 'training', data: { breadcrumb: "Treinamento" }, component: TrainingComponent },
                     {
 						path: 'workers', children: [
-							{ path: '', data: { breadcrumb: "Gerenciamento de Trabalhadores" }, component: WorkersComponent, resolve: { workerList: WorkerListResolver } },
 
+							{ path: '', data: { breadcrumb: "Gerenciamento de Trabalhadores" }, component: WorkerListComponent, resolve: { workerList: WorkerListResolver } },
+                            { path: 'new', data: { breadcrumb: "Cadastro de Trabalhadores" }, component: WorkerFormComponent },
+                             { path: ':id/edit', data: { breadcrumb: "Cadastro de Trabalhadores" }, component: WorkerFormComponent },
 						]
 					},
                     {

@@ -62,7 +62,7 @@ import { RepositoriesComponent } from "./views/repositories/repositories.compone
 import { TrainingComponent } from "./views/training/training.component";
 
 //Worker
-import { WorkersComponent } from "./views/workers/workers.component";
+import { WorkerFormComponent } from "./views/workers/form/form.component";
 import { WorkerListComponent } from "./views/workers/list/list.component";
 import { LineWorkerDetailComponent } from "./components/workers/line-worker-detail/line-worker-detail.component";
 
@@ -168,7 +168,7 @@ import { AlertsTabItemComponent } from './components/area-monitoring/alerts-tab-
         TrainingComponent,
 
         // Worker
-        WorkersComponent,
+        WorkerFormComponent,
         WorkerListComponent,
         LineWorkerDetailComponent,
 
