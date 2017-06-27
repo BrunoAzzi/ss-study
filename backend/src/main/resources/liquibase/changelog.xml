@@ -101,7 +101,7 @@
     </changeSet>
 
     <changeSet id="6" author="fpileggi">
-        <sqlFile path="/liquibase/seed/cities_and_states.sql"/>
+        <sqlFile path="liquibase/seed/cities_and_states.sql"/>
     </changeSet>
 
     <changeSet id="7" author="rrosseti">
@@ -237,7 +237,7 @@
     </changeSet>
 
     <changeSet id="10" author="fpileggi">
-        <sqlFile path="/liquibase/seed/icons.sql"/>
+        <sqlFile path="liquibase/seed/icons.sql"/>
     </changeSet>
 
     <changeSet id="11" author="fpileggi">
