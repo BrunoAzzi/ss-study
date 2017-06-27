@@ -8,9 +8,7 @@ import javax.validation.constraints.Pattern;
 import java.util.HashSet;
 import java.util.Set;
 
-import static br.org.sesisc.smart.safety.helpers.FileHelper.JPEG_TYPE;
-import static br.org.sesisc.smart.safety.helpers.FileHelper.PDF_TYPE;
-import static br.org.sesisc.smart.safety.helpers.FileHelper.PNG_TYPE;
+import static br.org.sesisc.smart.safety.helpers.FileHelper.*;
 
 @Entity
 @Table(name = "constructions")

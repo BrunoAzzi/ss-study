@@ -1,6 +1,5 @@
 package br.org.sesisc.smart.safety.controllers;
 
-import br.org.sesisc.smart.safety.exceptions.ConstructionException;
 import br.org.sesisc.smart.safety.models.Construction;
 import br.org.sesisc.smart.safety.repositories.ConstructionRepository;
 import br.org.sesisc.smart.safety.responses.ErrorResponse;
@@ -14,15 +13,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.Set;
-
-import static br.org.sesisc.smart.safety.helpers.FileHelper.*;
 
 @RestController
 @RequestMapping("/constructions")
@@ -176,11 +172,6 @@ public class ConstructionController {
                 Construction.class,
                 HttpStatus.NOT_FOUND
         );
-    }
-
-    @ExceptionHandler({ConstructionException.class, MultipartException.class})
-    public ResponseEntity<?> handleConstructionException(Exception exception) throws IOException {
-        return ErrorResponse.handle(exception.getClass() == MultipartException.class ? "Tamanho do arquivo inválido." : exception.getMessage(),exception.getClass(), HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
 }
