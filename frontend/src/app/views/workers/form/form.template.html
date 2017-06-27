@@ -1,6 +1,6 @@
 <div fxLayout="column" fxFlex>
     <div class="body-content">
-        <workers-data></workers-data>
+        <workers-data [worker]="worker" (cpfUpdated)="getWorkerByCpf($event)"></workers-data>
         <br>
         <safety-card #safetyCard>
             <safety-card-header>
@@ -23,7 +23,7 @@
             </safety-card-content>
         </safety-card>
 
-        <security-works></security-works>
+        <security-works [cpf]="cpf"></security-works>
         <br>
         <safety-card>
             <safety-card-header>
