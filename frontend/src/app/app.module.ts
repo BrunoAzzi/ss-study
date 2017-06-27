@@ -68,7 +68,7 @@ import { AreaMappingComponent } from './components/area-mapping/area-mapping.com
 import { MappingDialog } from './components/area-mapping/cone/mapping-dialog/mapping-dialog.component';
 import { MappingStages } from './components/area-mapping/cone/mapping-stages/mapping-stages.component';
 import { SensorIdentification } from './components/area-mapping/cone/sensor-identification/sensor-identification.component';
-import { Risk } from './components/area-mapping/cone/risk/risk.component';
+import { RelatedRisk } from './components/area-mapping/cone/related-risk/related-risk.component';
 import { RelatedRisks } from './components/area-mapping/cone/related-risks/related-risks.component';
 import { Permissions } from './components/area-mapping/cone/permissions/permissions.component';
 import { CollaboratorEditableList } from './components/common/collaborator/collaborator-editable-list/collaborator-editable-list.component';
@@ -200,7 +200,7 @@ import { AlertsTabItemComponent } from './components/area-monitoring/alerts-tab-
         MappingStages,
         SensorIdentification,
         Permissions,
-        Risk,
+        RelatedRisk,
         RelatedRisks,
         CollaboratorEditableList,
         WorkersOverviewComponent,

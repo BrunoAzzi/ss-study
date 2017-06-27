@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { MdSelectModule } from '@angular/material';
 
-import {Collaborator} from '../../../../models/colLaborator.model';
+import { Collaborator } from '../../../../models/colLaborator.model';
 
 @Component({
   selector: 'permissions',
@@ -16,6 +16,8 @@ export class Permissions {
     @Input() dataConeChild: any;
 
     @Output() updatePermissions = new EventEmitter<string>();
+
+    constructor() {}
 
     permissions = [
         {value: 'epi', viewValue: 'EPI'},

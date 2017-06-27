@@ -67,6 +67,7 @@ export class MappingDialog {
       this.dataCone['filteredSelectedCollaborators'] = _dataCone.filteredSelectedCollaborators;
       this.cone = new Cone(this.dataCone);
       //TODO submit form with values
+      console.log(this.dataCone);
     }
 
 }

@@ -1,12 +1,20 @@
 <div fxLayout="row" fxLayoutAlign="space-around center">
     <section fxLayout="column" fxLayoutAlign="space-around center">
-        <md-select class="mapping" placeholder="Tipo De Risco" floatPlaceholder="never" >
-            <!-- md-option *ngFor="let type of types" [value]="permission.value">{{permission.viewValue}}</md-option -->
+        <md-select class="mapping" 
+                   [(ngModel)]="riskType" 
+                   placeholder="Tipo De Risco" 
+                   floatPlaceholder="never" >
+            <md-option *ngFor="let riskType of riskTypes" [value]="riskType.key">{{riskType.value}}</md-option>
         </md-select>
-        <md-select class="mapping" placeholder="Grau" floatPlaceholder="never" >
-            <!--md-option *ngFor="let type of types" [value]="permission.value">{{permission.viewValue}}</md-option-->
+        <md-select class="mapping" 
+                   placeholder="Grau" 
+                   floatPlaceholder="never" >
+            <md-option *ngFor="let levelType of levelTypes | keys" [value]="levelType.key">{{levelType.value}}</md-option>
+            {{levelType}}
         </md-select>
-        <md-select class="mapping" placeholder="Fator De Risco" floatPlaceholder="never" >
+        <md-select class="mapping" 
+                   placeholder="Fator De Risco" 
+                   floatPlaceholder="never" >
             <!--md-option *ngFor="let type of types" [value]="permission.value">{{permission.viewValue}}</md-option-->
         </md-select>
     </section>
