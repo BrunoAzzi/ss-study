@@ -25,13 +25,13 @@ import java.util.Set;
 public class ConstructionController {
 
     @Autowired
-    ConstructionRepository repository;
+    private ConstructionRepository repository;
 
     @Autowired
-    StorageService storageService;
+    private StorageService storageService;
 
     @Autowired
-    ObjectMapper objectMapper;
+    private ObjectMapper objectMapper;
 
 
     @GetMapping

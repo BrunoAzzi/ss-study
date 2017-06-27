@@ -415,4 +415,10 @@
                 referencedColumnNames="id"
                 onDelete="CASCADE" />
     </changeSet>
+
+    <changeSet id="15" author="fpileggi">
+        <sqlFile path="liquibase/seed/risk_factors.sql"/>
+    </changeSet>
+
+    
 </databaseChangeLog>

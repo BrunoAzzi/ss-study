@@ -147,10 +147,9 @@ public class Construction {
         this.address = address;
     }
 
-    public ConstructionStatus getStatus() {
-        return status;
+    public int getStatus() {
+        return status.getValue();
     }
-
     public int _getStatus() {
         return status.getValue();
     }
