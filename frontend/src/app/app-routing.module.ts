@@ -59,7 +59,7 @@ const routes: Routes = [
 						path: 'workers', children: [
 							{ path: '', data: { breadcrumb: "Gerenciamento de Trabalhadores" }, component: WorkerListComponent, resolve: { workerList: WorkerListResolver } },
                             { path: 'new', data: { breadcrumb: "Cadastro de Trabalhadores" }, component: WorkerFormComponent },
-                             { path: ':id/edit', data: { breadcrumb: "Cadastro de Trabalhadores" }, component: WorkerFormComponent },
+                            { path: ':id/edit', data: { breadcrumb: "Cadastro de Trabalhadores" }, component: WorkerFormComponent },
 						]
 					},
                     {
