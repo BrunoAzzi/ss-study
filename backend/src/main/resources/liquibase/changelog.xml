@@ -116,13 +116,17 @@
                 <constraints nullable="false"/>
             </column>
             <column name="cep" type="varchar(100)"/>
-            <column name="address" type="varchar(255)" />
+            <column name="address_street" type="varchar(255)" />
+            <column name="address_number" type="int" />
+            <column name="address_complement" type="varchar(255)" />
+            <column name="city" type="varchar(255)" />
             <column name="description" type="varchar(255)"/>
             <column name="logo_url" type="varchar(255)"/>
             <column name="logo_file_name" type="varchar(255)"/>
             <column name="cei_url" type="varchar(255)"/>
             <column name="cei_code" type="varchar(100)"/>
             <column name="cei_file_name" type="varchar(255)"/>
+            <column name="activated" type="boolean" defaultValueBoolean="true"/>
             <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
                 <constraints nullable="false"/>
             </column>

@@ -79,4 +79,12 @@ public class Floor {
     public void setMarkers(Set<Marker> markers) {
         this.markers = markers;
     }
+
+    public void addMarker(Marker marker) {
+        this.markers.add(marker);
+    }
+
+    public void removeMarker(Marker marker) {
+        this.markers.remove(marker);
+    }
 }

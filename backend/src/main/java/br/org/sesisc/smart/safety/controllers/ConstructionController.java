@@ -36,7 +36,7 @@ public class ConstructionController {
 
     @GetMapping
     public ResponseEntity<?> index() {
-        Set<Construction> constructions = repository.findAll();
+        Set<Construction> constructions = repository.findByActivated(true);
 
         return SuccessResponse.handle(
                 new String[] {"constructions"},
@@ -165,6 +165,24 @@ public class ConstructionController {
                         HttpStatus.UNSUPPORTED_MEDIA_TYPE
                 );
             }
+        }
+
+        return ErrorResponse.handle(
+                new String[] {"Construção não encontrada."},
+                Construction.class,
+                HttpStatus.NOT_FOUND
+        );
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> destroy(@PathVariable("id") long id) {
+        Construction construction = repository.findOne(id);
+
+        if (construction != null) {
+            construction.setActivated(false);
+            repository.save(construction);
+
+            return SuccessResponse.handle(HttpStatus.OK);
         }
 
         return ErrorResponse.handle(
