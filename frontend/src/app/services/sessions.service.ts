@@ -9,8 +9,7 @@ import { Cookie } from 'ng2-cookies/ng2-cookies';
 @Injectable()
 export class SessionsService {
 
-  constructor(private service: HttpClientService) {
-  }
+  constructor(private service: HttpClientService) {}
 
     login(email: string, password: string) {
         return this.service.post('/sessions', JSON.stringify({ email: email, password: password }))
@@ -27,6 +26,7 @@ export class SessionsService {
 
     isLoggedIn() : boolean {
         if (Cookie.get('auth_token')) {
+            this.service.setAuthToken(Cookie.get('auth_token'))
             return true
         }
         return false

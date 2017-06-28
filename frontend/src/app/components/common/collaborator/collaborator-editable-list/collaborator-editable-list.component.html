@@ -1,0 +1,57 @@
+<div fxLayout="column" fxLayoutAlign="space-between stretch">    
+    <div fxLayout fxLayoutAlign="space-between center">
+        <md-input-container class="mapping-icon" >
+        <md-icon>search</md-icon>
+        <input mdInput 
+               id="allSearch"
+               [(ngModel)]="allSearch"
+               (ngModelChange)="allSearchChange($event)"
+               placeholder="Buscar por nome, CPF ou função"
+               (keyup)="sendData()"           
+               >
+        </md-input-container>
+            <a href="#">Adicionar a lista</a>
+            <a href="#">Excluir colaborador</a>
+    </div>
+    <div fxLayout fxLayoutAlign="space-between end">
+        <table>
+            <tr>
+                <thead>
+                    <th>
+                        <md-checkbox 
+                            id="allCollaborators"
+                            name="allCollaborators"
+                            value="allCollaborators"
+                            color="primary" 
+                            class="checkbox"
+                            (click)="toggleSelect($event)"
+                            (change)="sendData()">
+                        </md-checkbox>
+                        <label for="allCollaborators">Todos</label>                        
+                    </th>
+                </thead>
+            </tr>
+            <tr class="bordered">
+                <td></td><td></td><td></td>
+            </tr>
+            <tr *ngFor="let c of filteredCollaborators; let i = index"
+            >
+                <td> 
+                    <md-checkbox 
+                        [(ngModel)]="c.selected" 
+                        color="primary" 
+                        class="checkbox" 
+                        id="{{c.id}}"
+                        name="{{c.id}}"
+                        value="{{c.selected}}"                        
+                        [checked]="c.selected"
+                        (change)="sendData()">
+                    </md-checkbox>
+                    <label for="{{c.id}}">{{c.name}}</label>                    
+                </td>
+                <td>{{c.cpf}}</td>
+                <td>{{c.occupation}}</td>
+            </tr>
+        </table>        
+    </div>
+</div>

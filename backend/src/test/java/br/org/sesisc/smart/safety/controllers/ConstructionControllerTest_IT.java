@@ -88,15 +88,15 @@ public class ConstructionControllerTest_IT extends BaseControllerTest_IT {
 
     @Test
     public void uploadLogo_whenSucceed() throws Exception {
-        MockMultipartFile fileLogo = new MockMultipartFile("logo", "logo.png", "image/png", "Spring Framework".getBytes());
+        MockMultipartFile fileLogo = new MockMultipartFile("file", "logo.png", "image/png", "Spring Framework".getBytes());
 
         when(storageService.store(fileLogo)).thenReturn(PATH_DIR+"/logo.png");
 
-        MockMultipartHttpServletRequestBuilder builder = fileUpload("/constructions/1/files/logo");
+        MockMultipartHttpServletRequestBuilder builder = fileUpload("/constructions/1/logo");
         builder.with(new RequestPostProcessor() {
             @Override
             public MockHttpServletRequest postProcessRequest(MockHttpServletRequest request) {
-                request.setMethod("PUT");
+                request.setMethod("POST");
                 return request;
             }
         });
@@ -117,19 +117,19 @@ public class ConstructionControllerTest_IT extends BaseControllerTest_IT {
 
     @Test
     public void uploadLogo_whenLogoHasInvalidFormat() throws Exception {
-        MockMultipartFile fileLogo = new MockMultipartFile("logo", "logo.jpg", "image/jpg", "Spring Framework".getBytes());
+        MockMultipartFile fileLogo = new MockMultipartFile("file", "logo.jpg", "image/jpg", "Spring Framework".getBytes());
 
-        MockMultipartHttpServletRequestBuilder builder = fileUpload("/constructions/1/files/logo");
+        MockMultipartHttpServletRequestBuilder builder = fileUpload("/constructions/1/logo");
         builder.with(new RequestPostProcessor() {
             @Override
             public MockHttpServletRequest postProcessRequest(MockHttpServletRequest request) {
-                request.setMethod("PUT");
+                request.setMethod("POST");
                 return request;
             }
         });
 
         MvcResult result = mockMvc.perform(builder.file(fileLogo))
-                .andExpect(status().isUnprocessableEntity())
+                .andExpect(status().isUnsupportedMediaType())
                 .andReturn();
 
         String responseJson = result.getResponse().getContentAsString();
@@ -142,15 +142,15 @@ public class ConstructionControllerTest_IT extends BaseControllerTest_IT {
 
     @Test
     public void uploadCei_whenSucceed() throws Exception {
-        MockMultipartFile fileCei = new MockMultipartFile("cei", "cei.pdf", "application/pdf", "Spring Framework".getBytes());
+        MockMultipartFile fileCei = new MockMultipartFile("file", "cei.pdf", "application/pdf", "Spring Framework".getBytes());
 
         when(storageService.store(fileCei)).thenReturn(PATH_DIR + "/cei.pdf");
 
-        MockMultipartHttpServletRequestBuilder builder = fileUpload("/constructions/1/files/cei");
+        MockMultipartHttpServletRequestBuilder builder = fileUpload("/constructions/1/cei");
         builder.with(new RequestPostProcessor() {
             @Override
             public MockHttpServletRequest postProcessRequest(MockHttpServletRequest request) {
-                request.setMethod("PUT");
+                request.setMethod("POST");
                 return request;
             }
         });
@@ -172,19 +172,19 @@ public class ConstructionControllerTest_IT extends BaseControllerTest_IT {
 
     @Test
     public void uploadLogo_whenCeiHasInvalidFormat() throws Exception {
-        MockMultipartFile fileCei = new MockMultipartFile("cei", "logo.png", "image/png", "Spring Framework".getBytes());
+        MockMultipartFile fileCei = new MockMultipartFile("file", "logo.png", "image/png", "Spring Framework".getBytes());
 
-        MockMultipartHttpServletRequestBuilder builder = fileUpload("/constructions/1/files/cei");
+        MockMultipartHttpServletRequestBuilder builder = fileUpload("/constructions/1/cei");
         builder.with(new RequestPostProcessor() {
             @Override
             public MockHttpServletRequest postProcessRequest(MockHttpServletRequest request) {
-                request.setMethod("PUT");
+                request.setMethod("POST");
                 return request;
             }
         });
 
         MvcResult result = mockMvc.perform(builder.file(fileCei))
-                .andExpect(status().isUnprocessableEntity())
+                .andExpect(status().isUnsupportedMediaType())
                 .andReturn();
 
         String responseJson = result.getResponse().getContentAsString();
@@ -206,7 +206,7 @@ public class ConstructionControllerTest_IT extends BaseControllerTest_IT {
                         1, "description - test",
                         "logoUrl - test","ceiUrltest","ceiCode - test"))
                 .contentType(contentType))
-                .andExpect(status().isOk())
+                .andExpect(status().isAccepted())
                 .andReturn();
 
         MvcResult result = mockMvc.perform(put("/constructions/1")
@@ -214,7 +214,7 @@ public class ConstructionControllerTest_IT extends BaseControllerTest_IT {
                         ConstructionStatus.FINISHED.getValue(), "description - test",
                         "logoUrl - test","ceiUrltest","ceiCode - test"))
                 .contentType(contentType))
-                .andExpect(status().isOk())
+                .andExpect(status().isAccepted())
                 .andReturn();
 
         String responseJson = result.getResponse().getContentAsString();

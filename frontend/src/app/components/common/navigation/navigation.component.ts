@@ -15,16 +15,16 @@ export class NavigationComponent {
 
     menuItems = {
         main: [
-            { route: 'constructions', icon: 'assets/constructions.png', label: 'Minhas Obras' },
-            { route: 'reports', icon: 'assets/reports.png', label: 'Relatórios' },
+            { route: 'constructions', icon: 'obra', label: 'Minhas Obras' },
+            // { route: 'reports', icon: 'dados', label: 'Relatórios' },
         ],
         setup: [
-            { route: 'companies', icon: 'assets/companies.png', label: 'Empresa' },
-            { route: 'workers', icon: 'assets/workers.png', label: 'Trabalhadores' },
-            { route: 'epis', icon: 'assets/epis.png', label: 'EPI' },
-            { route: 'suppliers', icon: 'assets/thirdparties.png', label: 'Fornecedores' },
-            { route: 'repositories', icon: 'assets/repositories.png', label: 'Repositório' },
-            { route: 'training', icon: 'assets/training.png', label: 'Treinamentos' },
+            { route: 'companies', icon: 'empresa', label: 'Empresa' },
+            { route: 'workers', icon: 'worker', label: 'Trabalhadores' },
+            // { route: 'epis', icon: 'assets/epis.png', label: 'EPI' },
+            { route: 'suppliers', icon: 'gerenciamento', label: 'Fornecedores' },
+            // { route: 'repositories', icon: 'assets/repositories.png', label: 'Repositório' },
+            { route: 'training', icon: 'capacita', label: 'Treinamentos' },
         ]
     }
 
@@ -33,8 +33,6 @@ export class NavigationComponent {
     getCompany(): void {
         this.companyService.getCompany().subscribe(response => this.company = response);
     }
-
-
 
     ngOnInit(): void {
         this.getCompany();

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import { Component, EventEmitter, Output, Input } from '@angular/core';
 import cep from 'cep-promise';
 import {MdSnackBar} from '@angular/material';
 
@@ -8,6 +8,9 @@ import {MdSnackBar} from '@angular/material';
     styleUrls: ['./cep-picker.component.scss']
 })
 export class CepPickerComponent {
+
+    @Input() cep : string = "";
+
     @Output() onSearch = new EventEmitter();
 
     loadingCep = false;
@@ -21,9 +24,11 @@ export class CepPickerComponent {
     searchCep(cepStr) {
         this.loadingCep = true;
         cep(cepStr)
-            .then(data => this.onSearch.emit(data))
-            .catch(() => this.snackBar.open('CEP não encontrado!', null, {duration: 3000}))
-            .then(() => {
+            .then(data => 
+                this.onSearch.emit(data)
+            ).catch(() => 
+                this.snackBar.open('CEP não encontrado!', null, {duration: 3000})
+            ).then(() => {
                 this.loadingCep = false;
             });
     }

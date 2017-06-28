@@ -1,0 +1,13 @@
+<div fxLayout fxLayoutAlign="space-between" >
+    <div fxLayout fxLayoutAlign="start center" >
+        <button md-icon-button class="back" (click)="backStep()" *ngIf="stageStepChild > 1"> 
+          <md-icon>navigate_before</md-icon>
+          <span>VOLTAR</span>
+        </button>          
+        <img src="assets/icon/myconstructionsite/cone.png" alt="">
+        <span>CONE</span>
+    </div>    
+    <div fxLayout fxLayoutAlign="end center">
+        <span><em>{{stageStepChild}}</em> DE {{totalSteps}} ETAPAS</span>
+    </div>  
+</div>
