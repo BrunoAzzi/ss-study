@@ -148,8 +148,14 @@ public class ConstructionController {
         if (construction != null && file != null) {
             if (Construction.checkTypeAndFileContent(type, file.getContentType())) {
                 String fileName = storageService.store(file);
-                construction.setLogoFileName(fileName);
-                construction.setLogoUrl(String.format("/constructions/%d/%s", id, type));
+
+                if (type.equals("logo")) {
+                    construction.setLogoFileName(fileName);
+                    construction.setLogoUrl(String.format("/constructions/%d/%s", id, type));
+                } else if (type.equals("cei")) {
+                    construction.setCeiFileName(fileName);
+                    construction.setCeiUrl(String.format("/constructions/%d/%s", id, type));
+                }
 
                 repository.save(construction);
 
