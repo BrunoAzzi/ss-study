@@ -17,33 +17,21 @@ export class ConstructionsService {
 
     getConstruction(id : number) {
 
-        return this.http.get(this.url + "/" + id)
-            .map(response => response.json().data)
-            .map(data => this.construction = this.serializeConstruction(data))
-
-        // return this.service.get(this.endpoint + "/" + id)
-        //     .map((jsonResponse) => {
-        //         this.construction = this.serializeConstruction(jsonResponse.construction)
-        //         return Object.assign({}, this.construction)
-        //     });
+        return this.service.get(this.endpoint + "/" + id)
+            .map((jsonResponse) => {
+                this.construction = this.serializeConstruction(jsonResponse.construction)
+                return Object.assign({}, this.construction)
+            });
 	}
 
     getConstructionList() : Observable<Array<Construction>> {
 
-        return this.http.get(this.url)
-            .map(response => response.json().data)
-            .map(data => {
-                return this.constructions = data.map(value => {
-                    return this.serializeConstruction(value)
+        return this.service.get(this.endpoint)
+            .map((jsonResponse) => {
+                return jsonResponse.constructions.map(construction => {
+                    return new Construction().initializeWithJSON(construction)
                 })
-            })
-
-        // return this.service.get(this.endpoint)
-        //     .map((jsonResponse) => {
-        //         return jsonResponse.constructions.map(construction => {
-        //             return new Construction().initializeWithJSON(construction)
-        //         })
-        //     });
+            });
 	}
 
     newConstruction() {
@@ -99,15 +87,10 @@ export class ConstructionsService {
         // return this.constructions
     }
 
-    // private serializeConstruction(json: Object) {
-    //     let c = new Construction()
-    //     c.initializeWithJSON(json)
-    //     return c
-    // }
-
-    serializeConstruction(construction: IConstruction) {
+    private serializeConstruction(json: Object) {
         let c = new Construction()
-        c.setConstruction(construction)
+        c.initializeWithJSON(json)
         return c
     }
+
 }
