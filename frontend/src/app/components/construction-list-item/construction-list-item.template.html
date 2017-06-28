@@ -1,7 +1,7 @@
 <div fxLayout fxFlex fxLayoutAlign="start center" class="construction-site-info">
     <a routerLink="/constructions/{{construction.id}}">
         <div class="image-wrapper" fxLayout fxLayoutAlign="center center">
-            <img src="assets/construction-site/logo/{{construction.image}}" alt="">
+            <img *ngIf="construction.image" src="{{construction.image}}" alt="">
         </div>
     </a>
     <i class="status-icon safety-icn-{{ statusIcon }}-svg" [ngClass]="status"></i>

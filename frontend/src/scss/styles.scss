@@ -1,14 +1,26 @@
-@import url( 'https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&subset=latin-ext');
+@import url('https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&subset=latin-ext');
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
-@import 'components/color.scss';
 @import 'components/common/topnavbar.scss';
 @import 'components/common/button.scss';
+@import 'components/common/inputs.scss';
 @import 'components/common/checkbox.scss';
 @import 'components/common/input.scss';
 @import 'components/common/select.scss';
+@import 'components/color.scss';
+@import 'components/grid.scss';
 @import 'components/common/tab.scss';
 @import 'components/common/leaflet.scss';
 @import '../assets/fonts/safety-icon-font/css/Smart-Safety.css';
+
+*,
+html, body, title, body, h1, h2, h3, h4, h5, h6, p,
+form, input, textarea, button, select, optgroup, option, label, fieldset, legend, datalist, keygen, output,
+a, link, nav,
+ul, ol, li, dir, dl, dt, dd, menu, menuitem,
+table, caption, th, tr, td, thead, tbody, tfoot, col, colgroup,
+div, span, header, footer, main, section, article, aside, details, dialog, summary, data {
+    font-family: 'Lato', sans-serif;
+}
 
 html {
     height: 100vh;
@@ -16,10 +28,62 @@ html {
 }
 
 body {
-    height: 100vh;
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    -webkit-flex-direction: column;
+    overflow: hidden;
+    min-height: 100%;
+    max-height: 100%;
     margin: 0;
     padding: 0;
-    font-family: 'Lato', sans-serif;
+}
+
+.body-content {
+    position: relative;
+    padding: 20px;
+    height: 100%;
+    overflow-y: auto;
+    overflow: -moz-scrollbars-vertical;
+    box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    color: $greyish-brown;
+}
+
+a {
+    color: $link;
+    &:hover {
+        color: $grapefruit;
+    }
+}
+
+md-card {
+    .image-upload {
+        background: url("../../src/assets/ic-image.png") no-repeat center;
+        background-size: 25%;
+        width: 200px;
+        height: 100%;
+        max-width: 400px;
+        min-width: 120px;
+        min-height: 120px;
+        md-card-content img {
+            width: 100%;
+            height: auto;
+            margin: 0 auto;
+            background-color: white;
+            border: none;
+        }
+        md-card-footer p {
+            text-align: center;
+            font-size: 11px;
+            font-weight: normal;
+            font-family: 'Lato', sans-serif;
+            line-height: 1.4;
+            color: $warm-grey-four;
+        }
+    }
 }
 
 ul {
@@ -77,4 +141,4 @@ monitoring, mapping {
     .mat-tab-body-wrapper {
         height: 100%;
     }
-} 
+}
