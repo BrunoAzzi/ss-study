@@ -11,7 +11,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 public class UserControllerTest_IT extends BaseControllerTest_IT {
 
-//    @Ignore("This test will pass only once, or after remove the user 'admin@test.com' from database.")
+    @Ignore("This test will pass only once, or after remove the user 'admin@test.com' from database.")
     @Test
     public void registerUser_whenAllMandatoryDateAreValid() throws Exception {
 
@@ -45,7 +45,7 @@ public class UserControllerTest_IT extends BaseControllerTest_IT {
         MvcResult result = mockMvc.perform(post("/users")
                 .content(getUserRequestJson(VALID_EMAIL,VALID_PASSWORD))
                 .contentType(contentType))
-                .andExpect(status().isUnprocessableEntity())
+                .andExpect(status().isConflict())
                 .andReturn();
         String responseJson = result.getResponse().getContentAsString();
         JSONObject jsonObject = new JSONObject(responseJson);

@@ -47,7 +47,7 @@ public class ConstructionControllerTest_IT extends BaseControllerTest_IT {
         MvcResult result = mockMvc.perform(post("/constructions")
                 .content(getConstructionRequestJson("name - test","cep - test","address - test",
                         ConstructionStatus.IN_PROGRESS.getValue(), "description - test",
-                        "logoUrl - test","ceiUrl - test","ceiCode - test"))
+                        "ceiCode - test"))
                 .contentType(contentType))
                 .andExpect(status().isCreated())
                 .andReturn();
@@ -68,7 +68,7 @@ public class ConstructionControllerTest_IT extends BaseControllerTest_IT {
         MvcResult result = mockMvc.perform(post("/constructions")
                 .content(getConstructionRequestJson("","cep - test","address - test",
                         1, "description - test",
-                        "logoUrl - test","ceiUrl - test","ceiCode - test"))
+                        "ceiCode - test"))
                 .contentType(contentType))
                 .andExpect(status().isUnprocessableEntity())
                 .andReturn();
@@ -203,16 +203,14 @@ public class ConstructionControllerTest_IT extends BaseControllerTest_IT {
     public void updateConstruction_whenAllMandatoryDataAreValid() throws Exception {
         mockMvc.perform(put("/constructions/1")
                 .content(getConstructionRequestJson("name - test","cep - test","address - test",
-                        1, "description - test",
-                        "logoUrl - test","ceiUrltest","ceiCode - test"))
+                        1, "description - test","ceiCode - test"))
                 .contentType(contentType))
                 .andExpect(status().isAccepted())
                 .andReturn();
 
         MvcResult result = mockMvc.perform(put("/constructions/1")
                 .content(getConstructionRequestJson("new name - test","cep - test","address - test",
-                        ConstructionStatus.FINISHED.getValue(), "description - test",
-                        "logoUrl - test","ceiUrltest","ceiCode - test"))
+                        ConstructionStatus.FINISHED.getValue(), "description - test","ceiCode - test"))
                 .contentType(contentType))
                 .andExpect(status().isAccepted())
                 .andReturn();
@@ -240,9 +238,7 @@ public class ConstructionControllerTest_IT extends BaseControllerTest_IT {
                 .andReturn();
 
         String responseJson = result.getResponse().getContentAsString();
-        JSONObject jsonObject = new JSONObject(responseJson);
-
-
+        JSONObject jsonObject = new JSONObject(responseJson).getJSONObject("construction");
 
         System.out.println("Response: " + responseJson);
 
@@ -262,20 +258,20 @@ public class ConstructionControllerTest_IT extends BaseControllerTest_IT {
                 .andReturn();
 
         String responseJson = result.getResponse().getContentAsString();
-        JSONObject jsonObject = new JSONObject(responseJson);
+        JSONObject jsonObject = new JSONObject(responseJson).getJSONObject("construction");
 
 
 
         System.out.println("Response: " + responseJson);
 
-        String sectorName = jsonObject.getJSONArray("sectors").getJSONObject(0).getString("name");
+        String floorName = jsonObject.getJSONArray("sectors").getJSONObject(0).getJSONArray("floors").getJSONObject(0).getString("name");
 
         Assert.assertEquals("Should return the expected name when registration sector is succeed.",
-                "new Sector",sectorName);
+                "Floor",floorName);
     }
 
     @Test
-    public void createFloors_whenConstructionIdIsInvalid() throws Exception {
+    public void createSectors_whenConstructionIdIsInvalid() throws Exception {
 
         MvcResult result = mockMvc.perform(put("/constructions/999999")
                 .content(getSectorRequestJson("new Sector"))
@@ -290,14 +286,11 @@ public class ConstructionControllerTest_IT extends BaseControllerTest_IT {
         JSONObject jsonObject = new JSONObject(responseJson);
         String errorMessage = jsonObject.getJSONArray("errors").getJSONObject(0).getString("message");
         Assert.assertEquals("Should return an error message, when logo has invalid format.","Construção não encontrada.", errorMessage);
-
     }
 
     private String getConstructionRequestJson(String name, String cep, String address, int status,
-                                                String description, String logoUrl, String ceiUrl,
-                                                String ceiCode) {
-        Construction construction = new Construction(name, cep, address, status, description, logoUrl, ceiUrl, ceiCode);
-
+                                                String description, String ceiCode) {
+        Construction construction = new Construction(name, cep, address,0, "address complement", status, description, ceiCode);
         Gson gson = new Gson();
         String requestJson = gson.toJson(construction).replace("IN_PROGRESS","0").replace("PAUSED","1").replace("FINISHED","2");
         System.out.println("Request: " + requestJson);
