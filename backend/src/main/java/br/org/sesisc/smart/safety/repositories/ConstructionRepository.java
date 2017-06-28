@@ -6,5 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.Set;
 
 public interface ConstructionRepository extends CrudRepository<Construction, Long> {
-    Set<Construction> findByActivated(boolean activated);
+    Set<Construction> findByActivatedTrue();
 }
