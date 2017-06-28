@@ -8,4 +8,5 @@
             *ngFor="let permission of permissions" 
             [value]="permission.value">{{permission.viewValue}}</md-option>
 </md-select>
+<!-- TODO change the following component for constuction-workers-form -->
 <collaborator-editable-list (updateCollaboratorList)="updateCollaboratorList($event)"></collaborator-editable-list>

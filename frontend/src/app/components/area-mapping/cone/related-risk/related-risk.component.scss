@@ -19,20 +19,6 @@ ul {
     margin: 5px 0;
 }
 
-.close {
-    position: relative;
-    left: 13px;
-    top: -60px;
-
-    .mat-icon {
-        color: #aab0b2;
-
-        &:focus, &:hover {
-            cursor: pointer;
-        }
-    }
-}
-
 .mat-select {    
         width: 228px;
         height: 24px;

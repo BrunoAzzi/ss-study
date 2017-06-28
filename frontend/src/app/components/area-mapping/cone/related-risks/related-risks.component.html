@@ -1,9 +1,9 @@
 <span>2 - Riscos relacionados</span>
-<div *ngFor="let risk of risks" class="container-risk">
-    <related-risk [risk]="risk"></related-risk>
-</div>
-<div id="new-risk" class="container-risk">
-
+<div *ngFor="let risk of risks; index as i" class="container-risk">    
+    <related-risk [risk]="risk" (updateRelatedRisk)="updateRelatedRisk($event)" [index]="i"></related-risk>
+    <button class="close" md-icon-button (click)="onRemoveRiskClicked(i)">
+        <md-icon>clear</md-icon>
+    </button>
 </div>
 
 <div id="add-risk" (click)="onAddRiskClicked()" class="container-risk" fxLayout="column" fxLayoutAlign="center center">

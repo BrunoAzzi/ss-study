@@ -31,8 +31,7 @@ export class MappingDialog {
     ngOnInit() {
         this.currentStageStep = 1;        
         this.totalSteps = 3;
-        this.actionButton = this.ACTION_NEXT;        
-        //this.cone = new Cone(this.dataCone);
+        this.actionButton = this.ACTION_NEXT;                
     }
 
     updateStepStage(_actionType: string) {
@@ -54,20 +53,22 @@ export class MappingDialog {
 
     updateSensorIdentification(_dataCone: any) {      
       this.dataCone['title'] = _dataCone.title;
-      this.dataCone['identification'] = _dataCone.identification;    
-      //console.log(this.dataCone); 
+      this.dataCone['identification'] = _dataCone.identification;          
     }
 
     updateRisks(_dataCone: any) {
-
+      this.dataCone['risks'] = _dataCone.risks;      
     }
 
     updatePermissions(_dataCone: any) {
       this.dataCone['permissionType'] = _dataCone.permissionType;
-      this.dataCone['filteredSelectedCollaborators'] = _dataCone.filteredSelectedCollaborators;
-      this.cone = new Cone(this.dataCone);
-      //TODO submit form with values
-      console.log(this.dataCone);
+      this.dataCone['filteredSelectedCollaborators'] = _dataCone.filteredSelectedCollaborators;     
+    }
+
+    finishConeMapping() {
+       this.cone = new Cone(this.dataCone);
+       console.log(this.dataCone);
+       console.log(this.cone);       
     }
 
 }
