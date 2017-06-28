@@ -19,6 +19,51 @@
     }
 }
 
+.no-underline{
+
+    .mat-input-infix {
+        border-top: none;
+    }
+
+    .mat-input-underline {
+        display: none;
+    }
+
+    .mat-input-wrapper {
+        padding-bottom: 0px;
+    }
+
+}
+
+.mapping {
+    
+    .mat-input-placeholder-wrapper {     
+        line-height: 1.27;
+        color: $greyish-brown-two;       
+    }
+
+}
+
+.mapping-icon {
+
+    .mat-input-placeholder-wrapper {
+        top: 0.2em;
+        left: 30px;
+        font-size: 11px;
+        font-weight: bold;
+        line-height: 1.27;
+        color: $greyish-brown-two;       
+    }
+
+    .mat-icon {
+        position: relative;
+        top: 0.3em;
+        width: 1.5em !important;    
+        height: 1.5em !important;
+        font-size: 20px !important;        
+    }
+}
+
 .label {
     text-transform: uppercase;
 }

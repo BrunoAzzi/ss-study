@@ -1,4 +1,4 @@
-import { Cone } from './cone.mode'
+import { Cone } from './cone.model'
 import { Icon } from './icon.model'
 
 export class Marker {

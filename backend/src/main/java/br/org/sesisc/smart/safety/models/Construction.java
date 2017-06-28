@@ -22,7 +22,9 @@ public class Construction {
     @Pattern(message="Nome é um campo obrigatório.", regexp = "^(?!\\s*$).+")
     private String name;
     private String cep;
-    private String address;
+    private String addressStreet;
+    private Integer addressNumber;
+    private String addressComplement;
 
     @NotNull(message="Status é um campo obrigatório.")
     private ConstructionStatus status;
@@ -45,45 +47,29 @@ public class Construction {
     @JoinColumn(name = "responsible_safety_id")
     private ResponsibleSafety responsibleSafety;
 
+    private boolean activated;
+
     public Construction() { }
 
-    public Construction(
-            String name,
-            String cep,
-            String address,
-            ConstructionStatus status,
-            String description,
-            String logoUrl,
-            String ceiUrl,
-            String ceiCode
-    ) {
+    public Construction(String name, String cep, String addressStreet, Integer addressNumber, String addressComplement, ConstructionStatus status, String description, String ceiCode) {
         this.name = name;
         this.cep = cep;
-        this.address = address;
+        this.addressStreet = addressStreet;
+        this.addressNumber = addressNumber;
+        this.addressComplement = addressComplement;
         this.status = status;
         this.description = description;
-        this.logoUrl = logoUrl;
-        this.ceiUrl = ceiUrl;
         this.ceiCode = ceiCode;
     }
 
-    public Construction(
-            String name,
-            String cep,
-            String address,
-            int status,
-            String description,
-            String logoUrl,
-            String ceiUrl,
-            String ceiCode
-    ) {
+    public Construction(String name, String cep, String addressStreet, Integer addressNumber, String addressComplement, int status, String description, String ceiCode) {
         this.name = name;
         this.cep = cep;
-        this.address = address;
+        this.addressStreet = addressStreet;
+        this.addressNumber = addressNumber;
+        this.addressComplement = addressComplement;
         this.status = ConstructionStatus.fromInt(status);
         this.description = description;
-        this.logoUrl = logoUrl;
-        this.ceiUrl = ceiUrl;
         this.ceiCode = ceiCode;
     }
 
@@ -96,10 +82,12 @@ public class Construction {
         this.responsibleSafety = responsibleSafety;
     }
 
-    public Construction(String name, String cep, String address, ConstructionStatus status, String description, String logoUrl, String logoFileName, String ceiCode, String ceiUrl, String ceiFileName, Set<Sector> sectors, ResponsibleEngineer responsibleEngineer, ResponsibleSafety responsibleSafety) {
+    public Construction(String name, String cep, String addressStreet, Integer addressNumber, String addressComplement, ConstructionStatus status, String description, String logoUrl, String logoFileName, String ceiCode, String ceiUrl, String ceiFileName, Set<Sector> sectors, ResponsibleEngineer responsibleEngineer, ResponsibleSafety responsibleSafety) {
         this.name = name;
         this.cep = cep;
-        this.address = address;
+        this.addressStreet = addressStreet;
+        this.addressNumber = addressNumber;
+        this.addressComplement = addressComplement;
         this.status = status;
         this.description = description;
         this.logoUrl = logoUrl;
@@ -112,9 +100,6 @@ public class Construction {
         this.responsibleSafety = responsibleSafety;
     }
 
-    /**
-     * Getters & Setters
-     */
     public Long getId() {
         return id;
     }
@@ -139,27 +124,40 @@ public class Construction {
         this.cep = cep;
     }
 
-    public String getAddress() {
-        return address;
+    public String getAddressStreet() {
+        return addressStreet;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setAddressStreet(String addressStreet) {
+        this.addressStreet = addressStreet;
+    }
+
+    public Integer getAddressNumber() {
+        return addressNumber;
+    }
+
+    public void setAddressNumber(Integer addressNumber) {
+        this.addressNumber = addressNumber;
+    }
+
+    public String getAddressComplement() {
+        return addressComplement;
+    }
+
+    public void setAddressComplement(String addressComplement) {
+        this.addressComplement = addressComplement;
     }
 
     public int getStatus() {
         return status.getValue();
     }
-    public int _getStatus() {
-        return status.getValue();
+
+    public void setStatus(int status) {
+        this.status = ConstructionStatus.fromInt(status);
     }
 
     public void setStatus(ConstructionStatus status) {
         this.status = status;
-    }
-
-    public void setStatus(int status) {
-        this.status = ConstructionStatus.fromInt(status);
     }
 
     public String getDescription() {
@@ -178,12 +176,12 @@ public class Construction {
         this.logoUrl = logoUrl;
     }
 
-    public String getCeiUrl() {
-        return ceiUrl;
+    public String getLogoFileName() {
+        return logoFileName;
     }
 
-    public void setCeiUrl(String ceiUrl) {
-        this.ceiUrl = ceiUrl;
+    public void setLogoFileName(String logoFileName) {
+        this.logoFileName = logoFileName;
     }
 
     public String getCeiCode() {
@@ -194,12 +192,12 @@ public class Construction {
         this.ceiCode = ceiCode;
     }
 
-    public String getLogoFileName() {
-        return logoFileName;
+    public String getCeiUrl() {
+        return ceiUrl;
     }
 
-    public void setLogoFileName(String logoFileName) {
-        this.logoFileName = logoFileName;
+    public void setCeiUrl(String ceiUrl) {
+        this.ceiUrl = ceiUrl;
     }
 
     public String getCeiFileName() {
@@ -232,6 +230,14 @@ public class Construction {
 
     public void setResponsibleSafety(ResponsibleSafety responsibleSafety) {
         this.responsibleSafety = responsibleSafety;
+    }
+
+    public boolean isActivated() {
+        return activated;
+    }
+
+    public void setActivated(boolean activated) {
+        this.activated = activated;
     }
 
     /*

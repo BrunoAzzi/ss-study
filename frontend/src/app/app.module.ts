@@ -71,7 +71,14 @@ import { WorkerListComponent } from "./views/workers/list/list.component";
 import { LineWorkerDetailComponent } from "./components/workers/line-worker-detail/line-worker-detail.component";
 
 import { MonitoringComponent } from './views/constructions/detail/monitoring/monitoring.component';
-import { AreaMappingComponent, ContentElementDialog } from './components/area-mapping/area-mapping.component';
+import { AreaMappingComponent } from './components/area-mapping/area-mapping.component';
+import { MappingDialog } from './components/area-mapping/cone/mapping-dialog/mapping-dialog.component';
+import { MappingStages } from './components/area-mapping/cone/mapping-stages/mapping-stages.component';
+import { SensorIdentification } from './components/area-mapping/cone/sensor-identification/sensor-identification.component';
+import { RelatedRisk } from './components/area-mapping/cone/related-risk/related-risk.component';
+import { RelatedRisks } from './components/area-mapping/cone/related-risks/related-risks.component';
+import { Permissions } from './components/area-mapping/cone/permissions/permissions.component';
+import { CollaboratorEditableList } from './components/common/collaborator/collaborator-editable-list/collaborator-editable-list.component';
 import { AreaMonitoringComponent } from './components/area-monitoring/area-monitoring.component';
 import { SummaryItemComponent } from './components/summary-item/summary-item.component';
 import { SummaryComponent } from './components/summary/summary.component';
@@ -195,14 +202,20 @@ import { MaintenanceInlineFormComponent } from './components/maintenance-inline-
         RiskGraphComponent,
         ResponsableDataComponent,
         AddInformationComponent,
-
+        FloorsSummaryComponent,        
+        MappingDialog,
+        MappingStages,
+        SensorIdentification,
+        Permissions,
+        RelatedRisk,
+        RelatedRisks,
+        CollaboratorEditableList,
         WorkersOverviewComponent,
         ListCellComponent,
         SectionListComponent,
         ChecklistCellComponent,
         ConstructionsStatusComponent,
-        FloorsSummaryComponent,
-        ContentElementDialog,
+        FloorsSummaryComponent,        
         DropFileComponent,
 
         // Suppliers
@@ -303,7 +316,7 @@ import { MaintenanceInlineFormComponent } from './components/maintenance-inline-
         // Routes
         AppRoutingModule,
     ],
-    entryComponents: [ContentElementDialog],
+    entryComponents: [MappingDialog],
     providers: [
         HttpClientService,
         AuthGuard,

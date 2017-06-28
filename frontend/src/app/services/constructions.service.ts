@@ -92,4 +92,5 @@ export class ConstructionsService {
         c.initializeWithJSON(json)
         return c
     }
+
 }
