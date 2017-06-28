@@ -1,6 +1,7 @@
 package br.org.sesisc.smart.safety.controllers;
 
 import br.org.sesisc.smart.safety.models.Construction;
+import br.org.sesisc.smart.safety.models.Floor;
 import br.org.sesisc.smart.safety.models.Sector;
 import br.org.sesisc.smart.safety.models.enums.ConstructionStatus;
 import br.org.sesisc.smart.safety.service.StorageService;
@@ -255,7 +256,7 @@ public class ConstructionControllerTest_IT extends BaseControllerTest_IT {
     public void createFloors_whenAllMandatoryAreValid() throws Exception {
 
         MvcResult result = mockMvc.perform(put("/constructions/1")
-                .content(getSectorRequestJson("new Sector"))
+                .content(getFloorRequestJson("new Sector", "Floor"))
                 .contentType(contentType))
                 .andExpect(status().isAccepted())
                 .andReturn();
@@ -316,9 +317,10 @@ public class ConstructionControllerTest_IT extends BaseControllerTest_IT {
         return requestJson;
     }
 
-    private String getFloorRequestJson(String name) {
-        Sector sector = new Sector(name);
+    private String getFloorRequestJson(String sectorName, String floorName) {
+        Sector sector = new Sector(sectorName);
         sector.setId(1);
+        sector.getFloors().add(new Floor(floorName,floorName.substring(2)));
         Construction construction = new Construction();
         construction.getSectors().add(sector);
 
