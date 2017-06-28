@@ -23,7 +23,7 @@ export class AreaMappingComponent {
     public currentFloor: Floor;
     public currentTool: any;
 
-    constructor(public dialog: MdDialog) {}
+    constructor() {}
 
     onFloorUpdated(floor : Floor) {
         this.currentFloor = floor
@@ -37,40 +37,4 @@ export class AreaMappingComponent {
     onFloorChanged(floor : Floor) {
         this.currentFloor = floor;
     }
-}
-
-@Component({
-  selector: 'demo-content-element-dialog',
-  styles: [
-    `img {
-      max-width: 100%;
-    }`
-  ],
-  template: `
-        <form>
-            <md-toolbar>
-                <div class="md-toolbar-tools">
-                    <h2>MAPEAR</h2>
-                    <span flex></span>
-                </div>
-            </md-toolbar>
-
-            <md-dialog-content>
-                <div class="md-dialog-content">
-                    Teste
-                </div>
-            </md-dialog-content>
-
-            <md-dialog-actions layout="row">
-                <span flex></span>
-                <button md-button ng-click="answer('not useful')">PRÓXIMO</button>
-                <span flex></span>
-            </md-dialog-actions>
-        </form> 
-  `
-})
-export class ContentElementDialog {
-  actionsAlignment: string;
-
-  constructor(public dialog: MdDialog) { }
 }
