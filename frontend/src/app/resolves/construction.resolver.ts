@@ -19,6 +19,10 @@ export class ConstructionResolver implements Resolve<Construction> {
     ) { }
 
 	resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        return this.service.getConstruction(route.params['id'])
+        if (route.params['id']) {
+            return this.service.getConstruction(route.params['id'])
+        } else {
+            return this.service.newConstruction()
+        }
 	}
 }

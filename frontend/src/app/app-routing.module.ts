@@ -1,10 +1,9 @@
-import { ConstructionFormComponent } from './views/constructions/form/construction-form.component';
+import { ConstructionFormContainer } from './views/constructions/form/construction-form.container';
 import { ConstructionDetailComponent } from './views/constructions/detail/construction-detail.component';
 import { ConstructionResolver } from './resolves/construction.resolver';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from "@angular/router";
 import { AuthGuard } from './guards';
-import { ConstructionsGuard } from './guards/constructions.guard';
 
 import { CompaniesComponent } from "./views/companies/companies.component";
 import { PPEComponent } from "./views/ppe/ppe.component";
@@ -60,7 +59,7 @@ const routes: Routes = [
 						path: 'workers', children: [
 							{ path: '', data: { breadcrumb: "Gerenciamento de Trabalhadores" }, component: WorkerListComponent, resolve: { workerList: WorkerListResolver } },
                             { path: 'new', data: { breadcrumb: "Cadastro de Trabalhadores" }, component: WorkerFormComponent },
-                             { path: ':id/edit', data: { breadcrumb: "Cadastro de Trabalhadores" }, component: WorkerFormComponent },
+                            { path: ':id/edit', data: { breadcrumb: "Cadastro de Trabalhadores" }, component: WorkerFormComponent },
 						]
 					},
                     {
@@ -72,8 +71,8 @@ const routes: Routes = [
 					},
                     {
 						path: 'constructions', children: [
-                            { path: '', pathMatch: 'prefix', data: { breadcrumb: "Minhas Obras" }, component: ConstructionsListComponent, resolve: { constructions: ConstructionsListResolver } },
-                            { path: 'new', data: { breadcrumb: "Nova Obra" }, component: ConstructionFormComponent },
+                            { path: '', pathMatch: 'prefix', data: { breadcrumb: "Minhas Obras" }, component: ConstructionsListComponent },
+                            { path: 'new', data: { breadcrumb: "Nova Obra" }, component: ConstructionFormContainer, resolve: { construction: ConstructionResolver } },
                         ]
                     },
                 ]
@@ -82,7 +81,7 @@ const routes: Routes = [
                 path: 'constructions/:id', component: ConstructionDetailComponent, resolve: { construction: ConstructionResolver }, children: [
                     { path: '', pathMatch: 'prefix', redirectTo: 'overview' },
                     { path: 'overview', data: { breadcrumb: "Dashboard" }, component: OverviewComponent, canActivate: [AuthGuard] },
-                    { path: 'edit', component: ConstructionFormComponent, canActivate: [AuthGuard] },
+                    { path: 'edit', component: ConstructionFormContainer, canActivate: [AuthGuard] },
                     { path: 'monitoring', component: MonitoringComponent, canActivate: [AuthGuard] },
                     { path: 'emotional-profile', component: EmotionalPanelComponent, canActivate: [AuthGuard] },
                 ]
@@ -107,7 +106,6 @@ const routes: Routes = [
     exports: [RouterModule],
     providers: [
         ConstructionsListResolver,
-        ConstructionsGuard,
         SupplierListResolver,
         SupplierService,
         SupplierResolver,

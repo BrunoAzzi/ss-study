@@ -15,7 +15,7 @@ md-card.custom-header {
 }
 
 md-card {
-    min-height: 50px;
+    flex-grow: 1;
 }
 
 .no-padding {
@@ -23,23 +23,17 @@ md-card {
 }
 
 .mat-toolbar {
-    min-height: 50px;
     background-color: $pale-gray;
     text-transform: uppercase;
-    font-family: Lato, sans-serif;
-    font-size: 10px;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.8em;
     font-weight: 900;
     line-height: 1.4;
-    letter-spacing: 0.5px;
     text-align: left;
     color: $warm-grey-four;
 }
 
 md-card-content {
     height: 100%;
-    overflow: hidden;
-}
-
-:host /deep/ md-toolbar-row {
-    height: 50px !important;
+    overflow: scroll;
 }

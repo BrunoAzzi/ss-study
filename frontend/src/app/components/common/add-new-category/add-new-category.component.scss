@@ -1,13 +1,11 @@
 @import "../../../../scss/components/color";
 
-
-
 .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  margin: 2em 0;
+  margin: 0 0 2em;
 
   .separator {
     background-color: $light-gray;
@@ -27,11 +25,15 @@
 span {
   width: 100%;
   display: block;
-  color: $light-gray;
+  color: black;
   font-size: 1em;
   font-weight: 900;
   text-align: center;
   cursor: pointer;
+
+  &.new {
+    color: $light-gray;
+  }
 }
 
 input {
