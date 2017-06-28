@@ -18,7 +18,11 @@
                 [dataConeChild]="dataCone"
                 (updateSensorIdentification)="updateSensorIdentification($event)">                
             </sensor-identification>
-            <related-risks *ngIf="currentStageStep == 2"></related-risks>
+            <related-risks 
+                *ngIf="currentStageStep == 2"
+                [dataConeChild]="dataCone"
+                (updateRisks)="updateRisks($event)">
+            </related-risks>
             <permissions 
                 *ngIf="currentStageStep == 3"
                 [dataConeChild]="dataCone"
@@ -26,6 +30,7 @@
         </div>
     </md-dialog-content>
     <md-dialog-actions fxLayout fxLayoutAlign="center center" layout="row" [ngClass]="{'final-action': currentStageStep == totalSteps}">              
-        <button md-button (click)="updateStepStage('next')">{{actionButton}}</button>      
+        <button md-button (click)="updateStepStage('next')" *ngIf="currentStageStep < 3">{{actionButton}}</button>
+        <button md-button (click)="finishConeMapping()" *ngIf="currentStageStep == 3" md-dialog-close>{{actionButton}}</button>
     </md-dialog-actions>
 </form> 
