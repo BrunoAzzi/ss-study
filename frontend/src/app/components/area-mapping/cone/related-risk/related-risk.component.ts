@@ -14,6 +14,8 @@ export class RelatedRisk {
   levelTypes: any;
   factorTypes: any;
 
+  
+
   riskType: number;  
   riskTypeLabel: string; 
   levelType: number;
@@ -22,17 +24,18 @@ export class RelatedRisk {
 
   @Input() data: any;
 
-  @Output() updateRelatedRisk = new EventEmitter<string>();
+  @Input() risk
+  @Output() updateRelatedRisk = new EventEmitter<any>();
 
   constructor() {}
 
   ngOnInit() {
-    this.riskTypes = [];
-    this.riskTypeLabel = "";
-    this.levelTypeLabel = "";
-    this.riskTypes = RiskTypes; 
-    this.levelTypes = RiskLevels;
-    this.factorTypes = RiskFactors;
+    this.risk.riskTypes = [];
+    this.risk.riskTypeLabel = "";
+    this.risk.levelTypeLabel = "";
+    this.risk.riskTypes = RiskTypes; 
+    this.risk.levelTypes = RiskLevels;
+    this.risk.factorTypes = RiskFactors;
 
     /*this.riskType = this.data.riskType;
     this.levelType = this.data.levelType;

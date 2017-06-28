@@ -8,6 +8,16 @@ import { Component } from '@angular/core';
 
 export class RelatedRisks {
 
-    constructor() {}
+  risks : Array<any> = []
+
+  constructor() {}
+
+  onAddRiskClicked() {
+    this.risks.push({})
+  }
+
+  onRemoveRiskClicked() {
+    
+  }
 
 }

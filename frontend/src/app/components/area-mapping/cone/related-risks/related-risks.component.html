@@ -1,12 +1,12 @@
 <span>2 - Riscos relacionados</span>
-<div class="container-risk">
-    <related-risk></related-risk>
+<div *ngFor="let risk of risks" class="container-risk">
+    <related-risk [risk]="risk"></related-risk>
 </div>
 <div id="new-risk" class="container-risk">
 
 </div>
 
-<div id="add-risk" class="container-risk" fxLayout="column" fxLayoutAlign="center center">
+<div id="add-risk" (click)="onAddRiskClicked()" class="container-risk" fxLayout="column" fxLayoutAlign="center center">
     <md-icon>add</md-icon>
     <span>adicionar risco</span>
 </div>
