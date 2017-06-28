@@ -10,5 +10,4 @@ export class CompanyService {
     getCompany() {
         return this.http.get(this.companyUrl).map( response => response.json().data )
     }
-
 }

@@ -16,4 +16,18 @@ export class Sector {
         this.construction = parentConstruction
         this.floors = data.floors.map(f => new Floor(f, this)) || []
     }
+
+    getSummary() {
+        return this.floors.reduce((sum, floor) => {
+            return {
+                alerts: sum.alerts + floor.alertsNumber(),
+                cones: sum.cones + floor.conesNumber(),
+                workers: sum.workers + floor.workersNumber()
+            }
+        }, {
+            alerts: 0,
+            cones: 0,
+            workers: 0
+        })
+    }
 }

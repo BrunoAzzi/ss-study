@@ -1,0 +1,79 @@
+@import '../../../../../scss/components/color.scss';
+
+span {
+    display: block;
+    height: 14px;    
+    font-family: Lato;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 0.78;
+    color: $warm-grey-four;        
+}
+
+.container-risk {
+    width: 100%;
+    min-height: 148px;    
+    border: dashed 1px #d2d9db;
+    font-family: Lato;
+    margin-top: 8px;
+    padding: 10px 0 0;
+    text-transform: uppercase;
+
+    &:first-of-type {
+        margin-top: 11px;        
+    }
+
+    .close {
+        position: relative;
+        left: 370px;
+        top: -145px;
+
+        .mat-icon {
+            color: #aab0b2;
+
+            &:focus, &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+
+}
+
+.close {
+    position: relative;
+    left: 13px;
+    top: -60px;
+
+    .mat-icon {
+        color: #aab0b2;
+
+        &:focus, &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+#add-risk {
+    opacity: 0.7;
+    cursor: pointer;
+
+    &:focus, &:hover{
+        opacity: 1;
+    }
+
+    .mat-icon {        
+        color: #acacac;
+        object-fit: contain;
+        font-size: 40px;
+        width: 40px;
+        height: 40px;
+    }
+
+    span {
+        width: auto;
+        font-size: 10px;        
+        color: $greyish-brown-two;
+        margin-top: 11px;
+    }
+
+}

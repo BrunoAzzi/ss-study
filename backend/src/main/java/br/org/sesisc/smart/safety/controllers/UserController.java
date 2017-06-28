@@ -23,23 +23,25 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<?> create(@Valid @RequestBody User params, Errors errors) {
-        if (errors.hasErrors()) {
-            return ErrorResponse.handle(errors, HttpStatus.UNPROCESSABLE_ENTITY);
+        User user = null;
+        try {
+            if (errors.hasErrors()) {
+                return ErrorResponse.handle(errors, HttpStatus.UNPROCESSABLE_ENTITY);
+            }
+
+            params.setActive(true);
+            params.digestPassword(params.getPassword());
+
+            user = repository.save(params);
+
+            return SuccessResponse.handle(
+                    new String[] {"user"},
+                    new Object[] {user},
+                    HttpStatus.CREATED
+            );
+
+        } catch (Exception e) {
+            return ErrorResponse.handle("Usuário já existente.",e.getClass(), HttpStatus.CONFLICT);
         }
-
-        params.setActive(true);
-        params.digestPassword(params.getPassword());
-        User user = repository.save(params);
-
-        return SuccessResponse.handle(
-                new String[] {"user"},
-                new Object[] {user},
-                HttpStatus.CREATED
-        );
-    }
-
-    @ExceptionHandler({UserException.class})
-    public ResponseEntity<?> handleUserException(UserException exception) throws IOException {
-        return ErrorResponse.handle(exception.getMessage(),UserException.class, HttpStatus.UNPROCESSABLE_ENTITY);
     }
 }

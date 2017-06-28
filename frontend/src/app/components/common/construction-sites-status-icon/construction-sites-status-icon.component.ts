@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 
 const values = {
-    'finalizada': { statusIcon: 'check', statusClass: 'success'},
-    'paralisada': { statusIcon: 'remove', statusClass: 'danger'},
-    'em andamento': { statusIcon: false, statusClass: 'warn'}
+    'finalizada': { statusIcon: 'finalizadas', statusClass: 'success'},
+    'paralisada': { statusIcon: 'paralizadas', statusClass: 'danger'},
+    'em andamento': { statusIcon: 'andamento', statusClass: 'warn'}
 };
 
 @Component({

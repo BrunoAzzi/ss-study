@@ -1,0 +1,38 @@
+<div fxLayout="row" fxLayoutAlign="space-around center">
+    <section fxLayout="column" fxLayoutAlign="space-around center">
+        <md-select class="mapping" 
+                   [(ngModel)]="riskType" 
+                   placeholder="Tipo De Risco" 
+                   (change)="sendData()" 
+                   floatPlaceholder="never" >
+            <md-option *ngFor="let riskType of riskTypes | keys" [value]="riskType.key">{{riskType.value}}</md-option>
+        </md-select>
+        <md-select class="mapping"
+                   [(ngModel)]="levelType"
+                   placeholder="Grau" 
+                   (change)="sendData()" 
+                   floatPlaceholder="never" >
+            <md-option *ngFor="let levelType of levelTypes | keys" [value]="levelType.key">{{levelType.value}}</md-option>            
+        </md-select>
+        <md-select class="mapping"
+                   [(ngModel)]="factorType"
+                   placeholder="Fator De Risco" 
+                   (change)="sendData()" 
+                   floatPlaceholder="never" >
+            <md-option *ngFor="let factorType of factorTypes | keys" [value]="factorType.key">{{factorType.value}}</md-option>
+        </md-select>
+    </section>
+    <section fxLayout="column" fxLayoutAlign="center center">
+        <span>{{riskTypeLabel}}</span>
+           <ul class="type">
+               <li [ngClass] = "{'chemical': riskType == 1, 'accident': riskType == 2, 'erghonomic': riskType == 3, 'biological': riskType == 4, 'physical': riskType == 5}">
+                  <ul class="size">
+                     <li class="low" [ngClass] = "{'active': levelType == 1}"></li>
+                     <li class="medium" [ngClass] = "{'active': levelType == 2}"></li>
+                     <li class="high" [ngClass] = "{'active': levelType == 3}"></li>
+                  </ul>
+               </li>       
+           </ul>    
+        <span>{{levelTypeLabel}}</span>        
+    </section>    
+</div>

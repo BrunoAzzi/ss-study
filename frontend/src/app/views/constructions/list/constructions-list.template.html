@@ -1,4 +1,4 @@
-<div *ngIf="service.constructions.length > 0" fxLayout fxLayoutAlign="space-between center" class="top-actionbar">
+<div *ngIf="(constructions).length > 0" fxLayout fxLayoutAlign="space-between center" class="top-actionbar">
     <div fxLayout fxLayoutAlign="start center">
         <button md-icon-button type="button" (click)="toggleSearch()" fxLayout fxLayoutAlign="center center">
             <md-icon class="search">search</md-icon>
@@ -15,7 +15,7 @@
             </md-chip>
             <md-chip class="danger" [ngClass]="{ disabled: activeFilters.paralized }" fxLayout fxLayoutAlign="start center" (click)="toggleActiveFilter('paralized')">
                 <md-icon fxLayout fxLayoutAlign="center center">remove</md-icon>
-                <span>Paralizadas</span>
+                <span>Paralisadas</span>
             </md-chip>
             <md-chip class="success" [ngClass]="{ disabled: activeFilters.finished }" fxLayout fxLayoutAlign="start center" (click)="toggleActiveFilter('finished')">
                 <md-icon fxLayout fxLayoutAlign="center center">check</md-icon>
@@ -37,11 +37,8 @@
     </div>
 </div>
 
-<div class="list-wrapper">
-    <div *ngFor="let constructionSite of getFilteredConstructions()">
-        <line-construction-site fxFlex fxLayout fxLayoutAlign="space-between center" *ngIf="constructionSite" [constructionSite]="constructionSite"></line-construction-site>
-    </div>
-    <constructions-landing-page *ngIf="service.constructions.length === 0"></constructions-landing-page>
-</div>
+<construction-list-item *ngFor="let construction of filterConstructions(constructions)" [construction]="construction" (toEdit)="editConstruction($event.id)"></construction-list-item>
 
-<fab mdTooltip="Adicionar obra" mdTooltipPosition="before" (click)="addConstructionSite()"></fab>
+<constructions-landing-page *ngIf="(constructions).length === 0"></constructions-landing-page>
+
+<fab mdTooltip="Adicionar obra" mdTooltipPosition="before" (click)="addConstruction()"></fab>

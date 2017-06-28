@@ -6,7 +6,7 @@ $greyish-brown: #3e3e3e;
 $warm-grey-two: #989898;
 $topaz: #13afcb;
 $grapefruit: #ff4c4c;
-$greyish-brown-two: #3c3c3c;
+$greyish-brown: #3c3c3c;
 $warm-grey-three: #9f9f9f;
 $warm-grey-four: #999999;
 $orangey-yellow: #ffbb1a;
@@ -86,7 +86,7 @@ $orangey-yellow: #ffbb1a;
 .notification-message {
     @extend .text-important;
     font-weight: 300;
-    color: $greyish-brown-two;
+    color: $greyish-brown;
 }
 
 .notification-acidente {
@@ -98,7 +98,7 @@ $orangey-yellow: #ffbb1a;
 }
 
 .notification-nao-conformidade {
-    color: $greyish-brown-two;
+    color: $greyish-brown;
 }
 
 .notification-fiscalizacao {
@@ -107,7 +107,7 @@ $orangey-yellow: #ffbb1a;
 
 .notification-floor-indication {
     @extend .text-bold;
-    color: $greyish-brown-two;
+    color: $greyish-brown;
 }
 
 .notification-time {

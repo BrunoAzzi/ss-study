@@ -420,7 +420,54 @@
                 onDelete="CASCADE" />
     </changeSet>
 
-    <changeSet id="15" author="fpileggi">
+    <changeSet id="15" author="rdlorbieski">
+        <createTable tableName="cbos">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="code" type="varchar(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="title" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addAutoIncrement tableName="cbos" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
+    </changeSet>
+
+    <changeSet id="16" author="rdlorbieski">
+        <sqlFile path="/liquibase/seed/cbos.sql"/>
+    </changeSet>
+
+    <changeSet id="17" author="rdlorbieski">
+        <addColumn tableName="workers">
+            <column name="cep" type="varchar(10)"/>
+            <column name="adress" type="varchar(255)"/>
+            <column name="status" type="varchar(100)"/>
+            <column name="birth_date" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="gender" type="varchar(100)"/>
+            <column name="cbo_id" type="int"/>
+            <column name="cpf" type="varchar(255)">
+                <constraints nullable="false" unique="true" />
+            </column>
+            <column name="nit" type="varchar(255)"/>
+            <column name="degree" type="varchar(200)"/>
+            <column name="ctps" type="varchar(255)"/>
+            <column name="admission_date" type="TIMESTAMP" />
+            <column name="contract_type" type="varchar(100)"/>
+            <column name="special_needs" type="varchar(100)"/>
+            <column name="photo_url" type="text"/>
+            <column name="is_cipeiro" type="boolean"/>
+            <column name="is_brigade" type="boolean"/>
+            <column name="role" type="varchar(255)"/>
+            <column name="mandate_begin_date" type="TIMESTAMP"/>
+            <column name="mandate_end_date" type="TIMESTAMP"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="18" author="fpileggi">
         <createTable tableName="risk_types">
             <column name="id" type="int">
                 <constraints primaryKey="true" nullable="false"/>
@@ -442,9 +489,7 @@
                 onDelete="CASCADE" />
     </changeSet>
 
-    <changeSet id="16" author="fpileggi">
+    <changeSet id="19" author="fpileggi">
         <sqlFile path="liquibase/seed/risk_types_and_risk_factors.sql"/>
     </changeSet>
-
-    
 </databaseChangeLog>

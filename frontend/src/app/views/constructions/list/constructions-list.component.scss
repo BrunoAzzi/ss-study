@@ -1,8 +1,13 @@
 @import "../../../../scss/components/color.scss";
 
+:host {
+    display: block !important;
+    overflow: scroll;
+}
+
 .top-actionbar {
-    padding: 20px 0;
-    margin: 5px;
+
+    margin-bottom: 10px;
 
     .right-actionbar {
         & > md-select {
@@ -27,12 +32,9 @@
     }
 }
 
-.list-wrapper {
-    margin: 0 15px;
-
-    & > div {
-        margin: 16px 0;
-    }
+construction-list-item {
+    display: block;
+    margin-bottom: 20px;
 }
 
 md-chip {

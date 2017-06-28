@@ -1,8 +1,11 @@
+import { Component, AfterContentChecked, Input, Output, EventEmitter, OnInit, OnDestroy, OnChanges, NgZone } from '@angular/core';
+import { MdDialog, MdDialogRef} from '@angular/material';
+
+import { MappingDialog } from './../area-mapping/cone/mapping-dialog/mapping-dialog.component';
 import { Icon } from './../../models/icon.model'
 import { Marker } from './../../models/marker.model'
 import { Observable } from 'rxjs/Observable'
 import { Floor } from './../../models/floor.model'
-import { Component, AfterContentChecked, Input, Output, EventEmitter, OnInit, OnDestroy, OnChanges, NgZone } from '@angular/core'
 import * as L from 'leaflet'
 
 @Component({
@@ -28,8 +31,8 @@ export class BlueprintComponent implements AfterContentChecked, OnChanges {
     private currentPosition: any = { old: null, new: null }
     private currentMark: any
 
-    constructor(private _ngZone: NgZone) {
-        window['angularComponent'] = { removeMark: this.removeMark, zone: this._ngZone }
+    constructor(private _ngZone: NgZone, public dialog: MdDialog) {
+        window['angularComponent'] = { removeMark: this.removeMark, zone: this._ngZone };
     }
 
     ngOnChanges() {
@@ -169,6 +172,12 @@ export class BlueprintComponent implements AfterContentChecked, OnChanges {
             this.floor.markers.push(new Marker(position, icon, this.tool.name))
             this.updateFloor.next(this.floor)
             this.createMarker(position, this.currentMark)
+
+            if(icon.name === "checkpoint") {
+                let dialogRef = this.dialog.open(MappingDialog); 
+            }
+            //this.updateFloor.next(this.floor)
+            //this.createMarker(position, this.currentMark);
         }
     }
 
