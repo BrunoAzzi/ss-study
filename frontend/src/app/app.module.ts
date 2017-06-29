@@ -84,7 +84,7 @@ import { SummaryItemComponent } from './components/summary-item/summary-item.com
 import { SummaryComponent } from './components/summary/summary.component';
 import { RiskGraphComponent } from './components/area-monitoring/risk-graph/risk-graph.component';
 import { ResponsableDataComponent } from './components/company/responsable-data/responsable-data.component';
-import { AddInformationComponent } from './components/company/add-information/add-information.component';
+import { AddInformationComponent } from './components/company/additional-information/additional-information.component';
 import { Ng2FileDropModule } from 'ng2-file-drop';
 
 // Painel Emocional
