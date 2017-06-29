@@ -1,4 +1,4 @@
-<div class="overview">
+<div class="overview body-content">
     <div class="column">
         <floors-summary [construction]="service.construction"></floors-summary>
     </div>
@@ -7,7 +7,7 @@
         
         <safety-card id="last-alerts" [noPadding]="true" toggleDisable>
             <safety-card-header>
-                <span>Ãšltimos Alertas de Monitoramento</span>
+                <span>Últimos Alertas de Monitoramento</span>
             </safety-card-header>
             <safety-card-content>
                 <section-list [sections]=lastAlerts></section-list>
@@ -22,7 +22,7 @@
     <div class="column">
         <safety-card id="forthcoming-maturities" [noPadding]="true" toggleDisable>
             <safety-card-header>
-                <span>PrÃ³ximos Vencimentos</span>
+                <span>Próximos Vencimentos</span>
             </safety-card-header>
             <safety-card-content>
                 <section-list [sections]=forthcomingMaturities></section-list>
@@ -33,7 +33,7 @@
     <div class="column">
         <safety-card id="forthcoming-trainings" [noPadding]="true" toggleDisable>
             <safety-card-header>
-                <span>PrÃ³ximos Treinamentos</span>
+                <span>Próximos Treinamentos</span>
             </safety-card-header>
             <safety-card-content>
                 <section-list [sections]=forthcomingTrainings></section-list>
