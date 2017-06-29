@@ -87,7 +87,7 @@ export class WorkersDataComponent {
             ctps: new FormControl('', CustomValidators.onlyPositiveNumbers),
             birthDate: null,
             age: null,
-            nit: new FormControl('', CustomValidators.onlyPositiveNumbers),
+            nit: new FormControl(''),
             cep: null,
             completeAddress: null,
             admissionDate: null,

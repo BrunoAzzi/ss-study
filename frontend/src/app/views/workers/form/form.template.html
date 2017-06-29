@@ -1,11 +1,10 @@
 <div class="body-content">
+    <worker-form></worker-form>
     <workers-data [worker]="worker" (cpfUpdated)="getWorkerByCpf($event)"></workers-data>
     <br>
     <safety-card #safetyCard>
 
-        <safety-card-header>
-            <span>habilitações</span>
-        </safety-card-header>
+        <safety-card-header>habilitações</safety-card-header>
 
         <safety-card-content>
             <form #form novalidate id="form1" name="form1">

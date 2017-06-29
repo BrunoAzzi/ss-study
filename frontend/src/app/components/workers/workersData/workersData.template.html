@@ -30,7 +30,7 @@
                             <input mdInput formControlName="cpf" required placeholder="CPF" id="cpf" name="cpf"
                                    (blur)="autoCompleteWorker()" [textMask]="{mask: cpfMask}" [(ngModel)]="cpf">
                             <md-error *ngIf="myForm.controls.cpf.hasError('required')">Campo Obrigatório.</md-error>
-                            <md-error *ngIf="myForm.controls.cpf.hasError('cpf')">CPF inválido.</md-error>
+                            <md-error *ngIf="myForm.controls.cpf.hasError('cpf')">CPF Invalído.</md-error>
                         </md-input-container>
                     </div>
 
@@ -91,7 +91,7 @@
                                    [(ngModel)]="worker.name">
                             <md-error *ngIf="myForm.controls.fullname.hasError('required')">Campo Obrigatório.
                             </md-error>
-                            <md-error *ngIf="myForm.controls.fullname.hasError('onlytext')">São permitidos apenas
+                            <md-error *ngIf="myForm.controls.fullname.hasError('onlytext')">SÃ£o permitidos apenas
                                 letras.
                             </md-error>
                         </md-input-container>
@@ -114,7 +114,7 @@
 
                     <div class="grid-row">
                         <md-input-container>
-                            <input mdInput placeholder="Endereço Completo" formControlName="completeAddress"
+                            <input mdInput placeholder="EndereÃ§o Completo" formControlName="completeAddress"
                                    [(ngModel)]="worker.completeAddress" id="completeAddress"
                                    name="completeAddress" value="{{completeAddress}}">
                         </md-input-container>
@@ -123,7 +123,7 @@
                     <div class="grid-row">
                         <md-select placeholder="Cargo" formControlName="role"
                                    [(ngModel)]="worker.laborCBO"
-                                   [mdTooltip]="disabled ? 'Digite um CBO válido!' : 'Selecione um cargo'">
+                                   [mdTooltip]="disabled ? 'Digite um CBO vÃ¡lido!' : 'Selecione um cargo'">
                             <md-option *ngFor="let labor of labors" [value]="labor.value">
                                 {{ labor.viewValue }}
                             </md-option>
@@ -131,7 +131,7 @@
                     </div>
 
                     <div class="grid-row">
-                        <my-date-picker placeholder="Data de Admissão" formControlName="admissionDate"
+                        <my-date-picker placeholder="Data de AdmissÃ£o" formControlName="admissionDate"
                                         name="admissionDate"
                                         [(ngModel)]="worker.admissionDate"
                                         [options]="myDatePickerOptions">
@@ -169,8 +169,8 @@
                     <div class="grid-row">
                         <md-input-container>
                             <input mdInput formControlName="nit" [(ngModel)]="worker.nit"
-                                   placeholder="NIT" id="nit" name="nit" [textMask]="{mask: nitMask}">
-                            <md-error *ngIf="myForm.controls.nit.hasError('onlyPositiveNumbers')">São permitidos
+                                   placeholder="NIT" id="nit" name="nit" [textMask]="{mask: nitMask}"/>
+                            <md-error *ngIf="myForm.controls.nit.hasError('onlyPositiveNumbers')">SÃ£o permitidos
                                 apenas valores maiores ou igual a 0.
                             </md-error>
                         </md-input-container>
@@ -178,7 +178,7 @@
                         <md-input-container>
                             <input mdInput formControlName="ctps" [(ngModel)]="worker.ctps"
                                    placeholder="CTPS" id="ctps" name="ctps">
-                            <md-error *ngIf="myForm.controls.ctps.hasError('onlyPositiveNumbers')">São permitidos
+                            <md-error *ngIf="myForm.controls.ctps.hasError('onlyPositiveNumbers')">SÃ£o permitidos
                                 apenas valores maiores ou igual a 0.
                             </md-error>
                         </md-input-container>
@@ -202,8 +202,7 @@
                         <md-input-container>
                                     <textarea mdInput formControlName="textArea"
                                               [(ngModel)]="worker.cboDescription"
-                                              placeholder="Descrição da Função" name="textArea">
-
+                                              placeholder="DescriÃ§Ã£o da FunÃ§Ã£o" name="textArea">
                                     </textarea>
                         </md-input-container>
                     </div>
@@ -219,4 +218,3 @@
         </form>
     </safety-card-content>
 </safety-card>
-
