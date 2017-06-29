@@ -1,21 +1,18 @@
 <div fxLayout fxFlex fxLayoutAlign="start center" class="construction-site-info">
-    <a routerLink="/constructions/{{constructionSite.id}}">
+    <a routerLink="/constructions/{{construction.id}}">
         <div class="image-wrapper" fxLayout fxLayoutAlign="center center">
-            <img src="assets/construction-site/logo/{{constructionSite.image}}" alt="">
+            <img *ngIf="construction.image" src="{{construction.image}}" alt="">
         </div>
     </a>
-    <md-icon *ngIf="statusIcon" fxLayout fxLayoutAlign="center center" [ngClass]="status"> {{statusIcon}}</md-icon>
-    <div *ngIf="!statusIcon" class="icon-wrapper warn" fxLayout fxLayoutAlign="center center">
-        <img src="assets/icon/myconstructionsite/em-execucao.png" alt="">
-    </div>
-    <span class="title">{{constructionSite.title}}</span>
+    <i class="status-icon safety-icn-{{ statusIcon }}-svg" [ngClass]="status"></i>
+    <span class="title">{{construction.name}}</span>
     <span class="horizontal-divider">|</span>
-    <span class="address">{{constructionSite.address}}</span>
+    <span class="address">{{construction.address}}</span>
     <span class="horizontal-divider">|</span>
-    <span class="sponsor">Responsável: {{constructionSite.sponsor}}</span>
+    <span class="sponsor">Responsável: {{construction.sponsor}}</span>
 </div>
 <div fxLayout fxLayoutAlign="end center" class="tools">
-    <safety-construction-summary [construction]="constructionSite"></safety-construction-summary>
+    <safety-construction-summary [construction]="construction"></safety-construction-summary>
     <md-icon class="bell" fxLayout fxLayoutAlign="center center">notifications</md-icon>
-    <md-icon fxLayout fxLayoutAlign="center center" (click)="toEdit.emit(constructionSite)">edit</md-icon>
+    <md-icon fxLayout fxLayoutAlign="center center" (click)="toEdit.emit(construction)">edit</md-icon>
 </div>

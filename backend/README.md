@@ -10,8 +10,8 @@ To get your backend up and running follow these steps:
 ### Docker
 In order to run the docker-composer.yml you need to:
 1. Be sure that none application is running in ports:
-    - `8080`, usually an former installation of apache tomcat run in this port;
-    - `3306`, usually an former installation of mysql/mariadb run in this port;
+    - `8080`, usually a former installation of apache tomcat run in this port;
+    - `3306`, usually a former installation of mysql/mariadb run in this port;
 2. Install [Docker](https://docs.docker.com/engine/installation/) and [Docker Compose](https://docs.docker.com/compose/install/);
 3. Inside `SmartSafety/backend` run the commands `sudo service mysql stop` and
 `sudo docker-compose up --build`;

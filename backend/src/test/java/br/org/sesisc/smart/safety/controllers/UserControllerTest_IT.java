@@ -45,7 +45,7 @@ public class UserControllerTest_IT extends BaseControllerTest_IT {
         MvcResult result = mockMvc.perform(post("/users")
                 .content(getUserRequestJson(VALID_EMAIL,VALID_PASSWORD))
                 .contentType(contentType))
-                .andExpect(status().isUnprocessableEntity())
+                .andExpect(status().isConflict())
                 .andReturn();
         String responseJson = result.getResponse().getContentAsString();
         JSONObject jsonObject = new JSONObject(responseJson);

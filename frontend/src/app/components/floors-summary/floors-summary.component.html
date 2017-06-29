@@ -22,5 +22,8 @@
                 </a></li>
             </ul>
         </li>
+        <li *ngIf="construction.sectors.length == 0" class="section">
+            <span class="name">Não existem setores</span>
+        </li>
     </ul>
 </div>

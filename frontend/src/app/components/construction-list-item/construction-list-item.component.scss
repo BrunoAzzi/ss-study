@@ -2,9 +2,14 @@
 
 :host {
     background-color: white;
+    box-shadow: 0px 3px 9px 0 rgba(0, 0, 0, 0.05);
+    &:hover {
+        box-shadow: 0px 3px 9px 0 rgba(0, 0, 0, 0.3);
+    }
 }
 
 .construction-site-info {
+
     .image-wrapper {
         height: 50px;
         width: 135px;
@@ -21,7 +26,7 @@
         font-weight: 300;
         line-height: 1.42;
         text-align: left;
-        color: $greyish-brown-two;
+        color: $greyish-brown;
         margin: 0 5px;
     }
 
@@ -39,20 +44,14 @@
         line-height: 0.42;
     }
 
-    md-icon {
+    .status-icon {
         color: white;
         margin: 0 15px;
-    }
-
-    .icon-wrapper {
-        margin: 0 15px;
+        display: block;
         width: 24px;
         height: 24px;
-
-        img {
-            width: 16px;
-            height: 16px;
-        }
+        line-height: 24px;
+        text-align: center;
     }
 }
 
@@ -71,7 +70,7 @@
 
     .bell {
         margin: 0 15px;
-        color: $greyish-brown-two;
+        color: $greyish-brown;
     }
 
     .pencil {
@@ -93,7 +92,7 @@
             font-weight: 300;
             line-height: 1;
             text-align: center;
-            color: $greyish-brown-two;
+            color: $greyish-brown;
         }
     }
 }

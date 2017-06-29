@@ -10,7 +10,6 @@ import {SafetyCardComponent} from '../common/safety-card/safety-card.component';
 export class ConstructionFormComponent implements OnInit {
 
     @Input() construction : Construction;
-
     @Output() updatedConstruction : EventEmitter<Construction> = new EventEmitter()
     
     @ViewChild('constructionData') constructionData: SafetyCardComponent;

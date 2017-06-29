@@ -3,7 +3,7 @@
         <section>
             <md-input-container>
                 <input mdInput placeholder="Nome do Empreendimento"
-                       [(ngModel)]="construction.title" name="title"
+                       [(ngModel)]="construction.name" name="name"
                 >
             </md-input-container>
             <cep-picker [(cep)]="construction.cep" class="half" (onSearch)="onCepSearch(f, $event)"></cep-picker>

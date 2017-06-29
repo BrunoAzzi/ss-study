@@ -1,65 +1,13 @@
 @import '../../../../scss/components/color.scss';
 
-:host {
-    padding: 15px 0;
-    font-family: Lato;
+.danger     {color: $grapefruit;}
+.success    {color: $green-blue;}
+.disabled   {color: $cool-grey;}
+
+.md-icons-align {
+    align-items: center;
 }
 
-my-date-picker {
-    max-width: 200px;
-    // & /deep/ .selector {
-    //     position: fixed;
-    //     z-index: 100;
-    // }
-}
-
-.periodicity {
-    max-width: 100px;
-}
-
-.success {
-    color: $green-blue;
-}
-
-.danger {
-    color: $grapefruit;
-}
-
-.disabled {
-    color: $cool-grey;
-}
-
-md-radio-button {
-    margin: 0 10px;
-}
-
-.tricky-select {
-    width: 100%;
-}
-
-.tricky-select .mat-input-underline {
-    display: none;
-}
-
-.recycling {
-    margin: 20px 0;
-    padding: 0 40px;
-
-    .header {
-        padding: 20px;
-        background-color: $silver;
-        font-family: inherit;
-    }
-
-    .content {
-        border: 1px solid $silver;
-
-        recycling {
-            border-bottom: 1px solid $silver;
-        }
-    }
-
-    .add {
-        margin: 20px;
-    }
+.align-items {
+    align-items: center;
 }

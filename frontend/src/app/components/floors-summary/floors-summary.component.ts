@@ -50,10 +50,10 @@ export class FloorsSummaryComponent implements OnInit {
                 workers: sum.workers + floor.workersNumber()
             }
         }, {
-				alerts: 0,
-				cones: 0,
-				workers: 0
-			})
+            alerts: 0,
+            cones: 0,
+            workers: 0
+        })
     }
 
     changeFloor(floor: Floor): void {
