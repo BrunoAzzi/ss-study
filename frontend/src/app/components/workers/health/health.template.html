@@ -1,4 +1,4 @@
-<safety-card>
+<safety-card #healthSaved>
     <safety-card-header>
         <span>Dados de saúde</span>
     </safety-card-header>
@@ -6,15 +6,9 @@
         <div class="message-errors" *ngIf="errorMsg != undefined">
             {{errorMsg}}
         </div>
-        <form [formGroup]="myForm" id="formHealth" (submit)="saveHealthComponent(safetyCard)">
+        <form [formGroup]="helthForm" id="formHealth" (submit)="saveHealthComponent(healthSaved, asoComponent)">
             <div class="form-content">
                 <table class="table-form">
-                    <tr>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
                     <tr>
                         <td>
                             <md-select formControlName="bloodTypes" placeholder="Tipo Sanguíneo">
@@ -36,6 +30,7 @@
                     </tr>
                 </table>
             </div>
+
             <div class="aling-div" *ngFor="let aso of asoList">
                 <div>
                     <md-select formControlName="asoTypes" required placeholder="aso" (change)="changeSelected(aso, $event)">
@@ -43,9 +38,13 @@
                             {{asoType.viewValue}}
                         </md-option>
                     </md-select>
+                    <div *ngIf="submitted">
+                        <md-error *ngIf="helthForm.controls.asoTypes.hasError('required')">Campo Obrigatório.</md-error>
+                    </div>
                 </div>
                 <div *ngIf="aso.selected >= 0">
-                    <asoItemComponent [itemSelected]="aso.selected" [itemName]="aso.name" (removed)="removeAsoItem(aso)"></asoItemComponent>
+                    <asoItemComponent #asoComponent [itemSelected]="aso.selected" [itemName]="aso.name" (removed)="removeAsoItem(aso)" teste="testeBool"></asoItemComponent>
+                    {{asoComponent}}
                 </div>
             </div>
             <div fxLayout="row" fxLayoutAlign="start right">

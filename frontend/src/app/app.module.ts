@@ -20,6 +20,7 @@ import { SessionsService } from "./services/sessions.service";
 import { PasswordService } from "./services/password.service";
 import { AuthGuard } from './guards/index';
 
+
 import {
     MdSnackBar,
     MdDialogModule,
@@ -37,6 +38,8 @@ import { AppComponent } from './app.component';
 import { ChartsModule } from 'ng2-charts';
 import { MyDatePickerModule } from 'mydatepicker';
 import { CookieService } from 'ng2-cookies';
+import { MomentModule } from 'angular2-moment';
+
 
 // Pipe
 import { KeysPipe } from './pipes/keys.pipe';
@@ -48,7 +51,7 @@ import { WorkersDataComponent } from "./components/workers/workersData/workersDa
 import { CompaniesComponent } from "./views/companies/companies.component";
 import { CompanyDetailsComponent } from "./components/forms/company-details/company-details.component";
 import { HealthComponent } from "./components/workers/health/health.component";
-import { AsoItemComponent , ConfirmationDialogOverview } from "./components/workers/asoItem/asoItem.component";
+import { AsoItemComponent, ConfirmationDialogOverview } from "./components/workers/asoItem/asoItem.component";
 import { DateRangeComponent } from "./components/common/date-range/date-range.component";
 import { SkillComponent } from "./components/workers/skill/skill.component";
 import { RecyclingComponent } from "./components/workers/recycling/recycling.component";
@@ -277,6 +280,8 @@ import { AlertsTabItemComponent } from './components/area-monitoring/alerts-tab-
         // Datepicker
         MyDatePickerModule,
 
+        MomentModule,
+
         // Mocks
         InMemoryWebApiModule.forRoot(InMemoryDataService, { passThruUnknownUrl: true }),
 
@@ -302,7 +307,7 @@ import { AlertsTabItemComponent } from './components/area-monitoring/alerts-tab-
         // Routes
         AppRoutingModule,
     ],
-    entryComponents: [ContentElementDialog,ConfirmationDialogOverview],
+    entryComponents: [ContentElementDialog, ConfirmationDialogOverview],
     providers: [
         HttpClientService,
         AuthGuard,

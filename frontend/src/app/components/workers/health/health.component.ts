@@ -5,18 +5,22 @@ import { CommonModule } from '@angular/common';
 import { GlobalValidators } from '../../globalValidators';
 import { IMyDpOptions } from 'mydatepicker';
 
+
 @Component({
     selector: 'healthComponent',
     templateUrl: 'health.template.html',
     styleUrls: ['./health.component.scss'],
 })
 export class HealthComponent {
-    myForm: FormGroup;
+    helthForm: FormGroup;
     asoList: Array<any> = [];
     errorMsg: String = undefined;
     canAddNew: Boolean = true;
     allergies: '';
     diseases: '';
+    submitted: boolean = false;
+
+    teste = new EventEmitter();
 
     myDatePickerOptions: IMyDpOptions = {
         dateFormat: 'dd/mm/yyyy',
@@ -26,10 +30,11 @@ export class HealthComponent {
     };
 
     constructor(private fb: FormBuilder) {
-        this.myForm = this.fb.group({
+        this.helthForm = this.fb.group({
             bloodTypes: [''],
-            asoTypes: [''],
+            asoTypes: new FormControl(''),
         })
+
     }
 
     bloodTypes = [
@@ -50,19 +55,22 @@ export class HealthComponent {
         { value: 2, viewValue: 'Periódico', name: "Proxímo Exame" },
         { value: 3, viewValue: 'Mudança de Função', name: "Data Periódico" },
         { value: 4, viewValue: 'Retorno ao Trabalho', name: "Data Periódico" },
+        { value: 5, viewValue: '', name: "" },
     ];
 
     addAso() {
+
         if (this.canAddNew) {
             let json = {
                 selected: undefined,
                 name: undefined
             };
             this.asoList.push(json);
+            this.helthForm.get('asoTypes').setValidators(Validators.required);
+            this.helthForm.get('asoTypes').updateValueAndValidity();
         }
     }
     removeAsoItem(aso) {
-        //Call modal to cofirm
         let index = this.asoList.indexOf(aso);
         if (index > -1) this.asoList.splice(index, 1);
         this.checkAsoSelected();
@@ -91,6 +99,17 @@ export class HealthComponent {
             this.errorMsg = undefined;
             this.canAddNew = true;
         }
+    }
+
+    saveHealthComponent(healthSaved,asoComponent) {
+       asoComponent.teste();
+        this.submitted = true;
+        this.teste.emit(this.submitted);
+        if (this.helthForm.valid && this.errorMsg == null) {
+            healthSaved.close();
+            this.submitted = false;
+        }
+
     }
 
 
