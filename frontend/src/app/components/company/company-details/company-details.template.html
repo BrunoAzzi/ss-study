@@ -1,0 +1,93 @@
+<form (ngSubmit)="save()" #f="ngForm" novalidate>
+    <div class="form-content">
+        
+        <section class="grid-container">
+            <div class="grid-column-75">
+                <div class="grid-row">
+                    <md-card class="image-upload">
+                        <md-card-content>                                                
+                        </md-card-content>
+                        <md-card-footer>
+                            <p>INSIRA A FOTO <br/> DO TRABALHADOR</p>
+                        </md-card-footer>
+                    </md-card>                   
+                    <div class="grid-column">
+                        <div class="grid-row">
+
+                            <md-select placeholder="Tipo">
+                                <md-option>Serviço</md-option>
+                            </md-select>    
+                        </div>
+                        <div class="grid-row">
+                            <md-input-container>
+                                <textarea mdInput placeholder="DESCRIÇÃO"></textarea>
+                            </md-input-container>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="grid-container">
+            <div class="grid-column">
+                <div class="grid-row">
+
+                    <md-input-container>
+                        <input mdInput placeholder="CNPJ">
+                    </md-input-container>
+
+                    <md-input-container>
+                        <input mdInput placeholder="CNAE">
+                    </md-input-container>
+
+                    <md-input-container>
+                        <input mdInput placeholder="RAZÃO SOCIAL">
+                    </md-input-container>
+                </div>
+
+                <div class="grid-row">
+                    <md-input-container>
+                        <input mdInput placeholder="NOME FANTASIA">
+                    </md-input-container>
+                    <md-input-container>
+                        <input mdInput placeholder="CEP">
+                    </md-input-container>
+                    <md-input-container>
+                        <input mdInput placeholder="ENDEREÇO">
+                    </md-input-container>
+                </div>
+
+                <div class="grid-row">
+                    <md-input-container>
+                        <input mdInput placeholder="BAIRRO">
+                    </md-input-container>
+                    <md-input-container>
+                        <input mdInput placeholder="CIDADE/ESTADO">
+                    </md-input-container>
+                    <md-input-container>
+                        <input mdInput placeholder="EMAIL">
+                    </md-input-container>
+                </div>
+
+                <div class="grid-row">
+                    <md-input-container>
+                        <input mdInput placeholder="TELEFONE">
+                    </md-input-container>
+                    <md-input-container>
+                        <input mdInput placeholder="FAX">
+                    </md-input-container>
+                    <md-input-container>
+                        <input mdInput placeholder="URL">
+                    </md-input-container>
+                </div>
+            </div>
+
+        </section>
+
+    </div>    
+
+    <div class="form-bottom button-default">
+        <button md-raised-button [disabled]="!f.valid">SALVAR E CONTINUAR</button>
+    </div>
+
+</form>

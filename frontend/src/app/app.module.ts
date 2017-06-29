@@ -52,7 +52,7 @@ import { DataTablePipe } from './components/perfil_emocional/status_trabalhadore
 import { SecurityWorksComponent } from './components/workers/securityWorks/securityWorks.component';
 import { WorkersDataComponent } from './components/workers/workersData/workersData.component';
 import { CompaniesComponent } from './views/companies/companies.component';
-import { CompanyDetailsComponent } from './components/forms/company-details/company-details.component';
+import { CompanyDetailsComponent } from './components/company/company-details/company-details.component';
 import { DateRangeComponent } from './components/common/date-range/date-range.component';
 import { SkillComponent } from './components/workers/skill/skill.component';
 import { RecyclingComponent } from './components/workers/recycling/recycling.component';
