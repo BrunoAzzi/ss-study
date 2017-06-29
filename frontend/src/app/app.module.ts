@@ -21,10 +21,12 @@ import { RouterModule } from '@angular/router';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { HttpClientService } from './services/http-client.service';
-import { SessionsService } from './services/sessions.service';
-import { PasswordService } from './services/password.service';
+import { HttpClientService } from "./services/http-client.service";
+import { SessionsService } from "./services/sessions.service";
+import { PasswordService } from "./services/password.service";
+
 import { AuthGuard } from './guards/index';
+
 
 import {
     MdSnackBar,
@@ -43,20 +45,24 @@ import { AppComponent } from './app.component';
 import { ChartsModule } from 'ng2-charts';
 import { MyDatePickerModule } from 'mydatepicker';
 import { CookieService } from 'ng2-cookies';
+import { MomentModule } from 'angular2-moment';
+
 
 // Pipe
 import { KeysPipe } from './pipes/keys.pipe';
 import { DataTablePipe } from './components/perfil_emocional/status_trabalhadores/DataTablePipe.pipe';
 
 // Components
-import { SecurityWorksComponent } from './components/workers/securityWorks/securityWorks.component';
-import { WorkersDataComponent } from './components/workers/workersData/workersData.component';
-import { CompaniesComponent } from './views/companies/companies.component';
-import { CompanyDetailsComponent } from './components/forms/company-details/company-details.component';
-import { DateRangeComponent } from './components/common/date-range/date-range.component';
-import { SkillComponent } from './components/workers/skill/skill.component';
-import { RecyclingComponent } from './components/workers/recycling/recycling.component';
-import { BoxMessageComponent } from './components/common/box-message/box-message.component';
+import { SecurityWorksComponent } from "./components/workers/securityWorks/securityWorks.component";
+import { WorkersDataComponent } from "./components/workers/workersData/workersData.component";
+import { CompaniesComponent } from "./views/companies/companies.component";
+import { CompanyDetailsComponent } from "./components/forms/company-details/company-details.component";
+import { HealthComponent } from "./components/workers/health/health.component";
+import { AsoItemComponent, ConfirmationDialogOverview } from "./components/workers/asoItem/asoItem.component";
+import { DateRangeComponent } from "./components/common/date-range/date-range.component";
+import { SkillComponent } from "./components/workers/skill/skill.component";
+import { RecyclingComponent } from "./components/workers/recycling/recycling.component";
+import { BoxMessageComponent } from "./components/common/box-message/box-message.component";
 import { BlueprintComponent } from './components/blueprint/blueprint.component';
 import { ToolboxComponent } from './components/toolbox/toolbox.component';
 
@@ -85,9 +91,9 @@ import { SummaryComponent } from './components/summary/summary.component';
 import { RiskGraphComponent } from './components/area-monitoring/risk-graph/risk-graph.component';
 import { ResponsableDataComponent } from './components/company/responsable-data/responsable-data.component';
 import { AddInformationComponent } from './components/company/add-information/add-information.component';
+
 import { Ng2FileDropModule } from 'ng2-file-drop';
 
-// Painel Emocional
 import { WorkersOverviewComponent } from './components/overview/workers-overview/workers-overview.component';
 import { ConstructionsStatusComponent } from './components/overview/constructions-status/constructions-status.component';
 import { FloorsSummaryComponent } from './components/floors-summary/floors-summary.component';
@@ -223,6 +229,11 @@ import { MaintenanceInlineFormComponent } from './components/maintenance-inline-
         LineSupplierDetailComponent,
         SupplierFormComponent,
 
+        // Suppliers
+        SupplierListComponent,
+        LineSupplierDetailComponent,
+        SupplierFormComponent,
+
         // Layouts
         BlankComponent,
         BasicComponent,
@@ -239,6 +250,9 @@ import { MaintenanceInlineFormComponent } from './components/maintenance-inline-
         SkillComponent,
         RecyclingComponent,
         InputFile,
+        AsoItemComponent,
+        ConfirmationDialogOverview,
+        HealthComponent,
 
         // Obras
         ConstructionDetailComponent,
@@ -291,6 +305,8 @@ import { MaintenanceInlineFormComponent } from './components/maintenance-inline-
         // Datepicker
         MyDatePickerModule,
 
+        MomentModule,
+
         // Mocks
         InMemoryWebApiModule.forRoot(InMemoryDataService, {passThruUnknownUrl: true}),
 
@@ -316,7 +332,8 @@ import { MaintenanceInlineFormComponent } from './components/maintenance-inline-
         // Routes
         AppRoutingModule,
     ],
-    entryComponents: [MappingDialog],
+
+    entryComponents: [ ConfirmationDialogOverview,MappingDialog],
     providers: [
         HttpClientService,
         AuthGuard,

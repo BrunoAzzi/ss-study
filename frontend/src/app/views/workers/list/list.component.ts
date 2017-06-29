@@ -45,7 +45,6 @@ export class WorkerListComponent {
     }
 
     getFilteredWorkers(workers : Array<Worker>) {
-
         return workers.filter(worker => {
 			return (
                 !(this.activeFilters.personal && !worker.isThirdparty) &&
