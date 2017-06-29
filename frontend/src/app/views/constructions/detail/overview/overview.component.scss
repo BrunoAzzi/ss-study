@@ -1,47 +1,37 @@
+:host {
+    overflow: hidden;
+    height: 100%;
+    box-sizing: border-box;
+}
+
 .overview {
     width: 100%;
+    height: 100%;
+
     display: flex;
     flex-direction: row;
 
-
     .column {
-        margin: 10px;
+        margin: 0 10px;
         width: 100%;
-    }
-
-    .scrollable {
-        overflow: scroll;
-        width: 108%;
-    }
-    
-}
-
-#last-alerts {
-    max-height: 40vh;
-    padding-bottom: 100px;
-    margin-bottom: 20px;
+        height: 100%;
 
         display: flex;
         flex-direction: column;
         align-items: stretch;
+    }
 }
 
-
-#constructions-status {
-    max-height: 25%;    
-    margin-bottom: 23px;
+section-list {
+    display: block;
 }
 
-#workers {
-    max-height: 25%;
+safety-card-content {
+    overflow: scroll;
 }
 
 #last-alerts, #constructions-status, #forthcoming-trainings {
     margin-bottom: 20px;
-
-    .scrollable {
-        max-height: 30vh;
-    }
 }
 
 #last-alerts {

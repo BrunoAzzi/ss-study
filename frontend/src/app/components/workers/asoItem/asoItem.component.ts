@@ -1,11 +1,8 @@
-import { Component, Input, Output, EventEmitter, Inject, ViewChild, TemplateRef } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { GlobalValidators } from '../../globalValidators';
+import { MdDialog, MdDialogRef } from '@angular/material';
 import { IMyDpOptions } from 'mydatepicker';
-import { DOCUMENT } from '@angular/platform-browser';
-import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
-import { MomentModule} from 'angular2-moment';
+import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
+
 
 @Component({
     selector: 'asoItemComponent',

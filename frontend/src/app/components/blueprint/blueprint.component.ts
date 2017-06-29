@@ -143,7 +143,7 @@ export class BlueprintComponent implements AfterContentChecked, OnChanges {
             marker.on('moveend', () => { this.updateMark() })
         } else {
             marker.bindPopup(`
-                <h1>João da Silva Antunes</h1>
+                <h1>JoÃ£o da Silva Antunes</h1>
                 <p>10:09 - 10/05</p>
                 <p>Cone 02381</p>
             `)
@@ -194,4 +194,3 @@ export class BlueprintComponent implements AfterContentChecked, OnChanges {
         )
     }
 }
-

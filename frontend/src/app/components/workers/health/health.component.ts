@@ -1,10 +1,6 @@
-import { AsoItemComponent } from './../asoItem/asoItem.component';
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { GlobalValidators } from '../../globalValidators';
 import { IMyDpOptions } from 'mydatepicker';
-
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { Component, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'healthComponent',
