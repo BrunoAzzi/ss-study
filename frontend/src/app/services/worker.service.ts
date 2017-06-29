@@ -20,11 +20,28 @@ export class WorkerService {
 		return this.service.get(this.endpoint + "/" + id)
 			.map(jsonResponse => {
 				return new Worker()
-			} 
+			}) 
 	}
 
 	getWorkerByCpf(cpf: string) {
-		return this.getWorker(1);
+		console.log("entrou aqui");
+		console.log(this.endpoint)
+		return this.service.post(this.endpoint+'/findByCpf', JSON.stringify({ cpf: '1616' }))
+			.map(jsonResponse => {
+				console.log(jsonResponse)
+				return new Worker().initializeWithJSON(jsonResponse.worker)
+			});
+
+	/*	 this.service.post(this.endpoint+"/findByCpf", JSON.stringify({ cpf: cpf}))
+            .map((jsonResponse) => {
+				console.log(jsonResponse);
+				return new Worker();
+           //     if (obj.user && obj.user.token) {
+           //         Cookie.set('auth_token', obj.user.token);
+           //     }
+            });*/
+
+//		return this.getWorker(1);
 //		return this.getWorkerList().map(workerlist => workerList.map(worker => if (worker.cpf === cpf) return worker));
 	}
 }
