@@ -35,14 +35,10 @@ public class WorkerController {
         );
     }
 
-    @PostMapping("/findByCpf")
-    public ResponseEntity<?> findByCpf(@RequestBody @Valid final Worker cParams, Errors errors) {
+    @GetMapping("/cpf/{cpf}")
+    public ResponseEntity<?> findByCpf(@PathVariable("cpf") String cpf) {
 
-        if (errors.hasErrors()) {
-            return ErrorResponse.handle(errors, HttpStatus.UNPROCESSABLE_ENTITY);
-        }
-
-        Worker worker = repository.findByCpf(cParams.getCpf());
+        Worker worker = repository.findByCpf(cpf);
         return SuccessResponse.handle(
                 new String[] { "worker" },
                 new Object[] { worker },

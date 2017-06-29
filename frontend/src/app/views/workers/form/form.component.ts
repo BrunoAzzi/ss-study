@@ -41,9 +41,7 @@ export class WorkerFormComponent {
     ];
 
     getWorkerByCpf(cpf: string) {
-     
         this.service.getWorkerByCpf(cpf).subscribe(subscribedworker => {
-            console.log(subscribedworker)
             this.worker = subscribedworker
         } );
     }
