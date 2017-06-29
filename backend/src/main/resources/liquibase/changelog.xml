@@ -450,7 +450,7 @@
             <column name="gender" type="varchar(100)"/>
             <column name="cbo_id" type="int"/>
             <column name="cpf" type="varchar(255)">
-                <constraints nullable="false" unique="true" />tudo
+                <constraints nullable="false" unique="true" />
             </column>
             <column name="nit" type="varchar(255)"/>
             <column name="degree" type="varchar(200)"/>
