@@ -6,7 +6,7 @@
         <div class="message-errors" *ngIf="errorMsg != undefined">
             {{errorMsg}}
         </div>
-        <form [formGroup]="helthForm" id="formHealth" (submit)="saveHealthComponent(healthSaved, asoComponent)">
+        <form [formGroup]="helthForm" id="formHealth" (submit)="saveHealthComponent(healthSaved)">
             <div class="form-content">
                 <table class="table-form">
                     <tr>
@@ -30,7 +30,6 @@
                     </tr>
                 </table>
             </div>
-
             <div class="aling-div" *ngFor="let aso of asoList">
                 <div>
                     <md-select formControlName="asoTypes" required placeholder="aso" (change)="changeSelected(aso, $event)">
@@ -44,7 +43,6 @@
                 </div>
                 <div *ngIf="aso.selected >= 0">
                     <asoItemComponent #asoComponent [itemSelected]="aso.selected" [itemName]="aso.name" (removed)="removeAsoItem(aso)" teste="testeBool"></asoItemComponent>
-                    {{asoComponent}}
                 </div>
             </div>
             <div fxLayout="row" fxLayoutAlign="start right">

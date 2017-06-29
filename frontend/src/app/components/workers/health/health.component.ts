@@ -101,8 +101,8 @@ export class HealthComponent {
         }
     }
 
-    saveHealthComponent(healthSaved,asoComponent) {
-       asoComponent.teste();
+    saveHealthComponent(healthSaved) {
+       /*asoComponent.teste();*/
         this.submitted = true;
         this.teste.emit(this.submitted);
         if (this.helthForm.valid && this.errorMsg == null) {
