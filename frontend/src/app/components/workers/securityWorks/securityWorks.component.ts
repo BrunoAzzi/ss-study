@@ -1,9 +1,6 @@
-import {Component, Inject, Input, OnDestroy} from '@angular/core';
-import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
-import { CommonModule} from '@angular/common';
-import { WorkersDataService } from "../../../services/workers/workersData.service";
+import { Component, Input } from '@angular/core';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { SecurityWorksService } from "../../../services/workers/securityWorks.service";
-import { Subscription }   from 'rxjs/Subscription';
 
 @Component({
     selector: 'security-works',
@@ -12,8 +9,8 @@ import { Subscription }   from 'rxjs/Subscription';
     providers: [SecurityWorksService]
 })
 export class SecurityWorksComponent {
-     @Input() cpf: string;
-      @Input() worker;
+    @Input() cpf: string;
+    @Input() worker;
     securityForm: FormGroup;
     submitted: boolean = false;
     invalidDate: boolean = true;
@@ -25,11 +22,10 @@ export class SecurityWorksComponent {
             cipeiros: new FormControl('', Validators.required),
             laborsInCipa: new FormControl('', Validators.required),
         });
-     
+
     }
 
-    
-    setDatawithCPF(dateRange){
+    setDatawithCPF(dateRange) {
         this.secService.getSecurityWorker().subscribe(
             (response) => {
                 this.selectedCipeiro = response.cipeiro;
@@ -41,26 +37,25 @@ export class SecurityWorksComponent {
     }
 
     brigadistas = [
-        { value: 1, viewValue: 'Sim' },
-        { value: 2, viewValue: 'Não' },
+        {value: 1, viewValue: 'Sim'},
+        {value: 2, viewValue: 'Não'},
     ];
 
     selectedBrigadista: number;
 
     cipeiros = [
-        { value: 1, viewValue: 'Sim' },
-        { value: 2, viewValue: 'Não' },
+        {value: 1, viewValue: 'Sim'},
+        {value: 2, viewValue: 'Não'},
     ];
 
-    selectedCipeiro: number=2;
-
+    selectedCipeiro: number = 2;
 
     laborsInCipa = [
-        { value: 1, viewValue: 'Membro Suplente' },
-        { value: 2, viewValue: 'Membro Efetivo' },
-        { value: 3, viewValue: 'Presidente' },
-        { value: 4, viewValue: 'Vice Presidente' },
-        { value: 5, viewValue: 'Secretário' },
+        {value: 1, viewValue: 'Membro Suplente'},
+        {value: 2, viewValue: 'Membro Efetivo'},
+        {value: 3, viewValue: 'Presidente'},
+        {value: 4, viewValue: 'Vice Presidente'},
+        {value: 5, viewValue: 'Secretário'},
     ];
 
     selectedCipaLabor: number;
@@ -78,11 +73,10 @@ export class SecurityWorksComponent {
     }
 
     saveSecurityForm(safetyCard, dateRange) {
-        console.log(this.cpf)
+        console.log(this.cpf);
         this.submitted = true;
         const date = dateRange.getDate();
         this.invalidDate = date === '' || date === null;
-
         if (this.securityForm.valid && this.selectedCipeiro === 0 && !this.invalidDate) {
             safetyCard.close();
         }

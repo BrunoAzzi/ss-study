@@ -9745,4 +9745,4 @@ INSERT INTO cities (state_id, name) VALUES (27, 'Tupirata');
 INSERT INTO cities (state_id, name) VALUES (27, 'Tupiratins');
 INSERT INTO cities (state_id, name) VALUES (27, 'Venus');
 INSERT INTO cities (state_id, name) VALUES (27, 'Wanderlandia');
-INSERT INTO cities (state_id, name) VALUES (27, 'Xambioa');
+INSERT INTO cities (state_id, name) VALUES (27, 'Xambioa')

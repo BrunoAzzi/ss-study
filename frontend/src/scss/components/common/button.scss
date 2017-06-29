@@ -1,3 +1,5 @@
+@import '../color.scss';
+
 .big-button {
     display: block;
     padding: 1em 3em;
@@ -8,7 +10,6 @@
     text-decoration: none;
     max-width: 200px;
     cursor: pointer;
-
     &:hover {
         background-color: darken($grapefruit, 5);
     }
@@ -23,4 +24,34 @@ a.action {
     text-transform: uppercase;
     text-decoration: underline;
     cursor: pointer;
+}
+
+.button-default {
+    width: auto;
+    text-align: right;
+    button {
+        opacity: 1;
+        background-color: $cool-grey;
+        color: white;
+        font-size: 11px;
+        text-transform: uppercase;
+    }
+    button[disabled] {
+        opacity: 0.5;
+    }
+}
+
+.button-red {
+    width: auto;
+    text-align: right;
+    button {
+        opacity: 1;
+        background-color: $grapefruit;
+        color: white;
+        font-size: 11px;
+        text-transform: uppercase;
+    }
+    button[disabled] {
+        opacity: 0.5;
+    }
 }

@@ -1,0 +1,93 @@
+@import '../../../../../scss/components/color.scss';
+
+.mat-input-container {    
+    width: 410px;
+    height: auto;
+    padding: 0 14px;
+
+    .mat-input-element {
+       position: absolute;
+       top: 1.5em;
+       text-transform: uppercase;
+       font-size: 11px;
+       font-weight: bold;
+       line-height: 1.27;
+       color: $greyish-brown; 
+    }
+
+    .mat-input-placeholder {
+        left: 30px !important; 
+    }
+
+}
+
+a {
+    text-transform: uppercase;
+    color: $grapefruit;
+    font-size: 10px;
+    font-weight: bold;
+    margin-left: 22px;
+    margin-right: 41px;
+
+    &:last-child {
+        margin-right: 0px;
+        opacity: 0.6;
+    }
+}
+
+table {
+      overflow: scroll;
+      width: 100%;
+      height: auto;
+      font-size: 11px;
+	  font-weight: bold;
+	  line-height: 1.27;
+      color: $greyish-brown;
+      border-collapse: collapse;
+      border-spacing: 0;
+      text-transform: uppercase;
+      margin-top: 21px;
+
+      tr {
+
+        th {
+            width: 100%;
+            padding: 0 10px;
+        }
+
+        td {
+            width: 25%;
+            text-align: right;
+            padding: 5px 10px;
+
+            &:first-child {
+                width: 50%;
+                text-align: left;
+            }
+
+            &:last-child {
+                padding: 5px 15px;
+            }
+        }
+
+        &:first-of-type {
+            &.selected, &:hover {
+                background: transparent;
+            }
+        }
+
+        &.selected, &:hover {
+          background-color: $pale-gray2;
+        }
+
+        &.bordered {
+            border-bottom: 1px solid #dde2e3;
+
+            &.selected, &:hover {
+                background: transparent;
+            }
+
+        }
+
+      }
+}

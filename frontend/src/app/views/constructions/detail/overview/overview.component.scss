@@ -21,8 +21,9 @@
     padding-bottom: 100px;
     margin-bottom: 20px;
 
-    .scrollable {
-        max-height: 40vh;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
     }
 }
 
@@ -35,15 +36,7 @@
     max-height: 25%;
 }
 
-#forthcoming-maturities {
-    .scrollable {
-        max-height: 90vh;
-    }
-}
-
-#forthcoming-trainings {
-    max-height: 30vh;
-    padding-bottom: 100px;
+#last-alerts, #constructions-status, #forthcoming-trainings {
     margin-bottom: 20px;
 
     .scrollable {
@@ -51,12 +44,14 @@
     }
 }
 
-#tasks {
-    max-height: 45vh;
-    padding-bottom: 100px;
-    margin-bottom: 20px;
+#last-alerts {
+    flex-grow: 1;
+}
 
-    .scrollable {
-        max-height: 45vh;
-    }
+#last-alerts {
+    flex-grow: 1;
+}
+
+#forthcoming-trainings, #tasks {
+    flex-grow: 1;
 }

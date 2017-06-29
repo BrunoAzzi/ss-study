@@ -1,24 +1,17 @@
-<div class="overview">
+<div class="overview body-content">
     <div class="column">
         <floors-summary [construction]="service.construction" (change)="onFloorChanged($event)"></floors-summary>
     </div>
     <div class="column">
-        <div id="last-alerts">
-            <safety-card toggleDisable>
-                <safety-card-header>
-                    <span>Situação da Obra</span>
-                </safety-card-header>
-                <safety-card-content>
-                    <div class="scrollable">
-                        <section-list [sections]=lastAlerts></section-list>
-                    </div>
-                </safety-card-content>
-            </safety-card>
-        </div>
-
-        <div id="constructions-status">
-            <constructions-status status="4"></constructions-status>
-        </div>
+        
+        <safety-card id="last-alerts" [noPadding]="true" toggleDisable>
+            <safety-card-header>
+                <span>Últimos Alertas de Monitoramento</span>
+            </safety-card-header>
+            <safety-card-content>
+                <section-list [sections]=lastAlerts></section-list>
+            </safety-card-content>
+        </safety-card>
 
         <div id="workers">
             <workers-overview [results]=workers.results [total]=workers.total></workers-overview>
@@ -26,18 +19,14 @@
     </div>
 
     <div class="column">
-        <div id="forthcoming-maturities">
-            <safety-card toggleDisable>
-                <safety-card-header>
-                    <span>Próximos Vencimentos</span>
-                </safety-card-header>
-                <safety-card-content>
-                    <div class="scrollable">
-                        <section-list [sections]=forthcomingMaturities></section-list>
-                    </div>
-                </safety-card-content>
-            </safety-card>
-        </div>
+        <safety-card id="forthcoming-maturities" [noPadding]="true" toggleDisable>
+            <safety-card-header>
+                <span>Próximos Vencimentos</span>
+            </safety-card-header>
+            <safety-card-content>
+                <section-list [sections]=forthcomingMaturities></section-list>
+            </safety-card-content>
+        </safety-card>
     </div>
     <div class="column">
         <div id="forthcoming-trainings">

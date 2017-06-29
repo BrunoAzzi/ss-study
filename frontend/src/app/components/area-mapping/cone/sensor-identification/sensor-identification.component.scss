@@ -1,0 +1,47 @@
+@import '../../../../../scss/components/color.scss';
+
+span {
+    display: block;    
+    height: 14px;    
+    font-family: Lato;    
+    font-weight: 300;
+    line-height: 0.78;
+    margin-bottom: 5px;
+    color: $warm-grey-four;    
+}
+
+input {
+    width: 396px;
+    height: auto;
+    border: none;    
+    padding: 0 14px;
+    outline: 0;
+    display: block;
+    font-family: Lato;    
+    line-height: 1.27;
+    color: $greyish-brown;
+    text-transform: uppercase;
+
+    &::placeholder {
+        opacity: 0.5;
+    }
+
+    &:focus::placeholder {
+        opacity: 0.9;
+    }
+
+}
+
+sup {
+    font-size: 10px;
+    font-weight: bold;
+    line-height: 1.4;
+    color: #787878;
+    position: absolute;
+    top: -1px;
+    left: 18px;
+}
+
+.mapping .mat-input-placeholder-wrapper {
+    left: 14px;
+}

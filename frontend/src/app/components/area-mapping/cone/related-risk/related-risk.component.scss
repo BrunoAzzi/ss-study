@@ -1,0 +1,49 @@
+@import '../../../../../scss/components/color.scss';
+@import '../../../../components/area-monitoring/risk-graph/risk-graph.component.scss';
+
+$risk-size-map: (
+    (low, 13px),
+    (medium, 17px),
+    (high, 20px)
+);
+
+span {
+    font-family: Lato;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 1.27;
+    color: $greyish-brown;
+}
+
+ul {
+    margin: 5px 0;
+}
+
+.mat-select {    
+        width: 228px;
+        height: 24px;
+        padding: 8px 14px;
+        margin-bottom: 9px;
+
+    &:last-child {
+        margin-bottom: 0px;
+    }
+}
+
+.size {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    li {
+        margin: 0 2px;
+        border-radius: 50%;
+        background-color: #e6e9eb;
+        @each $label, $size in $risk-size-map {
+            &.#{ $label } {
+                height: $size;
+                width: $size;
+            }
+        }
+    }
+}
