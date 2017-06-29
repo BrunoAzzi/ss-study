@@ -470,4 +470,123 @@
     <changeSet id="18" author="fpileggi">
         <sqlFile path="liquibase/seed/risk_factors.sql"/>
     </changeSet>
+
+    <changeSet id="19" author="rrosseti">
+
+        <createTable tableName="responsible_companies">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)"/>
+            <column name="role" type="varchar(255)"/>
+            <column name="nit" type="varchar(255)"/>
+            <column name="phone" type="varchar(255)"/>
+            <column name="fax" type="varchar(255)"/>
+            <column name="email" type="varchar(255)"/>
+        </createTable>
+        <addAutoIncrement tableName="responsible_companies" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
+
+        <createTable tableName="contacts">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)"/>
+            <column name="role" type="varchar(255)"/>
+            <column name="nit" type="varchar(255)"/>
+            <column name="phone" type="varchar(255)"/>
+            <column name="fax" type="varchar(255)"/>
+            <column name="email" type="varchar(255)"/>
+        </createTable>
+        <addAutoIncrement tableName="contacts" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
+
+        <createTable tableName="responsible_sst">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)"/>
+            <column name="role" type="varchar(255)"/>
+            <column name="nit" type="varchar(255)"/>
+            <column name="phone" type="varchar(255)"/>
+            <column name="fax" type="varchar(255)"/>
+            <column name="email" type="varchar(255)"/>
+        </createTable>
+        <addAutoIncrement tableName="responsible_sst" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
+
+        <createTable tableName="cnaes">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="code" type="int"/>
+            <column name="description" type="varchar(255)"/>
+        </createTable>
+        <addAutoIncrement tableName="cnaes" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
+
+        <createTable tableName="companies">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="responsible_company_id" type="int" />
+            <column name="contact_id" type="int" />
+            <column name="responsible_sst_id" type="int" />
+            <column name="cnae_id" type="int" />
+
+            <column name="cnpj" type="varchar(255)"/>
+            <column name="corporate_name" type="varchar(255)"/>
+            <column name="fake_name" type="varchar(255)"/>
+            <column name="cep" type="varchar(100)"/>
+            <column name="address_street" type="varchar(255)" />
+            <column name="address_number" type="int" />
+            <column name="address_complement" type="varchar(255)" />
+            <column name="has_sesmt" type="boolean"/>
+            <column name="has_cipa" type="boolean"/>
+            <column name="is_designated_cipa" type="boolean"/>
+            <column name="employer_number" type="int" />
+            <column name="url_domain" type="varchar(255)"/>
+            <column name="logo_url" type="varchar(255)"/>
+            <column name="logo_file_name" type="varchar(255)"/>
+
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addAutoIncrement tableName="companies" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
+
+        <addForeignKeyConstraint
+                baseTableName="companies"
+                baseColumnNames="responsible_company_id"
+                constraintName="fk_responsible_company"
+                referencedTableName="responsible_companies"
+                referencedColumnNames="id"
+                onDelete="CASCADE" />
+
+        <addForeignKeyConstraint
+                baseTableName="companies"
+                baseColumnNames="contact_id"
+                constraintName="fk_contact_company"
+                referencedTableName="contacts"
+                referencedColumnNames="id"
+                onDelete="CASCADE" />
+
+        <addForeignKeyConstraint
+                baseTableName="companies"
+                baseColumnNames="responsible_sst_id"
+                constraintName="fk_responsible_sst_company"
+                referencedTableName="responsible_sst"
+                referencedColumnNames="id"
+                onDelete="CASCADE" />
+
+        <addForeignKeyConstraint
+                baseTableName="companies"
+                baseColumnNames="cnae_id"
+                constraintName="fk_cnae_company"
+                referencedTableName="cnaes"
+                referencedColumnNames="id"
+                onDelete="CASCADE" />
+        <insert tableName="companies">
+            <column name="cnpj"></column>
+        </insert>
+    </changeSet>
 </databaseChangeLog>
