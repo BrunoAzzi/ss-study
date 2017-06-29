@@ -20,12 +20,14 @@ export class WorkerService {
 		return this.service.get(this.endpoint + "/" + id)
 			.map(jsonResponse => {
 				return new Worker()
-			}
-		)
+			}) 
 	}
 
 	getWorkerByCpf(cpf: string) {
-		return this.getWorker(1);
-//		return this.getWorkerList().map(workerlist => workerList.map(worker => if (worker.cpf === cpf) return worker));
+		cpf = cpf.replace(/[^0-9]+/g, '');
+		return this.service.get(this.endpoint + "/cpf/" + cpf)
+			.map(jsonResponse => {
+				return new Worker().initializeWithJSON(jsonResponse.worker)
+			});
 	}
 }
