@@ -52,7 +52,7 @@ import { DataTablePipe } from './components/perfil_emocional/status_trabalhadore
 import { SecurityWorksComponent } from './components/workers/securityWorks/securityWorks.component';
 import { WorkersDataComponent } from './components/workers/workersData/workersData.component';
 import { CompaniesComponent } from './views/companies/companies.component';
-import { CompanyDetailsComponent } from './components/forms/company-details/company-details.component';
+import { CompanyDetailsComponent } from './components/company/company-details/company-details.component';
 import { DateRangeComponent } from './components/common/date-range/date-range.component';
 import { SkillComponent } from './components/workers/skill/skill.component';
 import { RecyclingComponent } from './components/workers/recycling/recycling.component';
@@ -84,7 +84,7 @@ import { SummaryItemComponent } from './components/summary-item/summary-item.com
 import { SummaryComponent } from './components/summary/summary.component';
 import { RiskGraphComponent } from './components/area-monitoring/risk-graph/risk-graph.component';
 import { ResponsableDataComponent } from './components/company/responsable-data/responsable-data.component';
-import { AddInformationComponent } from './components/company/add-information/add-information.component';
+import { AddInformationComponent } from './components/company/additional-information/additional-information.component';
 import { Ng2FileDropModule } from 'ng2-file-drop';
 
 // Painel Emocional
