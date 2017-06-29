@@ -158,6 +158,7 @@ import { AlertsTabItemComponent } from './components/area-monitoring/alerts-tab-
 import { ConstructionSummaryComponent } from './components/construction-summary/construction-summary.component';
 import { SectorSummaryComponent } from './components/sector-summary/sector-summary.component';
 import { MaintenanceInlineFormComponent } from './components/maintenance-inline-form/maintenance-inline-form.component';
+import { ListItemComponent } from './components/common/list-item/list-item.component';
 
 @NgModule({
     declarations: [
@@ -264,6 +265,7 @@ import { MaintenanceInlineFormComponent } from './components/maintenance-inline-
         ConstructionSummaryComponent,
         SectorSummaryComponent,
         MaintenanceInlineFormComponent,
+        ListItemComponent,
     ],
     imports: [
         // Notification Module
