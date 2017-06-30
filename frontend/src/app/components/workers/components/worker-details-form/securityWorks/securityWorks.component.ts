@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { SecurityWorksService } from "../../../services/workers/securityWorks.service";
+import { SecurityWorksService } from "../../../../../services/workers/securityWorks.service";
 
 @Component({
     selector: 'security-works',

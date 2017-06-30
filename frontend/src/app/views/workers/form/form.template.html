@@ -1,14 +1,10 @@
 <div class="body-content">
-    <worker-form></worker-form>
     <workers-data [worker]="worker" (cpfUpdated)="getWorkerByCpf($event)"></workers-data>
     <br>
     <safety-card #safetyCard>
-
         <safety-card-header>habilitações</safety-card-header>
-
         <safety-card-content>
             <form #form novalidate id="form1" name="form1">
-
                 <skill [form]="form" fxLayout fxLayoutAlign="space-around center" [skill]="skill" (removed)="removeSkill(skill)" [(skillNames)]="skillNames"
                     *ngFor="let skill of skillList">
                 </skill>
@@ -21,7 +17,6 @@
                             Salvar e continuar
                         </button>
                 </div>
-
             </form>
         </safety-card-content>
     </safety-card>
