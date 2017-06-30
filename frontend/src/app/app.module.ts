@@ -57,7 +57,7 @@ import { SecurityWorksComponent } from "./components/workers/components/worker-s
 import { WorkersDataComponent } from "./components/workers/components/workers-details-form/workers-details-form.component";
 import { CompaniesComponent } from "./views/companies/companies.component";
 import { CompanyDetailsComponent } from "./components/forms/company-details/company-details.component";
-import { HealthComponent } from "./components/workers/components/worker-health-form/worker-health-form.component";
+import { WorkerHealthFormComponent } from "./components/workers/components/worker-health-form/worker-health-form.component";
 import { AsoItemComponent, ConfirmationDialogOverview } from "./components/workers/asoItem/asoItem.component";
 import { DateRangeComponent } from "./components/common/date-range/date-range.component";
 import { SkillComponent } from "./components/workers/components/worker-qualifications-form/worker-qualifications-form.component";
@@ -254,7 +254,7 @@ import { ListActionBarComponent } from './components/common/list-action-bar/list
         InputFile,
         AsoItemComponent,
         ConfirmationDialogOverview,
-        HealthComponent,
+        WorkerHealthFormComponent,
 
         // Obras
         ConstructionDetailComponent,

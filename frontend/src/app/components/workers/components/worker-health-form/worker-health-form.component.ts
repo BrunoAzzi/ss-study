@@ -7,7 +7,7 @@ import { Component, EventEmitter } from '@angular/core';
     templateUrl: 'worker-health-form.template.html',
     styleUrls: ['./worker-health-form.component.scss'],
 })
-export class HealthComponent {
+export class WorkerHealthFormComponent {
     helthForm: FormGroup;
     asoList: Array<any> = [];
     errorMsg: String = undefined;
