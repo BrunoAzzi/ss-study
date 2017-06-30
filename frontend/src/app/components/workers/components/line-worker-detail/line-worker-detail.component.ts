@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Worker } from "../../../models/worker.model";
+import { Worker } from "../../../../models/worker.model";
 
 @Component({
     selector: 'line-worker-detail',
