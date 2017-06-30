@@ -1,12 +1,12 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { IMyDpOptions } from 'mydatepicker';
-import { Skill } from '../../../../mocks/skill/skill';
-import { Recycling } from '../../../../mocks/recycling/recycling';
+import { Skill } from '../../../mocks/skill/skill';
+import { Recycling } from '../../../mocks/recycling/recycling';
 
 @Component({
     selector: 'skill',
-    styleUrls: ['./worker-qualifications-form.component.scss'],
-    templateUrl: 'worker-qualifications-form.template.html',
+    styleUrls: ['./skill.component.scss'],
+    templateUrl: 'src/app/components/worker-form/skill/skill.template.html',
 })
 export class SkillComponent {
     @Input() skill: Skill = new Skill();

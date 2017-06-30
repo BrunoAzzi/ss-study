@@ -9,19 +9,20 @@
     <safety-card #safetyCard>
         <safety-card-header>habilitações</safety-card-header>
         <safety-card-content>
-            <form #form novalidate id="form1" name="form1">
-                <skill [form]="form" fxLayout fxLayoutAlign="space-around center" [skill]="skill" (removed)="removeSkill(skill)" [(skillNames)]="skillNames"
-                    *ngFor="let skill of skillList">
-                </skill>
-                <a class="action" (click)="addSkill()">
-                        Adicicionar habilitação
-                    </a>
-                <div class="button-default">
-                    <button type="submit" class="button-default" md-raised-button (click)="saveSkills(safetyCard)">
-                            Salvar e continuar
-                        </button>
-                </div>
-            </form>
+            <safety-worker-qualifications-form></safety-worker-qualifications-form>
+            <!--<form #form novalidate id="form1" name="form1">-->
+                <!--<skill [form]="form" fxLayout fxLayoutAlign="space-around center" [skill]="skill" (removed)="removeSkill(skill)" [(skillNames)]="skillNames"-->
+                    <!--*ngFor="let skill of skillList">-->
+                <!--</skill>-->
+                <!--<a class="action" (click)="addSkill()">-->
+                        <!--Adicicionar habilitação-->
+                    <!--</a>-->
+                <!--<div class="button-default">-->
+                    <!--<button type="submit" class="button-default" md-raised-button (click)="saveSkills(safetyCard)">-->
+                            <!--Salvar e continuar-->
+                        <!--</button>-->
+                <!--</div>-->
+            <!--</form>-->
         </safety-card-content>
     </safety-card>
 

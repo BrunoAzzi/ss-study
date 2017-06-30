@@ -53,14 +53,14 @@ import { KeysPipe } from './pipes/keys.pipe';
 import { DataTablePipe } from './components/perfil_emocional/status_trabalhadores/DataTablePipe.pipe';
 
 // Components
-import { SecurityWorksComponent } from './components/workers/components/worker-security-form/worker-security-form.component';
-import { WorkersDataComponent } from './components/workers/components/workers-details-form/workers-details-form.component';
+import { SecurityWorksComponent } from './components/worker-form/worker-security-form/worker-security-form.component';
+import { WorkersDataComponent } from './components/worker-form/workers-details-form/workers-details-form.component';
 import { CompaniesComponent } from './views/companies/companies.component';
 
 import { AsoItemComponent, ConfirmationDialogOverview } from './components/workers/asoItem/asoItem.component';
 
 import { DateRangeComponent } from './components/common/date-range/date-range.component';
-import { SkillComponent } from './components/workers/components/worker-qualifications-form/worker-qualifications-form.component';
+import { SkillComponent, WorkerQualificationsFormComponent } from './components/worker-form/skill/skill.component';
 import { RecyclingComponent } from './components/workers/recycling/recycling.component';
 import { BoxMessageComponent } from './components/common/box-message/box-message.component';
 import { BlueprintComponent } from './components/blueprint/blueprint.component';
@@ -167,7 +167,7 @@ import { MaintenanceInlineFormComponent } from './components/maintenance-inline-
 import { ListItemComponent } from './components/common/list-item/list-item.component';
 import { ListActionBarComponent } from './components/common/list-action-bar/list-action-bar.component';
 import {CompanyDetailsComponent} from './components/company/company-details/company-details.component';
-import {WorkerHealthFormComponent} from './components/workers/components/worker-health-form/worker-health-form.component';
+import {WorkerHealthFormComponent} from './components/worker-form/worker-health-form/worker-health-form.component';
 
 @NgModule({
     declarations: [
@@ -284,6 +284,7 @@ import {WorkerHealthFormComponent} from './components/workers/components/worker-
         MaintenanceInlineFormComponent,
         ListItemComponent,
         ListActionBarComponent,
+        WorkerQualificationsFormComponent,
     ],
     imports: [
         // Notification Module
