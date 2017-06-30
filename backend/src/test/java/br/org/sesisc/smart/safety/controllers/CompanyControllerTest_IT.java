@@ -43,7 +43,7 @@ public class CompanyControllerTest_IT extends BaseControllerTest_IT {
         System.out.println("Response: " + responseJson);
 
         String cnpj = jsonObject.getJSONObject("company").get("cnpj").toString();
-        Assert.assertEquals("Should return the expected name when register construction is succeed.",
+        Assert.assertEquals("Should return the expected name when company is updated.",
                 "cnpj",cnpj);
     }
 

@@ -14,6 +14,8 @@ public class Cnae {
 
     private String description;
 
+    public Cnae() { }
+
     public Cnae(String code, String description) {
         this.code = code;
         this.description = description;
