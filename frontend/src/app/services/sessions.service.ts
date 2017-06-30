@@ -29,6 +29,6 @@ export class SessionsService {
             this.service.setAuthToken(Cookie.get('auth_token'))
             return true
         }
-        return false
+     return false 
     }
 }

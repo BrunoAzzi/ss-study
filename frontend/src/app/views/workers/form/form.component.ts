@@ -1,6 +1,7 @@
 import { Component, EventEmitter  } from '@angular/core';
 import { WorkerService } from '../../../services/worker.service';
 import { Skill } from '../../../mocks/skill/skill';
+import { Worker } from '../../../models/worker.model';
 
 @Component({
     templateUrl: 'form.template.html',
@@ -13,8 +14,8 @@ export class WorkerFormComponent {
     maximunLength: number;
     isValid: boolean = false;
     skillList = [];
-
-    worker: any = { personalData: {} };
+    resultado:any;
+    worker: Worker = new Worker();//any = { personalData: {} };
 
     constructor(
         private service: WorkerService
@@ -40,7 +41,9 @@ export class WorkerFormComponent {
     ];
 
     getWorkerByCpf(cpf: string) {
-        this.service.getWorkerByCpf(cpf).subscribe(subscribedworker => { this.worker = subscribedworker  } );       
+        this.service.getWorkerByCpf(cpf).subscribe(subscribedworker => {
+            this.worker = subscribedworker
+        } );
     }
 
     saveSkills(safetyCard) {

@@ -468,7 +468,29 @@
     </changeSet>
 
     <changeSet id="18" author="fpileggi">
-        <sqlFile path="liquibase/seed/risk_factors.sql"/>
+        <createTable tableName="risk_types">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(100)"/>
+        </createTable>
+        <addAutoIncrement tableName="risk_types" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
+
+        <addColumn tableName="risk_factors">
+            <column name="risk_type_id" type="int" />
+        </addColumn>
+
+        <addForeignKeyConstraint
+                baseTableName="risk_factors"
+                baseColumnNames="risk_type_id"
+                constraintName="fk_risk_type_risk_factors"
+                referencedTableName="risk_types"
+                referencedColumnNames="id"
+                onDelete="CASCADE" />
+    </changeSet>
+
+    <changeSet id="19" author="fpileggi">
+        <sqlFile path="liquibase/seed/risk_types_and_risk_factors.sql"/>
     </changeSet>
 
     <changeSet id="19" author="rrosseti">

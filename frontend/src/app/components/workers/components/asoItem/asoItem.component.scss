@@ -1,0 +1,31 @@
+.fileInput{
+  display: flex;
+  justify-content:center;
+
+}
+
+.date{
+    display: flex;
+  justify-content:flex-start;
+}
+
+
+.organize-itens{
+  display: inline-flex;
+}
+
+
+.aling-div{
+    display: inline-flex;
+    justify-content: space-between;
+    div {
+        padding-right: 15px;
+        width: 100%;
+    }
+}
+
+.itens-data{
+  display: inline-flex;
+}
+
+
