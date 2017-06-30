@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Recycling } from '../../../../mocks/recycling/recycling';
+import { Recycling } from '../../../mocks/recycling/recycling';
 
 @Component({
     selector: 'recycling',

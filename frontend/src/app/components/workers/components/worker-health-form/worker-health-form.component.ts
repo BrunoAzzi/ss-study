@@ -4,8 +4,8 @@ import { Component, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'healthComponent',
-    templateUrl: 'health.template.html',
-    styleUrls: ['./health.component.scss'],
+    templateUrl: 'worker-health-form.template.html',
+    styleUrls: ['./worker-health-form.component.scss'],
 })
 export class HealthComponent {
     helthForm: FormGroup;

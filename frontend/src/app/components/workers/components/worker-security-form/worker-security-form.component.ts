@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { SecurityWorksService } from "../../../../../services/workers/securityWorks.service";
+import { SecurityWorksService } from "../../../../services/workers/securityWorks.service";
 
 @Component({
     selector: 'security-works',
-    templateUrl: 'securityWorks.template.html',
-    styleUrls: ['./securityWorks.component.scss'],
+    templateUrl: 'worker-security-form.template.html',
+    styleUrls: ['./worker-security-form.component.scss'],
     providers: [SecurityWorksService]
 })
 export class SecurityWorksComponent {

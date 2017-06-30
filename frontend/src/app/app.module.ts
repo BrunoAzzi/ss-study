@@ -53,15 +53,15 @@ import { KeysPipe } from './pipes/keys.pipe';
 import { DataTablePipe } from './components/perfil_emocional/status_trabalhadores/DataTablePipe.pipe';
 
 // Components
-import { SecurityWorksComponent } from "./components/workers/components/worker-details-form/securityWorks/securityWorks.component";
-import { WorkersDataComponent } from "./components/workers/components/worker-details-form//workersData/workersData.component";
+import { SecurityWorksComponent } from "./components/workers/components/worker-security-form/worker-security-form.component";
+import { WorkersDataComponent } from "./components/workers/components/workers-details-form/workers-details-form.component";
 import { CompaniesComponent } from "./views/companies/companies.component";
 import { CompanyDetailsComponent } from "./components/forms/company-details/company-details.component";
-import { HealthComponent } from "./components/workers/components/worker-details-form//health/health.component";
-import { AsoItemComponent, ConfirmationDialogOverview } from "./components/workers/components/asoItem/asoItem.component";
+import { HealthComponent } from "./components/workers/components/worker-health-form/worker-health-form.component";
+import { AsoItemComponent, ConfirmationDialogOverview } from "./components/workers/asoItem/asoItem.component";
 import { DateRangeComponent } from "./components/common/date-range/date-range.component";
-import { SkillComponent } from "./components/workers/components/worker-details-form/skill/skill.component";
-import { RecyclingComponent } from "./components/workers/components/recycling/recycling.component";
+import { SkillComponent } from "./components/workers/components/worker-qualifications-form/worker-qualifications-form.component";
+import { RecyclingComponent } from "./components/workers/recycling/recycling.component";
 import { BoxMessageComponent } from "./components/common/box-message/box-message.component";
 import { BlueprintComponent } from './components/blueprint/blueprint.component';
 import { ToolboxComponent } from './components/toolbox/toolbox.component';
@@ -74,7 +74,7 @@ import { TrainingComponent } from './views/training/training.component';
 // Worker
 import { WorkerFormComponent } from "./views/workers/form/form.component";
 import { WorkerListComponent } from "./views/workers/list/list.component";
-import { LineWorkerDetailComponent } from "./components/workers/components/line-worker-detail/line-worker-detail.component";
+import { LineWorkerDetailComponent } from "./components/workers/line-worker-detail/line-worker-detail.component";
 
 import { MonitoringComponent } from './views/constructions/detail/monitoring/monitoring.component';
 import { AreaMappingComponent } from './components/area-mapping/area-mapping.component';
