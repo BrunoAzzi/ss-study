@@ -595,4 +595,8 @@
                         columnName="code"
                         newDataType="varchar(255)"/>
     </changeSet>
+
+    <changeSet id="21" author="rrosseti">
+        <sqlFile path="liquibase/seed/cnaes.sql"/>
+    </changeSet>
 </databaseChangeLog>
