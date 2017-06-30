@@ -4,6 +4,7 @@
             <md-input-container>
                 <input mdInput placeholder="Nome do Empreendimento"
                        [(ngModel)]="construction.name" name="name"
+                       required
                 >
             </md-input-container>
             <cep-picker [(cep)]="construction.cep" class="half" (onSearch)="onCepSearch(f, $event)"></cep-picker>
@@ -27,11 +28,18 @@
                        [(ngModel)]="construction.complement" name="complement"
                 >
             </md-input-container>
-            <md-input-container class="half">
-                <input mdInput placeholder="CEI"
-                       [(ngModel)]="construction.cei" name="cei"
-                >
-            </md-input-container>
+            <div class="input-text-with-file half">
+                <md-input-container>
+                    <input mdInput placeholder="CEI"
+                        [(ngModel)]="construction.cei" name="cei"
+                    >
+                </md-input-container>
+                <md-icon (click)="fileInput.click()">
+                    attach_file
+                </md-icon>
+                <span class="file-name">{{ fileName }}</span>
+                <input #fileInput type="file" (change)="processFile(fileInput.files[0])" [accept]="supportedFileTypes.join(', ')"/>
+            </div>
             <construction-status-picker class="half"></construction-status-picker>
         </section>
         <section>
