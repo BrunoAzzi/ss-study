@@ -1,9 +1,7 @@
-<div class="half">
-    <md-select placeholder="STATUS DA OBRA" (change)="onChange($event.value)">
-        <md-option *ngFor="let status of availableStatus" [value]="status">
-            <construction-sites-status-icon [status]="status"></construction-sites-status-icon>
-            {{ status }}
-        </md-option>
-    </md-select>
-</div>
+<md-select placeholder="STATUS DA OBRA" (change)="onChange($event.value)">
+    <md-option *ngFor="let status of availableStatus" [value]="status">
+        <construction-sites-status-icon [status]="status"></construction-sites-status-icon>
+        {{ status }}
+    </md-option>
+</md-select>
 <input style="display: none" #statusInput ngModel name="status">

@@ -165,6 +165,7 @@ import { ConstructionSummaryComponent } from './components/construction-summary/
 import { SectorSummaryComponent } from './components/sector-summary/sector-summary.component';
 import { MaintenanceInlineFormComponent } from './components/maintenance-inline-form/maintenance-inline-form.component';
 import { ListItemComponent } from './components/common/list-item/list-item.component';
+import { ListActionBarComponent } from './components/common/list-action-bar/list-action-bar.component';
 
 @NgModule({
     declarations: [
@@ -280,6 +281,7 @@ import { ListItemComponent } from './components/common/list-item/list-item.compo
         SectorSummaryComponent,
         MaintenanceInlineFormComponent,
         ListItemComponent,
+        ListActionBarComponent,
     ],
     imports: [
         // Notification Module
