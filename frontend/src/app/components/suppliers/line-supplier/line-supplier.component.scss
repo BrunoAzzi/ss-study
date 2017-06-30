@@ -1,14 +1,5 @@
 @import '../../../../scss/components/color.scss';
 
-:host {
-    background-color: white;
-    min-height: 50px;
-}
-
-.checkbox {
-    margin: 0 20px;
-}
-
 .supplier-info {
     a {
         text-decoration: none;

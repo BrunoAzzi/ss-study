@@ -1,15 +1,17 @@
 package br.org.sesisc.smart.safety.controllers;
 
 import br.org.sesisc.smart.safety.models.Worker;
+import br.org.sesisc.smart.safety.repositories.WorkerRepository;
+import br.org.sesisc.smart.safety.responses.ErrorResponse;
 import br.org.sesisc.smart.safety.responses.SuccessResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.validation.Valid;
 import java.util.Set;
 
 /**
@@ -19,14 +21,27 @@ import java.util.Set;
 @RequestMapping("/workers")
 public class WorkerController {
 
-    @GetMapping
-    public ResponseEntity<?> index() {
-//        Set<Worker> workers = repository.findAll();
-        ArrayList<Worker> workers = new ArrayList<>();
+    @Autowired
+    WorkerRepository repository;
 
+
+    @GetMapping()
+    public ResponseEntity<?> index() {
+        Set<Worker> workers = repository.findAll();
         return SuccessResponse.handle(
                 new String[] { "workers" },
                 new Object[] { workers },
+                HttpStatus.OK
+        );
+    }
+
+    @GetMapping("/cpf/{cpf}")
+    public ResponseEntity<?> findByCpf(@PathVariable("cpf") String cpf) {
+
+        Worker worker = repository.findByCpf(cpf);
+        return SuccessResponse.handle(
+                new String[] { "worker" },
+                new Object[] { worker },
                 HttpStatus.OK
         );
     }
