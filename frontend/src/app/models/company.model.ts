@@ -1,51 +1,52 @@
 import { CompanyContact } from "./company-contact.model";
+import { Cnae } from "./cnae.mode"
 
 export interface ICompany {
     id: number
     cnpj: string
-    tradeName: string
-    fantasyName: string
-    cnae: string
-    cnaeDescription: string
+    corporateName: string
+    fakeName: string    
+    cnae: Cnae
     cep: string
-    address: string
+    addressStreet: string
     addressNumber: number
     addressComplement: string
-    url: string
+    logoUrl: string
+    logoFileName: string
 }
 
 export class Company implements ICompany {
     id: number
     cnpj: string
-    tradeName: string
-    fantasyName: string
-    cnae: string
-    cnaeDescription: string
+    corporateName: string
+    fakeName: string
+    cnae: Cnae    
     cep: string
-    address: string
+    addressStreet: string
     addressNumber: number
     addressComplement: string
-    url: string
-    companyResponsableData: CompanyContact
-    sstResponsableData: CompanyContact
-    contactData: CompanyContact
+    logoUrl: string
+    logoFileName: string
+    responsibleCompany: CompanyContact
+    responsibleSST: CompanyContact
+    contact: CompanyContact
 
     constructor()
     constructor(data: ICompany)
     constructor(data?: any) {
         this.id = data && data.id || undefined
         this.cnpj = data && data.cnpj || undefined
-        this.tradeName = data && data.tradeName || undefined
-        this.fantasyName = data && data.fantasyName || undefined
-        this.cnae = data && data.cnae || undefined
-        this.cnaeDescription = data && data.cnaeDescription || undefined
+        this.corporateName = data && data.corporateName || undefined
+        this.fakeName = data && data.fakeName || undefined
+        this.cnae = data && data.cnae || undefined        
         this.cep = data && data.cep || undefined
-        this.address = data && data.address || undefined
+        this.addressStreet = data && data.addressStreet || undefined
         this.addressNumber = data && data.addressNumber || undefined
         this.addressComplement = data && data.addressComplement || undefined
-        this.url = data && data.url || undefined
-        this.companyResponsableData = data && data.companyResponsableData || undefined
-        this.sstResponsableData = data && data.sstResponsableData || undefined
-        this.contactData = data && data.contactData || undefined
+        this.logoUrl = data && data.logoUrl || undefined
+        this.logoFileName = data && data.logoFileName || undefined
+        this.responsibleCompany = data && data.responsibleCompany || undefined
+        this.responsibleSST = data && data.responsibleSST || undefined
+        this.contact = data && data.contact || undefined
     }
 }
