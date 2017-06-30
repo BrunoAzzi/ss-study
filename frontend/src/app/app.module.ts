@@ -56,7 +56,7 @@ import { DataTablePipe } from './components/perfil_emocional/status_trabalhadore
 import { SecurityWorksComponent } from "./components/workers/components/worker-details-form/securityWorks/securityWorks.component";
 import { WorkersDataComponent } from "./components/workers/components/worker-details-form//workersData/workersData.component";
 import { CompaniesComponent } from "./views/companies/companies.component";
-import { CompanyDetailsComponent } from "./components/forms/company-details/company-details.component";
+import { CompanyDetailsComponent } from "./components/company/company-details/company-details.component";
 import { HealthComponent } from "./components/workers/components/worker-details-form//health/health.component";
 import { AsoItemComponent, ConfirmationDialogOverview } from "./components/workers/components/asoItem/asoItem.component";
 import { DateRangeComponent } from "./components/common/date-range/date-range.component";
@@ -90,8 +90,12 @@ import { SummaryItemComponent } from './components/summary-item/summary-item.com
 import { SummaryComponent } from './components/summary/summary.component';
 import { RiskGraphComponent } from './components/area-monitoring/risk-graph/risk-graph.component';
 import { ResponsableDataComponent } from './components/company/responsable-data/responsable-data.component';
+<<<<<<< HEAD
+import { AddInformationComponent } from './components/company/additional-information/additional-information.component';
+=======
 import { AddInformationComponent } from './components/company/add-information/add-information.component';
 
+>>>>>>> master
 import { Ng2FileDropModule } from 'ng2-file-drop';
 
 import { WorkersOverviewComponent } from './components/overview/workers-overview/workers-overview.component';

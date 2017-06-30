@@ -1,32 +1,49 @@
 package br.org.sesisc.smart.safety.controllers;
 
 import br.org.sesisc.smart.safety.models.Company;
+import br.org.sesisc.smart.safety.repositories.CompanyRepository;
+import br.org.sesisc.smart.safety.responses.ErrorResponse;
 import br.org.sesisc.smart.safety.responses.SuccessResponse;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
 @RestController
-@RequestMapping("/companies")
+@RequestMapping("/company")
 public class CompanyController {
 
-    @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<?> index() {
+    @Autowired
+    CompanyRepository repository;
 
-        List<Company> companies = new ArrayList<>();
-        companies.add(new Company(1, "Empresa 1"));
-        companies.add(new Company(2, "Empresa 2"));
-        companies.add(new Company(3, "Empresa 3"));
+    @Autowired
+    ObjectMapper objectMapper;
 
-        return SuccessResponse.handle(
-                new String[] {"companies"},
-                new Object[] {companies},
-                HttpStatus.OK
-        );
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<?> update(@PathVariable("id") long id, HttpServletRequest request) throws IOException {
+
+        Company company = repository.findOne(id);
+
+        if (company != null) {
+            Company updateCompany = objectMapper.readerForUpdating(company).readValue(request.getReader());
+
+            repository.save(updateCompany);
+
+            return SuccessResponse.handle(
+                    new String[] {"company"},
+                    new Object[] {company},
+                    HttpStatus.ACCEPTED
+            );
+        } else {
+            return ErrorResponse.handle(
+                    new String[] {"Empresa não encontrada."},
+                    Company.class,
+                    HttpStatus.NOT_FOUND
+            );
+        }
     }
+
 }
