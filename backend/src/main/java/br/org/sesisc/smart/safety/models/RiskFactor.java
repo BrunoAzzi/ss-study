@@ -4,7 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "risks")
+@Table(name = "risk_factors")
 public class RiskFactor {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

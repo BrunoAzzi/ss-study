@@ -1,34 +1,42 @@
 <div class="body-content">
-    <workers-data [worker]="worker" (cpfUpdated)="getWorkerByCpf($event)"></workers-data>
-    <br>
+    <safety-card #workerData>
+        <safety-card-header>dados do trabalhador</safety-card-header>
+        <safety-card-content>
+            <workers-data [worker]="worker" (cpfUpdated)="getWorkerByCpf($event)"></workers-data>
+        </safety-card-content>
+    </safety-card>
+
     <safety-card #safetyCard>
-
-        <safety-card-header>
-            <span>habilitações</span>
-        </safety-card-header>
-
+        <safety-card-header>habilitações</safety-card-header>
         <safety-card-content>
             <form #form novalidate id="form1" name="form1">
-
                 <skill [form]="form" fxLayout fxLayoutAlign="space-around center" [skill]="skill" (removed)="removeSkill(skill)" [(skillNames)]="skillNames"
                     *ngFor="let skill of skillList">
                 </skill>
                 <a class="action" (click)="addSkill()">
                         Adicicionar habilitação
                     </a>
-
                 <div class="button-default">
                     <button type="submit" class="button-default" md-raised-button (click)="saveSkills(safetyCard)">
                             Salvar e continuar
                         </button>
                 </div>
-
             </form>
         </safety-card-content>
     </safety-card>
-    <security-works [cpf]="cpf"></security-works>
-    <br>
-    <safety-card-content>
-        <healthComponent></healthComponent>
-    </safety-card-content>
+
+    <safety-card #securityData>
+        <safety-card-header>dados de segurança</safety-card-header>
+        <safety-card-content>
+            <security-works [cpf]="cpf"></security-works>
+        </safety-card-content>
+    </safety-card>
+
+
+    <safety-card #healthSaved>
+         <safety-card-header>dados de saúde</safety-card-header>
+        <safety-card-content>
+            <healthComponent></healthComponent>
+        </safety-card-content>
+    </safety-card>
 </div>
