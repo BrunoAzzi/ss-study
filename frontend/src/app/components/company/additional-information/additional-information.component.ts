@@ -1,4 +1,6 @@
-import {Component} from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+
+import { Company } from './../../../models/company.model';
 
 @Component({
     selector: 'additional-information',
@@ -7,6 +9,5 @@ import {Component} from '@angular/core';
 })
 
 export class AddInformationComponent {
-    constructor() {
-    }
+    constructor() {}
 }

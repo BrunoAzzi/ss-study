@@ -1,4 +1,4 @@
-<form (ngSubmit)="save()" #f="ngForm" novalidate> 
+<form #f="ngForm" (ngSubmit)="save(f)" novalidate>
         
     <div class="form-content grid-container">
         <div class="grid-column">
@@ -13,8 +13,8 @@
                 <div class="grid-column-75">
                     <div class="grid-row">
                         <md-input-container>
-                            <input mdInput placeholder="CNPJ">
-                        </md-input-container>  
+                            <input mdInput placeholder="CNPJ" [textMask]="{mask: cnpjMask}">
+                        </md-input-container>
                         <md-input-container>
                             <input mdInput placeholder="RAZÃO SOCIAL">
                         </md-input-container>
@@ -24,18 +24,17 @@
                     </div>
                     <div class="grid-row">
                         <md-input-container>
-                            <input mdInput placeholder="CNAE">
+                            <input mdInput placeholder="CNAE" [textMask]="{mask: cnaeMask}">
                         </md-input-container>
                         <md-input-container>
                             <input mdInput placeholder="DESCRIÇÃO CNAE">
                         </md-input-container>
-                        <md-input-container>
-                            <input mdInput placeholder="CEP">
-                        </md-input-container>
+                        <cep-picker [(cep)]="cep" class="half" (onSearch)="onCepSearch(f, $event)"></cep-picker>                        
                     </div>
                     <div class="grid-row">
                         <md-input-container>
-                            <input mdInput placeholder="ENDEREÇO">
+                            <input mdInput placeholder="Cidade / Estado"
+                                        [(ngModel)]="address" name="address">
                         </md-input-container>
                         <md-input-container>
                             <input mdInput placeholder="NUMERO">

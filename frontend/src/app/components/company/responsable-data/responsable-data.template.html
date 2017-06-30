@@ -10,7 +10,7 @@
 
             <div class="grid-row">
                 <md-input-container>
-                    <input mdInput placeholder="Telefone">
+                    <input mdInput placeholder="Telefone" [textMask]="{mask: phoneFaxMask}">
                 </md-input-container>
             </div>
         </div>
@@ -26,11 +26,11 @@
 
             <div class="grid-row">
                 <md-input-container>
-                    <input mdInput placeholder="Fax">
+                    <input mdInput placeholder="Fax" [textMask]="{mask: phoneFaxMask}">
                 </md-input-container>
 
                 <md-input-container>
-                    <input mdInput placeholder="E-mail">
+                    <input id="email" mdInput placeholder="E-mail" type="email" email>
                 </md-input-container>
             </div>
         </div>
