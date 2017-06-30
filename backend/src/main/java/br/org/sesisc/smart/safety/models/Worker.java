@@ -8,29 +8,59 @@ public class Worker {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+
     private Long id;
     private String name;
     private String cep;
     private String adress;
     private String status;
-    private String birth_date;
+    private String birthDate;
     private String gender;
-    private Integer cbo_id;
     private String cpf;
     private String nit;
     private String degree;
     private String ctps;
-    private String admission_date;
-    private String contract_type;
-    private String special_needs;
-    private String photo_url;
-    private Boolean is_cipeiro;
-    private Boolean is_brigade;
+    private String admissionAt;
+    private String contractType;
+    private String specialNeeds;
+    private String photoUrl;
+    private Boolean isCipeiro;
+    private Boolean isBrigade;
     private String role;
-    private String mandate_begin_date;
-    private String mandate_end_date;
+    private String mandateBegin;
+    private String mandateEnd;
+    private String alergies;
+    private String diseases;
 
-    public Worker() {
+    @ManyToOne
+    @JoinColumn(name = "cbo_id")
+    private Cbo cbo;
+
+    public Worker() { }
+
+    public Worker(String name, String cep, String adress, String status, String birthDate, String gender, String cpf, String nit, String degree, String ctps, String admissionAt, String contractType, String specialNeeds, String photoUrl, Boolean isCipeiro, Boolean isBrigade, String role, String mandateBegin, String mandateEnd, String alergies, String diseases, Cbo cbo) {
+        this.name = name;
+        this.cep = cep;
+        this.adress = adress;
+        this.status = status;
+        this.birthDate = birthDate;
+        this.gender = gender;
+        this.cpf = cpf;
+        this.nit = nit;
+        this.degree = degree;
+        this.ctps = ctps;
+        this.admissionAt = admissionAt;
+        this.contractType = contractType;
+        this.specialNeeds = specialNeeds;
+        this.photoUrl = photoUrl;
+        this.isCipeiro = isCipeiro;
+        this.isBrigade = isBrigade;
+        this.role = role;
+        this.mandateBegin = mandateBegin;
+        this.mandateEnd = mandateEnd;
+        this.alergies = alergies;
+        this.diseases = diseases;
+        this.cbo = cbo;
     }
 
     public Long getId() {
@@ -73,12 +103,12 @@ public class Worker {
         this.status = status;
     }
 
-    public String getBirth_date() {
-        return birth_date;
+    public String getBirthDate() {
+        return birthDate;
     }
 
-    public void setBirth_date(String birth_date) {
-        this.birth_date = birth_date;
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
     }
 
     public String getGender() {
@@ -87,14 +117,6 @@ public class Worker {
 
     public void setGender(String gender) {
         this.gender = gender;
-    }
-
-    public Integer getCbo_id() {
-        return cbo_id;
-    }
-
-    public void setCbo_id(Integer cbo_id) {
-        this.cbo_id = cbo_id;
     }
 
     public String getCpf() {
@@ -129,52 +151,52 @@ public class Worker {
         this.ctps = ctps;
     }
 
-    public String getAdmission_date() {
-        return admission_date;
+    public String getAdmissionAt() {
+        return admissionAt;
     }
 
-    public void setAdmission_date(String admission_date) {
-        this.admission_date = admission_date;
+    public void setAdmissionAt(String admissionAt) {
+        this.admissionAt = admissionAt;
     }
 
-    public String getContract_type() {
-        return contract_type;
+    public String getContractType() {
+        return contractType;
     }
 
-    public void setContract_type(String contract_type) {
-        this.contract_type = contract_type;
+    public void setContractType(String contractType) {
+        this.contractType = contractType;
     }
 
-    public String getSpecial_needs() {
-        return special_needs;
+    public String getSpecialNeeds() {
+        return specialNeeds;
     }
 
-    public void setSpecial_needs(String special_needs) {
-        this.special_needs = special_needs;
+    public void setSpecialNeeds(String specialNeeds) {
+        this.specialNeeds = specialNeeds;
     }
 
-    public String getPhoto_url() {
-        return photo_url;
+    public String getPhotoUrl() {
+        return photoUrl;
     }
 
-    public void setPhoto_url(String photo_url) {
-        this.photo_url = photo_url;
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
     }
 
-    public Boolean getIs_cipeiro() {
-        return is_cipeiro;
+    public Boolean getCipeiro() {
+        return isCipeiro;
     }
 
-    public void setIs_cipeiro(Boolean is_cipeiro) {
-        this.is_cipeiro = is_cipeiro;
+    public void setCipeiro(Boolean cipeiro) {
+        isCipeiro = cipeiro;
     }
 
-    public Boolean getIs_brigade() {
-        return is_brigade;
+    public Boolean getBrigade() {
+        return isBrigade;
     }
 
-    public void setIs_brigade(Boolean is_brigade) {
-        this.is_brigade = is_brigade;
+    public void setBrigade(Boolean brigade) {
+        isBrigade = brigade;
     }
 
     public String getRole() {
@@ -185,19 +207,46 @@ public class Worker {
         this.role = role;
     }
 
-    public String getMandate_begin_date() {
-        return mandate_begin_date;
+    public String getMandateBegin() {
+        return mandateBegin;
     }
 
-    public void setMandate_begin_date(String mandate_begin_date) {
-        this.mandate_begin_date = mandate_begin_date;
+    public void setMandateBegin(String mandateBegin) {
+        this.mandateBegin = mandateBegin;
     }
 
-    public String getMandate_end_date() {
-        return mandate_end_date;
+    public String getMandateEnd() {
+        return mandateEnd;
     }
 
-    public void setMandate_end_date(String mandate_end_date) {
-        this.mandate_end_date = mandate_end_date;
+    public void setMandateEnd(String mandateEnd) {
+        this.mandateEnd = mandateEnd;
     }
+
+    public String getAlergies() {
+        return alergies;
+    }
+
+    public void setAlergies(String alergies) {
+        this.alergies = alergies;
+    }
+
+    public String getDiseases() {
+        return diseases;
+    }
+
+    public void setDiseases(String diseases) {
+        this.diseases = diseases;
+    }
+
+    public Cbo getCbo() {
+        return cbo;
+    }
+
+    public void setCbo(Cbo cbo) {
+        this.cbo = cbo;
+    }
+
+
 }
+
