@@ -72,13 +72,12 @@ export class SecurityWorksComponent {
         }
     }
 
-    saveSecurityForm(safetyCard, dateRange) {
-        console.log(this.cpf);
+    saveSecurityForm(securityData, dateRange) {
         this.submitted = true;
         const date = dateRange.getDate();
         this.invalidDate = date === '' || date === null;
         if (this.securityForm.valid && this.selectedCipeiro === 0 && !this.invalidDate) {
-            safetyCard.close();
+            securityData.close();
         }
     }
 

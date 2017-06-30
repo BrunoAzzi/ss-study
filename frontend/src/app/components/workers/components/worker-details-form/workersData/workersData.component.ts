@@ -139,9 +139,9 @@ export class WorkersDataComponent {
         (this.mycbonumber > 0) ? this.disabled = false : this.disabled = true;
     }
 
-    savePersonalDataWorker(safetyCard) {
+    savePersonalDataWorker(workerData) {
         if (this.myForm.valid) {
-            safetyCard.close();
+            workerData.close();
         }
     }
 
