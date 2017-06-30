@@ -36,7 +36,7 @@ public class ConstructionController {
 
     @GetMapping
     public ResponseEntity<?> index() {
-        Set<Construction> constructions = repository.findByActivated(true);
+        Set<Construction> constructions = repository.findByActivatedTrue();
 
         return SuccessResponse.handle(
                 new String[] {"constructions"},

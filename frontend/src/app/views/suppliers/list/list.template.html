@@ -1,7 +1,6 @@
 <div fxLayout fxLayoutAlign="space-between center" class="top-actionbar">
     <div fxLayout fxLayoutAlign="start center">
         <md-icon class="search">search</md-icon>
-
         <md-input-container class="search-input" floatPlaceholder="never">
             <input #textFilterInput mdInput (input)="filterByText(textFilterInput.value)" placeholder="Buscar fornecedores">
         </md-input-container>

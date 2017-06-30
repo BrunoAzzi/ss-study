@@ -1,11 +1,11 @@
 import { Component, Inject, EventEmitter, Output, Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { CorreiosService } from "../../../services/correios.service";
-import { Endereco_completo } from '../../../mocks/endereco_completo/endereco_completo';
+import { CorreiosService } from "../../../../../services/correios.service";
+import { Endereco_completo } from '../../../../../mocks/endereco_completo/endereco_completo';
 import { CommonModule} from '@angular/common';
 import { CustomValidators } from './customValidators';
-import { CBOService } from "../../../services/cbo.service";
-import { WorkersDataService } from "../../../services/workers/workersData.service";
+import { CBOService } from "../../../../../services/cbo.service";
+import { WorkersDataService } from "../../../../../services/workers/workersData.service";
 import { IMyDpOptions } from 'mydatepicker';
 
 @Component({
@@ -87,7 +87,7 @@ export class WorkersDataComponent {
             ctps: new FormControl('', CustomValidators.onlyPositiveNumbers),
             birthDate: null,
             age: null,
-            nit: new FormControl('', CustomValidators.onlyPositiveNumbers),
+            nit: new FormControl(''),
             cep: null,
             completeAddress: null,
             admissionDate: null,
@@ -139,9 +139,9 @@ export class WorkersDataComponent {
         (this.mycbonumber > 0) ? this.disabled = false : this.disabled = true;
     }
 
-    savePersonalDataWorker(safetyCard) {
+    savePersonalDataWorker(workerData) {
         if (this.myForm.valid) {
-            safetyCard.close();
+            workerData.close();
         }
     }
 
