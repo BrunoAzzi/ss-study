@@ -21,9 +21,9 @@ import { RouterModule } from '@angular/router';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { HttpClientService } from "./services/http-client.service";
-import { SessionsService } from "./services/sessions.service";
-import { PasswordService } from "./services/password.service";
+import { HttpClientService } from './services/http-client.service';
+import { SessionsService } from './services/sessions.service';
+import { PasswordService } from './services/password.service';
 
 import { AuthGuard } from './guards/index';
 
@@ -53,16 +53,16 @@ import { KeysPipe } from './pipes/keys.pipe';
 import { DataTablePipe } from './components/perfil_emocional/status_trabalhadores/DataTablePipe.pipe';
 
 // Components
-import { SecurityWorksComponent } from "./components/workers/components/worker-security-form/worker-security-form.component";
-import { WorkersDataComponent } from "./components/workers/components/workers-details-form/workers-details-form.component";
-import { CompaniesComponent } from "./views/companies/companies.component";
-import { CompanyDetailsComponent } from "./components/forms/company-details/company-details.component";
-import { WorkerHealthFormComponent } from "./components/workers/components/worker-health-form/worker-health-form.component";
-import { AsoItemComponent, ConfirmationDialogOverview } from "./components/workers/asoItem/asoItem.component";
-import { DateRangeComponent } from "./components/common/date-range/date-range.component";
-import { SkillComponent } from "./components/workers/components/worker-qualifications-form/worker-qualifications-form.component";
-import { RecyclingComponent } from "./components/workers/recycling/recycling.component";
-import { BoxMessageComponent } from "./components/common/box-message/box-message.component";
+import { SecurityWorksComponent } from './components/workers/components/worker-security-form/worker-security-form.component';
+import { WorkersDataComponent } from './components/workers/components/workers-details-form/workers-details-form.component';
+import { CompaniesComponent } from './views/companies/companies.component';
+
+import { AsoItemComponent, ConfirmationDialogOverview } from './components/workers/asoItem/asoItem.component';
+
+import { DateRangeComponent } from './components/common/date-range/date-range.component';
+import { SkillComponent } from './components/workers/components/worker-qualifications-form/worker-qualifications-form.component';
+import { RecyclingComponent } from './components/workers/recycling/recycling.component';
+import { BoxMessageComponent } from './components/common/box-message/box-message.component';
 import { BlueprintComponent } from './components/blueprint/blueprint.component';
 import { ToolboxComponent } from './components/toolbox/toolbox.component';
 
@@ -72,9 +72,9 @@ import { RepositoriesComponent } from './views/repositories/repositories.compone
 import { TrainingComponent } from './views/training/training.component';
 
 // Worker
-import { WorkerFormComponent } from "./views/workers/form/form.component";
-import { WorkerListComponent } from "./views/workers/list/list.component";
-import { LineWorkerDetailComponent } from "./components/workers/line-worker-detail/line-worker-detail.component";
+import { WorkerFormComponent } from './views/workers/form/form.component';
+import { WorkerListComponent } from './views/workers/list/list.component';
+import { LineWorkerDetailComponent } from './components/workers/line-worker-detail/line-worker-detail.component';
 
 import { MonitoringComponent } from './views/constructions/detail/monitoring/monitoring.component';
 import { AreaMappingComponent } from './components/area-mapping/area-mapping.component';
@@ -90,8 +90,8 @@ import { SummaryItemComponent } from './components/summary-item/summary-item.com
 import { SummaryComponent } from './components/summary/summary.component';
 import { RiskGraphComponent } from './components/area-monitoring/risk-graph/risk-graph.component';
 import { ResponsableDataComponent } from './components/company/responsable-data/responsable-data.component';
-import { AddInformationComponent } from './components/company/add-information/add-information.component';
 
+import { AddInformationComponent } from './components/company/additional-information/additional-information.component';
 import { Ng2FileDropModule } from 'ng2-file-drop';
 
 import { WorkersOverviewComponent } from './components/overview/workers-overview/workers-overview.component';
@@ -166,6 +166,8 @@ import { SectorSummaryComponent } from './components/sector-summary/sector-summa
 import { MaintenanceInlineFormComponent } from './components/maintenance-inline-form/maintenance-inline-form.component';
 import { ListItemComponent } from './components/common/list-item/list-item.component';
 import { ListActionBarComponent } from './components/common/list-action-bar/list-action-bar.component';
+import {CompanyDetailsComponent} from './components/company/company-details/company-details.component';
+import {WorkerHealthFormComponent} from './components/workers/components/worker-health-form/worker-health-form.component';
 
 @NgModule({
     declarations: [
