@@ -6,7 +6,7 @@ import { Recycling } from '../../../mocks/recycling/recycling';
 @Component({
     selector: 'skill',
     styleUrls: ['./skill.component.scss'],
-    templateUrl: 'src/app/components/worker-form/skill/skill.template.html',
+    templateUrl: './skill.template.html',
 })
 export class SkillComponent {
     @Input() skill: Skill = new Skill();

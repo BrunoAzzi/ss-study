@@ -1,12 +1,12 @@
 <form #form novalidate id="form1" name="form1">
   <skill [form]="form" fxLayout fxLayoutAlign="space-around center" [skill]="skill" (removed)="removeSkill(skill)" [(skillNames)]="skillNames"
-         *ngFor="let skill of skillList">
+         *ngFor="let skill of worker.qualifications">
   </skill>
   <a class="action" (click)="addSkill()">
     Adicicionar habilitação
   </a>
   <div class="button-default">
-    <button type="submit" class="button-default" md-raised-button (click)="saveSkills(safetyCard)">
+    <button type="submit" class="button-default" md-raised-button (click)="saved.emit({})">
       Salvar e continuar
     </button>
   </div>

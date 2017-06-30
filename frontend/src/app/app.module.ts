@@ -60,7 +60,7 @@ import { CompaniesComponent } from './views/companies/companies.component';
 import { AsoItemComponent, ConfirmationDialogOverview } from './components/workers/asoItem/asoItem.component';
 
 import { DateRangeComponent } from './components/common/date-range/date-range.component';
-import { SkillComponent, WorkerQualificationsFormComponent } from './components/worker-form/skill/skill.component';
+import { SkillComponent } from './components/worker-form/skill/skill.component';
 import { RecyclingComponent } from './components/workers/recycling/recycling.component';
 import { BoxMessageComponent } from './components/common/box-message/box-message.component';
 import { BlueprintComponent } from './components/blueprint/blueprint.component';
@@ -168,6 +168,7 @@ import { ListItemComponent } from './components/common/list-item/list-item.compo
 import { ListActionBarComponent } from './components/common/list-action-bar/list-action-bar.component';
 import {CompanyDetailsComponent} from './components/company/company-details/company-details.component';
 import {WorkerHealthFormComponent} from './components/worker-form/worker-health-form/worker-health-form.component';
+import {WorkerQualificationsFormComponent} from "./components/worker-form/worker-qualifications-form/worker-qualifications-form.component";
 
 @NgModule({
     declarations: [
