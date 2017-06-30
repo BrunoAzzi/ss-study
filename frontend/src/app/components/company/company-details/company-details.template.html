@@ -13,21 +13,20 @@
                 <div class="grid-column-75">
                     <div class="grid-row">
                         <md-input-container>
-                            <input mdInput placeholder="CNPJ" [textMask]="{mask: cnpjMask}">
+                            <input mdInput placeholder="CNPJ" [textMask]="{mask: cnpjMask}" name="cnpj">
                         </md-input-container>
                         <md-input-container>
-                            <input mdInput placeholder="RAZÃO SOCIAL">
+                            <input mdInput placeholder="RAZÃO SOCIAL" name="corporateName">
                         </md-input-container>
                         <md-input-container>
-                            <input mdInput placeholder="NOME FANTASIA">
+                            <input mdInput placeholder="NOME FANTASIA" name="fakeName">
                         </md-input-container>
                     </div>
-                    <div class="grid-row">
+                    <div class="grid-row">                        
+                        <cnae-picker [(cnae)]="cnae" class="half" (onSearch)="onCnaeSearch($event)"></cnae-picker>
                         <md-input-container>
-                            <input mdInput placeholder="CNAE" [textMask]="{mask: cnaeMask}">
-                        </md-input-container>
-                        <md-input-container>
-                            <input mdInput placeholder="DESCRIÇÃO CNAE">
+                            <input mdInput placeholder="DESCRIÇÃO CNAE" 
+                                        name="cnaeDescription">
                         </md-input-container>
                         <cep-picker [(cep)]="cep" class="half" (onSearch)="onCepSearch(f, $event)"></cep-picker>                        
                     </div>
@@ -37,15 +36,15 @@
                                         [(ngModel)]="address" name="address">
                         </md-input-container>
                         <md-input-container>
-                            <input mdInput placeholder="NUMERO">
+                            <input mdInput placeholder="NUMERO" name="addressNumber">
                         </md-input-container>
                         <md-input-container>
-                            <input mdInput placeholder="COMPLEMENTO">
+                            <input mdInput placeholder="COMPLEMENTO" name="address">
                         </md-input-container>
                     </div>
                     <div class="grid-row-25">
                         <md-input-container>
-                            <input mdInput placeholder="URL">
+                            <input mdInput placeholder="URL" name="logoUrl">
                         </md-input-container>
                     </div>
                 </div>                                     

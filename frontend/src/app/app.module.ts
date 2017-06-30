@@ -22,6 +22,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HttpClientService } from './services/http-client.service';
+import { CnaeService } from './services/cnae.service'
 import { SessionsService } from './services/sessions.service';
 import { PasswordService } from './services/password.service';
 import { AuthGuard } from './guards/index';
@@ -145,6 +146,7 @@ import { FabComponent } from './components/common/floating-action-button/fab.com
 
 import { DropFileComponent } from './components/common/drop-file/drop-file.component';
 import { CepPickerComponent } from './components/common/cep-picker/cep-picker.component';
+import { CnaePickerComponent } from './components/common/cnae-picker/cnae-picker.component';
 import { ConstructionStatusPickerComponent } from './components/common/construction-status-picker/construction-status-picker.component';
 import { ConstructionSitesStatusIconComponent } from './components/common/construction-sites-status-icon/construction-sites-status-icon.component';
 import { AddNewCategoryComponent } from './components/common/add-new-category/add-new-category.component';
@@ -250,6 +252,7 @@ import { MaintenanceInlineFormComponent } from './components/maintenance-inline-
 
         ConstructionDetailsFormComponent,
         CepPickerComponent,
+        CnaePickerComponent,
         ConstructionManagersFormComponent,
         ConstructionStatusPickerComponent,
         ConstructionSitesStatusIconComponent,
@@ -323,6 +326,7 @@ import { MaintenanceInlineFormComponent } from './components/maintenance-inline-
         SessionsService,
         PasswordService,
         MdSnackBar,
+        CnaeService,
         ConstructionResolver,
         ConstructionsService,
         {provide: LocationStrategy, useClass: HashLocationStrategy}],

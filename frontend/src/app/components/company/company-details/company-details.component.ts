@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter, Output, Input  } from '@angular/core';
 
 import { Company } from './../../../models/company.model';
+import { Cnae } from './../../../models/cnae.model';
 
 @Component({
     selector: 'company-details',
@@ -18,19 +19,26 @@ export class CompanyDetailsComponent {
 
     cep: string
     address: string
+    cnaeDescription: string
+    cnae: Cnae    
 
     constructor() { }
 
-    save() {
+    save(f) {
         
     }
 
     //noinspection JSMethodCanBeStatic
     onCepSearch(f, data) {
         const mappedData = {            
-            address: data.street + ' , ' + data.neighborhood + ' , ' + data.city + ' / ' + data.state 
+            address: data.street + ' , ' + data.neighborhood + ' , ' + data.city + ' / ' + data.state            
         };
         f.setValue({...f.value, ...mappedData});
+    }
+
+    onCnaeSearch(data) {
+        console.log(data);
+        this.cnae = data;
     }
 
 }

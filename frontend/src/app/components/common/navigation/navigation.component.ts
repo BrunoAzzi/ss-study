@@ -37,7 +37,6 @@ export class NavigationComponent {
 
     ngOnInit(): void {
         this.getCompany();
-        console.log(this.company);
     }
 
     activeRoute(routename: string): boolean {

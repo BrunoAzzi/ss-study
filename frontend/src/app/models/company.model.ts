@@ -1,5 +1,5 @@
 import { CompanyContact } from "./company-contact.model";
-import { Cnae } from "./cnae.mode"
+import { Cnae } from "./cnae.model"
 
 export interface ICompany {
     id: number
