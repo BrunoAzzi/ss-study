@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ListItemComponent implements OnInit {
 
-  @Input() buldEditable : boolean = false
+  @Input() bulkEditable : boolean = false
   @Input() checked : boolean = false
 
   constructor() { }

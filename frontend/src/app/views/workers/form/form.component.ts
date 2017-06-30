@@ -1,7 +1,8 @@
-import { Component, EventEmitter  } from '@angular/core';
+import {Component, EventEmitter, ViewChild} from '@angular/core';
 import { WorkerService } from '../../../services/worker.service';
 import { Skill } from '../../../mocks/skill/skill';
 import { Worker } from '../../../models/worker.model';
+import {SafetyCardComponent} from "../../../components/common/safety-card/safety-card.component";
 
 @Component({
     templateUrl: 'form.template.html',
@@ -9,36 +10,19 @@ import { Worker } from '../../../models/worker.model';
 })
 export class WorkerFormComponent {
 
+    @ViewChild('qualificationsCard') qualificationsCard: SafetyCardComponent;
+
     cpf: string = "";
     isReciclagem: boolean = false;
-    maximunLength: number;
     isValid: boolean = false;
-    skillList = [];
-    resultado:any;
-    worker: Worker = new Worker();//any = { personalData: {} };
+    resultado: any;
+
+    worker: Worker = new Worker();
 
     constructor(
         private service: WorkerService
     ) {
-        if (this.skillList.length < 1) this.skillList.push(new Skill());
-        this.maximunLength = this.skillNames.length;
     }
-
-    addSkill() {
-        if (this.skillList.length < this.maximunLength) this.skillList.push(new Skill());
-    }
-
-    removeSkill(skill: Skill) {
-        let index = this.skillList.indexOf(skill);
-        if (index > -1) this.skillList.splice(index, 1);
-    }
-
-    skillNames = [
-        "NR 32",
-        "NR 35",
-        "NR 18",
-        "NR 33",
-    ];
 
     getWorkerByCpf(cpf: string) {
         this.service.getWorkerByCpf(cpf).subscribe(subscribedworker => {
@@ -46,7 +30,13 @@ export class WorkerFormComponent {
         } );
     }
 
-    saveSkills(safetyCard) {
-        if (this.isValid) safetyCard.close();
+    onQualificationsSaved(savedWorker : Worker) {
+        console.log(savedWorker)
+        this.qualificationsCard.close();
+    }
+
+    onDetailsSaved(savedWorker: Worker) {
+        console.log(savedWorker)
+        this.service.save(savedWorker)
     }
 }
