@@ -12,7 +12,7 @@ import { CnaeService } from './../../../services/cnae.service'
 
 export class CnaePickerComponent {
 
-    @Input() cnae: Cnae;
+    @Input() cnaeCode: string;
 
     @Output() onSearch = new EventEmitter();
 
@@ -30,6 +30,7 @@ export class CnaePickerComponent {
                    if(data) {
                        this.onSearch.emit(data);
                    } else {
+                       this.onSearch.emit(data);
                        this.snackBar.open('CNAE não encontrado!', null, {duration: 3000})
                    }
                 },

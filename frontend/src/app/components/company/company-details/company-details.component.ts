@@ -19,6 +19,7 @@ export class CompanyDetailsComponent {
 
     cep: string
     address: string
+    cnaeCode: string
     cnaeDescription: string
     cnae: Cnae    
 
@@ -37,8 +38,12 @@ export class CompanyDetailsComponent {
     }
 
     onCnaeSearch(data) {
-        console.log(data);
-        this.cnae = data;
+        if(data) {
+            this.cnae = new Cnae(data.id, data.code, data.description);
+            this.cnaeDescription = data.description;
+        } else {
+            this.cnaeDescription = "";
+        }
     }
 
 }

@@ -23,10 +23,12 @@
                         </md-input-container>
                     </div>
                     <div class="grid-row">                        
-                        <cnae-picker [(cnae)]="cnae" class="half" (onSearch)="onCnaeSearch($event)"></cnae-picker>
+                        <cnae-picker [(cnaeCode)]="cnaeCode" class="half" (onSearch)="onCnaeSearch($event)"></cnae-picker>
                         <md-input-container>
-                            <input mdInput placeholder="DESCRIÇÃO CNAE" 
-                                        name="cnaeDescription">
+                            <input mdInput placeholder="DESCRIÇÃO CNAE"
+                                        [(ngModel)]="cnaeDescription"
+                                        name="cnaeDescription"
+                                        [disabled]="true">
                         </md-input-container>
                         <cep-picker [(cep)]="cep" class="half" (onSearch)="onCepSearch(f, $event)"></cep-picker>                        
                     </div>

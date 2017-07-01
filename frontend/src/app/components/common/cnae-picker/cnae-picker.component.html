@@ -1,10 +1,10 @@
 <md-input-container class="with-action">
     <input mdInput placeholder="CNAE"
-           [(ngModel)]="cnae" name="cnae"
+           [(ngModel)]="cnaeCode" name="cnaeCode"
            [textMask]="{mask: cnaeMask}"
     >
 </md-input-container>
-<md-icon *ngIf="!loadingCnae" (click)="searchCnae(cnae)">
+<md-icon *ngIf="!loadingCnae" (click)="searchCnae(cnaeCode)">
     search
 </md-icon>
 <md-spinner *ngIf="loadingCnae"></md-spinner>
