@@ -1,4 +1,5 @@
 import { Component, OnInit, EventEmitter, Output, Input  } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 import { Company } from './../../../models/company.model';
 import { Cnae } from './../../../models/cnae.model';
@@ -17,29 +18,29 @@ export class CompanyDetailsComponent {
     cnaeMask = [/\d/, /\d/, /\d/, /\d/, '-', /\d/, '/', /\d/, /\d/];
     cnpjMask = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '/', /\d/, /\d/,/\d/, /\d/, '-', /\d/, /\d/];
 
-    cep: string
-    address: string
+    addressStreet: string
     cnaeCode: string
     cnaeDescription: string
-    cnae: Cnae    
 
     constructor() { }
 
-    save(f) {
-        
+    save(f: NgForm) {
+        const company = Object.assign(
+            new Company(),
+            this.company
+        )
+        this.saved.emit(company);
     }
 
-    //noinspection JSMethodCanBeStatic
-    onCepSearch(f, data) {
-        const mappedData = {            
-            address: data.street + ' , ' + data.neighborhood + ' , ' + data.city + ' / ' + data.state            
-        };
-        f.setValue({...f.value, ...mappedData});
+    onCepSearch(data) {
+        this.company.cep = data.cep;
+        this.addressStreet = data.street + ' , ' + data.neighborhood + ' , ' + data.city + ' / ' + data.state 
+        this.company.addressStreet = this.addressStreet
     }
 
     onCnaeSearch(data) {
         if(data) {
-            this.cnae = new Cnae(data.id, data.code, data.description);
+            this.company.cnae = new Cnae(data.id, data.code, data.description);
             this.cnaeDescription = data.description;
         } else {
             this.cnaeDescription = "";

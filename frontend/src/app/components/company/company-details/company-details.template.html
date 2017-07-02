@@ -7,46 +7,61 @@
                     <md-card-content>                                                
                     </md-card-content>
                     <md-card-footer>
-                        <p>INSIRA A FOTO <br/> DO TRABALHADOR</p>
+                        <p>INSIRA A LOGO <br/> DA EMPRESA</p>
                     </md-card-footer>
                 </md-card>  
                 <div class="grid-column-75">
                     <div class="grid-row">
                         <md-input-container>
-                            <input mdInput placeholder="CNPJ" [textMask]="{mask: cnpjMask}" name="cnpj">
+                            <input mdInput placeholder="CNPJ"
+                            [(ngModel)]="company.cnpj"
+                            [textMask]="{mask: cnpjMask}" name="cnpj">
                         </md-input-container>
                         <md-input-container>
-                            <input mdInput placeholder="RAZÃO SOCIAL" name="corporateName">
+                            <input mdInput placeholder="RAZÃO SOCIAL"
+                            [(ngModel)]="company.corporateName"
+                            name="corporateName">
                         </md-input-container>
                         <md-input-container>
-                            <input mdInput placeholder="NOME FANTASIA" name="fakeName">
+                            <input mdInput placeholder="NOME FANTASIA"
+                            [(ngModel)]="company.fakeName"
+                            name="fakeName">
                         </md-input-container>
                     </div>
                     <div class="grid-row">                        
-                        <cnae-picker [(cnaeCode)]="cnaeCode" class="half" (onSearch)="onCnaeSearch($event)"></cnae-picker>
+                        <cnae-picker [(cnaeCode)]="cnaeCode" class="half" 
+                        (onSearch)="onCnaeSearch($event)"></cnae-picker>
                         <md-input-container>
                             <input mdInput placeholder="DESCRIÇÃO CNAE"
                                         [(ngModel)]="cnaeDescription"
                                         name="cnaeDescription"
                                         [disabled]="true">
                         </md-input-container>
-                        <cep-picker [(cep)]="cep" class="half" (onSearch)="onCepSearch(f, $event)"></cep-picker>                        
+                        <cep-picker [(cep)]="company.cep" class="half" #companyCep
+                        (onSearch)="onCepSearch($event)"></cep-picker>                        
                     </div>
                     <div class="grid-row">
                         <md-input-container>
                             <input mdInput placeholder="Cidade / Estado"
-                                        [(ngModel)]="address" name="address">
+                                        [(ngModel)]="addressStreet"
+                                        name="addressStreet">
                         </md-input-container>
                         <md-input-container>
-                            <input mdInput placeholder="NUMERO" name="addressNumber">
+                            <input mdInput placeholder="NUMERO"
+                            [(ngModel)]="company.addressNumber"
+                            name="addressNumber">
                         </md-input-container>
                         <md-input-container>
-                            <input mdInput placeholder="COMPLEMENTO" name="address">
+                            <input mdInput placeholder="COMPLEMENTO"
+                            [(ngModel)]="company.addressComplement"
+                            name="addressComplement">
                         </md-input-container>
                     </div>
                     <div class="grid-row-25">
                         <md-input-container>
-                            <input mdInput placeholder="URL" name="logoUrl">
+                            <input mdInput placeholder="URL"
+                            [(ngModel)]="company.logoUrl"
+                            name="logoUrl">
                         </md-input-container>
                     </div>
                 </div>                                     
@@ -56,7 +71,7 @@
 
     <div class="form-bottom button-default">
 
-        <button md-raised-button >SALVAR E CONTINUAR</button>
+        <button md-raised-button [disabled]="!f.valid">SALVAR E CONTINUAR</button>
 
     </div>
 

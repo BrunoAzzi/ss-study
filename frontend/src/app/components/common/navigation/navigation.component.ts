@@ -1,13 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
-import {Company} from "../../../mocks/company/company";
-import {CompanyService} from '../../../services/company.service';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Company } from "../../../mocks/company/company";
+import { FakeCompanyService } from '../../../services/company.service';
 
 @Component({
     selector: 'navigation',
     templateUrl: 'navigation.template.html',
     styleUrls: ['./navigation.component.scss'],
-    providers: [CompanyService]
+    providers: [FakeCompanyService]
 })
 
 export class NavigationComponent {
@@ -28,7 +28,7 @@ export class NavigationComponent {
         ]
     };
 
-    constructor(private router: Router, private companyService: CompanyService) {
+    constructor(private router: Router, private companyService: FakeCompanyService) {
     }
 
     getCompany(): void {

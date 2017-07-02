@@ -34,7 +34,7 @@ export class Company implements ICompany {
     constructor()
     constructor(data: ICompany)
     constructor(data?: any) {
-        this.id = data && data.id || undefined
+        this.id = data && data.id || 1
         this.cnpj = data && data.cnpj || undefined
         this.corporateName = data && data.corporateName || undefined
         this.fakeName = data && data.fakeName || undefined

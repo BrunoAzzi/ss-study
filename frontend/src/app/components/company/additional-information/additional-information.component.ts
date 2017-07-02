@@ -9,5 +9,7 @@ import { Company } from './../../../models/company.model';
 })
 
 export class AddInformationComponent {
+
+    @Input() company: Company;
     constructor() {}
 }
