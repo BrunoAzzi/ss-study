@@ -23,6 +23,9 @@ export class CompaniesComponent {
 
 	canvas: any;
 	ctx: any;
+    responsableDataType = "responsableData"
+    responsableSstDataType = "responsableSstData"
+    responsableContactDataType = "responsableContactData"
 	// private width: number = 800;
 	// private height: number = 600;
 	elements: Array<SafetyCardComponent>;
@@ -68,22 +71,52 @@ export class CompaniesComponent {
 
     onResponsableData(company: Company) {
         
-        this.responsableData.close();
-        this.responsableSstData.open();
-        this.snackBar.open('Dados do responsável pela empresa atualizados com sucesso!', null, {duration: 3000})
+        this.service.updateCompany(company).subscribe(
+            data => {
+                this.responsableData.close();
+                this.responsableSstData.open();
+                this.snackBar.open('Dados do responsável pela empresa atualizados com sucesso!', null, {duration: 3000})
+            }, 
+            error => {
+                if (error.json() && error.json().errors && error.json().errors.length > 0) {
+                    console.log(error.json().errors[0].message);
+                    console.log('Erro no servidor!');
+                }
+            }
+        );
     }
 
     onResponsableSstData(company: Company) {
         
-        this.responsableSstData.close();
-        this.responsableContactData.open();
-        this.snackBar.open('Dados do responsável SST atualizados com sucesso!', null, {duration: 3000})
+        this.service.updateCompany(company).subscribe(
+            data => {
+                this.responsableSstData.close();
+                this.responsableContactData.open();
+                this.snackBar.open('Dados do responsável SST atualizados com sucesso!', null, {duration: 3000})
+            }, 
+            error => {
+                if (error.json() && error.json().errors && error.json().errors.length > 0) {
+                    console.log(error.json().errors[0].message);
+                    console.log('Erro no servidor!');
+                }
+            }
+        );
     }
     onResponsableContactData(company: Company) {
         
-        this.responsableContactData.close();
-        this.additionalInformation.open();
-        this.snackBar.open('Dados do contato atualizados com sucesso!', null, {duration: 3000})
+        this.service.updateCompany(company).subscribe(
+            data => {
+                this.responsableContactData.close();
+                this.additionalInformation.open();
+                this.snackBar.open('Dados do contato atualizados com sucesso!', null, {duration: 3000})
+            }, 
+            error => {
+                if (error.json() && error.json().errors && error.json().errors.length > 0) {
+                    console.log(error.json().errors[0].message);
+                    console.log('Erro no servidor!');
+                }
+            }
+        );
     }
 
     onAdditionalInformation(company: Company) {
