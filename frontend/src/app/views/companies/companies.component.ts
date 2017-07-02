@@ -67,30 +67,39 @@ export class CompaniesComponent {
     }
 
     onResponsableData(company: Company) {
-        console.log(company);
+        
         this.responsableData.close();
         this.responsableSstData.open();
         this.snackBar.open('Dados do responsável pela empresa atualizados com sucesso!', null, {duration: 3000})
     }
 
     onResponsableSstData(company: Company) {
-        console.log(company);
+        
         this.responsableSstData.close();
         this.responsableContactData.open();
         this.snackBar.open('Dados do responsável SST atualizados com sucesso!', null, {duration: 3000})
     }
     onResponsableContactData(company: Company) {
-        console.log(company);
+        
         this.responsableContactData.close();
         this.additionalInformation.open();
         this.snackBar.open('Dados do contato atualizados com sucesso!', null, {duration: 3000})
     }
 
-    onAdditionalInformation
-    (company: Company) {
-        console.log(company);
-        this.additionalInformation.close();
-        this.snackBar.open('Informações Adicionais atualizadas com sucesso!', null, {duration: 3000})
+    onAdditionalInformation(company: Company) {
+        
+        this.service.updateCompany(company).subscribe(
+            data => {
+                this.additionalInformation.close();
+                this.snackBar.open('Informações Adicionais atualizadas com sucesso!', null, {duration: 3000})
+            }, 
+            error => {
+                if (error.json() && error.json().errors && error.json().errors.length > 0) {
+                    console.log(error.json().errors[0].message);
+                    console.log('Erro no servidor!');
+                }
+            }
+        );
     }
 
     closeAll() {

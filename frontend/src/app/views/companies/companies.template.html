@@ -39,6 +39,6 @@
         <span>Informações Adicionais</span>
     </safety-card-header>
     <safety-card-content>
-        <additional-information [company]="company"></additional-information>
+        <additional-information [company]="company" (saved)="onAdditionalInformation($event)"></additional-information>
     </safety-card-content>
 </safety-card>

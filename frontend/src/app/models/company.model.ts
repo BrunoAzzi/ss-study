@@ -11,6 +11,10 @@ export interface ICompany {
     addressStreet: string
     addressNumber: number
     addressComplement: string
+    hasSesmt: boolean
+    hasCipa: boolean
+    isDesignatedCipa: boolean
+    employerNumber: number
     logoUrl: string
     logoFileName: string
 }
@@ -25,6 +29,10 @@ export class Company implements ICompany {
     addressStreet: string
     addressNumber: number
     addressComplement: string
+    hasSesmt: boolean
+    hasCipa: boolean
+    isDesignatedCipa: boolean
+    employerNumber: number
     logoUrl: string
     logoFileName: string
     responsibleCompany: CompanyContact
@@ -43,6 +51,10 @@ export class Company implements ICompany {
         this.addressStreet = data && data.addressStreet || undefined
         this.addressNumber = data && data.addressNumber || undefined
         this.addressComplement = data && data.addressComplement || undefined
+        this.hasSesmt = data && data.hasSesmt || false
+        this.hasCipa = data && data.hasCipa || false
+        this.employerNumber = data && data.employerNumber || undefined
+        this.isDesignatedCipa = data && data.isDesignatedCipa || false
         this.logoUrl = data && data.logoUrl || undefined
         this.logoFileName = data && data.logoFileName || undefined
         this.responsibleCompany = data && data.responsibleCompany || undefined
