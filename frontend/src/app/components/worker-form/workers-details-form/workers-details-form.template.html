@@ -1,10 +1,11 @@
-<form [formGroup]="myForm" (submit)="savePersonalDataWorker(workerData)" id="formBasicData" name="formBasicData">
+<form [formGroup]="myForm" id="formBasicData" name="formBasicData">
     <div class="grid-container">
         <div class="grid-column-50">
             <div class="grid-row">
                 <md-card class="image-upload">
                     <md-card-content>
-                        <img src="" class="md-card-image" alt="">
+                        <drop-file [img]="'/assets/ic-image.png'" (onChange)="onLogoChange($event)">
+                        </drop-file>
                     </md-card-content>
                     <md-card-footer>
                         <p>INSIRA A FOTO <br/> DO TRABALHADOR</p>
@@ -24,7 +25,6 @@
             <div class="grid-row">
                 <my-date-picker formControlName="birthDate" name="birthDate" name="birthDate" [(ngModel)]="worker.birthDate" [options]="myDatePickerOptions"
                     placeholder="Data de Nascimento">
-
                 </my-date-picker>
             </div>
             <div class="grid-row">
@@ -150,7 +150,7 @@
         </div>
     </div>
     <div class="button-default">
-        <button md-raised-button type="submit">
+        <button md-raised-button type="submit" (click)="saved.emit(worker)">
                     Salvar e continuar
                 </button>
     </div>
