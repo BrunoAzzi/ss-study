@@ -29,6 +29,7 @@ export class WorkersDataComponent {
     hiredType = true;
     myForm: FormGroup;
     completeAddress: string;
+    photoPath: any;
 
     myDatePickerOptions: IMyDpOptions = {
         dateFormat: 'dd/mm/yyyy',
@@ -140,5 +141,10 @@ export class WorkersDataComponent {
         this.mycbonumber = Number.parseInt(this.mycbo);
         (this.mycbonumber > 0) ? this.disabled = false : this.disabled = true;
     }
+
+     onLogoChange(image) {
+        this.photoPath = image;
+    }
+
 
 }
