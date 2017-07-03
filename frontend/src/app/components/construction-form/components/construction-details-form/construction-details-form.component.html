@@ -7,13 +7,8 @@
                        required
                 >
             </md-input-container>
-            <cep-picker [(cep)]="construction.cep" class="half" (onSearch)="onCepSearch(f, $event)"></cep-picker>
+            <cep-picker [(cep)]="construction.cep" class="half" (onSearch)="onCepSearch($event)"></cep-picker>
             <md-input-container class="half">
-                <input mdInput placeholder="Cidade / Estado"
-                       [(ngModel)]="construction.city" name="city"
-                >
-            </md-input-container>
-            <md-input-container>
                 <input mdInput placeholder="Endereço Completo (Rua, Número, Complemento)"
                        [(ngModel)]="construction.address" name="address"
                 >
@@ -40,7 +35,7 @@
                 <span class="file-name">{{ fileName }}</span>
                 <input #fileInput type="file" (change)="processFile(fileInput.files[0])" [accept]="supportedFileTypes.join(', ')"/>
             </div>
-            <construction-status-picker class="half"></construction-status-picker>
+            <construction-status-picker [status]="construction.status" (selected)="onStatusChanged($event)" class="half"></construction-status-picker>
         </section>
         <section>
             <md-input-container>

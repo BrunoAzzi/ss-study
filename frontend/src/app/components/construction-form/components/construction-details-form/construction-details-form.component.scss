@@ -1,9 +1,3 @@
-@import "../../../../../scss/components/common/forms";
-
-construction-status-picker {
-  margin-top: 6px;
-}
-
 .input-text-with-file {
   width: 100%;
   position: relative;
@@ -32,5 +26,11 @@ construction-status-picker {
 
   input[type=file] {
     display: none;
+  }
+}
+
+.custom-component-drop-zone {
+  img {
+    flex-basis: 0;
   }
 }

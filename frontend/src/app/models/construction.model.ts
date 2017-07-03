@@ -22,28 +22,33 @@ const statuses = {
 export class Construction implements IConstruction {
     id: number
 
-    name: string = "";
-    cei: string = "";
+    name = '';
+    cei = '';
     logo: any;
     featured: any;
 
-    status: number = 0;
-    image: string = "";
+    status = 0;
+    image = '';
 
-    description: string = ""
+    description = ''
 
-    address: string = ""
-    cep: string = ""
-    city: string = ""
-    number: string = ""
-    complement: string = ""
+    address = ''
+    cep = ''
+    city = ''
+    number = ''
+    complement = ''
 
-    sponsor: string = ""
+    sponsor = ''
     sectors: Array<Sector> = []
 
-    public getStatus() {
-        return statuses[this.status]
+    static getStatus(value: number) {
+        return statuses[value]
     }
+
+    public getStatus() {
+        return Construction.getStatus(this.status)
+    }
+
 
     public setConstruction(data: IConstruction) {
         this.id = data.id
@@ -56,13 +61,15 @@ export class Construction implements IConstruction {
         this.sectors = data.sectors ? data.sectors.map(sector => new Sector(sector, this)) : []
     }
 
-    public initializeWithJSON(json: any) : Construction {
+    public initializeWithJSON(json: any): Construction {
         this.id = json.id
         this.name = json.name
         this.cep = json.cep
-        this.address = json.address
-        // this.status = json.status
-        this.status = 0
+        this.address = json.addressStreet
+        this.number = json.addressNumber
+        this.complement = json.addressComplement
+        this.city = json.city
+        this.status = json.status
         this.description = json.description
         this.image = json.logoUrl
         this.cei = json.ceiCode
@@ -73,11 +80,22 @@ export class Construction implements IConstruction {
         // sectors -> json.sectors
         // responsibleEngineer -> json.responsibleEngineer
         // responsibleSafety -> json.responsibleSafety
-        return this
+        return this;
     }
 
     public toJson() {
-        return JSON.stringify(this);
+        return {
+            id: this.id,
+            name: this.name,
+            cep: this.cep,
+            city: this.city,
+            addressStreet: this.address,
+            addressNumber: this.number,
+            addressComplement: this.complement,
+            status: this.status,
+            description: this.description,
+            ceiCode: this.cei
+        };
     }
 
     getSummary() {
@@ -86,7 +104,7 @@ export class Construction implements IConstruction {
                 alerts: sum.alerts + sector.getSummary().alerts,
                 cones: sum.cones + sector.getSummary().cones,
                 workers: sum.workers + sector.getSummary().workers,
-            } 
+            }
         }, {
             alerts: 0,
             cones: 0,

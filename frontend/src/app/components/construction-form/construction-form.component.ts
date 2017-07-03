@@ -21,7 +21,6 @@ export class ConstructionFormComponent implements OnInit {
     elements: Array<SafetyCardComponent>;
 
     ngOnInit(): void {
-
         this.elements = [this.constructionData, this.managersData, this.floorData, this.goodsData, this.workersData];
         this.closeAll();
 

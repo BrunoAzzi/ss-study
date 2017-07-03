@@ -36,13 +36,13 @@ export class ConstructionDetailsFormComponent {
     constructor() {
     }
 
-    //noinspection JSMethodCanBeStatic
-    onCepSearch(f, data) {
-        const mappedData = {
-            city: data.city + ' / ' + data.state,
-            address: data.street + ' , ' + data.neighborhood
-        };
-        f.setValue({...f.value, ...mappedData});
+    onStatusChanged(value: number) {
+        this.construction.status = value
+    }
+
+    onCepSearch(data) {
+        this.construction.cep = data.cep
+        this.construction.address = data.street + ' , ' + data.neighborhood + ' - ' + data.city + ' / ' + data.state
     }
 
     onLogoChange(image) {
@@ -51,12 +51,6 @@ export class ConstructionDetailsFormComponent {
 
     onFeaturedChange(image) {
         this.featured = image;
-    }
-
-    //noinspection JSMethodCanBeStatic
-    statusChanged(event, f: NgForm) {
-        const status = event.value;
-        f.setValue({ ...f.value, status });
     }
 
     save(f: NgForm) {
