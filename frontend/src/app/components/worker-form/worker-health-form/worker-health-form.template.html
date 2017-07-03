@@ -2,7 +2,7 @@
     <div class="message-errors" *ngIf="errorMsg != undefined">
         {{errorMsg}}
     </div>
-    <form [formGroup]="helthForm" id="formHealth" (submit)="saveHealthComponent(healthSaved)">
+    <form [formGroup]="helthForm" id="formHealth" >
         <div class="form-content">
             <table class="table-form">
                 <tr>
@@ -47,7 +47,7 @@
                 </a>
         </div>
         <div fxLayout="row" fxLayoutAlign="end center">
-            <button class="save-and-continue" md-raised-button type="submit">
+            <button class="save-and-continue" md-raised-button type="submit" (click)="saved.emit(worker)">
                     <span>Salvar e continuar</span>
                 </button>
         </div>

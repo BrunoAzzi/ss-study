@@ -35,25 +35,21 @@ export class AsoItemComponent {
            isAble : new FormControl(''),
            dateChange : new FormControl(''),
         });
-        
+
         this.testeBool;
     }
 
     openDialog() {
-        let dialogRef = this.dialog.open(ConfirmationDialogOverview);
+        const dialogRef = this.dialog.open(ConfirmationDialogOverview);
         dialogRef.afterClosed().subscribe(result => {
-            if (result === "Sim") { this.removeMyself() }
+            if (result === 'Sim') { this.removeMyself(); }
         });
     }
 
     removeMyself() {
         this.removed.emit(this);
     }
-    
-    teste() {
-        // this.asoForm.valid 
-        console.log("AKI");
-    }
+
 }
 
 

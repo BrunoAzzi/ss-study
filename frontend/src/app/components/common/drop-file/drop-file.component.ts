@@ -18,6 +18,8 @@ export class DropFileComponent {
     label: string;
 
     image: any;
+     
+    @Input() img: string;
 
     @Output()
     onChange = new EventEmitter();
