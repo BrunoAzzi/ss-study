@@ -7,6 +7,8 @@
      (ng2FileDropFileAccepted)="dragFileAccepted($event)"
      (ng2FileDropFileRejected)="dragFileRejected($event)"
      (click)="showInput()">
-    <img [src]="image || '/assets/plus.svg'"/>
+     <span *ngIf></span>
+    <img [src]="image || img"/>
+<!--    <img [src]="image || '/assets/plus.svg'"/>-->
     <input #fileInput type="file" (change)="onFileChange($event)" [accept]="supportedFileTypes.join(', ')"/>
 </div>

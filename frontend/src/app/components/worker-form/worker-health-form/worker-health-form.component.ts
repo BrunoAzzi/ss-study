@@ -103,6 +103,5 @@ export class WorkerHealthFormComponent {
             this.canAddNew = true;
         }
     }
-
 }
 

@@ -2,7 +2,7 @@
     <div class="message-errors" *ngIf="errorMsg != undefined">
         {{errorMsg}}
     </div>
-    <form [formGroup]="helthForm" id="formHealth" (submit)="saveHealthComponent(healthSaved)">
+    <form [formGroup]="helthForm" id="formHealth" >
         <div class="form-content">
             <table class="table-form">
                 <tr>

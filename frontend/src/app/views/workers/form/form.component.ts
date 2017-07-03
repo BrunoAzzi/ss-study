@@ -46,7 +46,7 @@ export class WorkerFormComponent {
 
     onDetailsSaved(savedWorker: Worker) {
         console.log(savedWorker);
-        //this.datailsCard.close();
+        this.datailsCard.close();
     }
 
     onHealthSaved(savedWorker: Worker) {

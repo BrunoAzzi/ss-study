@@ -1,10 +1,11 @@
-<form [formGroup]="myForm"  id="formBasicData" name="formBasicData">
+<form [formGroup]="myForm" id="formBasicData" name="formBasicData">
     <div class="grid-container">
         <div class="grid-column-50">
             <div class="grid-row">
                 <md-card class="image-upload">
                     <md-card-content>
-                        <img src="" class="md-card-image" alt="">
+                        <drop-file [img]="'/assets/ic-image.png'" (onChange)="onLogoChange($event)">
+                        </drop-file>
                     </md-card-content>
                     <md-card-footer>
                         <p>INSIRA A FOTO <br/> DO TRABALHADOR</p>
