@@ -8,7 +8,8 @@ import { Headers, Http } from '@angular/http';
 @Injectable()
 export class ConstructionsService {
 
-    private url = "api/constructionSiteList"
+    // private url = "api/constructionSiteList"
+
     private endpoint = "/constructions"
     public constructions: Array<Construction> = []
     public construction: Construction
@@ -48,7 +49,7 @@ export class ConstructionsService {
     }
 
     updateFloor(floor: Floor) {
-        let section = this.construction.sectors.find((sector) => {
+        const section = this.construction.sectors.find((sector) => {
             return sector.id === floor.sector.id
         })
         if (section) {
@@ -88,7 +89,7 @@ export class ConstructionsService {
     }
 
     private serializeConstruction(json: Object) {
-        let c = new Construction()
+        const c = new Construction()
         c.initializeWithJSON(json)
         return c
     }

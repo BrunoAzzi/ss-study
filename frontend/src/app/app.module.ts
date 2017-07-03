@@ -17,16 +17,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
-import { RouterModule } from '@angular/router';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import { HttpClientService } from "./services/http-client.service";
-import { SessionsService } from "./services/sessions.service";
-import { PasswordService } from "./services/password.service";
-
+import { HttpClientService } from './services/http-client.service';
+import { SessionsService } from './services/sessions.service';
+import { PasswordService } from './services/password.service';
 import { AuthGuard } from './guards/index';
-
+import { CommonModule } from '@angular/common';
+import { AppComponent } from './app.component';
+import { ChartsModule } from 'ng2-charts';
+import { MyDatePickerModule } from 'mydatepicker';
+import { MomentModule } from 'angular2-moment';
 
 import {
     MdSnackBar,
@@ -39,30 +40,21 @@ import {
     MdProgressSpinnerModule
 } from '@angular/material';
 
-import { CommonModule } from '@angular/common';
-
-import { AppComponent } from './app.component';
-import { ChartsModule } from 'ng2-charts';
-import { MyDatePickerModule } from 'mydatepicker';
-import { CookieService } from 'ng2-cookies';
-import { MomentModule } from 'angular2-moment';
-
-
 // Pipe
 import { KeysPipe } from './pipes/keys.pipe';
 import { DataTablePipe } from './components/perfil_emocional/status_trabalhadores/DataTablePipe.pipe';
 
 // Components
-import { SecurityWorksComponent } from "./components/workers/securityWorks/securityWorks.component";
-import { WorkersDataComponent } from "./components/workers/workersData/workersData.component";
-import { CompaniesComponent } from "./views/companies/companies.component";
-import { CompanyDetailsComponent } from "./components/forms/company-details/company-details.component";
-import { HealthComponent } from "./components/workers/health/health.component";
-import { AsoItemComponent, ConfirmationDialogOverview } from "./components/workers/asoItem/asoItem.component";
-import { DateRangeComponent } from "./components/common/date-range/date-range.component";
-import { SkillComponent } from "./components/workers/skill/skill.component";
-import { RecyclingComponent } from "./components/workers/recycling/recycling.component";
-import { BoxMessageComponent } from "./components/common/box-message/box-message.component";
+import { SecurityWorksComponent } from './components/workers/securityWorks/securityWorks.component';
+import { WorkersDataComponent } from './components/workers/workersData/workersData.component';
+import { CompaniesComponent } from './views/companies/companies.component';
+import { CompanyDetailsComponent } from './components/forms/company-details/company-details.component';
+import { HealthComponent } from './components/workers/health/health.component';
+import { AsoItemComponent, ConfirmationDialogOverview } from './components/workers/asoItem/asoItem.component';
+import { DateRangeComponent } from './components/common/date-range/date-range.component';
+import { SkillComponent } from './components/workers/skill/skill.component';
+import { RecyclingComponent } from './components/workers/recycling/recycling.component';
+import { BoxMessageComponent } from './components/common/box-message/box-message.component';
 import { BlueprintComponent } from './components/blueprint/blueprint.component';
 import { ToolboxComponent } from './components/toolbox/toolbox.component';
 
@@ -72,9 +64,9 @@ import { RepositoriesComponent } from './views/repositories/repositories.compone
 import { TrainingComponent } from './views/training/training.component';
 
 // Worker
-import { WorkerFormComponent } from "./views/workers/form/form.component";
-import { WorkerListComponent } from "./views/workers/list/list.component";
-import { LineWorkerDetailComponent } from "./components/workers/line-worker-detail/line-worker-detail.component";
+import { WorkerFormComponent } from './views/workers/form/form.component';
+import { WorkerListComponent } from './views/workers/list/list.component';
+import { LineWorkerDetailComponent } from './components/workers/line-worker-detail/line-worker-detail.component';
 
 import { MonitoringComponent } from './views/constructions/detail/monitoring/monitoring.component';
 import { AreaMappingComponent } from './components/area-mapping/area-mapping.component';
@@ -210,7 +202,7 @@ import { ListActionBarComponent } from './components/common/list-action-bar/list
         RiskGraphComponent,
         ResponsableDataComponent,
         AddInformationComponent,
-        FloorsSummaryComponent,        
+        FloorsSummaryComponent,
         MappingDialog,
         MappingStages,
         SensorIdentification,
@@ -223,7 +215,7 @@ import { ListActionBarComponent } from './components/common/list-action-bar/list
         SectionListComponent,
         ChecklistCellComponent,
         ConstructionsStatusComponent,
-        FloorsSummaryComponent,        
+        FloorsSummaryComponent,
         DropFileComponent,
 
         // Suppliers
@@ -337,7 +329,7 @@ import { ListActionBarComponent } from './components/common/list-action-bar/list
         AppRoutingModule,
     ],
 
-    entryComponents: [ ConfirmationDialogOverview,MappingDialog],
+    entryComponents: [ ConfirmationDialogOverview, MappingDialog],
     providers: [
         HttpClientService,
         AuthGuard,
@@ -350,5 +342,4 @@ import { ListActionBarComponent } from './components/common/list-action-bar/list
     bootstrap: [AppComponent]
 })
 
-export class AppModule {
-}
+export class AppModule {}

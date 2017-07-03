@@ -9,9 +9,9 @@ import {SafetyCardComponent} from '../common/safety-card/safety-card.component';
 })
 export class ConstructionFormComponent implements OnInit {
 
-    @Input() construction : Construction;
-    @Output() updatedConstruction : EventEmitter<Construction> = new EventEmitter()
-    
+    @Input() construction: Construction;
+    @Output() updatedConstruction: EventEmitter<Construction> = new EventEmitter();
+
     @ViewChild('constructionData') constructionData: SafetyCardComponent;
     @ViewChild('managersData') managersData: SafetyCardComponent;
     @ViewChild('floorData') floorData: SafetyCardComponent;
@@ -24,13 +24,20 @@ export class ConstructionFormComponent implements OnInit {
 
         this.elements = [this.constructionData, this.managersData, this.floorData, this.goodsData, this.workersData];
         this.closeAll();
-        
+
         this.constructionData.open();
     }
 
-    onConstructionDetailsSaved(construction : Construction) {
-        this.updatedConstruction.emit(construction)
-        
+    onConstructionDetailsSaved(construction: Construction) {
+        this.updatedConstruction.emit(construction);
+
+        this.closeAll();
+        this.managersData.open();
+    }
+
+    onConstructionManagersSaved(construction: Construction) {
+        this.updatedConstruction.emit(construction);
+
         this.closeAll();
         this.managersData.open();
     }
