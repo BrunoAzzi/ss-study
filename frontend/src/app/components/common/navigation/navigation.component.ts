@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Company } from "../../../mocks/company/company";
-import { FakeCompanyService } from '../../../services/company.service';
+import { Company } from "../../../models/company.model";
+;import { CompanyService } from '../../../services/company.service';
 
 @Component({
     selector: 'navigation',
     templateUrl: 'navigation.template.html',
     styleUrls: ['./navigation.component.scss'],
-    providers: [FakeCompanyService]
+    providers: [CompanyService]
 })
 
 export class NavigationComponent {
     company: Company;
+    logo: string
 
     menuItems = {
         main: [
@@ -28,15 +29,18 @@ export class NavigationComponent {
         ]
     };
 
-    constructor(private router: Router, private companyService: FakeCompanyService) {
+    constructor(private router: Router, private service: CompanyService) {
     }
 
     getCompany(): void {
-        this.companyService.getCompany().subscribe(response => this.company = response);
+        this.service.getCompany(1).subscribe(response => {            
+                this.logo = response.fakeName ?  response.fakeName.charAt(0) : '?'                
+                this.company = new Company(response)}
+        );
     }
 
     ngOnInit(): void {
-        this.getCompany();
+        this.getCompany();        
     }
 
     activeRoute(routename: string): boolean {

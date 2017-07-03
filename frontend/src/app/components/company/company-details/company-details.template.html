@@ -44,7 +44,8 @@
                         <md-input-container>
                             <input mdInput placeholder="Cidade / Estado"
                                         [(ngModel)]="addressStreet"
-                                        name="addressStreet">
+                                        name="addressStreet"
+                                        [disabled]="true">
                         </md-input-container>
                         <md-input-container>
                             <input mdInput placeholder="NUMERO"
@@ -60,8 +61,8 @@
                     <div class="grid-row-25">
                         <md-input-container>
                             <input mdInput placeholder="URL"
-                            [(ngModel)]="company.logoUrl"
-                            name="logoUrl">
+                            [(ngModel)]="company.urlDomain"
+                            name="urlDomain">
                         </md-input-container>
                     </div>
                 </div>                                     

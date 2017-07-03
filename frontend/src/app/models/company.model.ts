@@ -16,6 +16,7 @@ export interface ICompany {
     isDesignatedCipa: boolean
     employerNumber: number
     logoUrl: string
+    urlDomain : string
     logoFileName: string
 }
 
@@ -34,6 +35,7 @@ export class Company implements ICompany {
     isDesignatedCipa: boolean
     employerNumber: number
     logoUrl: string
+    urlDomain : string
     logoFileName: string
     responsibleCompany: CompanyContact
     responsibleSST: CompanyContact
@@ -46,19 +48,20 @@ export class Company implements ICompany {
         this.cnpj = data && data.cnpj || undefined
         this.corporateName = data && data.corporateName || undefined
         this.fakeName = data && data.fakeName || undefined
-        this.cnae = data && data.cnae || undefined        
+        this.cnae = data && data.cnae || undefined   
         this.cep = data && data.cep || undefined
         this.addressStreet = data && data.addressStreet || undefined
         this.addressNumber = data && data.addressNumber || undefined
         this.addressComplement = data && data.addressComplement || undefined
-        this.hasSesmt = data && data.hasSesmt || false
-        this.hasCipa = data && data.hasCipa || false
+        this.hasSesmt = data && data.hasSesmt || undefined
+        this.hasCipa = data && data.hasCipa || undefined
         this.employerNumber = data && data.employerNumber || undefined
-        this.isDesignatedCipa = data && data.isDesignatedCipa || false
+        this.isDesignatedCipa = data && data.isDesignatedCipa || undefined
         this.logoUrl = data && data.logoUrl || undefined
+        this.urlDomain = data && data.urlDomain || undefined
         this.logoFileName = data && data.logoFileName || undefined
-        this.responsibleCompany = data && data.responsibleCompany || undefined
-        this.responsibleSST = data && data.responsibleSST || undefined
-        this.contact = data && data.contact || undefined
+        this.responsibleCompany = data && data.responsibleCompany || new CompanyContact()
+        this.responsibleSST = data && data.responsibleSST || new CompanyContact()
+        this.contact = data && data.contact || new CompanyContact()
     }
 }

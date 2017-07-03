@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output, Input  } from '@angular/core';
+import { Component, OnInit, OnChanges, EventEmitter, Output, Input  } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import { Company } from './../../../models/company.model';
@@ -10,7 +10,7 @@ import { Cnae } from './../../../models/cnae.model';
     styleUrls: ['./company-details.component.scss']
 })
 
-export class CompanyDetailsComponent {
+export class CompanyDetailsComponent implements OnInit, OnChanges {
 
     @Input() company: Company;
     @Output() saved : EventEmitter<Company> = new EventEmitter()
@@ -23,6 +23,18 @@ export class CompanyDetailsComponent {
     cnaeDescription: string
 
     constructor() { }
+
+    ngOnInit() {
+        this.cnaeCode = ''
+    }
+
+    ngOnChanges() {
+        if(this.company && this.company.cnae) {            
+            this.cnaeCode = this.company.cnae.code;
+            this.cnaeDescription = this.company.cnae.description;
+            this.addressStreet = this.company.addressStreet;
+        }
+    }
 
     save(f: NgForm) {
         const company = Object.assign(
