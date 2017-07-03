@@ -29,9 +29,9 @@ export class Worker {
     isThirdparty: boolean = false;
     thirdpartyName: string;
 
-    qualifications: Array<Qualification> = []
-    health :Health = new Health()
-    security: Security = new Security()
+    qualifications: Array<Qualification> = [];
+    health :Health = new Health();
+    security: Security = new Security();
 
     constructor()
     constructor(data?: any) {
@@ -71,12 +71,12 @@ export class Worker {
         this.company = data && data.company || "";
         this.photoPath = data && data.photoPath || "";
         this.ocupation = data && data.ocupation || undefined
-        this.isThirdparty = data && data.isThirdparty || false
+        this.isThirdparty = data && data.isThirdparty || false;
         this.thirdpartyName = data && data.thirdpartyName || undefined
     }
 
     initializeWithJSON(json: any) {
-        this.name = json.name
+        this.name = json.name;
 
         return this
     }
