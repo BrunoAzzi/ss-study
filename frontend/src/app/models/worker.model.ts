@@ -1,4 +1,6 @@
+import {Qualification} from "./qualification.model";
 export class Worker {
+
     id: number;
     name: string;
     cpf: string;
@@ -21,11 +23,12 @@ export class Worker {
     birthDate: Object;
     ctps: number;
     age: number;
-        ocupation: string;
+    ocupation: string;
     isThirdparty: boolean = false;
     thirdpartyName: string;
 
-          
+    qualifications: Array<Qualification> = []
+
     constructor()
     constructor(data?: any) {
 
@@ -63,7 +66,7 @@ export class Worker {
         this.status = data && data.status || "";
         this.company = data && data.company || "";
         this.photoPath = data && data.photoPath || "";
-         this.ocupation = data && data.ocupation || undefined
+        this.ocupation = data && data.ocupation || undefined
         this.isThirdparty = data && data.isThirdparty || false
         this.thirdpartyName = data && data.thirdpartyName || undefined
     }

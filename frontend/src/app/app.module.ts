@@ -45,6 +45,16 @@ import { KeysPipe } from './pipes/keys.pipe';
 import { DataTablePipe } from './components/perfil_emocional/status_trabalhadores/DataTablePipe.pipe';
 
 // Components
+import { SecurityWorksComponent } from './components/worker-form/worker-security-form/worker-security-form.component';
+import { WorkersDataComponent } from './components/worker-form/workers-details-form/workers-details-form.component';
+import { CompaniesComponent } from './views/companies/companies.component';
+
+import { AsoItemComponent, ConfirmationDialogOverview } from './components/workers/asoItem/asoItem.component';
+
+import { DateRangeComponent } from './components/common/date-range/date-range.component';
+import { SkillComponent } from './components/worker-form/skill/skill.component';
+import { RecyclingComponent } from './components/workers/recycling/recycling.component';
+import { BoxMessageComponent } from './components/common/box-message/box-message.component';
 import { BlueprintComponent } from './components/blueprint/blueprint.component';
 import { ToolboxComponent } from './components/toolbox/toolbox.component';
 
@@ -56,7 +66,7 @@ import { TrainingComponent } from './views/training/training.component';
 // Worker
 import { WorkerFormComponent } from './views/workers/form/form.component';
 import { WorkerListComponent } from './views/workers/list/list.component';
-import { LineWorkerDetailComponent } from './components/workers/components/line-worker-detail/line-worker-detail.component';
+import { LineWorkerDetailComponent } from './components/workers/line-worker-detail/line-worker-detail.component';
 
 import { MonitoringComponent } from './views/constructions/detail/monitoring/monitoring.component';
 import { AreaMappingComponent } from './components/area-mapping/area-mapping.component';
@@ -72,8 +82,8 @@ import { SummaryItemComponent } from './components/summary-item/summary-item.com
 import { SummaryComponent } from './components/summary/summary.component';
 import { RiskGraphComponent } from './components/area-monitoring/risk-graph/risk-graph.component';
 import { ResponsableDataComponent } from './components/company/responsable-data/responsable-data.component';
-import { AddInformationComponent } from './components/company/add-information/add-information.component';
 
+import { AddInformationComponent } from './components/company/additional-information/additional-information.component';
 import { Ng2FileDropModule } from 'ng2-file-drop';
 
 import { WorkersOverviewComponent } from './components/overview/workers-overview/workers-overview.component';
@@ -148,16 +158,9 @@ import { SectorSummaryComponent } from './components/sector-summary/sector-summa
 import { MaintenanceInlineFormComponent } from './components/maintenance-inline-form/maintenance-inline-form.component';
 import { ListItemComponent } from './components/common/list-item/list-item.component';
 import { ListActionBarComponent } from './components/common/list-action-bar/list-action-bar.component';
-import {DateRangeComponent} from './components/common/date-range/date-range.component';
-import {CompaniesComponent} from './views/companies/companies.component';
-import {CompanyDetailsComponent} from './components/forms/company-details/company-details.component';
-import {WorkersDataComponent} from './components/workers/components/worker-details-form/workersData/workersData.component';
-import {SecurityWorksComponent} from './components/workers/components/worker-details-form/securityWorks/securityWorks.component';
-import {BoxMessageComponent} from './components/common/box-message/box-message.component';
-import {SkillComponent} from './components/workers/components/worker-details-form/skill/skill.component';
-import {RecyclingComponent} from './components/workers/components/recycling/recycling.component';
-import {AsoItemComponent, ConfirmationDialogOverview} from './components/workers/components/asoItem/asoItem.component';
-import {HealthComponent} from './components/workers/components/worker-details-form/health/health.component';
+import { CompanyDetailsComponent } from "./components/company/company-details/company-details.component";
+import {WorkerHealthFormComponent} from "./components/worker-form/worker-health-form/worker-health-form.component";
+import {WorkerQualificationsFormComponent} from "./components/worker-form/worker-qualifications-form/worker-qualifications-form.component";
 
 @NgModule({
     declarations: [
@@ -246,7 +249,7 @@ import {HealthComponent} from './components/workers/components/worker-details-fo
         InputFile,
         AsoItemComponent,
         ConfirmationDialogOverview,
-        HealthComponent,
+        WorkerHealthFormComponent,
 
         // Obras
         ConstructionDetailComponent,
@@ -274,6 +277,7 @@ import {HealthComponent} from './components/workers/components/worker-details-fo
         MaintenanceInlineFormComponent,
         ListItemComponent,
         ListActionBarComponent,
+        WorkerQualificationsFormComponent,
     ],
     imports: [
         // Notification Module
