@@ -460,6 +460,7 @@
             <column name="contract_type" type="varchar(100)"/>
             <column name="special_needs" type="varchar(100)"/>
             <column name="photo_url" type="text"/>
+            <column name="photo_filename" type="text"/>
             <column name="is_cipeiro" type="boolean"/>
             <column name="is_brigade" type="boolean"/>
             <column name="role" type="varchar(255)"/>
@@ -485,7 +486,7 @@
     </changeSet>
 
     <changeSet id="19" author="rdlorbieski">
-        <createTable tableName="habilities">
+        <createTable tableName="qualities">
             <column name="id" type="int">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -501,12 +502,12 @@
             <column name="able" type="boolean">  </column>
             <column name="attachment" type="varchar(255)">  </column>
         </createTable>
-        <addAutoIncrement tableName="habilities" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
+        <addAutoIncrement tableName="qualities" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
 
         <addForeignKeyConstraint
-                baseTableName="habilities"
+                baseTableName="qualities"
                 baseColumnNames="worker_id"
-                constraintName="fk_worker_habilities"
+                constraintName="fk_worker_qualities"
                 referencedTableName="workers"
                 referencedColumnNames="id"
                 onDelete="CASCADE"/>
@@ -519,14 +520,14 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="worker_id" type="int"/>
-            <column name="title" type="varchar(255)">
-            </column>
+
             <column name="realization_date" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
             <column name="next_date" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
+            <column name="aso_type" type="varchar(255)"></column>
             <column name="able" type="boolean">  </column>
             <column name="attachment" type="varchar(255)">  </column>
         </createTable>

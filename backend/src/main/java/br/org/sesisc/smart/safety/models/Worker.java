@@ -2,6 +2,10 @@ package br.org.sesisc.smart.safety.models;
 
 import javax.persistence.*;
 
+import static br.org.sesisc.smart.safety.helpers.FileHelper.JPEG_TYPE;
+import static br.org.sesisc.smart.safety.helpers.FileHelper.PDF_TYPE;
+import static br.org.sesisc.smart.safety.helpers.FileHelper.PNG_TYPE;
+
 @Entity
 @Table(name = "workers")
 public class Worker {
@@ -24,6 +28,7 @@ public class Worker {
     private String contractType;
     private String specialNeeds;
     private String photoUrl;
+    private String photoFilename;
     private Boolean isCipeiro;
     private Boolean isBrigade;
     private String role;
@@ -38,7 +43,7 @@ public class Worker {
 
     public Worker() { }
 
-    public Worker(String name, String cep, String adress, String status, String birthDate, String gender, String cpf, String nit, String degree, String ctps, String admissionAt, String contractType, String specialNeeds, String photoUrl, Boolean isCipeiro, Boolean isBrigade, String role, String mandateBegin, String mandateEnd, String alergies, String diseases, Cbo cbo) {
+    public Worker(String name, String cep, String adress, String status, String birthDate, String gender, String cpf, String nit, String degree, String ctps, String admissionAt, String contractType, String specialNeeds, String photoUrl, String photo_filename, Boolean isCipeiro, Boolean isBrigade, String role, String mandateBegin, String mandateEnd, String alergies, String diseases, Cbo cbo) {
         this.name = name;
         this.cep = cep;
         this.adress = adress;
@@ -53,6 +58,7 @@ public class Worker {
         this.contractType = contractType;
         this.specialNeeds = specialNeeds;
         this.photoUrl = photoUrl;
+        this.photoFilename = photo_filename;
         this.isCipeiro = isCipeiro;
         this.isBrigade = isBrigade;
         this.role = role;
@@ -181,6 +187,14 @@ public class Worker {
 
     public void setPhotoUrl(String photoUrl) {
         this.photoUrl = photoUrl;
+    }
+
+    public String getPhotoFilename() {
+        return photoFilename;
+    }
+
+    public void setPhotoFilename(String photoFilename) {
+        this.photoFilename = photoFilename;
     }
 
     public Boolean getCipeiro() {
