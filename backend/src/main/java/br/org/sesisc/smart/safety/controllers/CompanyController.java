@@ -1,6 +1,7 @@
 package br.org.sesisc.smart.safety.controllers;
 
 import br.org.sesisc.smart.safety.models.Company;
+import br.org.sesisc.smart.safety.models.Construction;
 import br.org.sesisc.smart.safety.repositories.CompanyRepository;
 import br.org.sesisc.smart.safety.responses.ErrorResponse;
 import br.org.sesisc.smart.safety.responses.SuccessResponse;
@@ -44,6 +45,17 @@ public class CompanyController {
                     HttpStatus.NOT_FOUND
             );
         }
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> show(@PathVariable("id") long id) {
+        Company company = repository.findOne(id);
+
+        return SuccessResponse.handle(
+                new String[] {"company"},
+                new Object[] {company},
+                HttpStatus.OK
+        );
     }
 
 }

@@ -23,13 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class CompanyControllerTest_IT extends BaseControllerTest_IT {
 
     @Test
-    public void index() throws Exception {
-        mockMvc.perform(get("/companies"))
-                .andExpect(status().isOk());
-    }
-
-    @Test
-    public void updateCompany() throws Exception {
+    public void updateCompany_whenAllMandatoryAreValid() throws Exception {
         MvcResult result = mockMvc.perform(put("/company/1")
                 .content(getCompanyRequestJson("cnpj","corporateName", "fakeName", "cep", 12, "addressComplement",
                         "addressStreet", "urlDomain", true, true, true, 6))
@@ -45,6 +39,22 @@ public class CompanyControllerTest_IT extends BaseControllerTest_IT {
         String cnpj = jsonObject.getJSONObject("company").get("cnpj").toString();
         Assert.assertEquals("Should return the expected name when company is updated.",
                 "cnpj",cnpj);
+    }
+
+    @Test
+    public void showCompany_whenCompanyExists() throws Exception {
+        MvcResult result = mockMvc.perform(get("/company/1"))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        String responseJson = result.getResponse().getContentAsString();
+        JSONObject jsonObject = new JSONObject(responseJson);
+
+        System.out.println("Response: " + responseJson);
+
+        String code = jsonObject.getJSONObject("company").get("cnpj").toString();
+        Assert.assertEquals("Should return the expected cnpj from the retrieved company.",
+                "cnpj",code);
     }
 
     private String getCompanyRequestJson(String cnpj, String corporateName, String fakeName, String cep, int addressNumber, String addressComplement,
