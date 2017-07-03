@@ -1,12 +1,13 @@
+import { Worker } from './../../../models/worker.model';
 import { Component, Inject, EventEmitter, Output, Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Endereco_completo } from '../../../mocks/endereco_completo/endereco_completo';
-import { CommonModule} from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { CustomValidators } from './customValidators';
 import { IMyDpOptions } from 'mydatepicker';
-import {WorkersDataService} from "../../../services/workers/workersData.service";
-import {CBOService} from "../../../services/cbo.service";
-import {CorreiosService} from "../../../services/correios.service";
+import { WorkersDataService } from "../../../services/workers/workersData.service";
+import { CBOService } from "../../../services/cbo.service";
+import { CorreiosService } from "../../../services/correios.service";
 
 @Component({
     selector: 'workers-data',
@@ -15,7 +16,9 @@ import {CorreiosService} from "../../../services/correios.service";
     providers: [CorreiosService, CBOService, WorkersDataService]
 })
 export class WorkersDataComponent {
-    @Input() worker;
+    @Input() worker : Worker = new Worker()
+    @Output() saved : EventEmitter<any> = new EventEmitter()
+
     @Output() cpfUpdated = new EventEmitter<string>();
 
     disabled = true;
@@ -54,8 +57,8 @@ export class WorkersDataComponent {
 
     labors = [{ value: '', viewValue: '' }];
 
-    sexs = ['Masculino','Feminino'];
-    hireds = ['Próprio','Terceiro'];
+    sexs = ['Masculino', 'Feminino'];
+    hireds = ['Próprio', 'Terceiro'];
 
     scholaritys = [
         { value: 'fund_i', viewValue: 'Fundamental incompleto' },
@@ -111,7 +114,6 @@ export class WorkersDataComponent {
         });
     }
 
-
     autoCompleteWorker() {
         this.cpfUpdated.emit(this.cpf);
         this.cboService.getCBO(this.mycbo).subscribe(
@@ -137,12 +139,6 @@ export class WorkersDataComponent {
     checkCboEmpty() {
         this.mycbonumber = Number.parseInt(this.mycbo);
         (this.mycbonumber > 0) ? this.disabled = false : this.disabled = true;
-    }
-
-    savePersonalDataWorker(workerData) {
-        if (this.myForm.valid) {
-            workerData.close();
-        }
     }
 
 }

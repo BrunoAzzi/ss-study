@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Worker } from './../../../models/worker.model';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import {SecurityWorksService} from "../../../services/workers/securityWorks.service";
+import { SecurityWorksService } from "../../../services/workers/securityWorks.service";
 
 @Component({
     selector: 'security-works',
@@ -9,8 +10,9 @@ import {SecurityWorksService} from "../../../services/workers/securityWorks.serv
     providers: [SecurityWorksService]
 })
 export class SecurityWorksComponent {
+    @Output() saved: EventEmitter<any> = new EventEmitter()
     @Input() cpf: string;
-    @Input() worker;
+    @Input() worker : Worker = new Worker();
     securityForm: FormGroup;
     submitted: boolean = false;
     invalidDate: boolean = true;
@@ -37,25 +39,25 @@ export class SecurityWorksComponent {
     }
 
     brigadistas = [
-        {value: 1, viewValue: 'Sim'},
-        {value: 2, viewValue: 'Não'},
+        { value: 1, viewValue: 'Sim' },
+        { value: 2, viewValue: 'Não' },
     ];
 
     selectedBrigadista: number;
 
     cipeiros = [
-        {value: 1, viewValue: 'Sim'},
-        {value: 2, viewValue: 'Não'},
+        { value: 1, viewValue: 'Sim' },
+        { value: 2, viewValue: 'Não' },
     ];
 
     selectedCipeiro: number = 2;
 
     laborsInCipa = [
-        {value: 1, viewValue: 'Membro Suplente'},
-        {value: 2, viewValue: 'Membro Efetivo'},
-        {value: 3, viewValue: 'Presidente'},
-        {value: 4, viewValue: 'Vice Presidente'},
-        {value: 5, viewValue: 'Secretário'},
+        { value: 1, viewValue: 'Membro Suplente' },
+        { value: 2, viewValue: 'Membro Efetivo' },
+        { value: 3, viewValue: 'Presidente' },
+        { value: 4, viewValue: 'Vice Presidente' },
+        { value: 5, viewValue: 'Secretário' },
     ];
 
     selectedCipaLabor: number;
@@ -71,14 +73,4 @@ export class SecurityWorksComponent {
             dateRange.disable();
         }
     }
-
-    saveSecurityForm(securityData, dateRange) {
-        this.submitted = true;
-        const date = dateRange.getDate();
-        this.invalidDate = date === '' || date === null;
-        if (this.securityForm.valid && this.selectedCipeiro === 0 && !this.invalidDate) {
-            securityData.close();
-        }
-    }
-
 }

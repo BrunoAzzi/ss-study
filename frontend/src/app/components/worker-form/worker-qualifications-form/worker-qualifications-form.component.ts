@@ -8,8 +8,8 @@ import {Qualification} from "../../../models/qualification.model";
   styleUrls: ['./worker-qualifications-form.component.scss']
 })
 export class WorkerQualificationsFormComponent implements OnInit {
-
   @Input() worker: Worker = new Worker()
+
   @Output() saved: EventEmitter<any> = new EventEmitter()
 
   maximunLength: number;

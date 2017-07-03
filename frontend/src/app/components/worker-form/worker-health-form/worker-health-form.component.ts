@@ -1,6 +1,7 @@
+import { Worker } from './../../../models/worker.model';
 import { IMyDpOptions } from 'mydatepicker';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { Component, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Output, Input } from '@angular/core';
 
 @Component({
     selector: 'healthComponent',
@@ -16,7 +17,8 @@ export class WorkerHealthFormComponent {
     diseases: '';
     submitted: boolean = false;
 
-    teste = new EventEmitter();
+    @Input() worker: Worker = new Worker()
+    @Output() saved: EventEmitter<any> = new EventEmitter()
 
     myDatePickerOptions: IMyDpOptions = {
         dateFormat: 'dd/mm/yyyy',
@@ -96,17 +98,17 @@ export class WorkerHealthFormComponent {
             this.canAddNew = true;
         }
     }
-
-    saveHealthComponent(healthSaved) {
-       /*asoComponent.teste();*/
-        this.submitted = true;
-        this.teste.emit(this.submitted);
-        if (this.helthForm.valid && this.errorMsg == null) {
-            healthSaved.close();
-            this.submitted = false;
-        }
-
-    }
+    /*
+        saveHealthComponent(healthSaved) {
+           asoComponent.teste();
+            this.submitted = true;
+            this.teste.emit(this.submitted);
+            if (this.helthForm.valid && this.errorMsg == null) {
+                healthSaved.close();
+                this.submitted = false;
+            }
+    
+        }*/
 
 
 

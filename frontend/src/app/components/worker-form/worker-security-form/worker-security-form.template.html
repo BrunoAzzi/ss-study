@@ -1,5 +1,5 @@
 <safety-card-content >
-    <form id="securityForm" [formGroup]="securityForm" (submit)="saveSecurityForm(securityData, dateRange)" name="securityForm">
+    <form id="securityForm" [formGroup]="securityForm"  name="securityForm">
         <div class="grid-container">
             <div class="grid-column">
                 <div class="grid-row">
@@ -46,7 +46,7 @@
             </div>
         </div>
         <div class="button-default">
-            <button md-raised-button type="submit">
+            <button md-raised-button type="submit" (click)="saved.emit(worker)">
                     Salvar e continuar
                 </button>
         </div>

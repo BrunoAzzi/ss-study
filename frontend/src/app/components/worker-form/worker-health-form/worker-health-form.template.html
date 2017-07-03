@@ -47,7 +47,7 @@
                 </a>
         </div>
         <div fxLayout="row" fxLayoutAlign="end center">
-            <button class="save-and-continue" md-raised-button type="submit">
+            <button class="save-and-continue" md-raised-button type="submit" (click)="saved.emit(worker)">
                     <span>Salvar e continuar</span>
                 </button>
         </div>
