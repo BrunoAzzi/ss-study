@@ -27,18 +27,19 @@ export class ResponsableDataComponent {
     }
 
     save(f: NgForm) {
-        if(this.responsableType === "responsableDataType") {
+        
+        if(this.responsableType === "responsableData") {
             this.company.responsibleCompany = this.companyContact
-        } else if(this.responsableType === "responsableSstDataType") {
+        } else if(this.responsableType === "responsableSstData") {
             this.company.responsibleSST = this.companyContact
-        } else if(this.responsableType === "responsableContactDataType") {
+        } else if(this.responsableType === "responsableContactData") {
             this.company.contact = this.companyContact
         }
 
         const company = Object.assign(
             new Company(),
             this.company
-        )
+        )        
         this.saved.emit(company);
     }
 }
