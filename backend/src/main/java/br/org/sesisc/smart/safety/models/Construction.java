@@ -240,21 +240,4 @@ public class Construction {
         this.activated = activated;
     }
 
-    /*
-     * Statics Methods
-     */
-
-    public static boolean checkType(String type) {
-        return type.equals("logo") || type.equals("cei");
-    }
-
-    public static boolean checkTypeAndFileContent(String type, String contentType) {
-        if (type.equals("logo")) {
-            return contentType.equals(PNG_TYPE) || contentType.equals(JPEG_TYPE);
-        } else if (type.equals("cei")) {
-            return contentType.equals(PDF_TYPE);
-        }
-
-        return false;
-    }
 }
