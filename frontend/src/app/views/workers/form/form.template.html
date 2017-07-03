@@ -1,4 +1,4 @@
-<safety-card #workerData>
+<safety-card #datailsCard>
     <safety-card-header>dados do trabalhador</safety-card-header>
     <safety-card-content>
         <workers-data [worker]="worker" (cpfUpdated)="getWorkerByCpf($event)" (saved)="onDetailsSaved($event)"></workers-data>
@@ -12,14 +12,14 @@
     </safety-card-content>
 </safety-card>
 
-<safety-card #securityData>
+<safety-card #securityCard>
     <safety-card-header>dados de segurança</safety-card-header>
     <safety-card-content>
         <security-works [cpf]="cpf" [worker]="worker" (saved)="onSecuritySaved($event)"></security-works>
     </safety-card-content>
 </safety-card>
 
-<safety-card #healthSaved>
+<safety-card #healthCard>
     <safety-card-header >dados de saúde</safety-card-header>
     <safety-card-content>
         <healthComponent [worker]="worker" (saved)="onHealthSaved($event)"></healthComponent>

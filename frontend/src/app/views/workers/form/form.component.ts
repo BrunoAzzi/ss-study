@@ -11,9 +11,9 @@ import {SafetyCardComponent} from "../../../components/common/safety-card/safety
 export class WorkerFormComponent {
 
     @ViewChild('qualificationsCard') qualificationsCard: SafetyCardComponent;
-    @ViewChild('workerData') workerData: SafetyCardComponent;
-    @ViewChild('securityData') securityData: SafetyCardComponent;
-    @ViewChild('healthSaved') healthSaved :SafetyCardComponent;
+    @ViewChild('workerData') datailsCard: SafetyCardComponent;
+    @ViewChild('securityData') securityCard: SafetyCardComponent;
+    @ViewChild('healthSaved') healthCard :SafetyCardComponent;
 
     cpf: string = "";
     isReciclagem: boolean = false;
@@ -41,16 +41,16 @@ export class WorkerFormComponent {
 
     onSecuritySaved(savedWorker : Worker){
          console.log(savedWorker);
-        this.securityData.close();
+        this.securityCard.close();
     }
 
     onDetailsSaved(savedWorker: Worker) {
         console.log(savedWorker);
-        this.workerData.close();
+        this.datailsCard.close();
     }
 
     onHealthSaved(savedWorker: Worker){
-        this.healthSaved.close();
+        this.healthCard.close();
     }
     
 }
