@@ -1,16 +1,16 @@
 import { Component, Inject, EventEmitter, Output, Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { CorreiosService } from "../../../../services/correios.service";
-import { Endereco_completo } from '../../../../mocks/endereco_completo/endereco_completo';
+import { Endereco_completo } from '../../../mocks/endereco_completo/endereco_completo';
 import { CommonModule} from '@angular/common';
 import { CustomValidators } from './customValidators';
-import { CBOService } from "../../../../services/cbo.service";
-import { WorkersDataService } from "../../../../services/workers/workersData.service";
 import { IMyDpOptions } from 'mydatepicker';
+import {WorkersDataService} from "../../../services/workers/workersData.service";
+import {CBOService} from "../../../services/cbo.service";
+import {CorreiosService} from "../../../services/correios.service";
 
 @Component({
     selector: 'workers-data',
-    templateUrl: 'workers-details-form.template.html',
+    templateUrl: './workers-details-form.template.html',
     styleUrls: ['./workers-details-form.component.scss'],
     providers: [CorreiosService, CBOService, WorkersDataService]
 })
