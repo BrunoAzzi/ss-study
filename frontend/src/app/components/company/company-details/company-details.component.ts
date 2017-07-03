@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 
 import { Company } from './../../../models/company.model';
 import { Cnae } from './../../../models/cnae.model';
+import { CompanyService } from './../../../services/company.service';
 
 @Component({
     selector: 'company-details',
@@ -21,8 +22,9 @@ export class CompanyDetailsComponent implements OnInit, OnChanges {
     addressStreet: string
     cnaeCode: string
     cnaeDescription: string
+    logo: any
 
-    constructor() { }
+    constructor(private service: CompanyService) { }
 
     ngOnInit() {
         this.cnaeCode = ''
@@ -42,6 +44,18 @@ export class CompanyDetailsComponent implements OnInit, OnChanges {
             this.company
         )
         this.saved.emit(company);
+    }
+
+    onSelectFile(file) {                 
+        const formData = new FormData();
+        formData.append('file', file);        
+
+        this.service.updateCompanyLogo(this.company, formData)
+        .subscribe(
+            (response) => {
+                
+            }
+        );
     }
 
     onCepSearch(data) {

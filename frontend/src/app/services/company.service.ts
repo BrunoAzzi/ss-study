@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Headers, Http, RequestOptions  } from '@angular/http';
 
 import { HttpClientService } from './http-client.service';
 import { Company } from './../models/company.model';
@@ -8,7 +8,7 @@ import { Company } from './../models/company.model';
 export class CompanyService {
     private endpoint = "/company";
 
-    constructor(private service : HttpClientService) { }
+    constructor(private http: Http, private service : HttpClientService) { }
 
     getCompany(id) {
         return this.service.get(this.endpoint + "/" + id)
@@ -22,5 +22,13 @@ export class CompanyService {
        .map((response) => {
            return response;
        });
+    }
+
+    updateCompanyLogo(company: Company, formData: any) {       
+        
+        return this.service.postWithNoHeaders(this.endpoint + '/' + company.id + '/logo', formData)
+        .map((response) => {            
+            return response
+        });
     }
 }

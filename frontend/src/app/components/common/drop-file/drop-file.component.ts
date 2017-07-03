@@ -20,7 +20,7 @@ export class DropFileComponent {
     image: any;
 
     @Output()
-    onChange = new EventEmitter();
+    onChange = new EventEmitter();    
 
     imageShown: boolean;
 
@@ -36,7 +36,7 @@ export class DropFileComponent {
         this.input.nativeElement.click();
     }
 
-    onFileChange(event) {
+    onFileChange(event) {        
         this.processFile(this.input.nativeElement.files[0]);
     }
 
@@ -46,7 +46,7 @@ export class DropFileComponent {
             return (e) => {
                 this.image = fileReader.result;
                 this.imageShown = true;
-                this.onChange.emit(this.image);
+                this.onChange.emit(file);                
             }
         })(file);
         fileReader.readAsDataURL(file);

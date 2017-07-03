@@ -20,6 +20,13 @@ export class HttpClientService {
     return { headers: headers }
   }
 
+  blankHeaders() {
+    var headers = new Headers();
+    //headers.append('Content-Type', 'multipart/form-data')
+    this.authToken && headers.append('X-Authorization', this.authToken)
+    return { headers: headers }
+  }
+
   setAuthToken(token : string) {
     this.authToken = token
   }
@@ -28,6 +35,13 @@ export class HttpClientService {
     return this.http.post(this.url + path, params, this.standardHeaders())
       .map((response: Response) => {
         return response.text().length > 0 ? response.json() : {}
+      });
+  }
+
+  postWithNoHeaders(path: String, params) {
+    return this.http.post(this.url + path, params, this.blankHeaders())
+      .map((response: Response) => {
+        return response ? response : {}
       });
   }
 
