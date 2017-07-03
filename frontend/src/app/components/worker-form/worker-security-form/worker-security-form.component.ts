@@ -12,7 +12,7 @@ import { SecurityWorksService } from "../../../services/workers/securityWorks.se
 export class SecurityWorksComponent {
     @Output() saved: EventEmitter<any> = new EventEmitter()
     @Input() cpf: string;
-    @Input() worker : Worker = new Worker();
+    @Input() worker : Worker 
     securityForm: FormGroup;
     submitted: boolean = false;
     invalidDate: boolean = true;

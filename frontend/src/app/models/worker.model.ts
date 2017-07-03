@@ -30,8 +30,8 @@ export class Worker {
     thirdpartyName: string;
 
     qualifications: Array<Qualification> = []
-    health : Array<Health> = []
-    security: Security
+    health :Health = new Health()
+    security: Security = new Security()
 
     constructor()
     constructor(data?: any) {

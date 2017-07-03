@@ -1,3 +1,5 @@
+import { aso } from './../../../models/aso.model';
+import { Health } from './../../../models/health.model';
 import { Worker } from './../../../models/worker.model';
 import { IMyDpOptions } from 'mydatepicker';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
@@ -17,7 +19,7 @@ export class WorkerHealthFormComponent {
     diseases: '';
     submitted: boolean = false;
 
-    @Input() worker: Worker = new Worker()
+    @Input() worker: Worker 
     @Output() saved: EventEmitter<any> = new EventEmitter()
 
     myDatePickerOptions: IMyDpOptions = {
@@ -34,6 +36,8 @@ export class WorkerHealthFormComponent {
         })
 
     }
+
+
 
     bloodTypes = [
         { value: 0, viewValue: 'A+' },
@@ -64,6 +68,7 @@ export class WorkerHealthFormComponent {
                 name: undefined
             };
             this.asoList.push(json);
+            this.worker.health.asoList.push(new aso);
             this.helthForm.get('asoTypes').setValidators(Validators.required);
             this.helthForm.get('asoTypes').updateValueAndValidity();
         }
@@ -98,19 +103,6 @@ export class WorkerHealthFormComponent {
             this.canAddNew = true;
         }
     }
-    /*
-        saveHealthComponent(healthSaved) {
-           asoComponent.teste();
-            this.submitted = true;
-            this.teste.emit(this.submitted);
-            if (this.helthForm.valid && this.errorMsg == null) {
-                healthSaved.close();
-                this.submitted = false;
-            }
-    
-        }*/
-
-
 
 }
 

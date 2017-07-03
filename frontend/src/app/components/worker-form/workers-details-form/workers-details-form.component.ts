@@ -16,7 +16,7 @@ import { CorreiosService } from "../../../services/correios.service";
     providers: [CorreiosService, CBOService, WorkersDataService]
 })
 export class WorkersDataComponent {
-    @Input() worker : Worker = new Worker()
+    @Input() worker : Worker
     @Output() saved : EventEmitter<any> = new EventEmitter()
 
     @Output() cpfUpdated = new EventEmitter<string>();

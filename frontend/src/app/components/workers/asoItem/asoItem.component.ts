@@ -50,10 +50,6 @@ export class AsoItemComponent {
         this.removed.emit(this);
     }
     
-    teste(){
-        // this.asoForm.valid 
-        console.log("AKI");
-    }
 }
 
 
