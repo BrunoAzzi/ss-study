@@ -45,16 +45,6 @@ import { KeysPipe } from './pipes/keys.pipe';
 import { DataTablePipe } from './components/perfil_emocional/status_trabalhadores/DataTablePipe.pipe';
 
 // Components
-import { SecurityWorksComponent } from './components/workers/securityWorks/securityWorks.component';
-import { WorkersDataComponent } from './components/workers/workersData/workersData.component';
-import { CompaniesComponent } from './views/companies/companies.component';
-import { CompanyDetailsComponent } from './components/forms/company-details/company-details.component';
-import { HealthComponent } from './components/workers/health/health.component';
-import { AsoItemComponent, ConfirmationDialogOverview } from './components/workers/asoItem/asoItem.component';
-import { DateRangeComponent } from './components/common/date-range/date-range.component';
-import { SkillComponent } from './components/workers/skill/skill.component';
-import { RecyclingComponent } from './components/workers/recycling/recycling.component';
-import { BoxMessageComponent } from './components/common/box-message/box-message.component';
 import { BlueprintComponent } from './components/blueprint/blueprint.component';
 import { ToolboxComponent } from './components/toolbox/toolbox.component';
 
@@ -66,7 +56,7 @@ import { TrainingComponent } from './views/training/training.component';
 // Worker
 import { WorkerFormComponent } from './views/workers/form/form.component';
 import { WorkerListComponent } from './views/workers/list/list.component';
-import { LineWorkerDetailComponent } from './components/workers/line-worker-detail/line-worker-detail.component';
+import { LineWorkerDetailComponent } from './components/workers/components/line-worker-detail/line-worker-detail.component';
 
 import { MonitoringComponent } from './views/constructions/detail/monitoring/monitoring.component';
 import { AreaMappingComponent } from './components/area-mapping/area-mapping.component';
@@ -158,6 +148,16 @@ import { SectorSummaryComponent } from './components/sector-summary/sector-summa
 import { MaintenanceInlineFormComponent } from './components/maintenance-inline-form/maintenance-inline-form.component';
 import { ListItemComponent } from './components/common/list-item/list-item.component';
 import { ListActionBarComponent } from './components/common/list-action-bar/list-action-bar.component';
+import {DateRangeComponent} from './components/common/date-range/date-range.component';
+import {CompaniesComponent} from './views/companies/companies.component';
+import {CompanyDetailsComponent} from './components/forms/company-details/company-details.component';
+import {WorkersDataComponent} from './components/workers/components/worker-details-form/workersData/workersData.component';
+import {SecurityWorksComponent} from './components/workers/components/worker-details-form/securityWorks/securityWorks.component';
+import {BoxMessageComponent} from './components/common/box-message/box-message.component';
+import {SkillComponent} from './components/workers/components/worker-details-form/skill/skill.component';
+import {RecyclingComponent} from './components/workers/components/recycling/recycling.component';
+import {AsoItemComponent, ConfirmationDialogOverview} from './components/workers/components/asoItem/asoItem.component';
+import {HealthComponent} from './components/workers/components/worker-details-form/health/health.component';
 
 @NgModule({
     declarations: [
@@ -304,7 +304,7 @@ import { ListActionBarComponent } from './components/common/list-action-bar/list
         MomentModule,
 
         // Mocks
-        InMemoryWebApiModule.forRoot(InMemoryDataService, {passThruUnknownUrl: true}),
+        InMemoryWebApiModule.forRoot(InMemoryDataService, { passThruUnknownUrl: true }),
 
         // File Drop
         Ng2FileDropModule,
@@ -328,8 +328,7 @@ import { ListActionBarComponent } from './components/common/list-action-bar/list
         // Routes
         AppRoutingModule,
     ],
-
-    entryComponents: [ ConfirmationDialogOverview, MappingDialog],
+    entryComponents: [ConfirmationDialogOverview, MappingDialog],
     providers: [
         HttpClientService,
         AuthGuard,
@@ -338,7 +337,7 @@ import { ListActionBarComponent } from './components/common/list-action-bar/list
         MdSnackBar,
         ConstructionResolver,
         ConstructionsService,
-        {provide: LocationStrategy, useClass: HashLocationStrategy}],
+        { provide: LocationStrategy, useClass: HashLocationStrategy }],
     bootstrap: [AppComponent]
 })
 
