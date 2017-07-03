@@ -107,6 +107,7 @@ export class WorkersDataComponent {
             necessitys: [''],
             status: ['']
         })
+
     }
 
     autocompleteAdressFromApi() {
