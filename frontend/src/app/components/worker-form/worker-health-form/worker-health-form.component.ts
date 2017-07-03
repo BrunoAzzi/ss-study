@@ -1,4 +1,4 @@
-import { aso } from './../../../models/aso.model';
+import { Aso } from './../../../models/aso.model';
 import { Health } from './../../../models/health.model';
 import { Worker } from './../../../models/worker.model';
 import { IMyDpOptions } from 'mydatepicker';
@@ -68,7 +68,7 @@ export class WorkerHealthFormComponent {
                 name: undefined
             };
             this.asoList.push(json);
-            this.worker.health.asoList.push(new aso);
+            this.worker.health.asoList.push(new Aso);
             this.helthForm.get('asoTypes').setValidators(Validators.required);
             this.helthForm.get('asoTypes').updateValueAndValidity();
         }

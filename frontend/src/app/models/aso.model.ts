@@ -1,4 +1,4 @@
-export class aso {
+export class Aso {
 
     itemSelected: number;
     itemName: String;

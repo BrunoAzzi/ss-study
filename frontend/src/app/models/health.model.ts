@@ -1,7 +1,7 @@
-import { aso } from './aso.model';
+import { Aso } from './aso.model';
 export class Health{
 
-    asoList: Array<aso> = [];
+    asoList: Array<Aso> = [];
     errorMsg: String 
     canAddNew: Boolean 
     allergies: '';
