@@ -1,49 +1,54 @@
-import { Worker } from './../../../models/worker.model';
-import { Component, Inject, EventEmitter, Output, Input } from '@angular/core';
+import { Worker } from '../../../models/worker.model';
+import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { Endereco_completo } from '../../../mocks/endereco_completo/endereco_completo';
-import { CommonModule } from '@angular/common';
 import { CustomValidators } from './customValidators';
 import { IMyDpOptions } from 'mydatepicker';
-import { WorkersDataService } from "../../../services/workers/workersData.service";
-import { CBOService } from "../../../services/cbo.service";
-
+import { WorkersDataService } from '../../../services/workers/workersData.service';
+import { CBOService } from '../../../services/cbo.service';
 
 @Component({
-    selector: 'workers-data',
+    selector:    'workers-data',
     templateUrl: './workers-details-form.template.html',
-    styleUrls: ['./workers-details-form.component.scss'],
-    providers: [CBOService, WorkersDataService]
+    styleUrls:   ['./workers-details-form.component.scss'],
+    providers:   [CBOService, WorkersDataService]
 })
 export class WorkersDataComponent {
-    @Input() worker: Worker
-    @Output() saved: EventEmitter<any> = new EventEmitter()
 
-    @Output() cpfUpdated = new EventEmitter<string>();
+    @Input() worker: Worker;
+    @Output() saved: EventEmitter<any> = new EventEmitter();
+    @Output() cpfUpdated               = new EventEmitter<string>();
 
-    disabled = true;
-    mycbo = '';
+    disabled    = true;
+    mycbo       = '';
     mycbonumber = 0;
-    modelCEP = '';
-    cpf = '';
-    hiredType = true;
+    modelCEP    = '';
+    cpf         = '';
+    hiredType   = true;
     myForm: FormGroup;
     completeAddress: string;
     photoPath: any;
 
     myDatePickerOptions: IMyDpOptions = {
-        dateFormat: 'dd/mm/yyyy',
-        dayLabels: { su: 'Dom', mo: 'Seg', tu: 'Ter', we: 'Qua', th: 'Qui', fr: 'Sex', sa: 'Sab' },
+        dateFormat:  'dd/mm/yyyy',
+        dayLabels:   {
+            su: 'Dom',
+            mo: 'Seg',
+            tu: 'Ter',
+            we: 'Qua',
+            th: 'Qui',
+            fr: 'Sex',
+            sa: 'Sab'
+        },
         monthLabels: {
-            1: 'Jan',
-            2: 'Fev',
-            3: 'Mar',
-            4: 'Abr',
-            5: 'Mai',
-            6: 'Jun',
-            7: 'Jul',
-            8: 'Ago',
-            9: 'Set',
+            1:  'Jan',
+            2:  'Fev',
+            3:  'Mar',
+            4:  'Abr',
+            5:  'Mai',
+            6:  'Jun',
+            7:  'Jul',
+            8:  'Ago',
+            9:  'Set',
             10: 'Out',
             11: 'Nov',
             12: 'Dez'
@@ -58,7 +63,7 @@ export class WorkersDataComponent {
 
     labors = [{ value: '', viewValue: '' }];
 
-    sexs = ['Masculino', 'Feminino'];
+    sexs   = ['Masculino', 'Feminino'];
     hireds = ['Próprio', 'Terceiro'];
 
     scholaritys = [
@@ -71,42 +76,40 @@ export class WorkersDataComponent {
         { value: 'pos', viewValue: 'Pós Graduação' },
     ];
 
-
-    necessitys = [
+    necessitys        = [
         { value: 1, viewValue: 'Sim' },
         { value: 2, viewValue: 'Não' },
     ];
-    selectedNecessity: number = 1;
+    selectedNecessity = 1;
 
     cpfMask = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
     nitMask = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, /\d/, /\d/, '.', /\d/, /\d/, '-', /\d/];
     cepMask = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
     cboMask = [/\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/];
 
-
     constructor(private cboService: CBOService, private workersService: WorkersDataService, private fb: FormBuilder) {
         this.myForm = this.fb.group({
-            fullname: new FormControl('', Validators.compose([Validators.required, CustomValidators.onlytext])),
-            cpf: new FormControl('', Validators.compose([Validators.required, CustomValidators.cpf])),
-            ctps: new FormControl('', CustomValidators.onlyPositiveNumbers),
-            birthDate: null,
-            age: null,
-            nit: new FormControl(''),
-            cep: null,
+            fullname:        new FormControl('', Validators.compose([Validators.required, CustomValidators.onlytext])),
+            cpf:             new FormControl('', Validators.compose([Validators.required, CustomValidators.cpf])),
+            ctps:            new FormControl('', CustomValidators.onlyPositiveNumbers),
+            birthDate:       null,
+            age:             null,
+            nit:             new FormControl(''),
+            cep:             null,
             completeAddress: null,
-            admissionDate: null,
-            complement: null,
-            contact: null,
-            cbo: new FormControl('', Validators.required),
-            textArea: null,
-            company: new FormControl({ value: '', disabled: this.hiredType }, null),
-            hiredTypeRadio: null,
-            sex: null,
-            scholarity: [''],
-            role: [''],
-            necessitys: [''],
-            status: ['']
-        })
+            admissionDate:   null,
+            complement:      null,
+            contact:         null,
+            cbo:             new FormControl('', Validators.required),
+            textArea:        null,
+            company:         new FormControl({ value: '', disabled: this.hiredType }, null),
+            hiredTypeRadio:  null,
+            sex:             null,
+            scholarity:      [''],
+            role:            [''],
+            necessitys:      [''],
+            status:          ['']
+        });
 
     }
 
@@ -122,7 +125,7 @@ export class WorkersDataComponent {
     }
 
     autocompleteRoleFromMock() {
-        this.cboService.getCBO("6125-05").subscribe(
+        this.cboService.getCBO('6125-05').subscribe(
             (response) => {
                 this.labors = response;
             },
@@ -144,8 +147,12 @@ export class WorkersDataComponent {
     }
 
     onCepSearch(data) {
-        this.worker.cep = data.cep;
-        this.worker.completeAddress = data.street + ' , ' + data.neighborhood + ' - ' + data.city + ' / ' + data.state;
+        this.worker.cep             = data.cep;
+        this.worker.completeAddress =
+            data.street + ' , ' +
+            data.neighborhood + ' - ' +
+            data.city + ' / ' +
+            data.state;
     }
 
 }

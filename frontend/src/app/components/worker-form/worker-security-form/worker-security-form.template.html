@@ -1,16 +1,29 @@
-<safety-card-content >
-    <form id="securityForm" [formGroup]="securityForm"  name="securityForm">
+<safety-card-content>
+    <form id="securityForm" [formGroup]="securityForm" name="securityForm">
         <div class="grid-container">
             <div class="grid-column">
                 <div class="grid-row">
-                    <md-select formControlName="cipeiros" required name="cipeiros" [(ngModel)]="selectedCipeiro" (ngModelChange)="cipeiroChange(selectedCipeiro, dateRange)"
-                        placeholder="Trabalhador é cipeiro?">
-                        <md-option *ngFor="let cipeiro of cipeiros" [value]="cipeiro.value">
+
+
+                    <md-select
+                            formControlName="cipeiros"
+                            name="cipeiros"
+                            [(ngModel)]="selectedCipeiro"
+                            (ngModelChange)="cipeiroChange(selectedCipeiro, dateRange)"
+                            placeholder="Trabalhador é cipeiro?"
+                            required
+                    >
+
+                        <md-option *ngFor="let cipeiro of cipeiros"
+                                [value]="cipeiro.value">
                             {{ cipeiro.viewValue }}
                         </md-option>
                     </md-select>
+
+
                     <div>
-                        <md-select name="laborsInCipa" required formControlName="laborsInCipa" placeholder="Cargo na CIPA">
+                        <md-select name="laborsInCipa" required formControlName="laborsInCipa"
+                                placeholder="Cargo na CIPA">
                             <md-option *ngFor="let labor of laborsInCipa " [value]="labor.value">
                                 {{ labor.viewValue }}
                             </md-option>
@@ -31,7 +44,8 @@
                         <md-error *ngIf="submitted && invalidDate">Campo Obrigatório.</md-error>
                     </div>
                     <div>
-                        <md-select required name="brigadistas" formControlName="brigadistas" placeholder="Trabalhador é brigadista?" [(ngModel)]="selectedBrigadista">
+                        <md-select required name="brigadistas" formControlName="brigadistas"
+                                placeholder="Trabalhador é brigadista?" [(ngModel)]="selectedBrigadista">
                             <md-option *ngFor="let brigadista of brigadistas" [value]="brigadista.value">
                                 {{ brigadista.viewValue }}
                             </md-option>
@@ -47,8 +61,8 @@
         </div>
         <div class="button-default">
             <button md-raised-button type="submit" (click)="saved.emit(worker)">
-                    Salvar e continuar
-                </button>
+                Salvar e continuar
+            </button>
         </div>
     </form>
 </safety-card-content>
