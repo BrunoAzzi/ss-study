@@ -1,3 +1,5 @@
+import { TasksComponent } from './components/activities/tasks/tasks.component';
+import { ActivitiesComponent } from './views/constructions/detail/activities/activities.component';
 import { ConstructionFormSmartComponent } from './views/constructions/form/construction-form.container';
 import { ConstructionFormComponent } from './components/construction-form/construction-form.component';
 import { ConstructionListItemComponent } from './components/construction-list-item/construction-list-item.component';
@@ -284,6 +286,8 @@ import { AutofocusDirective } from './components/common/autofocus/autofocus.dire
         CategorizedListComponent,
         CategorizedListItemComponent,
         AutofocusDirective,
+        ActivitiesComponent,
+        TasksComponent,
     ],
     imports: [
         // Notification Module

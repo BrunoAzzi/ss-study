@@ -1,0 +1,14 @@
+<div class="body-content">
+    <md-tab-group #tabGroup disableRipple>
+        <md-tab id="tab1" label="Ocorrências">
+            <span> ocorrencias aqui </span>
+        </md-tab>
+        <md-tab id="tab2" label="Tarefas">
+            <div>
+                <tasks></tasks>
+            </div>
+        </md-tab>
+    </md-tab-group>
+
+    <fab mdTooltip="Adicionar Tarefa" mdTooltipPosition="before" (click)="addTask()"></fab>
+</div>
