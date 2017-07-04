@@ -18,7 +18,7 @@ public class CnaeControllerTest_IT extends BaseControllerTest_IT {
 
     @Test
     public void showCnae() throws Exception {
-        MvcResult result = mockMvc.perform(get("/cnaes/1"))
+        MvcResult result = mockMvc.perform(get("/cnaes/gaa"))
                 .andExpect(status().isOk())
                 .andReturn();
 
