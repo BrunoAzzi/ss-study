@@ -1,7 +1,7 @@
-<md-select placeholder="STATUS DA OBRA" (change)="onChange($event.value)">
-    <md-option *ngFor="let status of availableStatus" [value]="status">
-        <construction-sites-status-icon [status]="status"></construction-sites-status-icon>
-        {{ status }}
+<md-select placeholder="STATUS DA OBRA" (change)="onChange($event.value)" [(ngModel)]="status">
+    <md-option *ngFor="let availableStatus of availableStatuses" [value]="availableStatus.value">
+        <construction-sites-status-icon [status]="availableStatus.label"></construction-sites-status-icon>
+        {{ availableStatus.label }}
     </md-option>
 </md-select>
-<input style="display: none" #statusInput ngModel name="status">
+<!--<input style="display: none" #statusInput ngModel name="status">-->

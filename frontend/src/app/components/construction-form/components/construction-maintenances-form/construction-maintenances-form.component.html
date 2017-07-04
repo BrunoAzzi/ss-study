@@ -1,9 +1,11 @@
-<ul>
-    <li *ngFor="let category of categories; let i = index">
-        <add-new-category (edited)="editCategory($event)" [index]="i + 1" [category]="category"></add-new-category>
+<safety-categorized-list (added)="addNewCategory($event)">
+    <safety-categorized-list-item *ngFor="let category of categories; let i = index"
+                                  [index]="i"
+                                  [name]="category"
+                                  (edited)="editCategory($event)"
+                                  (removed)="removeCategory($event)">
         <ul>
-            <li></li>
+            <li>Item de categoria</li>
         </ul>
-    </li>
-</ul>
-<add-new-category (added)="addNewCategory($event)"></add-new-category>
+    </safety-categorized-list-item>
+</safety-categorized-list>

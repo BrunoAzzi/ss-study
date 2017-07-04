@@ -17,10 +17,10 @@ export class AsoItemComponent {
     @Output() removed = new EventEmitter();
     myDate : Date;
     asoItemsList = {
-                dateExe: undefined,
-                isAble:undefined,
-                dateChange:undefined,
-            };
+        dateExe: undefined,
+        isAble: undefined,
+        dateChange: undefined,
+    };
 
     myDatePickerOptions: IMyDpOptions = {
         dateFormat: 'dd/mm/yyyy',
@@ -35,21 +35,21 @@ export class AsoItemComponent {
            isAble : new FormControl(''),
            dateChange : new FormControl(''),
         });
-        
+
         this.testeBool;
     }
 
     openDialog() {
-        let dialogRef = this.dialog.open(ConfirmationDialogOverview);
+        const dialogRef = this.dialog.open(ConfirmationDialogOverview);
         dialogRef.afterClosed().subscribe(result => {
-            if (result === "Sim") { this.removeMyself() }
+            if (result === 'Sim') { this.removeMyself(); }
         });
     }
 
     removeMyself() {
         this.removed.emit(this);
     }
-    
+
 }
 
 
@@ -58,7 +58,9 @@ export class AsoItemComponent {
     selector: 'confirmationDialog',
     templateUrl: 'confirmationDialog.template.html',
 })
+
 export class ConfirmationDialogOverview {
+
     constructor(public dialogRef: MdDialogRef<ConfirmationDialogOverview>) {
 
     }
