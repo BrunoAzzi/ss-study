@@ -2,11 +2,12 @@
     {{label}}
 </span>
 <div ng2FileDrop
-     class="custom-component-drop-zone"
+     [ngClass]="{'custom-component-drop-zone': hasNgContent !== true, 'custom-component-drop-zone-has-ng-content': hasNgContent === true}"
      [ng2FileDropSupportedFileTypes]="supportedFileTypes"
      (ng2FileDropFileAccepted)="dragFileAccepted($event)"
      (ng2FileDropFileRejected)="dragFileRejected($event)"
      (click)="showInput()">
-    <img [src]="image || '/assets/plus.svg'"/>
+    <img [src]="image || '/assets/plus.svg'" [ngClass]="{'hide': hasNgContent === true}"/>
     <input #fileInput type="file" (change)="onFileChange($event)" [accept]="supportedFileTypes.join(', ')"/>
+    <ng-content *ngIf="hasNgContent === true"></ng-content>
 </div>

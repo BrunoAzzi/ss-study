@@ -52,6 +52,23 @@ export class HttpClientService {
       })
   }
 
+  getArrayBuffer(path: string) {
+    return Observable.create(observer=>{
+            let req = new XMLHttpRequest(),
+                url = this.url + path;
+                req.open('get',url);
+                req.setRequestHeader('X-Authorization', this.authToken);
+                req.responseType = "arraybuffer";
+                req.onreadystatechange = function() {
+                    if (req.readyState == 4 && req.status == 200) {
+                        observer.next(req.response);
+                        observer.complete();
+                    }
+                };
+                req.send();
+        })
+  }
+
   put(path: String, params) {
     return this.http.put(this.url + path, params, this.standardHeaders())
       .map((response: Response) => {

@@ -10,11 +10,21 @@ export class CompanyService {
 
     constructor(private http: Http, private service : HttpClientService) { }
 
-    getCompany(id) {
+    getCompany(id: number) {
         return this.service.get(this.endpoint + "/" + id)
             .map(response => {                
                 return new Company(response.company);
             })
+    }
+
+    //TODO review get Method
+    getCompanyLogo(id: number) {
+        return this.service.getArrayBuffer(this.endpoint + "/" + id  + '/logo')
+            .map( response => {
+                //TODO fix method to retrieve BLOB file
+                //console.log(response);
+                return response;
+        });
     }
 
     updateCompany(company: Company) {
@@ -24,6 +34,7 @@ export class CompanyService {
        });
     }
 
+    //TODO review post Method with Backend source
     updateCompanyLogo(company: Company, formData: any) {       
         
         return this.service.postWithNoHeaders(this.endpoint + '/' + company.id + '/logo', formData)

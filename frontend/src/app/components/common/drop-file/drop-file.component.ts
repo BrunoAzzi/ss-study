@@ -17,12 +17,19 @@ export class DropFileComponent {
     @Input()
     label: string;
 
+    @Input()
+    hasNgContent: boolean
+
     image: any;
 
     @Output()
-    onChange = new EventEmitter();    
+    onChange = new EventEmitter();
 
     imageShown: boolean;
+
+    ngOnInit() {
+        console.log(this.hasNgContent);
+    }
 
     dragFileAccepted(acceptedFile: Ng2FileDropAcceptedFile) {
         this.processFile(acceptedFile.file);

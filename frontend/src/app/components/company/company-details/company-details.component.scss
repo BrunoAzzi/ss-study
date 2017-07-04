@@ -1,11 +1,21 @@
 .image-upload {
     max-width: 220px;
     min-height: 161px;
-    background-size: 25%; 
+    background-size: 25%;
+    cursor: pointer;
+    opacity: 0.8;
+
+    &:focus, &:hover {
+        opacity: 1;
+    }
 }
 
 .mat-input-element {
     &:disabled {
         color: rgba(0,0,0,.5);
     }
+}
+
+.grid-row > .half {
+    width: 25%;
 }
