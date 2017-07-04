@@ -22,10 +22,10 @@ export class WorkerFormComponent {
 
     worker: Worker = new Worker();
 
-    constructor(
-        private service: WorkerService
-    ) {
+    constructor(private service: WorkerService) {
+        
     }
+    
 
     getWorkerByCpf(cpf: string) {
         this.service.getWorkerByCpf(cpf).subscribe(subscribedworker => {
@@ -45,8 +45,7 @@ export class WorkerFormComponent {
     }
 
     onDetailsSaved(savedWorker: Worker) {
-        console.log(savedWorker);
-        this.datailsCard.close();
+        this.service.createWorker(savedWorker)
     }
 
     onHealthSaved(savedWorker: Worker) {

@@ -68,9 +68,9 @@ export class WorkerHealthFormComponent {
                 name: undefined
             };
             this.asoList.push(json);
-            this.worker.health.asoList.push(new Aso);
             this.helthForm.get('asoTypes').setValidators(Validators.required);
             this.helthForm.get('asoTypes').updateValueAndValidity();
+            this.worker.health.asoList.push(new Aso);
         }
     }
     removeAsoItem(aso) {
