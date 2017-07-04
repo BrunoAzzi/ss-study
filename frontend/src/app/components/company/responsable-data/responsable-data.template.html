@@ -1,11 +1,15 @@
 <form #f="ngForm" (ngSubmit)="save(f)" novalidate>
     <div class="form-content grid-container">
 
-        <div class="grid-column-50">
-            <div class="grid-row">
+        <div class="grid-column">
+            <div class="grid-row-75">
                 <md-input-container>
                     <input mdInput placeholder="Nome" 
                     [(ngModel)]="companyContact.name" name="name">
+                </md-input-container>
+                <md-input-container>
+                        <input mdInput placeholder="Cargo" 
+                        [(ngModel)]="companyContact.role" name="role">
                 </md-input-container>
             </div>
 
@@ -15,20 +19,6 @@
                     [textMask]="{mask: phoneFaxMask}" 
                     [(ngModel)]="companyContact.phone" name="phone">
                 </md-input-container>
-            </div>
-        </div>
-
-        <div class="grid-column">
-            <div class="grid-row">
-                <div class="grid-row-25">
-                    <md-input-container>
-                        <input mdInput placeholder="Cargo" 
-                        [(ngModel)]="companyContact.role" name="role">
-                    </md-input-container>
-                </div>
-            </div>
-
-            <div class="grid-row">
                 <md-input-container>
                     <input mdInput placeholder="Fax" 
                     [textMask]="{mask: phoneFaxMask}" 
