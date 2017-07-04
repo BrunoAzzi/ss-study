@@ -156,6 +156,7 @@ public class WorkerController {
     ) {
         Worker worker = repository.findOne(id);
 
+
         if (worker != null){
             String fileName = worker.getPhotoFilename();
             if (!fileName.isEmpty()) {
