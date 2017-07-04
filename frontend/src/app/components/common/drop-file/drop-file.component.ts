@@ -30,7 +30,13 @@ export class DropFileComponent {
 
     imageShown: boolean;
 
-    image: any;  
+    image: any;
+
+    ngOnChanges() {
+        if(this.img) {
+            this.image = this.img;
+        }
+    }
 
     dragFileAccepted(acceptedFile: Ng2FileDropAcceptedFile) {
         this.processFile(acceptedFile.file);

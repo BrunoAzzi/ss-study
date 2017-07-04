@@ -3,7 +3,11 @@
     <div class="form-content grid-container">
         <div class="grid-column">
             <div class="grid-row">
-                <drop-file class="half" [label]="" [hasNgContent]="true" [ngContentType]="'companyLog'" (onChange)="onSelectFile($event)">
+                <drop-file class="half" [label]="" 
+                        [hasNgContent]="true"
+                        [img]="image"
+                        [ngContentType]="'companyLog'" 
+                        (onChange)="onSelectFile($event)">
                     <md-card class="image-upload">
                         <md-card-content>                                                
                         </md-card-content>

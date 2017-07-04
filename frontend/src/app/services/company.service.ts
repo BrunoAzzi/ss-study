@@ -18,13 +18,8 @@ export class CompanyService {
     }
 
     //TODO review get Method
-    getCompanyLogo(id: number) {
-        return this.service.getArrayBuffer(this.endpoint + "/" + id  + '/logo')
-            .map( response => {
-                //TODO fix method to retrieve BLOB file
-                //console.log(response);
-                return response;
-        });
+    getCompanyLogo(company: Company) {
+        return this.service.getAbsolutePath(company.logoUrl);
     }
 
     updateCompany(company: Company) {

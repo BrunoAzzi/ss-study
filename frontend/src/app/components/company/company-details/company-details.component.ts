@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, OnChanges, EventEmitter, Output, Input  } from '@angular/core';
+import { Component, OnChanges, EventEmitter, Output, Input  } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import { Company } from './../../../models/company.model';
@@ -11,7 +11,7 @@ import { CompanyService } from './../../../services/company.service';
     styleUrls: ['./company-details.component.scss']
 })
 
-export class CompanyDetailsComponent implements OnInit, OnChanges, OnDestroy {
+export class CompanyDetailsComponent implements OnChanges{
 
     @Input() company: Company;
     @Output() saved : EventEmitter<Company> = new EventEmitter()
@@ -23,31 +23,16 @@ export class CompanyDetailsComponent implements OnInit, OnChanges, OnDestroy {
     cnaeCode: string
     cnaeDescription: string
     logo: any
-    sub: any
+    image: any;
 
     constructor(private service: CompanyService) { }
-
-    ngOnInit() {
-        this.cnaeCode = ''
-    }
-
-    ngOnDestroy() {
-        this.sub.unsubscribe();
-    }
 
     ngOnChanges() {
         if(this.company && this.company.cnae) {            
             this.cnaeCode = this.company.cnae.code;
             this.cnaeDescription = this.company.cnae.description;
-            this.addressStreet = this.company.addressStreet;
-            //console.log(this.company);
-            this.sub = this.service
-            .getCompanyLogo(this.company.id)
-            .subscribe(
-                (response) => {
-                    //console.log(response);
-                }
-            )
+            this.addressStreet = this.company.addressStreet;            
+            this.image = this.service.getCompanyLogo(this.company);            
         }
     }
 

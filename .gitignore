@@ -37,4 +37,4 @@ target/
 mariadb/
 
 # Misc
-upload-dir/
+/upload-dir/
