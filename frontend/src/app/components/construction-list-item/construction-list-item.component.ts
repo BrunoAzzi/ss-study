@@ -6,11 +6,11 @@ import { Construction } from "../../models/construction.model";
     templateUrl: './construction-list-item.template.html',
     styleUrls: ['./construction-list-item.component.scss']
 })
-export class ConstructionListItemComponent {
-    
+export class ConstructionListItemComponent implements OnInit {
+
     @Input() construction: Construction;
     @Output() toEdit : EventEmitter<Construction> = new EventEmitter();
-    
+
     status: any = {};
     statusIcon: any = "";
 
@@ -28,9 +28,9 @@ export class ConstructionListItemComponent {
         }
 
         this.status = {
-            "success": this.construction.getStatus() == "FINISHED",
-            "warn": this.construction.getStatus() == "IN_PROGRESS",
-            "danger": this.construction.getStatus() == "PAUSED"
+            "success": this.construction.getStatus() === "FINISHED",
+            "warn": this.construction.getStatus() === "IN_PROGRESS",
+            "danger": this.construction.getStatus() === "PAUSED"
         }
     }
 

@@ -1,52 +1,60 @@
-<div class="form-content">
-    <section>
-        <div class="search">
-            <md-icon>
+<div class="form-content2">
+
+    <div class="workers-selection">
+
+        <section class="left-side-selection">
+            <h2>Todos os trabalhadores</h2>
+
+            <md-icon mdPrefix>
                 search
             </md-icon>
-            <md-input-container class="with-action">
-                <input mdInput placeholder="BUSCAR POR NOME, CPF OU FUNÇÃO" [(ngModel)]="allSearch"
-                       (ngModelChange)="allSearchChange($event)">
+            <md-input-container>
+                <input mdInput placeholder="BUSCAR POR NOME, CPF OU FUNÇÃO" [(ngModel)]="allSearch" (ngModelChange)="allSearchChange($event)">
             </md-input-container>
+
+            <table>
+                <tr *ngFor="let c of filteredCollaborators; let i = index"
+                    (click)="setSelectedToAdd(i)"
+                    [ngClass]="{selected: selectedToAdd.includes(i)}">
+                    <td>{{c.name}}</td>
+                    <td>{{c.cpf}}</td>
+                    <td>{{c.occupation}}</td>
+                </tr>
+            </table>
+        </section>
+
+        <div class="button-group">
+            <button md-button [disabled]="selectedToAdd.length === 0" (click)="addSelected()">
+                <md-icon>keyboard_arrow_right</md-icon>
+            </button>
+            <button md-button [disabled]="selectedToRemove.length === 0" (click)="removeSelected()">
+                <md-icon>keyboard_arrow_left</md-icon>
+            </button>
         </div>
-        <table>
-            <tr *ngFor="let c of filteredCollaborators; let i = index"
-                (click)="setSelectedToAdd(i)"
-                [ngClass]="{selected: selectedToAdd.includes(i)}">
-                <td>{{c.name}}</td>
-                <td>{{c.cpf}}</td>
-                <td>{{c.occupation}}</td>
-            </tr>
-        </table>
-    </section>
-    <div class="button-group">
-        <button md-button [disabled]="selectedToAdd.length === 0" (click)="addSelected()">
-            <md-icon>keyboard_arrow_right</md-icon>
-        </button>
-        <button md-button [disabled]="selectedToRemove.length === 0" (click)="removeSelected()">
-            <md-icon>keyboard_arrow_left</md-icon>
-        </button>
-    </div>
-    <section>
-        <div class="search">
+
+        <section class="right-side-selection">
+            <h2>Trabalhadores relacionados à obra</h2>
             <md-icon>
                 search
             </md-icon>
-            <md-input-container class="with-action">
+            <md-input-container>
                 <input mdInput placeholder="BUSCAR POR NOME, CPF OU FUNÇÃO" [(ngModel)]="selectedSearch"
                        (ngModelChange)="selectedSearchChange($event)">
             </md-input-container>
-        </div>
-        <table>
-            <tr *ngFor="let c of filteredSelectedCollaborators; let i = index"
-                (click)="setSelectedToRemove(i)"
-                [ngClass]="{selected: selectedToRemove.includes(i)}">
-                <td>{{c.name}}</td>
-                <td>{{c.cpf}}</td>
-                <td>{{c.occupation}}</td>
-            </tr>
-        </table>
-    </section>
+            <table>
+                <tr *ngFor="let c of filteredSelectedCollaborators; let i = index"
+                    (click)="setSelectedToRemove(i)"
+                    [ngClass]="{selected: selectedToRemove.includes(i)}">
+                    <td>{{c.name}}</td>
+                    <td>{{c.cpf}}</td>
+                    <td>{{c.occupation}}</td>
+                </tr>
+            </table>
+        </section>
+
+    </div>
+
+
     <div class="form-bottom">
         <button md-raised-button>SALVAR E CONTINUAR</button>
     </div>

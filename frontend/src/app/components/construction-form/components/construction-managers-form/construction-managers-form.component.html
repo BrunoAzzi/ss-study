@@ -1,36 +1,36 @@
-<form class="full-width" #f="ngForm" (ngSubmit)="save(f)" novalidate>
+<form class="full-width" #f="ngForm" (ngSubmit)="save()" novalidate>
     <div class="form-content">
         <section>
             <md-input-container>
                 <input mdInput placeholder="RESPONSÁVEL PELA OBRA (ENG. CIVIL)"
-                       ngModel name="name"
+                        [(ngModel)]="construction.responsibleEngineer.name" name="engineer-name"
                 >
             </md-input-container>
             <md-input-container class="half">
                 <input mdInput placeholder="TELEFONE"
-                       ngModel name="phone"
+                       [(ngModel)]="construction.responsibleEngineer.phone" name="engineer-phone"
                 >
             </md-input-container>
             <md-input-container class="half">
                 <input mdInput placeholder="E-MAIL"
-                       ngModel name="email"
+                       [(ngModel)]="construction.responsibleEngineer.email" name="engineer-email"
                 >
             </md-input-container>
         </section>
         <section>
             <md-input-container>
                 <input mdInput placeholder="RESPONSÁVEL PELA OBRA (SEGURANÇA DO TRABALHO)"
-                       ngModel name="name"
+                       [(ngModel)]="construction.responsibleSafety.name" name="safety-name"
                 >
             </md-input-container>
             <md-input-container class="half">
                 <input mdInput placeholder="TELEFONE"
-                       ngModel name="phone"
+                       [(ngModel)]="construction.responsibleSafety.phone" name="safety-phone"
                 >
             </md-input-container>
             <md-input-container class="half">
                 <input mdInput placeholder="E-MAIL"
-                       ngModel name="email"
+                       [(ngModel)]="construction.responsibleSafety.email" name="safety-email"
                 >
             </md-input-container>
         </section>

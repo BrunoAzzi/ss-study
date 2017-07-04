@@ -1,0 +1,39 @@
+
+
+.floors-crud-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+
+  .floor {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    position: relative;
+
+    drop-file {
+      flex-grow: 1;
+    }
+
+    md-input-container {
+      flex-shrink: 0;
+    }
+
+    md-icon {
+      position: absolute;
+      cursor: pointer;
+      top: 10px;
+      right: 10px;
+    }
+
+    border: 2px dashed #f2f6f7;
+    margin-right: 20px;
+    padding: 20px;
+
+    width: 300px;
+    height: 300px;
+  }
+}
