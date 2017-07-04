@@ -23,21 +23,25 @@ export class CnaePickerComponent {
         private cnaeService:CnaeService,
         public snackBar: MdSnackBar) {}
 
-    searchCnae(cnaeCode) {                
-        this.cnaeService.getCnae(this.removeMask(cnaeCode))
-            .subscribe(
-                data => {                   
-                   if(data) {
-                       this.onSearch.emit(data);
-                   } else {
-                       this.onSearch.emit(data);
-                       this.snackBar.open('CNAE não encontrado!', null, {duration: 3000})
-                   }
-                },
-                error => {
-                   this.snackBar.open('CNAE não encontrado!', null, {duration: 3000})
-                }
-            );
+    searchCnae(cnaeCode) {
+        if(cnaeCode) {
+            this.cnaeService.getCnae(this.removeMask(cnaeCode))
+                .subscribe(
+                    data => {                   
+                    if(data) {
+                        this.onSearch.emit(data);
+                    } else {
+                        this.onSearch.emit(data);
+                        this.snackBar.open('CNAE não encontrado!', null, {duration: 3000})
+                    }
+                    },
+                    error => {
+                    this.snackBar.open('CNAE não encontrado!', null, {duration: 3000})
+                    }
+                );
+        } else {
+            this.snackBar.open('CNAE não encontrado!', null, {duration: 3000})
+        }
     }
 
     removeMask(cnaeCode) {

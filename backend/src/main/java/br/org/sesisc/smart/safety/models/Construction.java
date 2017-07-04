@@ -47,7 +47,7 @@ public class Construction {
     @JoinColumn(name = "responsible_safety_id")
     private ResponsibleSafety responsibleSafety;
 
-    private boolean activated;
+    private boolean activated = true;
 
     public Construction() { }
 

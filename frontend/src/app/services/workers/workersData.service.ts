@@ -14,17 +14,14 @@ export class WorkersDataService {
         })
     }
 
-    
-   
-
-     setCPF(cpfValue: string) {
+    setCPF(cpfValue: string) {
         console.log(cpfValue);
         this.cpf = cpfValue;
-       
-     }
 
-    getCPF(){
-        console.log("service"+this.cpf)
+    }
+
+    getCPF() {
+        console.log("service" + this.cpf)
         return this.cpf;
     };
 

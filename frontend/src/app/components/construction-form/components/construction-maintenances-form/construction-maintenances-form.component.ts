@@ -7,14 +7,18 @@ import {Component} from '@angular/core';
 })
 export class ConstructionMaintenancesFormComponent {
 
-    categories : Array<string> = [];
+    categories: Array<string> = [];
 
     addNewCategory(category) {
         this.categories = [...this.categories, category];
     }
 
     editCategory({ category, index }) {
-        this.categories[index] = category
+        this.categories[index] = category;
+    }
+
+    removeCategory(index) {
+        this.categories.splice(index, 1);
     }
 
 }

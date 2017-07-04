@@ -1,8 +1,9 @@
-import { Component, OnInit, EventEmitter, Output, Input  } from '@angular/core';
+import { Component, OnInit, OnDestroy, OnChanges, EventEmitter, Output, Input  } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import { Company } from './../../../models/company.model';
 import { Cnae } from './../../../models/cnae.model';
+import { CompanyService } from './../../../services/company.service';
 
 @Component({
     selector: 'company-details',
@@ -10,7 +11,7 @@ import { Cnae } from './../../../models/cnae.model';
     styleUrls: ['./company-details.component.scss']
 })
 
-export class CompanyDetailsComponent {
+export class CompanyDetailsComponent implements OnInit, OnChanges, OnDestroy {
 
     @Input() company: Company;
     @Output() saved : EventEmitter<Company> = new EventEmitter()
@@ -21,8 +22,34 @@ export class CompanyDetailsComponent {
     addressStreet: string
     cnaeCode: string
     cnaeDescription: string
+    logo: any
+    sub: any
 
-    constructor() { }
+    constructor(private service: CompanyService) { }
+
+    ngOnInit() {
+        this.cnaeCode = ''
+    }
+
+    ngOnDestroy() {
+        this.sub.unsubscribe();
+    }
+
+    ngOnChanges() {
+        if(this.company && this.company.cnae) {            
+            this.cnaeCode = this.company.cnae.code;
+            this.cnaeDescription = this.company.cnae.description;
+            this.addressStreet = this.company.addressStreet;
+            //console.log(this.company);
+            this.sub = this.service
+            .getCompanyLogo(this.company.id)
+            .subscribe(
+                (response) => {
+                    //console.log(response);
+                }
+            )
+        }
+    }
 
     save(f: NgForm) {
         const company = Object.assign(
@@ -30,6 +57,18 @@ export class CompanyDetailsComponent {
             this.company
         )
         this.saved.emit(company);
+    }
+
+    onSelectFile(file) {                 
+        const formData = new FormData();
+        formData.append('file', file);        
+
+        this.service.updateCompanyLogo(this.company, formData)
+        .subscribe(
+            (response) => {
+                
+            }
+        );
     }
 
     onCepSearch(data) {

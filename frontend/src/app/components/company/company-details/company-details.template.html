@@ -1,15 +1,17 @@
-<form #f="ngForm" (ngSubmit)="save(f)" novalidate>
+<form #f="ngForm" (ngSubmit)="save(f)" novalidate enctype="multipart/form-data">
         
     <div class="form-content grid-container">
         <div class="grid-column">
             <div class="grid-row">
-                <md-card class="image-upload">
-                    <md-card-content>                                                
-                    </md-card-content>
-                    <md-card-footer>
-                        <p>INSIRA A LOGO <br/> DA EMPRESA</p>
-                    </md-card-footer>
-                </md-card>
+                <drop-file class="half" [label]="" [hasNgContent]="true" [ngContentType]="'companyLog'" (onChange)="onSelectFile($event)">
+                    <md-card class="image-upload">
+                        <md-card-content>                                                
+                        </md-card-content>
+                        <md-card-footer>
+                            <p>INSIRA A LOGO <br/> DA EMPRESA</p>
+                        </md-card-footer>
+                    </md-card>
+                </drop-file>                
                 <div class="grid-column-75">
                     <div class="grid-row">
                         <md-input-container>
@@ -44,7 +46,8 @@
                         <md-input-container>
                             <input mdInput placeholder="Cidade / Estado"
                                         [(ngModel)]="addressStreet"
-                                        name="addressStreet">
+                                        name="addressStreet"
+                                        [disabled]="true">
                         </md-input-container>
                         <md-input-container>
                             <input mdInput placeholder="NUMERO"
@@ -60,8 +63,8 @@
                     <div class="grid-row-25">
                         <md-input-container>
                             <input mdInput placeholder="URL"
-                            [(ngModel)]="company.logoUrl"
-                            name="logoUrl">
+                            [(ngModel)]="company.urlDomain"
+                            name="urlDomain">
                         </md-input-container>
                     </div>
                 </div>                                     

@@ -1,4 +1,4 @@
-import { ConstructionFormContainer } from './views/constructions/form/construction-form.container';
+import { ConstructionFormSmartComponent } from './views/constructions/form/construction-form.container';
 import { ConstructionFormComponent } from './components/construction-form/construction-form.component';
 import { ConstructionListItemComponent } from './components/construction-list-item/construction-list-item.component';
 import { ConstructionMaintenancesFormComponent } from './components/construction-form/components/construction-maintenances-form/construction-maintenances-form.component';
@@ -17,7 +17,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
-import { RouterModule } from '@angular/router';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -26,7 +25,11 @@ import { CnaeService } from './services/cnae.service'
 import { SessionsService } from './services/sessions.service';
 import { PasswordService } from './services/password.service';
 import { AuthGuard } from './guards/index';
-
+import { CommonModule } from '@angular/common';
+import { AppComponent } from './app.component';
+import { ChartsModule } from 'ng2-charts';
+import { MyDatePickerModule } from 'mydatepicker';
+import { MomentModule } from 'angular2-moment';
 
 import {
     MdSnackBar,
@@ -39,30 +42,21 @@ import {
     MdProgressSpinnerModule
 } from '@angular/material';
 
-import { CommonModule } from '@angular/common';
-
-import { AppComponent } from './app.component';
-import { ChartsModule } from 'ng2-charts';
-import { MyDatePickerModule } from 'mydatepicker';
-import { CookieService } from 'ng2-cookies';
-import { MomentModule } from 'angular2-moment';
-
-
 // Pipe
 import { KeysPipe } from './pipes/keys.pipe';
 import { DataTablePipe } from './components/perfil_emocional/status_trabalhadores/DataTablePipe.pipe';
 
 // Components
-import { SecurityWorksComponent } from "./components/workers/components/worker-details-form/securityWorks/securityWorks.component";
-import { WorkersDataComponent } from "./components/workers/components/worker-details-form//workersData/workersData.component";
-import { CompaniesComponent } from "./views/companies/companies.component";
-import { CompanyDetailsComponent } from "./components/company/company-details/company-details.component";
-import { HealthComponent } from "./components/workers/components/worker-details-form//health/health.component";
-import { AsoItemComponent, ConfirmationDialogOverview } from "./components/workers/components/asoItem/asoItem.component";
-import { DateRangeComponent } from "./components/common/date-range/date-range.component";
-import { SkillComponent } from "./components/workers/components/worker-details-form/skill/skill.component";
-import { RecyclingComponent } from "./components/workers/components/recycling/recycling.component";
-import { BoxMessageComponent } from "./components/common/box-message/box-message.component";
+import { SecurityWorksComponent } from './components/worker-form/worker-security-form/worker-security-form.component';
+import { WorkersDataComponent } from './components/worker-form/workers-details-form/workers-details-form.component';
+import { CompaniesComponent } from './views/companies/companies.component';
+
+import { AsoItemComponent, ConfirmationDialogOverview } from './components/workers/asoItem/asoItem.component';
+
+import { DateRangeComponent } from './components/common/date-range/date-range.component';
+import { SkillComponent } from './components/worker-form/skill/skill.component';
+import { RecyclingComponent } from './components/workers/recycling/recycling.component';
+import { BoxMessageComponent } from './components/common/box-message/box-message.component';
 import { BlueprintComponent } from './components/blueprint/blueprint.component';
 import { ToolboxComponent } from './components/toolbox/toolbox.component';
 
@@ -72,9 +66,9 @@ import { RepositoriesComponent } from './views/repositories/repositories.compone
 import { TrainingComponent } from './views/training/training.component';
 
 // Worker
-import { WorkerFormComponent } from "./views/workers/form/form.component";
-import { WorkerListComponent } from "./views/workers/list/list.component";
-import { LineWorkerDetailComponent } from "./components/workers/components/line-worker-detail/line-worker-detail.component";
+import { WorkerFormComponent } from './views/workers/form/form.component';
+import { WorkerListComponent } from './views/workers/list/list.component';
+import { LineWorkerDetailComponent } from './components/workers/line-worker-detail/line-worker-detail.component';
 
 import { MonitoringComponent } from './views/constructions/detail/monitoring/monitoring.component';
 import { AreaMappingComponent } from './components/area-mapping/area-mapping.component';
@@ -153,11 +147,10 @@ import { CepPickerComponent } from './components/common/cep-picker/cep-picker.co
 import { CnaePickerComponent } from './components/common/cnae-picker/cnae-picker.component';
 import { ConstructionStatusPickerComponent } from './components/common/construction-status-picker/construction-status-picker.component';
 import { ConstructionSitesStatusIconComponent } from './components/common/construction-sites-status-icon/construction-sites-status-icon.component';
-import { AddNewCategoryComponent } from './components/common/add-new-category/add-new-category.component';
+import { AddNewCategoryComponent } from './components/common/add-category/add-category.component';
 
 import { InputFile } from './components/common/input-file/input-file.component';
 import { ConstructionsListComponent } from './views/constructions/list/constructions-list.component';
-import { CardConstructionDetailComponent } from './components/card-construction-site/card-construction-site.component';
 import { FiltersComponent } from './components/area-monitoring/filters/filters.component';
 import { AlertsTabComponent } from './components/area-monitoring/alerts-tab/alerts-tab.component';
 import { AlertsTabItemComponent } from './components/area-monitoring/alerts-tab-item/alerts-tab-item.component';
@@ -166,6 +159,13 @@ import { SectorSummaryComponent } from './components/sector-summary/sector-summa
 import { MaintenanceInlineFormComponent } from './components/maintenance-inline-form/maintenance-inline-form.component';
 import { ListItemComponent } from './components/common/list-item/list-item.component';
 import { ListActionBarComponent } from './components/common/list-action-bar/list-action-bar.component';
+import { CompanyDetailsComponent } from './components/company/company-details/company-details.component';
+import { WorkerHealthFormComponent } from './components/worker-form/worker-health-form/worker-health-form.component';
+import { WorkerQualificationsFormComponent } from './components/worker-form/worker-qualifications-form/worker-qualifications-form.component';
+import { ConstructionBlueprintsFormComponent } from './components/construction-form/components/construction-blueprints-form/construction-blueprints-form.component';
+import { CategorizedListComponent } from './components/common/categorized-list/categorized-list.component';
+import { CategorizedListItemComponent } from './components/common/categorized-list-item/categorized-list-item.component';
+import { AutofocusDirective } from './components/common/autofocus/autofocus.directive';
 
 @NgModule({
     declarations: [
@@ -254,15 +254,14 @@ import { ListActionBarComponent } from './components/common/list-action-bar/list
         InputFile,
         AsoItemComponent,
         ConfirmationDialogOverview,
-        HealthComponent,
+        WorkerHealthFormComponent,
 
         // Obras
         ConstructionDetailComponent,
         ConstructionsListComponent,
-        ConstructionFormContainer,
+        ConstructionFormSmartComponent,
         ConstructionFormComponent,
         ConstructionListItemComponent,
-        CardConstructionDetailComponent,
 
         ConstructionDetailsFormComponent,
         CepPickerComponent,
@@ -283,6 +282,11 @@ import { ListActionBarComponent } from './components/common/list-action-bar/list
         MaintenanceInlineFormComponent,
         ListItemComponent,
         ListActionBarComponent,
+        WorkerQualificationsFormComponent,
+        ConstructionBlueprintsFormComponent,
+        CategorizedListComponent,
+        CategorizedListItemComponent,
+        AutofocusDirective,
     ],
     imports: [
         // Notification Module
@@ -337,7 +341,6 @@ import { ListActionBarComponent } from './components/common/list-action-bar/list
         // Routes
         AppRoutingModule,
     ],
-
     entryComponents: [ConfirmationDialogOverview, MappingDialog],
     providers: [
         HttpClientService,
@@ -352,5 +355,4 @@ import { ListActionBarComponent } from './components/common/list-action-bar/list
     bootstrap: [AppComponent]
 })
 
-export class AppModule {
-}
+export class AppModule {}

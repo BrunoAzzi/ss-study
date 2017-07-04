@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, Input, EventEmitter, Output } from '@angular/core';
 import { MdSnackBar } from '@angular/material';
 
 import { Company } from './../../models/company.model';
@@ -11,9 +11,8 @@ import { CompanyService } from './../../services/company.service';
     styleUrls: ['./companies.component.scss'],
     providers: [CompanyService]
 })
-export class CompaniesComponent {
-    @Input() company: Company;
-
+export class CompaniesComponent implements OnInit, OnDestroy {
+    company: Company = new Company();
 
 	@ViewChild('companyDetails') companyDetails: SafetyCardComponent;
     @ViewChild('responsableData') responsableData: SafetyCardComponent;
@@ -32,15 +31,27 @@ export class CompaniesComponent {
 
     constructor(public snackBar: MdSnackBar, private service: CompanyService) {}
 
+    sub: any
+
 	ngOnInit() {
+
+        this.sub = this.service
+            .getCompany(1)
+            .subscribe(
+                (response) => {
+                    this.company = response;
+                }
+            );
+
 		this.elements = [this.companyDetails, this.responsableData, this.responsableSstData, this.responsableContactData, this.additionalInformation];
         this.closeAll();
         
-        //TODO retrieve company's information from REST service
-        this.company = new Company();
-        
         this.companyDetails.open();
 	}
+
+    ngOnDestroy() {
+        this.sub.unsubscribe()
+    }
 
     onSelectChange = ($event: any): void => {
 

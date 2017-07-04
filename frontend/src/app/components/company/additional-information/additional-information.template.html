@@ -1,31 +1,44 @@
 <form #f="ngForm" (ngSubmit)="save(f)" novalidate>
     <div class="form-content grid-container">
 
-        <div class="grid-column-50">
-            <div class="grid-row">
-                <md-radio-group [(ngModel)]="company.hasSesmt" name="hasSesmt">
-                    <p>Possoui Sesmt?</p>
-                    <md-radio-button value="true" color="primary">Sim</md-radio-button>
-                    <md-radio-button value="false" color="primary">Não</md-radio-button>
-                </md-radio-group>
-                <md-radio-group [(ngModel)]="company.hasCipa" name="hasCipa">
-                    <p>Possoui Cipa?</p>
-                    <md-radio-button value="true" color="primary">Sim</md-radio-button>
-                    <md-radio-button value="false" color="primary">Não</md-radio-button>
-                </md-radio-group>
-            </div>
-        </div>
-
         <div class="grid-column">
             <div class="grid-row">
+                <md-radio-group name="hasSesmt">
+                    <p>Possoui Sesmt?</p>
+                    <md-radio-button value="true" 
+                        [checked]="company.hasSesmt === true"
+                        (change)="onSesmtChange(true)"
+                        color="primary">Sim</md-radio-button>
+                    <md-radio-button value="false"
+                        [checked]="company.hasSesmt !== true"
+                        (change)="onSesmtChange(false)"
+                        color="primary">Não</md-radio-button>
+                </md-radio-group>
+                <md-radio-group name="hasCipa">
+                    <p>Possoui Cipa?</p>
+                    <md-radio-button value="true"
+                        [checked]="company.hasCipa === true"
+                        (change)="onCipaChange(true)"
+                        color="primary">Sim</md-radio-button>
+                    <md-radio-button value="false"
+                        [checked]="company.hasCipa !== true"
+                        (change)="onCipaChange(false)"
+                        color="primary">Não</md-radio-button>
+                </md-radio-group>
                 <md-input-container>
                     <input mdInput placeholder="NÚMERO DE MEMBROS" 
                     [(ngModel)]="company.employerNumber" name="employerNumber">
                 </md-input-container>
-                <md-radio-group [(ngModel)]="company.isDesignatedCipa" name="isDesignatedCipa">
+                <md-radio-group name="isDesignatedCipa">
                     <p>Designado da Cipa</p>
-                    <md-radio-button value="true" color="primary">Sim</md-radio-button>
-                    <md-radio-button value="false" color="primary">Não</md-radio-button>
+                    <md-radio-button value="true" 
+                        [checked]="company.isDesignatedCipa === true"
+                        (change)="onDesignatedCipaChange(true)"
+                        color="primary">Sim</md-radio-button>
+                    <md-radio-button value="false" 
+                        [checked]="company.isDesignatedCipa !== true" 
+                        (change)="onDesignatedCipaChange(false)"
+                        color="primary">Não</md-radio-button>             
                 </md-radio-group>
             </div>
         </div>

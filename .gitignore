@@ -19,6 +19,13 @@
 *.iml
 *.iws
 
+#VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
 # Mac
 .DS_Store
 
@@ -29,3 +36,5 @@ target/
 # MariaDB
 mariadb/
 
+# Misc
+upload-dir/
