@@ -14,7 +14,11 @@ export class ConstructionMaintenancesFormComponent {
     }
 
     editCategory({ category, index }) {
-        this.categories[index] = category
+        this.categories[index] = category;
+    }
+
+    removeCategory(index) {
+        this.categories.splice(index, 1);
     }
 
 }

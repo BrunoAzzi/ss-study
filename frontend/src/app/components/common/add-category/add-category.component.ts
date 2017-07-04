@@ -13,7 +13,7 @@ export class AddNewCategoryComponent {
 
     @Input() category = '';
     @Input() index = -1;
-    @Input() newCategoryLabel = 'CLIQUE AQUI PARA ADICIONAR NOVA CATEGORIA';
+    @Input() newCategoryLabel;
 
     editing = false;
 

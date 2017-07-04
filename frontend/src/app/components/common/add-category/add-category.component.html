@@ -11,7 +11,7 @@
         >
 
         <span *ngIf="!editing && category.length === 0" class="new" (click)="startEditing()">
-            {{ newCategoryLabel }}
+            {{ newCategoryLabel || 'CLIQUE AQUI PARA ADICIONAR NOVA CATEGORIA' }}
         </span>
 
         <span *ngIf="!editing && category.length > 0" (click)="startEditing()">
