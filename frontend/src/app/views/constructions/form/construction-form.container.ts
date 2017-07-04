@@ -7,14 +7,14 @@ import { Component } from '@angular/core';
     templateUrl: './construction-form.template.html',
     styleUrls: ['./construction-form.container.scss']
 })
-export class ConstructionFormContainer { 
+export class ConstructionFormSmartComponent {
 
     constructor(public service: ConstructionsService) { }
 
     onConstructionUpdated(construction: Construction) {
         this.service.saveConstruction(construction).subscribe(
                 data => {
-                    console.log(data)
+                    console.log(data);
                 },
                 error => {
                     if (error.json() && error.json().errors && error.json().errors.length > 0) {
