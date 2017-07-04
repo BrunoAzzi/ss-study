@@ -32,7 +32,7 @@ md-error {
     }
     .mat-input-underline,
     .mat-select-underline {
-        border-color: $greyish-brown;
+        background-color: $greyish-brown;
     }
     .mat-input-element,
     .mat-input-placeholder.mat-empty,
@@ -78,7 +78,7 @@ md-select {
         color: $grapefruit !important;
     }
     .mat-select-underline {
-        background-color: $greyish-brown;
+        background-color: $greyish-brown !important;
     }
     // .mat-select-placeholder {
     //     padding-bottom: 5px;
