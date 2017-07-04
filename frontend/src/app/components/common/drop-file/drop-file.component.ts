@@ -17,9 +17,11 @@ export class DropFileComponent {
     @Input()
     label: string;
 
+    @Input() hasNgContent: boolean
+
     @Input() showPreview = true;
 
-    image: any;
+    @Input() ngContentType: string
 
     @Input() img: any;
 
@@ -27,6 +29,14 @@ export class DropFileComponent {
     onChange = new EventEmitter();
 
     imageShown: boolean;
+
+    image: any;
+
+    ngOnChanges() {
+        if(this.img) {
+            this.image = this.img;
+        }
+    }
 
     dragFileAccepted(acceptedFile: Ng2FileDropAcceptedFile) {
         this.processFile(acceptedFile.file);
@@ -40,7 +50,7 @@ export class DropFileComponent {
         this.input.nativeElement.click();
     }
 
-    onFileChange(event) {
+    onFileChange(event) {        
         this.processFile(this.input.nativeElement.files[0]);
     }
 
@@ -52,8 +62,8 @@ export class DropFileComponent {
                     this.image = fileReader.result;
                 }
                 this.imageShown = true;
-                this.onChange.emit(fileReader.result);
-            };
+                this.onChange.emit(file);                
+            }
         })(file);
         fileReader.readAsDataURL(file);
     }

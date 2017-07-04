@@ -1,4 +1,5 @@
 $drop-zone-size: 90px;
+$drop-zone-size-logo: 220px;
 
 .custom-component-drop-zone {
   width: $drop-zone-size;
@@ -25,6 +26,15 @@ $drop-zone-size: 90px;
 img {
   max-width: $drop-zone-size;
   max-height: $drop-zone-size;
+
+    &.hide {
+        display: none;
+    }
+
+    &.company-logo {
+        max-width: $drop-zone-size-logo;
+        max-height: $drop-zone-size-logo; 
+    }
 }
 
 input {

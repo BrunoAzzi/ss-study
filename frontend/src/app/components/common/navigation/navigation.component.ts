@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
-import {Company} from "../../../mocks/company/company";
-import {CompanyService} from '../../../services/company.service';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Company } from "../../../models/company.model";
+;import { CompanyService } from '../../../services/company.service';
 
 @Component({
     selector: 'navigation',
@@ -12,6 +12,7 @@ import {CompanyService} from '../../../services/company.service';
 
 export class NavigationComponent {
     company: Company;
+    logo: string
 
     menuItems = {
         main: [
@@ -28,15 +29,18 @@ export class NavigationComponent {
         ]
     };
 
-    constructor(private router: Router, private companyService: CompanyService) {
+    constructor(private router: Router, private service: CompanyService) {
     }
 
     getCompany(): void {
-        this.companyService.getCompany().subscribe(response => this.company = response);
+        this.service.getCompany(1).subscribe(response => {            
+                this.logo = response.fakeName ?  response.fakeName.charAt(0) : '?'                
+                this.company = new Company(response)}
+        );
     }
 
     ngOnInit(): void {
-        this.getCompany();
+        this.getCompany();        
     }
 
     activeRoute(routename: string): boolean {
