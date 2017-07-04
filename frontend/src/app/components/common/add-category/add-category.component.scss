@@ -17,6 +17,7 @@
   .section-area {
     flex-grow: 0;
     flex-shrink: 0;
+    width: 280px;
     padding: 0 2em;
     box-sizing: border-box;
   }
@@ -34,6 +35,10 @@ span {
   &.new {
     color: $light-gray;
   }
+}
+
+span, input {
+  text-transform: uppercase;
 }
 
 input {

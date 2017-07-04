@@ -64,7 +64,7 @@ export class ConstructionsService {
 
     private createConstruction(construction: Construction) {
         console.log('created', construction);
-        return this.service.post(this.endpoint, JSON.stringify(construction.toJson()))
+        return this.service.post(this.endpoint, JSON.stringify(construction.toJSON()))
             .map((jsonResponse) => {
                 console.log(jsonResponse);
                 return jsonResponse;
@@ -73,7 +73,7 @@ export class ConstructionsService {
 
     private updateConstruction(construction : Construction) {
         console.log('updated', construction);
-        return this.service.put(this.endpoint + '/' + construction.id, JSON.stringify(construction.toJson()))
+        return this.service.put(this.endpoint + '/' + construction.id, JSON.stringify(construction.toJSON()))
             .map((jsonResponse) => {
                 console.log(jsonResponse);
                 return jsonResponse;

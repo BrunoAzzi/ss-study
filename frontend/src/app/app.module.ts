@@ -1,4 +1,4 @@
-import { ConstructionFormContainer } from './views/constructions/form/construction-form.container';
+import { ConstructionFormSmartComponent } from './views/constructions/form/construction-form.container';
 import { ConstructionFormComponent } from './components/construction-form/construction-form.component';
 import { ConstructionListItemComponent } from './components/construction-list-item/construction-list-item.component';
 import { ConstructionMaintenancesFormComponent } from './components/construction-form/components/construction-maintenances-form/construction-maintenances-form.component';
@@ -145,11 +145,10 @@ import { DropFileComponent } from './components/common/drop-file/drop-file.compo
 import { CepPickerComponent } from './components/common/cep-picker/cep-picker.component';
 import { ConstructionStatusPickerComponent } from './components/common/construction-status-picker/construction-status-picker.component';
 import { ConstructionSitesStatusIconComponent } from './components/common/construction-sites-status-icon/construction-sites-status-icon.component';
-import { AddNewCategoryComponent } from './components/common/add-new-category/add-new-category.component';
+import { AddNewCategoryComponent } from './components/common/add-category/add-category.component';
 
 import { InputFile } from './components/common/input-file/input-file.component';
 import { ConstructionsListComponent } from './views/constructions/list/constructions-list.component';
-import { CardConstructionDetailComponent } from './components/card-construction-site/card-construction-site.component';
 import { FiltersComponent } from './components/area-monitoring/filters/filters.component';
 import { AlertsTabComponent } from './components/area-monitoring/alerts-tab/alerts-tab.component';
 import { AlertsTabItemComponent } from './components/area-monitoring/alerts-tab-item/alerts-tab-item.component';
@@ -158,9 +157,13 @@ import { SectorSummaryComponent } from './components/sector-summary/sector-summa
 import { MaintenanceInlineFormComponent } from './components/maintenance-inline-form/maintenance-inline-form.component';
 import { ListItemComponent } from './components/common/list-item/list-item.component';
 import { ListActionBarComponent } from './components/common/list-action-bar/list-action-bar.component';
-import { CompanyDetailsComponent } from "./components/company/company-details/company-details.component";
-import {WorkerHealthFormComponent} from "./components/worker-form/worker-health-form/worker-health-form.component";
-import {WorkerQualificationsFormComponent} from "./components/worker-form/worker-qualifications-form/worker-qualifications-form.component";
+import { CompanyDetailsComponent } from './components/company/company-details/company-details.component';
+import { WorkerHealthFormComponent } from './components/worker-form/worker-health-form/worker-health-form.component';
+import { WorkerQualificationsFormComponent } from './components/worker-form/worker-qualifications-form/worker-qualifications-form.component';
+import { ConstructionBlueprintsFormComponent } from './components/construction-form/components/construction-blueprints-form/construction-blueprints-form.component';
+import { CategorizedListComponent } from './components/common/categorized-list/categorized-list.component';
+import { CategorizedListItemComponent } from './components/common/categorized-list-item/categorized-list-item.component';
+import { AutofocusDirective } from './components/common/autofocus/autofocus.directive';
 
 @NgModule({
     declarations: [
@@ -254,10 +257,9 @@ import {WorkerQualificationsFormComponent} from "./components/worker-form/worker
         // Obras
         ConstructionDetailComponent,
         ConstructionsListComponent,
-        ConstructionFormContainer,
+        ConstructionFormSmartComponent,
         ConstructionFormComponent,
         ConstructionListItemComponent,
-        CardConstructionDetailComponent,
 
         ConstructionDetailsFormComponent,
         CepPickerComponent,
@@ -278,6 +280,10 @@ import {WorkerQualificationsFormComponent} from "./components/worker-form/worker
         ListItemComponent,
         ListActionBarComponent,
         WorkerQualificationsFormComponent,
+        ConstructionBlueprintsFormComponent,
+        CategorizedListComponent,
+        CategorizedListItemComponent,
+        AutofocusDirective,
     ],
     imports: [
         // Notification Module

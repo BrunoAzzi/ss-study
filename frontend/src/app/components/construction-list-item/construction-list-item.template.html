@@ -10,7 +10,7 @@
         <span class="horizontal-divider">|</span>
         <span class="address">{{construction.address}}</span>
         <span class="horizontal-divider">|</span>
-        <span class="sponsor">Responsável: {{construction.sponsor}}</span>
+        <span class="sponsor">Responsável: {{construction.responsibleEngineer.name || construction.responsibleSafety.name}}</span>
     </div>
     <div fxLayout fxLayoutAlign="end center" class="tools">
         <safety-construction-summary [construction]="construction"></safety-construction-summary>

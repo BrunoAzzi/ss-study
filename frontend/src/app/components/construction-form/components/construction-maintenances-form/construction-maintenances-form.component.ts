@@ -7,7 +7,7 @@ import {Component} from '@angular/core';
 })
 export class ConstructionMaintenancesFormComponent {
 
-    categories : Array<string> = [];
+    categories: Array<string> = [];
 
     addNewCategory(category) {
         this.categories = [...this.categories, category];

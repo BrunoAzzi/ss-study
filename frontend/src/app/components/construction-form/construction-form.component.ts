@@ -12,33 +12,40 @@ export class ConstructionFormComponent implements OnInit {
     @Input() construction: Construction;
     @Output() updatedConstruction: EventEmitter<Construction> = new EventEmitter();
 
-    @ViewChild('constructionData') constructionData: SafetyCardComponent;
-    @ViewChild('managersData') managersData: SafetyCardComponent;
-    @ViewChild('floorData') floorData: SafetyCardComponent;
-    @ViewChild('goodsData') goodsData: SafetyCardComponent;
-    @ViewChild('workersData') workersData: SafetyCardComponent;
+    @ViewChild('detailsCard') detailsCard: SafetyCardComponent;
+    @ViewChild('managersCard') managersCard: SafetyCardComponent;
+    @ViewChild('blueprintsCard') blueprintsCard: SafetyCardComponent;
+    @ViewChild('maintenancesCard') maintenancesCard: SafetyCardComponent;
+    @ViewChild('workersCard') workersCard: SafetyCardComponent;
 
     elements: Array<SafetyCardComponent>;
 
     ngOnInit(): void {
-        this.elements = [this.constructionData, this.managersData, this.floorData, this.goodsData, this.workersData];
+        this.elements = [this.detailsCard, this.managersCard, this.blueprintsCard, this.maintenancesCard, this.workersCard];
         this.closeAll();
 
-        this.constructionData.open();
+        this.detailsCard.open();
     }
 
     onConstructionDetailsSaved(construction: Construction) {
         this.updatedConstruction.emit(construction);
 
         this.closeAll();
-        this.managersData.open();
+        this.managersCard.open();
     }
 
     onConstructionManagersSaved(construction: Construction) {
         this.updatedConstruction.emit(construction);
 
         this.closeAll();
-        this.managersData.open();
+        this.blueprintsCard.open();
+    }
+
+    onConstructionBlueprintsSaved(construction: Construction) {
+        this.updatedConstruction.emit(construction);
+
+        this.closeAll();
+        this.maintenancesCard.open();
     }
 
     closeAll() {

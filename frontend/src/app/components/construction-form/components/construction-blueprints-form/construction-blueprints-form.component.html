@@ -1,0 +1,39 @@
+<ul>
+  <li *ngFor="let sector of construction.sectors; let si = index">
+    <add-category (edited)="editSector($event)" [index]="si" [category]="sector.name"></add-category>
+    <ul class="floors-crud-list">
+      <li *ngFor="let floor of sector.floors; let fi = index" class="floor">
+        <md-icon (click)="removeFloor(si, fi)">close</md-icon>
+        <drop-file [showPreview]="true" [img]="floor.image || floor.imagePath"></drop-file>
+        <md-input-container>
+          <input mdInput placeholder="Nome do Pavimento"
+                 [(ngModel)]="floor.name" name="name"
+          >
+        </md-input-container>
+        <md-input-container>
+          <input mdInput placeholder="SIGLA (EX: GARAG)"
+                 [(ngModel)]="floor.acronym" name="acronym"
+          >
+        </md-input-container>
+      </li>
+      <li class="floor new">
+        <drop-file [showPreview]="false"
+                (onChange)="blueprintAdded(si, { name: newFloorName.value, acronym: newFloorAcronym.value }, $event); newFloorName.value = null; newFloorAcronym.value = null;"></drop-file>
+        <md-input-container>
+          <input #newFloorName mdInput placeholder="Nome do Pavimento"
+                 name="name"
+          >
+        </md-input-container>
+        <md-input-container>
+          <input mdInput placeholder="SIGLA (EX: GARAG)"
+                 #newFloorAcronym name="acronym"
+          >
+        </md-input-container>
+      </li>
+    </ul>
+  </li>
+</ul>
+<add-category [newCategoryLabel]="'CLIQUE AQUI PARA ADICIONAR UM NOVO SETOR'" (added)="addSector($event)"></add-category>
+<div class="form-bottom">
+  <button md-raised-button (click)="save()">SALVAR E CONTINUAR</button>
+</div>
