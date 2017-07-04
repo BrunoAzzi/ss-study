@@ -76,8 +76,16 @@ export class Worker {
     }
 
     initializeWithJSON(json: any) {
+        this.id = json.id;
         this.name = json.name;
 
-        return this
+        return this;
+    }
+
+    toJSON() {
+        return {
+            id: this.id,
+            name: this.name
+        };
     }
 }

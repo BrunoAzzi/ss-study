@@ -56,4 +56,20 @@ public class WorkerController {
                 HttpStatus.OK
         );
     }
+
+    @PostMapping
+    public ResponseEntity<?> create(@RequestBody @Valid final Worker cParams, Errors errors) {
+
+        if (errors.hasErrors()) {
+            return ErrorResponse.handle(errors, HttpStatus.UNPROCESSABLE_ENTITY);
+        }
+
+        Worker worker = repository.save(cParams);
+
+        return SuccessResponse.handle(
+                new String[] {"worker"},
+                new Object[] {worker},
+                HttpStatus.CREATED
+        );
+    }
 }
