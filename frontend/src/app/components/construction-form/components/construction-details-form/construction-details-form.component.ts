@@ -2,8 +2,8 @@ import { OnInit } from '@angular/core';
 import { Construction } from './../../../../models/construction.model';
 import { ConstructionsService } from './../../../../services/constructions.service';
 import { Component, EventEmitter, Output, Input } from '@angular/core';
-import {NgForm} from '@angular/forms';
-import {MdSnackBar} from '@angular/material';
+import { NgForm } from '@angular/forms';
+import { MdSnackBar } from '@angular/material';
 
 @Component({
     selector: 'construction-details-form',
@@ -12,12 +12,12 @@ import {MdSnackBar} from '@angular/material';
 })
 export class ConstructionDetailsFormComponent {
 
-    @Input() construction : Construction
-    @Output() saved : EventEmitter<Construction> = new EventEmitter()
+    @Input() construction: Construction
+    @Output() saved: EventEmitter<Construction> = new EventEmitter()
 
     supportedFileTypes: string[] = ['image/png', 'image/jpeg', 'image/gif'];
-    image : any
-    fileName : string
+    image: any
+    fileName: string
 
     processFile(file) {
         const fileReader = new FileReader();
@@ -42,7 +42,7 @@ export class ConstructionDetailsFormComponent {
             city: data.city + ' / ' + data.state,
             address: data.street + ' , ' + data.neighborhood
         };
-        f.setValue({...f.value, ...mappedData});
+        f.setValue({ ...f.value, ...mappedData });
     }
 
     onLogoChange(image) {

@@ -34,18 +34,16 @@ export class WorkerFormComponent {
     }
 
     onQualificationsSaved(savedWorker: Worker) {
-        console.log(savedWorker)
         this.qualificationsCard.close();
     }
 
 
     onSecuritySaved(savedWorker: Worker) {
-        console.log(savedWorker);
         this.securityCard.close();
     }
 
     onDetailsSaved(savedWorker: Worker) {
-        this.service.createWorker(savedWorker)
+        this.datailsCard.close();
     }
 
     onHealthSaved(savedWorker: Worker) {

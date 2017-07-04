@@ -9,14 +9,14 @@ export class WorkerService {
 
     constructor(private service : HttpClientService) { }
 
-
+/*
 	createWorker(worker:Worker){
 		   return this.service.post(this.endpoint, JSON.stringify(worker))
            .map((jsonResponse) => {
                console.log(jsonResponse)
                return jsonResponse
            })
-	}
+	}*/
 
     getWorkerList() {
 		return this.service.get(this.endpoint)

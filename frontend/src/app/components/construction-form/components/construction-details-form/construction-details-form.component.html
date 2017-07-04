@@ -7,7 +7,9 @@
                        required
                 >
             </md-input-container>
+
             <cep-picker [(cep)]="construction.cep" class="half" (onSearch)="onCepSearch(f, $event)"></cep-picker>
+            
             <md-input-container class="half">
                 <input mdInput placeholder="Cidade / Estado"
                        [(ngModel)]="construction.city" name="city"

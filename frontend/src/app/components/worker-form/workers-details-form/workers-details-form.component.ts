@@ -16,8 +16,8 @@ import { CorreiosService } from "../../../services/correios.service";
     providers: [CorreiosService, CBOService, WorkersDataService]
 })
 export class WorkersDataComponent {
-    @Input() worker : Worker
-    @Output() saved : EventEmitter<any> = new EventEmitter()
+    @Input() worker: Worker
+    @Output() saved: EventEmitter<any> = new EventEmitter()
 
     @Output() cpfUpdated = new EventEmitter<string>();
 
@@ -110,12 +110,12 @@ export class WorkersDataComponent {
 
     }
 
-    autocompleteAdressFromApi() {
+/*    autocompleteAdressFromApi() {
         this.correiosService.getAddress(this.modelCEP).subscribe(data => {
             this.completeAddress = `${data.cidade} - ${data.estado}, ${data.bairro}, ${data.tipoDeLogradouro} ${data.logradouro}`;
         });
     }
-
+*/
     autoCompleteWorker() {
         this.cpfUpdated.emit(this.cpf);
         this.cboService.getCBO(this.mycbo).subscribe(
@@ -143,8 +143,13 @@ export class WorkersDataComponent {
         (this.mycbonumber > 0) ? this.disabled = false : this.disabled = true;
     }
 
-     onLogoChange(image) {
+    onLogoChange(image) {
         this.photoPath = image;
+    }
+
+    onCepSearch(f, data) {
+        console.log(data)
+         
     }
 
 
