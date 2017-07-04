@@ -1,5 +1,5 @@
 $drop-zone-size: 90px;
-$drop-zone-size-min: 20px;
+$drop-zone-size-logo: 220px;
 
 .custom-component-drop-zone {
   width: $drop-zone-size;
@@ -18,11 +18,6 @@ $drop-zone-size-min: 20px;
   }
 }
 
-.custom-component-drop-zone-has-ng-content {
-  width: $drop-zone-size-min;
-  height: $drop-zone-size-min;
-}
-
 .label {
   display: block;
   margin-bottom: 1em;
@@ -34,6 +29,11 @@ img {
 
     &.hide {
         display: none;
+    }
+
+    &.company-logo {
+        max-width: $drop-zone-size-logo;
+        max-height: $drop-zone-size-logo; 
     }
 }
 

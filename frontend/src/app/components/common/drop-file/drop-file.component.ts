@@ -18,9 +18,10 @@ export class DropFileComponent {
     label: string;
 
     @Input() hasNgContent: boolean
+
     @Input() showPreview = true;
 
-    image: any;
+    @Input() ngContentType: string
 
     @Input() img: any;
 
@@ -29,9 +30,7 @@ export class DropFileComponent {
 
     imageShown: boolean;
 
-    ngOnInit() {
-        console.log(this.hasNgContent);
-    }
+    image: any;  
 
     dragFileAccepted(acceptedFile: Ng2FileDropAcceptedFile) {
         this.processFile(acceptedFile.file);

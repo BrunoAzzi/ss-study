@@ -3,7 +3,7 @@
     <div class="form-content grid-container">
         <div class="grid-column">
             <div class="grid-row">
-                <drop-file class="half" [label]="" [hasNgContent]="true" (onChange)="onSelectFile($event)">
+                <drop-file class="half" [label]="" [hasNgContent]="true" [ngContentType]="'companyLog'" (onChange)="onSelectFile($event)">
                     <md-card class="image-upload">
                         <md-card-content>                                                
                         </md-card-content>
@@ -11,8 +11,7 @@
                             <p>INSIRA A LOGO <br/> DA EMPRESA</p>
                         </md-card-footer>
                     </md-card>
-                </drop-file>
-                <!--drop-file class="half" [label]="'Logo da Obra'" (onChange)="onLogoChange($event)"></drop-file-->
+                </drop-file>                
                 <div class="grid-column-75">
                     <div class="grid-row">
                         <md-input-container>
