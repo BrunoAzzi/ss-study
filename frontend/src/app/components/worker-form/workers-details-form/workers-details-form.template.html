@@ -22,9 +22,7 @@
                 </my-date-picker>
             </div>
             <div class="grid-row">
-                <!--<input mdInput placeholder="CEP" formControlName="cep" id="cep" [(ngModel)]="worker.cep" name="cep" [textMask]="{mask: cepMask}"
-                        (blur)="autocompleteAdressFromApi()">-->
-                <cep-picker [(cep)]="worker.cep" (onSearch)="onCepSearch(f, $event)"></cep-picker>
+                <cep-picker [(cep)]="worker.cep" (onSearch)="onCepSearch($event)"></cep-picker>
             </div>
             <div class="grid-row">
                 <md-input-container>
@@ -85,7 +83,7 @@
                 </md-select>
             </div>
             <div class="grid-row">
-                <my-date-picker placeholder="Data de AdmissÃ£o" formControlName="admissionDate" name="admissionDate" [(ngModel)]="worker.admissionDate"
+                <my-date-picker placeholder="Data de Admissão" formControlName="admissionDate" name="admissionDate" [(ngModel)]="worker.admissionDate"
                     [options]="myDatePickerOptions">
                 </my-date-picker>
                 <div>

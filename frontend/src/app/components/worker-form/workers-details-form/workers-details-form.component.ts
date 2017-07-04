@@ -7,13 +7,13 @@ import { CustomValidators } from './customValidators';
 import { IMyDpOptions } from 'mydatepicker';
 import { WorkersDataService } from "../../../services/workers/workersData.service";
 import { CBOService } from "../../../services/cbo.service";
-import { CorreiosService } from "../../../services/correios.service";
+
 
 @Component({
     selector: 'workers-data',
     templateUrl: './workers-details-form.template.html',
     styleUrls: ['./workers-details-form.component.scss'],
-    providers: [CorreiosService, CBOService, WorkersDataService]
+    providers: [CBOService, WorkersDataService]
 })
 export class WorkersDataComponent {
     @Input() worker: Worker
@@ -84,7 +84,7 @@ export class WorkersDataComponent {
     cboMask = [/\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/];
 
 
-    constructor(private correiosService: CorreiosService, private cboService: CBOService, private workersService: WorkersDataService, private fb: FormBuilder) {
+    constructor(private cboService: CBOService, private workersService: WorkersDataService, private fb: FormBuilder) {
         this.myForm = this.fb.group({
             fullname: new FormControl('', Validators.compose([Validators.required, CustomValidators.onlytext])),
             cpf: new FormControl('', Validators.compose([Validators.required, CustomValidators.cpf])),
@@ -110,19 +110,15 @@ export class WorkersDataComponent {
 
     }
 
-/*    autocompleteAdressFromApi() {
-        this.correiosService.getAddress(this.modelCEP).subscribe(data => {
-            this.completeAddress = `${data.cidade} - ${data.estado}, ${data.bairro}, ${data.tipoDeLogradouro} ${data.logradouro}`;
-        });
-    }
-*/
     autoCompleteWorker() {
-        this.cpfUpdated.emit(this.cpf);
-        this.cboService.getCBO(this.mycbo).subscribe(
-            (response) => {
-                this.labors = response;
-            },
-        );
+        if (!this.myForm.controls.cpf.invalid) {
+            this.cpfUpdated.emit(this.cpf);
+            this.cboService.getCBO(this.mycbo).subscribe(
+                (response) => {
+                    this.labors = response;
+                },
+            );
+        }
     }
 
     autocompleteRoleFromMock() {
@@ -147,10 +143,9 @@ export class WorkersDataComponent {
         this.photoPath = image;
     }
 
-    onCepSearch(f, data) {
-        console.log(data)
-         
+    onCepSearch(data) {
+        this.worker.cep = data.cep;
+        this.worker.completeAddress = data.street + ' , ' + data.neighborhood + ' - ' + data.city + ' / ' + data.state;
     }
-
 
 }

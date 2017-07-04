@@ -1,3 +1,4 @@
+import { Worker } from './worker.model';
 export class Qualification {
     dueDate: Date;
     attachment: any
@@ -14,4 +15,17 @@ export class Qualification {
         this.attachment = null;
         this.validityStart = null;
     }
+
+    public initializeWithJSON(json: any, parentConstruction: Worker) {
+
+    }
+
+    public toJSON() {
+        return {
+
+        };
+    }
+
+
 }
+

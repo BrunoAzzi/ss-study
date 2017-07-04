@@ -77,6 +77,7 @@ export class Construction implements IConstruction {
         this.description = json.description;
         this.image = json.logoUrl;
         this.cei = json.ceiCode;
+        
         if (json.responsibleEngineer) {
             this.responsibleEngineer = new ResponsibleEngineer().initializeWithJSON(json.responsibleEngineer);
         }
