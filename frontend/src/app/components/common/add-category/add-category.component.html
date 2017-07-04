@@ -20,5 +20,6 @@
     </div>
 
     <div class="separator"></div>
-    
+
+    <a *ngIf="!isNew()" class="remove" (click)="removeCategory()">Excluir</a>
 </div>

@@ -9,6 +9,7 @@ export class AddNewCategoryComponent {
 
     @Output() added = new EventEmitter();
     @Output() edited = new EventEmitter();
+    @Output() removed = new EventEmitter();
 
     @Input() category = '';
     @Input() index = -1;
@@ -33,6 +34,10 @@ export class AddNewCategoryComponent {
 
     editCategory(category) {
         this.edited.emit({ name: category, index: this.index });
+    }
+
+    removeCategory() {
+        this.removed.emit(this.index);
     }
 
     submit(category) {

@@ -27,13 +27,19 @@ export class ConstructionBlueprintsFormComponent implements OnInit {
     this.construction.sectors[index].name = name;
   }
 
+  removeSector(index) {
+    this.construction.sectors.splice(index, 1);
+  }
+
   removeFloor(sectorIndex, floorIndex) {
     this.construction.sectors[sectorIndex].floors.splice(floorIndex, 1);
   }
 
-  blueprintAdded(indexSector, inputs: Floor, image) {
-    const newFloor = Object.assign(new Floor(), inputs);
-    newFloor.image = image;
+  blueprintAdded(indexSector, inputs, image) {
+    const newFloor = Object.assign(new Floor(), {
+        ...inputs,
+        image: image
+    });
     this.construction.sectors[indexSector].floors.push(newFloor);
   }
 

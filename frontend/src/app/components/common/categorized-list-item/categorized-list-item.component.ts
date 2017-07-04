@@ -8,7 +8,9 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 export class CategorizedListItemComponent implements OnInit {
 
   @Input() name: string
+  @Input() index: number
   @Output() edited: EventEmitter<{ string, number }> = new EventEmitter();
+  @Output() removed: EventEmitter<number> = new EventEmitter();
 
   constructor() { }
 

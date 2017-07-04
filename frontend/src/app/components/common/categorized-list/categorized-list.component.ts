@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'safety-categorized-list',
@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategorizedListComponent implements OnInit {
 
-  constructor() { }
+  @Input() newCategoryLabel: string;
+  @Output() added: EventEmitter<string> = new EventEmitter();
 
-  ngOnInit() {
-  }
+  constructor() {}
+
+  ngOnInit() {}
 
 }

@@ -1,6 +1,6 @@
 <ul>
     <li *ngFor="let category of categories; let i = index">
-        <add-category (edited)="editCategory($event)" [index]="i + 1" [category]="category"></add-category>
+        <add-category (edited)="editCategory($event)" [index]="i" [category]="category"></add-category>
         <ul>
             <li></li>
         </ul>

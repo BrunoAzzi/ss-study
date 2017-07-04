@@ -14,12 +14,19 @@
     flex-grow: 1;
   }
 
-  .section-area {
+  .section-area, .remove {
     flex-grow: 0;
     flex-shrink: 0;
-    width: 280px;
     padding: 0 2em;
     box-sizing: border-box;
+  }
+
+  .section-area {
+    width: 280px;
+  }
+  
+  .remove {
+    text-decoration: underline;
   }
 }
 
@@ -37,8 +44,10 @@ span {
   }
 }
 
-span, input {
+span, input, .remove {
   text-transform: uppercase;
+  cursor: pointer;
+
 }
 
 input {

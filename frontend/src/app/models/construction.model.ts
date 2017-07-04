@@ -54,7 +54,6 @@ export class Construction implements IConstruction {
         return Construction.getStatus(this.status);
     }
 
-
     public setConstruction(data: IConstruction) {
         this.id = data.id;
         this.status = 0;
@@ -89,7 +88,6 @@ export class Construction implements IConstruction {
         // TODO
         // logoFileName -> json.logoFileName
         // ceiFileName -> json.ceiFileName
-        // sectors -> json.sectors
 
         return this;
     }
