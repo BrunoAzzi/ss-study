@@ -1,8 +1,7 @@
-import { Cookie } from 'ng2-cookies/ng2-cookies';
 import { Injectable } from '@angular/core';
 import { Headers, Http, Response } from '@angular/http';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -16,7 +15,7 @@ export class HttpClientService {
   standardHeaders() {
     var headers = new Headers();
     headers.append('Content-Type', 'application/json')
-    this.authToken && headers.append('X-Authorization', this.authToken)
+    if (this.authToken) headers.append('X-Authorization', this.authToken)
     return { headers: headers }
   }
 
