@@ -97,21 +97,5 @@
         </createTable>
         <addAutoIncrement tableName="task_attachments" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
 
-        <addForeignKeyConstraint
-                baseTableName="task_attachments"
-                baseColumnNames="task_id"
-                constraintName="fk_task_attachment"
-                referencedTableName="task_attachments"
-                referencedColumnNames="id"
-                onDelete="CASCADE" />
-
-        <addForeignKeyConstraint
-                baseTableName="task_attachments"
-                baseColumnNames="attachment_id"
-                constraintName="fk_attachment_task"
-                referencedTableName="attachment_images"
-                referencedColumnNames="id"
-                onDelete="CASCADE" />
-
     </changeSet>
 </databaseChangeLog>
