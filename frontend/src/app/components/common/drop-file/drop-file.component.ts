@@ -42,11 +42,13 @@ export class DropFileComponent {
 
     processFile(file) {
         const fileReader = new FileReader();
-        fileReader.onload = () => {
-            this.image = fileReader.result;
-            this.imageShown = true;
-            this.onChange.emit(this.image);
-        };
+        fileReader.onload = ((theFile) => {
+            return (e) => {
+                this.image = fileReader.result;
+                this.imageShown = true;
+                this.onChange.emit(this.image);
+            }
+        })(file);
         fileReader.readAsDataURL(file);
     }
 }

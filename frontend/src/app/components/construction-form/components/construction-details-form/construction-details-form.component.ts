@@ -15,6 +15,21 @@ export class ConstructionDetailsFormComponent {
     @Input() construction : Construction
     @Output() saved : EventEmitter<Construction> = new EventEmitter()
 
+    supportedFileTypes: string[] = ['image/png', 'image/jpeg', 'image/gif'];
+    image : any
+    fileName : string
+
+    processFile(file) {
+        const fileReader = new FileReader();
+        fileReader.onload = ((theFile) => {
+            return (e) => {
+                this.image = fileReader.result;
+                this.fileName = theFile.name
+            }
+        })(file);
+        fileReader.readAsDataURL(file);
+    }
+
     logo: any;
     featured: any;
 

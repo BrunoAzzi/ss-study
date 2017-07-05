@@ -4,7 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "risks")
+@Table(name = "risk_factors")
 public class RiskFactor {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -12,6 +12,10 @@ public class RiskFactor {
 
     @NotNull(message = "Nome é um campo obrigatório")
     private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "risk_type_id")
+    private RiskType riskType;
 
     public RiskFactor() { }
 
@@ -33,5 +37,13 @@ public class RiskFactor {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public RiskType getRiskType() {
+        return riskType;
+    }
+
+    public void setRiskType(RiskType riskType) {
+        this.riskType = riskType;
     }
 }

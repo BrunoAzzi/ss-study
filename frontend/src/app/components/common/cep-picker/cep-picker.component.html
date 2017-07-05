@@ -1,8 +1,7 @@
 <md-input-container class="with-action">
     <input mdInput placeholder="CEP"
            [(ngModel)]="cep" name="cep"
-           [textMask]="{mask: cepMask}"
-    >
+           [textMask]="{ mask: cepMask }" />
 </md-input-container>
 <md-icon *ngIf="!loadingCep" (click)="searchCep(cep)">
     search

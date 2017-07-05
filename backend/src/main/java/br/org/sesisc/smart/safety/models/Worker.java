@@ -1,5 +1,6 @@
 package br.org.sesisc.smart.safety.models;
 
+
 import javax.persistence.*;
 
 import static br.org.sesisc.smart.safety.helpers.FileHelper.JPEG_TYPE;
@@ -22,7 +23,6 @@ public class Worker {
     private String gender;
     private String cpf;
     private String nit;
-    private String degree;
     private String ctps;
     private String admissionAt;
     private String contractType;
@@ -36,14 +36,20 @@ public class Worker {
     private String mandateEnd;
     private String alergies;
     private String diseases;
+    private Boolean active;
 
     @ManyToOne
     @JoinColumn(name = "cbo_id")
     private Cbo cbo;
 
+    @ManyToOne
+    @JoinColumn(name = "degree_id")
+    private Degree degree;
+
+
     public Worker() { }
 
-    public Worker(String name, String cep, String adress, String status, String birthDate, String gender, String cpf, String nit, String degree, String ctps, String admissionAt, String contractType, String specialNeeds, String photoUrl, String photo_filename, Boolean isCipeiro, Boolean isBrigade, String role, String mandateBegin, String mandateEnd, String alergies, String diseases, Cbo cbo) {
+    public Worker(String name, String cep, String adress, String status, String birthDate, String gender, String cpf, String nit, String ctps, String admissionAt, String contractType, String specialNeeds, String photoUrl, String photoFilename, Boolean isCipeiro, Boolean isBrigade, String role, String mandateBegin, String mandateEnd, String alergies, String diseases, Boolean active, Cbo cbo, Degree degree) {
         this.name = name;
         this.cep = cep;
         this.adress = adress;
@@ -52,13 +58,12 @@ public class Worker {
         this.gender = gender;
         this.cpf = cpf;
         this.nit = nit;
-        this.degree = degree;
         this.ctps = ctps;
         this.admissionAt = admissionAt;
         this.contractType = contractType;
         this.specialNeeds = specialNeeds;
         this.photoUrl = photoUrl;
-        this.photoFilename = photo_filename;
+        this.photoFilename = photoFilename;
         this.isCipeiro = isCipeiro;
         this.isBrigade = isBrigade;
         this.role = role;
@@ -66,7 +71,9 @@ public class Worker {
         this.mandateEnd = mandateEnd;
         this.alergies = alergies;
         this.diseases = diseases;
+        this.active = active;
         this.cbo = cbo;
+        this.degree = degree;
     }
 
     public Long getId() {
@@ -139,14 +146,6 @@ public class Worker {
 
     public void setNit(String nit) {
         this.nit = nit;
-    }
-
-    public String getDegree() {
-        return degree;
-    }
-
-    public void setDegree(String degree) {
-        this.degree = degree;
     }
 
     public String getCtps() {
@@ -253,6 +252,14 @@ public class Worker {
         this.diseases = diseases;
     }
 
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
     public Cbo getCbo() {
         return cbo;
     }
@@ -261,6 +268,12 @@ public class Worker {
         this.cbo = cbo;
     }
 
+    public Degree getDegree() {
+        return degree;
+    }
 
+    public void setDegree(Degree degree) {
+        this.degree = degree;
+    }
 }
 

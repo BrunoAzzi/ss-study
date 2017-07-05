@@ -37,7 +37,9 @@
     </div>
 </div>
 
-<construction-list-item *ngFor="let construction of filterConstructions(constructions)" [construction]="construction" (toEdit)="editConstruction($event.id)"></construction-list-item>
+<ul class="constructions-list">
+    <construction-list-item *ngFor="let construction of filterConstructions(constructions)" [construction]="construction" (toEdit)="editConstruction($event.id)"></construction-list-item>
+</ul>
 
 <constructions-landing-page *ngIf="(constructions).length === 0"></constructions-landing-page>
 

@@ -52,21 +52,22 @@ md-select {
     min-width: 0;
     display: inline-flex;
     padding-top: 13px;
-    .mat-select-placeholder.mat-floating-placeholder {
-        top: -16px !important;
-    }
-    .mat-select-trigger {
-        width: 100%;
-        height: auto;
-        display: inline-flex;
-    }
+    // .mat-select-placeholder.mat-floating-placeholder {
+    //     top: -16px !important;
+    // }
+    // .mat-select-trigger {
+    //     width: 100%;
+    //     height: auto;
+    //     display: inline-flex;
+    // }
     .mat-select-trigger .mat-select-placeholder,
     md-select .mat-select-trigger .mat-select-placeholder,
     .mat-select-value-text {
-        padding-left: 0;
+        // padding-left: 0;
         font-size: 10pt;
         font-family: 'Lato', sans-serif;
         color: $greyish-brown;
+        text-transform: uppercase;
     }
     .mat-select-trigger .mat-select-placeholder {
         text-transform: uppercase;
@@ -79,9 +80,13 @@ md-select {
     .mat-select-underline {
         background-color: $greyish-brown;
     }
-    .mat-select-placeholder {
-        padding-bottom: 5px;
-    }
+    // .mat-select-placeholder {
+    //     padding-bottom: 5px;
+    // }
+}
+
+input, .mat-option {
+    text-transform: uppercase
 }
 
 .mat-option.mat-selected.mat-primary,
@@ -90,16 +95,16 @@ md-select {
 }
 
 .mat-option {
-    height: 38px !important;
-    line-height: 38px !important;
-    font-size: 10pt !important;
-    text-transform: capitalize;
-    border-bottom: 1px solid #F5F5F5;
+    // height: 38px !important;
+    // line-height: 38px !important;
+    font-size: 0.8em !important;
+    // text-transform: capitalize;
+    border-bottom: 1px solid #F5F5F5 !important;
 }
 
-.cdk-overlay-pane {
-    margin-top: 40px;
-}
+// .cdk-overlay-pane {
+//     margin-top: 40px;
+// }
 
 md-radio-group {
     width: auto;
@@ -113,7 +118,7 @@ md-radio-group {
         margin-top: 0;
         margin-bottom: 4px;
         color: $greyish-brown;
-        font-size: 10px;
+        font-size: 10pt;
         text-transform: uppercase;
     }
     md-radio-button {
@@ -125,7 +130,7 @@ md-radio-group {
     .mat-radio-label-content {
         align-self: center;
         color: $greyish-brown;
-        font-size: 14px;
+        font-size: 10pt;
         padding-top: 1.5px;
     }
     .mat-radio-inner-circle {
