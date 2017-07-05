@@ -18,9 +18,10 @@ public class CnaeController {
     @Autowired
     CnaeRepository repository;
 
-    @GetMapping("/{id}")
-    public ResponseEntity<?> show(@PathVariable("id") long id) {
-        Cnae cnae  = repository.findOne(id);
+    @GetMapping("/{code}")
+    public ResponseEntity<?> show(@PathVariable("code") String code) {
+        Cnae cnae  = repository.findByCode(code);
+
 
         return SuccessResponse.handle(
                 new String[] {"cnae"},

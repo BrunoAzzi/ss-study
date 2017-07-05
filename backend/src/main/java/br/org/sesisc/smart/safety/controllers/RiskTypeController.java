@@ -39,7 +39,7 @@ public class RiskTypeController {
 
     @GetMapping("/{id}/risk_factors")
     public ResponseEntity<?> getRiskFactorsById(@PathVariable("id") long id) {
-        Set<RiskFactor> riskFactors = riskFactorRepository.findByRiskTypeId(id);
+        Set<RiskFactor> riskFactors = riskFactorRepository.findById(id);
 
         return SuccessResponse.handle(
                 new String[] {"riskFactors"},
