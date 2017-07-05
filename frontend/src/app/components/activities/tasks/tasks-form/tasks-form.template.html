@@ -1,0 +1,30 @@
+<div class="grid-container">
+    <div class="grid-column">
+        <div class="grid-row">
+            <md-input-container >
+                <md-placeholder >        
+                    <md-hint>Título da Tarefa</md-hint>
+                </md-placeholder>
+                <input mdInput >
+            </md-input-container>
+        </div>
+        <div class="grid-row">
+            <my-date-picker name="taskDate" [options]="myDatePickerOptions"
+                        placeholder="Data">
+            </my-date-picker>
+            <md-select placeholder="Responsável pela execução da tarefa"                    
+                    floatPlaceholder="never" >
+                <!--md-option *ngFor="let user of users" [value]="user">{{riskType.name}}</md-option-->
+                <md-option [value]="'Carlos Antonio'">Carlos Antonio</md-option>
+            </md-select>
+        </div>
+        <div class="grid-row">
+            <md-input-container >
+                <md-placeholder >        
+                    <md-hint>Detalhes da tarefa</md-hint>
+                </md-placeholder>
+                <input mdInput >
+            </md-input-container>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,6 @@
 import { TasksComponent } from './components/activities/tasks/tasks.component';
+import { TasksDialogComponent } from './components/activities/tasks/tasks-dialog/tasks-dialog.component';
+import { TasksFormComponent } from './components/activities/tasks/tasks-form/tasks-form.component';
 import { ActivitiesComponent } from './views/constructions/detail/activities/activities.component';
 import { ConstructionFormSmartComponent } from './views/constructions/form/construction-form.container';
 import { ConstructionFormComponent } from './components/construction-form/construction-form.component';
@@ -291,6 +293,8 @@ import { AutofocusDirective } from './components/common/autofocus/autofocus.dire
         AutofocusDirective,
         ActivitiesComponent,
         TasksComponent,
+        TasksDialogComponent,
+        TasksFormComponent,
     ],
     imports: [
         // Notification Module
@@ -345,7 +349,7 @@ import { AutofocusDirective } from './components/common/autofocus/autofocus.dire
         // Routes
         AppRoutingModule,
     ],
-    entryComponents: [ConfirmationDialogOverview, MappingDialog],
+    entryComponents: [ConfirmationDialogOverview, MappingDialog, TasksDialogComponent],
     providers: [
         HttpClientService,
         AuthGuard,
