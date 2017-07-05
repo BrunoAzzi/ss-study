@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MvcResult;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -18,7 +19,7 @@ public class CnaeControllerTest_IT extends BaseControllerTest_IT {
 
     @Test
     public void showCnae() throws Exception {
-        MvcResult result = mockMvc.perform(get("/cnaes/1"))
+        MvcResult result = mockMvc.perform(get("/cnaes/gaa"))
                 .andExpect(status().isOk())
                 .andReturn();
 

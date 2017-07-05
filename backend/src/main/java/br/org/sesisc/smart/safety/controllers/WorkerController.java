@@ -1,6 +1,5 @@
 package br.org.sesisc.smart.safety.controllers;
 
-import br.org.sesisc.smart.safety.models.Aso;
 import br.org.sesisc.smart.safety.models.Worker;
 import br.org.sesisc.smart.safety.repositories.WorkerRepository;
 import br.org.sesisc.smart.safety.responses.ErrorResponse;
@@ -13,13 +12,17 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.IOException;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+
 import java.util.Set;
 
 import static br.org.sesisc.smart.safety.helpers.FileHelper.JPEG_TYPE;

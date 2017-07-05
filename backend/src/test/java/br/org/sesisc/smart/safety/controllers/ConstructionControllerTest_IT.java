@@ -20,6 +20,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMultipartHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.RequestPostProcessor;
+
 import static br.org.sesisc.smart.safety.helpers.FileHelper.PATH_DIR;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.BDDMockito.when;

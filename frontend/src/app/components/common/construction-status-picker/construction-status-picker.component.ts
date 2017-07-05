@@ -1,4 +1,4 @@
-import { Component, ViewChild, Output, EventEmitter } from '@angular/core';
+import {Component, ViewChild, Output, EventEmitter, Input, OnInit} from '@angular/core';
 
 
 @Component({
@@ -6,15 +6,25 @@ import { Component, ViewChild, Output, EventEmitter } from '@angular/core';
     templateUrl: './construction-status-picker.component.html',
     styleUrls: ['./construction-status-picker.component.scss']
 })
-export class ConstructionStatusPickerComponent {
+export class ConstructionStatusPickerComponent implements OnInit {
 
-    @Output() selected : EventEmitter<string> = new EventEmitter()
+    @Input() status: number
+    @Output() selected: EventEmitter<string> = new EventEmitter()
 
     @ViewChild('statusInput') statusInput;
 
-    availableStatus = ['finalizada', 'paralisada', 'em andamento'];
+    availableStatuses = [
+        { label: 'finalizada', value: 2 },
+        { label: 'paralisada', value: 1 },
+        { label: 'em andamento', value: 0 }
+    ];
+
+    ngOnInit() {
+        console.log(this.status)
+    }
 
     onChange(value) {
-        this.statusInput.nativeElement.value = value;
+        this.selected.emit(value)
+        // this.statusInput.nativeElement.value = value;
     }
 }

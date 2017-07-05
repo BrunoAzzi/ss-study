@@ -24,6 +24,12 @@ export class WorkerService {
 			}) 
 	}
 
+	save(worker: Worker) {
+		console.log(worker)
+	}
+
+
+
 	getWorkerByCpf(cpf: string) {
 		cpf = cpf.replace(/[^0-9]+/g, '');
 		return this.service.get(this.endpoint + "/cpf/" + cpf)

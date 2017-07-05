@@ -1,0 +1,44 @@
+@import '../../../../scss/components/color.scss';
+
+.worker-info {
+    padding: 20px;
+    span {
+        font-family: 'Lato', sans-serif;
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 1.21;
+        text-align: left;
+        color: $greyish-brown;
+        margin: 0 10px 0 0;
+    }
+    .name {
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    .cbo {
+        font-weight: normal;
+    }
+    md-icon {
+        width: 22px;
+        height: 22px;
+        font-size: 10px;
+        color: white;
+        margin: 0 15px 0 0;
+        background-color: $green-blue;
+    }
+}
+
+.tools {
+    margin: 0 20px 0 0;
+    & > md-icon {
+        color: $silver2;
+        font-size: 20px;
+    }
+    .pencil {
+        margin: 0 20px 0 0;
+    }
+}
+
+.success    { background-color: $green-blue !important; }
+.danger     { background-color: $grapefruit !important; }
+.warn       { background-color: $sunflower !important; }

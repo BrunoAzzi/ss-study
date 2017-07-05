@@ -1,5 +1,6 @@
 import { Construction } from './../../../../models/construction.model';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'construction-managers-form',
@@ -8,13 +9,17 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class ConstructionManagersFormComponent {
 
-  @Input() construction : Construction
-  @Output() saved : EventEmitter<Construction> = new EventEmitter()
+  @Input() construction: Construction
+  @Output() saved: EventEmitter<Construction> = new EventEmitter()
 
   constructor() { }
 
-  save(f) {
-
+  save() {
+    const construction = Object.assign(
+        new Construction(),
+        this.construction
+    )
+    this.saved.emit(construction);
   }
 
 }

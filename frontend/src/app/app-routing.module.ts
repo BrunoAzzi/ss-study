@@ -1,4 +1,4 @@
-import { ConstructionFormContainer } from './views/constructions/form/construction-form.container';
+import { ConstructionFormSmartComponent } from './views/constructions/form/construction-form.container';
 import { ConstructionDetailComponent } from './views/constructions/detail/construction-detail.component';
 import { ConstructionResolver } from './resolves/construction.resolver';
 import { NgModule } from '@angular/core';
@@ -74,7 +74,7 @@ const routes: Routes = [
                     {
 						path: 'constructions', children: [
                             { path: '', pathMatch: 'prefix', data: { breadcrumb: "Minhas Obras" }, component: ConstructionsListComponent },
-                            { path: 'new', data: { breadcrumb: "Nova Obra" }, component: ConstructionFormContainer, resolve: { construction: ConstructionResolver } },
+                            { path: 'new', data: { breadcrumb: "Nova Obra" }, component: ConstructionFormSmartComponent, resolve: { construction: ConstructionResolver } },
                         ]
                     },
                 ]
@@ -83,7 +83,7 @@ const routes: Routes = [
                 path: 'constructions/:id', component: ConstructionDetailComponent, resolve: { construction: ConstructionResolver }, children: [
                     { path: '', pathMatch: 'prefix', redirectTo: 'overview' },
                     { path: 'overview', data: { breadcrumb: "Dashboard" }, component: OverviewComponent, canActivate: [AuthGuard] },
-                    { path: 'edit', component: ConstructionFormContainer, canActivate: [AuthGuard] },
+                    { path: 'edit', component: ConstructionFormSmartComponent, canActivate: [AuthGuard] },
                     { path: 'monitoring', component: MonitoringComponent, canActivate: [AuthGuard] },
                     { path: 'emotional-profile', component: EmotionalPanelComponent, canActivate: [AuthGuard] },
                 ]

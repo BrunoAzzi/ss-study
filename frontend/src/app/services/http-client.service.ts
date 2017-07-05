@@ -1,8 +1,7 @@
-import { Cookie } from 'ng2-cookies/ng2-cookies';
 import { Injectable } from '@angular/core';
 import { Headers, Http, Response } from '@angular/http';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -16,6 +15,13 @@ export class HttpClientService {
   standardHeaders() {
     var headers = new Headers();
     headers.append('Content-Type', 'application/json')
+    if (this.authToken) headers.append('X-Authorization', this.authToken)
+    return { headers: headers }
+  }
+
+  blankHeaders() {
+    var headers = new Headers();
+    //headers.append('Content-Type', 'multipart/form-data')
     this.authToken && headers.append('X-Authorization', this.authToken)
     return { headers: headers }
   }
@@ -31,11 +37,22 @@ export class HttpClientService {
       });
   }
 
+  postWithNoHeaders(path: String, params) {
+    return this.http.post(this.url + path, params, this.blankHeaders())
+      .map((response: Response) => {
+        return response ? response : {}
+      });
+  }
+
   get(path: string) {
     return this.http.get(this.url + path, this.standardHeaders())
       .map((response: Response) => {
         return response.json()
       })
+  }
+
+  getAbsolutePath(path: string) {
+    return this.url + path;
   }
 
   put(path: String, params) {
