@@ -35,12 +35,16 @@ export class ConstructionBlueprintsFormComponent implements OnInit {
     this.construction.sectors[sectorIndex].floors.splice(floorIndex, 1);
   }
 
-  blueprintAdded(indexSector, inputs, image) {
+  blueprintAdded(indexSector, inputs, imageFile: File) {
     const newFloor = Object.assign(new Floor(), {
         ...inputs,
-        image: image
+        imageFile: imageFile
     });
     this.construction.sectors[indexSector].floors.push(newFloor);
+  }
+
+  blueprintEdited(floor: Floor, imageFile: File) {
+    floor.imageFile = imageFile;
   }
 
   save() {

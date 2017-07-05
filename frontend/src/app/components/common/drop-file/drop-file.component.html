@@ -3,7 +3,7 @@
      (ng2FileDropFileAccepted)="dragFileAccepted($event)"
      (ng2FileDropFileRejected)="dragFileRejected($event)"
      (click)="showInput()">
-    <img [src]="image" *ngIf="image"
+    <img [src]="image" *ngIf="image && showPreview"
          [ngClass]="{'company-logo': ngContentType}"/>
 
     <div *ngIf="!image" class="wrapper">

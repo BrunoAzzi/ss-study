@@ -8,7 +8,6 @@ export interface IFloor {
     acronym: string;
     bounds: [number, number][];
     imagePath: string;
-    sectionName: string;
     sector: Sector;
     markers: Array<any>;
     conesNumber(): number;
@@ -21,10 +20,10 @@ export class Floor implements IFloor {
     id: number;
     name: string;
     acronym: string;
-    sectionName: string;
 
     bounds: [number, number][];
     image: any;
+    imageFile: File;
     imagePath: string;
 
     markers: Array<Marker> = [];

@@ -16,6 +16,7 @@ export class ConstructionFormSmartComponent {
 
         this.service.saveConstruction(construction).subscribe(
                 data => {
+                    this.service.updateFloorsImages(construction).subscribe(c => console.log(c));
                     if (construction.imageFile) {
                         this.service.updateConstructionLogo(construction).subscribe(
                             d => {

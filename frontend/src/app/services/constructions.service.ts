@@ -59,6 +59,29 @@ export class ConstructionsService {
             });
     }
 
+    updateFloorsImages(construction: Construction) {
+
+        const floors = construction.sectors.reduce((acc, sector) => acc.concat(sector.floors), []);
+        const observables = floors.reduce((obs, floor) => {
+            if (floor.imageFile) {
+                const formData = new FormData();
+                formData.append('file', floor.imageFile);
+
+                return [...obs, this.service.postWithNoHeaders('/floors/' + floor.id + '/blueprint', formData)
+                    .map((response) => {
+                        return response;
+                    })
+                ];
+            } else {
+                return obs;
+            }
+        }, []);
+
+        console.log(observables);
+
+        return Observable.forkJoin(observables);
+    }
+
     updateFloor(floor: Floor) {
         const section = this.construction.sectors.find((sector) => {
             return sector.id === floor.sector.id;
