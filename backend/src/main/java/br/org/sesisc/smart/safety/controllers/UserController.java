@@ -2,6 +2,7 @@ package br.org.sesisc.smart.safety.controllers;
 
 import br.org.sesisc.smart.safety.exceptions.UserException;
 import br.org.sesisc.smart.safety.models.User;
+import br.org.sesisc.smart.safety.models.Worker;
 import br.org.sesisc.smart.safety.repositories.UserRepository;
 import br.org.sesisc.smart.safety.responses.ErrorResponse;
 import br.org.sesisc.smart.safety.responses.SuccessResponse;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/users")
@@ -43,5 +45,15 @@ public class UserController {
         } catch (Exception e) {
             return ErrorResponse.handle("Usuário já existente.",e.getClass(), HttpStatus.CONFLICT);
         }
+    }
+
+    @GetMapping()
+    public ResponseEntity<?> index() {
+        Set<User> users = repository.findAll();
+        return SuccessResponse.handle(
+                new String[] { "users" },
+                new Object[] { users },
+                HttpStatus.OK
+        );
     }
 }

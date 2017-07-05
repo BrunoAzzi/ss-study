@@ -22,7 +22,7 @@
             <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
-            <column name="deadline" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+            <column name="deadline" type="dateTime">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -49,7 +49,7 @@
             <column name="name" type="varchar(255)" />
         </addColumn>
 
-        <createTable tableName="attachment_videos">
+        <createTable tableName="attachment_files">
             <column name="id" type="int">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -59,43 +59,11 @@
             <column name="url" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
+            <column name="file_thumb_name" type="varchar(255)"/>
+            <column name="thumb_url" type="varchar(255)"/>
+            <column name="type" type="varchar(255)"/>
         </createTable>
-        <addAutoIncrement tableName="attachment_videos" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
-
-        <createTable tableName="attachment_images">
-            <column name="id" type="int">
-                <constraints primaryKey="true" nullable="false"/>
-            </column>
-            <column name="file_name" type="varchar(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="url" type="varchar(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="file_thumb_name" type="varchar(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="url" type="varchar(255)">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-        <addAutoIncrement tableName="attachment_images" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
-
-        <createTable tableName="task_attachments">
-            <column name="id" type="int">
-                <constraints primaryKey="true" nullable="false"/>
-            </column>
-            <column name="type" type="varchar(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="task_id" type="int" >
-                <constraints nullable="false"/>
-            </column>
-            <column name="attachment_id" type="int" >
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-        <addAutoIncrement tableName="task_attachments" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
+        <addAutoIncrement tableName="attachment_files" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
 
     </changeSet>
 </databaseChangeLog>

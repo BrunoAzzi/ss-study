@@ -24,8 +24,14 @@ public class User {
     private String password;
 
     private boolean active;
+
     private String token;
+
     private String recoverPassToken;
+
+    private String role;
+
+    private String name;
 
     /**
      * Getters & Setters
@@ -100,4 +106,19 @@ public class User {
         return BCrypt.checkpw(password, this.password) && this.active;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
