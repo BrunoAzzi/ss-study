@@ -22,9 +22,17 @@ export class TasksDialogComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.title = "NOVA TAREFA";
-        this.task = this.data.task;
+        this.title = this.data.task.id ? this.data.task.description : "NOVA TAREFA";
+        this.task = this.data.task.id ? this.data.task : new Task();
         this.users = this.data.users;
+    }
+
+    save(_task) {
+        this.task = _task;
+    }
+
+    saveTask() {
+        console.log(this.task);
     }
    
 }

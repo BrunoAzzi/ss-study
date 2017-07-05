@@ -10,6 +10,7 @@ export class TasksComponent {
     @Input() tasks = [];
     @Output() checkTask : EventEmitter<any> = new EventEmitter();
     @Output() changeTaskFilter : EventEmitter<string> = new EventEmitter();
+    @Output() saveTask : EventEmitter<any> = new EventEmitter();
 
     taskList = [
         { group: 'Tarefas Atrasadas', tasks: [
@@ -34,6 +35,10 @@ export class TasksComponent {
     check(_task: any) {
         _task.checked = true;
         this.checkTask.emit(_task);
+    }
+
+    save(_task: any) {
+        console.log(_task);
     }
 
     toggleActiveFilter(_filter: string) {

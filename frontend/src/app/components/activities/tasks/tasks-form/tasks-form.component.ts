@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { IMyDpOptions } from 'mydatepicker';
 import { Task } from './../../../../models/task.model';
+import { User } from './../../../../models/user.model';
 
 @Component({
     selector: 'tasks-form',
@@ -12,6 +13,8 @@ import { Task } from './../../../../models/task.model';
 export class TasksFormComponent {
 
     @Input() task: Task
+    @Input() users: Array<User>
+    @Output() save: EventEmitter<Task> = new EventEmitter();
 
     myDatePickerOptions: IMyDpOptions = {
         dateFormat: 'dd/mm/yyyy',
@@ -32,5 +35,14 @@ export class TasksFormComponent {
         },
         todayBtnTxt: 'Hoje'
     };
+
+    ngOnInit() {
+        //console.log(this.task);
+        //console.log(this.users);
+    }
+
+    sendData() {
+        this.save.emit(this.task);
+    }
    
 }
