@@ -1,0 +1,69 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no" ?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet id="1" author="rrosseti">
+        <createTable tableName="tasks">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="title" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="responsible_id" type="int" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="author_id" type="int" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="deadline" type="dateTime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addAutoIncrement tableName="tasks" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
+
+        <addForeignKeyConstraint
+                baseTableName="tasks"
+                baseColumnNames="responsible_id"
+                constraintName="fk_responsible_task"
+                referencedTableName="users"
+                referencedColumnNames="id"
+                onDelete="CASCADE" />
+
+        <addForeignKeyConstraint
+                baseTableName="tasks"
+                baseColumnNames="author_id"
+                constraintName="fk_author_task"
+                referencedTableName="users"
+                referencedColumnNames="id"
+                onDelete="CASCADE" />
+
+        <addColumn tableName="users">
+            <column name="role" type="varchar(255)" />
+            <column name="name" type="varchar(255)" />
+        </addColumn>
+
+        <createTable tableName="attachment_files">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="file_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="url" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="file_thumb_name" type="varchar(255)"/>
+            <column name="thumb_url" type="varchar(255)"/>
+            <column name="type" type="varchar(255)"/>
+        </createTable>
+        <addAutoIncrement tableName="attachment_files" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
+
+    </changeSet>
+</databaseChangeLog>

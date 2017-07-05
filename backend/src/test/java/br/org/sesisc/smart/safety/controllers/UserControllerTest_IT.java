@@ -5,13 +5,13 @@ import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.test.web.servlet.MvcResult;
-
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 public class UserControllerTest_IT extends BaseControllerTest_IT {
 
-    @Ignore("This test will pass only once, or after remove the user 'admin@test.com' from database.")
+//    @Ignore("This test will pass only once, or after remove the user 'admin@test.com' from database.")
     @Test
     public void registerUser_whenAllMandatoryDateAreValid() throws Exception {
 
@@ -71,5 +71,17 @@ public class UserControllerTest_IT extends BaseControllerTest_IT {
 
         String errorMessage = jsonObject.getJSONArray("errors").getJSONObject(0).getString("message");
         Assert.assertEquals("Should return an error message when email has invalid regex rule.","Email não está no formato correto.", errorMessage);
+    }
+
+    @Test
+    public void indexAllUsers() throws Exception {
+        MvcResult result = mockMvc.perform(get("/users"))
+                .andExpect(status().isOk())
+                .andReturn();
+        String responseJson = result.getResponse().getContentAsString();
+        JSONObject jsonObject = new JSONObject(responseJson);
+
+        System.out.println("Response: " + responseJson);
+
     }
 }
