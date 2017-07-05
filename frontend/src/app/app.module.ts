@@ -28,6 +28,7 @@ import { HttpClientService } from './services/http-client.service';
 import { CnaeService } from './services/cnae.service'
 import { SessionsService } from './services/sessions.service';
 import { PasswordService } from './services/password.service';
+import { UserService } from './services/user.service'
 import { AuthGuard } from './guards/index';
 import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
@@ -357,6 +358,7 @@ import { AutofocusDirective } from './components/common/autofocus/autofocus.dire
         PasswordService,
         MdSnackBar,
         CnaeService,
+        UserService,
         ConstructionResolver,
         ConstructionsService,
         { provide: LocationStrategy, useClass: HashLocationStrategy }],

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { IMyDpOptions } from 'mydatepicker';
+import { Task } from './../../../../models/task.model';
 
 @Component({
     selector: 'tasks-form',
@@ -9,6 +10,8 @@ import { IMyDpOptions } from 'mydatepicker';
 })
 
 export class TasksFormComponent {
+
+    @Input() task: Task
 
     myDatePickerOptions: IMyDpOptions = {
         dateFormat: 'dd/mm/yyyy',
