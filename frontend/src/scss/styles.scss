@@ -23,28 +23,28 @@ div, span, header, footer, main, section, article, aside, details, dialog, summa
 }
 
 html {
-    height: 100vh;
+    height:   100vh;
     overflow: hidden;
 }
 
 body {
-    display: flex;
-    display: -webkit-flex;
-    flex-direction: column;
+    display:                flex;
+    display:                -webkit-flex;
+    flex-direction:         column;
     -webkit-flex-direction: column;
-    overflow: hidden;
-    min-height: 100%;
-    max-height: 100%;
-    margin: 0;
-    padding: 0;
+    overflow:               hidden;
+    min-height:             100%;
+    max-height:             100%;
+    margin:                 0;
+    padding:                0;
 }
 
 .body-content {
-    position: relative;
-    padding: 20px;
-    height: 100%;
+    position:   relative;
+    padding:    20px;
+    height:     100%;
     overflow-y: auto;
-    overflow: -moz-scrollbars-vertical;
+    overflow:   -moz-scrollbars-vertical;
     box-sizing: border-box;
 }
 
@@ -60,8 +60,8 @@ a {
 }
 
 ul {
-    padding: 0;
-    margin: 0;
+    padding:         0;
+    margin:          0;
     list-style-type: none;
 }
 
@@ -70,8 +70,8 @@ ul {
 }
 
 .leaflet-control-zoom {
-    border: none !important;
-    background-color: #ffffff;
+    border:           none !important;
+    background-color: #FFFFFF;
 }
 
 .leaflet-control-zoom-in {
@@ -80,17 +80,17 @@ ul {
 
 .leaflet-control-zoom-in,
 .leaflet-control-zoom-out {
-    color: #b8b9b9 !important;
+    color:      #B8B9B9 !important;
     box-shadow: 0 3px 9px 0 rgba(0, 0, 0, 0.05) !important;
 }
 
 .mat-dialog-container {
-    padding: 0 !important;
-    min-width: 447px;    
-    min-height: 304px;    
-    width: 100%;
-    height: 100%;
-    overflow: auto;
+    padding:    0 !important;
+    min-width:  447px;
+    min-height: 304px;
+    width:      100%;
+    height:     100%;
+    overflow:   auto;
     box-shadow: 0 3px 9px 0 rgba(0, 0, 0, 0.05) !important;
 
     .mat-dialog-actions:last-child {
@@ -102,14 +102,15 @@ ul {
 
     .mat-toolbar-row {
         min-height: 45px;
-        height: 100%;
+        height:     100%;
     }
 
     md-dialog-content {
         padding: 20px !important;
-        margin: 0 !important;
+        margin:  0 !important;
     }
 }
+
 monitoring, mapping {
     .mat-tab-body-wrapper {
         height: 100%;
