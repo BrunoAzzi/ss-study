@@ -1,0 +1,49 @@
+<div class="filters">
+    <div>
+        <button md-icon-button type="button" (click)="toggleSearch()">
+            <md-icon class="search">search</md-icon>
+        </button>
+
+        <md-input-container *ngIf="showSearch" class="search-input">
+            <input #textFilterInput mdInput floatPlaceholder="never" (input)="filterByText(textFilterInput.value)">
+        </md-input-container>
+    </div>
+
+    <md-chip-list>
+        <md-chip class="chip {{this.selectedFilters.indexOf('accident') !== -1 ? 'active' : ''}} accident" (click)="toggleActiveFilter('accident')">
+            <img src="assets/activities/occurrences/accident-icon.png" class="accident"> 
+            <span>Acidentes - 10</span>
+        </md-chip>
+        <md-chip class="chip {{this.selectedFilters.indexOf('incident') !== -1  ? 'active' : ''}} incident" (click)="toggleActiveFilter('incident')">
+            <img src="assets/activities/occurrences/incident-icon.png" class="incident"> 
+            <span>Incidentes - 3</span>
+        </md-chip>
+        <md-chip class="chip {{this.selectedFilters.indexOf('good-habits') !== -1 ? 'active' : ''}} good-habits" (click)="toggleActiveFilter('good-habits')">
+            <img src="assets/activities/occurrences/good-habits-icon.png" class="good-habits"> 
+            <span>Boas práticas - 2</span>
+        </md-chip>
+        <md-chip class="chip {{this.selectedFilters.indexOf('non-compliance') !== -1 ? 'active' : ''}} non-compliance" (click)="toggleActiveFilter('non-compliance')">
+            <img src="assets/activities/occurrences/non-compliance-icon.png" class="non-compliance"> 
+            <span>Não conformidades - 52</span>
+        </md-chip>
+    </md-chip-list>
+</div>
+
+<div class="list" *ngFor="let list of occurrencesList; let i = index">
+    <div class="label">
+        <span class="group-title"> {{ list.group }} </span>
+        <div class="line"></div>
+    </div>
+    <ul>
+        <li *ngFor="let occurrence of list.occurrences">
+            <div class="left-infos">
+                <img src="assets/activities/occurrences/{{occurrence.type}}-icon.png" class="{{occurrence.type}}">
+                <span class="date"> <b>Fulano relatou: </b> Fiscalização das bandejas mal feitas </span>
+            </div>
+
+            <div class="right-infos"> 
+                <span>2o Andar | 05/07/2017, 09:31</span>
+            </div>
+        </li>
+    </ul>
+</div>  

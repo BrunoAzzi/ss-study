@@ -1,11 +1,11 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
-    selector: 'tasks',
-    templateUrl: 'tasks.template.html',
-    styleUrls: ['./tasks.component.scss']
+    selector: 'tasks-list',
+    templateUrl: 'tasks-list.template.html',
+    styleUrls: ['./tasks-list.component.scss']
 })
-export class TasksComponent {
+export class TasksListComponent {
     selectedFilter: string = "personal";
     @Input() tasks = [];
     @Output() checkTask : EventEmitter<any> = new EventEmitter();

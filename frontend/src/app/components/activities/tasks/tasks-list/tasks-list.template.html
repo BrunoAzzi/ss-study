@@ -31,7 +31,7 @@
     <ul>
         <li *ngFor="let task of list.tasks" class="{{task.status}} {{task.checked ? 'checked' : ''}}">
             <div class="infos">
-                <img src="assets/activities/ic-time-{{task.status}}.svg" alt="{{task.status}}">
+                <img src="assets/activities/tasks/ic-time-{{task.status}}.svg" alt="{{task.status}}">
                 <span class="date"> {{task.date}} </span> |
                 <span class="title"> {{task.title}} </span>
             </div>
