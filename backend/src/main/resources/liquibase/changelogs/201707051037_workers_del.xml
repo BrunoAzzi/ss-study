@@ -5,7 +5,7 @@
 
     <changeSet id="1" author="rdlorbieski">
         <addColumn tableName="workers">
-            <column name="active" type="boolean"/>
+            <column name="activated" type="boolean"/>
         </addColumn>
     </changeSet>
 

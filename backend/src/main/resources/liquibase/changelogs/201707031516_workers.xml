@@ -42,7 +42,7 @@
             <column name="degree_id" type="int"/>
             <column name="cep" type="varchar(10)"/>
             <column name="adress" type="varchar(255)"/>
-            <column name="status" type="varchar(100)"/>
+            <column name="status" type="boolean"/>
             <column name="birth_date" type="TIMESTAMP">
                 <constraints nullable="false"/>
             </column>

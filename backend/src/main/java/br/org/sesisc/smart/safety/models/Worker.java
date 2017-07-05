@@ -18,7 +18,7 @@ public class Worker {
     private String name;
     private String cep;
     private String adress;
-    private String status;
+    private Boolean status;
     private String birthDate;
     private String gender;
     private String cpf;
@@ -36,7 +36,7 @@ public class Worker {
     private String mandateEnd;
     private String alergies;
     private String diseases;
-    private Boolean active;
+
 
     @ManyToOne
     @JoinColumn(name = "cbo_id")
@@ -45,11 +45,11 @@ public class Worker {
     @ManyToOne
     @JoinColumn(name = "degree_id")
     private Degree degree;
-
+    private Boolean activated = true;
 
     public Worker() { }
 
-    public Worker(String name, String cep, String adress, String status, String birthDate, String gender, String cpf, String nit, String ctps, String admissionAt, String contractType, String specialNeeds, String photoUrl, String photoFilename, Boolean isCipeiro, Boolean isBrigade, String role, String mandateBegin, String mandateEnd, String alergies, String diseases, Boolean active, Cbo cbo, Degree degree) {
+    public Worker(String name, String cep, String adress, Boolean status, String birthDate, String gender, String cpf, String nit, String ctps, String admissionAt, String contractType, String specialNeeds, String photoUrl, String photoFilename, Boolean isCipeiro, Boolean isBrigade, String role, String mandateBegin, String mandateEnd, String alergies, String diseases, Boolean activated, Cbo cbo, Degree degree) {
         this.name = name;
         this.cep = cep;
         this.adress = adress;
@@ -71,7 +71,7 @@ public class Worker {
         this.mandateEnd = mandateEnd;
         this.alergies = alergies;
         this.diseases = diseases;
-        this.active = active;
+        this.activated = activated;
         this.cbo = cbo;
         this.degree = degree;
     }
@@ -108,11 +108,11 @@ public class Worker {
         this.adress = adress;
     }
 
-    public String getStatus() {
+    public Boolean getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Boolean status) {
         this.status = status;
     }
 
@@ -252,12 +252,12 @@ public class Worker {
         this.diseases = diseases;
     }
 
-    public Boolean getActive() {
-        return active;
+    public Boolean getActivated() {
+        return activated;
     }
 
-    public void setActive(Boolean active) {
-        this.active = active;
+    public void setActivated(Boolean activated) {
+        this.activated = activated;
     }
 
     public Cbo getCbo() {
@@ -276,4 +276,5 @@ public class Worker {
         this.degree = degree;
     }
 }
+
 

@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.Set;
 
-public interface QualityRepository extends CrudRepository<Quality, Long> {
+public interface QualitiesRepository extends CrudRepository<Quality, Long> {
     Set<Quality> findAll();
 
 }

@@ -1,5 +1,6 @@
 package br.org.sesisc.smart.safety.controllers;
 
+import br.org.sesisc.smart.safety.models.Aso;
 import br.org.sesisc.smart.safety.models.Worker;
 import br.org.sesisc.smart.safety.repositories.WorkerRepository;
 import br.org.sesisc.smart.safety.responses.ErrorResponse;
@@ -31,6 +32,7 @@ import static br.org.sesisc.smart.safety.helpers.FileHelper.PNG_TYPE;
 @RequestMapping("/workers")
 public class WorkerController {
 
+
     @Autowired
     WorkerRepository repository;
 
@@ -43,7 +45,7 @@ public class WorkerController {
 
     @GetMapping()
     public ResponseEntity<?> index() {
-        Set<Worker> workers = repository.findAll();
+        Set<Worker> workers = repository.findByActivatedTrue();
         return SuccessResponse.handle(
                 new String[] { "workers" },
                 new Object[] { workers },
@@ -54,7 +56,7 @@ public class WorkerController {
     @GetMapping("/cpf/{cpf}")
     public ResponseEntity<?> findByCpf(@PathVariable("cpf") String cpf) {
 
-        Worker worker = repository.findByCpf(cpf);
+        Worker worker = repository.findByCpfAndActivatedTrue(cpf);
         return SuccessResponse.handle(
                 new String[] { "worker" },
                 new Object[] { worker },
@@ -64,7 +66,7 @@ public class WorkerController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> show(@PathVariable("id") long id) {
-        Worker worker = repository.findOne(id);
+        Worker worker = repository.findByIdAndActivatedTrue(id);
 
         if (worker != null) {
             return SuccessResponse.handle(
@@ -84,7 +86,6 @@ public class WorkerController {
 
     @PostMapping
     public ResponseEntity<?> create(@RequestBody @Valid final Worker cParams, Errors errors) {
-
         if (errors.hasErrors()) {
             return ErrorResponse.handle(errors, HttpStatus.UNPROCESSABLE_ENTITY);
         }
@@ -103,7 +104,7 @@ public class WorkerController {
         Worker worker = repository.findOne(id);
 
         if (worker != null) {
-            worker.setActive(false);
+            worker.setActivated(false);
             repository.save(worker);
 
             return SuccessResponse.handle(HttpStatus.OK);
