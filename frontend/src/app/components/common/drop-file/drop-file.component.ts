@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {Ng2FileDropAcceptedFile, Ng2FileDropRejectedFile} from 'ng2-file-drop';
 
 @Component({
@@ -8,35 +8,15 @@ import {Ng2FileDropAcceptedFile, Ng2FileDropRejectedFile} from 'ng2-file-drop';
 })
 export class DropFileComponent {
 
-    @ViewChild('fileInput')
-    input;
+    @ViewChild('fileInput') input;
 
-    @Input()
-    supportedFileTypes: string[] = ['image/png', 'image/jpeg', 'image/gif'];
-
-    @Input()
-    label: string;
-
-    @Input() hasNgContent: boolean
-
+    @Input() supportedFileTypes: Array<string> = ['image/png', 'image/jpeg', 'image/gif'];
+    @Input() hasNgContent: boolean;
     @Input() showPreview = true;
+    @Input() ngContentType: string;
+    @Input() image: any;
 
-    @Input() ngContentType: string
-
-    @Input() img: any;
-
-    @Output()
-    onChange = new EventEmitter();
-
-    imageShown: boolean;
-
-    image: any;
-
-    ngOnChanges() {
-        if(this.img) {
-            this.image = this.img;
-        }
-    }
+    @Output() onChange: EventEmitter<File> = new EventEmitter();
 
     dragFileAccepted(acceptedFile: Ng2FileDropAcceptedFile) {
         this.processFile(acceptedFile.file);
@@ -50,7 +30,7 @@ export class DropFileComponent {
         this.input.nativeElement.click();
     }
 
-    onFileChange(event) {        
+    onFileChange() {
         this.processFile(this.input.nativeElement.files[0]);
     }
 
@@ -61,9 +41,8 @@ export class DropFileComponent {
                 if (this.showPreview) {
                     this.image = fileReader.result;
                 }
-                this.imageShown = true;
-                this.onChange.emit(file);                
-            }
+                this.onChange.emit(file);
+            };
         })(file);
         fileReader.readAsDataURL(file);
     }

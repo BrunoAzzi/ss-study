@@ -7,7 +7,7 @@
         <ul class="floors-crud-list">
             <li *ngFor="let floor of sector.floors; let floorIndex = index" class="floor">
                 <md-icon (click)="removeFloor(sectorIndex, floorIndex)">close</md-icon>
-                <drop-file [showPreview]="true" [img]="floor.image || floor.imagePath"></drop-file>
+                <drop-file [showPreview]="true" [image]="floor.image || floor.imagePath"></drop-file>
                 <md-input-container>
                     <input mdInput placeholder="Nome do Pavimento"
                            [(ngModel)]="floor.name" name="name"

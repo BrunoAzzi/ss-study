@@ -1,9 +1,9 @@
-import { HttpClientService } from './http-client.service';
-import { Floor } from './../models/floor.model';
-import { Observable } from 'rxjs/Observable';
-import { Construction, IConstruction } from './../models/construction.model';
-import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import {HttpClientService} from './http-client.service';
+import {Floor} from './../models/floor.model';
+import {Observable} from 'rxjs/Observable';
+import {Construction, IConstruction} from './../models/construction.model';
+import {Injectable} from '@angular/core';
+import {Headers, Http} from '@angular/http';
 
 @Injectable()
 export class ConstructionsService {
@@ -14,18 +14,19 @@ export class ConstructionsService {
     public constructions: Array<Construction> = [];
     public construction: Construction;
 
-    constructor(private http: Http, private service: HttpClientService) { }
+    constructor(private service: HttpClientService) {
+    }
 
-    getConstruction(id : number) {
+    getConstruction(id: number) {
 
         return this.service.get(this.endpoint + '/' + id)
             .map((jsonResponse) => {
                 this.construction = this.serializeConstruction(jsonResponse.construction);
                 return Object.assign({}, this.construction);
             });
-	}
+    }
 
-    getConstructionList() : Observable<Array<Construction>> {
+    getConstructionList(): Observable<Array<Construction>> {
 
         return this.service.get(this.endpoint)
             .map((jsonResponse) => {
@@ -33,19 +34,29 @@ export class ConstructionsService {
                     return new Construction().initializeWithJSON(construction);
                 });
             });
-	}
+    }
 
     newConstruction() {
         this.construction = new Construction();
         return this.construction;
     }
 
-    saveConstruction(construction : Construction) {
+    saveConstruction(construction: Construction) {
         if (construction.id) {
             return this.updateConstruction(construction);
         } else {
             return this.createConstruction(construction);
         }
+    }
+
+    updateConstructionLogo(construction: Construction) {
+        const formData = new FormData();
+        formData.append('file', construction.imageFile);
+
+        return this.service.postWithNoHeaders(this.endpoint + '/' + construction.id + '/logo', formData)
+            .map((response) => {
+                return response;
+            });
     }
 
     updateFloor(floor: Floor) {
@@ -71,11 +82,10 @@ export class ConstructionsService {
             });
     }
 
-    private updateConstruction(construction : Construction) {
+    private updateConstruction(construction: Construction) {
         console.log('updated', construction);
         return this.service.put(this.endpoint + '/' + construction.id, JSON.stringify(construction.toJSON()))
             .map((jsonResponse) => {
-                console.log(jsonResponse);
                 return jsonResponse;
             });
     }
