@@ -1,11 +1,17 @@
 <div class="body-content">
     <md-tab-group #tabGroup disableRipple>
         <md-tab id="tab1" label="Ocorrências">
-            <span> ocorrencias aqui </span>
+            <div class="list-content">
+                <span> ocorrencias aqui </span>
+            </div>
         </md-tab>
         <md-tab id="tab2" label="Tarefas">
-            <div>
-                <tasks></tasks>
+            <div class="list-content">
+                <tasks 
+                    [tasks]="tasks"
+                    (checkTask)="checkTask($event)"
+                    (changeTaskFilter)="changeTaskFilter($event)">
+                </tasks>
             </div>
         </md-tab>
     </md-tab-group>
