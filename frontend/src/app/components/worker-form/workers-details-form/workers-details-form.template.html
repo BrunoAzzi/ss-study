@@ -4,7 +4,7 @@
             <div class="grid-row">
                 <md-card class="image-upload">
                     <md-card-content>
-                        <drop-file [image]="'/assets/ic-image.png'" (onChange)="onLogoChange($event)">
+                        <drop-file [image]="'/assets/ic-image.png'" (fileChanged)="onLogoChange($event)">
                         </drop-file>
                     </md-card-content>
                     <md-card-footer>

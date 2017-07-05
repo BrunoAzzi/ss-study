@@ -16,7 +16,7 @@ export class DropFileComponent {
     @Input() ngContentType: string;
     @Input() image: any;
 
-    @Output() onChange: EventEmitter<File> = new EventEmitter();
+    @Output() fileChanged: EventEmitter<File> = new EventEmitter();
 
     dragFileAccepted(acceptedFile: Ng2FileDropAcceptedFile) {
         this.processFile(acceptedFile.file);
@@ -41,7 +41,7 @@ export class DropFileComponent {
                 if (this.showPreview) {
                     this.image = fileReader.result;
                 }
-                this.onChange.emit(file);
+                this.fileChanged.emit(file);
             };
         })(file);
         fileReader.readAsDataURL(file);

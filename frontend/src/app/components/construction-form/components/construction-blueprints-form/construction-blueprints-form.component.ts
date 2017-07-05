@@ -36,11 +36,18 @@ export class ConstructionBlueprintsFormComponent implements OnInit {
   }
 
   blueprintAdded(indexSector, inputs, imageFile: File) {
-    const newFloor = Object.assign(new Floor(), {
-        ...inputs,
-        imageFile: imageFile
-    });
-    this.construction.sectors[indexSector].floors.push(newFloor);
+      const fileReader = new FileReader();
+      fileReader.onload = ((theFile) => {
+          return (e) => {
+              const newFloor = Object.assign(new Floor(), {
+                  ...inputs,
+                  image: fileReader.result,
+                  imageFile: imageFile
+              });
+              this.construction.sectors[indexSector].floors.push(newFloor);
+          };
+      })(imageFile);
+      fileReader.readAsDataURL(imageFile);
   }
 
   blueprintEdited(floor: Floor, imageFile: File) {

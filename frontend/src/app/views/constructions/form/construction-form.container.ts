@@ -14,23 +14,25 @@ export class ConstructionFormSmartComponent {
 
     onConstructionUpdated(construction: Construction) {
 
+        const floorsWithImage = construction.sectors.reduce((sum, sector) => sum.concat(sector.floors.filter(floor => floor.imageFile)), []);
+
         this.service.saveConstruction(construction).subscribe(
-                data => {
-                    this.service.updateFloorsImages(construction).subscribe(c => console.log(c));
+                savedConstruction => {
+                    this.service.updateFloorsImages(savedConstruction, floorsWithImage).subscribe(c => console.log(c));
                     if (construction.imageFile) {
-                        this.service.updateConstructionLogo(construction).subscribe(
+                        this.service.updateConstructionLogo(savedConstruction).subscribe(
                             d => {
                                 this.snackBar.open('Sucesso ao salvar!', null, { duration: 3000 });
                                 console.log(d);
                             },
                             error =>  {
-                                this.handleError(error)
+                                this.handleError(error);
                             }
                         );
                     } else {
                         this.snackBar.open('Sucesso ao salvar!', null, { duration: 3000 });
                     }
-                    console.log(data);
+                    console.log(savedConstruction);
                 },
                 error => {
                     this.handleError(error);

@@ -59,22 +59,23 @@ export class ConstructionsService {
             });
     }
 
-    updateFloorsImages(construction: Construction) {
+    updateFloorsImages(construction: Construction, floorsWithImage: Array<Floor>) {
 
-        const floors = construction.sectors.reduce((acc, sector) => acc.concat(sector.floors), []);
-        const observables = floors.reduce((obs, floor) => {
-            if (floor.imageFile) {
-                const formData = new FormData();
-                formData.append('file', floor.imageFile);
+        const existingFloors = construction.sectors.reduce((acc, sector) => acc.concat(sector.floors), []);
 
-                return [...obs, this.service.postWithNoHeaders('/floors/' + floor.id + '/blueprint', formData)
-                    .map((response) => {
-                        return response;
-                    })
-                ];
-            } else {
-                return obs;
+        const observables = floorsWithImage.reduce((obs, floor) => {
+            const formData = new FormData();
+            formData.append('file', floor.imageFile);
+
+            if (!floor.id) {
+                floor.id = existingFloors.find(f => f.name === floor.name).id
             }
+
+            return [...obs, this.service.postWithNoHeaders('/floors/' + floor.id + '/blueprint', formData)
+                .map((response) => {
+                    return response;
+                })
+            ];
         }, []);
 
         console.log(observables);
@@ -100,8 +101,7 @@ export class ConstructionsService {
         console.log('created', construction);
         return this.service.post(this.endpoint, JSON.stringify(construction.toJSON()))
             .map((jsonResponse) => {
-                console.log(jsonResponse);
-                return jsonResponse;
+                return new Construction().initializeWithJSON(jsonResponse.construction);
             });
     }
 
@@ -109,7 +109,7 @@ export class ConstructionsService {
         console.log('updated', construction);
         return this.service.put(this.endpoint + '/' + construction.id, JSON.stringify(construction.toJSON()))
             .map((jsonResponse) => {
-                return jsonResponse;
+                return new Construction().initializeWithJSON(jsonResponse.construction);
             });
     }
 

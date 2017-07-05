@@ -1,43 +1,47 @@
-<safety-categorized-list (added)="addSector($event)" [newCategoryLabel]="'CLIQUE AQUI PARA ADICIONAR UM NOVO SETOR'">
-    <safety-categorized-list-item *ngFor="let sector of construction.sectors; let sectorIndex = index"
-                                  [name]="sector.name"
-                                  [index]="sectorIndex"
-                                  (edited)="editSector($event)"
-                                  (removed)="removeSector($event)">
-        <ul class="floors-crud-list">
-            <li *ngFor="let floor of sector.floors; let floorIndex = index" class="floor">
-                <md-icon (click)="removeFloor(sectorIndex, floorIndex)">close</md-icon>
-                <drop-file [showPreview]="true" [image]="floor.image || floor.imagePath"
-                           (onChange)="blueprintEdited(floor, $event)"></drop-file>
-                <md-input-container>
-                    <input mdInput placeholder="Nome do Pavimento"
-                           [(ngModel)]="floor.name" name="name"
-                    >
-                </md-input-container>
-                <md-input-container>
-                    <input mdInput placeholder="SIGLA (EX: GARAG)"
-                           [(ngModel)]="floor.acronym" name="acronym"
-                    >
-                </md-input-container>
-            </li>
-            <li class="floor new">
-                <drop-file [showPreview]="false"
-                           (onChange)="blueprintAdded(sectorIndex, { name: newFloorName.value, acronym: newFloorAcronym.value }, $event); newFloorName.value = null; newFloorAcronym.value = null;"></drop-file>
-                <md-input-container>
-                    <input #newFloorName mdInput placeholder="Nome do Pavimento"
-                           name="name"
-                    >
-                </md-input-container>
-                <md-input-container>
-                    <input mdInput placeholder="SIGLA (EX: GARAG)"
-                           #newFloorAcronym name="acronym"
-                    >
-                </md-input-container>
-            </li>
-        </ul>
-    </safety-categorized-list-item>
-</safety-categorized-list>
+<form #f="ngForm" (keydown.enter)="$event.preventDefault()" (ngSubmit)="save()">
+    <safety-categorized-list (added)="addSector($event)" [newCategoryLabel]="'CLIQUE AQUI PARA ADICIONAR UM NOVO SETOR'">
+        <safety-categorized-list-item *ngFor="let sector of construction.sectors; let sectorIndex = index"
+                                      [name]="sector.name"
+                                      [index]="sectorIndex"
+                                      (edited)="editSector($event)"
+                                      (removed)="removeSector($event)">
+            <ul class="floors-crud-list">
+                <li *ngFor="let floor of sector.floors; let floorIndex = index" class="floor">
+                    <md-icon (click)="removeFloor(sectorIndex, floorIndex)">close</md-icon>
+                    <drop-file [showPreview]="true" [image]="floor.image || (floor.imagePath | backendPath)"
+                               (fileChanged)="blueprintEdited(floor, $event)"></drop-file>
+                    <md-input-container>
+                        <input mdInput placeholder="Nome do Pavimento"
+                               [(ngModel)]="floor.name" name="name"
+                               required
+                        >
+                    </md-input-container>
+                    <md-input-container>
+                        <input mdInput placeholder="SIGLA (EX: GARAG)"
+                               [(ngModel)]="floor.acronym" name="acronym"
+                               required
+                        >
+                    </md-input-container>
+                </li>
+                <li class="floor new">
+                    <drop-file [showPreview]="false"
+                               (fileChanged)="blueprintAdded(sectorIndex, { name: newFloorName.value, acronym: newFloorAcronym.value }, $event); newFloorName.value = null; newFloorAcronym.value = null;"></drop-file>
+                    <md-input-container>
+                        <input #newFloorName mdInput placeholder="Nome do Pavimento"
+                               name="name"
+                        >
+                    </md-input-container>
+                    <md-input-container>
+                        <input mdInput placeholder="SIGLA (EX: GARAG)"
+                               #newFloorAcronym name="acronym"
+                        >
+                    </md-input-container>
+                </li>
+            </ul>
+        </safety-categorized-list-item>
+    </safety-categorized-list>
 
-<div class="form-bottom">
-  <button md-raised-button (click)="save()">SALVAR E CONTINUAR</button>
-</div>
+    <div class="form-bottom">
+      <button md-raised-button [disabled]="!f.valid">SALVAR E CONTINUAR</button>
+    </div>
+</form>

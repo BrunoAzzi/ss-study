@@ -48,7 +48,7 @@
 
 
             <label>Logo da Obra</label>
-            <drop-file [image]="construction.image | backendPath" (onChange)="onLogoChange($event)"></drop-file>
+            <drop-file [image]="construction.image | backendPath" (fileChanged)="onLogoChange($event)"></drop-file>
         </section>
     </div>
     <div class="form-bottom">

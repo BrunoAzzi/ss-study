@@ -3,10 +3,10 @@
         <div class="grid-column">
             <div class="grid-row">
                 <drop-file class="half"
-                        [hasNgContent]="true"
-                        [image]="company.logoUrl"
-                        [ngContentType]="'companyLog'"
-                        (onChange)="onSelectFile($event)">
+                           [hasNgContent]="true"
+                           [image]="company.logoUrl"
+                           [ngContentType]="'companyLog'"
+                           (fileChanged)="onSelectFile($event)">
                     <md-card class="image-upload">
                         <md-card-footer>
                             <p>INSIRA A LOGO <br/> DA EMPRESA</p>
