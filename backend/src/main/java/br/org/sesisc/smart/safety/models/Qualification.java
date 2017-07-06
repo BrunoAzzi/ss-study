@@ -3,36 +3,33 @@ package br.org.sesisc.smart.safety.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "certifications")
-public class Certification {
+@Table(name = "qualifications")
+public class Qualification {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private String nextRecycleDate;
+    private String realizationDate;
     private int periodicity;
     private boolean able;
+    private boolean recycling;
     private String attachmentUrl;
     private String attachmentFileName;
 
     @ManyToOne
-    @JoinColumn(name = "worker_id")
-    private Worker worker;
+    @JoinColumn(name = "quality_id")
+    private Quality quality;
 
-    @ManyToOne
-    @JoinColumn(name = "certificate_id")
-    private Certificate certificate;
+    public Qualification() { }
 
-    public Certification() { }
-
-    public Certification(String nextRecycleDate, int periodicity, boolean able, String attachmentUrl, String attachmentFileName, Worker worker, Certificate certificate) {
-        this.nextRecycleDate = nextRecycleDate;
+    public Qualification(String realizationDate, int periodicity, boolean able, boolean recycling, String attachmentUrl, String attachmentFileName, Quality quality) {
+        this.realizationDate = realizationDate;
         this.periodicity = periodicity;
         this.able = able;
+        this.recycling = recycling;
         this.attachmentUrl = attachmentUrl;
         this.attachmentFileName = attachmentFileName;
-        this.worker = worker;
-        this.certificate = certificate;
+        this.quality = quality;
     }
 
     public long getId() {
@@ -43,12 +40,12 @@ public class Certification {
         this.id = id;
     }
 
-    public String getNextRecycleDate() {
-        return nextRecycleDate;
+    public String getRealizationDate() {
+        return realizationDate;
     }
 
-    public void setNextRecycleDate(String nextRecycleDate) {
-        this.nextRecycleDate = nextRecycleDate;
+    public void setRealizationDate(String realizationDate) {
+        this.realizationDate = realizationDate;
     }
 
     public int getPeriodicity() {
@@ -67,6 +64,14 @@ public class Certification {
         this.able = able;
     }
 
+    public boolean isRecycling() {
+        return recycling;
+    }
+
+    public void setRecycling(boolean recycling) {
+        this.recycling = recycling;
+    }
+
     public String getAttachmentUrl() {
         return attachmentUrl;
     }
@@ -83,19 +88,11 @@ public class Certification {
         this.attachmentFileName = attachmentFileName;
     }
 
-    public Worker getWorker() {
-        return worker;
+    public Quality getQuality() {
+        return quality;
     }
 
-    public void setWorker(Worker worker) {
-        this.worker = worker;
-    }
-
-    public Certificate getCertificate() {
-        return certificate;
-    }
-
-    public void setCertificate(Certificate certificate) {
-        this.certificate = certificate;
+    public void setQuality(Quality quality) {
+        this.quality = quality;
     }
 }

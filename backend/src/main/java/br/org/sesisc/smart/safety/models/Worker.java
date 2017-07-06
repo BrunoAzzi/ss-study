@@ -1,7 +1,9 @@
 package br.org.sesisc.smart.safety.models;
-
+import br.org.sesisc.smart.safety.models.enums.InstructionDegreeType;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "workers")
@@ -14,7 +16,8 @@ public class Worker {
     private String name;
     private String cep;
     private String address;
-    private boolean status;
+
+    private InstructionDegreeType degree;
     private String birthDate;
     private String gender;
     private String cpf;
@@ -22,35 +25,40 @@ public class Worker {
     private String ctps;
     private String admissionAt;
     private String contractType;
-    private String specialNeeds;
+    private String role;
     private String photoUrl;
     private String photoFilename;
-    private boolean isCipeiro;
-    private boolean isBrigade;
-    private String role;
+    private boolean cipeiro;
+    private boolean brigade;
+    private boolean specialNeeds;
+    private boolean status;
     private String mandateBegin;
     private String mandateEnd;
     private String allergies;
     private String diseases;
     private String bloodType;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "worker_id")
+    private Set<Aso> asos = new HashSet<Aso>();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "worker_id")
+    private Set<Qualification> qualifications = new HashSet<Qualification>();
+
     @ManyToOne
     @JoinColumn(name = "cbo_id")
     private Cbo cbo;
-
-    @ManyToOne
-    @JoinColumn(name = "degree_id")
-    private Degree degree;
 
     private boolean activated = true;
 
     public Worker() { }
 
-    public Worker(String name, String cep, String address, boolean status, String birthDate, String gender, String cpf, String nit, String ctps, String admissionAt, String contractType, String specialNeeds, String photoUrl, String photoFilename, boolean isCipeiro, boolean isBrigade, String role, String mandateBegin, String mandateEnd, String allergies, String diseases, String bloodType, Cbo cbo, Degree degree, boolean activated) {
+    public Worker(String name, String cep, String address, int degree, String birthDate, String gender, String cpf, String nit, String ctps, String admissionAt, String contractType, String role, String photoUrl, String photoFilename, boolean cipeiro, boolean brigade, boolean specialNeeds, boolean status, String mandateBegin, String mandateEnd, String allergies, String diseases, String bloodType, Cbo cbo, boolean activated) {
         this.name = name;
         this.cep = cep;
         this.address = address;
-        this.status = status;
+        this.degree = InstructionDegreeType.fromInt(degree);
         this.birthDate = birthDate;
         this.gender = gender;
         this.cpf = cpf;
@@ -58,19 +66,19 @@ public class Worker {
         this.ctps = ctps;
         this.admissionAt = admissionAt;
         this.contractType = contractType;
-        this.specialNeeds = specialNeeds;
+        this.role = role;
         this.photoUrl = photoUrl;
         this.photoFilename = photoFilename;
-        this.isCipeiro = isCipeiro;
-        this.isBrigade = isBrigade;
-        this.role = role;
+        this.cipeiro = cipeiro;
+        this.brigade = brigade;
+        this.specialNeeds = specialNeeds;
+        this.status = status;
         this.mandateBegin = mandateBegin;
         this.mandateEnd = mandateEnd;
         this.allergies = allergies;
         this.diseases = diseases;
         this.bloodType = bloodType;
         this.cbo = cbo;
-        this.degree = degree;
         this.activated = activated;
     }
 
@@ -106,14 +114,22 @@ public class Worker {
         this.address = address;
     }
 
-    public boolean isStatus() {
-        return status;
+    public int getDegree() {
+        return degree.getValue();
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setDegree(int degree) {
+        this.degree = InstructionDegreeType.fromInt(degree);
     }
 
+   /* public InstructionDegreeType getDegree() {
+        return degree;
+    }
+
+    public void setDegree(InstructionDegreeType degree) {
+        this.degree = degree;
+    }
+*/
     public String getBirthDate() {
         return birthDate;
     }
@@ -170,12 +186,12 @@ public class Worker {
         this.contractType = contractType;
     }
 
-    public String getSpecialNeeds() {
-        return specialNeeds;
+    public String getRole() {
+        return role;
     }
 
-    public void setSpecialNeeds(String specialNeeds) {
-        this.specialNeeds = specialNeeds;
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public String getPhotoUrl() {
@@ -195,27 +211,35 @@ public class Worker {
     }
 
     public boolean isCipeiro() {
-        return isCipeiro;
+        return cipeiro;
     }
 
     public void setCipeiro(boolean cipeiro) {
-        isCipeiro = cipeiro;
+        this.cipeiro = cipeiro;
     }
 
     public boolean isBrigade() {
-        return isBrigade;
+        return brigade;
     }
 
     public void setBrigade(boolean brigade) {
-        isBrigade = brigade;
+        this.brigade = brigade;
     }
 
-    public String getRole() {
-        return role;
+    public boolean isSpecialNeeds() {
+        return specialNeeds;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setSpecialNeeds(boolean specialNeeds) {
+        this.specialNeeds = specialNeeds;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
     public String getMandateBegin() {
@@ -264,14 +288,6 @@ public class Worker {
 
     public void setCbo(Cbo cbo) {
         this.cbo = cbo;
-    }
-
-    public Degree getDegree() {
-        return degree;
-    }
-
-    public void setDegree(Degree degree) {
-        this.degree = degree;
     }
 
     public boolean isActivated() {

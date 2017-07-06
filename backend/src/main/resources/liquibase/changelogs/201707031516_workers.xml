@@ -39,7 +39,9 @@
         <addColumn tableName="workers">
             <column name="supplier_id" type="int"/>
             <column name="cbo_id" type="int"/>
-            <column name="degree_id" type="int"/>
+            <column name="degree" type="varchar(150)" >
+                <constraints nullable="false"/>
+            </column>
             <column name="cep" type="varchar(10)"/>
             <column name="address" type="varchar(255)"/>
             <column name="status" type="boolean"/>
@@ -54,11 +56,11 @@
             <column name="ctps" type="varchar(255)"/>
             <column name="admission_at" type="TIMESTAMP" />
             <column name="contract_type" type="varchar(100)"/>
-            <column name="special_needs" type="varchar(100)"/>
+            <column name="special_needs" type="boolean"/>
             <column name="photo_url" type="text"/>
             <column name="photo_filename" type="text"/>
-            <column name="is_cipeiro" type="boolean"/>
-            <column name="is_brigade" type="boolean"/>
+            <column name="cipeiro" type="boolean"/>
+            <column name="brigade" type="boolean"/>
             <column name="role" type="varchar(255)"/>
             <column name="mandate_begin" type="TIMESTAMP"/>
             <column name="mandate_end" type="TIMESTAMP"/>
@@ -74,32 +76,25 @@
                 referencedTableName="cbos"
                 referencedColumnNames="id"
                 onDelete="CASCADE" />
-        <addForeignKeyConstraint
-                baseTableName="workers"
-                baseColumnNames="degree_id"
-                constraintName="fk_degrees_workers"
-                referencedTableName="degrees"
-                referencedColumnNames="id"
-                onDelete="CASCADE" />
 
     </changeSet>
 
     <changeSet id="5" author="rdlorbieski">
-        <createTable tableName="certificates">
+        <createTable tableName="qualities">
             <column name="id" type="int">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="varchar(255)"/>
         </createTable>
-        <addAutoIncrement tableName="certificates" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
+        <addAutoIncrement tableName="qualities" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
 
-        <createTable tableName="certifications">
+        <createTable tableName="qualifications">
             <column name="id" type="int">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="certificate_id" type="int"/>
+            <column name="quality_id" type="int"/>
             <column name="worker_id" type="int"/>
-            <column name="next_recycle_date" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+            <column name="realization_date" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
             <column name="periodicity" type="int">
@@ -107,26 +102,27 @@
             </column>
             <column name="able" type="boolean"/>
             <column name="attachment_url" type="varchar(255)"/>
-            <column name="attachment_file_name" type="varchar(255)"/>
+            <column name="attachment_filename" type="varchar(255)"/>
+            <column name="recycling" type="boolean"/>
         </createTable>
-        <addAutoIncrement tableName="certifications" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
+        <addAutoIncrement tableName="qualifications" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
 
-        <addForeignKeyConstraint
-                baseTableName="certifications"
-                baseColumnNames="certificate_id"
-                constraintName="fk_certification_certificates"
-                referencedTableName="certificates"
+
+       <addForeignKeyConstraint
+                baseTableName="qualifications"
+                baseColumnNames="quality_id"
+                constraintName="fk_qualities_qualifications"
+                referencedTableName="qualities"
                 referencedColumnNames="id"
                 onDelete="CASCADE"/>
 
         <addForeignKeyConstraint
-                baseTableName="certifications"
+                baseTableName="qualifications"
                 baseColumnNames="worker_id"
-                constraintName="fk_worker_certifications"
+                constraintName="fk_worker_qualifications"
                 referencedTableName="workers"
                 referencedColumnNames="id"
                 onDelete="CASCADE"/>
-
     </changeSet>
 
     <changeSet id="6" author="rdlorbieski">

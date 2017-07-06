@@ -15,10 +15,6 @@ public class Aso {
     private Boolean able;
     private String attachment;
 
-    @ManyToOne
-    @JoinColumn(name = "worker_id")
-    private Worker worker;
-
     public Aso() {
     }
 
@@ -29,7 +25,6 @@ public class Aso {
         this.asoType = asoType;
         this.able = able;
         this.attachment = attachment;
-        this.worker = worker;
     }
 
     public Long getId() {
@@ -80,11 +75,4 @@ public class Aso {
         this.attachment = attachment;
     }
 
-    public Worker getWorker() {
-        return worker;
-    }
-
-    public void setWorker(Worker worker) {
-        this.worker = worker;
-    }
 }
