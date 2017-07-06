@@ -63,17 +63,19 @@ export class WorkersDataComponent {
 
     labors = [{ value: '', viewValue: '' }];
 
-    sexs = ['Masculino', 'Feminino'];
+    sexs = [{ viewValue: 'Masculino' },
+            { viewValue: 'Feminino' }];
+
     hireds = ['Próprio', 'Terceiro'];
 
     scholaritys = [
-        { value: 'fund_i', viewValue: 'Fundamental incompleto' },
-        { value: 'fund_c', viewValue: 'Fundamental completo' },
-        { value: 'medio_i', viewValue: 'Médio incompleto' },
-        { value: 'medio_c', viewValue: 'Médio completo' },
-        { value: 'sup_i', viewValue: 'Superior incompleto' },
-        { value: 'sup_c', viewValue: 'Superior completo' },
-        { value: 'pos', viewValue: 'Pós Graduação' },
+        { value: '1', viewValue: 'Fundamental incompleto' },
+        { value: '2', viewValue: 'Fundamental completo' },
+        { value: '3', viewValue: 'Médio incompleto' },
+        { value: 4, viewValue: 'Médio completo' },
+        { value: '5', viewValue: 'Superior incompleto' },
+        { value: '6', viewValue: 'Superior completo' },
+        { value: '7', viewValue: 'Pós Graduação' },
     ];
 
     necessitys = [
@@ -93,7 +95,7 @@ export class WorkersDataComponent {
             cpf: new FormControl('', Validators.compose([Validators.required, CustomValidators.cpf])),
             ctps: new FormControl('', CustomValidators.onlyPositiveNumbers),
             birthDate: null,
-            age: null,
+            age: new FormControl({ value: '', disabled: this.hiredType }, null),
             nit: new FormControl(''),
             cep: null,
             completeAddress: null,
@@ -153,10 +155,6 @@ export class WorkersDataComponent {
             data.neighborhood + ' - ' +
             data.city + ' / ' +
             data.state;
-    }
-
-    teste(){
-        console.log("teste")
     }
 
 }

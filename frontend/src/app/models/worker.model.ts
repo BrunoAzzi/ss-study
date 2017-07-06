@@ -8,7 +8,7 @@ export class Worker {
     id: number;
     name: string;
     cpf: string;
-    gender: string;
+    gender: boolean;
     scholarity: string;
     nit: string;
     cep: string;
@@ -87,7 +87,7 @@ export class Worker {
         this.name = json.name;
         this.cpf = json.cpf;
         this.gender = json.gender;
-        this.scholarity = json.scholarity;
+        this.scholarity = json.degree;
         this.nit = json.nit;
         this.cep = json.cep;
         this.completeAddress = json.completeAddress;
@@ -108,9 +108,9 @@ export class Worker {
         this.ocupation = json.ocupation;
         this.isThirdparty = json.isThirdparty;
         this.thirdpartyName = json.thirdpartyName;
-
-
          
+        this.gender = (json.gender === 'Masculino') ? true : false;
+
 
         if (json.health) {
             this.health = new Health().initializeWithJSON(json.health);
@@ -131,7 +131,7 @@ export class Worker {
             id: this.id,
             name: this.name,
             cpf: this.cpf,
-            gender: this.gender,
+            gender: (this.gender === true) ? 'Masculino' : 'Feminino',
             scholarity: this.scholarity,
             nit: this.nit,
             cep: this.cep,
