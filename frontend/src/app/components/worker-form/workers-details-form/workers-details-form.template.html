@@ -9,27 +9,35 @@
         </div>
         <div class="grid-column">
             <div class="grid-row">
+                <md-radio-group name="hiredType" [(ngModel)]="worker.ownContracting" formControlName="hiredTypeRadio" (change)="hiredChange()">
+                    <p>Tipo de Contratação:</p>
+                    <md-radio-button *ngFor="let hired of hireds" [value]="hired">
+                        {{hired}}
+                    </md-radio-button>
+                </md-radio-group>
+            </div>
+            <div class="grid-row">
                 <md-input-container>
                     <input mdInput formControlName="cpf" required placeholder="CPF" id="cpf" name="cpf" (blur)="autoCompleteWorker()" [textMask]="{mask: cpfMask}"
-                            [(ngModel)]="cpf">
+                        [(ngModel)]="cpf">
                     <md-error *ngIf="myForm.controls.cpf.hasError('required')">Campo Obrigatório.</md-error>
                     <md-error *ngIf="myForm.controls.cpf.hasError('cpf')">CPF Invalído.</md-error>
                 </md-input-container>
             </div>
             <div class="grid-row">
                 <my-date-picker formControlName="birthDate" name="birthDate" name="birthDate" [(ngModel)]="worker.birthDate" [options]="myDatePickerOptions"
-                        placeholder="Data de Nascimento">
+                    placeholder="Data de Nascimento">
                 </my-date-picker>
             </div>
             <div class="grid-row">
-                <cep-picker [(cep)]="worker.cep" (onSearch)="onCepSearch($event)"></cep-picker>
+                <cep-picker [(cep)]="worker.cep" (onSearch)="onCepSearch($event)" (selected)="teste()"></cep-picker>
             </div>
             <div class="grid-row">
                 <md-input-container>
                     <input mdInput formControlName="cbo" required placeholder="CBO" id="cbo" name="cbo" [(ngModel)]="worker.cbo" [textMask]="{mask: cboMask}"
-                            (ngModelChange)="checkCboEmpty()" (blur)="autocompleteRoleFromMock()">
-                    <md-error *ngIf="myForm.controls.fullname.hasError('required')">Campo Obrigatório.
-                    </md-error>
+                        (ngModelChange)="checkCboEmpty()" (blur)="autocompleteRoleFromMock()">
+                  <!--  <md-error *ngIf="myForm.controls.fullname.hasError('required')">Campo Obrigatório.
+                    </md-error>-->
                 </md-input-container>
             </div>
             <div class="grid-row">
@@ -39,16 +47,14 @@
                     </md-option>
                 </md-select>
             </div>
-            <div class="grid-row">
-                <md-radio-group name="hiredType" [(ngModel)]="worker.ownContracting" formControlName="hiredTypeRadio" (change)="hiredChange()">
-                    <p>Tipo de Contratação:</p>
-                    <md-radio-button *ngFor="let hired of hireds" [value]="hired">
-                        {{hired}}
-                    </md-radio-button>
-                </md-radio-group>
-            </div>
         </div>
+
         <div class="grid-column">
+            <div class="grid-row">
+                <md-input-container>
+                    <input mdInput formControlName="company" [(ngModel)]="worker.company" placeholder="Empresa" id="company" name="company">
+                </md-input-container>
+            </div>
             <div class="grid-row">
                 <md-input-container>
                     <input mdInput formControlName="fullname" required placeholder="Nome" id="name" name="name" [(ngModel)]="worker.name">
@@ -72,7 +78,7 @@
             <div class="grid-row">
                 <md-input-container>
                     <input mdInput placeholder="Endereço Completo" formControlName="completeAddress" [(ngModel)]="worker.completeAddress" id="completeAddress"
-                            name="completeAddress" value="{{completeAddress}}">
+                        name="completeAddress" value="{{completeAddress}}">
                 </md-input-container>
             </div>
             <div class="grid-row">
@@ -84,7 +90,7 @@
             </div>
             <div class="grid-row">
                 <my-date-picker placeholder="Data de Admissão" formControlName="admissionDate" name="admissionDate" [(ngModel)]="worker.admissionDate"
-                        [options]="myDatePickerOptions">
+                    [options]="myDatePickerOptions">
                 </my-date-picker>
                 <div>
                     <md-select [(ngModel)]="worker.status" formControlName="status" placeholder="Status">
@@ -94,11 +100,6 @@
                     </md-select>
                     <p *ngIf="worker.status=='demitido'">{{selectedStatusValue}}</p>
                 </div>
-            </div>
-            <div class="grid-row">
-                <md-input-container>
-                    <input mdInput formControlName="company" [(ngModel)]="worker.company" placeholder="Empresa" id="company" name="company">
-                </md-input-container>
             </div>
         </div>
         <div class="grid-column">

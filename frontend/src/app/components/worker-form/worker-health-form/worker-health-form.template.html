@@ -24,17 +24,14 @@
 
                 <div class="grid-row" *ngFor="let aso of asoList">
                     <div class="grid-row-25">
-<<<<<<< HEAD
-                        <md-select formControlName="asoTypes" required placeholder="aso" (change)="changeSelected(aso, $event)">
-=======
-                        <md-select formControlName="asoTypes" required placeholder="aso"
-                                (change)="changeSelected(aso, $event)">
->>>>>>> 75de5abf1a822cdce63fe0104c7562f1153ee781
-                            <md-option *ngFor="let asoType of asoTypes" [value]="asoType.value">
-                                {{asoType.viewValue}}
-                            </md-option>
-                        </md-select>
-                        <span *ngIf="submitted">
+
+
+                            <md-select formControlName="asoTypes" required placeholder="aso" (change)="changeSelected(aso, $event)">
+                                 <md-option *ngFor="let asoType of asoTypes" [value]="asoType.value">
+                                    {{asoType.viewValue}}
+                                </md-option>
+                            </md-select>
+                            <span *ngIf="submitted">
                                 <md-error *ngIf="helthForm.controls.asoTypes.hasError('required')">
                                     Campo Obrigatório.
                                 </md-error>
@@ -42,8 +39,7 @@
                     </div>
 
                     <div *ngIf="aso.selected >= 0">
-                        <asoItemComponent #asoComponent [itemSelected]="aso.selected" [itemName]="aso.name"
-                                (removed)="removeAsoItem(aso)" teste="testeBool"></asoItemComponent>
+                        <asoItemComponent #asoComponent [itemSelected]="aso.selected" [itemName]="aso.name" (removed)="removeAsoItem(aso)" teste="testeBool"></asoItemComponent>
                     </div>
 
                 </div>
@@ -53,7 +49,7 @@
             </div>
         </div>
         <div class="button-default">
-            <button  md-raised-button type="submit" (click)="saved.emit(worker)">
+            <button md-raised-button type="submit" (click)="saved.emit(worker)">
             <span>Salvar e continuar</span>
         </button>
         </div>

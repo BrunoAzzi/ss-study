@@ -48,13 +48,22 @@ public class WorkerController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> show(@PathVariable("id") long id) {
-        Worker worker = new Worker();
+        Worker worker = repository.findOne(id);
 
-        return SuccessResponse.handle(
-                new String[] { "worker" },
-                new Object[] { worker },
-                HttpStatus.OK
-        );
+        if (worker != null) {
+            return SuccessResponse.handle(
+                    new String[] { "worker" },
+                    new Object[] { worker },
+                    HttpStatus.OK
+            );
+        }
+        else {
+            return ErrorResponse.handle(
+                    new String[] {"Trabalhador não encontrado."},
+                    Worker.class,
+                    HttpStatus.NOT_FOUND
+            );
+        }
     }
 
     @PostMapping
