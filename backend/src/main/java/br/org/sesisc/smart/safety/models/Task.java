@@ -36,7 +36,7 @@ public class Task {
     @JoinColumn(name = "task_id")
     private Set<AttachmentFile> attachmentFiles = new HashSet<>();
 
-    private boolean checked;
+    private Boolean checked;
 
     public Task() {}
 
@@ -104,11 +104,11 @@ public class Task {
         this.attachmentFiles = attachmentFiles;
     }
 
-    public boolean isChecked() {
-        return checked;
+    public Boolean isChecked() {
+        return checked == null ? false : checked;
     }
 
-    public void setChecked(boolean checked) {
+    public void setChecked(Boolean checked) {
         this.checked = checked;
     }
 }

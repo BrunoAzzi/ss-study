@@ -35,17 +35,17 @@ public class Company {
     private Integer addressNumber;
     private String urlDomain;
     private Integer employerNumber;
-    private boolean hasSesmt;
-    private boolean hasCipa;
-    private boolean isDesignatedCipa;
+    private Boolean hasSesmt;
+    private Boolean hasCipa;
+    private Boolean isDesignatedCipa;
     private String logoUrl;
     private String logoFileName;
 
     public Company() {}
 
     public Company(ResponsibleCompany responsibleCompany, ResponsibleSST responsibleSST, Contact contact, Cnae cnae, String cnpj, String corporateName,
-                   String fakeName, String cep, int addressNumber, String addressComplement, String addressStreet, String urlDomain, boolean hasSesmt,
-                   boolean hasCipa, boolean isDesignatedCipa, int employerNumber) {
+                   String fakeName, String cep, int addressNumber, String addressComplement, String addressStreet, String urlDomain, Boolean hasSesmt,
+                   Boolean hasCipa, Boolean isDesignatedCipa, int employerNumber) {
         this.responsibleCompany = responsibleCompany;
         this.responsibleSST = responsibleSST;
         this.contact = contact;
@@ -65,7 +65,7 @@ public class Company {
     }
 
     public Company(String cnpj, String corporateName, String fakeName, String cep, int addressNumber, String addressComplement,
-                    String addressStreet, String urlDomain, boolean hasSesmt, boolean hasCipa, boolean isDesignedCipa, int employerNumber) {
+                    String addressStreet, String urlDomain, Boolean hasSesmt, Boolean hasCipa, Boolean isDesignedCipa, int employerNumber) {
         this.cnpj = cnpj;
         this.corporateName = corporateName;
         this.fakeName = fakeName;
@@ -192,27 +192,27 @@ public class Company {
         this.employerNumber = employerNumber;
     }
 
-    public boolean getHasSesmt() {
+    public Boolean getHasSesmt() {
         return hasSesmt;
     }
 
-    public void setHasSesmt(boolean hasSesmt) {
+    public void setHasSesmt(Boolean hasSesmt) {
         this.hasSesmt = hasSesmt;
     }
 
-    public boolean getHasCipa() {
+    public Boolean getHasCipa() {
         return hasCipa;
     }
 
-    public void setHasCipa(boolean hasCipa) {
+    public void setHasCipa(Boolean hasCipa) {
         this.hasCipa = hasCipa;
     }
 
-    public boolean getIsDesignatedCipa() {
+    public Boolean getIsDesignatedCipa() {
         return isDesignatedCipa;
     }
 
-    public void setIsDesignatedCipa(boolean isDesignatedCipa) {
+    public void setIsDesignatedCipa(Boolean isDesignatedCipa) {
         this.isDesignatedCipa = isDesignatedCipa;
     }
 

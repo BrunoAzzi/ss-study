@@ -24,8 +24,8 @@ public class Worker {
     private String contract_type;
     private String special_needs;
     private String photo_url;
-    private boolean is_cipeiro;
-    private boolean is_brigade;
+    private Boolean is_cipeiro;
+    private Boolean is_brigade;
     private String role;
     private String mandate_begin_date;
     private String mandate_end_date;
@@ -161,7 +161,7 @@ public class Worker {
         this.photo_url = photo_url;
     }
 
-    public boolean getIs_cipeiro() {
+    public Boolean getIs_cipeiro() {
         return is_cipeiro;
     }
 
@@ -169,11 +169,11 @@ public class Worker {
         this.is_cipeiro = is_cipeiro;
     }
 
-    public boolean getIs_brigade() {
+    public Boolean getIs_brigade() {
         return is_brigade;
     }
 
-    public void setIs_brigade(boolean is_brigade) {
+    public void setIs_brigade(Boolean is_brigade) {
         this.is_brigade = is_brigade;
     }
 
