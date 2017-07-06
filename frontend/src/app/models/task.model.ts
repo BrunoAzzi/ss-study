@@ -1,3 +1,4 @@
+import { AttachmentFile } from './attachmentFile.model';
 import { User } from './user.model';
 
 export interface ITask {
@@ -19,7 +20,8 @@ export class Task implements ITask {
     description: string
     author: User
     responsible: User
-    checked: boolean
+    checked: boolean    
+    attachmentFiles: Array<AttachmentFile>
 
     public constructor() {}
 
@@ -32,6 +34,7 @@ export class Task implements ITask {
         this.author = json.author
         this.responsible = json.responsible
         this.checked = json.checked
+        this.attachmentFiles = json.attachmentFiles
 
         return this
     }
@@ -45,7 +48,8 @@ export class Task implements ITask {
             description: this.description,
             author: this.author,
             responsible: this.responsible,
-            checked: this.checked
+            checked: this.checked,
+            attachmentFiles: this.attachmentFiles
         };
     }
 
