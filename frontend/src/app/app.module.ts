@@ -173,6 +173,7 @@ import { ConstructionBlueprintsFormComponent } from './components/construction-f
 import { CategorizedListComponent } from './components/common/categorized-list/categorized-list.component';
 import { CategorizedListItemComponent } from './components/common/categorized-list-item/categorized-list-item.component';
 import { AutofocusDirective } from './components/common/autofocus/autofocus.directive';
+import { BackendPathPipe } from './pipes/backend-path.pipe';
 
 @NgModule({
     declarations: [
@@ -299,6 +300,7 @@ import { AutofocusDirective } from './components/common/autofocus/autofocus.dire
         TasksDialogComponent,
         TasksFormComponent,
         OccurrencesListComponent,
+        BackendPathPipe,
     ],
     imports: [
         // Notification Module

@@ -11,63 +11,46 @@ import { CompanyService } from './../../../services/company.service';
     styleUrls: ['./company-details.component.scss']
 })
 
-export class CompanyDetailsComponent implements OnChanges{
+export class CompanyDetailsComponent {
 
     @Input() company: Company;
-    @Output() saved : EventEmitter<Company> = new EventEmitter()
+    @Output() saved: EventEmitter<Company> = new EventEmitter();
 
     cnaeMask = [/\d/, /\d/, /\d/, /\d/, '-', /\d/, '/', /\d/, /\d/];
-    cnpjMask = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '/', /\d/, /\d/,/\d/, /\d/, '-', /\d/, /\d/];
+    cnpjMask = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/];
 
-    addressStreet: string
-    cnaeCode: string
-    cnaeDescription: string
-    logo: any
-    image: any;
+    constructor(private service: CompanyService) {}
 
-    constructor(private service: CompanyService) { }
-
-    ngOnChanges() {
-        if(this.company && this.company.cnae) {            
-            this.cnaeCode = this.company.cnae.code;
-            this.cnaeDescription = this.company.cnae.description;
-            this.addressStreet = this.company.addressStreet;            
-            this.image = this.service.getCompanyLogo(this.company);            
-        }
-    }
-
-    save(f: NgForm) {
+    save() {
         const company = Object.assign(
             new Company(),
             this.company
-        )
+        );
         this.saved.emit(company);
     }
 
-    onSelectFile(file) {                 
+    onSelectFile(file) {
         const formData = new FormData();
-        formData.append('file', file);        
+        formData.append('file', file);
 
-        this.service.updateCompanyLogo(this.company, formData)
-        .subscribe(
-            (response) => {
-                
-            }
-        );
+        this.company.logoForm = formData;
+
+        // this.service.updateCompanyLogo(this.company, formData)
+        // .subscribe(
+        //     response => {
+        //         console.log(response);
+        //     }
+        // );
     }
 
     onCepSearch(data) {
         this.company.cep = data.cep;
-        this.addressStreet = data.street + ' , ' + data.neighborhood + ' , ' + data.city + ' / ' + data.state 
-        this.company.addressStreet = this.addressStreet
+        this.company.addressStreet = data.street + ' , ' + data.neighborhood + ' , ' + data.city + ' / ' + data.state;
     }
 
     onCnaeSearch(data) {
-        if(data) {
-            this.company.cnae = new Cnae(data.id, data.code, data.description);
-            this.cnaeDescription = data.description;
-        } else {
-            this.cnaeDescription = "";
+        if (data) {
+            this.company.cnae = new Cnae().initializeWithJson(data);
         }
     }
 

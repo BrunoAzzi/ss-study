@@ -1,27 +1,24 @@
-<form #f="ngForm" (ngSubmit)="save(f)" novalidate enctype="multipart/form-data">
-        
+<form #f="ngForm" (ngSubmit)="save()" novalidate enctype="multipart/form-data">
     <div class="form-content grid-container">
         <div class="grid-column">
             <div class="grid-row">
-                <drop-file class="half" [label]="" 
-                        [hasNgContent]="true"
-                        [img]="image"
-                        [ngContentType]="'companyLog'" 
-                        (onChange)="onSelectFile($event)">
+                <drop-file class="half"
+                           [hasNgContent]="true"
+                           [image]="company.logoUrl"
+                           [ngContentType]="'companyLog'"
+                           (fileChanged)="onSelectFile($event)">
                     <md-card class="image-upload">
-                        <md-card-content>                                                
-                        </md-card-content>
                         <md-card-footer>
                             <p>INSIRA A LOGO <br/> DA EMPRESA</p>
                         </md-card-footer>
                     </md-card>
-                </drop-file>                
+                </drop-file>
                 <div class="grid-column-75">
                     <div class="grid-row">
                         <md-input-container>
                             <input mdInput placeholder="CNPJ"
                             [(ngModel)]="company.cnpj"
-                            [textMask]="{mask: cnpjMask}" name="cnpj">
+                            [textMask]="{ mask: cnpjMask }" name="cnpj">
                         </md-input-container>
                         <md-input-container>
                             <input mdInput placeholder="RAZÃO SOCIAL"
@@ -35,11 +32,11 @@
                         </md-input-container>
                     </div>
                     <div class="grid-row">                        
-                        <cnae-picker [(cnaeCode)]="cnaeCode" class="half" 
+                        <cnae-picker [(cnaeCode)]="company.cnae.code" class="half"
                         (onSearch)="onCnaeSearch($event)"></cnae-picker>
                         <md-input-container>
                             <input mdInput placeholder="DESCRIÇÃO CNAE"
-                                        [(ngModel)]="cnaeDescription"
+                                        [(ngModel)]="company.cnae.description"
                                         name="cnaeDescription"
                                         [disabled]="true">
                         </md-input-container>
@@ -49,7 +46,7 @@
                     <div class="grid-row">
                         <md-input-container>
                             <input mdInput placeholder="Cidade / Estado"
-                                        [(ngModel)]="addressStreet"
+                                        [(ngModel)]="company.addressStreet"
                                         name="addressStreet"
                                         [disabled]="true">
                         </md-input-container>

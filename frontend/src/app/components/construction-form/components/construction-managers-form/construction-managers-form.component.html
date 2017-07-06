@@ -7,12 +7,12 @@
                 >
             </md-input-container>
             <md-input-container class="half">
-                <input mdInput placeholder="TELEFONE"
+                <input mdInput placeholder="TELEFONE" [textMask]="{ mask: phoneFaxMask }"
                        [(ngModel)]="construction.responsibleEngineer.phone" name="engineer-phone"
                 >
             </md-input-container>
             <md-input-container class="half">
-                <input mdInput placeholder="E-MAIL"
+                <input mdInput placeholder="E-MAIL" type="email" email
                        [(ngModel)]="construction.responsibleEngineer.email" name="engineer-email"
                 >
             </md-input-container>
@@ -29,7 +29,7 @@
                 >
             </md-input-container>
             <md-input-container class="half">
-                <input mdInput placeholder="E-MAIL"
+                <input mdInput placeholder="E-MAIL" type="email" email
                        [(ngModel)]="construction.responsibleSafety.email" name="safety-email"
                 >
             </md-input-container>
