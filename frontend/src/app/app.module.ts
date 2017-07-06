@@ -314,8 +314,6 @@ import { AutofocusDirective } from './components/common/autofocus/autofocus.dire
         // Datepicker
         MyDatePickerModule,
 
-        MomentModule,
-
         // Mocks
         InMemoryWebApiModule.forRoot(InMemoryDataService, { passThruUnknownUrl: true }),
 
@@ -337,6 +335,9 @@ import { AutofocusDirective } from './components/common/autofocus/autofocus.dire
 
         // Flex Layout
         FlexLayoutModule,
+
+        //Moments
+        MomentModule,
 
         // Routes
         AppRoutingModule,
