@@ -3,7 +3,7 @@ import {Worker} from "../../../models/worker.model";
 import {Qualification} from "../../../models/qualification.model";
 
 @Component({
-  selector: 'safety-worker-qualifications-form',
+  selector: 'worker-qualifications-form',
   templateUrl: './worker-qualifications-form.template.html',
   styleUrls: ['./worker-qualifications-form.component.scss']
 })

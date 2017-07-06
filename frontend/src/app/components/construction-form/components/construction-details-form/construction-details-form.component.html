@@ -2,31 +2,28 @@
     <div class="form-content">
         <section>
             <md-input-container>
-                <input mdInput placeholder="Nome do Empreendimento"
-                       [(ngModel)]="construction.name" name="name"
-                       required
-                >
+                <input mdInput placeholder="Nome do Empreendimento" [(ngModel)]="construction.name" name="name" required>
             </md-input-container>
             <cep-picker [(cep)]="construction.cep" class="half" (onSearch)="onCepSearch($event)"></cep-picker>
             <md-input-container class="half">
                 <input mdInput placeholder="Endereço Completo (Rua, Número, Complemento)"
-                       [(ngModel)]="construction.address" name="address"
+                        [(ngModel)]="construction.address" name="address"
                 >
             </md-input-container>
             <md-input-container class="half">
                 <input mdInput placeholder="Número"
-                       [(ngModel)]="construction.number" name="number"
+                        [(ngModel)]="construction.number" name="number"
                 >
             </md-input-container>
             <md-input-container class="half">
                 <input mdInput placeholder="Complemento"
-                       [(ngModel)]="construction.complement" name="complement"
+                        [(ngModel)]="construction.complement" name="complement"
                 >
             </md-input-container>
             <div class="input-text-with-file half">
                 <md-input-container>
                     <input mdInput placeholder="CEI"
-                        [(ngModel)]="construction.cei" name="cei"
+                            [(ngModel)]="construction.cei" name="cei"
                     >
                 </md-input-container>
                 <md-icon (click)="fileInput.click()">
@@ -40,9 +37,9 @@
         <section>
             <md-input-container>
                 <textarea mdInput placeholder="Descrição da Obra"
-                          [(ngModel)]="construction.description"
-                          name="description"
-                          rows="5"
+                        [(ngModel)]="construction.description"
+                        name="description"
+                        rows="5"
                 ></textarea>
             </md-input-container>
             <drop-file class="half" [label]="'Logo da Obra'" [img]="'/assets/plus.svg'" (onChange)="onLogoChange($event)"></drop-file>

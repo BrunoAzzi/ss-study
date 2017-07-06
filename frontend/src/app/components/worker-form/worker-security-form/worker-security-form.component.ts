@@ -9,6 +9,7 @@ import { SecurityWorksService } from '../../../services/workers/securityWorks.se
     styleUrls:   ['./worker-security-form.component.scss'],
     providers:   [SecurityWorksService]
 })
+
 export class SecurityWorksComponent {
     @Output() saved: EventEmitter<any> = new EventEmitter();
     @Input() cpf: string;
@@ -23,7 +24,6 @@ export class SecurityWorksComponent {
             cipeiros:     new FormControl('', Validators.required),
             laborsInCipa: new FormControl('', Validators.required),
         });
-
     }
 
     setDatawithCPF(dateRange) {

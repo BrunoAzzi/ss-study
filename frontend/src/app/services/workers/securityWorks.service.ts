@@ -5,15 +5,7 @@ import { Headers, Http } from '@angular/http';
 export class SecurityWorksService {
     private securityWorksUrl = 'api/securityWorkersData';
 
-    constructor(private http: Http) { }
-
-    /*    getSecurityWorks(cpf: string) {
-     return (this.http.get(this.securityWorksUrl+"/"+cpf).map(
-     response => {
-     return response.json().data;
-     }));
-     }
-     */
+    constructor(private http: Http) {}
 
     getSecurityWorker() {
         return this.http.get(this.securityWorksUrl).map((response) => {
