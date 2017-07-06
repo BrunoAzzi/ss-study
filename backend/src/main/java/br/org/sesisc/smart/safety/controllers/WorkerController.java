@@ -4,12 +4,11 @@ import br.org.sesisc.smart.safety.models.Worker;
 import br.org.sesisc.smart.safety.repositories.WorkerRepository;
 import br.org.sesisc.smart.safety.responses.ErrorResponse;
 import br.org.sesisc.smart.safety.responses.SuccessResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.Valid;
 import java.util.Set;
@@ -29,8 +28,8 @@ public class WorkerController {
     public ResponseEntity<?> index() {
         Set<Worker> workers = repository.findAll();
         return SuccessResponse.handle(
-                new String[] { "workers" },
-                new Object[] { workers },
+                new String[]{"workers"},
+                new Object[]{workers},
                 HttpStatus.OK
         );
     }
@@ -40,8 +39,8 @@ public class WorkerController {
 
         Worker worker = repository.findByCpf(cpf);
         return SuccessResponse.handle(
-                new String[] { "worker" },
-                new Object[] { worker },
+                new String[]{"worker"},
+                new Object[]{worker},
                 HttpStatus.OK
         );
     }
@@ -52,14 +51,13 @@ public class WorkerController {
 
         if (worker != null) {
             return SuccessResponse.handle(
-                    new String[] { "worker" },
-                    new Object[] { worker },
+                    new String[]{"worker"},
+                    new Object[]{worker},
                     HttpStatus.OK
             );
-        }
-        else {
+        } else {
             return ErrorResponse.handle(
-                    new String[] {"Trabalhador não encontrado."},
+                    new String[]{"Trabalhador não encontrado."},
                     Worker.class,
                     HttpStatus.NOT_FOUND
             );
@@ -76,8 +74,8 @@ public class WorkerController {
         Worker worker = repository.save(cParams);
 
         return SuccessResponse.handle(
-                new String[] {"worker"},
-                new Object[] {worker},
+                new String[]{"worker"},
+                new Object[]{worker},
                 HttpStatus.CREATED
         );
     }

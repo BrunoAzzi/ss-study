@@ -35,6 +35,8 @@ export class Worker {
     health: Health = new Health();
     security: Security = new Security();
 
+
+
     /*
         constructor()
         constructor(data?: any) {
@@ -51,7 +53,7 @@ export class Worker {
     
             let sex     = data && data.sexOption || 'm';
             this.gender = (sex === 'm') ? 'Masculino' : 'Feminino';
-    
+     
             let hyred           = data && data.ownContracting || '';
             this.ownContracting = (hyred === 'Terceiro') ? 'Terceiro' : 'Próprio';
     
@@ -78,6 +80,9 @@ export class Worker {
         }
     */
     public initializeWithJSON(json: any) {
+        let birth_date = moment(json.birth_date,"YYYY-MM-DD HH:mm:ss");
+        let admission_date = moment(json.admission_date,"YYYY-MM-DD HH:mm:ss");
+
         this.id = json.id;
         this.name = json.name;
         this.cpf = json.cpf;
@@ -96,15 +101,16 @@ export class Worker {
         this.ownContracting = json.ownContracting;
         this.company = json.company;
         this.photoPath = json.photoPath;
-        this.admissionDate =  new Date (json.admissionDate);
-        this.birthDate = moment("12/25/1998",json.birthDate);
+        this.admissionDate = { date: { year:admission_date.year(), month:admission_date.month()+1, day:admission_date.date() }};
+        this.birthDate = { date: { year:birth_date.year(), month:birth_date.month()+1, day:birth_date.date() }};
         this.ctps = json.ctps;
-        this.age = json.age;
+        this.age = birth_date.diff(moment(),'years');
         this.ocupation = json.ocupation;
         this.isThirdparty = json.isThirdparty;
         this.thirdpartyName = json.thirdpartyName;
 
-        console.log(json.admissionDate); 
+
+         
 
         if (json.health) {
             this.health = new Health().initializeWithJSON(json.health);

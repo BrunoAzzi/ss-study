@@ -19,7 +19,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { HttpClientService } from './services/http-client.service';
+import { CnaeService } from './services/cnae.service'
 import { SessionsService } from './services/sessions.service';
 import { PasswordService } from './services/password.service';
 import { AuthGuard } from './guards/index';
@@ -82,7 +84,6 @@ import { SummaryItemComponent } from './components/summary-item/summary-item.com
 import { SummaryComponent } from './components/summary/summary.component';
 import { RiskGraphComponent } from './components/area-monitoring/risk-graph/risk-graph.component';
 import { ResponsableDataComponent } from './components/company/responsable-data/responsable-data.component';
-
 import { AddInformationComponent } from './components/company/additional-information/additional-information.component';
 import { Ng2FileDropModule } from 'ng2-file-drop';
 
@@ -143,6 +144,7 @@ import { FabComponent } from './components/common/floating-action-button/fab.com
 
 import { DropFileComponent } from './components/common/drop-file/drop-file.component';
 import { CepPickerComponent } from './components/common/cep-picker/cep-picker.component';
+import { CnaePickerComponent } from './components/common/cnae-picker/cnae-picker.component';
 import { ConstructionStatusPickerComponent } from './components/common/construction-status-picker/construction-status-picker.component';
 import { ConstructionSitesStatusIconComponent } from './components/common/construction-sites-status-icon/construction-sites-status-icon.component';
 import { AddNewCategoryComponent } from './components/common/add-category/add-category.component';
@@ -263,6 +265,7 @@ import { AutofocusDirective } from './components/common/autofocus/autofocus.dire
 
         ConstructionDetailsFormComponent,
         CepPickerComponent,
+        CnaePickerComponent,
         ConstructionManagersFormComponent,
         ConstructionStatusPickerComponent,
         ConstructionSitesStatusIconComponent,
@@ -311,8 +314,6 @@ import { AutofocusDirective } from './components/common/autofocus/autofocus.dire
         // Datepicker
         MyDatePickerModule,
 
-        MomentModule,
-
         // Mocks
         InMemoryWebApiModule.forRoot(InMemoryDataService, { passThruUnknownUrl: true }),
 
@@ -335,6 +336,9 @@ import { AutofocusDirective } from './components/common/autofocus/autofocus.dire
         // Flex Layout
         FlexLayoutModule,
 
+        //Moments
+        MomentModule,
+
         // Routes
         AppRoutingModule,
     ],
@@ -345,6 +349,7 @@ import { AutofocusDirective } from './components/common/autofocus/autofocus.dire
         SessionsService,
         PasswordService,
         MdSnackBar,
+        CnaeService,
         ConstructionResolver,
         ConstructionsService,
         { provide: LocationStrategy, useClass: HashLocationStrategy }],

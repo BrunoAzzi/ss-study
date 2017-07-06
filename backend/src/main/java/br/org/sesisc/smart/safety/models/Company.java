@@ -208,11 +208,11 @@ public class Company {
         this.hasCipa = hasCipa;
     }
 
-    public Boolean getDesignatedCipa() {
+    public Boolean getIsDesignatedCipa() {
         return isDesignatedCipa;
     }
 
-    public void setDesignatedCipa(Boolean isDesignatedCipa) {
+    public void setIsDesignatedCipa(Boolean isDesignatedCipa) {
         this.isDesignatedCipa = isDesignatedCipa;
     }
 

@@ -1,5 +1,6 @@
 package br.org.sesisc.smart.safety.controllers;
 
+import br.org.sesisc.smart.safety.helpers.FileHelper;
 import br.org.sesisc.smart.safety.models.Construction;
 import br.org.sesisc.smart.safety.repositories.ConstructionRepository;
 import br.org.sesisc.smart.safety.responses.ErrorResponse;
@@ -104,7 +105,7 @@ public class ConstructionController {
     ) {
         Construction construction = repository.findOne(id);
 
-        if (construction != null && Construction.checkType(type)){
+        if (construction != null && FileHelper.checkType(type)){
             String fileName = type.equals("logo") ? construction.getLogoFileName() : construction.getCeiFileName();
             if (fileName != null && !fileName.isEmpty()) {
                 Resource file = storageService.loadFile(fileName);
@@ -146,7 +147,7 @@ public class ConstructionController {
         Construction construction = repository.findOne(id);
 
         if (construction != null && file != null) {
-            if (Construction.checkTypeAndFileContent(type, file.getContentType())) {
+            if (FileHelper.checkTypeAndFileContent(type, file.getContentType())) {
                 String fileName = storageService.store(file);
 
                 if (type.equals("logo")) {
