@@ -10,9 +10,9 @@ public class AttachmentFile {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "task_id")
-//    private Task task;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "task_id")
+    private Task task;
 
     private String fileName;
 
@@ -74,12 +74,11 @@ public class AttachmentFile {
         this.type = type;
     }
 
+    public Task getTask() {
+        return task;
+    }
 
-//    public Task getTask() {
-//        return task;
-//    }
-//
-//    public void setTask(Task task) {
-//        this.task = task;
-//    }
+    public void setTask(Task task) {
+        this.task = task;
+    }
 }
