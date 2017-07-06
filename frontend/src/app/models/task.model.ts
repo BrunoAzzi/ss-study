@@ -1,3 +1,4 @@
+import { AttachmentFile } from './attachmentFile.model';
 import { User } from './user.model';
 
 export interface ITask {
@@ -19,19 +20,21 @@ export class Task implements ITask {
     description: string
     author: User
     responsible: User
-    checked: boolean
+    checked: boolean    
+    attachmentFiles: Array<AttachmentFile>
 
     public constructor() {}
 
     public initializeWithJSON(json: any): Task {
         this.id = json.id
-        this.createAt = json.createAt
-        this.deadline = json.deadline
+        this.createAt = new Date(json.createAt)
+        this.deadline = new Date(json.deadline)
         this.title = json.title
         this.description = json.description
         this.author = json.author
         this.responsible = json.responsible
-        this.checked = false
+        this.checked = json.checked
+        this.attachmentFiles = json.attachmentFiles
 
         return this
     }
@@ -44,7 +47,9 @@ export class Task implements ITask {
             title: this.title,
             description: this.description,
             author: this.author,
-            responsible: this.responsible
+            responsible: this.responsible,
+            checked: this.checked,
+            attachmentFiles: this.attachmentFiles
         };
     }
 

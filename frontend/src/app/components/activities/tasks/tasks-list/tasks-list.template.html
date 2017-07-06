@@ -1,4 +1,3 @@
-
 <div class="filters">
     <div>
         <button md-icon-button type="button" (click)="toggleSearch()">
@@ -44,3 +43,8 @@
         </li>
     </ul>
 </div>  
+
+<div *ngIf="(taskLists).length === 0" style="text-align: center;"> 
+    <h2>A lista de tarefas está vazia</h2>
+    <a href="javascript:void(0)">Cadastrar uma tarefa</a>
+</div>

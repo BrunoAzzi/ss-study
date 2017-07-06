@@ -9,7 +9,7 @@ import { Task } from './../models/task.model';
 export class TasksService {
 
     private endpoint = '/tasks';
-    public tasks: Array<any> = [];
+    public tasks: Array<Task> = [];
 
     constructor(private http: Http, private service: HttpClientService) { }
 
@@ -18,10 +18,11 @@ export class TasksService {
         return this.service.get(this.endpoint)
             .map((jsonResponse) => {
                 return jsonResponse.tasks.map(task => {
-                    return task;
+                    return new Task().initializeWithJSON(task);
                 });
             });
     }
+    
     saveTask(_task : Task) {
         if(_task.id) {
             return this.updateTask(_task);
@@ -43,5 +44,4 @@ export class TasksService {
                 return new Task().initializeWithJSON(jsonResponse.task);
             });
     }
- 
 }
