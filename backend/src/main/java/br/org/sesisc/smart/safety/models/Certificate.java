@@ -3,17 +3,17 @@ package br.org.sesisc.smart.safety.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "degrees")
-public class Degree {
+@Table(name = "certificates")
+public class Certificate {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
     private String name;
 
-    public Degree() { }
+    public Certificate() { }
 
-    public Degree(String name) {
+    public Certificate(String name) {
         this.name = name;
     }
 

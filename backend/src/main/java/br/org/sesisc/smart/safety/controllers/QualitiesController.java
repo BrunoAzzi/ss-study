@@ -1,6 +1,6 @@
 package br.org.sesisc.smart.safety.controllers;
 
-import br.org.sesisc.smart.safety.models.Quality;
+import br.org.sesisc.smart.safety.models.Certification;
 import br.org.sesisc.smart.safety.repositories.QualitiesRepository;
 import br.org.sesisc.smart.safety.responses.SuccessResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class QualitiesController {
 
     @GetMapping()
     public ResponseEntity<?> index() {
-        Set<Quality> qualities = repository.findAll();
+        Set<Certification> qualities = repository.findAll();
         return SuccessResponse.handle(
                 new String[] { "qualities" },
                 new Object[] { qualities },
