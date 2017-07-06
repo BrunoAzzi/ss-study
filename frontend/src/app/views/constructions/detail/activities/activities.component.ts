@@ -3,6 +3,7 @@ import { MdDialog} from '@angular/material';
 
 import { Task } from './../../../../models/task.model';
 import { User } from './../../../../models/user.model'
+import { SessionsService } from './../../../../services/sessions.service'
 import { TasksService } from './../../../../services/tasks.service';
 import { UserService } from './../../../../services/user.service';
 import { TasksDialogComponent } from './../../../../components/activities/tasks/tasks-dialog/tasks-dialog.component'
@@ -15,23 +16,28 @@ import { TasksDialogComponent } from './../../../../components/activities/tasks/
 })
 export class ActivitiesComponent {
     @ViewChild('tabGroup') tabGroup;
-    
+
     public taskLists : Array<any> = []
     private allTasks : Array<any> = []
-
+    
+    public cookie: any
     private taskSub : any
     private userSub : any
+    private cookieSub : any
 
     dialogConfig = {
         data: {
             task: new Task(),
+            currentUser : new User(),
             users: new Array<User>()
         }
     }
 
-    constructor(public dialog: MdDialog, public taskService: TasksService, public userService: UserService) { }
+    constructor(public dialog: MdDialog, public taskService: TasksService, public userService: UserService, public sessionsService: SessionsService) { }
 
     ngOnInit() {
+        this.cookie = this.sessionsService.getCurrent();   
+
         // this.taskSub = this.taskService.getTaskList().subscribe((tasks) => {
         //     this.taskLists = this.mapTasks(tasks);
         //     this.allTasks = this.taskLists;
@@ -45,7 +51,7 @@ export class ActivitiesComponent {
 
         var tasks = [task];
         this.taskLists = this.mapTasks(tasks);
-        this.allTasks = this.taskLists;
+        this.allTasks = this.taskLists;     
 
         this.userSub = this.userService.getUsers().subscribe((users) => {            
             users.forEach(element => {
@@ -53,11 +59,19 @@ export class ActivitiesComponent {
                 this.dialogConfig.data.users.push(user)
             });
         })
+        if(this.cookie) {
+            this.cookieSub = this.userService.getUserById(this.cookie).subscribe((user) => {
+                this.dialogConfig.data.currentUser = user;
+            });
+        }
     }
 
     ngOnDestroy() {
         this.taskSub.unsubscribe()
         this.userSub.unsubscribe()
+        if(this.cookie) {
+            this.cookieSub.unsubscribe()
+        }
     }
 
     openTaskDialog() {        

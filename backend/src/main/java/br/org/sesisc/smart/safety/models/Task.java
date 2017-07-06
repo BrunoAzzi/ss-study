@@ -1,7 +1,7 @@
 package br.org.sesisc.smart.safety.models;
 
 import javax.persistence.*;
-import java.util.Date;
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,28 +15,43 @@ public class Task {
 
     @ManyToOne
     @JoinColumn(name = "responsible_id")
+    @NotNull(message = "Responsável é um campo obrigatório")
     private User responsible;
 
     @ManyToOne
     @JoinColumn(name = "author_id")
+    @NotNull(message = "Autor é um campo obrigatório")
     private User author;
 
-    private Date deadline;
+    @NotNull(message = "Prazo é um campo obrigatório")
+    private String deadline;
 
+    @NotNull(message = "Titulo é um campo obrigatório")
     private String title;
 
+    @NotNull(message = "Descrição é um campo obrigatório")
     private String description;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "task_id")
-    private Set<AttachmentFile> attachmentFiles = new HashSet<AttachmentFile>();
+    private Set<AttachmentFile> attachmentFiles = new HashSet<>();
 
     public Task() {}
 
-    public Task(Date deadline, String title, String description) {
+    public Task(User author, User responsible, String deadline, String title, String description) {
+        this.author = author;
+        this.responsible = responsible;
         this.deadline = deadline;
         this.title = title;
         this.description = description;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public User getResponsible() {
@@ -55,11 +70,11 @@ public class Task {
         this.author = author;
     }
 
-    public Date getDeadline() {
+    public String getDeadline() {
         return deadline;
     }
 
-    public void setDeadline(Date deadline) {
+    public void setDeadline(String deadline) {
         this.deadline = deadline;
     }
 

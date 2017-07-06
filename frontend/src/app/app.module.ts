@@ -38,6 +38,7 @@ import { MyDatePickerModule } from 'mydatepicker';
 import { MomentModule } from 'angular2-moment';
 
 import {
+    MdAutocompleteModule,
     MdSnackBar,
     MdDialogModule,
     MdToolbarModule,
@@ -338,6 +339,7 @@ import { AutofocusDirective } from './components/common/autofocus/autofocus.dire
 
         // Angular Material
         MaterialModule,
+        MdAutocompleteModule,
         MdDialogModule,
         MdToolbarModule,
         MdButtonModule,
