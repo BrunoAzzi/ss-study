@@ -17,4 +17,11 @@ export class UserService {
                 return response.users;
 			});
     }
+
+    getUserById(id: number) {
+        return this.service.get(this.endpoint + "/" + id)
+            .map((response) => {                
+                return response.user;
+			});
+    }
 }
