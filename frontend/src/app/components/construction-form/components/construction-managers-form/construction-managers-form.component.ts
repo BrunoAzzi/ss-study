@@ -1,6 +1,6 @@
 import { Construction } from './../../../../models/construction.model';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import {NgForm} from "@angular/forms";
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'construction-managers-form',
@@ -9,8 +9,10 @@ import {NgForm} from "@angular/forms";
 })
 export class ConstructionManagersFormComponent {
 
-  @Input() construction: Construction
-  @Output() saved: EventEmitter<Construction> = new EventEmitter()
+  @Input() construction: Construction;
+  @Output() saved: EventEmitter<Construction> = new EventEmitter();
+
+  phoneFaxMask = ['(', /\d/, /\d/, ')', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
 
   constructor() { }
 
@@ -18,7 +20,7 @@ export class ConstructionManagersFormComponent {
     const construction = Object.assign(
         new Construction(),
         this.construction
-    )
+    );
     this.saved.emit(construction);
   }
 

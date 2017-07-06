@@ -36,6 +36,8 @@ public class Task {
     @JoinColumn(name = "task_id")
     private Set<AttachmentFile> attachmentFiles = new HashSet<>();
 
+    private boolean checked;
+
     public Task() {}
 
     public Task(User author, User responsible, String deadline, String title, String description) {
@@ -75,7 +77,7 @@ public class Task {
     }
 
     public void setDeadline(String deadline) {
-        this.deadline = deadline;
+        this.deadline = deadline + " 23:59:59";
     }
 
     public String getTitle() {
@@ -100,5 +102,13 @@ public class Task {
 
     public void setAttachmentFiles(Set<AttachmentFile> attachmentFiles) {
         this.attachmentFiles = attachmentFiles;
+    }
+
+    public boolean isChecked() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
     }
 }

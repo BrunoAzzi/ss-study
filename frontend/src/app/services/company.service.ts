@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http, RequestOptions  } from '@angular/http';
+import { Http  } from '@angular/http';
 
 import { HttpClientService } from './http-client.service';
 import { Company } from './../models/company.model';
 
 @Injectable()
 export class CompanyService {
-    private endpoint = "/company";
+    private endpoint = '/company';
 
-    constructor(private http: Http, private service : HttpClientService) { }
+    constructor(private service: HttpClientService) { }
 
-    getCompany(id: number) {
-        return this.service.get(this.endpoint + "/" + id)
-            .map(response => {                
+    getCompany() {
+        return this.service.get(this.endpoint + '/' + 1)
+            .map(response => {
                 return new Company(response.company);
-            })
+            });
     }
 
     getCompanyLogo(company: Company) {
@@ -30,8 +30,8 @@ export class CompanyService {
 
     updateCompanyLogo(company: Company, formData: any) {
         return this.service.postWithNoHeaders(this.endpoint + '/' + company.id + '/logo', formData)
-        .map((response) => {            
-            return response
+        .map((response) => {
+            return response;
         });
     }
 }
