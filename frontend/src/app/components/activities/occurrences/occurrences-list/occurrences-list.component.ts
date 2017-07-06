@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'occurrences-list',
@@ -7,30 +7,36 @@ import { Component, Input } from '@angular/core';
 })
 export class OccurrencesListComponent {
     @Input() occurrences = [];
-    selectedFilters = ['accident', 'incident']
+    @Output() changeOccurrencesFilter : EventEmitter<any> = new EventEmitter();
+
+    selectedFilters = {
+        accident: false,
+        incident: false,
+        goodHabits: false,
+        nonCompliance: false
+    }
 
     occurrencesList = [
         { group: 'Hoje', occurrences: [
-            { date: '04/07/2017', title: 'Criar proteção coletiva', type: 'non-compliance' },
+            { date: '04/07/2017', title: 'Criar proteção coletiva', type: 'nonCompliance' },
             { date: '04/07/2017', title: 'Criar proteção coletiva', type: 'incident' },
             { date: '04/07/2017', title: 'Criar proteção coletiva', type: 'incident' },
         ]},
         { group: 'Dias Anteriores', occurrences: [
             { date: '08/07/2017', title: 'Criar proteção coletiva', type: 'accident' },
-            { date: '13/07/2017', title: 'Criar proteção coletiva', type: 'good-habits' },
-            { date: '15/07/2017', title: 'Criar proteção coletiva', type: 'good-habits' },
-            { date: '16/07/2017', title: 'Criar proteção coletiva', type: 'good-habits' },
+            { date: '13/07/2017', title: 'Criar proteção coletiva', type: 'goodHabits' },
+            { date: '15/07/2017', title: 'Criar proteção coletiva', type: 'goodHabits' },
+            { date: '16/07/2017', title: 'Criar proteção coletiva', type: 'goodHabits' },
             { date: '16/07/2017', title: 'Criar proteção coletiva', type: 'accident' },
             { date: '20/07/2017', title: 'Criar proteção coletiva', type: 'accident' },
         ]},
     ]
 
     toggleActiveFilter(_filter: string) {
-        var index = this.selectedFilters.indexOf(_filter);
-        if ( index == -1) {
-            this.selectedFilters.push(_filter);
-        } else {
-            this.selectedFilters.splice(index, 1);
+        this.selectedFilters = {
+            ...this.selectedFilters,
+            [_filter]: !this.selectedFilters[_filter]
         }
+        this.changeOccurrencesFilter.emit(this.selectedFilters);
     }
 }

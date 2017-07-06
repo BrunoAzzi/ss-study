@@ -38,16 +38,16 @@ export class ActivitiesComponent {
     constructor(public dialog: MdDialog, public taskService: TasksService, public userService: UserService, public sessionsService: SessionsService) { }
 
     ngOnInit() {
+        console.log(Cookie.get('auth_token'));
         this.sessionSrtg = this.sessionsService.getCurrent() || new User();        
-        this.taskSub = this.taskService.getTaskList().subscribe((tasks) => {
-            this.tasks = tasks
-        })
+
         this.userSub = this.userService.getUsers().subscribe((users) => {            
             users.forEach(element => {
                 let user = new User().initializeWithJSON(element);
                 this.dialogConfig.data.users.push(user)
             });
         })
+
         if(this.sessionSrtg) {            
             this.dialogConfig.data.currentUser = new User().initializeWithJSON(this.sessionSrtg);
         }

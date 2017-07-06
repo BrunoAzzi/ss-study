@@ -10,20 +10,20 @@
     </div>
 
     <md-chip-list>
-        <md-chip class="chip {{this.selectedFilters.indexOf('accident') !== -1 ? 'active' : ''}} accident" (click)="toggleActiveFilter('accident')">
+        <md-chip class="chip {{ this.selectedFilters.accident ? 'active' : ''}} accident" (click)="toggleActiveFilter('accident')">
             <img src="assets/activities/occurrences/accident-icon.png" class="accident"> 
             <span>Acidentes - 10</span>
         </md-chip>
-        <md-chip class="chip {{this.selectedFilters.indexOf('incident') !== -1  ? 'active' : ''}} incident" (click)="toggleActiveFilter('incident')">
+        <md-chip class="chip {{ this.selectedFilters.incident ? 'active' : ''}} incident" (click)="toggleActiveFilter('incident')">
             <img src="assets/activities/occurrences/incident-icon.png" class="incident"> 
             <span>Incidentes - 3</span>
         </md-chip>
-        <md-chip class="chip {{this.selectedFilters.indexOf('good-habits') !== -1 ? 'active' : ''}} good-habits" (click)="toggleActiveFilter('good-habits')">
-            <img src="assets/activities/occurrences/good-habits-icon.png" class="good-habits"> 
+        <md-chip class="chip {{ this.selectedFilters.goodHabits ? 'active' : ''}} good-habits" (click)="toggleActiveFilter('goodHabits')">
+            <img src="assets/activities/occurrences/goodHabits-icon.png" class="good-habits"> 
             <span>Boas práticas - 2</span>
         </md-chip>
-        <md-chip class="chip {{this.selectedFilters.indexOf('non-compliance') !== -1 ? 'active' : ''}} non-compliance" (click)="toggleActiveFilter('non-compliance')">
-            <img src="assets/activities/occurrences/non-compliance-icon.png" class="non-compliance"> 
+        <md-chip class="chip {{ this.selectedFilters.nonCompliance ? 'active' : ''}} non-compliance" (click)="toggleActiveFilter('nonCompliance')">
+            <img src="assets/activities/occurrences/nonCompliance-icon.png" class="non-compliance"> 
             <span>Não conformidades - 52</span>
         </md-chip>
     </md-chip-list>
@@ -47,3 +47,8 @@
         </li>
     </ul>
 </div>  
+
+<div *ngIf="(occurrencesList).length === 0" style="text-align: center;"> 
+    <h2>Você ainda não cadastrou ocorrências</h2>
+    <a href="javascript:void(0)">Cadastrar uma ocorrência</a>
+</div>
