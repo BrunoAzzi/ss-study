@@ -8,8 +8,6 @@ import javax.validation.constraints.Pattern;
 import java.util.HashSet;
 import java.util.Set;
 
-import static br.org.sesisc.smart.safety.helpers.FileHelper.*;
-
 @Entity
 @Table(name = "constructions")
 public class Construction {
