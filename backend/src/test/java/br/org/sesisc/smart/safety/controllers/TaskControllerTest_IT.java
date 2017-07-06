@@ -5,6 +5,7 @@ import br.org.sesisc.smart.safety.models.User;
 import br.org.sesisc.smart.safety.service.StorageService;
 import com.google.gson.Gson;
 import org.json.JSONObject;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -39,7 +40,7 @@ public class TaskControllerTest_IT extends BaseControllerTest_IT {
 
         User user = new User();
         user.setId(1l);
-        user.setName("Tester name");
+//        user.setName("Tester name");
 
         MvcResult result = mockMvc.perform(post("/tasks")
                 .content(getTaskRequestJson(user, user,new Date().toString(),"Title test","Description test"))
@@ -47,6 +48,19 @@ public class TaskControllerTest_IT extends BaseControllerTest_IT {
                 .andExpect(status().isCreated())
                 .andReturn();
 
+
+        String responseJson = result.getResponse().getContentAsString();
+        JSONObject jsonObject = new JSONObject(responseJson);
+
+        System.out.println("Response: " + responseJson);
+
+    }
+
+    @Test
+    public void showAllTasks() throws Exception {
+        MvcResult result = mockMvc.perform(get("/tasks/1"))
+                .andExpect(status().isOk())
+                .andReturn();
 
         String responseJson = result.getResponse().getContentAsString();
         JSONObject jsonObject = new JSONObject(responseJson);
