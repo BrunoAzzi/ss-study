@@ -1,4 +1,5 @@
-import { TasksComponent } from './components/activities/tasks/tasks.component';
+import { OccurrencesListComponent } from './components/activities/occurrences/occurrences-list/occurrences-list.component';
+import { TasksListComponent } from './components/activities/tasks/tasks-list/tasks-list.component';
 import { TasksDialogComponent } from './components/activities/tasks/tasks-dialog/tasks-dialog.component';
 import { TasksFormComponent } from './components/activities/tasks/tasks-form/tasks-form.component';
 import { ActivitiesComponent } from './views/constructions/detail/activities/activities.component';
@@ -293,9 +294,10 @@ import { AutofocusDirective } from './components/common/autofocus/autofocus.dire
         CategorizedListItemComponent,
         AutofocusDirective,
         ActivitiesComponent,
-        TasksComponent,
+        TasksListComponent,
         TasksDialogComponent,
         TasksFormComponent,
+        OccurrencesListComponent,
     ],
     imports: [
         // Notification Module
