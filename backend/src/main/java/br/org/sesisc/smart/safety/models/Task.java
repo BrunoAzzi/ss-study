@@ -34,7 +34,7 @@ public class Task {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "task_id")
-    private Set<AttachmentFile> attachmentFiles = new HashSet<AttachmentFile>();
+    private Set<AttachmentFile> attachmentFiles = new HashSet<>();
 
     public Task() {}
 

@@ -52,4 +52,18 @@ public class UserController {
                 HttpStatus.OK
         );
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> show(@PathVariable("id") long id) {
+        User user = repository.findOne(id);
+        if (user != null) {
+            return SuccessResponse.handle(
+                    new String[] {"user"},
+                    new Object[] {user},
+                    HttpStatus.OK
+            );
+        } else {
+            return ErrorResponse.handle("Usuário não encontrado.",getClass(), HttpStatus.NOT_FOUND);
+        }
+    }
 }
