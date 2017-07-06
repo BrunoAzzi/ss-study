@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.xml.ws.Response;
 import java.util.Set;
 
 @RestController
@@ -39,7 +38,7 @@ public class RiskTypeController {
 
     @GetMapping("/{id}/risk_factors")
     public ResponseEntity<?> getRiskFactorsById(@PathVariable("id") long id) {
-        Set<RiskFactor> riskFactors = riskFactorRepository.findByRiskTypeId(id);
+        Set<RiskFactor> riskFactors = riskFactorRepository.findById(id);
 
         return SuccessResponse.handle(
                 new String[] {"riskFactors"},
