@@ -29,7 +29,8 @@ import { HttpClientService } from './services/http-client.service';
 import { CnaeService } from './services/cnae.service'
 import { SessionsService } from './services/sessions.service';
 import { PasswordService } from './services/password.service';
-import { UserService } from './services/user.service'
+import { TasksService } from './services/tasks.service';
+import { UserService } from './services/user.service';
 import { AuthGuard } from './guards/index';
 import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
@@ -365,6 +366,7 @@ import { BackendPathPipe } from './pipes/backend-path.pipe';
         MdSnackBar,
         CnaeService,
         UserService,
+        TasksService,
         ConstructionResolver,
         ConstructionsService,
         { provide: LocationStrategy, useClass: HashLocationStrategy }],

@@ -22,12 +22,25 @@ export class TasksService {
                 });
             });
     }
+    saveTask(_task : Task) {
+        if(_task.id) {
+            return this.updateTask(_task);
+        } else {
+            return this.createTask(_task);
+        }
+    }
 
-    saveTask(task : Task) {
-        return this.service.post(this.endpoint, JSON.stringify(task.toJSON()))
-            .map((jsonRespone) => {
-                console.log(jsonRespone);
-                return jsonRespone;
+    createTask(_task : Task) {
+        return this.service.post(this.endpoint, JSON.stringify(_task.toJSON()))
+            .map((jsonResponse) => {                
+                return new Task().initializeWithJSON(jsonResponse.task);
+            });
+    }
+
+    updateTask(_task : Task) {        
+        return this.service.put(this.endpoint + '/' + _task.id, JSON.stringify(_task.toJSON()))
+            .map((jsonResponse) => {
+                return new Task().initializeWithJSON(jsonResponse.task);
             });
     }
  

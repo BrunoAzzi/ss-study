@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { MdSnackBar, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 
 import { Task } from './../../../../models/task.model';
 import { User } from './../../../../models/user.model';
@@ -18,7 +18,9 @@ export class TasksDialogComponent implements OnInit {
     users: Array<User>
 
     constructor(
-        public dialogRef: MdDialogRef<TasksDialogComponent>,        
+        public dialogRef: MdDialogRef<TasksDialogComponent>,
+        public tasksService: TasksService,
+        public snackBar: MdSnackBar,
         @Inject(MD_DIALOG_DATA) public data: any
     ) {}
 
@@ -39,6 +41,25 @@ export class TasksDialogComponent implements OnInit {
 
     saveTask() {
         console.log(this.task);
+        this.tasksService.saveTask(this.task).subscribe(
+                savedTask => {
+                    console.log(savedTask);
+                    this.snackBar.open('Sucesso ao salvar!', null, { duration: 3000 });                    
+                },
+                error => {
+                    this.handleError(error);
+                }
+            );
+    }
+
+    handleError(error) {
+        if (error.json() && error.json().errors && error.json().errors.length > 0) {
+            this.snackBar.open(error.json().errors[0].message, null, { duration: 3000 });
+            console.log(error.json().errors[0].message);
+        } else {
+            this.snackBar.open('Erro no servidor!', null, { duration: 3000 });
+            console.log('Erro no servidor!');
+        }
     }
    
 }
