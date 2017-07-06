@@ -29,7 +29,8 @@ import { HttpClientService } from './services/http-client.service';
 import { CnaeService } from './services/cnae.service'
 import { SessionsService } from './services/sessions.service';
 import { PasswordService } from './services/password.service';
-import { UserService } from './services/user.service'
+import { TasksService } from './services/tasks.service';
+import { UserService } from './services/user.service';
 import { AuthGuard } from './guards/index';
 import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
@@ -173,6 +174,7 @@ import { ConstructionBlueprintsFormComponent } from './components/construction-f
 import { CategorizedListComponent } from './components/common/categorized-list/categorized-list.component';
 import { CategorizedListItemComponent } from './components/common/categorized-list-item/categorized-list-item.component';
 import { AutofocusDirective } from './components/common/autofocus/autofocus.directive';
+import { BackendPathPipe } from './pipes/backend-path.pipe';
 
 @NgModule({
     declarations: [
@@ -299,6 +301,7 @@ import { AutofocusDirective } from './components/common/autofocus/autofocus.dire
         TasksDialogComponent,
         TasksFormComponent,
         OccurrencesListComponent,
+        BackendPathPipe,
     ],
     imports: [
         // Notification Module
@@ -363,6 +366,7 @@ import { AutofocusDirective } from './components/common/autofocus/autofocus.dire
         MdSnackBar,
         CnaeService,
         UserService,
+        TasksService,
         ConstructionResolver,
         ConstructionsService,
         { provide: LocationStrategy, useClass: HashLocationStrategy }],

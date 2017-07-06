@@ -3,6 +3,8 @@ import { HttpClientService } from './http-client.service';
 import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 
+import { Task } from './../models/task.model';
+
 @Injectable()
 export class TasksService {
 
@@ -18,6 +20,27 @@ export class TasksService {
                 return jsonResponse.tasks.map(task => {
                     return task;
                 });
+            });
+    }
+    saveTask(_task : Task) {
+        if(_task.id) {
+            return this.updateTask(_task);
+        } else {
+            return this.createTask(_task);
+        }
+    }
+
+    createTask(_task : Task) {
+        return this.service.post(this.endpoint, JSON.stringify(_task.toJSON()))
+            .map((jsonResponse) => {                
+                return new Task().initializeWithJSON(jsonResponse.task);
+            });
+    }
+
+    updateTask(_task : Task) {        
+        return this.service.put(this.endpoint + '/' + _task.id, JSON.stringify(_task.toJSON()))
+            .map((jsonResponse) => {
+                return new Task().initializeWithJSON(jsonResponse.task);
             });
     }
  

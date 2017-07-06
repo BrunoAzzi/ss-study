@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl, NgModel } from '@angular/forms';
 
+import { MomentModule } from 'angular2-moment';
 import { Observable } from 'rxjs/Observable';
 
 import { IMyDpOptions } from 'mydatepicker';
@@ -19,6 +20,7 @@ export class TasksFormComponent {
     @Input() users: Array<User>
     @Output() save: EventEmitter<Task> = new EventEmitter();
 
+    deadline : any
     fControl = new FormControl();
     filteredOptions: Observable<User[]>;
 
@@ -47,15 +49,25 @@ export class TasksFormComponent {
          .startWith(null)
          .map(user => user && typeof user === 'object' ? user.name : user)
          .map(name => name ? this.filter(name) : this.users.slice());
+        this.deadline = this.task.deadline;
     }
 
     filter(name: string): User[] {
       return this.users.filter(user => new RegExp(`^${name}`, 'gi').test(user.name)); 
-   }
+    }
 
-   displayFn(user: User): any {
-      return user ? user.name : user;
-   }
+    displayFn(user: User): any {
+        return user ? user.name : user;
+    }
+
+    setValidityDeadline(event) {
+        let formattedData = event.formatted.substr(event.formatted.length - 4);
+            formattedData += "-";
+            formattedData += event.formatted.substr(3, 2);
+            formattedData += "-";
+            formattedData += event.formatted.substr(0, 2);        
+        this.task.deadline = formattedData;
+    }
 
     sendData() {
         this.save.emit(this.task);

@@ -4,16 +4,18 @@
   align-items: center;
 }
 
-.with-action, md-spinner {
+.with-action {
   width: calc(100% - 28px);
 }
 
 md-icon {
   cursor: pointer;
+  flex-basis: 0;
 }
 
 md-spinner {
+  display: block;
   width: 24px !important;
   height: 24px;
-  float: right;
+  flex-basis: 24px;
 }

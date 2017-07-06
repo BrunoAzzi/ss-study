@@ -8,7 +8,6 @@ export interface IFloor {
     acronym: string;
     bounds: [number, number][];
     imagePath: string;
-    sectionName: string;
     sector: Sector;
     markers: Array<any>;
     conesNumber(): number;
@@ -16,32 +15,30 @@ export interface IFloor {
     alertsNumber(): number;
 }
 
-export class Floor implements IFloor {
+export class Floor {
 
     id: number;
     name: string;
     acronym: string;
-    sectionName: string;
 
-    bounds: [number, number][];
     image: any;
+    imageFile: File;
     imagePath: string;
 
     markers: Array<Marker> = [];
     alerts: Array<Alert> = [];
     sector: Sector;
 
-    initWithJSON(json: IFloor, parentSector: Sector) {
+    initWithJSON(json: any, parentSector: Sector) {
         this.id = json.id;
         this.name = json.name;
         this.acronym = json.acronym;
         this.sector = parentSector;
 
-        this.bounds = json.bounds;
-        this.imagePath = json.imagePath;
+        // this.bounds = json.bounds;
+        this.imagePath = json.imageUrl;
 
-
-        // this.markers = data.markers.map(marker => new Marker(marker))
+        // this.markers = json.markers.map(marker => new Marker(marker))
 
         this.alerts = [
             new Alert({ type: 'WRONG_ACCESS', cone: '12842', worker: 'Rodrigo Vicente', time: '10:10' }),
@@ -59,7 +56,7 @@ export class Floor implements IFloor {
             id: this.id,
             name: this.name,
             acronym: this.acronym
-        }
+        };
     }
 
     conesNumber(): number {

@@ -31,6 +31,7 @@ export class Construction implements IConstruction {
 
     status = 0;
     image = '';
+    imageFile: File;
 
     description = '';
 

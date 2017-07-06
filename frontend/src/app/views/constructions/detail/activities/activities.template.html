@@ -9,7 +9,7 @@
         <md-tab id="tab2" label="Tarefas">
             <div class="list-content">
                 <tasks-list 
-                    [tasks]="tasks"
+                    [taskLists]="taskLists"
                     (checkTask)="checkTask($event)"
                     (changeTaskFilter)="changeTaskFilter($event)">
                 </tasks-list>

@@ -1,3 +1,4 @@
+import { Cookie } from 'ng2-cookies/ng2-cookies';
 import { Component, ViewChild} from '@angular/core';
 import { MdDialog} from '@angular/material';
 
@@ -16,12 +17,15 @@ import { TasksDialogComponent } from './../../../../components/activities/tasks/
 })
 export class ActivitiesComponent {
     @ViewChild('tabGroup') tabGroup;
-    
-    public cookie: any
+        
+    public sessionSrtg : any
     public tasks : Array<any> = []    
+
+    public taskLists : Array<any> = []
+    private allTasks : Array<any> = []
+    
     private taskSub : any
-    private userSub : any
-    private cookieSub : any
+    private userSub : any    
 
     dialogConfig = {
         data: {
@@ -34,7 +38,7 @@ export class ActivitiesComponent {
     constructor(public dialog: MdDialog, public taskService: TasksService, public userService: UserService, public sessionsService: SessionsService) { }
 
     ngOnInit() {
-        this.cookie = this.sessionsService.getCurrent();        
+        this.sessionSrtg = this.sessionsService.getCurrent() || new User();        
         this.taskSub = this.taskService.getTaskList().subscribe((tasks) => {
             this.tasks = tasks
         })
@@ -44,19 +48,19 @@ export class ActivitiesComponent {
                 this.dialogConfig.data.users.push(user)
             });
         })
-        if(this.cookie) {
-            this.cookieSub = this.userService.getUserById(this.cookie).subscribe((user) => {
-                this.dialogConfig.data.currentUser = user;
-            });
+        if(this.sessionSrtg) {            
+            this.dialogConfig.data.currentUser = new User().initializeWithJSON(this.sessionSrtg);
         }
+
+        this.taskSub = this.taskService.getTaskList().subscribe((tasks) => {
+            this.taskLists = this.mapTasks(tasks);
+            this.allTasks = this.taskLists;
+        })  
     }
 
     ngOnDestroy() {
         this.taskSub.unsubscribe()
         this.userSub.unsubscribe()
-        if(this.cookie) {
-            this.cookieSub.unsubscribe()
-        }
     }
 
     openTaskDialog() {        
@@ -65,11 +69,58 @@ export class ActivitiesComponent {
         }
     }
 
-    checkTask(_task: any) {
-        console.log("call update");
+    checkTask(_task: Task) {
+        //TODO: Put to check task
     }
 
-    changeTaskFilter(_filter: string) {
-        console.log("call list with filter");
+    changeTaskFilter(_filters: any) {
+        var filteredList = [];
+
+        this.allTasks.forEach(list => {
+            filteredList.push(
+                {   group: list.group, 
+                    tasks: list.tasks.filter(task => {
+                        return (
+                            (_filters.personal && task.responsible.id == this.dialogConfig.data.currentUser.id) ||
+                            (_filters.team && !task.checked) ||
+                            (_filters.history && task.checked) || 
+                            !(_filters.personal || _filters.team || _filters.history) 
+                        )
+                    }) 
+                });
+        });
+
+        this.taskLists = filteredList;
+    }
+
+    changeOccurrenceFilter(_filters: any) {
+        //TODO: Filters of Occurrence
+    }
+
+    private mapTasks(_tasks: Array<Task>): Array<any> {
+        var list = [];
+
+        var late = _tasks.filter(task => task.getStatus() === "late");
+        if (late.length > 0) list.push({ group: "Tarefas Atrasadas", tasks: late});
+
+        var today = _tasks.filter(task => task.isToday() == true);
+        if (today.length > 0) list.push({ group: "Hoje", tasks: today});
+
+        var others = _tasks.filter(task => task.getStatus() != "late" && task.isToday() == false);
+        if (others.length > 0) list.push({ group: "Próximas", tasks: others});
+
+        return list;
+    }
+
+    private mapOccurences(_occcurrences: Array<any>): Array<any> {
+        var list = [];
+
+        var today = _occcurrences.filter(occurrence => occurrence.isToday() == true);
+        if (today.length > 0) list.push({ group: "Hoje", occurrences: today});
+
+        var others = _occcurrences.filter(occurrence => occurrence.isToday() == false);
+        if (others.length > 0) list.push({ group: "Dias Anteriores", occurrences: others});
+
+        return list;
     }
 }

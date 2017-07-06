@@ -28,3 +28,14 @@
     display: none;
   }
 }
+
+label {
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+drop-file {
+  flex-basis: 100px;
+  width: 100px;
+  height: 100px;
+}
