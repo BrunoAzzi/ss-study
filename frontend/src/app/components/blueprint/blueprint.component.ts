@@ -81,14 +81,24 @@ export class BlueprintComponent implements AfterContentChecked, OnChanges {
 
     changeFloor(floor: Floor) {
         if (floor) {
-            console.log('FLOOR', floor);
-            this.mapLayer.clearLayers();
-            const bounds = new L.LatLngBounds(floor.bounds);
-            this.imageMap.remove();
-            this.imageMap = L.imageOverlay(environment.backendUrl + '/' + floor.imagePath, bounds);
-            this.imageMap.addTo(this.map);
-            this.map.fitBounds(bounds);
-            this.setMarkByList(floor.markers);
+            const imageUrl = environment.backendUrl + '/' + floor.imagePath;
+            const img = new Image();
+            img.onload = () => {
+                const h = img.height;
+                const w = img.width;
+
+                const southWest = this.map.unproject([0, h], this.map.getMaxZoom() - 1);
+                const northEast = this.map.unproject([w, 0], this.map.getMaxZoom() - 1);
+
+                this.mapLayer.clearLayers();
+                const bounds = new L.LatLngBounds([southWest, northEast]);
+                this.imageMap.remove();
+                this.imageMap = L.imageOverlay(imageUrl, bounds);
+                this.imageMap.addTo(this.map);
+                this.map.fitBounds(bounds);
+                this.setMarkByList(floor.markers);
+            }
+            img.src = imageUrl;
         }
     }
 

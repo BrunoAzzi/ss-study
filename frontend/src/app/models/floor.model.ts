@@ -21,7 +21,6 @@ export class Floor {
     name: string;
     acronym: string;
 
-    bounds: [number, number][] = [[0, 0], [413, 186]];
     image: any;
     imageFile: File;
     imagePath: string;
