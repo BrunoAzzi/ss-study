@@ -28,10 +28,12 @@ export class DateRangeComponent {
     }
 
     setDateRange(dbegin: string, dend: string): void {
-
         let dateb                    = new Date(dbegin);
         let datee                    = new Date(dend);
-        this.selectedDateRangeNormal = { beginDate: { year: 2018, month: 10, day: 9 }, endDate: { year: 2018, month: 10, day: 19 } };
+        this.selectedDateRangeNormal = {
+            beginDate: { year: 2018, month: 10, day: 9 },
+            endDate:   { year: 2018, month: 10, day: 19 }
+        };
     }
 
     myDateRangePickerOptionsNormal = {
@@ -171,14 +173,11 @@ export class DateRangeComponent {
         }
     }
 
-    onInputFieldChanged(event: any) {
-    }
+    onInputFieldChanged(event: any) {}
 
-    onCalendarViewChanged(event: any) {
-    }
+    onCalendarViewChanged(event: any) {}
 
-    onDateSelected(event: any) {
-    }
+    onDateSelected(event: any) {}
 
     getCopyOfOptions(): any {
         return JSON.parse(JSON.stringify(this.myDateRangePickerOptionsNormal));

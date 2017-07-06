@@ -1,5 +1,5 @@
 import { Health } from './health.model';
-import { Security } from './security.modal';
+import { Security } from './security.model';
 import { Qualification } from './qualification.model';
 import * as moment from 'moment';
 
