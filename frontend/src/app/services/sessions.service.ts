@@ -14,8 +14,9 @@ export class SessionsService {
     login(email: string, password: string) {
         return this.service.post('/sessions', JSON.stringify({ email: email, password: password }))
             .map((obj) => {
-                if (obj.user && obj.user.token) {
+                if (obj.user && obj.user.token) {                    
                     Cookie.set('auth_token', obj.user.token);
+                    Cookie.set('auth_current', obj.user.id)
                 }
             });
     }
@@ -30,5 +31,14 @@ export class SessionsService {
             return true
         }
      return false 
+    }
+
+    getCurrent() : any {
+        let current = Cookie.get('auth_current');
+        if(current) {
+            return current;
+        } else {
+            return -1;
+        }
     }
 }

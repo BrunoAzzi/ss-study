@@ -3,6 +3,7 @@ import { MdDialog} from '@angular/material';
 
 import { Task } from './../../../../models/task.model';
 import { User } from './../../../../models/user.model'
+import { SessionsService } from './../../../../services/sessions.service'
 import { TasksService } from './../../../../services/tasks.service';
 import { UserService } from './../../../../services/user.service';
 import { TasksDialogComponent } from './../../../../components/activities/tasks/tasks-dialog/tasks-dialog.component'
@@ -16,20 +17,24 @@ import { TasksDialogComponent } from './../../../../components/activities/tasks/
 export class ActivitiesComponent {
     @ViewChild('tabGroup') tabGroup;
     
-    public tasks : Array<any> = []
+    public cookie: any
+    public tasks : Array<any> = []    
     private taskSub : any
     private userSub : any
+    private cookieSub : any
 
     dialogConfig = {
         data: {
             task: new Task(),
+            currentUser : new User(),
             users: new Array<User>()
         }
     }
 
-    constructor(public dialog: MdDialog, public taskService: TasksService, public userService: UserService) { }
+    constructor(public dialog: MdDialog, public taskService: TasksService, public userService: UserService, public sessionsService: SessionsService) { }
 
     ngOnInit() {
+        this.cookie = this.sessionsService.getCurrent();        
         this.taskSub = this.taskService.getTaskList().subscribe((tasks) => {
             this.tasks = tasks
         })
@@ -39,11 +44,19 @@ export class ActivitiesComponent {
                 this.dialogConfig.data.users.push(user)
             });
         })
+        if(this.cookie) {
+            this.cookieSub = this.userService.getUserById(this.cookie).subscribe((user) => {
+                this.dialogConfig.data.currentUser = user;
+            });
+        }
     }
 
     ngOnDestroy() {
         this.taskSub.unsubscribe()
         this.userSub.unsubscribe()
+        if(this.cookie) {
+            this.cookieSub.unsubscribe()
+        }
     }
 
     openTaskDialog() {        

@@ -25,6 +25,11 @@ export class TasksDialogComponent implements OnInit {
         this.title = this.data.task.id ? this.data.task.description : "NOVA TAREFA";
         this.task = this.data.task.id ? this.data.task : new Task();
         this.users = this.data.users;
+
+        if(!this.data.task.id && this.data.currentUser) {
+            this.task = new Task();
+            this.task.author = new User().initializeWithJSON(this.data.currentUser);
+        }
     }
 
     save(_task) {
