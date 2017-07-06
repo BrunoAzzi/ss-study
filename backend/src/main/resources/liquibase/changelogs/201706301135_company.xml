@@ -127,9 +127,9 @@
         <modifyDataType tableName="cnaes"
                         columnName="code"
                         newDataType="varchar(255)"/>
-        </changeSet>
+    </changeSet>
 
-        <changeSet id="21" author="rrosseti">
+    <changeSet id="3" author="rrosseti">
         <sqlFile path="liquibase/seed/cnaes.sql"/>
     </changeSet>
 </databaseChangeLog>

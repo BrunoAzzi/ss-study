@@ -1,4 +1,4 @@
-<form class="full-width" #f="ngForm" (ngSubmit)="save(f)" novalidate>
+<form class="full-width" #f="ngForm" (ngSubmit)="save()" novalidate>
     <div class="form-content">
         <section>
             <md-input-container>
@@ -42,7 +42,10 @@
                         rows="5"
                 ></textarea>
             </md-input-container>
-            <drop-file class="half" [label]="'Logo da Obra'" [img]="'/assets/plus.svg'" (onChange)="onLogoChange($event)"></drop-file>
+
+
+            <label>Logo da Obra</label>
+            <drop-file [image]="construction.image | backendPath" (fileChanged)="onLogoChange($event)"></drop-file>
         </section>
     </div>
     <div class="form-bottom">

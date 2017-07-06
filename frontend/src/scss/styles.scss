@@ -59,6 +59,30 @@ a {
     }
 }
 
+md-card {
+    .image-upload {
+        background: url("../../src/assets/ic-image.png") no-repeat center;
+        background-size: 25%;
+        height: 100%;
+        min-height: 120px;
+        md-card-content img {
+            width: 100%;
+            height: auto;
+            margin: 0 auto;
+            background-color: white;
+            border: none;
+        }
+        md-card-footer p {
+            text-align: center;
+            font-size: 11px;
+            font-weight: normal;
+            font-family: 'Lato', sans-serif;
+            line-height: 1.4;
+            color: $warm-grey-four;
+        }
+    }
+}
+
 ul {
     padding:         0;
     margin:          0;
