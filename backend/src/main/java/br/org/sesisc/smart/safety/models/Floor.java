@@ -17,6 +17,7 @@ public class Floor {
     private String acronym;
 
     private String imageUrl;
+    private String imageFileName;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "floor_id")
@@ -72,6 +73,14 @@ public class Floor {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public String getImageFileName() {
+        return imageFileName;
+    }
+
+    public void setImageFileName(String imageFileName) {
+        this.imageFileName = imageFileName;
     }
 
     public Set<Marker> getMarkers() {

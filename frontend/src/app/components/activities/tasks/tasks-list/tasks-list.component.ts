@@ -1,15 +1,16 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
-    selector: 'tasks',
-    templateUrl: 'tasks.template.html',
-    styleUrls: ['./tasks.component.scss']
+    selector: 'tasks-list',
+    templateUrl: 'tasks-list.template.html',
+    styleUrls: ['./tasks-list.component.scss']
 })
-export class TasksComponent {
+export class TasksListComponent {
     selectedFilter: string = "personal";
     @Input() tasks = [];
     @Output() checkTask : EventEmitter<any> = new EventEmitter();
     @Output() changeTaskFilter : EventEmitter<string> = new EventEmitter();
+    @Output() saveTask : EventEmitter<any> = new EventEmitter();
 
     taskList = [
         { group: 'Tarefas Atrasadas', tasks: [
@@ -34,6 +35,10 @@ export class TasksComponent {
     check(_task: any) {
         _task.checked = true;
         this.checkTask.emit(_task);
+    }
+
+    save(_task: any) {
+        console.log(_task);
     }
 
     toggleActiveFilter(_filter: string) {

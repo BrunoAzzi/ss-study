@@ -1,4 +1,5 @@
-import { TasksComponent } from './components/activities/tasks/tasks.component';
+import { OccurrencesListComponent } from './components/activities/occurrences/occurrences-list/occurrences-list.component';
+import { TasksListComponent } from './components/activities/tasks/tasks-list/tasks-list.component';
 import { TasksDialogComponent } from './components/activities/tasks/tasks-dialog/tasks-dialog.component';
 import { TasksFormComponent } from './components/activities/tasks/tasks-form/tasks-form.component';
 import { ActivitiesComponent } from './views/constructions/detail/activities/activities.component';
@@ -28,6 +29,7 @@ import { HttpClientService } from './services/http-client.service';
 import { CnaeService } from './services/cnae.service'
 import { SessionsService } from './services/sessions.service';
 import { PasswordService } from './services/password.service';
+import { UserService } from './services/user.service'
 import { AuthGuard } from './guards/index';
 import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
@@ -292,9 +294,10 @@ import { AutofocusDirective } from './components/common/autofocus/autofocus.dire
         CategorizedListItemComponent,
         AutofocusDirective,
         ActivitiesComponent,
-        TasksComponent,
+        TasksListComponent,
         TasksDialogComponent,
         TasksFormComponent,
+        OccurrencesListComponent,
     ],
     imports: [
         // Notification Module
@@ -357,6 +360,7 @@ import { AutofocusDirective } from './components/common/autofocus/autofocus.dire
         PasswordService,
         MdSnackBar,
         CnaeService,
+        UserService,
         ConstructionResolver,
         ConstructionsService,
         { provide: LocationStrategy, useClass: HashLocationStrategy }],

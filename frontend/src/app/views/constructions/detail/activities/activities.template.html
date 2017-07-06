@@ -2,19 +2,20 @@
     <md-tab-group #tabGroup disableRipple>
         <md-tab id="tab1" label="Ocorrências">
             <div class="list-content">
-                <span> ocorrencias aqui </span>
+                <occurrences-list>
+                </occurrences-list>
             </div>
         </md-tab>
         <md-tab id="tab2" label="Tarefas">
             <div class="list-content">
-                <tasks 
+                <tasks-list 
                     [tasks]="tasks"
                     (checkTask)="checkTask($event)"
                     (changeTaskFilter)="changeTaskFilter($event)">
-                </tasks>
+                </tasks-list>
             </div>
         </md-tab>
     </md-tab-group>
 
-    <fab mdTooltip="Adicionar Tarefa" mdTooltipPosition="before" (click)="addTask()"></fab>
+    <fab mdTooltip="Adicionar Tarefa" mdTooltipPosition="before" (click)="openTaskDialog()"></fab>
 </div>
