@@ -24,14 +24,12 @@
 
                 <div class="grid-row" *ngFor="let aso of asoList">
                     <div class="grid-row-25">
-
-
-                            <md-select formControlName="asoTypes" required placeholder="aso" (change)="changeSelected(aso, $event)">
-                                 <md-option *ngFor="let asoType of asoTypes" [value]="asoType.value">
-                                    {{asoType.viewValue}}
-                                </md-option>
-                            </md-select>
-                            <span *ngIf="submitted">
+                        <md-select formControlName="asoTypes" required placeholder="aso" (change)="changeSelected(aso, $event)">
+                            <md-option *ngFor="let asoType of asoTypes" [value]="asoType.value">
+                                {{asoType.viewValue}}
+                            </md-option>
+                        </md-select>
+                        <span *ngIf="submitted">
                                 <md-error *ngIf="helthForm.controls.asoTypes.hasError('required')">
                                     Campo Obrigatório.
                                 </md-error>
@@ -50,8 +48,8 @@
         </div>
         <div class="button-default">
             <button md-raised-button type="submit" (click)="saved.emit(worker)">
-            <span>Salvar e continuar</span>
-        </button>
+                <span>Salvar e continuar</span>
+            </button>
         </div>
     </form>
 </safety-card-content>
