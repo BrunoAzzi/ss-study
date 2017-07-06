@@ -58,4 +58,8 @@ public class FileHelper {
     public static boolean checkType(String type) {
         return type.equals("logo") || type.equals("cei");
     }
+
+    public static boolean checkTaskAttachmentType(String type) {
+        return type.equals("image") || type.equals("video");
+    }
 }

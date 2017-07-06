@@ -1,7 +1,6 @@
 package br.org.sesisc.smart.safety.models;
 
 import br.org.sesisc.smart.safety.models.enums.ConstructionStatus;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;

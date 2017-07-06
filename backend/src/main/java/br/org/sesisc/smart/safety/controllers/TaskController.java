@@ -139,9 +139,11 @@ public class TaskController {
 
                 AttachmentFile attachmentFile =
                         new AttachmentFile(fileName,
-                                String.format("/tasks/%d/%s", id, type),
+                                "",
                                 type);
                 task.getAttachmentFiles().add(attachmentFile);
+                attachRepository.save(attachmentFile);
+                attachmentFile.setUrl(String.format("/tasks/%d/attachments/%d/%s", id, attachmentFile.getId(),type));
 
                 repository.save(task);
 
@@ -166,7 +168,7 @@ public class TaskController {
         );
     }
 
-    @GetMapping("/{id}/attachments/{type}/{attach_id}")
+    @GetMapping("/{id}/attachments/{attach_id}/{type}")
     public ResponseEntity<?> loadFile(
             @PathVariable("id") long id,
             @PathVariable("type") String type,
@@ -175,36 +177,44 @@ public class TaskController {
         Task task = repository.findOne(id);
         AttachmentFile attachmentFile = attachRepository.findOne(attachId);
 
-        if (task != null && FileHelper.checkType(type)) {
-            String fileName = attachmentFile.getFileName();
-            if (fileName != null && !fileName.isEmpty()) {
-                Resource file = storageService.loadFile(fileName);
-                if (file != null) {
-                    return ResponseEntity
-                            .ok()
-                            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\""+file.getFilename()+"\"")
-                            .body(file);
+        if (task != null ) {
+            if (FileHelper.checkTaskAttachmentType(type)) {
+                String fileName = attachmentFile.getFileName();
+                if (fileName != null && !fileName.isEmpty()) {
+                    Resource file = storageService.loadFile(fileName);
+                    if (file != null) {
+                        return ResponseEntity
+                                .ok()
+                                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\""+file.getFilename()+"\"")
+                                .body(file);
+                    } else {
+                        return ErrorResponse.handle(
+                                new String[] {"Problema ao encontrar arquivo no servidor."},
+                                Company.class,
+                                HttpStatus.NOT_FOUND
+                        );
+                    }
                 } else {
                     return ErrorResponse.handle(
-                            new String[] {"Problema ao encontrar arquivo no servidor."},
-                            Company.class,
+                            new String[] {"Arquivo não encontrado."},
+                            Task.class,
                             HttpStatus.NOT_FOUND
                     );
                 }
             } else {
                 return ErrorResponse.handle(
-                        new String[] {"Arquivo não encontrado."},
-                        Company.class,
+                        new String[] {"Rota não encontrada."},
+                        Task.class,
                         HttpStatus.NOT_FOUND
                 );
             }
+        } else {
+            return ErrorResponse.handle(
+                    new String[] {"Tarefa não encontrada."},
+                    Task.class,
+                    HttpStatus.NOT_FOUND
+            );
         }
-
-        return ErrorResponse.handle(
-                new String[] {"Empresa não encontrada."},
-                Company.class,
-                HttpStatus.NOT_FOUND
-        );
     }
 
 }

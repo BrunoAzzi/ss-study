@@ -89,4 +89,7 @@
             <column name="checked" type="boolean"/>
         </addColumn>
     </changeSet>
+    <changeSet id="5" author="rrosseti">
+        <addDefaultValue tableName="tasks" columnName="checked" defaultValueBoolean="false"/>
+    </changeSet>
 </databaseChangeLog>
