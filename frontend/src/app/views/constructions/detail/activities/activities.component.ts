@@ -1,3 +1,4 @@
+import { Cookie } from 'ng2-cookies/ng2-cookies';
 import { Component, ViewChild} from '@angular/core';
 import { MdDialog} from '@angular/material';
 
@@ -19,7 +20,7 @@ export class ActivitiesComponent {
 
     public taskLists : Array<any> = []
     private allTasks : Array<any> = []
-    
+
     public cookie: any
     private taskSub : any
     private userSub : any
@@ -36,34 +37,24 @@ export class ActivitiesComponent {
     constructor(public dialog: MdDialog, public taskService: TasksService, public userService: UserService, public sessionsService: SessionsService) { }
 
     ngOnInit() {
-        this.cookie = this.sessionsService.getCurrent();   
-
-        // this.taskSub = this.taskService.getTaskList().subscribe((tasks) => {
-        //     this.taskLists = this.mapTasks(tasks);
-        //     this.allTasks = this.taskLists;
-        // })
-
-
-        var task = new Task()
-        task.title = "esse é um teste";
-        task.deadline = new Date(2017, 6, 6, 23, 59);
-        task.createAt = new Date(2017, 6, 5, 0, 20);
-
-        var tasks = [task];
-        this.taskLists = this.mapTasks(tasks);
-        this.allTasks = this.taskLists;     
-
         this.userSub = this.userService.getUsers().subscribe((users) => {            
             users.forEach(element => {
                 let user = new User().initializeWithJSON(element);
                 this.dialogConfig.data.users.push(user)
             });
         })
+
+        this.cookie = this.sessionsService.getCurrent();   
         if(this.cookie) {
             this.cookieSub = this.userService.getUserById(this.cookie).subscribe((user) => {
                 this.dialogConfig.data.currentUser = user;
             });
         }
+
+        this.taskSub = this.taskService.getTaskList().subscribe((tasks) => {
+            this.taskLists = this.mapTasks(tasks);
+            this.allTasks = this.taskLists;
+        })  
     }
 
     ngOnDestroy() {
@@ -81,7 +72,7 @@ export class ActivitiesComponent {
     }
 
     checkTask(_task: Task) {
-        console.log("call update");
+        //TODO: Put to check task
     }
 
     changeTaskFilter(_filters: any) {
@@ -92,7 +83,7 @@ export class ActivitiesComponent {
                 {   group: list.group, 
                     tasks: list.tasks.filter(task => {
                         return (
-                            (_filters.personal) ||
+                            (_filters.personal && task.responsible.id == this.dialogConfig.data.currentUser.id) ||
                             (_filters.team && !task.checked) ||
                             (_filters.history && task.checked) || 
                             !(_filters.personal || _filters.team || _filters.history) 
@@ -104,24 +95,33 @@ export class ActivitiesComponent {
         this.taskLists = filteredList;
     }
 
+    changeOccurrenceFilter(_filters: any) {
+        //TODO: Filters of Occurrence
+    }
+
     private mapTasks(_tasks: Array<Task>): Array<any> {
         var list = [];
 
         var late = _tasks.filter(task => task.getStatus() === "late");
-
-        if (late.length > 0) {
-            list.push({ group: "Tarefas Atrasadas", tasks: late});
-        }
+        if (late.length > 0) list.push({ group: "Tarefas Atrasadas", tasks: late});
 
         var today = _tasks.filter(task => task.isToday() == true);
-        if (today.length > 0) {
-            list.push({ group: "Hoje", tasks: today});
-        }
+        if (today.length > 0) list.push({ group: "Hoje", tasks: today});
 
         var others = _tasks.filter(task => task.getStatus() != "late" && task.isToday() == false);
-        if (others.length > 0) {
-            list.push({ group: "Próximas", tasks: others});
-        }
+        if (others.length > 0) list.push({ group: "Próximas", tasks: others});
+
+        return list;
+    }
+
+    private mapOccurences(_occcurrences: Array<any>): Array<any> {
+        var list = [];
+
+        var today = _occcurrences.filter(occurrence => occurrence.isToday() == true);
+        if (today.length > 0) list.push({ group: "Hoje", occurrences: today});
+
+        var others = _occcurrences.filter(occurrence => occurrence.isToday() == false);
+        if (others.length > 0) list.push({ group: "Dias Anteriores", occurrences: others});
 
         return list;
     }
