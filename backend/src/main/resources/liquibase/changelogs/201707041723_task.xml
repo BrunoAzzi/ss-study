@@ -33,16 +33,14 @@
                 baseColumnNames="responsible_id"
                 constraintName="fk_responsible_task"
                 referencedTableName="users"
-                referencedColumnNames="id"
-                onDelete="CASCADE" />
+                referencedColumnNames="id"/>
 
         <addForeignKeyConstraint
                 baseTableName="tasks"
                 baseColumnNames="author_id"
                 constraintName="fk_author_task"
                 referencedTableName="users"
-                referencedColumnNames="id"
-                onDelete="CASCADE" />
+                referencedColumnNames="id"/>
 
         <addColumn tableName="users">
             <column name="role" type="varchar(255)" />
@@ -65,5 +63,11 @@
         </createTable>
         <addAutoIncrement tableName="attachment_files" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
 
+    </changeSet>
+
+    <changeSet id="2" author="rrosseti">
+        <modifyDataType tableName="tasks"
+                        columnName="deadline"
+                        newDataType="TIMESTAMP"/>
     </changeSet>
 </databaseChangeLog>
