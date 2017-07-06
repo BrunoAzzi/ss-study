@@ -30,4 +30,16 @@ export class Task implements ITask {
 
         return this
     }
+
+    public toJSON() {
+        return {
+            id:  this.id,
+            createAt: this.createAt,
+            deadline: this.deadline,
+            title: this.title,
+            description: this.description,
+            author: this.author,
+            responsible: this.responsible
+        };
+    }
 }

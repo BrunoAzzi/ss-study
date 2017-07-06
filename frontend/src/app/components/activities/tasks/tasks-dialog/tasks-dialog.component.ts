@@ -3,6 +3,7 @@ import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 
 import { Task } from './../../../../models/task.model';
 import { User } from './../../../../models/user.model';
+import { TasksService } from './../../../../services/tasks.service';
 
 @Component({
     selector: 'tasks-dialog',
@@ -17,7 +18,7 @@ export class TasksDialogComponent implements OnInit {
     users: Array<User>
 
     constructor(
-        public dialogRef: MdDialogRef<TasksDialogComponent>,
+        public dialogRef: MdDialogRef<TasksDialogComponent>,        
         @Inject(MD_DIALOG_DATA) public data: any
     ) {}
 

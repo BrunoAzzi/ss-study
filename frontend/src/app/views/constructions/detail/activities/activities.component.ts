@@ -16,12 +16,11 @@ import { TasksDialogComponent } from './../../../../components/activities/tasks/
 })
 export class ActivitiesComponent {
     @ViewChild('tabGroup') tabGroup;
-    
-    public cookie: any
+        
+    public sessionSrtg : any
     public tasks : Array<any> = []    
     private taskSub : any
-    private userSub : any
-    private cookieSub : any
+    private userSub : any    
 
     dialogConfig = {
         data: {
@@ -34,7 +33,7 @@ export class ActivitiesComponent {
     constructor(public dialog: MdDialog, public taskService: TasksService, public userService: UserService, public sessionsService: SessionsService) { }
 
     ngOnInit() {
-        this.cookie = this.sessionsService.getCurrent();        
+        this.sessionSrtg = this.sessionsService.getCurrent() || new User();        
         this.taskSub = this.taskService.getTaskList().subscribe((tasks) => {
             this.tasks = tasks
         })
@@ -44,19 +43,14 @@ export class ActivitiesComponent {
                 this.dialogConfig.data.users.push(user)
             });
         })
-        if(this.cookie) {
-            this.cookieSub = this.userService.getUserById(this.cookie).subscribe((user) => {
-                this.dialogConfig.data.currentUser = user;
-            });
+        if(this.sessionSrtg) {            
+            this.dialogConfig.data.currentUser = new User().initializeWithJSON(this.sessionSrtg);
         }
     }
 
     ngOnDestroy() {
         this.taskSub.unsubscribe()
         this.userSub.unsubscribe()
-        if(this.cookie) {
-            this.cookieSub.unsubscribe()
-        }
     }
 
     openTaskDialog() {        

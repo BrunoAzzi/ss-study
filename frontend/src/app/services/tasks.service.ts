@@ -3,6 +3,8 @@ import { HttpClientService } from './http-client.service';
 import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 
+import { Task } from './../models/task.model';
+
 @Injectable()
 export class TasksService {
 
@@ -18,6 +20,14 @@ export class TasksService {
                 return jsonResponse.tasks.map(task => {
                     return task;
                 });
+            });
+    }
+
+    saveTask(task : Task) {
+        return this.service.post(this.endpoint, JSON.stringify(task.toJSON()))
+            .map((jsonRespone) => {
+                console.log(jsonRespone);
+                return jsonRespone;
             });
     }
  

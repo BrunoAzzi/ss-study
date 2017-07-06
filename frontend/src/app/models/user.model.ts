@@ -24,4 +24,14 @@ export class User implements IUser {
 
         return this
     }
+
+    public toJSON() {
+        return {
+            id:  this.id,
+            name: this.name,
+            email: this.email,
+            role: this.role,
+            active: this.active
+        };
+    }
 }
