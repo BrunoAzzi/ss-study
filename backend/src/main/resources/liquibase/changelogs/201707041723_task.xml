@@ -84,4 +84,9 @@
                 referencedColumnNames="id"
                 onDelete="CASCADE" />
     </changeSet>
+    <changeSet id="4" author="rrosseti">
+        <addColumn tableName="tasks">
+            <column name="checked" type="boolean"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>
