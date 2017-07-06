@@ -70,4 +70,18 @@
                         columnName="deadline"
                         newDataType="TIMESTAMP"/>
     </changeSet>
+
+    <changeSet id="3" author="">
+        <addColumn tableName="attachment_files">
+            <column name="task_id" type="int"/>
+        </addColumn>
+
+        <addForeignKeyConstraint
+                baseTableName="attachment_files"
+                baseColumnNames="task_id"
+                constraintName="fk_task_attachment"
+                referencedTableName="tasks"
+                referencedColumnNames="id"
+                onDelete="CASCADE" />
+    </changeSet>
 </databaseChangeLog>

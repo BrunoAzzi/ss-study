@@ -36,7 +36,7 @@ public class TaskController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> show(@PathVariable("id") long id) {
-        Task task = repository.findById(id);
+        Task task = repository.findOne(id);
         if(task != null) {
             return SuccessResponse.handle(
                     new String[] { "task" },
