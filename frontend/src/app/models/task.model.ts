@@ -46,6 +46,7 @@ export class Task implements ITask {
             author: this.author,
             responsible: this.responsible
         };
+    }
 
     public isToday(): boolean {
         var now = new Date();
