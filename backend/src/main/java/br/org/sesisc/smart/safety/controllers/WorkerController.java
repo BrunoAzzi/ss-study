@@ -28,9 +28,6 @@ import java.util.Set;
 import static br.org.sesisc.smart.safety.helpers.FileHelper.JPEG_TYPE;
 import static br.org.sesisc.smart.safety.helpers.FileHelper.PNG_TYPE;
 
-/**
- * Created by tpeixoto on 27/06/17.
- */
 @RestController
 @RequestMapping("/workers")
 public class WorkerController {

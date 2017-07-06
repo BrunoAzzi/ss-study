@@ -11,8 +11,7 @@ public class Cbo {
     private String code;
     private String title;
 
-    public Cbo() {
-    }
+    public Cbo() { }
 
     public Cbo(String code, String title) {
         this.code = code;

@@ -41,7 +41,7 @@
             <column name="cbo_id" type="int"/>
             <column name="degree_id" type="int"/>
             <column name="cep" type="varchar(10)"/>
-            <column name="adress" type="varchar(255)"/>
+            <column name="address" type="varchar(255)"/>
             <column name="status" type="boolean"/>
             <column name="birth_date" type="TIMESTAMP">
                 <constraints nullable="false"/>
@@ -62,7 +62,8 @@
             <column name="role" type="varchar(255)"/>
             <column name="mandate_begin" type="TIMESTAMP"/>
             <column name="mandate_end" type="TIMESTAMP"/>
-            <column name="alergies" type="varchar(255)"/>
+            <column name="blood_type" type="varchar(3)"/>
+            <column name="allergies" type="varchar(255)"/>
             <column name="diseases" type="varchar(255)"/>
 
         </addColumn>
@@ -72,42 +73,56 @@
                 constraintName="fk_cbos_workers"
                 referencedTableName="cbos"
                 referencedColumnNames="id"
-                onDelete="CASCADE"
-                onUpdate="RESTRICT" />
+                onDelete="CASCADE" />
         <addForeignKeyConstraint
                 baseTableName="workers"
                 baseColumnNames="degree_id"
                 constraintName="fk_degrees_workers"
                 referencedTableName="degrees"
                 referencedColumnNames="id"
-                onDelete="CASCADE"
-                onUpdate="RESTRICT" />
+                onDelete="CASCADE" />
 
     </changeSet>
 
     <changeSet id="5" author="rdlorbieski">
-        <createTable tableName="qualities">
+        <createTable tableName="certificates">
             <column name="id" type="int">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="worker_id" type="int"/>
-            <column name="title" type="varchar(255)">
-            </column>
-            <column name="realization_date" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
-                <constraints nullable="false"/>
-            </column>
-            <column name="expires_in" type="int">
-                <constraints nullable="false"/>
-            </column>
-            <column name="able" type="boolean">  </column>
-            <column name="attachment" type="varchar(255)">  </column>
+            <column name="name" type="varchar(255)"/>
         </createTable>
-        <addAutoIncrement tableName="qualities" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
+        <addAutoIncrement tableName="certificates" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
+
+        <createTable tableName="certifications">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="certificate_id" type="int"/>
+            <column name="worker_id" type="int"/>
+            <column name="next_recycle_date" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="periodicity" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="able" type="boolean"/>
+            <column name="attachment_url" type="varchar(255)"/>
+            <column name="attachment_file_name" type="varchar(255)"/>
+        </createTable>
+        <addAutoIncrement tableName="certifications" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
 
         <addForeignKeyConstraint
-                baseTableName="qualities"
+                baseTableName="certifications"
+                baseColumnNames="certificate_id"
+                constraintName="fk_certification_certificates"
+                referencedTableName="certificates"
+                referencedColumnNames="id"
+                onDelete="CASCADE"/>
+
+        <addForeignKeyConstraint
+                baseTableName="certifications"
                 baseColumnNames="worker_id"
-                constraintName="fk_worker_qualities"
+                constraintName="fk_worker_certifications"
                 referencedTableName="workers"
                 referencedColumnNames="id"
                 onDelete="CASCADE"/>
@@ -127,9 +142,10 @@
             <column name="next_date" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
-            <column name="aso_type" type="varchar(255)"></column>
-            <column name="able" type="boolean">  </column>
-            <column name="attachment" type="varchar(255)">  </column>
+            <column name="aso_type" type="int" />
+            <column name="able" type="boolean" />
+            <column name="attachment_url" type="varchar(255)" />
+            <column name="attachment_file_name" type="varchar(255)" />
         </createTable>
         <addAutoIncrement tableName="asos" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
 

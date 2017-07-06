@@ -3,22 +3,18 @@ package br.org.sesisc.smart.safety.models;
 
 import javax.persistence.*;
 
-import static br.org.sesisc.smart.safety.helpers.FileHelper.JPEG_TYPE;
-import static br.org.sesisc.smart.safety.helpers.FileHelper.PDF_TYPE;
-import static br.org.sesisc.smart.safety.helpers.FileHelper.PNG_TYPE;
-
 @Entity
 @Table(name = "workers")
 public class Worker {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
-    private Long id;
     private String name;
     private String cep;
-    private String adress;
-    private Boolean status;
+    private String address;
+    private boolean status;
     private String birthDate;
     private String gender;
     private String cpf;
@@ -29,14 +25,14 @@ public class Worker {
     private String specialNeeds;
     private String photoUrl;
     private String photoFilename;
-    private Boolean isCipeiro;
-    private Boolean isBrigade;
+    private boolean isCipeiro;
+    private boolean isBrigade;
     private String role;
     private String mandateBegin;
     private String mandateEnd;
-    private String alergies;
+    private String allergies;
     private String diseases;
-
+    private String bloodType;
 
     @ManyToOne
     @JoinColumn(name = "cbo_id")
@@ -45,14 +41,15 @@ public class Worker {
     @ManyToOne
     @JoinColumn(name = "degree_id")
     private Degree degree;
-    private Boolean activated = true;
+
+    private boolean activated = true;
 
     public Worker() { }
 
-    public Worker(String name, String cep, String adress, Boolean status, String birthDate, String gender, String cpf, String nit, String ctps, String admissionAt, String contractType, String specialNeeds, String photoUrl, String photoFilename, Boolean isCipeiro, Boolean isBrigade, String role, String mandateBegin, String mandateEnd, String alergies, String diseases, Boolean activated, Cbo cbo, Degree degree) {
+    public Worker(String name, String cep, String address, boolean status, String birthDate, String gender, String cpf, String nit, String ctps, String admissionAt, String contractType, String specialNeeds, String photoUrl, String photoFilename, boolean isCipeiro, boolean isBrigade, String role, String mandateBegin, String mandateEnd, String allergies, String diseases, String bloodType, Cbo cbo, Degree degree, boolean activated) {
         this.name = name;
         this.cep = cep;
-        this.adress = adress;
+        this.address = address;
         this.status = status;
         this.birthDate = birthDate;
         this.gender = gender;
@@ -69,18 +66,19 @@ public class Worker {
         this.role = role;
         this.mandateBegin = mandateBegin;
         this.mandateEnd = mandateEnd;
-        this.alergies = alergies;
+        this.allergies = allergies;
         this.diseases = diseases;
-        this.activated = activated;
+        this.bloodType = bloodType;
         this.cbo = cbo;
         this.degree = degree;
+        this.activated = activated;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -100,19 +98,19 @@ public class Worker {
         this.cep = cep;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public Boolean getStatus() {
+    public boolean isStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 
@@ -196,19 +194,19 @@ public class Worker {
         this.photoFilename = photoFilename;
     }
 
-    public Boolean getCipeiro() {
+    public boolean isCipeiro() {
         return isCipeiro;
     }
 
-    public void setCipeiro(Boolean cipeiro) {
+    public void setCipeiro(boolean cipeiro) {
         isCipeiro = cipeiro;
     }
 
-    public Boolean getBrigade() {
+    public boolean isBrigade() {
         return isBrigade;
     }
 
-    public void setBrigade(Boolean brigade) {
+    public void setBrigade(boolean brigade) {
         isBrigade = brigade;
     }
 
@@ -236,12 +234,12 @@ public class Worker {
         this.mandateEnd = mandateEnd;
     }
 
-    public String getAlergies() {
-        return alergies;
+    public String getAllergies() {
+        return allergies;
     }
 
-    public void setAlergies(String alergies) {
-        this.alergies = alergies;
+    public void setAllergies(String allergies) {
+        this.allergies = allergies;
     }
 
     public String getDiseases() {
@@ -252,12 +250,12 @@ public class Worker {
         this.diseases = diseases;
     }
 
-    public Boolean getActivated() {
-        return activated;
+    public String getBloodType() {
+        return bloodType;
     }
 
-    public void setActivated(Boolean activated) {
-        this.activated = activated;
+    public void setBloodType(String bloodType) {
+        this.bloodType = bloodType;
     }
 
     public Cbo getCbo() {
@@ -274,6 +272,14 @@ public class Worker {
 
     public void setDegree(Degree degree) {
         this.degree = degree;
+    }
+
+    public boolean isActivated() {
+        return activated;
+    }
+
+    public void setActivated(boolean activated) {
+        this.activated = activated;
     }
 }
 
