@@ -37,8 +37,7 @@ export class ActivitiesComponent {
 
     constructor(public dialog: MdDialog, public taskService: TasksService, public userService: UserService, public sessionsService: SessionsService) { }
 
-    ngOnInit() {
-        console.log(Cookie.get('auth_token'));
+    ngOnInit() {        
         this.sessionSrtg = this.sessionsService.getCurrent() || new User();        
 
         this.userSub = this.userService.getUsers().subscribe((users) => {            

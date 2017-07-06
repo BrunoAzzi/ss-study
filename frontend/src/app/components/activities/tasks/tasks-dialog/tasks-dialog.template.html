@@ -8,11 +8,11 @@
 <form >
     <md-dialog-content>
         <div class="md-dialog-content">
-            <tasks-form [task]="task" [users]="users" (save)="save($event)"></tasks-form>
+            <tasks-form [task]="task" [users]="users" (save)="save($event)"></tasks-form>            
         </div>
     </md-dialog-content>
     <md-dialog-actions fxLayout fxLayoutAlign="center center" layout="row" >
         <button class="button-link" md-dialog-close>Excluir Tarefa</button>
-        <button md-button (click)="saveTask()" md-dialog-close>Salvar</button>        
+        <button md-button (click)="saveTask()">Salvar</button>        
     </md-dialog-actions>
 </form> 
