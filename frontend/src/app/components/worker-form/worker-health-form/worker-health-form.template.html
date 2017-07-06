@@ -37,8 +37,7 @@
                     </div>
 
                     <div *ngIf="aso.selected >= 0">
-                        <asoItemComponent #asoComponent [itemSelected]="aso.selected" [itemName]="aso.name"
-                                (removed)="removeAsoItem(aso)" teste="testeBool"></asoItemComponent>
+                        <asoItemComponent #asoComponent [itemSelected]="aso.selected" [itemName]="aso.name" (removed)="removeAsoItem(aso)" teste="testeBool"></asoItemComponent>
                     </div>
 
                 </div>
@@ -48,9 +47,9 @@
             </div>
         </div>
         <div class="button-default">
-            <button  md-raised-button type="submit" (click)="saved.emit(worker)">
-            <span>Salvar e continuar</span>
-        </button>
+            <button md-raised-button type="submit" (click)="saved.emit(worker)">
+                <span>Salvar e continuar</span>
+            </button>
         </div>
     </form>
 </safety-card-content>
