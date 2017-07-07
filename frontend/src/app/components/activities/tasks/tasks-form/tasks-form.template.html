@@ -3,17 +3,19 @@
         <div class="grid-row">
             <md-input-container >                
                 <input mdInput placeholder="Título da tarefa" name="taskTitle" [(ngModel)]="task.title" (keyup)="sendData()" required>
+                <md-error *ngIf>Campo obrigatório</md-error>
             </md-input-container>
         </div>
-        <div class="grid-row">
-            <my-date-picker name="taskDate" [options]="myDatePickerOptions"
+        <div class="grid-row">           
+                <my-date-picker name="taskDate" [options]="myDatePickerOptions"
                         required (ngModelChange)="setValidityDeadline($event)"
-                        placeholder="Data" [(ngModel)]="deadline" >
-            </my-date-picker>
-
+                        placeholder="Data" [(ngModel)]="deadline" >                    
+                </my-date-picker>
+           
             <md-input-container>
                 <input type="text" class="inputAutocomplete" mdInput placeholder="Responsável pela execução" name="taskResponsible" required
                    [(ngModel)]="task.responsible" (change)="sendData()" [formControl]="fControl" [mdAutocomplete]="auto">
+                   <md-error *ngIf>Campo obrigatório</md-error>
             </md-input-container>
             <md-autocomplete #auto="mdAutocomplete" [displayWith]="displayFn">
                 <md-option *ngFor="let option of filteredOptions | async" [value]="option">
@@ -26,6 +28,7 @@
             <md-input-container >
                 <textarea mdInput placeholder="Detalhes da tarefa" name="taskDetails"
                           [(ngModel)]="task.description" rows="4" required (keyup)="sendData()"></textarea>
+                <md-error *ngIf>Campo obrigatório</md-error>
             </md-input-container>
         </div>
         <div class="grid-row">

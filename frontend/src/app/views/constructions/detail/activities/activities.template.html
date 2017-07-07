@@ -11,6 +11,7 @@
                 <tasks-list 
                     [taskLists]="taskLists"
                     (checkTask)="checkTask($event)"
+                    (deleteTask)="deleteTask($event)"
                     (changeTaskFilter)="changeTaskFilter($event)">
                 </tasks-list>
             </div>

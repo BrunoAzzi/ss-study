@@ -44,4 +44,11 @@ export class TasksService {
                 return new Task().initializeWithJSON(jsonResponse.task);
             });
     }
+
+    deleteTask(id: number) {
+        return this.service.delete(this.endpoint + "/" + id)
+            .map((response) => {                
+                return response;
+			});
+    }
 }

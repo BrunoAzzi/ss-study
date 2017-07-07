@@ -16,6 +16,7 @@ export class TasksListComponent {
     @Input() taskLists = [];
     @Output() checkTask : EventEmitter<Task> = new EventEmitter();
     @Output() changeTaskFilter : EventEmitter<any> = new EventEmitter();
+    @Output() deleteTask : EventEmitter<Task> = new EventEmitter();
     @Output() saveTask : EventEmitter<Task> = new EventEmitter();
 
     check(_task: Task) {
@@ -25,6 +26,10 @@ export class TasksListComponent {
 
     save(_task: Task) {
         console.log(_task);
+    }
+
+    delete(_task: Task) {
+        this.deleteTask.emit(_task);
     }
 
     toggleActiveFilter(_filter: string) {

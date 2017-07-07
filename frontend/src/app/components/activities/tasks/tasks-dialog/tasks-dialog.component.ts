@@ -41,7 +41,7 @@ export class TasksDialogComponent implements OnInit {
 
     saveTask() {        
         if(this.task.title && this.task.description && this.task.deadline && this.task.responsible && this.task.author) {            
-            if(this.task.author instanceof User && this.task.responsible instanceof User ) {
+            /*if(this.task.author instanceof User && this.task.responsible instanceof User ) {
                 this.tasksService.saveTask(this.task).subscribe(
                         savedTask => {
                             console.log(savedTask);
@@ -54,7 +54,8 @@ export class TasksDialogComponent implements OnInit {
                 this.dialogRef.close();
             } else {
                 this.snackBar.open('Erro no servidor!', null, { duration: 3000 });
-            }
+            }*/
+            console.log(this.task);
         } else  {
             this.snackBar.open('Deve preencher todos os campos obrigatórios', null, { duration: 3000 });
         }   

@@ -21,7 +21,7 @@ export class Task implements ITask {
     author: User
     responsible: User
     checked: boolean    
-    attachmentFiles: Array<AttachmentFile>
+    attachmentFiles: Array<AttachmentFile> = []
 
     public constructor() {}
 

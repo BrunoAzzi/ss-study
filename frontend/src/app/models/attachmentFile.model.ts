@@ -14,6 +14,8 @@ export class AttachmentFile implements IAttachmentFile {
     fileThumbName: string
     thumbUrl: string
     type: string
+    resource: any
+    resourceFile: File;
 
     public constructor() {}
 

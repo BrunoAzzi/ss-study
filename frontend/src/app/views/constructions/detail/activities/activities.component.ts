@@ -85,6 +85,17 @@ export class ActivitiesComponent {
             );
     }
 
+    deleteTask(_task: Task) {
+        this.taskService.deleteTask(_task.id).subscribe(
+                response => {
+                    this.snackBar.open('Tarefa excluida com sucesso!', null, { duration: 3000 });                    
+                },
+                error => {
+                    this.handleError(error);
+                }
+            );
+    }
+
     changeTaskFilter(_filters: any) {
         var filteredList = [];
 
