@@ -50,6 +50,10 @@ public class Construction {
     @OrderBy("equipment_category_id, equipment_type_id")
     private Set<Equipment> equipments = new HashSet<>();
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "construction_id")
+    private Set<Employee> employees = new HashSet<>();
+
     private boolean activated = true;
 
     public Construction() { }
@@ -99,9 +103,6 @@ public class Construction {
         this.responsibleSafety = responsibleSafety;
     }
 
-    public Construction(Set<Equipment> equipments) {
-        this.equipments = equipments;
-    }
 
     public Long getId() {
         return id;
@@ -249,6 +250,18 @@ public class Construction {
 
     public void addEquipment(Equipment equipment) {
         this.equipments.add(equipment);
+    }
+
+    public Set<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(Set<Employee> employees) {
+        this.employees = employees;
+    }
+
+    public void addEmployee(Employee employee) {
+        this.employees.add(employee);
     }
 
     public boolean isActivated() {
