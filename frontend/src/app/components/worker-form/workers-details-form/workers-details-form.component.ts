@@ -72,7 +72,7 @@ export class WorkersDataComponent {
         { value: '1', viewValue: 'Fundamental incompleto' },
         { value: '2', viewValue: 'Fundamental completo' },
         { value: '3', viewValue: 'Médio incompleto' },
-        { value: 4, viewValue: 'Médio completo' },
+        { value: '4', viewValue: 'Médio completo' },
         { value: '5', viewValue: 'Superior incompleto' },
         { value: '6', viewValue: 'Superior completo' },
         { value: '7', viewValue: 'Pós Graduação' },
