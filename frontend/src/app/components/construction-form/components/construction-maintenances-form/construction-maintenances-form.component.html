@@ -6,20 +6,9 @@
                                   (removed)="removeCategory($event)">
         <ul>
             <li class="maintenance">
-                <md-select placeholder="Tipo de Equipamento" (change)="console.log($event.value)" ngModel>
-                    <md-option [value]="1">
-                        Tipo de equipamento
-                    </md-option>
-                </md-select>
-                <md-input-container>
-                    <input mdInput placeholder="Identificação"
-                           ngModel name="identification">
-                </md-input-container>
-                <md-input-container>
-                    <input mdInput placeholder="Periodicidade"
-                           ngModel name="identification">
-                </md-input-container>
+                <safety-maintenance-inline-form></safety-maintenance-inline-form>
             </li>
+            <a (click)="addCategory()"></a>
         </ul>
     </safety-categorized-list-item>
 </safety-categorized-list>

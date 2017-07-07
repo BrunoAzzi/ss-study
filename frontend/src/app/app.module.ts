@@ -39,7 +39,8 @@ import {
     MdSelectModule,
     MdInputModule,
     MdChipsModule,
-    MdProgressSpinnerModule
+    MdProgressSpinnerModule,
+    MdSlideToggleModule, MdDatepickerModule, MdNativeDateModule
 } from '@angular/material';
 
 // Pipe
@@ -315,7 +316,7 @@ import { BackendPathPipe } from './pipes/backend-path.pipe';
 
         // Datepicker
         MyDatePickerModule,
-
+        MdNativeDateModule,
         MomentModule,
 
         // Mocks
@@ -336,6 +337,9 @@ import { BackendPathPipe } from './pipes/backend-path.pipe';
         MdSelectModule,
         MdInputModule,
         MdChipsModule,
+        MdSlideToggleModule,
+        MdDatepickerModule,
+
 
         // Flex Layout
         FlexLayoutModule,

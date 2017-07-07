@@ -1,0 +1,18 @@
+:host {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+
+  justify-content: space-between;
+  align-items: baseline;
+
+
+  md-select, md-input-container {
+    flex-grow: 1;
+    flex-basis: 100%;
+  }
+
+  md-input-container, md-slide-toggle, a {
+    margin-left: 20px
+  }
+}

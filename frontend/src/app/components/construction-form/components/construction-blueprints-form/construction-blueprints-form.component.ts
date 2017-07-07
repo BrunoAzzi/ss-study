@@ -44,7 +44,6 @@ export class ConstructionBlueprintsFormComponent implements OnInit {
                   image: fileReader.result,
                   imageFile: imageFile
               });
-              console.log('NEWFLOOR', newFloor);
               this.construction.sectors[indexSector].floors.push(newFloor);
           };
       })(imageFile);

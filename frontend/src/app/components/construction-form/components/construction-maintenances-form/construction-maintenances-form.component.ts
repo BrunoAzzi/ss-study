@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {Equipment} from '../../../../models/equipment.model';
 
 @Component({
     selector: 'construction-maintenances-form',
@@ -7,10 +8,10 @@ import {Component} from '@angular/core';
 })
 export class ConstructionMaintenancesFormComponent {
 
-    categories: Array<string> = [];
+    categories: Array<Equipment> = [];
 
     addNewCategory(category) {
-        this.categories = [...this.categories, category];
+        this.categories = [...this.categories, new Equipment()];
     }
 
     editCategory({ category, index }) {

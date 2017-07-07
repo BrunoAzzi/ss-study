@@ -1,3 +1,22 @@
-<p>
-  maintenance-inline-form works!
-</p>
+<md-select placeholder="Tipo de Equipamento" (change)="console.log($event.value)" ngModel>
+  <md-option [value]="1">
+    Tipo de equipamento
+  </md-option>
+</md-select>
+<md-input-container>
+  <input mdInput placeholder="Identificação"
+         ngModel name="identification">
+</md-input-container>
+<md-slide-toggle>
+  Manutenção
+</md-slide-toggle>
+<md-input-container>
+  <input mdInput placeholder="Periodicidade"
+         ngModel name="periodicity">
+</md-input-container>
+<md-input-container>
+  <input mdInput [mdDatepicker]="picker" placeholder="Última manutenção">
+  <button mdSuffix [mdDatepickerToggle]="picker"></button>
+</md-input-container>
+<md-datepicker #picker></md-datepicker>
+<a>Excluir</a>
