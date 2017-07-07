@@ -76,7 +76,7 @@
                 </md-input-container>
 
                 <md-select placeholder="Escolaridade" formControlName="scholarity" [(ngModel)]="worker.scholarity" name="scholarity" id="scholarity">
-                    <md-option *ngFor="let scholarity of scholaritys" [value]="scholarity.value">
+                    <md-option *ngFor="let scholarity of scholaritys" [value]="worker.scholarity">
                         {{ scholarity.viewValue }}
                     </md-option>
                 </md-select>

@@ -9,7 +9,7 @@ export class Worker {
     name: string;
     cpf: string;
     gender: boolean;
-    scholarity: number;
+    scholarity: string;
     nit: string;
     cep: string;
     completeAddress: string;
@@ -43,7 +43,7 @@ export class Worker {
         this.name = json.name;
         this.cpf = json.cpf;
         this.gender = json.gender;
-        this.scholarity = json.degree;
+        this.scholarity = "Médio Completo";
         this.nit = json.nit;
         this.cep = json.cep;
         this.completeAddress = json.completeAddress;
