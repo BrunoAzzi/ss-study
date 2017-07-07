@@ -25,3 +25,4 @@ public enum ConstructionStatus {
         return map.get(value);
     }
 }
+

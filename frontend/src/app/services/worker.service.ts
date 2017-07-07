@@ -11,7 +11,8 @@ export class WorkerService {
 
     getWorkerList() {
 		return this.service.get(this.endpoint)
-            .map(jsonResponse => {
+            .map(
+				jsonResponse => {
 				return jsonResponse.workers
 			})
 	}
@@ -33,6 +34,7 @@ export class WorkerService {
 		cpf = cpf.replace(/[^0-9]+/g, '');
 		return this.service.get(this.endpoint + "/cpf/" + cpf)
 			.map(jsonResponse => {
+
 				return new Worker().initializeWithJSON(jsonResponse.worker)
 			});
 	}
