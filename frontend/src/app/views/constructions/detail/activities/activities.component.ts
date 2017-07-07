@@ -1,6 +1,6 @@
 import { Cookie } from 'ng2-cookies/ng2-cookies';
 import { Component, ViewChild} from '@angular/core';
-import { MdDialog} from '@angular/material';
+import { MdDialog, MdSnackBar } from '@angular/material';
 
 import { Task } from './../../../../models/task.model';
 import { User } from './../../../../models/user.model'
@@ -35,11 +35,14 @@ export class ActivitiesComponent {
         }
     }
 
-    constructor(public dialog: MdDialog, public taskService: TasksService, public userService: UserService, public sessionsService: SessionsService) { }
+    constructor(public dialog: MdDialog, 
+                public taskService: TasksService, 
+                public userService: UserService, 
+                public sessionsService: SessionsService,
+                public snackBar: MdSnackBar) { }
 
     ngOnInit() {
-        console.log(Cookie.get('auth_token'));
-        this.sessionSrtg = this.sessionsService.getCurrent() || new User();        
+        this.sessionSrtg = this.sessionsService.getCurrent() || new User();   
 
         this.userSub = this.userService.getUsers().subscribe((users) => {            
             users.forEach(element => {
@@ -53,8 +56,8 @@ export class ActivitiesComponent {
         }
 
         this.taskSub = this.taskService.getTaskList().subscribe((tasks) => {
+            this.allTasks = tasks;
             this.taskLists = this.mapTasks(tasks);
-            this.allTasks = this.taskLists;
         })  
     }
 
@@ -70,27 +73,31 @@ export class ActivitiesComponent {
     }
 
     checkTask(_task: Task) {
-        //TODO: Put to check task
+        _task.checked = true;
+
+        this.taskService.saveTask(_task).subscribe(
+                savedTask => {
+                    this.snackBar.open('Tarefa feita!', null, { duration: 3000 });                    
+                },
+                error => {
+                    this.handleError(error);
+                }
+            );
     }
 
     changeTaskFilter(_filters: any) {
         var filteredList = [];
 
-        this.allTasks.forEach(list => {
-            filteredList.push(
-                {   group: list.group, 
-                    tasks: list.tasks.filter(task => {
-                        return (
-                            (_filters.personal && task.responsible.id == this.dialogConfig.data.currentUser.id) ||
-                            (_filters.team && !task.checked) ||
-                            (_filters.history && task.checked) || 
-                            !(_filters.personal || _filters.team || _filters.history) 
-                        )
-                    }) 
-                });
-        });
+        var filteredList = this.allTasks.filter(task => {
+                                return (
+                                    (_filters.personal && task.responsible.id === this.sessionSrtg.id && !task.checked) ||
+                                    (_filters.team && !task.checked) ||
+                                    (_filters.history && task.checked) || 
+                                    !(_filters.personal || _filters.team || _filters.history) 
+                                )
+                            })
 
-        this.taskLists = filteredList;
+        this.taskLists = this.mapTasks(filteredList);
     }
 
     changeOccurrenceFilter(_filters: any) {
@@ -122,5 +129,15 @@ export class ActivitiesComponent {
         if (others.length > 0) list.push({ group: "Dias Anteriores", occurrences: others});
 
         return list;
+    }
+
+    private handleError(error) {
+        if (error.json() && error.json().errors && error.json().errors.length > 0) {
+            this.snackBar.open(error.json().errors[0].message, null, { duration: 3000 });
+            console.log(error.json().errors[0].message);
+        } else {
+            this.snackBar.open('Erro no servidor!', null, { duration: 3000 });
+            console.log('Erro no servidor!');
+        }
     }
 }
