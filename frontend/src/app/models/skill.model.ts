@@ -1,17 +1,19 @@
 import * as moment from 'moment';
 
-export class Recycling {
-    attachment: any;
+export class Skill {
     dueDate: Date;
+    attachment: any;
     validityStart: Date;
     periodicity: number;
     isApt: boolean;
+    overdue: boolean;
+    name: string;
 
     constructor() {
         this.isApt         = true;
-        this.attachment    = null;
         this.dueDate       = null;
-        this.validityStart = null;
         this.periodicity   = 0;
+        this.attachment    = null;
+        this.validityStart = null;
     }
 }

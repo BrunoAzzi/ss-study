@@ -1,3 +1,4 @@
+
 <div class="drop-zone" ng2FileDrop
      [ng2FileDropSupportedFileTypes]="supportedFileTypes"
      (ng2FileDropFileAccepted)="dragFileAccepted($event)"
@@ -16,6 +17,8 @@
         </div>
     </div>
 </div>
-
+<span class="label" *ngIf="label">
+    {{label}}
+</span>
 <input #fileInput type="file"
        (change)="onFileChange($event)" [accept]="supportedFileTypes.join(', ')"/>

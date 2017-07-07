@@ -35,5 +35,6 @@ md-card {
 
 md-card-content {
     height: 100%;
-    overflow: scroll;
+    overflow-x: auto;
+    overflow-y: scroll;
 }
