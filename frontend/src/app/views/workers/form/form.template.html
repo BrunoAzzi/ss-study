@@ -1,7 +1,7 @@
 <safety-card #datailsCard>
     <safety-card-header>dados do trabalhador</safety-card-header>
     <safety-card-content>
-        <workers-data [worker]="worker" (cpfUpdated)="getWorkerByCpf($event)" (saved)="onDetailsSaved($event)"></workers-data>
+        <worker-details-form [worker]="worker" (cpfUpdated)="getWorkerByCpf($event)" (saved)="onDetailsSaved($event)"></worker-details-form>
     </safety-card-content>
 </safety-card>
 
@@ -15,7 +15,7 @@
 <safety-card #securityCard>
     <safety-card-header>dados de segurança</safety-card-header>
     <safety-card-content>
-        <security-works [cpf]="cpf" [worker]="worker" (saved)="onSecuritySaved($event)"></security-works>
+        <security-works-form [cpf]="cpf" [worker]="worker" (saved)="onSecuritySaved($event)"></security-works-form>
     </safety-card-content>
 </safety-card>
 

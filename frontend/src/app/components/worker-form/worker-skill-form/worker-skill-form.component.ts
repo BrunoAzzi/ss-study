@@ -5,9 +5,10 @@ import { Recycling } from '../../../models/recycling.model';
 
 @Component({
     selector:    'worker-skill-form',
-    styleUrls:   ['./worker-skill-form.component.scss'],
     templateUrl: './worker-skill-form.template.html',
+    styleUrls:   ['./worker-skill-form.component.scss'],
 })
+
 export class SkillComponent {
     @Input() skill: Skill = new Skill();
     @Input() nameList: any;
@@ -27,7 +28,7 @@ export class SkillComponent {
         todayBtnTxt: 'Hoje'
     };
 
-    onFileSelect(event) { }
+    onFileSelect(event) {}
 
     setPeriodicity(periodicity: number) {
         if (periodicity) {

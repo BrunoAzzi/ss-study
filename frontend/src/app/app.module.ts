@@ -49,14 +49,14 @@ import { DataTablePipe } from './components/perfil_emocional/status_trabalhadore
 
 // Components
 import { SecurityWorksComponent } from './components/worker-form/worker-security-form/worker-security-form.component';
-import { WorkersDataComponent } from './components/worker-form/workers-details-form/workers-details-form.component';
+import { WorkersDataComponent } from './components/worker-form/worker-details-form/worker-details-form.component';
 import { CompaniesComponent } from './views/companies/companies.component';
 
-import { AsoItemComponent, ConfirmationDialogOverview } from './components/workers/asoItem/asoItem.component';
+import { AsoItemComponent, ConfirmationDialogOverview } from './components/workers/workers-aso-item/workers-aso-item.component';
 
 import { DateRangeComponent } from './components/common/date-range/date-range.component';
 import { SkillComponent } from './components/worker-form/worker-skill-form/worker-skill-form.component';
-import { RecyclingComponent } from './components/workers/recycling/recycling.component';
+import { RecyclingComponent } from './components/workers/workers-recycling/workers-recycling.component';
 import { BoxMessageComponent } from './components/common/box-message/box-message.component';
 import { BlueprintComponent } from './components/blueprint/blueprint.component';
 import { ToolboxComponent } from './components/toolbox/toolbox.component';
@@ -69,7 +69,7 @@ import { TrainingComponent } from './views/training/training.component';
 // Worker
 import { WorkerFormComponent } from './views/workers/form/form.component';
 import { WorkerListComponent } from './views/workers/list/list.component';
-import { LineWorkerDetailComponent } from './components/workers/line-worker-detail/line-worker-detail.component';
+import { LineWorkerDetailComponent } from './components/workers/workers-line-detail/workers-line-detail.component';
 
 import { MonitoringComponent } from './views/constructions/detail/monitoring/monitoring.component';
 import { AreaMappingComponent } from './components/area-mapping/area-mapping.component';
@@ -357,7 +357,7 @@ import { BackendPathPipe } from './pipes/backend-path.pipe';
         ConstructionResolver,
         ConstructionsService,
         { provide: LocationStrategy, useClass: HashLocationStrategy }],
-    bootstrap: [AppComponent]
+    bootstrap:       [AppComponent]
 })
 
 export class AppModule {}
