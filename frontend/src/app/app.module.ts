@@ -2,6 +2,7 @@ import { OccurrencesListComponent } from './components/activities/occurrences/oc
 import { TasksListComponent } from './components/activities/tasks/tasks-list/tasks-list.component';
 import { TasksDialogComponent } from './components/activities/tasks/tasks-dialog/tasks-dialog.component';
 import { TasksFormComponent } from './components/activities/tasks/tasks-form/tasks-form.component';
+import { TasksAttachmentFiles } from './components/activities/tasks/tasks-attachment-files/tasks-attachment-files.component';
 import { ActivitiesComponent } from './views/constructions/detail/activities/activities.component';
 import { ConstructionFormSmartComponent } from './views/constructions/form/construction-form.container';
 import { ConstructionFormComponent } from './components/construction-form/construction-form.component';
@@ -300,6 +301,7 @@ import { BackendPathPipe } from './pipes/backend-path.pipe';
         TasksListComponent,
         TasksDialogComponent,
         TasksFormComponent,
+        TasksAttachmentFiles,
         OccurrencesListComponent,
         BackendPathPipe,
     ],

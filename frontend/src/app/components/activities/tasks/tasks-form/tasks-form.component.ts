@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl, NgModel } from '@angular/forms';
 
 import { MomentModule } from 'angular2-moment';
@@ -14,7 +14,7 @@ import { User } from './../../../../models/user.model';
     styleUrls: ['./tasks-form.component.scss']
 })
 
-export class TasksFormComponent {
+export class TasksFormComponent implements OnInit {
 
     @Input() task: Task
     @Input() users: Array<User>
@@ -61,12 +61,14 @@ export class TasksFormComponent {
     }
 
     setValidityDeadline(event) {
-        let formattedData = event.formatted.substr(event.formatted.length - 4);
-            formattedData += "-";
-            formattedData += event.formatted.substr(3, 2);
-            formattedData += "-";
-            formattedData += event.formatted.substr(0, 2);        
-        this.task.deadline = formattedData;
+        if(event) {
+            let formattedData = event.formatted.substr(event.formatted.length - 4);
+                formattedData += "-";
+                formattedData += event.formatted.substr(3, 2);
+                formattedData += "-";
+                formattedData += event.formatted.substr(0, 2);        
+            this.task.deadline = formattedData;
+        }
     }
 
     sendData() {

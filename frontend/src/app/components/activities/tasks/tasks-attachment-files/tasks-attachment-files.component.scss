@@ -1,0 +1,9 @@
+@import './../../../../../scss/components/color.scss';
+
+.grid-container {    
+    height: 85px;
+}
+
+.grid-row:last-child {
+    border : dashed 2px $light-gray;
+}

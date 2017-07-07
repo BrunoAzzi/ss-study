@@ -6,8 +6,9 @@
             </md-input-container>
         </div>
         <div class="grid-row">
-            <my-date-picker name="taskDate" [options]="myDatePickerOptions" (ngModelChange)="setValidityDeadline($event)"
-                        placeholder="Data" [(ngModel)]="deadline" required>
+            <my-date-picker name="taskDate" [options]="myDatePickerOptions"
+                        required (ngModelChange)="setValidityDeadline($event)"
+                        placeholder="Data" [(ngModel)]="deadline" >
             </my-date-picker>
 
             <md-input-container>
@@ -26,6 +27,9 @@
                 <textarea mdInput placeholder="Detalhes da tarefa" name="taskDetails"
                           [(ngModel)]="task.description" rows="4" required (keyup)="sendData()"></textarea>
             </md-input-container>
+        </div>
+        <div class="grid-row">
+            <tasks-attachment-files [task]="task" (save)="save($event)"></tasks-attachment-files>
         </div>
     </div>
 </div>
