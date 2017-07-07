@@ -1,6 +1,6 @@
 import { Component, EventEmitter, ViewChild } from '@angular/core';
 import { WorkerService } from '../../../services/worker.service';
-import { Skill } from '../../../mocks/skill/skill';
+import { Skill } from '../../../models/skill.model';
 import { Worker } from '../../../models/worker.model';
 import { SafetyCardComponent } from '../../../components/common/safety-card/safety-card.component';
 

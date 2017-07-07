@@ -7,22 +7,24 @@
                 <md-icon *ngIf="skill.overdue == undefined" class="disabled"> panorama_fish_eye</md-icon>
             </div>
             <md-select #skillName required (change)="toggleName(skillName.selected.value)"
-                       placeholder="Habilitação">
+                    placeholder="Habilitação">
                 <md-option *ngFor="let name of nameList" [value]="name">
                     {{ name }}
                 </md-option>
             </md-select>
-            <md-slide-toggle color="primary" (click)="clickRecycling">
-                Reciclagem
-            </md-slide-toggle>
+            <div class="md-slide-toggle">
+                <md-slide-toggle color="warn" (change)="clickRecycling($event)">
+                    Reciclagem
+                </md-slide-toggle>
+            </div>
             <my-date-picker name="mydate" [options]="myDatePickerOptions" [ngModel]="skill.validityStart" required
-                            (ngModelChange)="setValidityStart($event)"
-                            placeholder="Data da Realização">
+                    (ngModelChange)="setValidityStart($event)"
+                    placeholder="Data da Realização">
             </my-date-picker>
             <md-input-container>
                 <input class="periodicity" [ngModel]="skill.periodicity" min="0" mdInput type="number"
-                       (input)="setPeriodicity($event.target.valueAsNumber)" [disabled]="!skill.validityStart"
-                       placeholder="Peridiocidade">
+                        (input)="setPeriodicity($event.target.valueAsNumber)" [disabled]="!skill.validityStart"
+                        placeholder="Peridiocidade">
                 <span mdSuffix>MESES</span>
             </md-input-container>
             <div class="grid-row-75">

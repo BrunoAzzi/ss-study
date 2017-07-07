@@ -1,12 +1,12 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { IMyDpOptions } from 'mydatepicker';
-import { Skill } from '../../../mocks/skill/skill';
-import { Recycling } from '../../../mocks/recycling/recycling';
+import { Skill } from '../../../models/skill.model';
+import { Recycling } from '../../../models/recycling.model';
 
 @Component({
-    selector:    'skill',
-    styleUrls:   ['./skill.component.scss'],
-    templateUrl: './skill.template.html',
+    selector:    'worker-skill-form',
+    styleUrls:   ['./worker-skill-form.component.scss'],
+    templateUrl: './worker-skill-form.template.html',
 })
 export class SkillComponent {
     @Input() skill: Skill = new Skill();
@@ -17,8 +17,8 @@ export class SkillComponent {
     @Output() removed          = new EventEmitter();
 
     formerName: string;
-    recyclingList: Recycling[] = [];
-    recycling: boolean         = false;
+    recyclingList: Recycling[]      = [];
+    recyclingMdSlideToggle: boolean = false;
 
     myDatePickerOptions: IMyDpOptions = {
         dateFormat:  'dd/mm/yyyy',
@@ -42,15 +42,15 @@ export class SkillComponent {
     }
 
     updateDueDate() {
-        let validityStart = new Date(this.skill.validityStart.getTime());
-        let newMonthValue = validityStart.getMonth() + this.skill.periodicity;
+        const validityStart = new Date(this.skill.validityStart.getTime());
+        const newMonthValue = validityStart.getMonth() + this.skill.periodicity;
         validityStart.setMonth(newMonthValue);
         this.skill.dueDate = validityStart;
         this.checkOverdue();
     }
 
     checkOverdue() {
-        let today = new Date();
+        const today = new Date();
         if (this.skill.dueDate.getTime() < today.getTime()) {
             this.skill.overdue = true;
         } else {
@@ -63,7 +63,7 @@ export class SkillComponent {
     }
 
     removeReciclagem(recycling: Recycling) {
-        let index = this.recyclingList.indexOf(recycling);
+        const index = this.recyclingList.indexOf(recycling);
         if (index > -1) this.recyclingList.splice(index, 1);
     }
 
@@ -79,7 +79,7 @@ export class SkillComponent {
     }
 
     removeNameInList(name: string) {
-        let index = this.nameList.indexOf(name);
+        const index = this.nameList.indexOf(name);
         if (index > -1) this.nameList.splice(index, 1);
     }
 
@@ -91,13 +91,12 @@ export class SkillComponent {
         this.nameList = val;
         this.skillNamesChange.emit(this.nameList);
     }
-/*
-    clickRecycling(e: Event) {
-        e.checked === true
-            ? this.recycling = true
-            : this.recycling = false;
-        console.log(this.recycling);
-    }*/
+
+    clickRecycling(value) {
+        value.checked === true
+            ? this.recyclingMdSlideToggle = true
+            : this.recyclingMdSlideToggle = false;
+    }
 
     @Input()
     get skillNames() {

@@ -55,7 +55,7 @@ import { CompaniesComponent } from './views/companies/companies.component';
 import { AsoItemComponent, ConfirmationDialogOverview } from './components/workers/asoItem/asoItem.component';
 
 import { DateRangeComponent } from './components/common/date-range/date-range.component';
-import { SkillComponent } from './components/worker-form/skill/skill.component';
+import { SkillComponent } from './components/worker-form/worker-skill-form/worker-skill-form.component';
 import { RecyclingComponent } from './components/workers/recycling/recycling.component';
 import { BoxMessageComponent } from './components/common/box-message/box-message.component';
 import { BlueprintComponent } from './components/blueprint/blueprint.component';
