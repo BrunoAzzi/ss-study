@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component} from '@angular/core';
 import {Equipment} from '../../../../models/equipment.model';
 
 @Component({
@@ -11,10 +11,11 @@ export class ConstructionMaintenancesFormComponent {
     equipments: Array<Equipment> = [];
 
     addEquipment() {
-        this.equipments.push(new Equipment);
+        this.equipments.push(new Equipment());
     }
 
-    removeEquipment(index) {
+    removeEquipment(index, equipment) {
+        console.log(equipment)
         this.equipments.splice(index, 1);
     }
 

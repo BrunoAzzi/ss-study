@@ -1,7 +1,7 @@
 <form #f="ngForm">
     <ul>
         <li *ngFor="let equipment of equipments; let i = index;" class="maintenance">
-            <safety-equipment-inline-form [equipment]="equipment" (removed)="removeEquipment(i)"></safety-equipment-inline-form>
+            <safety-equipment-inline-form [(equipment)]="equipments[i]" (removed)="removeEquipment(i, $event)"></safety-equipment-inline-form>
         </li>
         <a (click)="addEquipment()">Adicionar equipamento</a>
     </ul>
