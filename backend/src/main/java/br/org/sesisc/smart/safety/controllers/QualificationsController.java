@@ -11,16 +11,12 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
-import java.io.IOException;
-import java.util.Set;
 
 import static br.org.sesisc.smart.safety.helpers.FileHelper.JPEG_TYPE;
+import static br.org.sesisc.smart.safety.helpers.FileHelper.PDF_TYPE;
 import static br.org.sesisc.smart.safety.helpers.FileHelper.PNG_TYPE;
 
 @RestController
@@ -38,77 +34,6 @@ public class QualificationsController {
     private ObjectMapper objectMapper;
 
 
-    @GetMapping()
-    public ResponseEntity<?> index() {
-        Set<Qualification> qualifications = repository.findAll();
-        return SuccessResponse.handle(
-                new String[] { "qualifications" },
-                new Object[] { qualifications },
-                HttpStatus.OK
-        );
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<?> show(@PathVariable("id") long id) {
-        Qualification qualification = repository.findOne(id);
-
-        if (qualification != null) {
-            return SuccessResponse.handle(
-                    new String[] { "qualification" },
-                    new Object[] { qualification },
-                    HttpStatus.OK
-            );
-        }
-        else {
-            return ErrorResponse.handle(
-                    new String[] {"Qualificação não encontrada."},
-                    Qualification.class,
-                    HttpStatus.NOT_FOUND
-            );
-        }
-    }
-
-    @PostMapping
-    public ResponseEntity<?> create(@RequestBody @Valid final Qualification cParams, Errors errors) {
-        if (errors.hasErrors()) {
-            return ErrorResponse.handle(errors, HttpStatus.UNPROCESSABLE_ENTITY);
-        }
-
-        Qualification qualification = repository.save(cParams);
-
-        return SuccessResponse.handle(
-                new String[] {"qualification"},
-                new Object[] {qualification},
-                HttpStatus.CREATED
-        );
-    }
-
-
-    @PutMapping(value = "/{id}")
-    public ResponseEntity<?> update(@PathVariable("id") long id, HttpServletRequest request) throws IOException {
-
-        Qualification qualification = repository.findOne(id);
-
-        if (qualification != null) {
-            Qualification updateQuali = objectMapper.readerForUpdating(qualification).readValue(request.getReader());
-
-            repository.save(updateQuali);
-
-            return SuccessResponse.handle(
-                    new String[] {"qualification"},
-                    new Object[] {qualification},
-                    HttpStatus.ACCEPTED
-            );
-        } else {
-            return ErrorResponse.handle(
-                    new String[] {"Qualificação não encontrada."},
-                    Qualification.class,
-                    HttpStatus.NOT_FOUND
-            );
-        }
-    }
-
-
     @PostMapping("/attachment/{id}")
     public ResponseEntity<?> uploadFile(
             @PathVariable("id") long id,
@@ -117,7 +42,7 @@ public class QualificationsController {
         Qualification qualification = repository.findOne(id);
 
         if (qualification != null && file != null) {
-            if(file.getContentType().equals(PNG_TYPE) || file.getContentType().equals(JPEG_TYPE)) {
+            if(file.getContentType().equals(PNG_TYPE) || file.getContentType().equals(JPEG_TYPE)|| file.getContentType().equals(PDF_TYPE) ) {
                 String fileName = storageService.store(file);
                 qualification.setAttachmentFileName(fileName);
                 qualification.setAttachmentUrl(String.format("/qualifications/attachment/%d", id));
@@ -144,6 +69,9 @@ public class QualificationsController {
                 HttpStatus.NOT_FOUND
         );
     }
+
+
+
 
     @GetMapping("/attachment/{id}")
     public ResponseEntity<?> loadFile(

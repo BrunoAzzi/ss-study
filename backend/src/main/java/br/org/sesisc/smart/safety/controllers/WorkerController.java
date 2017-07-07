@@ -142,7 +142,7 @@ public class WorkerController {
     }
 
 
-    @PostMapping("/photoProfile/{id}")
+    @PostMapping("/photo_profile/{id}")
     public ResponseEntity<?> uploadFile(
             @PathVariable("id") long id,
             @RequestParam("file") MultipartFile file
@@ -153,7 +153,7 @@ public class WorkerController {
             if(file.getContentType().equals(PNG_TYPE) || file.getContentType().equals(JPEG_TYPE)) {
                 String fileName = storageService.store(file);
                 worker.setPhotoFilename(fileName);
-                worker.setPhotoUrl(String.format("/workers/photoProfile/%d", id));
+                worker.setPhotoUrl(String.format("/workers/photo_profile/%d", id));
 
                 repository.save(worker);
 
@@ -178,7 +178,7 @@ public class WorkerController {
         );
     }
 
-    @GetMapping("/photoProfile/{id}")
+    @GetMapping("/photo_profile/{id}")
     public ResponseEntity<?> loadFile(
             @PathVariable("id") long id
     ) {

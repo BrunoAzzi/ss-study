@@ -9,7 +9,6 @@ import java.util.Set;
 public interface WorkerRepository  extends CrudRepository<Worker, Long> {
     Set<Worker> findAll();
     Worker findByCpf(String cpf);
-    //Set<Aso> findAllAsos();
     Set<Worker> findByActivatedTrue();
     Worker findByCpfAndActivatedTrue(String cpf);
     Worker findByIdAndActivatedTrue(Long id);
