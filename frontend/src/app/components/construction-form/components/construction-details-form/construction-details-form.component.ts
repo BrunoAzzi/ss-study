@@ -13,26 +13,19 @@ export class ConstructionDetailsFormComponent {
     @Output() saved: EventEmitter<Construction> = new EventEmitter();
 
     supportedFileTypes: string[] = ['image/png', 'image/jpeg', 'image/gif'];
-    image: any;
     fileName: string;
 
-    logo: any;
-    featured: any;
+    constructor() {}
 
     processFile(file) {
         const fileReader = new FileReader();
         fileReader.onload = ((theFile) => {
             return (e) => {
-                this.image = fileReader.result;
+                this.construction.image = fileReader.result;
                 this.fileName = theFile.name;
             };
         })(file);
         fileReader.readAsDataURL(file);
-    }
-
-
-
-    constructor() {
     }
 
     onStatusChanged(value: number) {
@@ -44,23 +37,14 @@ export class ConstructionDetailsFormComponent {
         this.construction.address = data.street + ' , ' + data.neighborhood + ' - ' + data.city + ' / ' + data.state;
     }
 
-    onLogoChange(image) {
-        this.logo = image;
+    onLogoChange(file: File) {
+        this.construction.imageFile = file;
     }
 
-    onFeaturedChange(image) {
-        this.featured = image;
-    }
-
-    save(f: NgForm) {
+    save() {
         const construction = Object.assign(
             new Construction(),
-            this.construction,
-            {
-                ...f.value,
-                logo: this.logo,
-                featured: this.featured
-            }
+            this.construction
         );
         this.saved.emit(construction);
     }

@@ -94,7 +94,7 @@ ul {
     box-shadow: 0 3px 9px 0 rgba(0, 0, 0, 0.05) !important;
 
     .mat-dialog-actions:last-child {
-        margin-bottom: 0px;
+        margin-bottom: 0;
     }
     .mat-toolbar {
         min-height: 45px;
@@ -105,13 +105,13 @@ ul {
         height:     100%;
     }
 
-    md-dialog-content {
+    .md-dialog-content {
         padding: 20px !important;
         margin:  0 !important;
     }
 }
 
-monitoring, mapping {
+monitoring, .mapping {
     .mat-tab-body-wrapper {
         height: 100%;
     }

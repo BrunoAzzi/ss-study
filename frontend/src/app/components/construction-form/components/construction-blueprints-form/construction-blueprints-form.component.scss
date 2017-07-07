@@ -35,5 +35,13 @@
 
     width: 300px;
     height: 300px;
+
+    &.ng-valid {
+      background-color: rgba(green, 0.05);
+    }
+
+    &.ng-invalid {
+      background-color: rgba(red, 0.05);
+    }
   }
 }

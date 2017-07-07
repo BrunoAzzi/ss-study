@@ -3,7 +3,13 @@
         <div class="grid-column-50">
             <div class="grid-row">
                 <md-card class="image-upload">
-                    <drop-file [img]="'/assets/ic-image.png'" [label]="'INSIRA A FOTO DO TRABALHADOR'" (onChange)="onLogoChange($event)"></drop-file>
+                    <md-card-content>
+                        <drop-file [image]="'/assets/ic-image.png'" (fileChanged)="onLogoChange($event)">
+                        </drop-file>
+                    </md-card-content>
+                    <md-card-footer>
+                        <p>INSIRA A FOTO <br/> DO TRABALHADOR</p>
+                    </md-card-footer>
                 </md-card>
             </div>
         </div>

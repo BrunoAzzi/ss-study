@@ -1,6 +1,6 @@
-import {HttpClientService} from './http-client.service';
-import {Worker} from './../models/worker.model';
-import {Injectable} from '@angular/core';
+import { HttpClientService } from './http-client.service';
+import { Worker } from './../models/worker.model';
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class WorkerService {
@@ -10,19 +10,17 @@ export class WorkerService {
     constructor(private service: HttpClientService) {}
 
     getWorkerList() {
-        return this.service.get(this.endpoint)
-            .map(jsonResponse => {
-                return jsonResponse.workers.map((jsonWorker) => {
-                    return new Worker().initializeWithJSON(jsonWorker);
-                });
+        return this.service.get(this.endpoint).map(jsonResponse => {
+            return jsonResponse.workers.map((jsonWorker) => {
+                return new Worker().initializeWithJSON(jsonWorker);
             });
+        });
     }
 
     getWorker(id) {
-        return this.service.get(this.endpoint + '/' + id)
-            .map(jsonResponse => {
-                return new Worker().initializeWithJSON(jsonResponse.worker);
-            });
+        return this.service.get(this.endpoint + '/' + id).map(jsonResponse => {
+            return new Worker().initializeWithJSON(jsonResponse.worker);
+        });
     }
 
     saveWorker(worker: Worker) {
@@ -35,34 +33,30 @@ export class WorkerService {
 
     getWorkerByCpf(cpf: string) {
         cpf = cpf.replace(/[^0-9]+/g, '');
-        return this.service.get(this.endpoint + '/cpf/' + cpf)
-            .map(jsonResponse => {
-                if (jsonResponse.worker) {
-                    return new Worker().initializeWithJSON(jsonResponse.worker);
-                } else {
-                    return new Worker();
-                }
-            });
+        return this.service.get(this.endpoint + '/cpf/' + cpf).map(jsonResponse => {
+            if (jsonResponse.worker) {
+                return new Worker().initializeWithJSON(jsonResponse.worker);
+            } else {
+                return new Worker();
+            }
+        });
     }
 
     getCBO(value) {
-        return this.service.get(this.endpoint + '/cbo/' + value)
-            .map(jsonResponse => {
-                return jsonResponse.cbo;
-            });
+        return this.service.get(this.endpoint + '/cbo/' + value).map(jsonResponse => {
+            return jsonResponse.cbo;
+        });
     }
 
     private createWorker(worker: Worker) {
-        return this.service.post(this.endpoint, JSON.stringify(worker.toJSON()))
-            .map((jsonResponse) => {
-                return new Worker().initializeWithJSON(jsonResponse.worker);
-            });
+        return this.service.post(this.endpoint, JSON.stringify(worker.toJSON())).map((jsonResponse) => {
+            return new Worker().initializeWithJSON(jsonResponse.worker);
+        });
     }
 
     private updateWorker(worker: Worker) {
-        return this.service.put(this.endpoint, JSON.stringify(worker))
-            .map((jsonResponse) => {
-                return new Worker().initializeWithJSON(jsonResponse.worker);
-            });
+        return this.service.put(this.endpoint, JSON.stringify(worker)).map((jsonResponse) => {
+            return new Worker().initializeWithJSON(jsonResponse.worker);
+        });
     }
 }
