@@ -1,0 +1,79 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no" ?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="1" author="fpileggi">
+
+        <createTable tableName="equipment_categories">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)" />
+        </createTable>
+        <addAutoIncrement tableName="equipment_categories" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
+    </changeSet>
+
+    <changeSet id="2" author="fpileggi">
+        <createTable tableName="equipment_types">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="equipment_category_id" type="int" />
+            <column name="name" type="varchar(255)" />
+        </createTable>
+        <addAutoIncrement tableName="equipment_types" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
+
+        <addForeignKeyConstraint baseTableName="equipment_types"
+                                 baseColumnNames="equipment_category_id"
+                                 constraintName="fk_equipment_category_types"
+                                 referencedTableName="equipment_categories"
+                                 referencedColumnNames="id"
+                                 onDelete="CASCADE"/>
+    </changeSet>
+
+    <changeSet id="3" author="fpileggi">
+        <sqlFile path="liquibase/seed/equipments.sql"/>
+    </changeSet>
+
+    <changeSet id="4" author="fpileggi">
+        <createTable tableName="equipments">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="construction_id" type="int" />
+            <column name="equipment_category_id" type="int" />
+            <column name="equipment_type_id" type="int" />
+            <column name="identification" type="varchar(255)" />
+            <column name="maintenance" type="boolean" />
+            <column name="last_maintenance" type="TIMESTAMP" />
+            <column name="periodicity" type="int" />
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addAutoIncrement tableName="equipments" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
+
+        <addForeignKeyConstraint baseTableName="equipments"
+                                 baseColumnNames="equipment_category_id"
+                                 constraintName="fk_equipments_categories"
+                                 referencedTableName="equipment_categories"
+                                 referencedColumnNames="id"
+                                 onDelete="CASCADE"/>
+
+        <addForeignKeyConstraint baseTableName="equipments"
+                                 baseColumnNames="equipment_type_id"
+                                 constraintName="fk_equipments_types"
+                                 referencedTableName="equipment_types"
+                                 referencedColumnNames="id"
+                                 onDelete="CASCADE"/>
+
+        <addForeignKeyConstraint baseTableName="equipments"
+                                 baseColumnNames="construction_id"
+                                 constraintName="fk_construction_equipments"
+                                 referencedTableName="constructions"
+                                 referencedColumnNames="id"
+                                 onDelete="CASCADE"/>
+    </changeSet>
+
+</databaseChangeLog>

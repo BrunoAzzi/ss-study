@@ -50,11 +50,19 @@ public class ConstructionController {
     public ResponseEntity<?> show(@PathVariable("id") long id) {
         Construction construction = repository.findOne(id);
 
-        return SuccessResponse.handle(
-                new String[] {"construction"},
-                new Object[] {construction},
-                HttpStatus.OK
-        );
+        if (construction != null) {
+            return SuccessResponse.handle(
+                    new String[] {"construction"},
+                    new Object[] {construction},
+                    HttpStatus.OK
+            );
+        } else {
+            return ErrorResponse.handle(
+                    new String[] {"Construção não encontrada."},
+                    Construction.class,
+                    HttpStatus.NOT_FOUND
+            );
+        }
     }
 
     @PostMapping
