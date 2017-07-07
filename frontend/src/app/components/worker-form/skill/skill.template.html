@@ -9,9 +9,12 @@
             <md-select #skillName required (change)="toggleName(skillName.selected.value)"
                        placeholder="Habilitação">
                 <md-option *ngFor="let name of nameList" [value]="name">
-                    {{name}}
+                    {{ name }}
                 </md-option>
             </md-select>
+            <md-slide-toggle color="primary" (click)="clickRecycling">
+                Reciclagem
+            </md-slide-toggle>
             <my-date-picker name="mydate" [options]="myDatePickerOptions" [ngModel]="skill.validityStart" required
                             (ngModelChange)="setValidityStart($event)"
                             placeholder="Data da Realização">

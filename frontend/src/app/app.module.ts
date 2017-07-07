@@ -21,7 +21,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HttpClientService } from './services/http-client.service';
-import { CnaeService } from './services/cnae.service'
+import { CnaeService } from './services/cnae.service';
 import { SessionsService } from './services/sessions.service';
 import { PasswordService } from './services/password.service';
 import { AuthGuard } from './guards/index';
@@ -39,7 +39,8 @@ import {
     MdSelectModule,
     MdInputModule,
     MdChipsModule,
-    MdProgressSpinnerModule
+    MdProgressSpinnerModule,
+    MdSlideToggleModule,
 } from '@angular/material';
 
 // Pipe
@@ -297,6 +298,7 @@ import { AutofocusDirective } from './components/common/autofocus/autofocus.dire
         BrowserAnimationsModule,
         HttpModule,
         FormsModule,
+        MdSlideToggleModule,
 
         ReactiveFormsModule,
         CommonModule,
@@ -336,7 +338,7 @@ import { AutofocusDirective } from './components/common/autofocus/autofocus.dire
         // Flex Layout
         FlexLayoutModule,
 
-        //Moments
+        // Moments
         MomentModule,
 
         // Routes

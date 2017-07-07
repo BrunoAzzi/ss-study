@@ -1,4 +1,6 @@
 import { Worker } from './worker.model';
+import * as moment from 'moment';
+
 export class Qualification {
     dueDate: Date;
     attachment: any;

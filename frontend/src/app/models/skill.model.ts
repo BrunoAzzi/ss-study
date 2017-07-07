@@ -1,19 +1,22 @@
 import * as moment from 'moment';
 
-export class Security {
-    cipeiro: boolean;
-    brigade: boolean;
-    laborsInCipa: string;
-    dataRang: any;
+
+export class Recycling {
+    attachment: any;
+    dueDate: Date;
+    validityStart: Date;
+    periodicity: number;
+    isApt: boolean;
 
     constructor() {
-        this.cipeiro      = null;
-        this.brigade      = null;
-        this.laborsInCipa = null;
-        this.dataRang     = null;
+        this.isApt = true;
+        this.attachment = null;
+        this.dueDate = null;
+        this.validityStart = null;
+        this.periodicity = 0;
     }
 
-    public initializeWithJSON(json: any) {
+/*    public initializeWithJSON(json: any) {
 
         let beginDate = moment(json.mandate_begin_date, "YYYY-MM-DD HH:mm:ss");
         let endDate   = moment(json.mandate_end_date, "YYYY-MM-DD HH:mm:ss");
@@ -36,5 +39,5 @@ export class Security {
             mandate_begin_date: this.dataRang.beginDate,
             mandate_end_date:   this.dataRang.endDate,
         };
-    }
+    }*/
 }

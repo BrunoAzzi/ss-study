@@ -6,7 +6,17 @@ md-radio-group,
 my-date-picker,
 md-input-container,
 date-range,
-input {
+input,
+md-slide-toggle {
+    font-family: 'Lato', sans-serif;
+    color: $greyish-brown;
+    * {
+        font-family: 'Lato', sans-serif;
+        color: $greyish-brown;
+    }
+}
+
+md-slide-toggle {
     font-family: 'Lato', sans-serif;
     color: $greyish-brown;
     * {
