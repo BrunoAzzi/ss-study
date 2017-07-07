@@ -1,10 +1,10 @@
 <div class="grid-container">
     <div class="grid-column">
-        <div #filePreview class="grid-row" *ngIf="task.attachmentFiles.length > 0">
+        <div #filePreview class="grid-row" *ngIf="attachmentFiles.length > 0">
             <ul class="files-list">
-                <li *ngFor="let file of task.attachmentFiles; let fileIndex = index" class="file">
+                <li *ngFor="let file of attachmentFiles; let fileIndex = index" class="file">
                     <drop-file [showPreview]="true" 
-                        (fileChanged)="attachmentFileEdited(task, fileIndex, $event)" [image]="file.resource"></drop-file>
+                        (fileChanged)="attachmentFileEdited(file, fileIndex, $event)" [image]="file.resource"></drop-file>
                     <button class="button-link" (click)="removeFile(fileIndex)">Remover</button>
                 </li>
             </ul>

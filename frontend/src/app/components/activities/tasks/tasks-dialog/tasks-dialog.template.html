@@ -8,7 +8,8 @@
 <form >
     <md-dialog-content>
         <div class="md-dialog-content">
-            <tasks-form [task]="task" [users]="users" (save)="save($event)"></tasks-form>            
+            <tasks-form [task]="task" [users]="users"
+                (save)="save($event)" (bindFiles)="bindFiles($event)"></tasks-form>            
         </div>
     </md-dialog-content>
     <md-dialog-actions fxLayout fxLayoutAlign="center center" layout="row" >

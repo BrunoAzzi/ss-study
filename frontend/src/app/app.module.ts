@@ -42,6 +42,8 @@ import { MomentModule } from 'angular2-moment';
 import {
     MdAutocompleteModule,
     MdSnackBar,
+    MdDatepickerModule,
+    MdNativeDateModule,
     MdDialogModule,
     MdToolbarModule,
     MdButtonModule,
@@ -345,11 +347,13 @@ import { BackendPathPipe } from './pipes/backend-path.pipe';
         // Angular Material
         MaterialModule,
         MdAutocompleteModule,
+        MdDatepickerModule,
+        MdNativeDateModule,
         MdDialogModule,
         MdToolbarModule,
         MdButtonModule,
         MdProgressSpinnerModule,
-        MdSelectModule,
+        MdSelectModule,        
         MdInputModule,
         MdChipsModule,
 

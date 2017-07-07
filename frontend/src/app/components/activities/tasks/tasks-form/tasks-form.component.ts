@@ -5,6 +5,7 @@ import { MomentModule } from 'angular2-moment';
 import { Observable } from 'rxjs/Observable';
 
 import { IMyDpOptions } from 'mydatepicker';
+import { AttachmentFile } from './../../../../models/attachmentFile.model';
 import { Task } from './../../../../models/task.model';
 import { User } from './../../../../models/user.model';
 
@@ -19,7 +20,9 @@ export class TasksFormComponent implements OnInit {
     @Input() task: Task
     @Input() users: Array<User>
     @Output() save: EventEmitter<Task> = new EventEmitter();
+    @Output() bindFiles: EventEmitter<any> = new EventEmitter();
 
+    attachmentFiles: Array<AttachmentFile> = []
     deadline : any
     fControl = new FormControl();
     filteredOptions: Observable<User[]>;
@@ -71,8 +74,14 @@ export class TasksFormComponent implements OnInit {
         }
     }
 
+    bindAttachments(_attachmentFiles: Array<AttachmentFile>) {
+        console.log("FILES ON FORM", _attachmentFiles);
+        this.attachmentFiles = _attachmentFiles;
+    }
+
     sendData() {
         this.save.emit(this.task);
+        this.bindFiles.emit(this.attachmentFiles);
     }
    
 }

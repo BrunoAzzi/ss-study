@@ -45,6 +45,13 @@ export class TasksService {
             });
     }
 
+    uploadFile(id: number, formData :any , type: string) {
+        return this.service.postWithNoHeaders(this.endpoint + '/' + id + '/' + type, formData)
+        .map((response) => {
+            return response;
+        });
+    }
+
     deleteTask(id: number) {
         return this.service.delete(this.endpoint + "/" + id)
             .map((response) => {                

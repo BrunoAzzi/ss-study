@@ -55,10 +55,7 @@ export class ActivitiesComponent {
             this.dialogConfig.data.currentUser = new User().initializeWithJSON(this.sessionSrtg);
         }
 
-        this.taskSub = this.taskService.getTaskList().subscribe((tasks) => {
-            this.allTasks = tasks;
-            this.taskLists = this.mapTasks(tasks);
-        })  
+        this.getTaskLists(); 
     }
 
     ngOnDestroy() {
@@ -85,10 +82,18 @@ export class ActivitiesComponent {
             );
     }
 
+    getTaskLists() {
+        this.taskSub = this.taskService.getTaskList().subscribe((tasks) => {
+            this.allTasks = tasks;
+            this.taskLists = this.mapTasks(tasks);
+        })
+    }
+
     deleteTask(_task: Task) {
         this.taskService.deleteTask(_task.id).subscribe(
                 response => {
-                    this.snackBar.open('Tarefa excluida com sucesso!', null, { duration: 3000 });                    
+                    this.snackBar.open('Tarefa excluida com sucesso!', null, { duration: 3000 });
+                    this.getTaskLists();
                 },
                 error => {
                     this.handleError(error);

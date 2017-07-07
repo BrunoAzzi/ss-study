@@ -12,10 +12,12 @@ import { Task } from './../../../../models/task.model';
 export class TasksAttachmentFiles {
 
     @Input() task: Task
-    @Output() save: EventEmitter<Task> = new EventEmitter();
+    @Output() bindAttachments: EventEmitter<any> = new EventEmitter();
+
+    attachmentFiles: Array<AttachmentFile> = []
     
     sendData() {
-        this.save.emit(this.task);
+        this.bindAttachments.emit(this.attachmentFiles);        
     }
 
     attachmentFileAdded(_imageFile: File) {
@@ -29,8 +31,8 @@ export class TasksAttachmentFiles {
                   resourceFile: _imageFile
               });
               console.log('NEW FILE', newFile);
-              this.task.attachmentFiles.push(newFile);
-              console.log(this.task.attachmentFiles);
+              this.attachmentFiles.push(newFile);
+              this.sendData();
           };
         })(_imageFile);
         fileReader.readAsDataURL(_imageFile);
@@ -48,16 +50,17 @@ export class TasksAttachmentFiles {
                   resource: fileReader.result,
                   resourceFile: _imageFile
               });
-              const newArray = Object.assign([], this.task.attachmentFiles.slice(), { [index]: updatedFile});              
-              console.log('UPDATED FILE', updatedFile);              
-              this.task.attachmentFiles = newArray;              
+              const newArray = Object.assign([], this.attachmentFiles.slice(), { [index]: updatedFile});              
+              console.log('UPDATED FILE', updatedFile);
+              console.log('NEW ARRAY', newArray);
+              this.attachmentFiles = newArray;
+              this.sendData();
           };
         })(_imageFile);
         fileReader.readAsDataURL(_imageFile);
    }
 
     removeFile(index: number) {
-        this.task.attachmentFiles.splice(index, 1);
-        console.log(this.task);
+        this.attachmentFiles.splice(index, 1);        
     }
 }
