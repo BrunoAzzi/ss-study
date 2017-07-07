@@ -1,6 +1,7 @@
 export class Skill {
+
     dueDate: Date;
-    attachment: any
+    attachment: any;
     validityStart: Date;
     periodicity: number;
     isApt: boolean;

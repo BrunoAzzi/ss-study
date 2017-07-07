@@ -1,8 +1,8 @@
 import { Component, EventEmitter, ViewChild } from '@angular/core';
 import { WorkerService } from '../../../services/worker.service';
-import { Skill } from '../../../mocks/skill/skill';
+import { Skill } from '../../../models/skill.model';
 import { Worker } from '../../../models/worker.model';
-import { SafetyCardComponent } from "../../../components/common/safety-card/safety-card.component";
+import { SafetyCardComponent } from '../../../components/common/safety-card/safety-card.component';
 
 @Component({
     templateUrl: 'form.template.html',
@@ -15,42 +15,61 @@ export class WorkerFormComponent {
     @ViewChild('securityCard') securityCard: SafetyCardComponent;
     @ViewChild('healthCard') healthCard: SafetyCardComponent;
 
-    cpf: string = "";
-    isReciclagem: boolean = false;
-    isValid: boolean = false;
+    cpf = '';
+    isReciclagem = false;
+    isValid = false;
     resultado: any;
 
     worker: Worker = new Worker();
 
-    constructor(
-        private service: WorkerService
-    ) {
-    }
+    constructor(private service: WorkerService) {}
 
     getWorkerByCpf(cpf: string) {
-        this.service.getWorkerByCpf(cpf).subscribe(subscribedworker => {
-            this.worker = subscribedworker
+        this.service.getWorkerByCpf(cpf).subscribe(subscribedWorker => {
+            this.worker = subscribedWorker;
+        });
+    }
+
+    onCBOChanged(value) {
+        this.service.getCBO(value).subscribe((cbo) => {
+            this.worker.cboDescription = cbo;
         });
     }
 
     onQualificationsSaved(savedWorker: Worker) {
-        console.log(savedWorker)
         this.qualificationsCard.close();
     }
 
 
     onSecuritySaved(savedWorker: Worker) {
-        console.log(savedWorker);
         this.securityCard.close();
     }
 
     onDetailsSaved(savedWorker: Worker) {
-        console.log(savedWorker);
+        this.updateWorker(savedWorker);
         this.datailsCard.close();
     }
 
     onHealthSaved(savedWorker: Worker) {
+        this.service.saveWorker(savedWorker);
         this.healthCard.close();
+    }
+
+    private updateWorker(worker: Worker) {
+        this.service.saveWorker(worker).subscribe(
+            data => {
+                console.log(data);
+            },
+            error => {
+                if (error.json() && error.json().errors && error.json().errors.length > 0) {
+                    // this.showErrorBar(error.json().errors[0].message);
+                    console.log(error.json().errors[0].message);
+                } else {
+                    // this.showErrorBar('Erro no servidor!');
+                    console.log('Erro no servidor!');
+                }
+            }
+        );
     }
 
 }

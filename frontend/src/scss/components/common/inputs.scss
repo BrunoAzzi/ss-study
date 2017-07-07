@@ -6,7 +6,17 @@ md-radio-group,
 my-date-picker,
 md-input-container,
 date-range,
-input {
+input,
+md-slide-toggle {
+    font-family: 'Lato', sans-serif;
+    color: $greyish-brown;
+    * {
+        font-family: 'Lato', sans-serif;
+        color: $greyish-brown;
+    }
+}
+
+md-slide-toggle {
     font-family: 'Lato', sans-serif;
     color: $greyish-brown;
     * {
@@ -31,7 +41,7 @@ md-error {
     }
     .mat-input-underline,
     .mat-select-underline {
-        border-color: $greyish-brown;
+        background-color: $greyish-brown;
     }
     .mat-input-element,
     .mat-input-placeholder.mat-empty,
@@ -77,7 +87,7 @@ md-select {
         color: $grapefruit !important;
     }
     .mat-select-underline {
-        background-color: $greyish-brown;
+        background-color: $greyish-brown !important;
     }
     // .mat-select-placeholder {
     //     padding-bottom: 5px;

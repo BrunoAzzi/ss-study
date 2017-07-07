@@ -1,53 +1,37 @@
-import { Worker } from './../../../models/worker.model';
-import { Component, Inject, EventEmitter, Output, Input } from '@angular/core';
+import { Worker } from '../../../models/worker.model';
+import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { Endereco_completo } from '../../../mocks/endereco_completo/endereco_completo';
-import { CommonModule } from '@angular/common';
 import { CustomValidators } from './customValidators';
 import { IMyDpOptions } from 'mydatepicker';
-import { WorkersDataService } from "../../../services/workers/workersData.service";
-import { CBOService } from "../../../services/cbo.service";
-import { CorreiosService } from "../../../services/correios.service";
+import { WorkersDataService } from '../../../services/workers/workersData.service';
+import { CBOService } from '../../../services/cbo.service';
 
 @Component({
-    selector: 'workers-data',
+    selector:    'workers-data',
     templateUrl: './workers-details-form.template.html',
-    styleUrls: ['./workers-details-form.component.scss'],
-    providers: [CorreiosService, CBOService, WorkersDataService]
+    styleUrls:   ['./workers-details-form.component.scss'],
+    providers:   [CBOService, WorkersDataService]
 })
 export class WorkersDataComponent {
-    @Input() worker : Worker
-    @Output() saved : EventEmitter<any> = new EventEmitter()
 
-    @Output() cpfUpdated = new EventEmitter<string>();
+    @Input() worker: Worker;
+    @Output() saved: EventEmitter<any> = new EventEmitter();
+    @Output() cpfUpdated               = new EventEmitter<string>();
 
-    disabled = true;
-    mycbo = '';
+    disabled    = true;
+    mycbo       = '';
     mycbonumber = 0;
-    modelCEP = '';
-    cpf = '';
-    hiredType = true;
+    modelCEP    = '';
+    cpf         = '';
+    hiredType   = true;
     myForm: FormGroup;
     completeAddress: string;
     photoPath: any;
 
     myDatePickerOptions: IMyDpOptions = {
-        dateFormat: 'dd/mm/yyyy',
-        dayLabels: { su: 'Dom', mo: 'Seg', tu: 'Ter', we: 'Qua', th: 'Qui', fr: 'Sex', sa: 'Sab' },
-        monthLabels: {
-            1: 'Jan',
-            2: 'Fev',
-            3: 'Mar',
-            4: 'Abr',
-            5: 'Mai',
-            6: 'Jun',
-            7: 'Jul',
-            8: 'Ago',
-            9: 'Set',
-            10: 'Out',
-            11: 'Nov',
-            12: 'Dez'
-        },
+        dateFormat:  'dd/mm/yyyy',
+        dayLabels:   { su: 'Dom', mo: 'Seg', tu: 'Ter', we: 'Qua', th: 'Qui', fr: 'Sex', sa: 'Sab' },
+        monthLabels: { 1: 'Jan', 2: 'Fev', 3: 'Mar', 4: 'Abr', 5: 'Mai', 6: 'Jun', 7: 'Jul', 8: 'Ago', 9: 'Set', 10: 'Out', 11: 'Nov', 12: 'Dez' },
         todayBtnTxt: 'Hoje'
     };
 
@@ -58,74 +42,74 @@ export class WorkersDataComponent {
 
     labors = [{ value: '', viewValue: '' }];
 
-    sexs = ['Masculino', 'Feminino'];
+    sexs = [
+        { viewValue: 'Masculino' },
+        { viewValue: 'Feminino' }
+    ];
+
     hireds = ['Próprio', 'Terceiro'];
 
     scholaritys = [
-        { value: 'fund_i', viewValue: 'Fundamental incompleto' },
-        { value: 'fund_c', viewValue: 'Fundamental completo' },
-        { value: 'medio_i', viewValue: 'Médio incompleto' },
-        { value: 'medio_c', viewValue: 'Médio completo' },
-        { value: 'sup_i', viewValue: 'Superior incompleto' },
-        { value: 'sup_c', viewValue: 'Superior completo' },
-        { value: 'pos', viewValue: 'Pós Graduação' },
+        { value: '1', viewValue: 'Fundamental incompleto' },
+        { value: '2', viewValue: 'Fundamental completo' },
+        { value: '3', viewValue: 'Médio incompleto' },
+        { value: '4', viewValue: 'Médio completo' },
+        { value: '5', viewValue: 'Superior incompleto' },
+        { value: '6', viewValue: 'Superior completo' },
+        { value: '7', viewValue: 'Pós Graduação' },
     ];
 
-
-    necessitys = [
+    necessitys        = [
         { value: 1, viewValue: 'Sim' },
         { value: 2, viewValue: 'Não' },
     ];
-    selectedNecessity: number = 1;
+    selectedNecessity = 1;
 
     cpfMask = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
     nitMask = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, /\d/, /\d/, '.', /\d/, /\d/, '-', /\d/];
     cepMask = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
     cboMask = [/\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/];
 
-
-    constructor(private correiosService: CorreiosService, private cboService: CBOService, private workersService: WorkersDataService, private fb: FormBuilder) {
+    constructor(private cboService: CBOService, private workersService: WorkersDataService, private fb: FormBuilder) {
         this.myForm = this.fb.group({
-            fullname: new FormControl('', Validators.compose([Validators.required, CustomValidators.onlytext])),
-            cpf: new FormControl('', Validators.compose([Validators.required, CustomValidators.cpf])),
-            ctps: new FormControl('', CustomValidators.onlyPositiveNumbers),
-            birthDate: null,
-            age: null,
-            nit: new FormControl(''),
-            cep: null,
-            completeAddress: null,
-            admissionDate: null,
-            complement: null,
-            contact: null,
-            cbo: new FormControl('', Validators.required),
-            textArea: null,
-            company: new FormControl({ value: '', disabled: this.hiredType }, null),
-            hiredTypeRadio: null,
-            sex: null,
-            scholarity: [''],
-            role: [''],
-            necessitys: [''],
-            status: ['']
-        })
-    }
 
-    autocompleteAdressFromApi() {
-        this.correiosService.getAddress(this.modelCEP).subscribe(data => {
-            this.completeAddress = `${data.cidade} - ${data.estado}, ${data.bairro}, ${data.tipoDeLogradouro} ${data.logradouro}`;
+            fullname:        new FormControl('', Validators.compose([Validators.required, CustomValidators.onlytext])),
+            cpf:             new FormControl('', Validators.compose([Validators.required, CustomValidators.cpf])),
+            ctps:            new FormControl('', CustomValidators.onlyPositiveNumbers),
+            birthDate:       null,
+            age:             new FormControl({ value: '', disabled: this.hiredType }, null),
+            nit:             new FormControl(''),
+            cep:             null,
+            completeAddress: null,
+            admissionDate:   null,
+            complement:      null,
+            contact:         null,
+            cbo:             new FormControl('', Validators.required),
+            textArea:        null,
+            company:         new FormControl({ value: '', disabled: this.hiredType }, null),
+            hiredTypeRadio:  null,
+            sex:             null,
+            scholarity:      [''],
+            role:            [''],
+            necessitys:      [''],
+            status:          ['']
         });
+
     }
 
     autoCompleteWorker() {
-        this.cpfUpdated.emit(this.cpf);
-        this.cboService.getCBO(this.mycbo).subscribe(
-            (response) => {
-                this.labors = response;
-            },
-        );
+        if (!this.myForm.controls.cpf.invalid) {
+            this.cpfUpdated.emit(this.cpf);
+            this.cboService.getCBO(this.mycbo).subscribe(
+                (response) => {
+                    this.labors = response;
+                },
+            );
+        }
     }
 
     autocompleteRoleFromMock() {
-        this.cboService.getCBO("6125-05").subscribe(
+        this.cboService.getCBO('6125-05').subscribe(
             (response) => {
                 this.labors = response;
             },
@@ -142,9 +126,16 @@ export class WorkersDataComponent {
         (this.mycbonumber > 0) ? this.disabled = false : this.disabled = true;
     }
 
-     onLogoChange(image) {
+    onLogoChange(image) {
         this.photoPath = image;
     }
 
-
+    onCepSearch(data) {
+        this.worker.cep             = data.cep;
+        this.worker.completeAddress =
+            data.street + ' , ' +
+            data.neighborhood + ' - ' +
+            data.city + ' / ' +
+            data.state;
+    }
 }

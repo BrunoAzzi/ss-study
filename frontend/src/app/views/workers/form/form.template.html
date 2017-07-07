@@ -8,7 +8,7 @@
 <safety-card #qualificationsCard>
     <safety-card-header>habilitações</safety-card-header>
     <safety-card-content>
-        <safety-worker-qualifications-form [worker]="worker" (saved)="onQualificationsSaved($event)"></safety-worker-qualifications-form>
+        <worker-qualifications-form [worker]="worker" (saved)="onQualificationsSaved($event)"></worker-qualifications-form>
     </safety-card-content>
 </safety-card>
 
@@ -20,8 +20,8 @@
 </safety-card>
 
 <safety-card #healthCard>
-    <safety-card-header >dados de saúde</safety-card-header>
+    <safety-card-header>dados de saúde</safety-card-header>
     <safety-card-content>
-        <healthComponent [worker]="worker" (saved)="onHealthSaved($event)"></healthComponent>
+        <worker-health-form [worker]="service.worker" (saved)="onHealthSaved($event)"></worker-health-form>
     </safety-card-content>
 </safety-card>
