@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {Equipment} from '../../../../models/equipment.model';
 
 @Component({
@@ -8,18 +8,14 @@ import {Equipment} from '../../../../models/equipment.model';
 })
 export class ConstructionMaintenancesFormComponent {
 
-    categories: Array<Equipment> = [];
+    equipments: Array<Equipment> = [];
 
-    addNewCategory(category) {
-        this.categories = [...this.categories, new Equipment()];
+    addEquipment() {
+        this.equipments.push(new Equipment);
     }
 
-    editCategory({ category, index }) {
-        this.categories[index] = category;
-    }
-
-    removeCategory(index) {
-        this.categories.splice(index, 1);
+    removeEquipment(index) {
+        this.equipments.splice(index, 1);
     }
 
 }
