@@ -21,7 +21,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HttpClientService } from './services/http-client.service';
-import { CnaeService } from './services/cnae.service'
+import { CnaeService } from './services/cnae.service';
 import { SessionsService } from './services/sessions.service';
 import { PasswordService } from './services/password.service';
 import { AuthGuard } from './guards/index';
@@ -40,7 +40,9 @@ import {
     MdInputModule,
     MdChipsModule,
     MdProgressSpinnerModule,
-    MdSlideToggleModule, MdDatepickerModule, MdNativeDateModule
+    MdSlideToggleModule,
+    MdDatepickerModule,
+    MdNativeDateModule
 } from '@angular/material';
 
 // Pipe
@@ -55,7 +57,7 @@ import { CompaniesComponent } from './views/companies/companies.component';
 import { AsoItemComponent, ConfirmationDialogOverview } from './components/workers/asoItem/asoItem.component';
 
 import { DateRangeComponent } from './components/common/date-range/date-range.component';
-import { SkillComponent } from './components/worker-form/skill/skill.component';
+import { SkillComponent } from './components/worker-form/worker-skill-form/worker-skill-form.component';
 import { RecyclingComponent } from './components/workers/recycling/recycling.component';
 import { BoxMessageComponent } from './components/common/box-message/box-message.component';
 import { BlueprintComponent } from './components/blueprint/blueprint.component';
@@ -300,6 +302,7 @@ import { BackendPathPipe } from './pipes/backend-path.pipe';
         BrowserAnimationsModule,
         HttpModule,
         FormsModule,
+        MdSlideToggleModule,
 
         ReactiveFormsModule,
         CommonModule,
@@ -343,6 +346,9 @@ import { BackendPathPipe } from './pipes/backend-path.pipe';
 
         // Flex Layout
         FlexLayoutModule,
+
+        // Moments
+        MomentModule,
 
         // Routes
         AppRoutingModule,

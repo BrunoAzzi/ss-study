@@ -1,10 +1,23 @@
 import { Aso } from './aso.model';
-export class Health{
+
+export class Health {
 
     asoList: Array<Aso> = [];
-    errorMsg: String 
-    canAddNew: Boolean 
+    errorMsg: String;
+    canAddNew: Boolean;
     allergies: '';
     diseases: '';
-    submitted: boolean
+    submitted: boolean;
+
+
+    public initializeWithJSON(json: any) {
+        return this;
+    }
+
+    public toJSON() {
+        return {
+
+        };
+    }
+
 }

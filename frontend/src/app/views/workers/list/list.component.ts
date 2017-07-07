@@ -1,38 +1,38 @@
 import { Observable } from 'rxjs/Observable';
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Worker } from "../../../models/worker.model";
-import { WorkerService } from "../../../services/worker.service";
+import { Worker } from '../../../models/worker.model';
+import { WorkerService } from '../../../services/worker.service';
 
 @Component({
     templateUrl: 'list.template.html',
     styleUrls: ['./list.component.scss'],
 })
 export class WorkerListComponent {
-    LAST_SAVED = "last_saved";
-    FIRST_SAVED = "first_saved";
+    LAST_SAVED = 'last_saved';
+    FIRST_SAVED = 'first_saved';
 
-    showSearch: boolean = false;
+    showSearch = false;
     selectedOrder: string = this.LAST_SAVED;
-    workerList: Worker[] = []
+    workerList: Worker[] = [];
 
     activeFilters = {
-        text: "",
+        text: '',
         personal: false,
         outsourced: false,
-    }
+    };
 
 	availableOrders = [
-		{ name: "Últimos cadastrados", code: this.LAST_SAVED },
-		{ name: "Primeiros cadastrados", code: this.FIRST_SAVED }
+		{ name: 'Últimos cadastrados', code: this.LAST_SAVED },
+		{ name: 'Primeiros cadastrados', code: this.FIRST_SAVED }
 	];
 
-    workers : Observable<Array<Worker>>
+    workers : Observable<Array<Worker>>;
 
 	constructor(private router: Router, private route: ActivatedRoute, public service: WorkerService) { }
 
     ngOnInit() {
-        this.workers = this.service.getWorkerList().startWith([])
+        this.workers = this.service.getWorkerList().startWith([]);
         // this.route.data.subscribe(data => this.workerList = data.workerList)
     }
 
@@ -44,27 +44,27 @@ export class WorkerListComponent {
         this.showSearch = !this.showSearch;
     }
 
-    getFilteredWorkers(workers : Array<Worker>) {
+    getFilteredWorkers(workers: Array<Worker>) {
         return workers.filter(worker => {
 			return (
                 !(this.activeFilters.personal && !worker.isThirdparty) &&
                 !(this.activeFilters.outsourced && worker.isThirdparty) &&
                 !(this.activeFilters.text.length > 0 && worker.name.toLowerCase().indexOf(this.activeFilters.text.toLowerCase()) === -1)
-            )
-		})
+            );
+		});
 	}
 
 	toggleActiveFilter(filterName) {
 		this.activeFilters = {
             ...this.activeFilters,
 			[filterName]: !this.activeFilters[filterName]
-		}
+		};
 	}
 
 	filterByText(text) {
 		this.activeFilters = {
             ...this.activeFilters,
 			text: text
-		}
+		};
 	}
 }
