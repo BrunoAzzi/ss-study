@@ -15,11 +15,11 @@ export class Security {
 
     public initializeWithJSON(json: any) {
 
-        let beginDate = moment(json.mandate_begin_date, "YYYY-MM-DD HH:mm:ss");
-        let endDate   = moment(json.mandate_end_date, "YYYY-MM-DD HH:mm:ss");
+        const beginDate = moment(json.mandate_begin_date, 'YYYY-MM-DD HH:mm:ss');
+        const endDate   = moment(json.mandate_end_date, 'YYYY-MM-DD HH:mm:ss');
 
-        this.cipeiro      = json.is_cipeiro;
-        this.brigade      = json.is_brigade;
+        this.cipeiro      = json.cipeiro;
+        this.brigade      = json.brigade;
         this.laborsInCipa = json.laborsInCipa;
         this.dataRang     = {
             beginDate: { date: { year: beginDate.year(), month: beginDate.month() + 1, day: beginDate.date() } },
@@ -30,8 +30,8 @@ export class Security {
 
     public toJSON() {
         return {
-            is_cipeiro:         this.cipeiro,
-            is_brigade:         this.brigade,
+            cipeiro:            this.cipeiro,
+            brigade:            this.brigade,
             laborsInCipa:       this.laborsInCipa,
             mandate_begin_date: this.dataRang.beginDate,
             mandate_end_date:   this.dataRang.endDate,

@@ -1,25 +1,25 @@
-import { Health } from "./health.model";
-import { Security } from "./security.model";
-import { Qualification } from "./qualification.model";
-import * as moment from "moment";
+import { Health } from './health.model';
+import { Security } from './security.model';
+import { Qualification } from './qualification.model';
+import * as moment from 'moment';
 
 export class Worker {
 
     id: number;
     name: string;
     cpf: string;
-    gender: string;
+    gender: boolean;
     scholarity: string;
     nit: string;
     cep: string;
     completeAddress: string;
     complement: string;
     contact: string;
-    cbo: string;
+    cbo: Object;
     laborCBO: string;
     cboDescription: string;
     specialNecessity: boolean;
-    status: string;
+    status: boolean;
     ownContracting: string;
     company: string;
     photoPath: string;
@@ -28,65 +28,21 @@ export class Worker {
     ctps: number;
     age: number;
     ocupation: string;
-    isThirdparty: boolean = false;
+    isThirdparty: boolean;
     thirdpartyName: string;
 
     qualifications: Array<Qualification> = [];
     health: Health                       = new Health();
     security: Security                   = new Security();
 
-    /*
-     constructor()
-     constructor(data?: any) {
-
-     let adate_aux = data && new Date(data.admissionDate) || null;
-     if (adate_aux !== null) {
-     this.admissionDate = { date: { year: adate_aux.getFullYear(), month: adate_aux.getMonth() + 1, day: adate_aux.getDate() } }
-     }
-
-     let bdate_aux = data && new Date(data.birthDate) || null;
-     if (bdate_aux !== null) {
-     this.birthDate = { date: { year: bdate_aux.getFullYear(), month: bdate_aux.getMonth() + 1, day: bdate_aux.getDate() } }
-     }
-
-     let sex     = data && data.sexOption || 'm';
-     this.gender = (sex === 'm') ? 'Masculino' : 'Feminino';
-
-     let hyred           = data && data.ownContracting || '';
-     this.ownContracting = (hyred === 'Terceiro') ? 'Terceiro' : 'Próprio';
-
-     this.ctps             = data && data.ctps || 0;
-     this.age              = data && data.age || 0;
-     this.name             = data && data.name || '';
-     this.cpf              = data && data.cpf || '';
-     this.scholarity       = data && data.scholarity || '';
-     this.nit              = data && data.nit || '';
-     this.cep              = data && data.cep || '';
-     this.completeAddress  = data && data.completeAddress || '';
-     this.complement       = data && data.complement || '';
-     this.contact          = data && data.contact || '';
-     this.cbo              = data && data.cbo || '';
-     this.laborCBO         = data && data.laborCBO || '';
-     this.cboDescription   = data && data.cboDescription || '';
-     this.specialNecessity = data && data.specialNecessity || false;
-     this.status           = data && data.status || '';
-     this.company          = data && data.company || '';
-     this.photoPath        = data && data.photoPath || '';
-     this.ocupation        = data && data.ocupation || undefined;
-     this.isThirdparty     = data && data.isThirdparty || false;
-     this.thirdpartyName   = data && data.thirdpartyName || undefined;
-     }
-     */
-
     public initializeWithJSON(json: any) {
-        let birth_date     = moment(json.birth_date, "YYYY-MM-DD HH:mm:ss");
-        let admission_date = moment(json.admission_date, "YYYY-MM-DD HH:mm:ss");
+        const birthDate     = moment(json.birthDate, 'YYYY-MM-DD HH:mm:ss');
+        const admissionDate = moment(json.admissionDate, 'YYYY-MM-DD HH:mm:ss');
 
         this.id               = json.id;
         this.name             = json.name;
         this.cpf              = json.cpf;
-        this.gender           = json.gender;
-        this.scholarity       = json.scholarity;
+        this.scholarity       = 'Médio Completo';
         this.nit              = json.nit;
         this.cep              = json.cep;
         this.completeAddress  = json.completeAddress;
@@ -100,13 +56,14 @@ export class Worker {
         this.ownContracting   = json.ownContracting;
         this.company          = json.company;
         this.photoPath        = json.photoPath;
-        this.admissionDate    = { date: { year: admission_date.year(), month: admission_date.month() + 1, day: admission_date.date() } };
-        this.birthDate        = { date: { year: birth_date.year(), month: birth_date.month() + 1, day: birth_date.date() } };
+        this.admissionDate    = { date: { year: admissionDate.year(), month: admissionDate.month() + 1, day: admissionDate.date() } };
+        this.birthDate        = { date: { year: birthDate.year(), month: birthDate.month() + 1, day: birthDate.date() } };
         this.ctps             = json.ctps;
-        this.age              = birth_date.diff(moment(), 'years');
+        this.age              = birthDate.diff(moment(), 'years');
         this.ocupation        = json.ocupation;
-        this.isThirdparty     = json.isThirdparty;
-        this.thirdpartyName   = json.thirdpartyName;
+        this.isThirdparty     = json.isThirdparty = false;
+        this.thirdpartyName = json.thirdpartyName;
+        this.gender         = json.gender === 'Masculino' ? this.gender = true : this.gender = false;
 
         if (json.health) {
             this.health = new Health().initializeWithJSON(json.health);
@@ -127,7 +84,7 @@ export class Worker {
             id:               this.id,
             name:             this.name,
             cpf:              this.cpf,
-            gender:           this.gender,
+            gender:           this.gender === true ? this.gender = true : this.gender = false,
             scholarity:       this.scholarity,
             nit:              this.nit,
             cep:              this.cep,
