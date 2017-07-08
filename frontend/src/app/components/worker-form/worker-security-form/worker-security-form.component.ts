@@ -4,8 +4,8 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { SecurityWorksService } from '../../../services/workers/securityWorks.service';
 
 @Component({
-    selector:    'security-works',
-    templateUrl: 'worker-security-form.template.html',
+    selector:    'security-works-form',
+    templateUrl: './worker-security-form.template.html',
     styleUrls:   ['./worker-security-form.component.scss'],
     providers:   [SecurityWorksService]
 })
@@ -26,6 +26,28 @@ export class SecurityWorksComponent {
         });
     }
 
+    selectedBrigadista: number;
+    selectedCipeiro = 2;
+    selectedCipaLabor: number;
+
+    brigadistas = [
+        { value: 1, viewValue: 'Sim' },
+        { value: 2, viewValue: 'Não' },
+    ];
+
+    cipeiros = [
+        { value: 1, viewValue: 'Sim' },
+        { value: 2, viewValue: 'Não' },
+    ];
+
+    laborsInCipa = [
+        { value: 1, viewValue: 'Membro Suplente' },
+        { value: 2, viewValue: 'Membro Efetivo' },
+        { value: 3, viewValue: 'Presidente' },
+        { value: 4, viewValue: 'Vice Presidente' },
+        { value: 5, viewValue: 'Secretário' },
+    ];
+
     setDatawithCPF(dateRange) {
         this.secService.getSecurityWorker().subscribe(
             (response) => {
@@ -36,30 +58,6 @@ export class SecurityWorksComponent {
             },
         );
     }
-
-    brigadistas = [
-        { value: 1, viewValue: 'Sim' },
-        { value: 2, viewValue: 'Não' },
-    ];
-
-    selectedBrigadista: number;
-
-    cipeiros = [
-        { value: 1, viewValue: 'Sim' },
-        { value: 2, viewValue: 'Não' },
-    ];
-
-    selectedCipeiro = 2;
-
-    laborsInCipa = [
-        { value: 1, viewValue: 'Membro Suplente' },
-        { value: 2, viewValue: 'Membro Efetivo' },
-        { value: 3, viewValue: 'Presidente' },
-        { value: 4, viewValue: 'Vice Presidente' },
-        { value: 5, viewValue: 'Secretário' },
-    ];
-
-    selectedCipaLabor: number;
 
     cipeiroChange(deviceValue, dateRange) {
         if (deviceValue === 1) {

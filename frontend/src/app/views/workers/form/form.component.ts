@@ -6,7 +6,7 @@ import { SafetyCardComponent } from '../../../components/common/safety-card/safe
 
 @Component({
     templateUrl: 'form.template.html',
-    styleUrls: ['./form.component.scss'],
+    styleUrls:   ['./form.component.scss'],
 })
 export class WorkerFormComponent {
 
@@ -15,9 +15,9 @@ export class WorkerFormComponent {
     @ViewChild('securityCard') securityCard: SafetyCardComponent;
     @ViewChild('healthCard') healthCard: SafetyCardComponent;
 
-    cpf = '';
+    cpf          = '';
     isReciclagem = false;
-    isValid = false;
+    isValid      = false;
     resultado: any;
 
     worker: Worker = new Worker();
@@ -39,7 +39,6 @@ export class WorkerFormComponent {
     onQualificationsSaved(savedWorker: Worker) {
         this.qualificationsCard.close();
     }
-
 
     onSecuritySaved(savedWorker: Worker) {
         this.securityCard.close();

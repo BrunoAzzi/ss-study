@@ -1,17 +1,18 @@
 import { Worker } from '../../../models/worker.model';
 import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { CustomValidators } from './customValidators';
+import { CustomValidators } from './worker-details-form-custom-validators';
 import { IMyDpOptions } from 'mydatepicker';
 import { WorkersDataService } from '../../../services/workers/workersData.service';
 import { CBOService } from '../../../services/cbo.service';
 
 @Component({
-    selector:    'workers-data',
-    templateUrl: './workers-details-form.template.html',
-    styleUrls:   ['./workers-details-form.component.scss'],
+    selector:    'worker-details-form',
+    templateUrl: './worker-details-form.template.html',
+    styleUrls:   ['./worker-details-form.component.scss'],
     providers:   [CBOService, WorkersDataService]
 })
+
 export class WorkersDataComponent {
 
     @Input() worker: Worker;
@@ -94,7 +95,6 @@ export class WorkersDataComponent {
             necessitys:      [''],
             status:          ['']
         });
-
     }
 
     autoCompleteWorker() {
