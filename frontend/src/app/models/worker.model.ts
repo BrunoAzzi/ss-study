@@ -1,5 +1,4 @@
 import { Health } from './health.model';
-import { Security } from './security.model';
 import { Qualification } from './qualification.model';
 import * as moment from 'moment';
 
@@ -35,7 +34,7 @@ export class Worker {
 
     qualifications: Array<Qualification> = [];
     health: Health                       = new Health();
-    security: Security                   = new Security();
+    // security: Security                   = new Security();
 
     public initializeWithJSON(json: any) {
         const birthDate     = moment(json.birthDate, 'YYYY-MM-DD HH:mm:ss');
@@ -76,7 +75,7 @@ export class Worker {
         }
 
         if (json.security) {
-            this.security = new Security().initializeWithJSON(json.security);
+            // this.security = new Security().initializeWithJSON(json.security);
         }
         return this;
     }
@@ -109,7 +108,7 @@ export class Worker {
             isThirdparty:     this.isThirdparty,
             thirdpartyName:   this.thirdpartyName,
             qualification:    this.qualifications.map(qualifications => qualifications.toJSON()),
-            security:         this.security.toJSON(),
+            // security:         this.security.toJSON(),
             health:           this.health.toJSON()
         };
     }

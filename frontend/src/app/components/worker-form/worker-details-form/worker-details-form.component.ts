@@ -4,13 +4,15 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { CustomValidators } from './worker-details-form-custom-validators';
 import { IMyDpOptions } from 'mydatepicker';
 import { WorkersDataService } from '../../../services/workers/workersData.service';
-import { CBOService } from '../../../services/cbo.service';
+// import { CBOService } from '../../../services/cbo.service';
 
 @Component({
     selector:    'worker-details-form',
     templateUrl: './worker-details-form.template.html',
     styleUrls:   ['./worker-details-form.component.scss'],
-    providers:   [CBOService, WorkersDataService]
+    providers:   [
+        // CBOService,
+        WorkersDataService]
 })
 
 export class WorkersDataComponent {
@@ -71,7 +73,9 @@ export class WorkersDataComponent {
     cepMask = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
     cboMask = [/\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/];
 
-    constructor(private cboService: CBOService, private workersService: WorkersDataService, private fb: FormBuilder) {
+    constructor(
+        // private cboService: CBOService,
+        private workersService: WorkersDataService, private fb: FormBuilder) {
         this.myForm = this.fb.group({
 
             fullname:        new FormControl('', Validators.compose([Validators.required, CustomValidators.onlytext])),
@@ -100,20 +104,20 @@ export class WorkersDataComponent {
     autoCompleteWorker() {
         if (!this.myForm.controls.cpf.invalid) {
             this.cpfUpdated.emit(this.cpf);
-            this.cboService.getCBO(this.mycbo).subscribe(
-                (response) => {
-                    this.labors = response;
-                },
-            );
+            // this.cboService.getCBO(this.mycbo).subscribe(
+            //     (response) => {
+            //         this.labors = response;
+            //     },
+            // );
         }
     }
 
     autocompleteRoleFromMock() {
-        this.cboService.getCBO('6125-05').subscribe(
-            (response) => {
-                this.labors = response;
-            },
-        );
+        // this.cboService.getCBO('6125-05').subscribe(
+        //     (response) => {
+        //         this.labors = response;
+        //     },
+        // );
     }
 
     hiredChange() {
@@ -138,4 +142,5 @@ export class WorkersDataComponent {
             data.city + ' / ' +
             data.state;
     }
+
 }
