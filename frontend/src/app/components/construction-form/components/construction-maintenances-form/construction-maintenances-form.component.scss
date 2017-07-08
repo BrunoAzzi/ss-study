@@ -1,7 +1,5 @@
-.maintenance {
-  display: flex;
-  flex-direction: row;
-  flex-grow: 1;
-
-  justify-content: space-between;
+a {
+  text-transform: uppercase;
+  text-decoration: underline;
+  cursor: pointer;
 }

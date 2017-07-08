@@ -41,6 +41,8 @@ import {
     MdChipsModule,
     MdProgressSpinnerModule,
     MdSlideToggleModule,
+    MdDatepickerModule,
+    MdNativeDateModule
 } from '@angular/material';
 
 // Pipe
@@ -157,7 +159,7 @@ import { AlertsTabComponent } from './components/area-monitoring/alerts-tab/aler
 import { AlertsTabItemComponent } from './components/area-monitoring/alerts-tab-item/alerts-tab-item.component';
 import { ConstructionSummaryComponent } from './components/construction-summary/construction-summary.component';
 import { SectorSummaryComponent } from './components/sector-summary/sector-summary.component';
-import { MaintenanceInlineFormComponent } from './components/maintenance-inline-form/maintenance-inline-form.component';
+import { EquipmentInlineFormComponent } from './components/equipment-inline-form/equipment-inline-form.component';
 import { ListItemComponent } from './components/common/list-item/list-item.component';
 import { ListActionBarComponent } from './components/common/list-action-bar/list-action-bar.component';
 import { CompanyDetailsComponent } from './components/company/company-details/company-details.component';
@@ -281,7 +283,7 @@ import { BackendPathPipe } from './pipes/backend-path.pipe';
         AlertsTabItemComponent,
         ConstructionSummaryComponent,
         SectorSummaryComponent,
-        MaintenanceInlineFormComponent,
+        EquipmentInlineFormComponent,
         ListItemComponent,
         ListActionBarComponent,
         WorkerQualificationsFormComponent,
@@ -317,6 +319,8 @@ import { BackendPathPipe } from './pipes/backend-path.pipe';
 
         // Datepicker
         MyDatePickerModule,
+        MdNativeDateModule,
+        MomentModule,
 
         // Mocks
         InMemoryWebApiModule.forRoot(InMemoryDataService, { passThruUnknownUrl: true }),
@@ -336,6 +340,9 @@ import { BackendPathPipe } from './pipes/backend-path.pipe';
         MdSelectModule,
         MdInputModule,
         MdChipsModule,
+        MdSlideToggleModule,
+        MdDatepickerModule,
+
 
         // Flex Layout
         FlexLayoutModule,
