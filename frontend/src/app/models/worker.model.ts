@@ -6,14 +6,16 @@ import * as moment from 'moment';
 export class Worker {
 
     id: number;
+
+    cep: string;
+    completeAddress: string;
+    complement: string;
+
     name: string;
     cpf: string;
     gender: boolean;
     scholarity: string;
     nit: string;
-    cep: string;
-    completeAddress: string;
-    complement: string;
     contact: string;
     cbo: Object;
     laborCBO: string;
@@ -62,8 +64,8 @@ export class Worker {
         this.age              = birthDate.diff(moment(), 'years');
         this.ocupation        = json.ocupation;
         this.isThirdparty     = json.isThirdparty = false;
-        this.thirdpartyName = json.thirdpartyName;
-        this.gender         = json.gender === 'Masculino' ? this.gender = true : this.gender = false;
+        this.thirdpartyName   = json.thirdpartyName;
+        this.gender           = json.gender === 'Masculino' ? this.gender = true : this.gender = false;
 
         if (json.health) {
             this.health = new Health().initializeWithJSON(json.health);

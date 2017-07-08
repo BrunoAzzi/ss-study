@@ -1,6 +1,6 @@
 import { FormControl } from '@angular/forms';
 
-export class GlobalValidators {
+export class CustomValidators {
 
     static cpf(control: FormControl) {
         if (control.value === '') {
@@ -11,17 +11,17 @@ export class GlobalValidators {
     }
 
     static onlytext(control: FormControl) {
+        let regEx: RegExp;
         if (control.value === '') {
             return null;
         }
-        const regEx = /[a-zA-Z]+$/g;
+        regEx       = /[a-zA-Z]+$/g;
         const valid = regEx.test(control.value);
         return valid ? null : { onlytext: true };
     }
 
     static onlyPositiveNumbers(control: FormControl) {
-        let regEx: RegExp;
-        regEx = /\d+/g;
+        const regEx = /\d+/g;
         if (control.value === '') {
             return null;
         }
@@ -34,10 +34,11 @@ export class GlobalValidators {
     }
 
     static email(control: FormControl) {
+        let regEx: RegExp;
         if (control.value === '') {
             return null;
         }
-        const regEx = /^(([^<>()\[\]\\.,;:\s@']+(\.[^<>()\[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        regEx       = /^(([^<>()\[\]\\.,;:\s@']+(\.[^<>()\[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         const valid = regEx.test(control.value);
         return valid ? null : { email: true };
     }
@@ -69,6 +70,7 @@ function validateCPF(cpf) {
     if (rev !== parseInt(cpf.charAt(9)))
         return false;
     add = 0;
+
     for (let i = 0; i < 10; i++)
         add += parseInt(cpf.charAt(i)) * (11 - i);
     rev = 11 - (add % 11);

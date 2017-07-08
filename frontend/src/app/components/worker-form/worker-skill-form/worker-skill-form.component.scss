@@ -1,8 +1,8 @@
 @import '../../../../scss/components/color';
 
-.danger     {color: $grapefruit;}
-.success    {color: $green-blue;}
-.disabled   {color: $cool-grey;}
+.danger     { color: $grapefruit; }
+.success    { color: $green-blue; }
+.disabled   { color: $cool-grey; }
 
 .md-icons-align {
     align-items: center;
@@ -13,7 +13,7 @@
 }
 
 .md-slide-toggle {
-    display: inline-flex;
+    display:         inline-flex;
     justify-content: center;
-    align-items: center;
+    align-items:     center;
 }

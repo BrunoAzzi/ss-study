@@ -32,22 +32,21 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
+
         <addAutoIncrement tableName="degrees" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
+
+        <sqlFile path="/liquibase/seed/degrees.sql"/>
     </changeSet>
 
     <changeSet id="4" author="rdlorbieski">
         <addColumn tableName="workers">
             <column name="supplier_id" type="int"/>
             <column name="cbo_id" type="int"/>
-            <column name="degree" type="varchar(150)" >
-                <constraints nullable="false"/>
-            </column>
+            <column name="degree_id" type="int" />
             <column name="cep" type="varchar(10)"/>
             <column name="address" type="varchar(255)"/>
             <column name="status" type="boolean"/>
-            <column name="birth_date" type="TIMESTAMP">
-                <constraints nullable="false"/>
-            </column>
+            <column name="birth_date" type="TIMESTAMP"/>
             <column name="gender" type="varchar(100)"/>
             <column name="cpf" type="varchar(255)">
                 <constraints nullable="false" unique="true" />
@@ -67,13 +66,21 @@
             <column name="blood_type" type="varchar(3)"/>
             <column name="allergies" type="varchar(255)"/>
             <column name="diseases" type="varchar(255)"/>
-
         </addColumn>
+
         <addForeignKeyConstraint
                 baseTableName="workers"
                 baseColumnNames="cbo_id"
                 constraintName="fk_cbos_workers"
                 referencedTableName="cbos"
+                referencedColumnNames="id"
+                onDelete="CASCADE" />
+
+        <addForeignKeyConstraint
+                baseTableName="workers"
+                baseColumnNames="degree_id"
+                constraintName="fk_degree_workers"
+                referencedTableName="degrees"
                 referencedColumnNames="id"
                 onDelete="CASCADE" />
 

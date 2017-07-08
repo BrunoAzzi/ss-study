@@ -9,15 +9,12 @@ export class Health {
     diseases: '';
     submitted: boolean;
 
-
     public initializeWithJSON(json: any) {
         return this;
     }
 
     public toJSON() {
-        return {
-
-        };
+        return {};
     }
 
 }

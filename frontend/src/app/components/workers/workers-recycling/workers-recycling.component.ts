@@ -2,9 +2,9 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Recycling } from '../../../mocks/recycling/recycling';
 
 @Component({
-    selector: 'recycling',
-    styleUrls: ['./recycling.component.scss'],
-    templateUrl: 'recycling.template.html',
+    selector:    'workers-recycling',
+    templateUrl: './workers-recycling.template.html',
+    styleUrls:   ['./workers-recycling.component.scss'],
 })
 export class RecyclingComponent {
     @Input() recycling: Recycling;
