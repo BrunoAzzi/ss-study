@@ -1,7 +1,7 @@
 package br.org.sesisc.smart.safety.models;
-import br.org.sesisc.smart.safety.models.enums.InstructionDegreeType;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,14 +13,19 @@ public class Worker {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @NotNull(message = "Nome é um campo obrigatório")
     private String name;
     private String cep;
     private String address;
 
-    private InstructionDegreeType degree;
+    @Column(name = "degree_id")
+    private Long degreeId;
     private String birthDate;
     private String gender;
+
+    @NotNull(message = "CPF é um campo obrigatório")
     private String cpf;
+
     private String nit;
     private String ctps;
     private String admissionAt;
@@ -48,17 +53,18 @@ public class Worker {
 
     @ManyToOne
     @JoinColumn(name = "cbo_id")
+    @NotNull(message = "É necessário selecionar um CBO")
     private Cbo cbo;
 
     private boolean activated = true;
 
     public Worker() { }
 
-    public Worker(String name, String cep, String address, int degree, String birthDate, String gender, String cpf, String nit, String ctps, String admissionAt, String contractType, String role, String photoUrl, String photoFilename, boolean cipeiro, boolean brigade, boolean specialNeeds, boolean status, String mandateBegin, String mandateEnd, String allergies, String diseases, String bloodType, Cbo cbo, boolean activated) {
+    public Worker(String name, String cep, String address, Long degreeId, String birthDate, String gender, String cpf, String nit, String ctps, String admissionAt, String contractType, String role, String photoUrl, String photoFilename, boolean cipeiro, boolean brigade, boolean specialNeeds, boolean status, String mandateBegin, String mandateEnd, String allergies, String diseases, String bloodType, Set<Aso> asos, Set<Qualification> qualifications, Cbo cbo, boolean activated) {
         this.name = name;
         this.cep = cep;
         this.address = address;
-        this.degree = InstructionDegreeType.fromInt(degree);
+        this.degreeId = degreeId;
         this.birthDate = birthDate;
         this.gender = gender;
         this.cpf = cpf;
@@ -78,6 +84,8 @@ public class Worker {
         this.allergies = allergies;
         this.diseases = diseases;
         this.bloodType = bloodType;
+        this.asos = asos;
+        this.qualifications = qualifications;
         this.cbo = cbo;
         this.activated = activated;
     }
@@ -114,22 +122,14 @@ public class Worker {
         this.address = address;
     }
 
-    public int getDegree() {
-        return degree.getValue();
+    public Long getDegreeId() {
+        return this.degreeId;
     }
 
-    public void setDegree(int degree) {
-        this.degree = InstructionDegreeType.fromInt(degree);
+    public void setDegreeId(Long degreeId) {
+        this.degreeId = degreeId;
     }
 
-   /* public InstructionDegreeType getDegree() {
-        return degree;
-    }
-
-    public void setDegree(InstructionDegreeType degree) {
-        this.degree = degree;
-    }
-*/
     public String getBirthDate() {
         return birthDate;
     }

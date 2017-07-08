@@ -5,8 +5,11 @@ import br.org.sesisc.smart.safety.models.enums.ConstructionStatus;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "constructions")
@@ -252,16 +255,15 @@ public class Construction {
         this.equipments.add(equipment);
     }
 
-    public Set<Employee> getEmployees() {
-        return employees;
+    public List<Long> getWorkerIds() {
+        return this.employees.stream().map(Employee::getWorkerId).collect(Collectors.toList());
     }
 
-    public void setEmployees(Set<Employee> employees) {
-        this.employees = employees;
-    }
-
-    public void addEmployee(Employee employee) {
-        this.employees.add(employee);
+    public void setWorkerIds(List<Long> workerIds) {
+        this.employees = new HashSet<>();
+        for (long workerId : workerIds) {
+            this.employees.add(new Employee(this.id, workerId));
+        }
     }
 
     public boolean isActivated() {

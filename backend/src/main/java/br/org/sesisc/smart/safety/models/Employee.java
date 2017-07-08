@@ -22,6 +22,10 @@ public class Employee {
         this.workerId = workerId;
     }
 
+    public Employee(long workerId) {
+        this.workerId = workerId;
+    }
+
     public long getId() {
         return id;
     }
