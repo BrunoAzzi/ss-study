@@ -5,8 +5,11 @@ import br.org.sesisc.smart.safety.models.enums.ConstructionStatus;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "constructions")
@@ -49,6 +52,10 @@ public class Construction {
     @JoinColumn(name = "construction_id")
     @OrderBy("equipment_category_id, equipment_type_id")
     private Set<Equipment> equipments = new HashSet<>();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "construction_id")
+    private Set<Employee> employees = new HashSet<>();
 
     private boolean activated = true;
 
@@ -99,9 +106,6 @@ public class Construction {
         this.responsibleSafety = responsibleSafety;
     }
 
-    public Construction(Set<Equipment> equipments) {
-        this.equipments = equipments;
-    }
 
     public Long getId() {
         return id;
@@ -249,6 +253,17 @@ public class Construction {
 
     public void addEquipment(Equipment equipment) {
         this.equipments.add(equipment);
+    }
+
+    public List<Long> getWorkerIds() {
+        return this.employees.stream().map(Employee::getWorkerId).collect(Collectors.toList());
+    }
+
+    public void setWorkerIds(List<Long> workerIds) {
+        this.employees = new HashSet<>();
+        for (long workerId : workerIds) {
+            this.employees.add(new Employee(this.id, workerId));
+        }
     }
 
     public boolean isActivated() {
