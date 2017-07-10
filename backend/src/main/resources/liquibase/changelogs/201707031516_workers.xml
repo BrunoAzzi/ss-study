@@ -148,7 +148,7 @@
             <column name="aso_type" type="int" />
             <column name="able" type="boolean" />
             <column name="attachment_url" type="varchar(255)" />
-            <column name="attachment_file_name" type="varchar(255)" />
+            <column name="attachment_filename" type="varchar(255)" />
         </createTable>
         <addAutoIncrement tableName="asos" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
 

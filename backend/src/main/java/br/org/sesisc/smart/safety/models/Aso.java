@@ -76,11 +76,12 @@ public class Aso {
         this.attachmentUrl = attachmentUrl;
     }
 
-    public String getAttachmentFilename() {
+    public String getattachmentFilename() {
         return attachmentFilename;
     }
 
-    public void setAttachmentFilename(String attachmentFileName) {
-        this.attachmentFilename = attachmentFileName;
+    public void setattachmentFilename(String attachmentFilename) {
+        this.attachmentFilename = attachmentFilename;
+
     }
 }
