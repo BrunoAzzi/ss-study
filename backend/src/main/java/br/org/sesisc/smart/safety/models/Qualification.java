@@ -22,13 +22,13 @@ public class Qualification {
 
     public Qualification() { }
 
-    public Qualification(String realizationDate, int periodicity, boolean able, boolean recycling, String attachmentUrl, String attachmentFileName, Quality quality) {
+    public Qualification(String realizationDate, int periodicity, boolean able, boolean recycling, String attachmentUrl, String attachmentFilename, Quality quality) {
         this.realizationDate = realizationDate;
         this.periodicity = periodicity;
         this.able = able;
         this.recycling = recycling;
         this.attachmentUrl = attachmentUrl;
-        this.attachmentFilename = attachmentFileName;
+        this.attachmentFilename = attachmentFilename;
         this.quality = quality;
     }
 
@@ -84,8 +84,8 @@ public class Qualification {
         return attachmentFilename;
     }
 
-    public void setAttachmentFilename(String attachmentFileName) {
-        this.attachmentFilename = attachmentFileName;
+    public void setAttachmentFilename(String attachmentFilename) {
+        this.attachmentFilename = attachmentFilename;
     }
 
     public Quality getQuality() {
