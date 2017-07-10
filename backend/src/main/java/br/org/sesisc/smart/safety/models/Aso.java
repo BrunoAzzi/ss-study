@@ -9,22 +9,23 @@ public class Aso {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String realizationDate;
-    private String nextDate;
     private String asoType;
+    private String realizationDate;
     private Boolean able;
-    private String attachment;
+    private String nextDate;
+    private String attachmentUrl;
+    private String attachmentFileName;
 
     public Aso() {
     }
 
-    public Aso(Long id, String realizationDate, String nextDate, String asoType, Boolean able, String attachment, Worker worker) {
-        this.id = id;
-        this.realizationDate = realizationDate;
-        this.nextDate = nextDate;
+    public Aso(String asoType, String realizationDate, Boolean able, String nextDate, String attachmentUrl, String attachmentFileName) {
         this.asoType = asoType;
+        this.realizationDate = realizationDate;
         this.able = able;
-        this.attachment = attachment;
+        this.nextDate = nextDate;
+        this.attachmentUrl = attachmentUrl;
+        this.attachmentFileName = attachmentFileName;
     }
 
     public Long getId() {
@@ -67,12 +68,19 @@ public class Aso {
         this.able = able;
     }
 
-    public String getAttachment() {
-        return attachment;
+    public String getAttachmentUrl() {
+        return attachmentUrl;
     }
 
-    public void setAttachment(String attachment) {
-        this.attachment = attachment;
+    public void setAttachmentUrl(String attachmentUrl) {
+        this.attachmentUrl = attachmentUrl;
     }
 
+    public String getAttachmentFileName() {
+        return attachmentFileName;
+    }
+
+    public void setAttachmentFileName(String attachmentFileName) {
+        this.attachmentFileName = attachmentFileName;
+    }
 }

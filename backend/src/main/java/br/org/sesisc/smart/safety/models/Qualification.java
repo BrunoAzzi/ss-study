@@ -9,10 +9,10 @@ public class Qualification {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+    private boolean recycling;
     private String realizationDate;
     private int periodicity;
     private boolean able;
-    private boolean recycling;
     private String attachmentUrl;
     private String attachmentFileName;
 
