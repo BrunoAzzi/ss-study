@@ -9,11 +9,12 @@ public class Aso {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String realizationDate;
-    private String nextDate;
     private String asoType;
+    private String realizationDate;
     private Boolean able;
+    private String nextDate;
     private String attachment;
+    //URL
 
     public Aso() {
     }

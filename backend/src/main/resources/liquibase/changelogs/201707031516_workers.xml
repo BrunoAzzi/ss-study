@@ -61,7 +61,7 @@
             <column name="photo_filename" type="text"/>
             <column name="cipeiro" type="boolean"/>
             <column name="brigade" type="boolean"/>
-            <column name="role" type="varchar(255)"/>
+            <column name="labor_cipa" type="varchar(255)"/>
             <column name="mandate_begin" type="TIMESTAMP"/>
             <column name="mandate_end" type="TIMESTAMP"/>
             <column name="blood_type" type="varchar(3)"/>
