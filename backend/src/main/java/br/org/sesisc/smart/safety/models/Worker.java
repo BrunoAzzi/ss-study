@@ -1,7 +1,7 @@
 package br.org.sesisc.smart.safety.models;
-import br.org.sesisc.smart.safety.models.enums.InstructionDegreeType;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,22 +17,22 @@ public class Worker {
     private String photoFilename;
     private String contractType;
     private String company;
-    //empresa
     private String gender;
+
+    @NotNull(message = "CPF é um campo obrigatório")
     private String cpf;
+    @NotNull(message = "Nome é um campo obrigatório")
     private String name;
     private String nit;
     private String ctps;
     private String birthDate;
-    private InstructionDegreeType degree;
+    @Column(name = "degree_id")
+    private Long degreeId;
     private String complement;
-    //complemento
     private String contact;
-    //contato
     private String cep;
     private String address;
     private String functionDescription;
-    //descricao funcao
     private boolean specialNeeds;
     private String admissionAt;
     private boolean status;
@@ -48,9 +48,6 @@ public class Worker {
     private String diseases;
     private String bloodType;
 
-    @ManyToOne
-    @JoinColumn(name = "cbo_id")
-    private Cbo cbo;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "worker_id")
@@ -60,17 +57,20 @@ public class Worker {
     @JoinColumn(name = "worker_id")
     private Set<Qualification> qualifications = new HashSet<Qualification>();
 
-
+    @ManyToOne
+    @JoinColumn(name = "cbo_id")
+    @NotNull(message = "É necessário selecionar um CBO")
+    private Cbo cbo;
 
     private boolean activated = true;
 
     public Worker() { }
 
     public Worker(String photoUrl, String photoFilename, String contractType, String company, String gender, String cpf, String name,
-                  String nit, String ctps, String birthDate, int degree, String complement, String contact,
-                  String cep, String address, String functionDescription, boolean specialNeeds, String admissionAt, boolean status,
-                  boolean cipeiro, String laborCipa, boolean brigade, String mandateBegin, String mandateEnd, String allergies,
-                  String diseases, String bloodType, Cbo cbo, Set<Aso> asos, Set<Qualification> qualifications, boolean activated) {
+                  String nit, String ctps, String birthDate, Long degreeId, String complement, String contact, String cep,
+                  String address, String functionDescription, boolean specialNeeds, String admissionAt, boolean status, boolean cipeiro,
+                  String laborCipa, boolean brigade, String mandateBegin, String mandateEnd, String allergies, String diseases,
+                  String bloodType, Set<Aso> asos, Set<Qualification> qualifications, Cbo cbo, boolean activated) {
         this.photoUrl = photoUrl;
         this.photoFilename = photoFilename;
         this.contractType = contractType;
@@ -81,7 +81,7 @@ public class Worker {
         this.nit = nit;
         this.ctps = ctps;
         this.birthDate = birthDate;
-        this.degree = InstructionDegreeType.fromInt(degree);
+        this.degreeId = degreeId;
         this.complement = complement;
         this.contact = contact;
         this.cep = cep;
@@ -98,9 +98,9 @@ public class Worker {
         this.allergies = allergies;
         this.diseases = diseases;
         this.bloodType = bloodType;
-        this.cbo = cbo;
         this.asos = asos;
         this.qualifications = qualifications;
+        this.cbo = cbo;
         this.activated = activated;
     }
 
@@ -136,22 +136,14 @@ public class Worker {
         this.address = address;
     }
 
-    public int getDegree() {
-        return degree.getValue();
+    public Long getDegreeId() {
+        return this.degreeId;
     }
 
-    public void setDegree(int degree) {
-        this.degree = InstructionDegreeType.fromInt(degree);
+    public void setDegreeId(Long degreeId) {
+        this.degreeId = degreeId;
     }
 
-   /* public InstructionDegreeType getDegree() {
-        return degree;
-    }
-
-    public void setDegree(InstructionDegreeType degree) {
-        this.degree = degree;
-    }
-*/
     public String getBirthDate() {
         return birthDate;
     }
@@ -216,9 +208,6 @@ public class Worker {
         this.company = company;
     }
 
-    public void setDegree(InstructionDegreeType degree) {
-        this.degree = degree;
-    }
 
     public String getComplement() {
         return complement;

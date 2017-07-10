@@ -2,54 +2,54 @@
     <div class="message-errors" *ngIf="errorMsg != undefined">
         {{errorMsg}}
     </div>
-    <form [formGroup]="helthForm" id="formHealth" >
-        <div class="form-content">
-            <table class="table-form">
-                <tr>
-                    <td>
-                        <md-select formControlName="bloodTypes" placeholder="Tipo Sanguíneo">
-                            <md-option *ngFor="let bloodType of bloodTypes" [value]="bloodType.value">
-                                {{bloodType.viewValue}}
+
+    <form [formGroup]="helthForm" id="formHealth">
+
+        <div class="grid-container">
+            <div class="grid-column">
+
+                <div class="grid-row">
+                    <md-select formControlName="bloodTypes" placeholder="Tipo Sanguíneo">
+                        <md-option *ngFor="let bloodType of bloodTypes" [value]="bloodType.value">
+                            {{bloodType.viewValue}}
+                        </md-option>
+                    </md-select>
+                    <md-input-container>
+                        <input mdInput placeholder="Alergias">
+                    </md-input-container>
+                    <md-input-container>
+                        <input mdInput placeholder="Doenças Existestes">
+                    </md-input-container>
+                </div>
+
+                <div class="grid-row" *ngFor="let aso of asoList">
+                    <div class="grid-row-25">
+                        <md-select formControlName="asoTypes" required placeholder="aso" (change)="changeSelected(aso, $event)">
+                            <md-option *ngFor="let asoType of asoTypes" [value]="asoType.value">
+                                {{asoType.viewValue}}
                             </md-option>
                         </md-select>
-                    </td>
-                    <td>
-                        <md-input-container>
-                            <input mdInput placeholder="Alergias">
-                        </md-input-container>
-                    </td>
-                    <td>
-                        <md-input-container>
-                            <input mdInput placeholder="Doenças Existestes">
-                        </md-input-container>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div class="aling-div" *ngFor="let aso of asoList">
-            <div>
-                <md-select formControlName="asoTypes" required placeholder="aso" (change)="changeSelected(aso, $event)">
-                    <md-option *ngFor="let asoType of asoTypes" [value]="asoType.value">
-                        {{asoType.viewValue}}
-                    </md-option>
-                </md-select>
-                <div *ngIf="submitted">
-                    <md-error *ngIf="helthForm.controls.asoTypes.hasError('required')">Campo Obrigatório.</md-error>
+                        <span *ngIf="submitted">
+                                <md-error *ngIf="helthForm.controls.asoTypes.hasError('required')">
+                                    Campo Obrigatório.
+                                </md-error>
+                         </span>
+                    </div>
+
+                    <div *ngIf="aso.selected >= 0">
+                        <workers-aso-item #asoComponent [itemSelected]="aso.selected" [itemName]="aso.name" (removed)="removeAsoItem(aso)" teste="testeBool"></workers-aso-item>
+                    </div>
+
                 </div>
-            </div>
-            <div *ngIf="aso.selected >= 0">
-                <asoItemComponent #asoComponent [itemSelected]="aso.selected" [itemName]="aso.name" (removed)="removeAsoItem(aso)" teste="testeBool"></asoItemComponent>
-            </div>
-        </div>
-        <div fxLayout="row" fxLayoutAlign="start right">
-            <a class="action" (click)="addAso()">
+                <a class="action" (click)="addAso()">
                     Adicicionar ASO
                 </a>
+            </div>
         </div>
-        <div fxLayout="row" fxLayoutAlign="end center">
-            <button class="save-and-continue" md-raised-button type="submit" (click)="saved.emit(worker)">
-                    <span>Salvar e continuar</span>
-                </button>
+        <div class="button-default">
+            <button md-raised-button type="submit" (click)="saved.emit(worker)">
+                <span>Salvar e continuar</span>
+            </button>
         </div>
     </form>
 </safety-card-content>

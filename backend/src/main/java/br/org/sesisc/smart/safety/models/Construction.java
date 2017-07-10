@@ -5,8 +5,11 @@ import br.org.sesisc.smart.safety.models.enums.ConstructionStatus;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "constructions")
@@ -45,6 +48,15 @@ public class Construction {
     @JoinColumn(name = "responsible_safety_id")
     private ResponsibleSafety responsibleSafety;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "construction_id")
+    @OrderBy("equipment_category_id, equipment_type_id")
+    private Set<Equipment> equipments = new HashSet<>();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "construction_id")
+    private Set<Employee> employees = new HashSet<>();
+
     private boolean activated = true;
 
     public Construction() { }
@@ -71,10 +83,6 @@ public class Construction {
         this.ceiCode = ceiCode;
     }
 
-    public Construction(Set<Sector> sectors) {
-        this.sectors = sectors;
-    }
-
     public Construction(ResponsibleEngineer responsibleEngineer, ResponsibleSafety responsibleSafety) {
         this.responsibleEngineer = responsibleEngineer;
         this.responsibleSafety = responsibleSafety;
@@ -97,6 +105,7 @@ public class Construction {
         this.responsibleEngineer = responsibleEngineer;
         this.responsibleSafety = responsibleSafety;
     }
+
 
     public Long getId() {
         return id;
@@ -214,6 +223,10 @@ public class Construction {
         this.sectors = sectors;
     }
 
+    public void addSector(Sector sector) {
+        this.sectors.add(sector);
+    }
+
     public ResponsibleEngineer getResponsibleEngineer() {
         return responsibleEngineer;
     }
@@ -228,6 +241,29 @@ public class Construction {
 
     public void setResponsibleSafety(ResponsibleSafety responsibleSafety) {
         this.responsibleSafety = responsibleSafety;
+    }
+
+    public Set<Equipment> getEquipments() {
+        return equipments;
+    }
+
+    public void setEquipments(Set<Equipment> equipments) {
+        this.equipments = equipments;
+    }
+
+    public void addEquipment(Equipment equipment) {
+        this.equipments.add(equipment);
+    }
+
+    public List<Long> getWorkerIds() {
+        return this.employees.stream().map(Employee::getWorkerId).collect(Collectors.toList());
+    }
+
+    public void setWorkerIds(List<Long> workerIds) {
+        this.employees = new HashSet<>();
+        for (long workerId : workerIds) {
+            this.employees.add(new Employee(this.id, workerId));
+        }
     }
 
     public boolean isActivated() {

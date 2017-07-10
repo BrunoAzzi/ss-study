@@ -21,7 +21,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HttpClientService } from './services/http-client.service';
-import { CnaeService } from './services/cnae.service'
+import { CnaeService } from './services/cnae.service';
 import { SessionsService } from './services/sessions.service';
 import { PasswordService } from './services/password.service';
 import { AuthGuard } from './guards/index';
@@ -39,7 +39,10 @@ import {
     MdSelectModule,
     MdInputModule,
     MdChipsModule,
-    MdProgressSpinnerModule
+    MdProgressSpinnerModule,
+    MdSlideToggleModule,
+    MdDatepickerModule,
+    MdNativeDateModule
 } from '@angular/material';
 
 // Pipe
@@ -48,14 +51,14 @@ import { DataTablePipe } from './components/perfil_emocional/status_trabalhadore
 
 // Components
 import { SecurityWorksComponent } from './components/worker-form/worker-security-form/worker-security-form.component';
-import { WorkersDataComponent } from './components/worker-form/workers-details-form/workers-details-form.component';
+import { WorkersDataComponent } from './components/worker-form/worker-details-form/worker-details-form.component';
 import { CompaniesComponent } from './views/companies/companies.component';
 
-import { AsoItemComponent, ConfirmationDialogOverview } from './components/workers/asoItem/asoItem.component';
+import { AsoItemComponent, ConfirmationDialogOverview } from './components/workers/workers-aso-item/workers-aso-item.component';
 
 import { DateRangeComponent } from './components/common/date-range/date-range.component';
-import { SkillComponent } from './components/worker-form/skill/skill.component';
-import { RecyclingComponent } from './components/workers/recycling/recycling.component';
+import { SkillComponent } from './components/worker-form/worker-skill-form/worker-skill-form.component';
+import { RecyclingComponent } from './components/workers/workers-recycling/workers-recycling.component';
 import { BoxMessageComponent } from './components/common/box-message/box-message.component';
 import { BlueprintComponent } from './components/blueprint/blueprint.component';
 import { ToolboxComponent } from './components/toolbox/toolbox.component';
@@ -68,7 +71,7 @@ import { TrainingComponent } from './views/training/training.component';
 // Worker
 import { WorkerFormComponent } from './views/workers/form/form.component';
 import { WorkerListComponent } from './views/workers/list/list.component';
-import { LineWorkerDetailComponent } from './components/workers/line-worker-detail/line-worker-detail.component';
+import { LineWorkerDetailComponent } from './components/workers/workers-line-detail/workers-line-detail.component';
 
 import { MonitoringComponent } from './views/constructions/detail/monitoring/monitoring.component';
 import { AreaMappingComponent } from './components/area-mapping/area-mapping.component';
@@ -156,7 +159,7 @@ import { AlertsTabComponent } from './components/area-monitoring/alerts-tab/aler
 import { AlertsTabItemComponent } from './components/area-monitoring/alerts-tab-item/alerts-tab-item.component';
 import { ConstructionSummaryComponent } from './components/construction-summary/construction-summary.component';
 import { SectorSummaryComponent } from './components/sector-summary/sector-summary.component';
-import { MaintenanceInlineFormComponent } from './components/maintenance-inline-form/maintenance-inline-form.component';
+import { EquipmentInlineFormComponent } from './components/equipment-inline-form/equipment-inline-form.component';
 import { ListItemComponent } from './components/common/list-item/list-item.component';
 import { ListActionBarComponent } from './components/common/list-action-bar/list-action-bar.component';
 import { CompanyDetailsComponent } from './components/company/company-details/company-details.component';
@@ -280,7 +283,7 @@ import { BackendPathPipe } from './pipes/backend-path.pipe';
         AlertsTabItemComponent,
         ConstructionSummaryComponent,
         SectorSummaryComponent,
-        MaintenanceInlineFormComponent,
+        EquipmentInlineFormComponent,
         ListItemComponent,
         ListActionBarComponent,
         WorkerQualificationsFormComponent,
@@ -299,6 +302,7 @@ import { BackendPathPipe } from './pipes/backend-path.pipe';
         BrowserAnimationsModule,
         HttpModule,
         FormsModule,
+        MdSlideToggleModule,
 
         ReactiveFormsModule,
         CommonModule,
@@ -315,7 +319,7 @@ import { BackendPathPipe } from './pipes/backend-path.pipe';
 
         // Datepicker
         MyDatePickerModule,
-
+        MdNativeDateModule,
         MomentModule,
 
         // Mocks
@@ -336,9 +340,15 @@ import { BackendPathPipe } from './pipes/backend-path.pipe';
         MdSelectModule,
         MdInputModule,
         MdChipsModule,
+        MdSlideToggleModule,
+        MdDatepickerModule,
+
 
         // Flex Layout
         FlexLayoutModule,
+
+        // Moments
+        MomentModule,
 
         // Routes
         AppRoutingModule,
@@ -354,7 +364,7 @@ import { BackendPathPipe } from './pipes/backend-path.pipe';
         ConstructionResolver,
         ConstructionsService,
         { provide: LocationStrategy, useClass: HashLocationStrategy }],
-    bootstrap: [AppComponent]
+    bootstrap:       [AppComponent]
 })
 
 export class AppModule {}
