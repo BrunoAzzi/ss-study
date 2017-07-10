@@ -14,18 +14,18 @@ public class Aso {
     private Boolean able;
     private String nextDate;
     private String attachmentUrl;
-    private String attachmentFileName;
+    private String attachmentFilename;
 
     public Aso() {
     }
 
-    public Aso(String asoType, String realizationDate, Boolean able, String nextDate, String attachmentUrl, String attachmentFileName) {
+    public Aso(String asoType, String realizationDate, Boolean able, String nextDate, String attachmentUrl, String attachmentFilename) {
         this.asoType = asoType;
         this.realizationDate = realizationDate;
         this.able = able;
         this.nextDate = nextDate;
         this.attachmentUrl = attachmentUrl;
-        this.attachmentFileName = attachmentFileName;
+        this.attachmentFilename = attachmentFilename;
     }
 
     public Long getId() {
@@ -76,11 +76,11 @@ public class Aso {
         this.attachmentUrl = attachmentUrl;
     }
 
-    public String getAttachmentFileName() {
-        return attachmentFileName;
+    public String getAttachmentFilename() {
+        return attachmentFilename;
     }
 
-    public void setAttachmentFileName(String attachmentFileName) {
-        this.attachmentFileName = attachmentFileName;
+    public void setAttachmentFilename(String attachmentFileName) {
+        this.attachmentFilename = attachmentFileName;
     }
 }
