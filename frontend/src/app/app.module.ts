@@ -51,9 +51,7 @@ import {
     MdInputModule,
     MdChipsModule,
     MdProgressSpinnerModule,
-    MdSlideToggleModule,
-    MdDatepickerModule,
-    MdNativeDateModule
+    MdSlideToggleModule
 } from '@angular/material';
 
 // Pipe

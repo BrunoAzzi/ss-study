@@ -41,7 +41,7 @@ export class TasksDialogComponent implements OnInit {
         this.task = _task;
     }
 
-    bindFiles(_attachmentFiles: any) {        
+    bindFiles(_attachmentFiles) {                
         this.attachmentFiles = _attachmentFiles;
     }
 
@@ -51,7 +51,7 @@ export class TasksDialogComponent implements OnInit {
                 this.tasksService.saveTask(this.task).subscribe(
                         savedTask => {
                             console.log("SAVED TASK", savedTask);
-                            console.log(this.attachmentFiles);
+                            console.log("ATTACHMENT FILES", this.attachmentFiles);
                             this.saveAttachmentFiles(savedTask, this.attachmentFiles);
                             this.snackBar.open('Sucesso ao salvar!', null, { duration: 3000 });                    
                         },
@@ -68,21 +68,25 @@ export class TasksDialogComponent implements OnInit {
         }   
     }
 
-    saveAttachmentFiles(savedTask: Task, attachmentFiles: Array<AttachmentFile>) {
-        console.log(this.attachmentFiles);
+    saveAttachmentFiles(savedTask: Task, attachmentFiles: Array<AttachmentFile>) {        
         if(attachmentFiles && attachmentFiles.length > 0) {
             attachmentFiles.forEach( file => {
-                let formData = new FormData();                
-                let type = '';
-                type = file.type.includes("image") ? "image" : "";
-                type = file.type.includes("video") ? "video" : "";
-                formData.append('file', file.resource);
-                console.log(file);
+                const formData = new FormData();                
+                let type = "";
+                type = file.type.indexOf("image") !== -1 ? "image" : "";
+                type = file.type.indexOf("video") !== -1 ? "video" : "";
+                formData.append('file', file.resourceFile);
 
-                this.tasksService.uploadFile(savedTask.id, formData, file.type)
+                if(file.type.includes("image")) {
+                    type = "image";
+                } else if (file.type.includes("video")) {
+                    type = "video";
+                }
+
+                this.tasksService.uploadFile(savedTask.id, formData, type)
                     .subscribe( response => {
-                        console.log(response);
-                    });
+                        console.log("UPLOAD FILE RESPONSE", response);
+                });
             })
         }
     }

@@ -74,9 +74,9 @@ export class TasksFormComponent implements OnInit {
         }
     }
 
-    bindAttachments(_attachmentFiles: Array<AttachmentFile>) {
-        console.log("FILES ON FORM", _attachmentFiles);
+    bindAttachments(_attachmentFiles: Array<AttachmentFile>) {        
         this.attachmentFiles = _attachmentFiles;
+        this.sendData();
     }
 
     sendData() {

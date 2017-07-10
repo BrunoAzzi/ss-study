@@ -86,6 +86,7 @@ const routes: Routes = [
                 { path: 'edit', component: ConstructionFormSmartComponent, canActivate: [AuthGuard] },
                 { path: 'monitoring', component: MonitoringComponent, canActivate: [AuthGuard] },
                 { path: 'emotional-profile', component: EmotionalPanelComponent, canActivate: [AuthGuard] },
+                { path: 'activities', component: ActivitiesComponent, canActivate: [AuthGuard] },
             ]
             }
         ]
