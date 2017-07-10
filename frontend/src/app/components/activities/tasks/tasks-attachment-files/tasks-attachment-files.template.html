@@ -3,16 +3,18 @@
         <div #filePreview class="grid-row" *ngIf="attachmentFiles.length > 0">
             <ul class="files-list">
                 <li *ngFor="let file of attachmentFiles; let fileIndex = index" class="file">
-                    <drop-file [showPreview]="true" 
-                        (fileChanged)="attachmentFileEdited(file, fileIndex, $event)" [image]="file.resource"></drop-file>
+                    <drop-file [showPreview]="true" [image]="file.resource" [supportedFileTypes]="supportedFileTypes"
+                        (fileChanged)="attachmentFileEdited(file, fileIndex, $event)" ></drop-file>
                     <button class="button-link" (click)="removeFile(fileIndex)">Remover</button>
                 </li>
             </ul>
         </div>
-        <drop-file [showPreview]="false"  (fileChanged)="attachmentFileAdded($event)" class="grid-row grid-row-last">
-            <img src="/assets/plus.svg" alt=""/>
-                <span><b>Adicionar</b> imagens</span>
-                <span>Para adicionar imagens arraste elas ou <a>clique aqui</a></span>
-        </drop-file >
+        <div #fileDrop class="grid-row" > 
+            <drop-file [showPreview]="false" [supportedFileTypes]="supportedFileTypes" (fileChanged)="attachmentFileAdded($event)" class="grid-row-last">
+                <img src="/assets/plus.svg" alt=""/>
+                    <span><b>Adicionar</b> imagens</span>
+                    <span>Para adicionar imagens arraste elas ou <a>clique aqui</a></span>
+            </drop-file>
+        </div>
     </div>
 </div>

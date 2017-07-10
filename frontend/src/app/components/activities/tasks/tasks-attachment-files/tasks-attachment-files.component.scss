@@ -1,13 +1,12 @@
 @import './../../../../../scss/components/color.scss';
 
 .grid-container {    
-    height: 85px;    
-    font-family: Lato;
+    height: 85px;
     font-size: 14px;
 
 }
 
-.grid-row-last{    
+.grid-row-last {
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -76,4 +75,8 @@ img {
     text-decoration: underline;
     left: 45px;
     position: relative
+}
+
+.drop-zone {
+    border: none !important;
 }

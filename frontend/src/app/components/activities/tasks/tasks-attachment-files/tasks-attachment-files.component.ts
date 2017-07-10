@@ -15,6 +15,7 @@ export class TasksAttachmentFiles {
     @Output() bindAttachments: EventEmitter<any> = new EventEmitter();
 
     attachmentFiles: Array<AttachmentFile> = []
+    supportedFileTypes: Array<string> = ['image/png', 'image/jpeg', 'image/gif', 'video/mp4', 'video/webm', 'video/ogg'];
     
     sendData() {
         this.bindAttachments.emit(this.attachmentFiles);        

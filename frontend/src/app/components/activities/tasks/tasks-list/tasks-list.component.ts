@@ -1,5 +1,6 @@
 import { Task } from './../../../../models/task.model';
 import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { MdDialog, MdSnackBar } from '@angular/material';
 
 @Component({
     selector: 'tasks-list',
