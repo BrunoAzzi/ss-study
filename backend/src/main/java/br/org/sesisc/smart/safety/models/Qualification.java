@@ -14,7 +14,7 @@ public class Qualification {
     private int periodicity;
     private boolean able;
     private String attachmentUrl;
-    private String attachmentFileName;
+    private String attachmentFilename;
 
     @ManyToOne
     @JoinColumn(name = "quality_id")
@@ -28,7 +28,7 @@ public class Qualification {
         this.able = able;
         this.recycling = recycling;
         this.attachmentUrl = attachmentUrl;
-        this.attachmentFileName = attachmentFileName;
+        this.attachmentFilename = attachmentFileName;
         this.quality = quality;
     }
 
@@ -80,12 +80,12 @@ public class Qualification {
         this.attachmentUrl = attachmentUrl;
     }
 
-    public String getAttachmentFileName() {
-        return attachmentFileName;
+    public String getAttachmentFilename() {
+        return attachmentFilename;
     }
 
-    public void setAttachmentFileName(String attachmentFileName) {
-        this.attachmentFileName = attachmentFileName;
+    public void setAttachmentFilename(String attachmentFileName) {
+        this.attachmentFilename = attachmentFileName;
     }
 
     public Quality getQuality() {
