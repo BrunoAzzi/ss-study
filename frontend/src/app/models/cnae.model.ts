@@ -7,6 +7,6 @@ export class Cnae {
         this.id = json.id;
         this.code = json.code;
         this.description = json.description;
-        return this
+        return this;
     }
 }

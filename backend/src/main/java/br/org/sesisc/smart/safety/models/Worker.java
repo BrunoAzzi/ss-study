@@ -1,6 +1,9 @@
 package br.org.sesisc.smart.safety.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "workers")
@@ -8,36 +11,90 @@ public class Worker {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private long id;
+
+    @NotNull(message = "Nome é um campo obrigatório")
     private String name;
     private String cep;
-    private String adress;
-    private String status;
-    private String birth_date;
-    private String gender;
-    private Integer cbo_id;
-    private String cpf;
-    private String nit;
-    private String degree;
-    private String ctps;
-    private String admission_date;
-    private String contract_type;
-    private String special_needs;
-    private String photo_url;
-    private Boolean is_cipeiro;
-    private Boolean is_brigade;
-    private String role;
-    private String mandate_begin_date;
-    private String mandate_end_date;
+    private String address;
 
-    public Worker() {
+    @Column(name = "degree_id")
+    private Long degreeId;
+    private String birthDate;
+    private String gender;
+
+    @NotNull(message = "CPF é um campo obrigatório")
+    private String cpf;
+
+    private String nit;
+    private String ctps;
+    private String admissionAt;
+    private String contractType;
+    private String role;
+    private String photoUrl;
+    private String photoFilename;
+    private boolean cipeiro;
+    private boolean brigade;
+    private boolean specialNeeds;
+    private boolean status;
+    private String mandateBegin;
+    private String mandateEnd;
+    private String allergies;
+    private String diseases;
+    private String bloodType;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "worker_id")
+    private Set<Aso> asos = new HashSet<Aso>();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "worker_id")
+    private Set<Qualification> qualifications = new HashSet<Qualification>();
+
+    @ManyToOne
+    @JoinColumn(name = "cbo_id")
+    @NotNull(message = "É necessário selecionar um CBO")
+    private Cbo cbo;
+
+    private boolean activated = true;
+
+    public Worker() { }
+
+    public Worker(String name, String cep, String address, Long degreeId, String birthDate, String gender, String cpf, String nit, String ctps, String admissionAt, String contractType, String role, String photoUrl, String photoFilename, boolean cipeiro, boolean brigade, boolean specialNeeds, boolean status, String mandateBegin, String mandateEnd, String allergies, String diseases, String bloodType, Set<Aso> asos, Set<Qualification> qualifications, Cbo cbo, boolean activated) {
+        this.name = name;
+        this.cep = cep;
+        this.address = address;
+        this.degreeId = degreeId;
+        this.birthDate = birthDate;
+        this.gender = gender;
+        this.cpf = cpf;
+        this.nit = nit;
+        this.ctps = ctps;
+        this.admissionAt = admissionAt;
+        this.contractType = contractType;
+        this.role = role;
+        this.photoUrl = photoUrl;
+        this.photoFilename = photoFilename;
+        this.cipeiro = cipeiro;
+        this.brigade = brigade;
+        this.specialNeeds = specialNeeds;
+        this.status = status;
+        this.mandateBegin = mandateBegin;
+        this.mandateEnd = mandateEnd;
+        this.allergies = allergies;
+        this.diseases = diseases;
+        this.bloodType = bloodType;
+        this.asos = asos;
+        this.qualifications = qualifications;
+        this.cbo = cbo;
+        this.activated = activated;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -57,28 +114,28 @@ public class Worker {
         this.cep = cep;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public String getStatus() {
-        return status;
+    public Long getDegreeId() {
+        return this.degreeId;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setDegreeId(Long degreeId) {
+        this.degreeId = degreeId;
     }
 
-    public String getBirth_date() {
-        return birth_date;
+    public String getBirthDate() {
+        return birthDate;
     }
 
-    public void setBirth_date(String birth_date) {
-        this.birth_date = birth_date;
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
     }
 
     public String getGender() {
@@ -87,14 +144,6 @@ public class Worker {
 
     public void setGender(String gender) {
         this.gender = gender;
-    }
-
-    public Integer getCbo_id() {
-        return cbo_id;
-    }
-
-    public void setCbo_id(Integer cbo_id) {
-        this.cbo_id = cbo_id;
     }
 
     public String getCpf() {
@@ -113,14 +162,6 @@ public class Worker {
         this.nit = nit;
     }
 
-    public String getDegree() {
-        return degree;
-    }
-
-    public void setDegree(String degree) {
-        this.degree = degree;
-    }
-
     public String getCtps() {
         return ctps;
     }
@@ -129,52 +170,20 @@ public class Worker {
         this.ctps = ctps;
     }
 
-    public String getAdmission_date() {
-        return admission_date;
+    public String getAdmissionAt() {
+        return admissionAt;
     }
 
-    public void setAdmission_date(String admission_date) {
-        this.admission_date = admission_date;
+    public void setAdmissionAt(String admissionAt) {
+        this.admissionAt = admissionAt;
     }
 
-    public String getContract_type() {
-        return contract_type;
+    public String getContractType() {
+        return contractType;
     }
 
-    public void setContract_type(String contract_type) {
-        this.contract_type = contract_type;
-    }
-
-    public String getSpecial_needs() {
-        return special_needs;
-    }
-
-    public void setSpecial_needs(String special_needs) {
-        this.special_needs = special_needs;
-    }
-
-    public String getPhoto_url() {
-        return photo_url;
-    }
-
-    public void setPhoto_url(String photo_url) {
-        this.photo_url = photo_url;
-    }
-
-    public Boolean getIs_cipeiro() {
-        return is_cipeiro;
-    }
-
-    public void setIs_cipeiro(Boolean is_cipeiro) {
-        this.is_cipeiro = is_cipeiro;
-    }
-
-    public Boolean getIs_brigade() {
-        return is_brigade;
-    }
-
-    public void setIs_brigade(Boolean is_brigade) {
-        this.is_brigade = is_brigade;
+    public void setContractType(String contractType) {
+        this.contractType = contractType;
     }
 
     public String getRole() {
@@ -185,19 +194,109 @@ public class Worker {
         this.role = role;
     }
 
-    public String getMandate_begin_date() {
-        return mandate_begin_date;
+    public String getPhotoUrl() {
+        return photoUrl;
     }
 
-    public void setMandate_begin_date(String mandate_begin_date) {
-        this.mandate_begin_date = mandate_begin_date;
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
     }
 
-    public String getMandate_end_date() {
-        return mandate_end_date;
+    public String getPhotoFilename() {
+        return photoFilename;
     }
 
-    public void setMandate_end_date(String mandate_end_date) {
-        this.mandate_end_date = mandate_end_date;
+    public void setPhotoFilename(String photoFilename) {
+        this.photoFilename = photoFilename;
+    }
+
+    public boolean isCipeiro() {
+        return cipeiro;
+    }
+
+    public void setCipeiro(boolean cipeiro) {
+        this.cipeiro = cipeiro;
+    }
+
+    public boolean isBrigade() {
+        return brigade;
+    }
+
+    public void setBrigade(boolean brigade) {
+        this.brigade = brigade;
+    }
+
+    public boolean isSpecialNeeds() {
+        return specialNeeds;
+    }
+
+    public void setSpecialNeeds(boolean specialNeeds) {
+        this.specialNeeds = specialNeeds;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public String getMandateBegin() {
+        return mandateBegin;
+    }
+
+    public void setMandateBegin(String mandateBegin) {
+        this.mandateBegin = mandateBegin;
+    }
+
+    public String getMandateEnd() {
+        return mandateEnd;
+    }
+
+    public void setMandateEnd(String mandateEnd) {
+        this.mandateEnd = mandateEnd;
+    }
+
+    public String getAllergies() {
+        return allergies;
+    }
+
+    public void setAllergies(String allergies) {
+        this.allergies = allergies;
+    }
+
+    public String getDiseases() {
+        return diseases;
+    }
+
+    public void setDiseases(String diseases) {
+        this.diseases = diseases;
+    }
+
+    public String getBloodType() {
+        return bloodType;
+    }
+
+    public void setBloodType(String bloodType) {
+        this.bloodType = bloodType;
+    }
+
+    public Cbo getCbo() {
+        return cbo;
+    }
+
+    public void setCbo(Cbo cbo) {
+        this.cbo = cbo;
+    }
+
+    public boolean isActivated() {
+        return activated;
+    }
+
+    public void setActivated(boolean activated) {
+        this.activated = activated;
     }
 }
+
+

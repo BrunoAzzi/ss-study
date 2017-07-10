@@ -1,0 +1,31 @@
+<md-select placeholder="Tipo de Equipamento" ngModel required>
+  <md-option [value]="1">
+    Tipo de equipamento
+  </md-option>
+</md-select>
+<md-select placeholder="Equipamento" ngModel required>
+    <md-option [value]="1">
+        Equipamento
+    </md-option>
+</md-select>
+<md-input-container>
+  <input mdInput placeholder="Identificação"
+         [(ngModel)]="equipment.identification" name="identification">
+</md-input-container>
+<md-slide-toggle
+    [checked]="equipment.hasMaintenance"
+    (change)="equipment.hasMaintenance = $event.checked">
+  Manutenção
+</md-slide-toggle>
+<md-input-container>
+  <input mdInput placeholder="Periodicidade"
+         [(ngModel)]="equipment.periodicity" name="periodicity"
+         [required]="equipment.hasMaintenance"
+         [disabled]="!equipment.hasMaintenance">
+</md-input-container>
+<md-input-container>
+  <input mdInput [mdDatepicker]="picker" placeholder="Última manutenção" [(ngModel)]="equipment.lastMaintenance" [required]="equipment.hasMaintenance" [disabled]="!equipment.hasMaintenance">
+  <button mdSuffix [mdDatepickerToggle]="picker" [disabled]="!equipment.hasMaintenance"></button>
+</md-input-container>
+<md-datepicker #picker></md-datepicker>
+<a (click)="removed.emit(equipment)">Excluir</a>

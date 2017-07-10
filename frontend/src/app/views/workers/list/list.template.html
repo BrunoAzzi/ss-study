@@ -38,7 +38,7 @@
 </div>
 <div class="list-wrapper">
     <div *ngFor="let worker of getFilteredWorkers(workers | async)">
-        <line-worker-detail fxFlex fxLayout fxLayoutAlign="space-between center" [worker]="worker"></line-worker-detail>
+        <workers-line-detail fxFlex fxLayout fxLayoutAlign="space-between center" [worker]="worker"></workers-line-detail>
     </div>
 </div>
 

@@ -1,26 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Http } from '@angular/http';
 
 @Injectable()
 export class SecurityWorksService {
-    private securityWorksUrl = "api/securityWorkersData";
+    private securityWorksUrl = 'api/securityWorkersData';
 
+    constructor(private http: Http) {}
 
-
-    constructor(private http: Http) { }
-
-/*    getSecurityWorks(cpf: string) {
-       return (this.http.get(this.securityWorksUrl+"/"+cpf).map(
-            response => {
-                return response.json().data;
-            }));
-    }
-*/
-
-     getSecurityWorker() {
+    getSecurityWorker() {
         return this.http.get(this.securityWorksUrl).map((response) => {
-            return response.json().data
-        })
+            return response.json().data;
+        });
     }
-
 }

@@ -1,8 +1,8 @@
-@import "../../../../scss/components/color.scss";
+@import '../../../../scss/components/color.scss';
 
 .top-actionbar {
     padding: 20px 0;
-    margin: 5px;
+    margin:  5px;
 
     .right-actionbar {
         & > md-select {
@@ -36,18 +36,18 @@
 }
 
 md-chip {
-    padding: 3px 10px !important;
-    margin: 0 5px !important;
-    border-radius: 0 !important;
-    font-family: Lato;
-    font-size: 10px !important;
-    font-weight: 900 !important;
-    line-height: 1.4;
+    padding:        3px 10px !important;
+    margin:         0 5px !important;
+    border-radius:  0 !important;
+    font-family:    'Lato', sans-serif;
+    font-size:      10px !important;
+    font-weight:    900 !important;
+    line-height:    1.4;
     letter-spacing: 0.5px;
-    text-align: left;
+    text-align:     left;
     text-transform: uppercase;
-    outline: none;
-    cursor: pointer;
+    outline:        none;
+    cursor:         pointer;
 }
 
 .order {
@@ -56,14 +56,14 @@ md-chip {
     & /deep/ {
         .mat-select-placeholder,
         .mat-select-value {
-            color: $warm-grey-four;
+            color:          $warm-grey-four;
             text-transform: uppercase;
-            font-family: Lato;
-            font-size: 10px;
-            font-weight: 900;
-            line-height: 1.4;
+            font-family:    'Lato', sans-serif;
+            font-size:      10px;
+            font-weight:    900;
+            line-height:    1.4;
             letter-spacing: 0.5px;
-            text-align: left;
+            text-align:     left;
         }
 
         .mat-select-underline {
@@ -74,31 +74,31 @@ md-chip {
 
 .search {
     margin: 0 20px;
-    color: $warm-grey-four;
+    color:  $warm-grey-four;
 }
 
 .success {
     background-color: $green-blue !important;
-    border: 2px solid $green-blue !important;
-    color: white !important;
+    border:           2px solid $green-blue !important;
+    color:            white !important;
 }
 
 .active {
-    background-color: #5e5e5e !important;
-    color: white !important;
+    background-color: #5E5E5E !important;
+    color:            white !important;
 }
 
 .chip {
     background-color: inherit;
-    color: #5e5e5e;
-    border: 2px solid #5e5e5e;
+    color:            #5E5E5E;
+    border:           2px solid #5E5E5E;
 
     md-icon {
-        width: 17px !important;
-        height: 17px !important;
-        margin-right: 5px;
-        font-size: 7.7px;
+        width:            17px !important;
+        height:           17px !important;
+        margin-right:     5px;
+        font-size:        7.7px;
         background-color: $green-blue;
-        color: white;
+        color:            white;
     }
 }

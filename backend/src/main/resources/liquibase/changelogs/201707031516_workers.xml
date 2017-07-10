@@ -1,0 +1,165 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+
+    <changeSet id="1" author="rdlorbieski">
+        <createTable tableName="cbos">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="code" type="varchar(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="title" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addAutoIncrement tableName="cbos" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
+    </changeSet>
+
+    <changeSet id="2" author="rdlorbieski">
+        <sqlFile path="/liquibase/seed/cbos.sql"/>
+    </changeSet>
+
+    <changeSet id="3" author="rdlorbieski">
+        <createTable tableName="degrees">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addAutoIncrement tableName="degrees" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
+
+        <sqlFile path="/liquibase/seed/degrees.sql"/>
+    </changeSet>
+
+    <changeSet id="4" author="rdlorbieski">
+        <addColumn tableName="workers">
+            <column name="supplier_id" type="int"/>
+            <column name="cbo_id" type="int"/>
+            <column name="degree_id" type="int" />
+            <column name="cep" type="varchar(10)"/>
+            <column name="address" type="varchar(255)"/>
+            <column name="status" type="boolean"/>
+            <column name="birth_date" type="TIMESTAMP"/>
+            <column name="gender" type="varchar(100)"/>
+            <column name="cpf" type="varchar(255)">
+                <constraints nullable="false" unique="true" />
+            </column>
+            <column name="nit" type="varchar(255)"/>
+            <column name="ctps" type="varchar(255)"/>
+            <column name="admission_at" type="TIMESTAMP" />
+            <column name="contract_type" type="varchar(100)"/>
+            <column name="special_needs" type="boolean"/>
+            <column name="photo_url" type="text"/>
+            <column name="photo_filename" type="text"/>
+            <column name="cipeiro" type="boolean"/>
+            <column name="brigade" type="boolean"/>
+            <column name="role" type="varchar(255)"/>
+            <column name="mandate_begin" type="TIMESTAMP"/>
+            <column name="mandate_end" type="TIMESTAMP"/>
+            <column name="blood_type" type="varchar(3)"/>
+            <column name="allergies" type="varchar(255)"/>
+            <column name="diseases" type="varchar(255)"/>
+        </addColumn>
+
+        <addForeignKeyConstraint
+                baseTableName="workers"
+                baseColumnNames="cbo_id"
+                constraintName="fk_cbos_workers"
+                referencedTableName="cbos"
+                referencedColumnNames="id"
+                onDelete="CASCADE" />
+
+        <addForeignKeyConstraint
+                baseTableName="workers"
+                baseColumnNames="degree_id"
+                constraintName="fk_degree_workers"
+                referencedTableName="degrees"
+                referencedColumnNames="id"
+                onDelete="CASCADE" />
+
+    </changeSet>
+
+    <changeSet id="5" author="rdlorbieski">
+        <createTable tableName="qualities">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)"/>
+        </createTable>
+        <addAutoIncrement tableName="qualities" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
+
+        <createTable tableName="qualifications">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="quality_id" type="int"/>
+            <column name="worker_id" type="int"/>
+            <column name="realization_date" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="periodicity" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="able" type="boolean"/>
+            <column name="attachment_url" type="varchar(255)"/>
+            <column name="attachment_filename" type="varchar(255)"/>
+            <column name="recycling" type="boolean"/>
+        </createTable>
+        <addAutoIncrement tableName="qualifications" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
+
+
+       <addForeignKeyConstraint
+                baseTableName="qualifications"
+                baseColumnNames="quality_id"
+                constraintName="fk_qualities_qualifications"
+                referencedTableName="qualities"
+                referencedColumnNames="id"
+                onDelete="CASCADE"/>
+
+        <addForeignKeyConstraint
+                baseTableName="qualifications"
+                baseColumnNames="worker_id"
+                constraintName="fk_worker_qualifications"
+                referencedTableName="workers"
+                referencedColumnNames="id"
+                onDelete="CASCADE"/>
+    </changeSet>
+
+    <changeSet id="6" author="rdlorbieski">
+        <createTable tableName="asos">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="worker_id" type="int"/>
+
+            <column name="realization_date" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="next_date" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="aso_type" type="int" />
+            <column name="able" type="boolean" />
+            <column name="attachment_url" type="varchar(255)" />
+            <column name="attachment_file_name" type="varchar(255)" />
+        </createTable>
+        <addAutoIncrement tableName="asos" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
+
+        <addForeignKeyConstraint
+                baseTableName="asos"
+                baseColumnNames="worker_id"
+                constraintName="fk_worker_asos"
+                referencedTableName="workers"
+                referencedColumnNames="id"
+                onDelete="CASCADE"/>
+
+    </changeSet>
+
+</databaseChangeLog>
