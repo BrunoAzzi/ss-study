@@ -44,7 +44,7 @@ public class QualificationsController {
         if (qualification != null && file != null) {
             if(file.getContentType().equals(PNG_TYPE) || file.getContentType().equals(JPEG_TYPE)|| file.getContentType().equals(PDF_TYPE) ) {
                 String fileName = storageService.store(file);
-                qualification.setAttachmentFileName(fileName);
+                qualification.setAttachmentFilename(fileName);
                 qualification.setAttachmentUrl(String.format("/qualifications/attachment/%d", id));
 
                 repository.save(qualification);
@@ -81,7 +81,7 @@ public class QualificationsController {
 
 
         if (qualification != null){
-            String fileName = qualification.getAttachmentFileName();
+            String fileName = qualification.getAttachmentFilename();
             if (!fileName.isEmpty()) {
                 Resource file = storageService.loadFile(fileName);
                 if (file != null) {
