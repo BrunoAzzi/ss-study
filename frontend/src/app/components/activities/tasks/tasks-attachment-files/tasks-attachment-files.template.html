@@ -5,7 +5,10 @@
                 <li *ngFor="let file of attachmentFiles; let fileIndex = index" class="file">
                     <drop-file class="half" [showPreview]="true" [image]="file.resource" [supportedFileTypes]="supportedFileTypes"
                         (fileChanged)="attachmentFileEdited(file, fileIndex, $event)" ></drop-file>
-                    <button class="button-link" (click)="removeFile(fileIndex)">Excluir</button>
+                    <div>
+                        <button class="button-link" (click)="downloadFile(fileIndex)">Baixar</button>
+                        <button class="button-link" (click)="removeFile(fileIndex)">Excluir</button>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -18,9 +21,10 @@
                     (fileChanged)="attachmentFileAdded($event)" class="grid-row-last">
 
                 <img src="/assets/plus.svg" alt=""/>
-                        
-                <span><b>Adicionar</b> imagens</span>
-                <span>Para adicionar imagens arraste elas ou <a>clique aqui</a></span>
+                <div>
+                    <span><b>Adicionar</b> imagens</span>
+                    <span>Para adicionar imagens arraste elas ou <a>clique aqui</a></span>
+                </div>
             </drop-file>
         </div>
     </div>

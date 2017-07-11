@@ -27,7 +27,7 @@
 
 img {
     width: 32px !important;
-    height: 32px;
+    height: 32px !important;
     margin: 0 32px;
 }
 
@@ -73,11 +73,17 @@ img {
     object-fit: contain;
     outline: 0;
     text-transform: uppercase;
-    text-decoration: underline;
-    left: 45px;
-    position: relative
+    text-decoration: underline;    
 }
 
 drop-file {
     height: 85px;
+
+    div {
+        display: inline-block;
+    }
+
+    span {
+        display: block;
+    }
 }
