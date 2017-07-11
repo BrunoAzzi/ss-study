@@ -40,14 +40,15 @@ export class Worker {
     public initializeWithJSON(json: any) {
         const birthDate     = moment(json.birthDate, 'YYYY-MM-DD HH:mm:ss');
         const admissionDate = moment(json.admissionDate, 'YYYY-MM-DD HH:mm:ss');
+        console.log(json);
 
         this.id               = json.id;
         this.name             = json.name;
         this.cpf              = json.cpf;
-        this.scholarity       = 'Médio Completo';
+        this.scholarity       = json.degree;
         this.nit              = json.nit;
         this.cep              = json.cep;
-        this.completeAddress  = json.completeAddress;
+        this.completeAddress  = json.address;
         this.complement       = json.complement;
         this.contact          = json.contact;
         this.cbo              = json.cbo;
@@ -63,20 +64,20 @@ export class Worker {
         this.ctps             = json.ctps;
         this.age              = birthDate.diff(moment(), 'years');
         this.ocupation        = json.ocupation;
-        this.isThirdparty     = json.isThirdparty = false;
-        this.thirdpartyName = json.thirdpartyName;
-        this.gender         = json.gender === 'Masculino' ? this.gender = true : this.gender = false;
+        this.isThirdparty     = json.isThirdparty;
+        this.thirdpartyName   = json.thirdpartyName;
+        this.gender           = json.gender === 'Masculino' ? this.gender = true : this.gender = false;
 
         if (json.health) {
             this.health = new Health().initializeWithJSON(json.health);
         }
 
         if (json.qualifications) {
-            this.qualifications = json.qualification.map(jsonQualidication => new Qualification().initializeWithJSON(jsonQualidication, this));
+            this.qualifications = json.qualifications.map(jsonQualidication => new Qualification().initializeWithJSON(jsonQualidication, this));
         }
 
         if (json.security) {
-            // this.security = new Security().initializeWithJSON(json.security);
+            this.security = new Security().initializeWithJSON(json.security);
         }
         return this;
     }
@@ -108,9 +109,10 @@ export class Worker {
             ocupation:        this.ocupation,
             isThirdparty:     this.isThirdparty,
             thirdpartyName:   this.thirdpartyName,
-            qualification:    this.qualifications.map(qualifications => qualifications.toJSON()),
-            security:         this.security.toJSON(),
-            health:           this.health.toJSON()
+
+            qualifications: this.qualifications.map(qualifications => qualifications.toJSON()),
+            security:      this.security.toJSON(),
+            health:        this.health.toJSON()
         };
     }
 }
