@@ -15,23 +15,40 @@
         </div>
         <div class="grid-column">
             <div class="grid-row">
-                <md-radio-group name="hiredType" [(ngModel)]="worker.ownContracting" formControlName="hiredTypeRadio" (change)="hiredChange()">
-                    <p>Tipo de Contratação 2:</p>
+                <md-radio-group
+                        name="hiredType"
+                        [(ngModel)]="worker.contractType"
+                        formControlName="hiredTypeRadio"
+                        (change)="hiredChange()">
+                    <p>Tipo de Contratação:</p>
                     <md-radio-button *ngFor="let hired of hireds" [value]="hired">
-                        {{hired}}
+                        {{ hired }}
                     </md-radio-button>
                 </md-radio-group>
             </div>
             <div class="grid-row">
                 <md-input-container>
-                    <input mdInput formControlName="cpf" required placeholder="CPF" id="cpf" name="cpf" (blur)="autoCompleteWorker()" [textMask]="{mask: cpfMask}"
+                    <input
+                            mdInput
+                            formControlName="cpf"
+                            required
+                            placeholder="CPF"
+                            id="cpf"
+                            name="cpf"
+                            (blur)="autoCompleteWorker()"
+                            [textMask]="{mask: cpfMask}"
                             [(ngModel)]="cpf">
                     <md-error *ngIf="myForm.controls.cpf.hasError('required')">Campo Obrigatório.</md-error>
                     <md-error *ngIf="myForm.controls.cpf.hasError('cpf')">CPF Invalído.</md-error>
                 </md-input-container>
             </div>
             <div class="grid-row">
-                <my-date-picker formControlName="birthDate" name="birthDate" name="birthDate" [(ngModel)]="worker.birthDate" [options]="myDatePickerOptions"
+                <my-date-picker
+                        formControlName="birthDate"
+                        name="birthDate"
+                        name="birthDate"
+                        [(ngModel)]="worker.birthDate"
+                        [options]="myDatePickerOptions"
                         placeholder="Data de Nascimento">
                 </my-date-picker>
             </div>
@@ -40,12 +57,25 @@
             </div>
             <div class="grid-row">
                 <md-input-container>
-                    <input mdInput formControlName="cbo" required placeholder="CBO" id="cbo" name="cbo" [(ngModel)]="worker.cbo" [textMask]="{mask: cboMask}"
-                            (ngModelChange)="checkCboEmpty()" (blur)="autocompleteRoleFromMock()">
+                    <input
+                            mdInput
+                            formControlName="cbo"
+                            required
+                            placeholder="CBO"
+                            id="cbo"
+                            name="cbo"
+                            [(ngModel)]="worker.cbo.code"
+                            (ngModelChange)="checkCboEmpty()">
                 </md-input-container>
+                <!--[textMask]="{mask: cboMask}"-->
             </div>
+
             <div class="grid-row">
-                <md-select [(ngModel)]="worker.specialNecessity" formControlName="necessitys" placeholder="Portador de Nec. Especiais?">
+                <md-select
+                        [(ngModel)]="worker.specialNeeds"
+                        formControlName="necessitys"
+                        placeholder="Portador de Nec. Especiais?">
+
                     <md-option *ngFor="let necessity of necessitys" [value]="necessity.value">
                         {{ necessity.viewValue }}
                     </md-option>
@@ -73,8 +103,13 @@
                     <input mdInput formControlName="age" name="age" placeholder="Idade" id="age" [(ngModel)]="worker.age">
                 </md-input-container>
 
-                <md-select placeholder="Escolaridade" formControlName="scholarity" [(ngModel)]="worker.scholarity" name="scholarity" id="scholarity">
-                    <md-option *ngFor="let scholarity of scholaritys" [value]="worker.scholarity">
+                <md-select
+                        placeholder="Escolaridade"
+                        formControlName="scholarity"
+                        [(ngModel)]="worker.scholarity"
+                        name="scholarity"
+                        id="scholarity">
+                    <md-option *ngFor="let scholarity of scholaritys" [value]="scholarity.value">
                         {{ scholarity.viewValue }}
                     </md-option>
                 </md-select>
@@ -86,19 +121,31 @@
                 </md-input-container>
             </div>
             <div class="grid-row">
-                <md-select placeholder="Cargo" formControlName="role" [(ngModel)]="worker.laborCBO" [mdTooltip]="disabled ? 'Digite um CBO valído!' : 'Selecione um cargo'">
+                <md-select
+                        placeholder="Cargo"
+                        formControlName="role"
+                        [(ngModel)]="worker.laborCBO"
+                        [mdTooltip]="disabled ? 'Digite um CBO valído!' : 'Selecione um cargo'">
+
                     <md-option *ngFor="let labor of labors" [value]="labor.value">
                         {{ labor.viewValue }}
                     </md-option>
                 </md-select>
             </div>
             <div class="grid-row">
-                <my-date-picker placeholder="Data de Admissão" formControlName="admissionDate" name="admissionDate" [(ngModel)]="worker.admissionDate"
+                <my-date-picker
+                        placeholder="Data de Admissão"
+                        formControlName="admissionDate"
+                        name="admissionDate"
+                        [(ngModel)]="worker.admissionDate"
                         [options]="myDatePickerOptions">
                 </my-date-picker>
                 <div>
-                    <md-select [(ngModel)]="worker.status" formControlName="status" placeholder="Status">
-                        <md-option *ngFor="let statu of status" [value]="worker.status">
+                    <md-select
+                            [(ngModel)]="worker.status"
+                            formControlName="status"
+                            placeholder="Status">
+                        <md-option *ngFor="let statu of status" [value]="statu.value">
                             {{ statu.viewValue }}
                         </md-option>
                     </md-select>
