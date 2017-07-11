@@ -21,7 +21,7 @@ export class Worker {
     laborCBO: string;
     cboDescription: string;
     specialNecessity: boolean;
-    status: boolean;
+    status: string;
     ownContracting: string;
     company: string;
     photoPath: string;
