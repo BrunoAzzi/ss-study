@@ -27,8 +27,8 @@ export class Task implements ITask {
 
     public initializeWithJSON(json: any): Task {
         this.id = json.id
-        this.createAt = new Date(json.createAt)
-        this.deadline = new Date(json.deadline)
+        this.createAt = json.createAt ? new Date(json.createAt.split(' ').join('T')) : new Date()
+        this.deadline = json.deadline ?  new Date(json.deadline.split(' ').join('T')) : new Date()
         this.title = json.title
         this.description = json.description
         this.author = json.author
