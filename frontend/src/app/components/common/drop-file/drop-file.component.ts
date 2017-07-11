@@ -8,6 +8,8 @@ import {Ng2FileDropAcceptedFile, Ng2FileDropRejectedFile} from 'ng2-file-drop';
 })
 export class DropFileComponent {
 
+    label = '';
+
     @ViewChild('fileInput') input;
 
     @Input() supportedFileTypes: Array<string> = ['image/png', 'image/jpeg', 'image/gif'];
