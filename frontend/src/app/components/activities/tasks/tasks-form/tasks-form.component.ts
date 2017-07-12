@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl, NgModel } from '@angular/forms';
 
+import * as Moment from "moment";
 import { MomentModule } from 'angular2-moment';
 import { Observable } from 'rxjs/Observable';
 
@@ -70,7 +71,7 @@ export class TasksFormComponent implements OnInit {
                 formattedData += event.formatted.substr(3, 2);
                 formattedData += "-";
                 formattedData += event.formatted.substr(0, 2);        
-            this.task.deadline = formattedData;
+            this.task.deadline = formattedData + " 23:59:59";
         }
     }
 

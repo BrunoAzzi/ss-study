@@ -1,10 +1,12 @@
 import { AttachmentFile } from './attachmentFile.model';
 import { User } from './user.model';
 
+import * as Moment from "moment";
+
 export interface ITask {
     id: number
-    createAt: Date
-    deadline: Date
+    createAt: string
+    deadline: string
     title: string
     description: string
     checked: boolean
@@ -14,8 +16,8 @@ export interface ITask {
 
 export class Task implements ITask {
     id: number
-    createAt: Date
-    deadline: Date
+    createAt: string
+    deadline: string
     title: string
     description: string
     author: User
@@ -27,8 +29,8 @@ export class Task implements ITask {
 
     public initializeWithJSON(json: any): Task {
         this.id = json.id
-        this.createAt = json.createAt ? new Date(json.createAt.split(' ').join('T')) : new Date()
-        this.deadline = json.deadline ?  new Date(json.deadline.split(' ').join('T')) : new Date()
+        this.createAt = json.createAt ? this.setDateFormat(new Date(json.createAt.split(' ').join('T'))) : this.setDateFormat(new Date())
+        this.deadline = json.deadline ?  this.setDateFormat(new Date(json.deadline.split(' ').join('T'))) : this.setDateFormat(new Date())
         this.title = json.title
         this.description = json.description
         this.author = json.author
@@ -55,22 +57,29 @@ export class Task implements ITask {
 
     public isToday(): boolean {
         var now = new Date();
+        let deadline = new Date(this.deadline);
 
-        return (this.deadline.getDay() == now.getDay() && 
-                this.deadline.getMonth() == now.getMonth() && 
-                this.deadline.getFullYear() == now.getFullYear());
+        return (deadline.getDay() == now.getDay() && 
+                deadline.getMonth() == now.getMonth() && 
+                deadline.getFullYear() == now.getFullYear());
     }
 
     public getStatus(): string {
         var now = new Date();
+        let deadline = new Date(this.deadline);
+        let createAt = new Date(this.createAt);
 
-        if (this.deadline < now) {
+        if (deadline < now) {
             return "late";
-        } else if ((this.deadline.getTime() - now.getTime()) <
-                  ((this.deadline.getTime() - this.createAt.getTime()) * 0.3)) {
+        } else if ((deadline.getTime() - now.getTime()) <
+                  ((deadline.getTime() - createAt.getTime()) * 0.3)) {
             return "ending";
         }
 
         return "in-time";
+    }
+
+    private setDateFormat(_date: any) {        
+        return Moment(_date).format('YYYY-MM-DD hh:mm:ss');
     }
 }

@@ -72,8 +72,6 @@ export class ActivitiesComponent {
     checkTask(_task: Task) {
         _task.checked = true;
 
-        console.log(_task);
-
         this.taskService.saveTask(_task).subscribe(
                 savedTask => {
                     this.snackBar.open('Tarefa feita!', null, { duration: 3000 });                    
