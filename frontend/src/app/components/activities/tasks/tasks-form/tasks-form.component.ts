@@ -53,7 +53,9 @@ export class TasksFormComponent implements OnInit {
          .startWith(null)
          .map(user => user && typeof user === 'object' ? user.name : user)
          .map(name => name ? this.filter(name) : this.users.slice());
-        this.deadline = this.task.deadline;
+        this.deadline = Moment(this.task.deadline).format("DD/MM/YYYY");
+        console.log(this.deadline);
+        console.log(this.task.deadline);
     }
 
     filter(name: string): User[] {

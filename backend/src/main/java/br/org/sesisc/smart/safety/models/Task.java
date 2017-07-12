@@ -77,7 +77,6 @@ public class Task {
     }
 
     public void setDeadline(String deadline) {
-        //this.deadline = deadline + " 23:59:59";
         this.deadline = deadline;
     }
 
