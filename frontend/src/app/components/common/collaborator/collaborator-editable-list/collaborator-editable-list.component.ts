@@ -21,7 +21,8 @@ export class CollaboratorEditableList implements OnInit {
   filteredCollaborators: Array<Collaborator> = [];
   selectedCollaborators: Array<Collaborator> = [];
   filteredSelectedCollaborators: Array<Collaborator> = [];
-  
+  allSearch = '';
+
   @Input() data: any;
 
   @Output() updateCollaboratorList = new EventEmitter<Array<Collaborator>>();

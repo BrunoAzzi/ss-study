@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { MdSnackBar } from '@angular/material';
 
-import { Cnae } from './../../../models/cnae.model'
-import { CnaeService } from './../../../services/cnae.service'
+import { Cnae } from './../../../models/cnae.model';
+import { CnaeService } from './../../../services/cnae.service';
 
 @Component({
     selector: 'cnae-picker',
@@ -16,7 +16,7 @@ export class CnaePickerComponent {
 
     @Output() onSearch = new EventEmitter();
 
-    loadingCep = false;
+    loadingCnae = false;
     cnaeMask = [/\d/, /\d/, /\d/, /\d/, '-', /\d/, '/', /\d/, /\d/];
 
     constructor(
@@ -27,26 +27,25 @@ export class CnaePickerComponent {
         if(cnaeCode) {
             this.cnaeService.getCnae(this.removeMask(cnaeCode))
                 .subscribe(
-                    data => {                   
-                    if(data) {
-                        this.onSearch.emit(data);
-                    } else {
-                        this.onSearch.emit(data);
-                        this.snackBar.open('CNAE não encontrado!', null, {duration: 3000})
-                    }
+                    data => {
+                        if(data) {
+                            this.onSearch.emit(data);
+                        } else {
+                            this.onSearch.emit(data);
+                            this.snackBar.open('CNAE não encontrado!', null, {duration: 3000});
+                        }
                     },
                     error => {
-                    this.snackBar.open('CNAE não encontrado!', null, {duration: 3000})
+                    this.snackBar.open('CNAE não encontrado!', null, {duration: 3000});
                     }
                 );
         } else {
-            this.snackBar.open('CNAE não encontrado!', null, {duration: 3000})
+            this.snackBar.open('CNAE não encontrado!', null, {duration: 3000});
         }
     }
 
     removeMask(cnaeCode) {
-        return cnaeCode.replace(/[-\/_]/g, "");
+        return cnaeCode.replace(/[-\/_]/g, '');
     }
-    
 
 }
