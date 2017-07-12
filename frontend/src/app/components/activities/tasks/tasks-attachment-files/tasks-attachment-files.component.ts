@@ -59,9 +59,16 @@ export class TasksAttachmentFiles {
           };
         })(_imageFile);
         fileReader.readAsDataURL(_imageFile);
-   }
+    }
+
+    downloadFile(index: number) {
+        let downloadedFile = this.attachmentFiles[index];
+        let blob = new Blob( [downloadedFile.resourceFile] , { type: downloadedFile.type } );
+        let url = window.URL.createObjectURL(blob);
+        window.open(url);
+    }    
 
     removeFile(index: number) {
         this.attachmentFiles.splice(index, 1);        
-    }
+    }    
 }
