@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class OccurrenceService {
 
-    private endpoint = '/occurrence';
+    private endpoint = '/occurrences';
     public occurrences: Array<Occurrence> = [];
 
     constructor(private http: Http, private service: HttpClientService) { }

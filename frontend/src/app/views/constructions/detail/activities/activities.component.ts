@@ -1,3 +1,4 @@
+import { OccurrenceService } from './../../../../services/occurrence.service';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
 import { Component, ViewChild} from '@angular/core';
 import { MdDialog, MdSnackBar } from '@angular/material';
@@ -39,6 +40,7 @@ export class ActivitiesComponent {
 
     constructor(public dialog: MdDialog, 
                 public taskService: TasksService, 
+                public occurrenceService: OccurrenceService,
                 public userService: UserService, 
                 public sessionsService: SessionsService,
                 public snackBar: MdSnackBar) { }
@@ -74,9 +76,7 @@ export class ActivitiesComponent {
 
     checkTask(_task: Task) {
         _task.checked = true;
-
-        console.log(_task);
-
+        
         this.taskService.saveTask(_task).subscribe(
                 savedTask => {
                     this.snackBar.open('Tarefa feita!', null, { duration: 3000 });                    
@@ -88,7 +88,7 @@ export class ActivitiesComponent {
     }
 
     getOccurrenceLists() {
-        this.occurenceSub = this.taskService.getTaskList().subscribe((occurrences) => {
+        this.occurenceSub = this.occurrenceService.getOccurenceList().subscribe((occurrences) => {
             this.allOccurrences = occurrences;
             this.occurrenceLists = this.mapTasks(occurrences);
         })
