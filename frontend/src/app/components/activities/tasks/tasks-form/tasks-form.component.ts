@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl, NgModel } from '@angular/forms';
+import { DateAdapter } from '@angular/material';
 
 import * as Moment from "moment";
-import { MomentModule } from 'angular2-moment';
 import { Observable } from 'rxjs/Observable';
 
 import { IMyDpOptions } from 'mydatepicker';
@@ -28,32 +28,16 @@ export class TasksFormComponent implements OnInit {
     fControl = new FormControl();
     filteredOptions: Observable<User[]>;
 
-    myDatePickerOptions: IMyDpOptions = {
-        dateFormat: 'dd/mm/yyyy',
-        dayLabels: { su: 'Dom', mo: 'Seg', tu: 'Ter', we: 'Qua', th: 'Qui', fr: 'Sex', sa: 'Sab' },
-        monthLabels: {
-            1: 'Jan',
-            2: 'Fev',
-            3: 'Mar',
-            4: 'Abr',
-            5: 'Mai',
-            6: 'Jun',
-            7: 'Jul',
-            8: 'Ago',
-            9: 'Set',
-            10: 'Out',
-            11: 'Nov',
-            12: 'Dez'
-        },
-        todayBtnTxt: 'Hoje'
-    };
+    constructor(private dateAdapter: DateAdapter<Date>) {
+        this.dateAdapter.setLocale('pt-br');
+    }
 
     ngOnInit() {        
         this.filteredOptions = this.fControl.valueChanges
          .startWith(null)
          .map(user => user && typeof user === 'object' ? user.name : user)
          .map(name => name ? this.filter(name) : this.users.slice());
-        this.deadline = Moment(this.task.deadline).format("DD/MM/YYYY");
+        this.deadline = this.task.deadline ? Moment(this.task.deadline).format("MM/DD/YYYY") : "";
         console.log(this.deadline);
         console.log(this.task.deadline);
     }
@@ -66,13 +50,16 @@ export class TasksFormComponent implements OnInit {
         return user ? user.name : user;
     }
 
-    setValidityDeadline(event) {
-        if(event) {
-            let formattedData = event.formatted.substr(event.formatted.length - 4);
+    setValidityDeadline(date) {
+        if(date) {
+            let tmpDate = Moment(date).format("DD/MM/YYYY");
+            console.log(date);
+            console.log(tmpDate);
+            let formattedData = tmpDate.substr(tmpDate.length - 4);
                 formattedData += "-";
-                formattedData += event.formatted.substr(3, 2);
+                formattedData += tmpDate.substr(3, 2);
                 formattedData += "-";
-                formattedData += event.formatted.substr(0, 2);        
+                formattedData += tmpDate.substr(0, 2);        
             this.task.deadline = formattedData + " 23:59:59";
         }
     }

@@ -123,13 +123,13 @@ export class ActivitiesComponent {
     private mapTasks(_tasks: Array<Task>): Array<any> {
         var list = [];
 
-        var late = _tasks.filter(task => task.getStatus() === "late");
+        var late = _tasks.filter(task => task.getStatus() === "late" && !task.checked);
         if (late.length > 0) list.push({ group: "Tarefas Atrasadas", tasks: late});
 
-        var today = _tasks.filter(task => task.isToday() == true);
+        var today = _tasks.filter(task => task.isToday() == true && !task.checked);
         if (today.length > 0) list.push({ group: "Hoje", tasks: today});
 
-        var others = _tasks.filter(task => task.getStatus() != "late" && task.isToday() == false);
+        var others = _tasks.filter(task => task.getStatus() != "late" && task.isToday() == false && !task.checked);
         if (others.length > 0) list.push({ group: "Próximas", tasks: others});
 
         return list;

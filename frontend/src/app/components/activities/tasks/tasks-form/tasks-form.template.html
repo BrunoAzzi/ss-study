@@ -7,10 +7,12 @@
             </md-input-container>
         </div>
         <div class="grid-row">           
-            <my-date-picker name="taskDate" [options]="myDatePickerOptions"
-                required (ngModelChange)="setValidityDeadline($event)"
-                placeholder="Data" [(ngModel)]="deadline" >                    
-            </my-date-picker>
+            <md-input-container>                
+                <input mdInput [mdDatepicker]="picker" placeholder="Data" 
+                    [(ngModel)]="deadline" (ngModelChange)="setValidityDeadline($event)" required>
+                <button mdSuffix [mdDatepickerToggle]="picker"></button>
+            </md-input-container>
+            <md-datepicker #picker></md-datepicker>
 
             <md-input-container>
                 <input type="text" class="inputAutocomplete" mdInput placeholder="Responsável pela execução" name="taskResponsible" required

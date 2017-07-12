@@ -35,7 +35,7 @@ export class Task implements ITask {
         this.description = json.description
         this.author = json.author
         this.responsible = json.responsible
-        this.checked = json.checked
+        this.checked = json.checked ? json.checked : false
         this.attachmentFiles = json.attachmentFiles
 
         return this
