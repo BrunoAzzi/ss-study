@@ -9,21 +9,18 @@ export class Qualification {
     isApt: boolean;
     overdue: boolean;
     name: string;
+    recycling: boolean;
 
-    constructor() {
-        this.isApt         = true;
-        this.dueDate       = null;
-        this.periodicity   = 0;
-        this.attachment    = null;
-        this.validityStart = null;
-    }
+    constructor() { }
 
-    public initializeWithJSON(json: any, parentConstruction: Worker) {
-        this.isApt         = json.isApt;
-        this.dueDate       = json.dueDate;
+    public initializeWithJSON(json: any) {
+        this.isApt         = json.able;
+        this.dueDate       = json.realizationDate;
         this.periodicity   = json.periodicity;
         this.attachment    = json.attachment;
         this.validityStart = json.validityStart;
+        this.recycling     = json.recycling;
+        this.name          = json.quality;
     }
 
     public toJSON() {

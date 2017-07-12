@@ -3,8 +3,13 @@
         <div class="grid-container">
             <div class="grid-column">
                 <div class="grid-row">
-                    <md-select formControlName="cipeiros" name="cipeiros" [(ngModel)]="selectedCipeiro" (ngModelChange)="cipeiroChange(selectedCipeiro, dateRange)"
-                            placeholder="Trabalhador é cipeiro?" required>
+                    <md-select
+                            formControlName="cipeiros"
+                            name="cipeiros"
+                            [(ngModel)]="selectedCipeiro"
+                            (ngModelChange)="cipeiroChange(selectedCipeiro, dateRange)"
+                            placeholder="Trabalhador é cipeiro?"
+                            required>
                         <md-option *ngFor="let cipeiro of cipeiros"
                                 [value]="cipeiro.value">
                             {{ cipeiro.viewValue }}
@@ -12,8 +17,11 @@
                     </md-select>
                     <div>
                         {{worker.security.laborsInCipa}}
-                        <md-select name="laborsInCipa" required formControlName="laborsInCipa"
-                                placeholder="Cargo na CIPA">
+                        <md-select
+                                name="laborsInCipa"
+                                formControlName="laborsInCipa"
+                                placeholder="Cargo na CIPA"
+                                required>
                             <md-option *ngFor="let labor of laborsInCipa " [value]="labor.value">
                                 {{ labor.viewValue }}
                             </md-option>
@@ -33,8 +41,12 @@
                         <md-error *ngIf="submitted && invalidDate">Campo Obrigatório.</md-error>
                     </div>
                     <div>
-                        <md-select required name="brigadistas" formControlName="brigadistas"
-                                placeholder="Trabalhador é brigadista?" [(ngModel)]="selectedBrigadista">
+                        <md-select
+                                name="brigadistas"
+                                formControlName="brigadistas"
+                                placeholder="Trabalhador é brigadista?"
+                                [(ngModel)]="selectedBrigadista"
+                                required>
                             <md-option *ngFor="let brigadista of brigadistas" [value]="brigadista.value">
                                 {{ brigadista.viewValue }}
                             </md-option>

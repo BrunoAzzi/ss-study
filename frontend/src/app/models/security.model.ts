@@ -17,8 +17,8 @@ export class Security {
         this.brigade      = json.brigade;
         this.laborsInCipa = json.laborCipa;
         this.dataRang     = {
-            beginDate: { date: { year: beginDate.year(), month: beginDate.month() + 1, day: beginDate.date() } },
-            endDate:   { date: { year: endDate.year(), month: endDate.month() + 1, day: beginDate.date() } }
+            beginDate: { date: { year: beginDate.year(),    month: beginDate.month()    + 1, day: beginDate.date() } },
+            endDate:   { date: { year: endDate.year(),      month: endDate.month()      + 1, day: endDate.date() } }
         };
 
         return this;

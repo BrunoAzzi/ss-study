@@ -1,16 +1,16 @@
 <safety-list-item [bulkEditable]="true">
     <div fxLayout fxFlex fxLayoutAlign="start center" class="worker-info">
         <md-icon *ngIf="worker.isThirdparty" fxLayout fxLayoutAlign="center center">title</md-icon>
-        <span class="name">{{worker.name}}</span>
-        <span class="horizontal-divider">|</span>
-        <span class="cbo">{{worker.cbo}}</span>
-        <span class="horizontal-divider">|</span>
-        <span class="cpf">{{worker.cpf}}</span>
-        <span class="horizontal-divider">|</span>
-        <span class="phone">{{worker.contact}}</span>
+        <span class="name">                 {{ worker.name }}</span>
+        <span class="horizontal-divider">   |</span>
+        <span class="cbo">                  {{ worker.cbo }}</span>
+        <span class="horizontal-divider">   |</span>
+        <span class="cpf">                  {{ worker.cpf }}</span>
+        <span class="horizontal-divider">   |</span>
+        <span class="phone">                {{ worker.contact }}</span>
         <div *ngIf="worker.isThirdparty">
             <span class="horizontal-divider">|</span>
-            <span class="thirdparty-name">{{worker.thirdpartyName}}</span>
+            <span class="thirdparty-name">  {{ worker.thirdpartyName }}</span>
         </div>
     </div>
     <div fxLayout fxLayoutAlign="end center" class="tools">

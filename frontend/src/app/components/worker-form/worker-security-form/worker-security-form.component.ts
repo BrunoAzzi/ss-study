@@ -46,8 +46,6 @@ export class SecurityWorksComponent {
         { value: 5, viewValue: 'Secretário' },
     ];
 
-
-
     cipeiroChange(deviceValue, dateRange) {
         if (deviceValue === 1) {
             this.securityForm.controls.laborsInCipa.enable();

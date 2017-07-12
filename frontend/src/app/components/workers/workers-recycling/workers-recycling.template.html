@@ -1,14 +1,16 @@
 <!-- <div fxLayout fxLayoutAlign="space-around center"> -->
 <button md-button (click)="removeMyself()" type="button" name="button">
-        <md-icon >remove_circle</md-icon>
-        <span>excluir</span>
-    </button>
+    <md-icon>remove_circle</md-icon>
+    <span>excluir</span>
+</button>
 <md-input-container>
-    <input [ngModel]="recycling.validityStart | date:'yyyy-MM-dd'" (input)="recycling.validityStart = $event.target.valueAsDate;updateDueDate()" required mdInput type="date" placeholder="Inicio da vigência">
+    <input [ngModel]="recycling.validityStart | date:'yyyy-MM-dd'" (input)="recycling.validityStart = $event.target.valueAsDate;updateDueDate()" required mdInput type="date"
+            placeholder="Inicio da vigência">
     <md-error>Campo obrigatório.</md-error>
 </md-input-container>
 <md-input-container>
-    <input [ngModel]="recycling.periodicity" min="0" mdInput type="number" (input)="setPeriodicity($event.target.valueAsNumber)" [disabled]="!recycling.validityStart" placeholder="Peridiocidade">
+    <input [ngModel]="recycling.periodicity" min="0" mdInput type="number" (input)="setPeriodicity($event.target.valueAsNumber)" [disabled]="!recycling.validityStart"
+            placeholder="Peridiocidade">
     <span mdSuffix>meses</span>
 </md-input-container>
 <md-input-container>
