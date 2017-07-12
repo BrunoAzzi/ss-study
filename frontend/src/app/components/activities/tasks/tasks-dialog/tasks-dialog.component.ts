@@ -4,7 +4,7 @@ import { MdSnackBar, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 import { AttachmentFile } from './../../../../models/attachmentFile.model';
 import { Task } from './../../../../models/task.model';
 import { User } from './../../../../models/user.model';
-import { TasksService } from './../../../../services/tasks.service';
+import { TasksService } from './../../../../services/task.service';
 
 @Component({
     selector: 'tasks-dialog',

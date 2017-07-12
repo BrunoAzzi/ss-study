@@ -18,15 +18,10 @@ export class TasksListComponent {
     @Output() checkTask : EventEmitter<Task> = new EventEmitter();
     @Output() changeTaskFilter : EventEmitter<any> = new EventEmitter();
     @Output() deleteTask : EventEmitter<Task> = new EventEmitter();
-    @Output() saveTask : EventEmitter<Task> = new EventEmitter();
 
     check(_task: Task) {
         _task.checked = true;
         this.checkTask.emit(_task);
-    }
-
-    save(_task: Task) {
-        console.log(_task);
     }
 
     delete(_task: Task) {
