@@ -6,7 +6,6 @@ export class Cbo {
     constructor() { }
 
     public initializeWithJSON(json: any) {
-
         this.id    = json.id;
         this.code  = json.code;
         this.title = json.title;

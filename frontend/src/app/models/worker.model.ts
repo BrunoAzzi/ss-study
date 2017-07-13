@@ -18,7 +18,6 @@ export class Worker {
     scholarity: string;
     nit: string;
     contact: string;
-    cbo: Cbo = new Cbo();
     laborCBO: string;
     cboDescription: string;
     specialNeeds: boolean;
@@ -35,12 +34,15 @@ export class Worker {
     thirdpartyName: string;
 
     qualifications: Array<Qualification> = [];
-    health: Health                       = new Health();
-    security: Security                   = new Security();
+
+    cbo: Cbo                     = new Cbo();
+   // qualification: Qualification = new Qualification;
+    health: Health               = new Health();
+    security: Security           = new Security();
 
     public initializeWithJSON(json: any) {
         const birthDate     = moment(json.birthDate, 'YYYY-MM-DD HH:mm:ss');
-        const admissionDate = moment(json.admissionAt, 'YYYY-MM-DD HH:mm:ss');
+        const admissionDate = moment(json.admissionDate, 'YYYY-MM-DD HH:mm:ss');
 
         this.id              = json.id;
         this.name            = json.name;
@@ -57,7 +59,7 @@ export class Worker {
         this.status          = json.status;
         this.contractType    = json.contractType;
         this.company         = json.company;
-        this.photoPath       = json.photoPath;
+        this.photoPath       = json.photoUrl;
         this.admissionDate   = { date: { year: admissionDate.year(), month: admissionDate.month() + 1, day: admissionDate.date() } };
         this.birthDate       = { date: { year: birthDate.year(), month: birthDate.month() + 1, day: birthDate.date() } };
         this.ctps            = json.ctps;
@@ -66,19 +68,19 @@ export class Worker {
         this.isThirdparty    = json.isThirdparty;
         this.thirdpartyName  = json.thirdpartyName;
         this.gender          = json.gender === 'masculino' ? this.gender = true : this.gender = false;
+        this.qualifications  = json.qualifications;
 
         if (json.health) {
             this.health = new Health().initializeWithJSON(json.health);
         }
 
-        if (json.qualifications) {
+     /*   if (json.qualifications) {
             this.qualifications = json.qualifications.map(jsonQualidication => new Qualification().initializeWithJSON(jsonQualidication, this));
-        }
+        }*/
 
-
-        this.security = new Security().initializeWithJSON(json);
         this.cbo = new Cbo().initializeWithJSON(json);
-
+        this.security = new Security().initializeWithJSON(json);
+     //   this.qualification = new Qualification().initializeWithJSON(json);
         return this;
     }
 
@@ -94,14 +96,13 @@ export class Worker {
             completeAddress:     this.completeAddress,
             complement:          this.complement,
             contact:             this.contact,
-
             laborCBO:            this.laborCBO,
             functionDescription: this.cboDescription,
             specialNeeds:        this.specialNeeds,
             status:              this.status,
             contractType:        this.contractType,
             company:             this.company,
-            photoPath:           this.photoPath,
+            photoUrl:            this.photoPath,
             admissionDate:       this.admissionDate,
             birthDate:           this.birthDate,
             ctps:                this.ctps,
@@ -109,11 +110,10 @@ export class Worker {
             ocupation:           this.ocupation,
             isThirdparty:        this.isThirdparty,
             thirdpartyName:      this.thirdpartyName,
-
-            qualifications: this.qualifications.map(qualifications => qualifications.toJSON()),
-            security:       this.security.toJSON(),
-            cbo:            this.cbo.toJSON(),
-            health:         this.health.toJSON()
+            qualifications:      this.qualifications.map(qualifications => qualifications.toJSON()),
+            security:            this.security.toJSON(),
+            cbo:                 this.cbo.toJSON(),
+            health:              this.health.toJSON()
         };
     }
 }
