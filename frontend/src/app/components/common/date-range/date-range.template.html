@@ -1,4 +1,4 @@
-<my-date-range-picker [options]="myDateRangePickerOptionsNormal" (dateRangeChanged)="onDateRangeChanged($event)"
+<my-date-range-picker   [(ngModel)]="model" [options]="myDateRangePickerOptionsNormal" (dateRangeChanged)="onDateRangeChanged($event)"
         (inputFieldChanged)="onInputFieldChanged($event)" (calendarViewChanged)="onCalendarViewChanged($event)"
-        (dateSelected)="onDateSelected($event)" [placeholder]="placeholderTxt">
+        (dateSelected)="onDateSelected($event)"   [placeholder]="placeholderTxt">
 </my-date-range-picker>

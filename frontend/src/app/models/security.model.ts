@@ -4,7 +4,7 @@ export class Security {
     cipeiro: boolean;
     brigade: boolean;
     laborsInCipa: string;
-    dataRang: any;
+    dataRang: object;
 
     constructor() { }
 
@@ -17,8 +17,8 @@ export class Security {
         this.brigade      = json.brigade;
         this.laborsInCipa = json.laborCipa;
         this.dataRang     = {
-            beginDate: { date: { year: beginDate.year(), month: beginDate.month() + 1, day: beginDate.date() } },
-            endDate:   { date: { year: endDate.year(), month: endDate.month() + 1, day: beginDate.date() } }
+            beginDate: { date: { year: beginDate.year(),    month: beginDate.month()    + 1, day: beginDate.date() } },
+            endDate:   { date: { year: endDate.year(),      month: endDate.month()      + 1, day: endDate.date() } }
         };
 
         return this;
@@ -29,9 +29,8 @@ export class Security {
         return {
             cipeiro:      this.cipeiro,
             brigade:      this.brigade,
-            laborsCipa:   this.laborsInCipa,
-            mandateBegin: this.dataRang.beginDate,
-            mandateEnd:   this.dataRang.endDate,
+            laborsInCipa: this.laborsInCipa,
+            dataRang: this.dataRang
         };
     }
 }
