@@ -36,7 +36,7 @@
             </div>
 
             <div class="buttons"> 
-                <a href="javascript:void(0)" (click)="delete(task)"><img src="assets/activities/tasks/trash-tool.png" alt="excluir"></a>
+                <a href="javascript:void(0)" (click)="delete(task)" *ngIf="currentUser.id === task.author.id"><img src="assets/activities/tasks/trash-tool.png" alt="excluir"></a>
                 <a href="javascript:void(0)" (click)="edit(task)"><img src="assets/activities/tasks/pencil-tool.png" alt="editar"></a>
                 <a href="javascript:void(0)" (click)="check(task)"><img class="bigger" src="assets/activities/tasks/check-tool.png" alt="concluir"></a>
             </div>

@@ -10,6 +10,7 @@
             <div class="list-content">
                 <tasks-list 
                     [taskLists]="taskLists"
+                    [currentUser]="sessionSrtg"
                     [users]="dialogConfig.data.users"
                     (checkTask)="checkTask($event)"
                     (deleteTask)="deleteTask($event)"

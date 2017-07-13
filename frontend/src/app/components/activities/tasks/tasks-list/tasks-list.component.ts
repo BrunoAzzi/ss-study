@@ -26,12 +26,14 @@ export class TasksListComponent {
     
     @Input() taskLists = [];
     @Input() users : Array<User>;
+    @Input() currentUser : User
     @Output() checkTask : EventEmitter<Task> = new EventEmitter();
     @Output() changeTaskFilter : EventEmitter<any> = new EventEmitter();
     @Output() deleteTask : EventEmitter<Task> = new EventEmitter();
 
     ngOnInit() {
         this.dialogConfig.data.users = this.users;
+        console.log(this.currentUser);
     }
 
     check(_task: Task) {
