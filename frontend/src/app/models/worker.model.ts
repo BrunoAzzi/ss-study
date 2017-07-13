@@ -40,7 +40,6 @@ export class Worker {
     public initializeWithJSON(json: any) {
         const birthDate     = moment(json.birthDate, 'YYYY-MM-DD HH:mm:ss');
         const admissionDate = moment(json.admissionDate, 'YYYY-MM-DD HH:mm:ss');
-        console.log(json);
 
         this.id               = json.id;
         this.name             = json.name;
@@ -76,9 +75,8 @@ export class Worker {
             this.qualifications = json.qualifications.map(jsonQualidication => new Qualification().initializeWithJSON(jsonQualidication, this));
         }
 
-        if (json.security) {
-            this.security = new Security().initializeWithJSON(json.security);
-        }
+    
+            this.security = new Security().initializeWithJSON(json);
         return this;
     }
 

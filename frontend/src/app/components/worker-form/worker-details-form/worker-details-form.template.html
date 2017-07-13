@@ -40,7 +40,7 @@
             </div>
             <div class="grid-row">
                 <md-input-container>
-                    <input mdInput formControlName="cbo" required placeholder="CBO" id="cbo" name="cbo" [(ngModel)]="worker.cbo" [textMask]="{mask: cboMask}"
+                    <input mdInput formControlName="cbo" required placeholder="CBO" id="cbo" name="cbo" [(ngModel)]="worker.cbo"
                             (ngModelChange)="checkCboEmpty()" (blur)="autocompleteRoleFromMock()">
                 </md-input-container>
             </div>

@@ -4,7 +4,7 @@ export class Security {
     cipeiro: boolean;
     brigade: boolean;
     laborsInCipa: string;
-    dataRang: any;
+    dataRang: object;
 
     constructor() {
         this.cipeiro      = null;
@@ -20,7 +20,7 @@ export class Security {
 
         this.cipeiro      = json.cipeiro;
         this.brigade      = json.brigade;
-        this.laborsInCipa = json.laborsInCipa;
+        this.laborsInCipa = json.laborCipa;
         this.dataRang     = {
             beginDate: { date: { year: beginDate.year(), month: beginDate.month() + 1, day: beginDate.date() } },
             endDate:   { date: { year: endDate.year(), month: endDate.month() + 1, day: beginDate.date() } }
@@ -33,8 +33,7 @@ export class Security {
             cipeiro:      this.cipeiro,
             brigade:      this.brigade,
             laborsInCipa: this.laborsInCipa,
-            mandateBegin: this.dataRang.beginDate,
-            mandateEnd:   this.dataRang.endDate,
+            dataRang: this.dataRang
         };
     }
 }

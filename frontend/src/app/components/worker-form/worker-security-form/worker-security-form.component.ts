@@ -1,7 +1,8 @@
 import { Worker } from '../../../models/worker.model';
-import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { Component, Input, EventEmitter, Output, ViewChild, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { SecurityWorksService } from '../../../services/workers/securityWorks.service';
+import { DateRangeComponent } from '../../../components/common/date-range/date-range.component';
 
 @Component({
     selector:    'security-works-form',
@@ -18,11 +19,14 @@ export class SecurityWorksComponent {
               submitted                = false;
               invalidDate              = true;
 
+    @ViewChild('dateRange') DateRange: DateRangeComponent;
+    @ViewChild('setDateRange') setDateRang: DateRangeComponent;
+
     constructor(private fb: FormBuilder, private secService: SecurityWorksService) {
         this.securityForm = this.fb.group({
             brigadistas:  new FormControl('', Validators.required),
             cipeiros:     new FormControl('', Validators.required),
-            laborsInCipa: new FormControl('', Validators.required),
+            laborsInCipa: new FormControl('', Validators.required)
         });
     }
 
@@ -31,33 +35,22 @@ export class SecurityWorksComponent {
     selectedCipaLabor: number;
 
     brigadistas = [
-        { value: 1, viewValue: 'Sim' },
-        { value: 2, viewValue: 'Não' },
+        { value: true, viewValue: 'Sim' },
+        { value: false, viewValue: 'Não' },
     ];
 
     cipeiros = [
-        { value: 1, viewValue: 'Sim' },
-        { value: 2, viewValue: 'Não' },
+        { value: true, viewValue: 'Sim' },
+        { value: false, viewValue: 'Não' },
     ];
 
     laborsInCipa = [
-        { value: 1, viewValue: 'Membro Suplente' },
-        { value: 2, viewValue: 'Membro Efetivo' },
-        { value: 3, viewValue: 'Presidente' },
-        { value: 4, viewValue: 'Vice Presidente' },
-        { value: 5, viewValue: 'Secretário' },
+        { value: "1", viewValue: 'Membro Suplente' },
+        { value: "2", viewValue: 'Membro Efetivo' },
+        { value: "3", viewValue: 'Presidente' },
+        { value: "4", viewValue: 'Vice Presidente' },
+        { value: "5", viewValue: 'Secretário' },
     ];
-
-    setDatawithCPF(dateRange) {
-        this.secService.getSecurityWorker().subscribe(
-            (response) => {
-                this.selectedCipeiro    = response.cipeiro;
-                this.selectedCipaLabor  = response.laborOnCipa;
-                this.selectedBrigadista = response.brigade;
-                dateRange.setDateRange(response.termBegin, response.termEnd);
-            },
-        );
-    }
 
     cipeiroChange(deviceValue, dateRange) {
         if (deviceValue === 1) {
