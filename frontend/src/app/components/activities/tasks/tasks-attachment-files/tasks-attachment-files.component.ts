@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter  } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
 
 import { AttachmentFile } from './../../../../models/attachmentFile.model';
 import { Task } from './../../../../models/task.model';
@@ -9,13 +9,19 @@ import { Task } from './../../../../models/task.model';
     styleUrls: ['./tasks-attachment-files.component.scss']
 })
 
-export class TasksAttachmentFiles {
+export class TasksAttachmentFiles implements OnInit {
 
     @Input() task: Task
     @Output() bindAttachments: EventEmitter<any> = new EventEmitter();
 
     attachmentFiles: Array<AttachmentFile> = []
     supportedFileTypes: Array<string> = ['image/png', 'image/jpeg', 'image/gif', 'video/mp4', 'video/webm', 'video/ogg'];
+
+    ngOnInit() {
+        if(this.task.attachmentFiles && this.task.attachmentFiles.length > 0) {
+            this.attachmentFiles = this.task.attachmentFiles;
+        }
+    }
     
     sendData() {
         this.bindAttachments.emit(this.attachmentFiles);        

@@ -1,5 +1,6 @@
 import { AttachmentFile } from './attachmentFile.model';
 import { User } from './user.model';
+import { environment } from "../../environments/environment";
 
 import * as Moment from "moment";
 
@@ -33,10 +34,10 @@ export class Task implements ITask {
         this.deadline = json.deadline ?  this.setDateFormat(new Date(json.deadline.split(' ').join('T'))) : this.setDateFormat(new Date())
         this.title = json.title
         this.description = json.description
-        this.author = json.author
-        this.responsible = json.responsible
-        this.checked = json.checked ? json.checked : false
-        this.attachmentFiles = json.attachmentFiles
+        this.author = json.author ? new User().initializeWithJSON(json.author) : new User()
+        this.responsible = json.responsible ? new User().initializeWithJSON(json.responsible) : new User()
+        this.checked = json.checked ? json.checked : false;
+        this.attachmentFiles = json.attachmentFiles && json.attachmentFiles.length > 0 ? this.initAttachedFiles(json.attachmentFiles) : [];
 
         return this
     }
@@ -81,5 +82,23 @@ export class Task implements ITask {
 
     private setDateFormat(_date: any) {        
         return Moment(_date).format('YYYY-MM-DD hh:mm:ss');
+    }
+
+    private initAttachedFiles(attachmentFiles: any) {
+        const tmpAttachmentFiles : any = [];
+
+        attachmentFiles.forEach(element => {
+            let imagePath : string = environment.backendUrl + element.url;
+            const newFile = Object.assign(new AttachmentFile(), {
+                  fileName: element.fileName,
+                  type : element.type,
+                  url : element.url,
+                  resource: environment.backendUrl + element.url,
+                  resourceFile: new File([environment.backendUrl + element.url], element.fileName, {type: element.type})
+              });
+            tmpAttachmentFiles.push(newFile);  
+        });
+
+        return tmpAttachmentFiles
     }
 }

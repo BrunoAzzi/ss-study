@@ -1,8 +1,8 @@
-import { OccurrenceService } from './../../../../services/occurrence.service';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
 import { Component, ViewChild} from '@angular/core';
 import { MdDialog, MdSnackBar } from '@angular/material';
 
+import { OccurrenceService } from './../../../../services/occurrence.service';
 import { Task } from './../../../../models/task.model';
 import { User } from './../../../../models/user.model'
 import { SessionsService } from './../../../../services/sessions.service'

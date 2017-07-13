@@ -35,6 +35,7 @@ export class TasksDialogComponent implements OnInit {
             this.task = new Task();
             this.task.author = new User().initializeWithJSON(this.data.currentUser);
         }
+        console.log(this.task);
     }
 
     save(_task) {
@@ -45,7 +46,8 @@ export class TasksDialogComponent implements OnInit {
         this.attachmentFiles = _attachmentFiles;
     }
 
-    saveTask() {        
+    saveTask() {
+        console.log(this.task);
         if(this.task.title && this.task.description && this.task.deadline && this.task.responsible && this.task.author) {
             if(this.task.author instanceof User && this.task.responsible instanceof User ) {
                 this.tasksService.saveTask(this.task).subscribe(
@@ -55,7 +57,7 @@ export class TasksDialogComponent implements OnInit {
                             this.saveAttachmentFiles(savedTask, this.attachmentFiles);
                             this.snackBar.open('Sucesso ao salvar!', null, { duration: 3000 });                    
                         },
-                        error => {
+                        error => {                            
                             this.handleError(error);
                         }
                 );
@@ -83,7 +85,9 @@ export class TasksDialogComponent implements OnInit {
                     type = "video";
                 }
 
-                this.tasksService.uploadFile(savedTask.id, formData, type)
+                console.log("FILE TO SEND", file);
+
+                this.tasksService.uploadFile(savedTask.id, formData, file.type)
                     .subscribe( response => {
                         console.log("UPLOAD FILE RESPONSE", response);
                 });

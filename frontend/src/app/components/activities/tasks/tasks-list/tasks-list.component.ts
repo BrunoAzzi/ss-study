@@ -41,12 +41,7 @@ export class TasksListComponent {
 
     constructor ( public dialog: MdDialog ) {}
 
-    save(_task: Task) {
-        console.log(_task);
-    }
-
-    edit(_task: Task) {
-        console.log(_task);
+    edit(_task: Task) {        
         this.dialogConfig.data.task = _task;
         let dialogRef = this.dialog.open(TasksDialogComponent, this.dialogConfig);
     }

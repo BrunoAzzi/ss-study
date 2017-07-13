@@ -8,7 +8,7 @@
         </div>
         <div class="grid-row">           
             <md-input-container>                
-                <input mdInput [mdDatepicker]="picker" placeholder="Data" 
+                <input mdInput [mdDatepicker]="picker" placeholder="Data"
                     [(ngModel)]="deadline" (ngModelChange)="setValidityDeadline($event)" required>
                 <button mdSuffix [mdDatepickerToggle]="picker"></button>
             </md-input-container>

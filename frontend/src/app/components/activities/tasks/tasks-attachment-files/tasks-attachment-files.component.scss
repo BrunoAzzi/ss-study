@@ -31,6 +31,15 @@ img {
     margin: 0 32px;
 }
 
+.attachedFile {
+    width: 143px !important;
+    height: 77px !important;
+    object-fit: contain;
+    background-color: $cool-grey;
+    margin-left: 0px;
+    margin-right: 25px;    
+}
+
 .files-list {
     display: flex;
     flex-direction: row;
@@ -74,6 +83,11 @@ img {
     outline: 0;
     text-transform: uppercase;
     text-decoration: underline;    
+}
+
+.button-link-container {
+    display: flex;
+    justify-content: flex-end;
 }
 
 drop-file {

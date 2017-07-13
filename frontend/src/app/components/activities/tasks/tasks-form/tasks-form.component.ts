@@ -37,9 +37,7 @@ export class TasksFormComponent implements OnInit {
          .startWith(null)
          .map(user => user && typeof user === 'object' ? user.name : user)
          .map(name => name ? this.filter(name) : this.users.slice());
-        this.deadline = this.task.deadline ? Moment(this.task.deadline).format("MM/DD/YYYY") : "";
-        console.log(this.deadline);
-        console.log(this.task.deadline);
+        this.deadline = this.task.deadline ? Moment(this.task.deadline).format("MM/DD/YYYY") : "";        
     }
 
     filter(name: string): User[] {
@@ -52,9 +50,7 @@ export class TasksFormComponent implements OnInit {
 
     setValidityDeadline(date) {
         if(date) {
-            let tmpDate = Moment(date).format("DD/MM/YYYY");
-            console.log(date);
-            console.log(tmpDate);
+            let tmpDate = Moment(date).format("DD/MM/YYYY");            
             let formattedData = tmpDate.substr(tmpDate.length - 4);
                 formattedData += "-";
                 formattedData += tmpDate.substr(3, 2);

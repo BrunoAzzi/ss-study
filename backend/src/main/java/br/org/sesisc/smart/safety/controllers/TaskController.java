@@ -125,10 +125,11 @@ public class TaskController {
         }
     }
 
-    @PostMapping("/{id}/{type}")
+    @PostMapping("/{id}/{type}/{fileExtension}")
     public ResponseEntity<?> uploadFile(
             @PathVariable("id") long id,
             @PathVariable("type") String type,
+            @PathVariable("fileExtension") String fileExtension,
             @RequestParam("file") MultipartFile file
     ) {
         Task task = repository.findOne(id);
@@ -140,7 +141,7 @@ public class TaskController {
                 AttachmentFile attachmentFile =
                         new AttachmentFile(fileName,
                                 "",
-                                type);
+                                type + "/" + fileExtension);
                 task.getAttachmentFiles().add(attachmentFile);
                 attachRepository.save(attachmentFile);
                 attachmentFile.setUrl(String.format("/tasks/%d/attachments/%d/%s", id, attachmentFile.getId(),type));

@@ -28,6 +28,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HttpClientService } from './services/http-client.service';
 import { CnaeService } from './services/cnae.service';
+import { OccurrenceService } from './services/occurrence.service';
 import { SessionsService } from './services/sessions.service';
 import { PasswordService } from './services/password.service';
 import { TasksService } from './services/task.service';
@@ -379,6 +380,7 @@ import { BackendPathPipe } from './pipes/backend-path.pipe';
         PasswordService,
         MdSnackBar,
         CnaeService,
+        OccurrenceService,
         UserService,
         TasksService,
         ConstructionResolver,
