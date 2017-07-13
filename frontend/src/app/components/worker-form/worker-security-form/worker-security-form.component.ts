@@ -7,20 +7,18 @@ import { DateRangeComponent } from '../../../components/common/date-range/date-r
 @Component({
     selector:    'security-works-form',
     templateUrl: './worker-security-form.template.html',
-    styleUrls:   ['./worker-security-form.component.scss'],
-    providers:   [SecurityWorksService]
+    styleUrls:   ['./worker-security-form.component.scss']
 })
 
 export class SecurityWorksComponent {
     @Output() saved: EventEmitter<any> = new EventEmitter();
-    @Input() cpf: string;
     @Input() worker: Worker;
               securityForm: FormGroup;
               submitted                = false;
               invalidDate              = true;
 
-    @ViewChild('dateRange') DateRange: DateRangeComponent;
-    @ViewChild('setDateRange') setDateRang: DateRangeComponent;
+    //@ViewChild('dateRange') DateRange: DateRangeComponent;
+    //@ViewChild('setDateRange') setDateRang: DateRangeComponent;
 
     constructor(private fb: FormBuilder, private secService: SecurityWorksService) {
         this.securityForm = this.fb.group({

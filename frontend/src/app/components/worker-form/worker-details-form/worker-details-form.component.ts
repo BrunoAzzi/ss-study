@@ -39,43 +39,36 @@ export class WorkersDataComponent {
     };
 
     status = [
-        { value: 'ativo', viewValue: 'Ativo' },
-        { value: 'inativo', viewValue: 'Inativo' },
+        { value: true, viewValue: 'Ativo' },
+        { value: false, viewValue: 'Inativo' },
     ];
 
     labors = [{ value: '', viewValue: '' }];
 
-    sexs = [
-        { viewValue: 'Masculino' },
-        { viewValue: 'Feminino' }
-    ];
-
     hireds = ['Próprio', 'Terceiro'];
 
     scholaritys = [
-        { value: '1', viewValue: 'Fundamental incompleto' },
-        { value: '2', viewValue: 'Fundamental completo' },
-        { value: '3', viewValue: 'Médio incompleto' },
-        { value: '4', viewValue: 'Médio completo' },
-        { value: '5', viewValue: 'Superior incompleto' },
-        { value: '6', viewValue: 'Superior completo' },
-        { value: '7', viewValue: 'Pós Graduação' },
+        { value: 1, viewValue: 'Fundamental incompleto' },
+        { value: 2, viewValue: 'Fundamental completo' },
+        { value: 3, viewValue: 'Médio incompleto' },
+        { value: 4, viewValue: 'Médio completo' },
+        { value: 5, viewValue: 'Superior incompleto' },
+        { value: 6, viewValue: 'Superior completo' },
+        { value: 7, viewValue: 'Pós Graduação' },
     ];
 
     necessitys        = [
-        { value: 1, viewValue: 'Sim' },
-        { value: 2, viewValue: 'Não' },
+        { value: true, viewValue: 'Sim' },
+        { value: false, viewValue: 'Não' },
     ];
     selectedNecessity = 1;
 
     cpfMask = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
     nitMask = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, /\d/, /\d/, '.', /\d/, /\d/, '-', /\d/];
     cepMask = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
-    cboMask = [/\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/];
+    //cboMask = [/\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/];
 
-    constructor(
-        private cboService: CBOService,
-        private workersService: WorkersDataService, private fb: FormBuilder) {
+    constructor(private workersService: WorkersDataService, private fb: FormBuilder) {
         this.myForm = this.fb.group({
 
             fullname:        new FormControl('', Validators.compose([Validators.required, CustomValidators.onlytext])),
@@ -104,20 +97,13 @@ export class WorkersDataComponent {
     autoCompleteWorker() {
         if (!this.myForm.controls.cpf.invalid) {
             this.cpfUpdated.emit(this.cpf);
-            this.cboService.getCBO(this.mycbo).subscribe(
-                (response) => {
-                    this.labors = response;
-                },
-            );
-        }
-    }
 
-    autocompleteRoleFromMock() {
-        this.cboService.getCBO('6125-05').subscribe(
-            (response) => {
-                this.labors = response;
-            },
-        );
+            // this.cboService.getCBO(this.mycbo).subscribe(
+            //     (response) => {
+            //         this.labors = response;
+            //     },
+            // );
+        }
     }
 
     hiredChange() {

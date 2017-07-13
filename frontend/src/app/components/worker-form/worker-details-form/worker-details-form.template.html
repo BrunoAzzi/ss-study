@@ -4,7 +4,9 @@
             <div class="grid-row">
                 <md-card class="image-upload">
                     <md-card-content>
-                        <drop-file [image]="'/assets/ic-image.png'" (fileChanged)="onLogoChange($event)">
+                        <drop-file
+                                [image]="'/assets/ic-image.png'"
+                                (fileChanged)="onLogoChange($event)">
                         </drop-file>
                     </md-card-content>
                     <md-card-footer>
@@ -15,24 +17,40 @@
         </div>
         <div class="grid-column">
             <div class="grid-row">
-                <md-radio-group name="hiredType" [(ngModel)]="worker.ownContracting" formControlName="hiredTypeRadio" (change)="hiredChange()">
-                    <p>Tipo de Contratação 2:</p>
+                <md-radio-group
+                        name="hiredType"
+                        formControlName="hiredTypeRadio"
+                        (change)="hiredChange()"
+                        [(ngModel)]="worker.contractType">
+                    <p>Tipo de Contratação:</p>
                     <md-radio-button *ngFor="let hired of hireds" [value]="hired">
-                        {{hired}}
+                        {{ hired }}
                     </md-radio-button>
                 </md-radio-group>
             </div>
             <div class="grid-row">
                 <md-input-container>
-                    <input mdInput formControlName="cpf" required placeholder="CPF" id="cpf" name="cpf" (blur)="autoCompleteWorker()" [textMask]="{mask: cpfMask}"
-                            [(ngModel)]="cpf">
+                    <input
+                            mdInput
+                            placeholder="CPF"
+                            formControlName="cpf"
+                            id="cpf"
+                            name="cpf"
+                            (blur)="autoCompleteWorker()"
+                            [textMask]="{mask: cpfMask}"
+                            [(ngModel)]="cpf"
+                            required>
                     <md-error *ngIf="myForm.controls.cpf.hasError('required')">Campo Obrigatório.</md-error>
                     <md-error *ngIf="myForm.controls.cpf.hasError('cpf')">CPF Invalído.</md-error>
                 </md-input-container>
             </div>
             <div class="grid-row">
-                <my-date-picker formControlName="birthDate" name="birthDate" name="birthDate" [(ngModel)]="worker.birthDate" [options]="myDatePickerOptions"
-                        placeholder="Data de Nascimento">
+                <my-date-picker
+                        placeholder="Data de Nascimento"
+                        formControlName="birthDate"
+                        name="birthDate"
+                        [(ngModel)]="worker.birthDate"
+                        [options]="myDatePickerOptions">
                 </my-date-picker>
             </div>
             <div class="grid-row">
@@ -40,12 +58,24 @@
             </div>
             <div class="grid-row">
                 <md-input-container>
-                    <input mdInput formControlName="cbo" required placeholder="CBO" id="cbo" name="cbo" [(ngModel)]="worker.cbo"
-                            (ngModelChange)="checkCboEmpty()" (blur)="autocompleteRoleFromMock()">
+                    <input
+                            mdInput
+                            placeholder="CBO"
+                            formControlName="cbo"
+                            id="cbo"
+                            name="cbo"
+                            [(ngModel)]="worker.cbo.code"
+                            (ngModelChange)="checkCboEmpty()"
+                            required>
                 </md-input-container>
+                <!--[textMask]="{mask: cboMask}"-->
             </div>
+
             <div class="grid-row">
-                <md-select [(ngModel)]="worker.specialNecessity" formControlName="necessitys" placeholder="Portador de Nec. Especiais?">
+                <md-select
+                        placeholder="Portador de Nec. Especiais?"
+                        formControlName="necessitys"
+                        [(ngModel)]="worker.specialNeeds">
                     <md-option *ngFor="let necessity of necessitys" [value]="necessity.value">
                         {{ necessity.viewValue }}
                     </md-option>
@@ -56,59 +86,99 @@
         <div class="grid-column">
             <div class="grid-row">
                 <md-input-container>
-                    <input mdInput formControlName="company" [(ngModel)]="worker.company" placeholder="Empresa" id="company" name="company">
+                    <input
+                            mdInput
+                            placeholder="Empresa"
+                            formControlName="company"
+                            id="company"
+                            name="company"
+                            [(ngModel)]="worker.company">
                 </md-input-container>
             </div>
             <div class="grid-row">
                 <md-input-container>
-                    <input mdInput formControlName="fullname" required placeholder="Nome" id="name" name="name" [(ngModel)]="worker.name">
-                    <md-error *ngIf="myForm.controls.fullname.hasError('required')">Campo Obrigatório.
-                    </md-error>
-                    <md-error *ngIf="myForm.controls.fullname.hasError('onlytext')">São permitidos apenas letras.
-                    </md-error>
+                    <input
+                            mdInput
+                            placeholder="Nome"
+                            formControlName="fullname"
+                            id="name" name="name"
+                            [(ngModel)]="worker.name"
+                            required>
+                    <md-error *ngIf="myForm.controls.fullname.hasError('required')">Campo Obrigatório.</md-error>
+                    <md-error *ngIf="myForm.controls.fullname.hasError('onlytext')">São permitidos apenas letras.</md-error>
                 </md-input-container>
             </div>
             <div class="grid-row">
                 <md-input-container>
-                    <input mdInput formControlName="age" name="age" placeholder="Idade" id="age" [(ngModel)]="worker.age">
+                    <input
+                            mdInput
+                            placeholder="Idade"
+                            formControlName="age"
+                            id="age"
+                            name="age"
+                            [(ngModel)]="worker.age">
                 </md-input-container>
 
-                <md-select placeholder="Escolaridade" formControlName="scholarity" [(ngModel)]="worker.scholarity" name="scholarity" id="scholarity">
-                    <md-option *ngFor="let scholarity of scholaritys" [value]="worker.scholarity">
+                <md-select
+                        placeholder="Escolaridade"
+                        formControlName="scholarity"
+                        id="scholarity"
+                        name="scholarity"
+                        [(ngModel)]="worker.scholarity">
+                    <md-option *ngFor="let scholarity of scholaritys" [value]="scholarity.value">
                         {{ scholarity.viewValue }}
                     </md-option>
                 </md-select>
             </div>
             <div class="grid-row">
                 <md-input-container>
-                    <input mdInput placeholder="Endereço Completo" formControlName="completeAddress" [(ngModel)]="worker.completeAddress" id="completeAddress"
-                            name="completeAddress" value="{{completeAddress}}">
+                    <input
+                            mdInput
+                            placeholder="Endereço Completo"
+                            formControlName="completeAddress"
+                            id="completeAddress"
+                            name="completeAddress"
+                            [(ngModel)]="worker.completeAddress"
+                            value="{{ completeAddress }}">
                 </md-input-container>
             </div>
             <div class="grid-row">
-                <md-select placeholder="Cargo" formControlName="role" [(ngModel)]="worker.laborCBO" [mdTooltip]="disabled ? 'Digite um CBO valído!' : 'Selecione um cargo'">
+                <md-select
+                        placeholder="Cargo"
+                        formControlName="role"
+                        [(ngModel)]="worker.laborCBO"
+                        [mdTooltip]="disabled ? 'Digite um CBO valído!' : 'Selecione um cargo'">
                     <md-option *ngFor="let labor of labors" [value]="labor.value">
                         {{ labor.viewValue }}
                     </md-option>
                 </md-select>
             </div>
             <div class="grid-row">
-                <my-date-picker placeholder="Data de Admissão" formControlName="admissionDate" name="admissionDate" [(ngModel)]="worker.admissionDate"
+                <my-date-picker
+                        placeholder="Data de Admissão"
+                        formControlName="admissionDate"
+                        name="admissionDate"
+                        [(ngModel)]="worker.admissionDate"
                         [options]="myDatePickerOptions">
                 </my-date-picker>
                 <div>
-                    <md-select [(ngModel)]="worker.status" formControlName="status" placeholder="Status">
-                        <md-option *ngFor="let statu of status" [value]="worker.status">
+                    <md-select
+                            placeholder="Status"
+                            formControlName="status"
+                            [(ngModel)]="worker.status">
+                        <md-option *ngFor="let statu of status" [value]="statu.value">
                             {{ statu.viewValue }}
                         </md-option>
                     </md-select>
-                    <p *ngIf="worker.status == 'demitido'">{{selectedStatusValue}}</p>
+                    <p *ngIf="worker.status === 'demitido'">{{ selectedStatusValue }}</p>
                 </div>
             </div>
         </div>
         <div class="grid-column">
             <div class="grid-row">
-                <md-radio-group formControlName="sex" [(ngModel)]="worker.gender">
+                <md-radio-group
+                        formControlName="sex"
+                        [(ngModel)]="worker.gender">
                     <p>Sexo:</p>
                     <md-radio-button [value]="true">Masculino</md-radio-button>
                     <md-radio-button [value]="false">Feminino</md-radio-button>
@@ -116,30 +186,57 @@
             </div>
             <div class="grid-row">
                 <md-input-container>
-                    <input mdInput formControlName="nit" [(ngModel)]="worker.nit" placeholder="NIT" id="nit" name="nit" [textMask]="{mask: nitMask}"
-                    />
-                    <md-error *ngIf="myForm.controls.nit.hasError('onlyPositiveNumbers')">São permitidos apenas valores maiores ou igual a 0.
-                    </md-error>
+                    <input
+                            mdInput
+                            placeholder="NIT"
+                            formControlName="nit"
+                            id="nit"
+                            name="nit"
+                            [(ngModel)]="worker.nit"
+                            [textMask]="{mask: nitMask}">
+                    <md-error *ngIf="myForm.controls.nit.hasError('onlyPositiveNumbers')">São permitidos apenas valores maiores ou igual a 0.</md-error>
                 </md-input-container>
                 <md-input-container>
-                    <input mdInput formControlName="ctps" [(ngModel)]="worker.ctps" placeholder="CTPS" id="ctps" name="ctps">
-                    <md-error *ngIf="myForm.controls.ctps.hasError('onlyPositiveNumbers')">São permitidos apenas valores maiores ou igual a 0.
-                    </md-error>
+                    <input
+                            mdInput
+                            placeholder="CTPS"
+                            formControlName="ctps"
+                            id="ctps"
+                            name="ctps"
+                            [(ngModel)]="worker.ctps">
+                    <md-error *ngIf="myForm.controls.ctps.hasError('onlyPositiveNumbers')">São permitidos apenas valores maiores ou igual a 0.</md-error>
                 </md-input-container>
             </div>
             <div class="grid-row">
                 <md-input-container>
-                    <input mdInput placeholder="Complemento" id="complement" [(ngModel)]="worker.complement" name="complement" formControlName="complement">
+                    <input
+                            mdInput
+                            placeholder="Complemento"
+                            formControlName="complement"
+                            id="complement"
+                            name="complement"
+                            [(ngModel)]="worker.complement">
                 </md-input-container>
 
                 <md-input-container>
-                    <input mdInput placeholder="Contato" id="contact" [(ngModel)]="worker.contact" name="contact" formControlName="contact">
+                    <input
+                            mdInput
+                            placeholder="Contato"
+                            formControlName="contact"
+                            id="contact"
+                            name="contact"
+                            [(ngModel)]="worker.contact">
                 </md-input-container>
             </div>
             <div class="grid-row">
                 <md-input-container>
-                    <textarea mdInput formControlName="textArea" [(ngModel)]="worker.cboDescription" placeholder="Descrição da Função" name="textArea">
-                                    </textarea>
+                    <textarea
+                            mdInput
+                            placeholder="Descrição da Função"
+                            formControlName="textArea"
+                            name="textArea"
+                            [(ngModel)]="worker.cboDescription">
+                    </textarea>
                 </md-input-container>
             </div>
         </div>

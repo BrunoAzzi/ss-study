@@ -6,6 +6,7 @@ import { Recycling } from '../../../mocks/recycling/recycling';
     templateUrl: './workers-recycling.template.html',
     styleUrls:   ['./workers-recycling.component.scss'],
 })
+
 export class RecyclingComponent {
     @Input() recycling: Recycling;
     @Output() removed = new EventEmitter();
@@ -29,5 +30,4 @@ export class RecyclingComponent {
         validityStart.setMonth(newMonthValue);
         this.recycling.dueDate = validityStart;
     }
-
 }

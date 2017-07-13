@@ -1,5 +1,6 @@
 import { Health } from './health.model';
 import { Qualification } from './qualification.model';
+import { Cbo } from './cbo.model';
 import { Security } from './security.model';
 import * as moment from 'moment';
 
@@ -17,12 +18,11 @@ export class Worker {
     scholarity: string;
     nit: string;
     contact: string;
-    cbo: Object;
     laborCBO: string;
     cboDescription: string;
-    specialNecessity: boolean;
+    specialNeeds: boolean;
     status: string;
-    ownContracting: string;
+    contractType: string;
     company: string;
     photoPath: string;
     admissionDate: Object;
@@ -34,83 +34,86 @@ export class Worker {
     thirdpartyName: string;
 
     qualifications: Array<Qualification> = [];
-    health: Health                       = new Health();
-    security: Security                   = new Security();
+
+    cbo: Cbo                     = new Cbo();
+   // qualification: Qualification = new Qualification;
+    health: Health               = new Health();
+    security: Security           = new Security();
 
     public initializeWithJSON(json: any) {
         const birthDate     = moment(json.birthDate, 'YYYY-MM-DD HH:mm:ss');
         const admissionDate = moment(json.admissionDate, 'YYYY-MM-DD HH:mm:ss');
 
-        this.id               = json.id;
-        this.name             = json.name;
-        this.cpf              = json.cpf;
-        this.scholarity       = json.degree;
-        this.nit              = json.nit;
-        this.cep              = json.cep;
-        this.completeAddress  = json.address;
-        this.complement       = json.complement;
-        this.contact          = json.contact;
-        this.cbo              = json.cbo;
-        this.laborCBO         = json.laborCBO;
-        this.cboDescription   = json.cboDescription;
-        this.specialNecessity = json.specialNecessity;
-        this.status           = json.status;
-        this.ownContracting   = json.ownContracting;
-        this.company          = json.company;
-        this.photoPath        = json.photoPath;
-        this.admissionDate    = { date: { year: admissionDate.year(), month: admissionDate.month() + 1, day: admissionDate.date() } };
-        this.birthDate        = { date: { year: birthDate.year(), month: birthDate.month() + 1, day: birthDate.date() } };
-        this.ctps             = json.ctps;
-        this.age              = birthDate.diff(moment(), 'years');
-        this.ocupation        = json.ocupation;
-        this.isThirdparty     = json.isThirdparty;
-        this.thirdpartyName   = json.thirdpartyName;
-        this.gender           = json.gender === 'Masculino' ? this.gender = true : this.gender = false;
+        this.id              = json.id;
+        this.name            = json.name;
+        this.cpf             = json.cpf;
+        this.scholarity      = json.degreeId;
+        this.nit             = json.nit;
+        this.cep             = json.cep;
+        this.completeAddress = json.address;
+        this.complement      = json.complement;
+        this.contact         = json.contact;
+        this.laborCBO        = json.laborCBO;
+        this.cboDescription  = json.functionDescription;
+        this.specialNeeds    = json.specialNeeds;
+        this.status          = json.status;
+        this.contractType    = json.contractType;
+        this.company         = json.company;
+        this.photoPath       = json.photoUrl;
+        this.admissionDate   = { date: { year: admissionDate.year(), month: admissionDate.month() + 1, day: admissionDate.date() } };
+        this.birthDate       = { date: { year: birthDate.year(), month: birthDate.month() + 1, day: birthDate.date() } };
+        this.ctps            = json.ctps;
+        this.age             = birthDate.diff(moment(), 'years');
+        this.ocupation       = json.ocupation;
+        this.isThirdparty    = json.isThirdparty;
+        this.thirdpartyName  = json.thirdpartyName;
+        this.gender          = json.gender === 'masculino' ? this.gender = true : this.gender = false;
+        this.qualifications  = json.qualifications;
 
         if (json.health) {
             this.health = new Health().initializeWithJSON(json.health);
         }
 
-        if (json.qualifications) {
+     /*   if (json.qualifications) {
             this.qualifications = json.qualifications.map(jsonQualidication => new Qualification().initializeWithJSON(jsonQualidication, this));
-        }
+        }*/
 
-    
-            this.security = new Security().initializeWithJSON(json);
+        this.cbo = new Cbo().initializeWithJSON(json);
+        this.security = new Security().initializeWithJSON(json);
+     //   this.qualification = new Qualification().initializeWithJSON(json);
         return this;
     }
 
     public toJSON() {
         return {
-            id:               this.id,
-            name:             this.name,
-            cpf:              this.cpf,
-            gender:           this.gender === true ? this.gender = true : this.gender = false,
-            scholarity:       this.scholarity,
-            nit:              this.nit,
-            cep:              this.cep,
-            completeAddress:  this.completeAddress,
-            complement:       this.complement,
-            contact:          this.contact,
-            cbo:              this.cbo,
-            laborCBO:         this.laborCBO,
-            cboDescription:   this.cboDescription,
-            specialNecessity: this.specialNecessity,
-            status:           this.status,
-            ownContracting:   this.ownContracting,
-            company:          this.company,
-            photoPath:        this.photoPath,
-            admissionDate:    this.admissionDate,
-            birthDate:        this.birthDate,
-            ctps:             this.ctps,
-            age:              this.age,
-            ocupation:        this.ocupation,
-            isThirdparty:     this.isThirdparty,
-            thirdpartyName:   this.thirdpartyName,
-
-            qualifications: this.qualifications.map(qualifications => qualifications.toJSON()),
-            security:      this.security.toJSON(),
-            health:        this.health.toJSON()
+            id:                  this.id,
+            name:                this.name,
+            cpf:                 this.cpf,
+            gender:              this.gender,
+            scholarity:          this.scholarity,
+            nit:                 this.nit,
+            cep:                 this.cep,
+            completeAddress:     this.completeAddress,
+            complement:          this.complement,
+            contact:             this.contact,
+            laborCBO:            this.laborCBO,
+            functionDescription: this.cboDescription,
+            specialNeeds:        this.specialNeeds,
+            status:              this.status,
+            contractType:        this.contractType,
+            company:             this.company,
+            photoUrl:            this.photoPath,
+            admissionDate:       this.admissionDate,
+            birthDate:           this.birthDate,
+            ctps:                this.ctps,
+            age:                 this.age,
+            ocupation:           this.ocupation,
+            isThirdparty:        this.isThirdparty,
+            thirdpartyName:      this.thirdpartyName,
+            qualifications:      this.qualifications.map(qualifications => qualifications.toJSON()),
+            security:            this.security.toJSON(),
+            cbo:                 this.cbo.toJSON(),
+            health:              this.health.toJSON()
         };
     }
 }
