@@ -1,15 +1,26 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild, OnChanges, SimpleChanges } from '@angular/core';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
 @Component({
     selector:    'date-range',
     templateUrl: 'date-range.template.html',
-    styleUrls:   ['./date-range.component.scss']
+    styleUrls:   ['./date-range.component.scss'],
 })
 
-export class DateRangeComponent {
+export class DateRangeComponent implements OnChanges {
     @Input() disabled: boolean = true;
+    @Input() dateRange: object = null;
 
     range: any;
+    model: object;
+
+    ngOnChanges(changes: SimpleChanges) {
+           this.range = this.dateRange;
+           if(this.range!=null){
+        this.model = {beginDate: {year: this.range.beginDate.date.year, month: this.range.beginDate.date.month, day: this.range.beginDate.date.day},
+                        endDate: {year: this.range.endDate.date.year, month: this.range.endDate.date.month, day: this.range.endDate.date.day}};
+                    }
+  }
 
     disable() {
         let copy                            = this.getCopyOfOptions();
@@ -25,15 +36,6 @@ export class DateRangeComponent {
 
     getDate() {
         return this.selectedTextNormal;
-    }
-
-    setDateRange(dbegin: string, dend: string): void {
-        let dateb                    = new Date(dbegin);
-        let datee                    = new Date(dend);
-        this.selectedDateRangeNormal = {
-            beginDate: { year: 2018, month: 10, day: 9 },
-            endDate:   { year: 2018, month: 10, day: 19 }
-        };
     }
 
     myDateRangePickerOptionsNormal = {
@@ -75,7 +77,9 @@ export class DateRangeComponent {
 
     placeholderTxt: string = 'Período do Mandato';
 
-    constructor() { }
+    constructor() { 
+     
+    }
 
     clearDateRange() {
         this.selectedDateRangeNormal = null;
@@ -162,6 +166,7 @@ export class DateRangeComponent {
     }
 
     onDateRangeChanged(event: any) {
+        
         if (event.formatted !== '') {
             this.selectedTextNormal      = event.formatted;
             this.border                  = '1px solid #CCC';

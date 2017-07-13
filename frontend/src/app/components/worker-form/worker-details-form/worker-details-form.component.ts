@@ -4,14 +4,14 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { CustomValidators } from './worker-details-form-custom-validators';
 import { IMyDpOptions } from 'mydatepicker';
 import { WorkersDataService } from '../../../services/workers/workersData.service';
-// import { CBOService } from '../../../services/cbo.service';
+ import { CBOService } from '../../../services/cbo.service';
 
 @Component({
     selector:    'worker-details-form',
     templateUrl: './worker-details-form.template.html',
     styleUrls:   ['./worker-details-form.component.scss'],
     providers:   [
-        // CBOService,
+        CBOService,
         WorkersDataService]
 })
 

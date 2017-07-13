@@ -40,5 +40,4 @@ export class WorkerQualificationsFormComponent implements OnInit {
         'NR 18',
         'NR 33',
     ];
-
 }
