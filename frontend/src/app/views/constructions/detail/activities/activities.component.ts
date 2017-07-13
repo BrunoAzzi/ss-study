@@ -1,3 +1,4 @@
+import { OccurrenceService } from './../../../../services/occurrence.service';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
 import { Component, ViewChild} from '@angular/core';
 import { MdDialog, MdSnackBar } from '@angular/material';
@@ -5,7 +6,7 @@ import { MdDialog, MdSnackBar } from '@angular/material';
 import { Task } from './../../../../models/task.model';
 import { User } from './../../../../models/user.model'
 import { SessionsService } from './../../../../services/sessions.service'
-import { TasksService } from './../../../../services/tasks.service';
+import { TasksService } from './../../../../services/task.service';
 import { UserService } from './../../../../services/user.service';
 import { TasksDialogComponent } from './../../../../components/activities/tasks/tasks-dialog/tasks-dialog.component'
 
@@ -17,14 +18,16 @@ import { TasksDialogComponent } from './../../../../components/activities/tasks/
 })
 export class ActivitiesComponent {
     @ViewChild('tabGroup') tabGroup;
-        
-    public sessionSrtg : any
-    public tasks : Array<any> = []    
+    public sessionSrtg : any 
 
     public taskLists : Array<any> = []
     private allTasks : Array<any> = []
+
+    public occurrenceLists : Array<any> = []
+    private allOccurrences : Array<any> = []
     
     private taskSub : any
+    private occurenceSub : any  
     private userSub : any    
 
     dialogConfig = {
@@ -37,6 +40,7 @@ export class ActivitiesComponent {
 
     constructor(public dialog: MdDialog, 
                 public taskService: TasksService, 
+                public occurrenceService: OccurrenceService,
                 public userService: UserService, 
                 public sessionsService: SessionsService,
                 public snackBar: MdSnackBar) { }
@@ -56,6 +60,7 @@ export class ActivitiesComponent {
         }
 
         this.getTaskLists(); 
+        this.getOccurrenceLists();
     }
 
     ngOnDestroy() {
@@ -71,7 +76,7 @@ export class ActivitiesComponent {
 
     checkTask(_task: Task) {
         _task.checked = true;
-
+        
         this.taskService.saveTask(_task).subscribe(
                 savedTask => {
                     this.snackBar.open('Tarefa feita!', null, { duration: 3000 });                    
@@ -81,6 +86,14 @@ export class ActivitiesComponent {
                 }
             );
     }
+
+    getOccurrenceLists() {
+        this.occurenceSub = this.occurrenceService.getOccurenceList().subscribe((occurrences) => {
+            this.allOccurrences = occurrences;
+            this.occurrenceLists = this.mapTasks(occurrences);
+        })
+    }
+
 
     getTaskLists() {
         this.taskSub = this.taskService.getTaskList().subscribe((tasks) => {

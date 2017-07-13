@@ -36,14 +36,12 @@
                 </my-date-picker>
             </div>
             <div class="grid-row">
-                <cep-picker [(cep)]="worker.cep" (onSearch)="onCepSearch($event)" (selected)="teste()"></cep-picker>
+                <cep-picker [(cep)]="worker.cep" (onSearch)="onCepSearch($event)"></cep-picker>
             </div>
             <div class="grid-row">
                 <md-input-container>
                     <input mdInput formControlName="cbo" required placeholder="CBO" id="cbo" name="cbo" [(ngModel)]="worker.cbo" [textMask]="{mask: cboMask}"
                             (ngModelChange)="checkCboEmpty()" (blur)="autocompleteRoleFromMock()">
-                    <!--  <md-error *ngIf="myForm.controls.fullname.hasError('required')">Campo Obrigatório.
-                    </md-error>-->
                 </md-input-container>
             </div>
             <div class="grid-row">
@@ -104,7 +102,7 @@
                             {{ statu.viewValue }}
                         </md-option>
                     </md-select>
-                    <p *ngIf="worker.status=='demitido'">{{selectedStatusValue}}</p>
+                    <p *ngIf="worker.status == 'demitido'">{{selectedStatusValue}}</p>
                 </div>
             </div>
         </div>

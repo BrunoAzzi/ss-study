@@ -29,7 +29,6 @@ export class TasksListComponent {
     @Output() checkTask : EventEmitter<Task> = new EventEmitter();
     @Output() changeTaskFilter : EventEmitter<any> = new EventEmitter();
     @Output() deleteTask : EventEmitter<Task> = new EventEmitter();
-    @Output() saveTask : EventEmitter<Task> = new EventEmitter();
 
     ngOnInit() {
         this.dialogConfig.data.users = this.users;

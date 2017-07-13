@@ -60,7 +60,7 @@
             <column name="photo_filename" type="text"/>
             <column name="cipeiro" type="boolean"/>
             <column name="brigade" type="boolean"/>
-            <column name="role" type="varchar(255)"/>
+            <column name="labor_cipa" type="varchar(255)"/>
             <column name="mandate_begin" type="TIMESTAMP"/>
             <column name="mandate_end" type="TIMESTAMP"/>
             <column name="blood_type" type="varchar(3)"/>
@@ -148,7 +148,7 @@
             <column name="aso_type" type="int" />
             <column name="able" type="boolean" />
             <column name="attachment_url" type="varchar(255)" />
-            <column name="attachment_file_name" type="varchar(255)" />
+            <column name="attachment_filename" type="varchar(255)" />
         </createTable>
         <addAutoIncrement tableName="asos" columnName="id" columnDataType="int" startWith="1" incrementBy="1" />
 

@@ -1,5 +1,6 @@
 import { Health } from './health.model';
 import { Qualification } from './qualification.model';
+import { Security } from './security.model';
 import * as moment from 'moment';
 
 export class Worker {
@@ -20,7 +21,7 @@ export class Worker {
     laborCBO: string;
     cboDescription: string;
     specialNecessity: boolean;
-    status: boolean;
+    status: string;
     ownContracting: string;
     company: string;
     photoPath: string;
@@ -34,7 +35,7 @@ export class Worker {
 
     qualifications: Array<Qualification> = [];
     health: Health                       = new Health();
-    // security: Security                   = new Security();
+    security: Security                   = new Security();
 
     public initializeWithJSON(json: any) {
         const birthDate     = moment(json.birthDate, 'YYYY-MM-DD HH:mm:ss');
@@ -63,8 +64,8 @@ export class Worker {
         this.age              = birthDate.diff(moment(), 'years');
         this.ocupation        = json.ocupation;
         this.isThirdparty     = json.isThirdparty = false;
-        this.thirdpartyName   = json.thirdpartyName;
-        this.gender           = json.gender === 'Masculino' ? this.gender = true : this.gender = false;
+        this.thirdpartyName = json.thirdpartyName;
+        this.gender         = json.gender === 'Masculino' ? this.gender = true : this.gender = false;
 
         if (json.health) {
             this.health = new Health().initializeWithJSON(json.health);
@@ -108,7 +109,7 @@ export class Worker {
             isThirdparty:     this.isThirdparty,
             thirdpartyName:   this.thirdpartyName,
             qualification:    this.qualifications.map(qualifications => qualifications.toJSON()),
-            // security:         this.security.toJSON(),
+            security:         this.security.toJSON(),
             health:           this.health.toJSON()
         };
     }

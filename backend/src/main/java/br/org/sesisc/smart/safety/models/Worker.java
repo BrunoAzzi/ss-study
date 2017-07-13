@@ -13,35 +13,41 @@ public class Worker {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @NotNull(message = "Nome é um campo obrigatório")
-    private String name;
-    private String cep;
-    private String address;
-
-    @Column(name = "degree_id")
-    private Long degreeId;
-    private String birthDate;
+    private String photoUrl;
+    private String photoFilename;
+    private String contractType;
+    private String company;
     private String gender;
 
     @NotNull(message = "CPF é um campo obrigatório")
     private String cpf;
-
+    @NotNull(message = "Nome é um campo obrigatório")
+    private String name;
     private String nit;
     private String ctps;
-    private String admissionAt;
-    private String contractType;
-    private String role;
-    private String photoUrl;
-    private String photoFilename;
-    private boolean cipeiro;
-    private boolean brigade;
+    private String birthDate;
+    @Column(name = "degree_id")
+    private Long degreeId;
+    private String complement;
+    private String contact;
+    private String cep;
+    private String address;
+    private String functionDescription;
     private boolean specialNeeds;
+    private String admissionAt;
     private boolean status;
+
+
+    private boolean cipeiro;
+    private String laborCipa;
+    private boolean brigade;
     private String mandateBegin;
     private String mandateEnd;
+
     private String allergies;
     private String diseases;
     private String bloodType;
+
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "worker_id")
@@ -60,25 +66,33 @@ public class Worker {
 
     public Worker() { }
 
-    public Worker(String name, String cep, String address, Long degreeId, String birthDate, String gender, String cpf, String nit, String ctps, String admissionAt, String contractType, String role, String photoUrl, String photoFilename, boolean cipeiro, boolean brigade, boolean specialNeeds, boolean status, String mandateBegin, String mandateEnd, String allergies, String diseases, String bloodType, Set<Aso> asos, Set<Qualification> qualifications, Cbo cbo, boolean activated) {
-        this.name = name;
-        this.cep = cep;
-        this.address = address;
-        this.degreeId = degreeId;
-        this.birthDate = birthDate;
-        this.gender = gender;
-        this.cpf = cpf;
-        this.nit = nit;
-        this.ctps = ctps;
-        this.admissionAt = admissionAt;
-        this.contractType = contractType;
-        this.role = role;
+    public Worker(String photoUrl, String photoFilename, String contractType, String company, String gender, String cpf, String name,
+                  String nit, String ctps, String birthDate, Long degreeId, String complement, String contact, String cep,
+                  String address, String functionDescription, boolean specialNeeds, String admissionAt, boolean status, boolean cipeiro,
+                  String laborCipa, boolean brigade, String mandateBegin, String mandateEnd, String allergies, String diseases,
+                  String bloodType, Set<Aso> asos, Set<Qualification> qualifications, Cbo cbo, boolean activated) {
         this.photoUrl = photoUrl;
         this.photoFilename = photoFilename;
-        this.cipeiro = cipeiro;
-        this.brigade = brigade;
+        this.contractType = contractType;
+        this.company = company;
+        this.gender = gender;
+        this.cpf = cpf;
+        this.name = name;
+        this.nit = nit;
+        this.ctps = ctps;
+        this.birthDate = birthDate;
+        this.degreeId = degreeId;
+        this.complement = complement;
+        this.contact = contact;
+        this.cep = cep;
+        this.address = address;
+        this.functionDescription = functionDescription;
         this.specialNeeds = specialNeeds;
+        this.admissionAt = admissionAt;
         this.status = status;
+        this.cipeiro = cipeiro;
+        this.laborCipa = laborCipa;
+        this.brigade = brigade;
         this.mandateBegin = mandateBegin;
         this.mandateEnd = mandateEnd;
         this.allergies = allergies;
@@ -186,12 +200,61 @@ public class Worker {
         this.contractType = contractType;
     }
 
-    public String getRole() {
-        return role;
+    public String getCompany() {
+        return company;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
+
+    public String getComplement() {
+        return complement;
+    }
+
+    public void setComplement(String complement) {
+        this.complement = complement;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+    public String getFunctionDescription() {
+        return functionDescription;
+    }
+
+    public void setFunctionDescription(String functionDescription) {
+        this.functionDescription = functionDescription;
+    }
+
+    public String getLaborCipa() {
+        return laborCipa;
+    }
+
+    public void setLaborCipa(String laborCipa) {
+        this.laborCipa = laborCipa;
+    }
+
+    public Set<Aso> getAsos() {
+        return asos;
+    }
+
+    public void setAsos(Set<Aso> asos) {
+        this.asos = asos;
+    }
+
+    public Set<Qualification> getQualifications() {
+        return qualifications;
+    }
+
+    public void setQualifications(Set<Qualification> qualifications) {
+        this.qualifications = qualifications;
     }
 
     public String getPhotoUrl() {

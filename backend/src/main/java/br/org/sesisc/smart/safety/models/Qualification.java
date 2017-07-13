@@ -9,12 +9,12 @@ public class Qualification {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+    private boolean recycling;
     private String realizationDate;
     private int periodicity;
     private boolean able;
-    private boolean recycling;
     private String attachmentUrl;
-    private String attachmentFileName;
+    private String attachmentFilename;
 
     @ManyToOne
     @JoinColumn(name = "quality_id")
@@ -22,13 +22,13 @@ public class Qualification {
 
     public Qualification() { }
 
-    public Qualification(String realizationDate, int periodicity, boolean able, boolean recycling, String attachmentUrl, String attachmentFileName, Quality quality) {
+    public Qualification(String realizationDate, int periodicity, boolean able, boolean recycling, String attachmentUrl, String attachmentFilename, Quality quality) {
         this.realizationDate = realizationDate;
         this.periodicity = periodicity;
         this.able = able;
         this.recycling = recycling;
         this.attachmentUrl = attachmentUrl;
-        this.attachmentFileName = attachmentFileName;
+        this.attachmentFilename = attachmentFilename;
         this.quality = quality;
     }
 
@@ -80,12 +80,12 @@ public class Qualification {
         this.attachmentUrl = attachmentUrl;
     }
 
-    public String getAttachmentFileName() {
-        return attachmentFileName;
+    public String getAttachmentFilename() {
+        return attachmentFilename;
     }
 
-    public void setAttachmentFileName(String attachmentFileName) {
-        this.attachmentFileName = attachmentFileName;
+    public void setAttachmentFilename(String attachmentFilename) {
+        this.attachmentFilename = attachmentFilename;
     }
 
     public Quality getQuality() {
