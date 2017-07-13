@@ -11,6 +11,7 @@
                         </md-option>
                     </md-select>
                     <div>
+                        {{worker.security.laborsInCipa}}
                         <md-select name="laborsInCipa" required formControlName="laborsInCipa"
                                 placeholder="Cargo na CIPA">
                             <md-option *ngFor="let labor of laborsInCipa " [value]="labor.value">

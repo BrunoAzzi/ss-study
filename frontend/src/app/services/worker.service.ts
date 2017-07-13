@@ -1,5 +1,5 @@
 import { HttpClientService } from './http-client.service';
-import { Worker } from './../models/worker.model';
+import { Worker } from '../models/worker.model';
 import { Injectable } from '@angular/core';
 
 @Injectable()
