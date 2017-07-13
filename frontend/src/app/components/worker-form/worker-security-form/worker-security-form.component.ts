@@ -1,7 +1,7 @@
 import { Worker } from '../../../models/worker.model';
 import { Component, Input, EventEmitter, Output, ViewChild, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { SecurityWorksService } from '../../../services/workers/securityWorks.service';
+/*import { SecurityWorksService } from '../../../services/workers/securityWorks.service';*/
 import { DateRangeComponent } from '../../../components/common/date-range/date-range.component';
 
 @Component({
@@ -20,7 +20,7 @@ export class SecurityWorksComponent {
     //@ViewChild('dateRange') DateRange: DateRangeComponent;
     //@ViewChild('setDateRange') setDateRang: DateRangeComponent;
 
-    constructor(private fb: FormBuilder, private secService: SecurityWorksService) {
+    constructor(private fb: FormBuilder) {
         this.securityForm = this.fb.group({
             brigadistas:  new FormControl('', Validators.required),
             cipeiros:     new FormControl('', Validators.required),
