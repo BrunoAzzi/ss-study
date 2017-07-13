@@ -77,7 +77,7 @@ export class Worker {
 
 
         this.security = new Security().initializeWithJSON(json);
-        this.cbo = new Cbo().initializeWithJSON(json);
+        this.cbo = new Cbo().initializeWithJSON(json.cbo);
 
         return this;
     }
