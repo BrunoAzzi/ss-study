@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Set;
+
 @RestController
 @RequestMapping("/cbos")
 public class CboController {
@@ -22,13 +24,13 @@ public class CboController {
     CboRepository repository;
 
     @GetMapping("/{code}")
-    public ResponseEntity<?> show(@PathVariable("id") long id) {
-        Cbo cbo  = repository.findOne(id);
+    public ResponseEntity<?> getByCode(@PathVariable("code") String code) {
+        Set<Cbo> cbos  = repository.findByCode(code);
 
-        if(cbo!=null){
+        if(cbos!=null){
         return SuccessResponse.handle(
-                new String[] {"cbo"},
-                new Object[] {cbo},
+                new String[] {"cbos"},
+                new Object[] {cbos},
                 HttpStatus.OK
         );
         } else {

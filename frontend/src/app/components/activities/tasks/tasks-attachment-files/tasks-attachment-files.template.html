@@ -1,0 +1,31 @@
+<div class="grid-container">
+    <div class="grid-column">
+        <div #filePreview class="grid-row" *ngIf="attachmentFiles.length > 0">
+            <ul class="files-list">
+                <li *ngFor="let file of attachmentFiles; let fileIndex = index" class="file">
+                    <drop-file class="attachedFile" [showPreview]="true" [image]="file.resource" [supportedFileTypes]="supportedFileTypes"
+                        (fileChanged)="attachmentFileEdited(file, fileIndex, $event)" ></drop-file>                        
+                    <div class="button-link-container">
+                        <!--button class="button-link" (click)="downloadFile(fileIndex)">Baixar</button-->
+                        <button class="button-link" (click)="removeFile(fileIndex)">Excluir</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div #fileDrop class="grid-row" > 
+            <drop-file class="half" 
+                    [showPreview]="false" 
+                    [supportedFileTypes]="supportedFileTypes" 
+                    [hasNgContent]="true"
+                    [ngContentType]="'taskAttachment'"
+                    (fileChanged)="attachmentFileAdded($event)" class="grid-row-last">
+
+                <img src="/assets/plus.svg" alt=""/>
+                <div>
+                    <span><b>Adicionar</b> imagens</span>
+                    <span>Para adicionar imagens arraste elas ou <a>clique aqui</a></span>
+                </div>
+            </drop-file>
+        </div>
+    </div>
+</div>

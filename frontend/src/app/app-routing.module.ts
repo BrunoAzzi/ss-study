@@ -1,3 +1,4 @@
+import { ActivitiesComponent } from './views/constructions/detail/activities/activities.component';
 import { ConstructionFormSmartComponent } from './views/constructions/form/construction-form.container';
 import { ConstructionDetailComponent } from './views/constructions/detail/construction-detail.component';
 import { ConstructionResolver } from './resolves/construction.resolver';
@@ -85,6 +86,7 @@ const routes: Routes = [
                 { path: 'edit', component: ConstructionFormSmartComponent, canActivate: [AuthGuard] },
                 { path: 'monitoring', component: MonitoringComponent, canActivate: [AuthGuard] },
                 { path: 'emotional-profile', component: EmotionalPanelComponent, canActivate: [AuthGuard] },
+                { path: 'activities', component: ActivitiesComponent, canActivate: [AuthGuard] },
             ]
             }
         ]

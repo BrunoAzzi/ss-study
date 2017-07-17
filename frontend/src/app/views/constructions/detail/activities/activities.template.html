@@ -1,0 +1,24 @@
+<div class="body-content">
+    <md-tab-group #tabGroup disableRipple>
+        <md-tab id="tab1" label="Ocorrências">
+            <div class="list-content">
+                <occurrences-list>
+                </occurrences-list>
+            </div>
+        </md-tab>
+        <md-tab id="tab2" label="Tarefas">
+            <div class="list-content">
+                <tasks-list 
+                    [taskLists]="taskLists"
+                    [currentUser]="sessionSrtg"
+                    [users]="dialogConfig.data.users"
+                    (checkTask)="checkTask($event)"
+                    (deleteTask)="deleteTask($event)"
+                    (changeTaskFilter)="changeTaskFilter($event)">
+                </tasks-list>
+            </div>
+        </md-tab>
+    </md-tab-group>
+
+    <fab mdTooltip="Adicionar Tarefa" mdTooltipPosition="before" (click)="openTaskDialog()"></fab>
+</div>

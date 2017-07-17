@@ -42,6 +42,7 @@
         <addColumn tableName="workers">
             <column name="supplier_id" type="int"/>
             <column name="cbo_id" type="int"/>
+            <column name="cbo_code" type="varchar(100)"/>
             <column name="degree_id" type="int" />
             <column name="cep" type="varchar(10)"/>
             <column name="address" type="varchar(255)"/>

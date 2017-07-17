@@ -10,18 +10,17 @@ export class WorkersDataService {
 
     getWorker(cpf: string) {
         return this.http.get(this.workersDataUrl).map((response) => {
+           
             return response.json().data;
         });
     }
 
     setCPF(cpfValue: string) {
-        console.log(cpfValue);
         this.cpf = cpfValue;
 
     }
 
     getCPF() {
-        console.log('service' + this.cpf);
         return this.cpf;
     };
 

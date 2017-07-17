@@ -16,20 +16,19 @@ public class Qualification {
     private String attachmentUrl;
     private String attachmentFilename;
 
-    @ManyToOne
-    @JoinColumn(name = "quality_id")
-    private Quality quality;
+    @Column(name = "quality_id")
+    private Long qualityId;
 
     public Qualification() { }
 
-    public Qualification(String realizationDate, int periodicity, boolean able, boolean recycling, String attachmentUrl, String attachmentFilename, Quality quality) {
+    public Qualification(boolean recycling, String realizationDate, int periodicity, boolean able, String attachmentUrl, String attachmentFilename, Long qualityId) {
+        this.recycling = recycling;
         this.realizationDate = realizationDate;
         this.periodicity = periodicity;
         this.able = able;
-        this.recycling = recycling;
         this.attachmentUrl = attachmentUrl;
         this.attachmentFilename = attachmentFilename;
-        this.quality = quality;
+        this.qualityId = qualityId;
     }
 
     public long getId() {
@@ -88,11 +87,11 @@ public class Qualification {
         this.attachmentFilename = attachmentFilename;
     }
 
-    public Quality getQuality() {
-        return quality;
+    public Long getQualityId() {
+        return qualityId;
     }
 
-    public void setQuality(Quality quality) {
-        this.quality = quality;
+    public void setQualityId(Long qualityId) {
+        this.qualityId = qualityId;
     }
 }

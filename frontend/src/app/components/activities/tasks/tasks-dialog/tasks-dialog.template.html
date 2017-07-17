@@ -1,0 +1,19 @@
+<md-toolbar class="title-container">
+    <span><h2 md-dialog-title>{{ title }}</h2></span>
+    <span class="spacer"></span>
+    <button class="close" md-icon-button md-dialog-close>
+        <md-icon>clear</md-icon>
+    </button>
+</md-toolbar>
+<form >
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <tasks-form [task]="task" [users]="users"
+                (save)="save($event)" (bindFiles)="bindFiles($event)"></tasks-form>            
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions fxLayout fxLayoutAlign="center center" layout="row" >
+        <button class="button-link" md-dialog-close>Fechar</button>
+        <button md-button (click)="saveTask()">Salvar</button>        
+    </md-dialog-actions>
+</form> 

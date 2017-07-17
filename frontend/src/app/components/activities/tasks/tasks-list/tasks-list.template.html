@@ -1,0 +1,50 @@
+<div class="filters">
+    <div>
+        <button md-icon-button type="button" (click)="toggleSearch()">
+            <md-icon class="search">search</md-icon>
+        </button>
+
+        <md-input-container *ngIf="showSearch" class="search-input">
+            <input #textFilterInput mdInput floatPlaceholder="never" (input)="filterByText(textFilterInput.value)">
+        </md-input-container>
+    </div>
+
+    <md-chip-list>
+        <md-chip class="chip {{ this.selectedFilters.personal ? 'active' : ''}}" (click)="toggleActiveFilter('personal')">
+            <span>Minhas Tarefas</span>
+        </md-chip>
+        <md-chip class="chip {{ this.selectedFilters.team ? 'active' : ''}}" (click)="toggleActiveFilter('team')">
+            <span>Tarefas da Equipe</span>
+        </md-chip>
+        <md-chip class="chip {{ this.selectedFilters.history ? 'active' : ''}}" (click)="toggleActiveFilter('history')">
+            <span>Histórico</span>
+        </md-chip>
+    </md-chip-list>
+</div>
+
+<div class="list" *ngFor="let list of taskLists; let i = index">
+    <div class="label">
+        <span class="group-title {{list.tasks[0].getStatus() === 'late' ? 'warning' : ''}}"> {{list.group}} </span>
+        <div class="line"></div>
+    </div>
+    <ul>
+        <li *ngFor="let task of list.tasks" class="{{task.getStatus()}} {{task.checked ? 'checked' : ''}}">
+            <div class="infos">
+                <img src="assets/activities/tasks/ic-time-{{task.getStatus()}}.svg" alt="{{task.getStatus()}}">
+                <span class="date"> {{task.deadline | date: 'dd/MM/yyyy'}} </span> |
+                <span class="title"> {{task.title}} </span>
+            </div>
+
+            <div class="buttons"> 
+                <a href="javascript:void(0)" (click)="delete(task)" *ngIf="currentUser.id === task.author.id"><img src="assets/activities/tasks/trash-tool.png" alt="excluir"></a>
+                <a href="javascript:void(0)" (click)="edit(task)"><img src="assets/activities/tasks/pencil-tool.png" alt="editar"></a>
+                <a href="javascript:void(0)" (click)="check(task)"><img class="bigger" src="assets/activities/tasks/check-tool.png" alt="concluir"></a>
+            </div>
+        </li>
+    </ul>
+</div>  
+
+<div *ngIf="(taskLists).length === 0" style="text-align: center;"> 
+    <h2>A lista de tarefas está vazia</h2>
+    <!--a href="javascript:void(0)">Cadastrar uma tarefa</a-->
+</div>

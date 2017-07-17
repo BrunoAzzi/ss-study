@@ -7,5 +7,5 @@ import java.util.Set;
 
 public interface CboRepository extends CrudRepository<Cbo, Long> {
     Set<Cbo> findAll();
-
+    Set<Cbo> findByCode(String code);
 }

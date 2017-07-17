@@ -62,4 +62,11 @@ export class HttpClientService {
       });
   }
 
+  delete(path: string) {
+    return this.http.delete(this.url + path, this.standardHeaders())
+      .map((response: Response) => {
+        return response;
+      });
+  }
+
 }

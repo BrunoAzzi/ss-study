@@ -4,8 +4,13 @@
      (ng2FileDropFileAccepted)="dragFileAccepted($event)"
      (ng2FileDropFileRejected)="dragFileRejected($event)"
      (click)="showInput()">
-    <img [src]="image" *ngIf="image && showPreview"
+     
+    <img [src]="image" *ngIf="image && showPreview && image.includes('image')"
          [ngClass]="{'company-logo': ngContentType}"/>
+    
+    <video *ngIf="image && showPreview && image.includes('video')">
+      <source [src]="image">  
+    </video>     
 
     <div *ngIf="!image" class="wrapper">
         <div #ref>
