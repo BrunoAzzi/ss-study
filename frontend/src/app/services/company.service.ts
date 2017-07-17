@@ -17,7 +17,6 @@ export class CompanyService {
             });
     }
 
-    //TODO review get Method
     getCompanyLogo(company: Company) {
         return this.service.getAbsolutePath(company.logoUrl);
     }
@@ -29,9 +28,7 @@ export class CompanyService {
        });
     }
 
-    //TODO review post Method with Backend source
     updateCompanyLogo(company: Company, formData: any) {
-
         return this.service.postWithNoHeaders(this.endpoint + '/' + company.id + '/logo', formData)
         .map((response) => {
             return response;

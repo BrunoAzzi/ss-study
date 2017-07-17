@@ -1,3 +1,9 @@
+import { OccurrencesListComponent } from './components/activities/occurrences/occurrences-list/occurrences-list.component';
+import { TasksListComponent } from './components/activities/tasks/tasks-list/tasks-list.component';
+import { TasksDialogComponent } from './components/activities/tasks/tasks-dialog/tasks-dialog.component';
+import { TasksFormComponent } from './components/activities/tasks/tasks-form/tasks-form.component';
+import { TasksAttachmentFiles } from './components/activities/tasks/tasks-attachment-files/tasks-attachment-files.component';
+import { ActivitiesComponent } from './views/constructions/detail/activities/activities.component';
 import { ConstructionFormSmartComponent } from './views/constructions/form/construction-form.container';
 import { ConstructionFormComponent } from './components/construction-form/construction-form.component';
 import { ConstructionListItemComponent } from './components/construction-list-item/construction-list-item.component';
@@ -22,8 +28,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HttpClientService } from './services/http-client.service';
 import { CnaeService } from './services/cnae.service';
+import { OccurrenceService } from './services/occurrence.service';
 import { SessionsService } from './services/sessions.service';
 import { PasswordService } from './services/password.service';
+import { TasksService } from './services/task.service';
+import { UserService } from './services/user.service';
 import { AuthGuard } from './guards/index';
 import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
@@ -32,7 +41,10 @@ import { MyDatePickerModule } from 'mydatepicker';
 import { MomentModule } from 'angular2-moment';
 
 import {
+    MdAutocompleteModule,
     MdSnackBar,
+    MdDatepickerModule,
+    MdNativeDateModule,
     MdDialogModule,
     MdToolbarModule,
     MdButtonModule,
@@ -40,9 +52,7 @@ import {
     MdInputModule,
     MdChipsModule,
     MdProgressSpinnerModule,
-    MdSlideToggleModule,
-    MdDatepickerModule,
-    MdNativeDateModule
+    MdSlideToggleModule
 } from '@angular/material';
 
 // Pipe
@@ -291,6 +301,12 @@ import { BackendPathPipe } from './pipes/backend-path.pipe';
         CategorizedListComponent,
         CategorizedListItemComponent,
         AutofocusDirective,
+        ActivitiesComponent,
+        TasksListComponent,
+        TasksDialogComponent,
+        TasksFormComponent,
+        TasksAttachmentFiles,
+        OccurrencesListComponent,
         BackendPathPipe,
     ],
     imports: [
@@ -333,11 +349,14 @@ import { BackendPathPipe } from './pipes/backend-path.pipe';
 
         // Angular Material
         MaterialModule,
+        MdAutocompleteModule,
+        MdDatepickerModule,
+        MdNativeDateModule,
         MdDialogModule,
         MdToolbarModule,
         MdButtonModule,
         MdProgressSpinnerModule,
-        MdSelectModule,
+        MdSelectModule,        
         MdInputModule,
         MdChipsModule,
         MdSlideToggleModule,
@@ -353,7 +372,7 @@ import { BackendPathPipe } from './pipes/backend-path.pipe';
         // Routes
         AppRoutingModule,
     ],
-    entryComponents: [ConfirmationDialogOverview, MappingDialog],
+    entryComponents: [ConfirmationDialogOverview, MappingDialog, TasksDialogComponent],
     providers: [
         HttpClientService,
         AuthGuard,
@@ -361,6 +380,9 @@ import { BackendPathPipe } from './pipes/backend-path.pipe';
         PasswordService,
         MdSnackBar,
         CnaeService,
+        OccurrenceService,
+        UserService,
+        TasksService,
         ConstructionResolver,
         ConstructionsService,
         { provide: LocationStrategy, useClass: HashLocationStrategy }],
