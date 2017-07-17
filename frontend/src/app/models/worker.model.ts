@@ -36,7 +36,6 @@ export class Worker {
     qualifications: Array<Qualification> = [];
 
     cbo: Cbo                     = new Cbo();
-   // qualification: Qualification = new Qualification;
     health: Health               = new Health();
     security: Security           = new Security();
 
@@ -74,14 +73,8 @@ export class Worker {
             this.health = new Health().initializeWithJSON(json.health);
         }
 
-     /*   if (json.qualifications) {
-            this.qualifications = json.qualifications.map(jsonQualidication => new Qualification().initializeWithJSON(jsonQualidication, this));
-        }*/
-
 
         this.security = new Security().initializeWithJSON(json);
-      //  this.cbo = new Cbo().initializeWithJSON(json.cbo);
-        //  this.cboId = json.cboId;
         return this;
     }
 

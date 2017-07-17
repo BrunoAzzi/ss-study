@@ -10,7 +10,7 @@ export class WorkersDataService {
 
     getWorker(cpf: string) {
         return this.http.get(this.workersDataUrl).map((response) => {
-            console.log("entrou aqui");
+           
             return response.json().data;
         });
     }
