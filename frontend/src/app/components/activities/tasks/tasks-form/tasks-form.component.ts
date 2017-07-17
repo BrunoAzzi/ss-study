@@ -18,8 +18,8 @@ import { User } from './../../../../models/user.model';
 
 export class TasksFormComponent implements OnInit {
 
-    @Input() task: Task
-    @Input() users: Array<User>
+    @Input() task: Task;
+    @Input() users: Array<User>;
     @Output() save: EventEmitter<Task> = new EventEmitter();
     @Output() bindFiles: EventEmitter<any> = new EventEmitter();
 
@@ -32,16 +32,21 @@ export class TasksFormComponent implements OnInit {
         this.dateAdapter.setLocale('pt-br');
     }
 
-    ngOnInit() {        
-        this.filteredOptions = this.fControl.valueChanges
-         .startWith(null)
-         .map(user => user && typeof user === 'object' ? user.name : user)
-         .map(name => name ? this.filter(name) : this.users.slice());
-        this.deadline = this.task.deadline ? Moment(this.task.deadline).format("MM/DD/YYYY") : "";        
+    ngOnInit() {
+        console.log('USERs 01', this.fControl.valueChanges);
+        if (this.fControl.valueChanges !== null) {
+            this.filteredOptions = this.fControl.valueChanges
+            .startWith(null)
+            .map(user => user && typeof user === 'object' ? user.name : user)
+            .map(name => name ? this.filter(name) : this.users.slice());
+        }
+        this.deadline = this.task.deadline ? Moment(this.task.deadline).format('MM/DD/YYYY') : '';
     }
 
     filter(name: string): User[] {
-      return this.users.filter(user => new RegExp(`^${name}`, 'gi').test(user.name)); 
+      let u = this.users.filter(user => new RegExp(`^${name}`, 'gi').test(user.name));
+        console.log('USER', this.users);
+        return u;
     }
 
     displayFn(user: User): any {
@@ -50,7 +55,7 @@ export class TasksFormComponent implements OnInit {
 
     setValidityDeadline(date) {
         if(date) {
-            let tmpDate = Moment(date).format("DD/MM/YYYY");            
+            let tmpDate = Moment(date).format('DD/MM/YYYY');
             let formattedData = tmpDate.substr(tmpDate.length - 4);
                 formattedData += "-";
                 formattedData += tmpDate.substr(3, 2);
