@@ -28,11 +28,11 @@ export class TasksListComponent {
     };
 
     @Input() taskLists = [];
-    @Input() users : Array<User>;
-    @Input() currentUser : User
-    @Output() checkTask : EventEmitter<Task> = new EventEmitter();
-    @Output() changeTaskFilter : EventEmitter<any> = new EventEmitter();
-    @Output() deleteTask : EventEmitter<Task> = new EventEmitter();
+    @Input() users: Array<User>;
+    @Input() currentUser: User;
+    @Output() checkTask: EventEmitter<Task> = new EventEmitter();
+    @Output() changeTaskFilter: EventEmitter<any> = new EventEmitter();
+    @Output() deleteTask: EventEmitter<Task> = new EventEmitter();
 
     ngOnInit() {
         this.dialogConfig.data.users = this.users;
@@ -46,7 +46,7 @@ export class TasksListComponent {
 
     constructor ( public dialog: MdDialog ) {}
 
-    edit(_task: Task) {        
+    edit(_task: Task) {
         this.dialogConfig.data.task = _task;
         let dialogRef = this.dialog.open(TasksDialogComponent, this.dialogConfig);
     }
