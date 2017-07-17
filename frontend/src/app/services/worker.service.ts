@@ -34,6 +34,7 @@ export class WorkerService {
     getWorkerByCpf(cpf: string) {
         cpf = cpf.replace(/[^0-9]+/g, '');
         return this.service.get(this.endpoint + '/cpf/' + cpf).map(jsonResponse => {
+           
             if (jsonResponse.worker) {
                 return new Worker().initializeWithJSON(jsonResponse.worker);
             } else {

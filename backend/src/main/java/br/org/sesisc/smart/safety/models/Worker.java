@@ -57,20 +57,22 @@ public class Worker {
     @JoinColumn(name = "worker_id")
     private Set<Qualification> qualifications = new HashSet<Qualification>();
 
-    @ManyToOne
-    @JoinColumn(name = "cbo_id")
-    @NotNull(message = "É necessário selecionar um CBO")
-    private Cbo cbo;
+    @Column(name = "cbo_code")
+    private String cboCode;
+
+    @Column(name = "cbo_id")
+    private Long cboId;
 
     private boolean activated = true;
 
     public Worker() { }
 
     public Worker(String photoUrl, String photoFilename, String contractType, String company, String gender, String cpf, String name,
-                  String nit, String ctps, String birthDate, Long degreeId, String complement, String contact, String cep,
+                  String nit, String ctps, String birthDate, Long degreeId, String complement,String contact, String cep,
                   String address, String functionDescription, boolean specialNeeds, String admissionAt, boolean status, boolean cipeiro,
                   String laborCipa, boolean brigade, String mandateBegin, String mandateEnd, String allergies, String diseases,
-                  String bloodType, Set<Aso> asos, Set<Qualification> qualifications, Cbo cbo, boolean activated) {
+                  String bloodType, Set<Aso> asos, Set<Qualification> qualifications, Long cboId, boolean activated) {
+        this.cboId = cboId;
         this.photoUrl = photoUrl;
         this.photoFilename = photoFilename;
         this.contractType = contractType;
@@ -100,7 +102,6 @@ public class Worker {
         this.bloodType = bloodType;
         this.asos = asos;
         this.qualifications = qualifications;
-        this.cbo = cbo;
         this.activated = activated;
     }
 
@@ -317,6 +318,7 @@ public class Worker {
         return mandateEnd;
     }
 
+
     public void setMandateEnd(String mandateEnd) {
         this.mandateEnd = mandateEnd;
     }
@@ -345,13 +347,13 @@ public class Worker {
         this.bloodType = bloodType;
     }
 
-    public Cbo getCbo() {
-        return cbo;
-    }
+    public String getCboCode() {    return cboCode; }
 
-    public void setCbo(Cbo cbo) {
-        this.cbo = cbo;
-    }
+    public void setCboCode(String cboCode) {    this.cboCode = cboCode; }
+
+    public Long getCboId() {   return cboId;  }
+
+    public void setCboId(Long cboId) {    this.cboId = cboId;  }
 
     public boolean isActivated() {
         return activated;

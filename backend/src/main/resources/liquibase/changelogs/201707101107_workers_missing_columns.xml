@@ -6,14 +6,8 @@
     <changeSet id="1" author="rdlorbieski">
         <addColumn tableName="workers">
             <column name="company" type="varchar(255)"/>
-        </addColumn>
-        <addColumn tableName="workers">
             <column name="complement" type="varchar(255)"/>
-        </addColumn>
-        <addColumn tableName="workers">
             <column name="contact" type="varchar(255)"/>
-        </addColumn>
-        <addColumn tableName="workers">
             <column name="function_description" type="varchar(255)"/>
         </addColumn>
     </changeSet>

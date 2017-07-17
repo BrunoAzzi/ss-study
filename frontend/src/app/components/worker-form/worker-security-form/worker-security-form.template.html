@@ -28,8 +28,7 @@
             <div class="grid-column">
                 <div class="grid-row">
                     <div>
-                        <date-range  #dateRange [(dateRange)]="worker.security.dataRang" name="data_range"
-                        ></date-range>
+                        <date-range  #dateRange [(dateRange)]="worker.security.dataRang" name="data_range"></date-range>
                         <md-error *ngIf="submitted && invalidDate">Campo Obrigatório.</md-error>
                     </div>
                     <div>
