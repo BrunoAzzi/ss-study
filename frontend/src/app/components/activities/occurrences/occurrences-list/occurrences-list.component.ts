@@ -9,12 +9,14 @@ export class OccurrencesListComponent {
     @Input() occurrences = [];
     @Output() changeOccurrencesFilter : EventEmitter<any> = new EventEmitter();
 
+    showSearch = false;
+
     selectedFilters = {
         accident: false,
         incident: false,
         goodHabits: false,
         nonCompliance: false
-    }
+    };
 
     occurrencesList = [
         { group: 'Hoje', occurrences: [
@@ -31,6 +33,10 @@ export class OccurrencesListComponent {
             { date: '20/07/2017', title: 'Criar proteção coletiva', type: 'accident' },
         ]},
     ]
+
+    toggleSearch() {
+        this.showSearch = !this.showSearch;
+    }
 
     toggleActiveFilter(_filter: string) {
         this.selectedFilters = {
