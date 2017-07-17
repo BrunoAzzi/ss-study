@@ -15,9 +15,11 @@ export class ConstructionFormSmartComponent {
     onConstructionUpdated(construction: Construction) {
 
         const floorsWithImage = construction.sectors.reduce((sum, sector) => sum.concat(sector.floors.filter(floor => floor.imageFile)), []);
+
         this.service.saveConstruction(construction).subscribe(
                 savedConstruction => {
                     this.service.updateFloorsImages(savedConstruction, floorsWithImage).subscribe(c => console.log(c));
+                    construction.id = savedConstruction.id;
                     if (construction.imageFile) {
                         this.service.updateConstructionLogo(construction).subscribe(
                             savedConstruction2 => {

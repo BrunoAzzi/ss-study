@@ -68,7 +68,7 @@ export class ConstructionsService {
             formData.append('file', floor.imageFile);
 
             if (!floor.id) {
-                floor.id = existingFloors.find(f => f.name === floor.name).id
+                floor.id = existingFloors.find(f => f.name === floor.name).id;
             }
 
             return [...obs, this.service.postWithNoHeaders('/floors/' + floor.id + '/blueprint', formData)
@@ -77,8 +77,6 @@ export class ConstructionsService {
                 })
             ];
         }, []);
-
-        console.log(observables);
 
         return Observable.forkJoin(observables);
     }
