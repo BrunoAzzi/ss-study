@@ -11,19 +11,22 @@ import { User } from './../../../../models/user.model';
     styleUrls: ['./tasks-list.component.scss']
 })
 export class TasksListComponent {
+
+    showSearch = false;
+
     selectedFilters = {
         personal: false,
         team: false,
         history: false,
-    }
+    };
 
     dialogConfig = {
         data: {
-            task: new Task(),            
+            task: new Task(),
             users: new Array<User>()
         }
-    }
-    
+    };
+
     @Input() taskLists = [];
     @Input() users : Array<User>;
     @Input() currentUser : User
@@ -50,6 +53,10 @@ export class TasksListComponent {
 
     delete(_task: Task) {
         this.deleteTask.emit(_task);
+    }
+
+    toggleSearch() {
+        this.showSearch = !this.showSearch;
     }
 
     toggleActiveFilter(_filter: string) {
