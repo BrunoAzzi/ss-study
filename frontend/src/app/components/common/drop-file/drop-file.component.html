@@ -5,7 +5,7 @@
      (ng2FileDropFileRejected)="dragFileRejected($event)"
      (click)="showInput()">
      
-    <img [src]="image" *ngIf="image && showPreview && image.includes('image')"
+    <img [src]="image" *ngIf="image && showPreview && !image.includes('video')"
          [ngClass]="{'company-logo': ngContentType}"/>
     
     <video *ngIf="image && showPreview && image.includes('video')">

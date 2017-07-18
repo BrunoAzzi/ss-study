@@ -10,7 +10,7 @@ import {MdSnackBar} from '@angular/material';
 })
 export class ConstructionFormSmartComponent {
 
-    constructor(public snackBar: MdSnackBar, public service: ConstructionsService) { }
+    constructor(public snackBar: MdSnackBar, public service: ConstructionsService) {}
 
     onConstructionUpdated(construction: Construction) {
 
@@ -18,6 +18,7 @@ export class ConstructionFormSmartComponent {
 
         this.service.saveConstruction(construction).subscribe(
                 savedConstruction => {
+                    this.service.construction = savedConstruction;
                     this.service.updateFloorsImages(savedConstruction, floorsWithImage).subscribe(c => console.log(c));
                     construction.id = savedConstruction.id;
                     if (construction.imageFile) {

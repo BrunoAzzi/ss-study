@@ -1,14 +1,12 @@
 import {HttpClientService} from './http-client.service';
 import {Floor} from './../models/floor.model';
 import {Observable} from 'rxjs/Observable';
-import {Construction, IConstruction} from './../models/construction.model';
+import 'rxjs/add/observable/forkJoin';
+import {Construction} from './../models/construction.model';
 import {Injectable} from '@angular/core';
-import {Headers, Http} from '@angular/http';
 
 @Injectable()
 export class ConstructionsService {
-
-    // private url = "api/constructionSiteList"
 
     private endpoint = '/constructions';
     public constructions: Array<Construction> = [];
@@ -96,7 +94,6 @@ export class ConstructionsService {
     }
 
     private createConstruction(construction: Construction) {
-        console.log('created', construction);
         return this.service.post(this.endpoint, JSON.stringify(construction.toJSON()))
             .map((jsonResponse) => {
                 return new Construction().initializeWithJSON(jsonResponse.construction);
@@ -104,7 +101,6 @@ export class ConstructionsService {
     }
 
     private updateConstruction(construction: Construction) {
-        console.log('updated', construction);
         return this.service.put(this.endpoint + '/' + construction.id, JSON.stringify(construction.toJSON()))
             .map((jsonResponse) => {
                 return new Construction().initializeWithJSON(jsonResponse.construction);

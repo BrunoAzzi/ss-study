@@ -33,19 +33,19 @@ export class DropFileComponent {
     }
 
     onFileChange() {
-        this.processFile(this.input.nativeElement.files[0]);        
+        this.processFile(this.input.nativeElement.files[0]);
     }
 
     processFile(file) {
         const fileReader = new FileReader();
         fileReader.onload = ((theFile) => {
-            return (e) => {                
+            return (e) => {
                 if (this.showPreview) {
-                    this.image = fileReader.result;                    
+                    this.image = fileReader.result;
                 }
-                this.fileChanged.emit(file);                
+                this.fileChanged.emit(file);
             };
         })(file);
-        fileReader.readAsDataURL(file);        
+        fileReader.readAsDataURL(file);
     }
 }
