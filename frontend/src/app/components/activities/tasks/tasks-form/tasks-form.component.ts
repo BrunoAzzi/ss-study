@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl, NgModel } from '@angular/forms';
 import { DateAdapter } from '@angular/material';
 
-import * as Moment from "moment";
+import * as Moment from 'moment';
 import { Observable } from 'rxjs/Observable';
 
 import { IMyDpOptions } from 'mydatepicker';
@@ -24,7 +24,7 @@ export class TasksFormComponent implements OnInit {
     @Output() bindFiles: EventEmitter<any> = new EventEmitter();
 
     attachmentFiles: Array<AttachmentFile> = []
-    deadline : any
+    deadline: any;
     fControl = new FormControl();
     filteredOptions: Observable<User[]>;
 
@@ -33,20 +33,14 @@ export class TasksFormComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log('USERs 01', this.fControl.valueChanges);
-        if (this.fControl.valueChanges !== null) {
-            this.filteredOptions = this.fControl.valueChanges
-            .startWith(null)
+        this.filteredOptions = this.fControl.valueChanges
             .map(user => user && typeof user === 'object' ? user.name : user)
             .map(name => name ? this.filter(name) : this.users.slice());
-        }
         this.deadline = this.task.deadline ? Moment(this.task.deadline).format('MM/DD/YYYY') : '';
     }
 
     filter(name: string): User[] {
-      let u = this.users.filter(user => new RegExp(`^${name}`, 'gi').test(user.name));
-        console.log('USER', this.users);
-        return u;
+        return this.users.filter(user => new RegExp(`^${name}`, 'gi').test(user.name));
     }
 
     displayFn(user: User): any {
@@ -55,17 +49,17 @@ export class TasksFormComponent implements OnInit {
 
     setValidityDeadline(date) {
         if(date) {
-            let tmpDate = Moment(date).format('DD/MM/YYYY');
+            const tmpDate = Moment(date).format('DD/MM/YYYY');
             let formattedData = tmpDate.substr(tmpDate.length - 4);
-                formattedData += "-";
+                formattedData += '-';
                 formattedData += tmpDate.substr(3, 2);
-                formattedData += "-";
-                formattedData += tmpDate.substr(0, 2);        
-            this.task.deadline = formattedData + " 23:59:59";
+                formattedData += '-';
+                formattedData += tmpDate.substr(0, 2);
+            this.task.deadline = formattedData + ' 23:59:59';
         }
     }
 
-    bindAttachments(_attachmentFiles: Array<AttachmentFile>) {        
+    bindAttachments(_attachmentFiles: Array<AttachmentFile>) {
         this.attachmentFiles = _attachmentFiles;
         this.sendData();
     }
