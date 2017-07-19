@@ -1,11 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormControl, NgModel } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { DateAdapter } from '@angular/material';
 
 import * as Moment from 'moment';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/startWith';
 
-import { IMyDpOptions } from 'mydatepicker';
 import { AttachmentFile } from './../../../../models/attachmentFile.model';
 import { Task } from './../../../../models/task.model';
 import { User } from './../../../../models/user.model';
@@ -23,7 +23,7 @@ export class TasksFormComponent implements OnInit {
     @Output() save: EventEmitter<Task> = new EventEmitter();
     @Output() bindFiles: EventEmitter<any> = new EventEmitter();
 
-    attachmentFiles: Array<AttachmentFile> = []
+    attachmentFiles: Array<AttachmentFile> = [];
     deadline: any;
     fControl = new FormControl();
     filteredOptions: Observable<User[]>;
@@ -33,7 +33,7 @@ export class TasksFormComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.filteredOptions = this.fControl.valueChanges
+        this.filteredOptions = this.fControl.valueChanges.startWith(null)
             .map(user => user && typeof user === 'object' ? user.name : user)
             .map(name => name ? this.filter(name) : this.users.slice());
         this.deadline = this.task.deadline ? Moment(this.task.deadline).format('MM/DD/YYYY') : '';
@@ -48,7 +48,7 @@ export class TasksFormComponent implements OnInit {
     }
 
     setValidityDeadline(date) {
-        if(date) {
+        if (date) {
             const tmpDate = Moment(date).format('DD/MM/YYYY');
             let formattedData = tmpDate.substr(tmpDate.length - 4);
                 formattedData += '-';
@@ -68,5 +68,5 @@ export class TasksFormComponent implements OnInit {
         this.save.emit(this.task);
         this.bindFiles.emit(this.attachmentFiles);
     }
-   
+
 }
