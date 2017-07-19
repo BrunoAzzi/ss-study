@@ -1,14 +1,13 @@
-import { Cookie } from 'ng2-cookies/ng2-cookies';
-import { Component, ViewChild} from '@angular/core';
+import {Component, OnDestroy, ViewChild} from '@angular/core';
 import { MdDialog, MdSnackBar } from '@angular/material';
 
 import { OccurrenceService } from './../../../../services/occurrence.service';
 import { Task } from './../../../../models/task.model';
-import { User } from './../../../../models/user.model'
-import { SessionsService } from './../../../../services/sessions.service'
+import { User } from './../../../../models/user.model';
+import { SessionsService } from './../../../../services/sessions.service';
 import { TasksService } from './../../../../services/task.service';
 import { UserService } from './../../../../services/user.service';
-import { TasksDialogComponent } from './../../../../components/activities/tasks/tasks-dialog/tasks-dialog.component'
+import { TasksDialogComponent } from './../../../../components/activities/tasks/tasks-dialog/tasks-dialog.component';
 
 @Component({
     selector: 'activities',
@@ -16,19 +15,19 @@ import { TasksDialogComponent } from './../../../../components/activities/tasks/
     styleUrls: ['./activities.component.scss'],
     providers: [TasksService]
 })
-export class ActivitiesComponent {
+export class ActivitiesComponent implements OnDestroy {
     @ViewChild('tabGroup') tabGroup;
-    public sessionSrtg : any 
+    public sessionSrtg: any;
 
-    public taskLists : Array<any> = []
-    private allTasks : Array<any> = []
+    public taskLists: Array<any> = [];
+    private allTasks: Array<any> = [];
 
-    public occurrenceLists : Array<any> = []
-    private allOccurrences : Array<any> = []
-    
-    private taskSub : any
-    private occurenceSub : any  
-    private userSub : any    
+    public occurrenceLists: Array<any> = [];
+    private allOccurrences: Array<any> = [];
+
+    private taskSub: any;
+    private occurenceSub: any;
+    private userSub: any;
 
     dialogConfig = {
         data: {
@@ -36,50 +35,50 @@ export class ActivitiesComponent {
             currentUser : new User(),
             users: new Array<User>()
         }
-    }
+    };
 
-    constructor(public dialog: MdDialog, 
-                public taskService: TasksService, 
+    constructor(public dialog: MdDialog,
+                public taskService: TasksService,
                 public occurrenceService: OccurrenceService,
-                public userService: UserService, 
+                public userService: UserService,
                 public sessionsService: SessionsService,
                 public snackBar: MdSnackBar) { }
 
     ngOnInit() {
-        this.sessionSrtg = this.sessionsService.getCurrent() || new User();   
+        this.sessionSrtg = this.sessionsService.getCurrent() || new User();
 
-        this.userSub = this.userService.getUsers().subscribe((users) => {            
+        this.userSub = this.userService.getUsers().subscribe((users) => {
             users.forEach(element => {
-                let user = new User().initializeWithJSON(element);
-                this.dialogConfig.data.users.push(user)
+                const user = new User().initializeWithJSON(element);
+                this.dialogConfig.data.users.push(user);
             });
-        })
+        });
 
-        if(this.sessionSrtg) {            
+        if (this.sessionSrtg) {
             this.dialogConfig.data.currentUser = new User().initializeWithJSON(this.sessionSrtg);
         }
 
-        this.getTaskLists(); 
+        this.getTaskLists();
         this.getOccurrenceLists();
     }
 
     ngOnDestroy() {
-        this.taskSub.unsubscribe()
-        this.userSub.unsubscribe()
+        this.taskSub.unsubscribe();
+        this.userSub.unsubscribe();
     }
 
-    openTaskDialog() {        
-        if(this.tabGroup.selectedIndex === 1) {
-            let dialogRef = this.dialog.open(TasksDialogComponent, this.dialogConfig);
+    openTaskDialog() {
+        if (this.tabGroup.selectedIndex === 1) {
+            const dialogRef = this.dialog.open(TasksDialogComponent, this.dialogConfig);
         }
     }
 
     checkTask(_task: Task) {
         _task.checked = true;
-        
+
         this.taskService.saveTask(_task).subscribe(
                 savedTask => {
-                    this.snackBar.open('Tarefa feita!', null, { duration: 3000 });                    
+                    this.snackBar.open('Tarefa feita!', null, { duration: 3000 });
                 },
                 error => {
                     this.handleError(error);
@@ -91,7 +90,7 @@ export class ActivitiesComponent {
         this.occurenceSub = this.occurrenceService.getOccurenceList().subscribe((occurrences) => {
             this.allOccurrences = occurrences;
             this.occurrenceLists = this.mapTasks(occurrences);
-        })
+        });
     }
 
 
@@ -99,7 +98,7 @@ export class ActivitiesComponent {
         this.taskSub = this.taskService.getTaskList().subscribe((tasks) => {
             this.allTasks = tasks;
             this.taskLists = this.mapTasks(tasks);
-        })
+        });
     }
 
     deleteTask(_task: Task) {
@@ -115,16 +114,14 @@ export class ActivitiesComponent {
     }
 
     changeTaskFilter(_filters: any) {
-        var filteredList = [];
-
-        var filteredList = this.allTasks.filter(task => {
-                                return (
-                                    (_filters.personal && task.responsible.id === this.sessionSrtg.id && !task.checked) ||
-                                    (_filters.team && !task.checked) ||
-                                    (_filters.history && task.checked) || 
-                                    !(_filters.personal || _filters.team || _filters.history) 
-                                )
-                            })
+        const filteredList = this.allTasks.filter(task => {
+            return (
+                (_filters.personal && task.responsible.id === this.sessionSrtg.id && !task.checked) ||
+                (_filters.team && !task.checked) ||
+                (_filters.history && task.checked) ||
+                !(_filters.personal || _filters.team || _filters.history)
+            );
+        });
 
         this.taskLists = this.mapTasks(filteredList);
     }
@@ -134,28 +131,28 @@ export class ActivitiesComponent {
     }
 
     private mapTasks(_tasks: Array<Task>): Array<any> {
-        var list = [];
+        const list = [];
 
-        var late = _tasks.filter(task => task.getStatus() === "late" && !task.checked);
-        if (late.length > 0) list.push({ group: "Tarefas Atrasadas", tasks: late});
+        const late = _tasks.filter(task => task.getStatus() === 'late' && !task.checked);
+        if (late.length > 0) list.push({ group: 'Tarefas Atrasadas', tasks: late});
 
-        var today = _tasks.filter(task => task.isToday() == true && !task.checked);
-        if (today.length > 0) list.push({ group: "Hoje", tasks: today});
+        const today = _tasks.filter(task => task.isToday() === true && !task.checked);
+        if (today.length > 0) list.push({ group: 'Hoje', tasks: today});
 
-        var others = _tasks.filter(task => task.getStatus() != "late" && task.isToday() == false && !task.checked);
-        if (others.length > 0) list.push({ group: "Próximas", tasks: others});
+        const others = _tasks.filter(task => task.getStatus() !== 'late' && task.isToday() == false && !task.checked);
+        if (others.length > 0) list.push({ group: 'Próximas', tasks: others});
 
         return list;
     }
 
     private mapOccurences(_occcurrences: Array<any>): Array<any> {
-        var list = [];
+        const list = [];
 
-        var today = _occcurrences.filter(occurrence => occurrence.isToday() == true);
-        if (today.length > 0) list.push({ group: "Hoje", occurrences: today});
+        const today = _occcurrences.filter(occurrence => occurrence.isToday() == true);
+        if (today.length > 0) list.push({ group: 'Hoje', occurrences: today});
 
-        var others = _occcurrences.filter(occurrence => occurrence.isToday() == false);
-        if (others.length > 0) list.push({ group: "Dias Anteriores", occurrences: others});
+        const others = _occcurrences.filter(occurrence => occurrence.isToday() == false);
+        if (others.length > 0) list.push({ group: 'Dias Anteriores', occurrences: others});
 
         return list;
     }
