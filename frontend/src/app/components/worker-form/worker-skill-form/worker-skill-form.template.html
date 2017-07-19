@@ -18,15 +18,18 @@
             <div class="md-slide-toggle">
                 <md-slide-toggle
                         color="warn"
+                        [checked]="skill.recycling"
                         (change)="clickRecycling($event)">
                     Reciclagem
                 </md-slide-toggle>
+                
             </div>
+           
             <my-date-picker
                     placeholder="Data da Realização"
                     name="mydate"
                     [options]="myDatePickerOptions"
-                    [ngModel]="skill.validityStart"
+                    [(ngModel)]="skill.realizationDate"
                     (ngModelChange)="setValidityStart($event)"
                     required>
             </my-date-picker>
@@ -43,10 +46,10 @@
                 <span mdSuffix>MESES</span>
             </md-input-container>
             <div class="grid-row-75">
-                <md-radio-group [(ngModel)]="skill.isApt">
+                <md-radio-group [(ngModel)]="skill.able">
                     <p>Situação</p>
-                    <md-radio-button value="true">Apto</md-radio-button>
-                    <md-radio-button value="false">Inapto</md-radio-button>
+                    <md-radio-button [value]="true">Apto</md-radio-button>
+                    <md-radio-button [value]="false">Inapto</md-radio-button>
                 </md-radio-group>
             </div>
             <div class="grid-row-auto align-items">

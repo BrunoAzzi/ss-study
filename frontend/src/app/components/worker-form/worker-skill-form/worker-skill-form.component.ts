@@ -1,7 +1,8 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { IMyDpOptions } from 'mydatepicker';
-import { Skill } from '../../../models/skill.model';
+import { Qualification } from '../../../models/qualification.model';
 import { Recycling } from '../../../models/recycling.model';
+import * as moment from 'moment';
 
 @Component({
     selector:    'worker-skill-form',
@@ -9,8 +10,8 @@ import { Recycling } from '../../../models/recycling.model';
     styleUrls:   ['./worker-skill-form.component.scss'],
 })
 
-export class SkillComponent {
-    @Input() skill: Skill = new Skill();
+export class SkillComponent implements OnInit {
+    @Input() skill: Qualification;
     @Input() nameList: any;
     @Input() form: any;
 
@@ -27,29 +28,36 @@ export class SkillComponent {
         monthLabels: { 1: 'Jan', 2: 'Fev', 3: 'Mar', 4: 'Abr', 5: 'Mai', 6: 'Jun', 7: 'Jul', 8: 'Ago', 9: 'Set', 10: 'Out', 11: 'Nov', 12: 'Dez' },
         todayBtnTxt: 'Hoje'
     };
+     
+    ngOnInit() {
+      //  this.skill = new Qualification(this.skill);
+       const constRealizationDate     = moment(this.skill.realizationDate, 'YYYY-MM-DD HH:mm:ss');
+       this.skill.realizationDate =  { date: { year: constRealizationDate.year(), month: constRealizationDate.month() + 1, day: constRealizationDate.date() } };
+          console.log("Skill", this.skill);
+    }
 
     onFileSelect(event) {}
 
-    setPeriodicity(periodicity: number) {
+   /*  setPeriodicity(periodicity: number) {
         if (periodicity) {
             this.skill.periodicity = periodicity;
             this.updateDueDate();
         }
-    }
-
+    } */
+/* 
     setValidityStart(event) {
-        this.skill.validityStart = event.jsdate;
+        this.skill.realizationDate = event.jsdate;
         this.updateDueDate();
-    }
+    } */
 
-    updateDueDate() {
-        const validityStart = new Date(this.skill.validityStart.getTime());
+    /* updateDueDate() {
+        const validityStart = new Date(this.skill.realizationDate.getTime());
         const newMonthValue = validityStart.getMonth() + this.skill.periodicity;
         validityStart.setMonth(newMonthValue);
         this.skill.dueDate = validityStart;
         this.checkOverdue();
     }
-
+ */
     checkOverdue() {
         const today = new Date();
         if (this.skill.dueDate.getTime() < today.getTime()) {

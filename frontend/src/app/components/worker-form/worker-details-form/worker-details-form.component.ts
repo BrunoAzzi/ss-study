@@ -96,7 +96,7 @@ export class WorkersDataComponent {
 
     autoCompleteWorker() {
         if (!this.myForm.controls.cpf.invalid) {
-            this.cpfUpdated.emit(this.cpf);
+            this.cpfUpdated.emit(this.worker.cpf);
 
             // this.cboService.getCBO(this.mycbo).subscribe(
             //     (response) => {

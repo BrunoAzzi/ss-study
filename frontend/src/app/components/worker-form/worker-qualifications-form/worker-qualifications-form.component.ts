@@ -6,6 +6,7 @@ import { Qualification } from '../../../models/qualification.model';
     selector:    'worker-qualifications-form',
     templateUrl: './worker-qualifications-form.template.html',
     styleUrls:   ['./worker-qualifications-form.component.scss']
+    
 })
 
 export class WorkerQualificationsFormComponent implements OnInit {
@@ -18,6 +19,7 @@ export class WorkerQualificationsFormComponent implements OnInit {
     constructor() {}
 
     ngOnInit() {
+     
         if (this.worker.qualifications.length === 0) {
             this.worker.qualifications.push(new Qualification());
         }
@@ -33,8 +35,11 @@ export class WorkerQualificationsFormComponent implements OnInit {
         const index = this.worker.qualifications.indexOf(skill);
         if (index > -1) this.worker.qualifications.splice(index, 1);
     }
+    
 
-    skillNames = [
+    
+    skillNames = 
+    [
         'NR 32',
         'NR 35',
         'NR 18',

@@ -46,6 +46,7 @@ export class WorkerFormComponent {
     }
 
     onDetailsSaved(savedWorker: Worker) {
+        console.log(savedWorker);
         this.updateWorker(savedWorker);
         this.datailsCard.close();
     }
@@ -58,7 +59,7 @@ export class WorkerFormComponent {
     private updateWorker(worker: Worker) {
         this.service.saveWorker(worker).subscribe(
             data => {
-                console.log(data);
+              //  console.log(data);
             },
             error => {
                 if (error.json() && error.json().errors && error.json().errors.length > 0) {
