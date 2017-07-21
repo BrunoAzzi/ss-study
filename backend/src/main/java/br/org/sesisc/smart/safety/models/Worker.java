@@ -1,7 +1,10 @@
 package br.org.sesisc.smart.safety.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,7 +28,7 @@ public class Worker {
     private String name;
     private String nit;
     private String ctps;
-    private String birthDate;
+    private Date birthDate;
     @Column(name = "degree_id")
     private Long degreeId;
     private String complement;
@@ -34,15 +37,15 @@ public class Worker {
     private String address;
     private String functionDescription;
     private boolean specialNeeds;
-    private String admissionAt;
+    private Date admissionAt;
     private boolean status;
 
 
     private boolean cipeiro;
     private String laborCipa;
     private boolean brigade;
-    private String mandateBegin;
-    private String mandateEnd;
+    private java.util.Date mandateBegin;
+    private Date mandateEnd;
 
     private String allergies;
     private String diseases;
@@ -67,12 +70,7 @@ public class Worker {
 
     public Worker() { }
 
-    public Worker(String photoUrl, String photoFilename, String contractType, String company, String gender, String cpf, String name,
-                  String nit, String ctps, String birthDate, Long degreeId, String complement,String contact, String cep,
-                  String address, String functionDescription, boolean specialNeeds, String admissionAt, boolean status, boolean cipeiro,
-                  String laborCipa, boolean brigade, String mandateBegin, String mandateEnd, String allergies, String diseases,
-                  String bloodType, Set<Aso> asos, Set<Qualification> qualifications, Long cboId, boolean activated) {
-        this.cboId = cboId;
+    public Worker(String photoUrl, String photoFilename, String contractType, String company, String gender, String cpf, String name, String nit, String ctps, Date birthDate, Long degreeId, String complement, String contact, String cep, String address, String functionDescription, boolean specialNeeds, Date admissionAt, boolean status, boolean cipeiro, String laborCipa, boolean brigade, Date mandateBegin, Date mandateEnd, String allergies, String diseases, String bloodType, Set<Aso> asos, Set<Qualification> qualifications, String cboCode, Long cboId, boolean activated) {
         this.photoUrl = photoUrl;
         this.photoFilename = photoFilename;
         this.contractType = contractType;
@@ -102,7 +100,51 @@ public class Worker {
         this.bloodType = bloodType;
         this.asos = asos;
         this.qualifications = qualifications;
+        this.cboCode = cboCode;
+        this.cboId = cboId;
         this.activated = activated;
+    }
+
+
+    @Temporal(TemporalType.TIMESTAMP)
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    @Temporal(TemporalType.TIMESTAMP)
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    @Temporal(TemporalType.TIMESTAMP)
+    public Date getAdmissionAt() {
+        return admissionAt;
+    }
+
+
+    @Temporal(TemporalType.TIMESTAMP)
+    public void setAdmissionAt(Date admissionAt) {
+        this.admissionAt = admissionAt;
+    }
+
+    @Temporal(TemporalType.TIMESTAMP)
+    public Date getMandateBegin() {
+        return mandateBegin;
+    }
+
+    @Temporal(TemporalType.TIMESTAMP)
+    public void setMandateBegin(Date mandateBegin) {
+        this.mandateBegin = mandateBegin;
+    }
+
+    @Temporal(TemporalType.TIMESTAMP)
+    public Date getMandateEnd() {
+        return mandateEnd;
+    }
+
+    @Temporal(TemporalType.TIMESTAMP)
+    public void setMandateEnd(Date mandateEnd) {
+        this.mandateEnd = mandateEnd;
     }
 
     public long getId() {
@@ -111,151 +153,6 @@ public class Worker {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getCep() {
-        return cep;
-    }
-
-    public void setCep(String cep) {
-        this.cep = cep;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public Long getDegreeId() {
-        return this.degreeId;
-    }
-
-    public void setDegreeId(Long degreeId) {
-        this.degreeId = degreeId;
-    }
-
-    public String getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(String birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public String getNit() {
-        return nit;
-    }
-
-    public void setNit(String nit) {
-        this.nit = nit;
-    }
-
-    public String getCtps() {
-        return ctps;
-    }
-
-    public void setCtps(String ctps) {
-        this.ctps = ctps;
-    }
-
-    public String getAdmissionAt() {
-        return admissionAt;
-    }
-
-    public void setAdmissionAt(String admissionAt) {
-        this.admissionAt = admissionAt;
-    }
-
-    public String getContractType() {
-        return contractType;
-    }
-
-    public void setContractType(String contractType) {
-        this.contractType = contractType;
-    }
-
-    public String getCompany() {
-        return company;
-    }
-
-    public void setCompany(String company) {
-        this.company = company;
-    }
-
-
-    public String getComplement() {
-        return complement;
-    }
-
-    public void setComplement(String complement) {
-        this.complement = complement;
-    }
-
-    public String getContact() {
-        return contact;
-    }
-
-    public void setContact(String contact) {
-        this.contact = contact;
-    }
-
-    public String getFunctionDescription() {
-        return functionDescription;
-    }
-
-    public void setFunctionDescription(String functionDescription) {
-        this.functionDescription = functionDescription;
-    }
-
-    public String getLaborCipa() {
-        return laborCipa;
-    }
-
-    public void setLaborCipa(String laborCipa) {
-        this.laborCipa = laborCipa;
-    }
-
-    public Set<Aso> getAsos() {
-        return asos;
-    }
-
-    public void setAsos(Set<Aso> asos) {
-        this.asos = asos;
-    }
-
-    public Set<Qualification> getQualifications() {
-        return qualifications;
-    }
-
-    public void setQualifications(Set<Qualification> qualifications) {
-        this.qualifications = qualifications;
     }
 
     public String getPhotoUrl() {
@@ -274,20 +171,108 @@ public class Worker {
         this.photoFilename = photoFilename;
     }
 
-    public boolean isCipeiro() {
-        return cipeiro;
+    public String getContractType() {
+        return contractType;
     }
 
-    public void setCipeiro(boolean cipeiro) {
-        this.cipeiro = cipeiro;
+    public void setContractType(String contractType) {
+        this.contractType = contractType;
     }
 
-    public boolean isBrigade() {
-        return brigade;
+    public String getCompany() {
+        return company;
     }
 
-    public void setBrigade(boolean brigade) {
-        this.brigade = brigade;
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getNit() {
+        return nit;
+    }
+
+    public void setNit(String nit) {
+        this.nit = nit;
+    }
+
+    public String getCtps() {
+        return ctps;
+    }
+
+    public void setCtps(String ctps) {
+        this.ctps = ctps;
+    }
+
+    public Long getDegreeId() {
+        return degreeId;
+    }
+
+    public void setDegreeId(Long degreeId) {
+        this.degreeId = degreeId;
+    }
+
+    public String getComplement() {
+        return complement;
+    }
+
+    public void setComplement(String complement) {
+        this.complement = complement;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getFunctionDescription() {
+        return functionDescription;
+    }
+
+    public void setFunctionDescription(String functionDescription) {
+        this.functionDescription = functionDescription;
     }
 
     public boolean isSpecialNeeds() {
@@ -306,21 +291,28 @@ public class Worker {
         this.status = status;
     }
 
-    public String getMandateBegin() {
-        return mandateBegin;
+    public boolean isCipeiro() {
+        return cipeiro;
     }
 
-    public void setMandateBegin(String mandateBegin) {
-        this.mandateBegin = mandateBegin;
+    public void setCipeiro(boolean cipeiro) {
+        this.cipeiro = cipeiro;
     }
 
-    public String getMandateEnd() {
-        return mandateEnd;
+    public String getLaborCipa() {
+        return laborCipa;
     }
 
+    public void setLaborCipa(String laborCipa) {
+        this.laborCipa = laborCipa;
+    }
 
-    public void setMandateEnd(String mandateEnd) {
-        this.mandateEnd = mandateEnd;
+    public boolean isBrigade() {
+        return brigade;
+    }
+
+    public void setBrigade(boolean brigade) {
+        this.brigade = brigade;
     }
 
     public String getAllergies() {
@@ -347,13 +339,37 @@ public class Worker {
         this.bloodType = bloodType;
     }
 
-    public String getCboCode() {    return cboCode; }
+    public Set<Aso> getAsos() {
+        return asos;
+    }
 
-    public void setCboCode(String cboCode) {    this.cboCode = cboCode; }
+    public void setAsos(Set<Aso> asos) {
+        this.asos = asos;
+    }
 
-    public Long getCboId() {   return cboId;  }
+    public Set<Qualification> getQualifications() {
+        return qualifications;
+    }
 
-    public void setCboId(Long cboId) {    this.cboId = cboId;  }
+    public void setQualifications(Set<Qualification> qualifications) {
+        this.qualifications = qualifications;
+    }
+
+    public String getCboCode() {
+        return cboCode;
+    }
+
+    public void setCboCode(String cboCode) {
+        this.cboCode = cboCode;
+    }
+
+    public Long getCboId() {
+        return cboId;
+    }
+
+    public void setCboId(Long cboId) {
+        this.cboId = cboId;
+    }
 
     public boolean isActivated() {
         return activated;
