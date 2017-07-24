@@ -38,7 +38,7 @@
                             name="cpf"
                             (blur)="autoCompleteWorker()"
                             [textMask]="{mask: cpfMask}"
-                            [(ngModel)]="cpf"
+                            [(ngModel)]="worker.cpf"
                             required>
                     <md-error *ngIf="myForm.controls.cpf.hasError('required')">Campo Obrigatório.</md-error>
                     <md-error *ngIf="myForm.controls.cpf.hasError('cpf')">CPF Invalído.</md-error>

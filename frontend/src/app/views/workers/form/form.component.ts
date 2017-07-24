@@ -46,6 +46,8 @@ export class WorkerFormComponent {
     }
 
     onDetailsSaved(savedWorker: Worker) {
+
+        console.log(savedWorker);
         this.updateWorker(savedWorker);
         this.datailsCard.close();
     }
@@ -56,9 +58,12 @@ export class WorkerFormComponent {
     }
 
     private updateWorker(worker: Worker) {
+
+        
+       if(this.validateWorker(worker) ){
         this.service.saveWorker(worker).subscribe(
             data => {
-                console.log(data);
+              //  console.log(data);
             },
             error => {
                 if (error.json() && error.json().errors && error.json().errors.length > 0) {
@@ -70,6 +75,25 @@ export class WorkerFormComponent {
                 }
             }
         );
+      }
+      else{
+          console.log("validação não aprovada");
+      }
     }
 
+    validaNulo(valor, tipo) {
+        if (valor == null || valor == '') {
+            alert(tipo+" Não Pode ser Nulo!");
+            return false;
+        }
+        return true;
+    }
+
+    validateWorker(worker) {
+      var a =  this.validaNulo(worker.cpf, "Cpf");
+      var b =  this.validaNulo(worker.Nome, "Nome");
+      if (!a || !b)
+          return false;
+      return true;
+    }
 }

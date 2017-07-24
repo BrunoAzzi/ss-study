@@ -4,21 +4,23 @@ import * as moment from 'moment';
 export class Qualification {
     dueDate: Date;
     attachment: any;
-    validityStart: Date;
+    realizationDate: Object;
     periodicity: number;
-    isApt: boolean;
+    able: boolean;
     overdue: boolean;
     name: string;
     recycling: boolean;
 
-    constructor() { }
 
     public initializeWithJSON(json: any) {
-        this.isApt         = json.able;
+
+       // const constRealizationDate     = moment(json.realizationDate, 'YYYY-MM-DD HH:mm:ss');
+
+        this.able         = json.able;
         this.dueDate       = json.realizationDate;
         this.periodicity   = json.periodicity;
         this.attachment    = json.attachment;
-        this.validityStart = json.validityStart;
+    //    this.realizationDate = { date: { year: constRealizationDate.year(), month: constRealizationDate.month() + 1, day: constRealizationDate.date() } }; 
         this.recycling     = json.recycling;
         this.name          = json.quality;
     }
@@ -27,9 +29,9 @@ export class Qualification {
         return {
             dueDate:       this.dueDate,
             attachment:    this.attachment,
-            validityStart: this.validityStart,
+            validityStart: this.realizationDate,
             periodicity:   this.periodicity,
-            isApt:         this.isApt,
+            isApt:         this.able,
             overdue:       this.overdue,
             name:          this.name
         };

@@ -6,28 +6,30 @@
                 <md-icon *ngIf="skill.overdue === false" class="success"> check_circle</md-icon>
                 <md-icon *ngIf="skill.overdue === undefined" class="disabled"> panorama_fish_eye</md-icon>
             </div>
-            <md-select
+             <md-select
                     #skillName
                     placeholder="Habilitação"
                     (change)="toggleName(skillName.selected.value)"
                     required>
-                <md-option *ngFor="let name of nameList" [value]="name">
+                <md-option *ngFor="let name of nameList" [value]="id">
                     {{ name }}
                 </md-option>
-            </md-select>
+            </md-select> 
             <div class="md-slide-toggle">
                 <md-slide-toggle
                         color="warn"
+                        [checked]="skill.recycling"
                         (change)="clickRecycling($event)">
                     Reciclagem
                 </md-slide-toggle>
+                
             </div>
-            <my-date-picker
+           
+           <my-date-picker
                     placeholder="Data da Realização"
                     name="mydate"
                     [options]="myDatePickerOptions"
-                    [ngModel]="skill.validityStart"
-                    (ngModelChange)="setValidityStart($event)"
+                    [(ngModel)]="skill.realizationDate"
                     required>
             </my-date-picker>
             <md-input-container>
@@ -38,15 +40,14 @@
                         min="0"
                         type="number"
                         (input)="setPeriodicity($event.target.valueAsNumber)"
-                        [disabled]="!skill.validityStart"
                         [ngModel]="skill.periodicity">
                 <span mdSuffix>MESES</span>
             </md-input-container>
             <div class="grid-row-75">
-                <md-radio-group [(ngModel)]="skill.isApt">
+                <md-radio-group [(ngModel)]="skill.able">
                     <p>Situação</p>
-                    <md-radio-button value="true">Apto</md-radio-button>
-                    <md-radio-button value="false">Inapto</md-radio-button>
+                    <md-radio-button [value]="true">Apto</md-radio-button>
+                    <md-radio-button [value]="false">Inapto</md-radio-button>
                 </md-radio-group>
             </div>
             <div class="grid-row-auto align-items">
