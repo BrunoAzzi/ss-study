@@ -33,31 +33,30 @@ export class SkillComponent implements OnInit {
       //  this.skill = new Qualification(this.skill);
        const constRealizationDate     = moment(this.skill.realizationDate, 'YYYY-MM-DD HH:mm:ss');
        this.skill.realizationDate =  { date: { year: constRealizationDate.year(), month: constRealizationDate.month() + 1, day: constRealizationDate.date() } };
-          console.log("Skill", this.skill);
     }
 
     onFileSelect(event) {}
 
-   /*  setPeriodicity(periodicity: number) {
+     setPeriodicity(periodicity: number) {
         if (periodicity) {
             this.skill.periodicity = periodicity;
             this.updateDueDate();
         }
-    } */
-/* 
+    } 
+
     setValidityStart(event) {
         this.skill.realizationDate = event.jsdate;
         this.updateDueDate();
-    } */
+    } 
 
-    /* updateDueDate() {
-        const validityStart = new Date(this.skill.realizationDate.getTime());
+     updateDueDate() {
+        const validityStart = new Date();
         const newMonthValue = validityStart.getMonth() + this.skill.periodicity;
         validityStart.setMonth(newMonthValue);
         this.skill.dueDate = validityStart;
         this.checkOverdue();
     }
- */
+ 
     checkOverdue() {
         const today = new Date();
         if (this.skill.dueDate.getTime() < today.getTime()) {

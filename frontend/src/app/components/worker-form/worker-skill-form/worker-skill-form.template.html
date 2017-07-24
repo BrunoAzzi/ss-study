@@ -6,7 +6,7 @@
                 <md-icon *ngIf="skill.overdue === false" class="success"> check_circle</md-icon>
                 <md-icon *ngIf="skill.overdue === undefined" class="disabled"> panorama_fish_eye</md-icon>
             </div>
-         <!--    <md-select
+             <md-select
                     #skillName
                     placeholder="Habilitação"
                     (change)="toggleName(skillName.selected.value)"
@@ -14,7 +14,7 @@
                 <md-option *ngFor="let name of nameList" [value]="id">
                     {{ name }}
                 </md-option>
-            </md-select> -->
+            </md-select> 
             <div class="md-slide-toggle">
                 <md-slide-toggle
                         color="warn"
@@ -25,14 +25,13 @@
                 
             </div>
            
-            <!-- <my-date-picker
+           <my-date-picker
                     placeholder="Data da Realização"
                     name="mydate"
                     [options]="myDatePickerOptions"
                     [(ngModel)]="skill.realizationDate"
-                    (ngModelChange)="setValidityStart($event)"
                     required>
-            </my-date-picker> -->
+            </my-date-picker>
             <md-input-container>
                 <input
                         mdInput
@@ -41,7 +40,6 @@
                         min="0"
                         type="number"
                         (input)="setPeriodicity($event.target.valueAsNumber)"
-                        [disabled]="!skill.validityStart"
                         [ngModel]="skill.periodicity">
                 <span mdSuffix>MESES</span>
             </md-input-container>
