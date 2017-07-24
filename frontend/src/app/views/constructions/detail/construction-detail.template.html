@@ -16,7 +16,12 @@
                 <span>Trabalhadores</span>
             </a>
         </li>
-        <!--<li><a routerLink="/constructions">Atividades</a></li>
+        <li>
+            <a [ngClass]="{active: activeRoute('activities')}" routerLink="/constructions/{{ service.construction.id }}/activities">
+                <span>Atividades</span>
+            </a>
+        </li>
+        <!--
         <li><a routerLink="/constructions">Relatórios</a></li>
         <li><a routerLink="/constructions">Documentos</a></li>-->
     </ul>

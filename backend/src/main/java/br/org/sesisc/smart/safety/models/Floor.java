@@ -13,7 +13,9 @@ public class Floor {
     private long id;
 
     private String name;
+
     private String acronym;
+
     private String imageUrl;
     private String imageFileName;
 
