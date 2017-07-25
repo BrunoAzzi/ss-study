@@ -11,13 +11,15 @@ import { User } from './../models/user.model';
 @Injectable()
 export class SessionsService {
 
-  constructor(private service: HttpClientService) {}
+  constructor(private service: HttpClientService) {
+      this.service.setAuthUrl();
+  }
 
     login(email: string, password: string) {
         return this.service.post('/sessions', JSON.stringify({ email: email, password: password }))
             .map((obj) => {
                 if (obj.user && obj.user.token) {
-                    Cookie.set('auth_token', obj.user.token);                    
+                    Cookie.set('auth_token', obj.user.token);
                     localStorage.setItem('auth_current', JSON.stringify(obj.user));
                 }
             });

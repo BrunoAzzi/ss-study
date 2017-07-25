@@ -2,15 +2,22 @@ import { Injectable } from '@angular/core';
 import { Headers, Http, Response } from '@angular/http';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/map';
-import {environment} from '../../environments/environment';
+import { environment } from '../../environments/environment';
+
 
 @Injectable()
 export class HttpClientService {
 
-  protected url = environment.backendUrl;
+  private url = environment.backendUrl;
   private authToken;
+  private http: Http;
+  private router: Router;
 
-  constructor(private http: Http, private router: Router) {}
+  constructor() { }
+
+  setAuthUrl() {
+    this.url = environment.authUrl;
+  }
 
   standardHeaders() {
     const headers = new Headers();

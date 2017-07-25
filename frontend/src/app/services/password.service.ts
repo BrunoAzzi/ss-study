@@ -8,7 +8,9 @@ import { Cookie } from 'ng2-cookies/ng2-cookies';
 @Injectable()
 export class PasswordService {
 
-  constructor(private service: HttpClientService) { }
+  constructor(private service: HttpClientService) {
+    this.service.setAuthUrl();
+  }
 
   startRecover(email: String) {
     return this.service.post('/password/recover', JSON.stringify({ email: email }))
