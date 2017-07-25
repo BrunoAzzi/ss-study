@@ -3,14 +3,22 @@ import { Headers, Http, Response } from '@angular/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
+import { environment } from '../../environments/environment';
+
 
 @Injectable()
 export class HttpClientService {
 
-  protected url = "http://localhost:8080";
-  private authToken
+  private url = environment.backendUrl;
+  private authToken;
+  private http: Http;
+  private router: Router;
 
-  constructor(private http: Http, private router: Router) {}
+  constructor() { }
+
+  setAuthUrl() {
+    this.url = environment.authUrl;
+  }
 
   standardHeaders() {
     var headers = new Headers();
