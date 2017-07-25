@@ -1,5 +1,5 @@
 .grid-container {
-    //border: 1px solid #3C3C3C;
+   // border: 1px solid #3C3C3C;
     width:                   100%;
     display:                 inline-flex;
     justify-content:         space-between;
@@ -16,7 +16,7 @@
     .grid-column-50,
     .grid-column-25,
     .grid-column-auto {
-        //border: 1px solid #7ab000;
+      //  border: 1px solid #7ab000;
         margin-right: 25px;
         &:first-child {
             margin-bottom: 25px;
@@ -35,7 +35,7 @@
         .grid-row-50,
         .grid-row-25,
         .grid-row-auto {
-            //border: 1px solid #4c9fff;
+    //        border: 1px solid #4c9fff;
             min-height: 50px;
             display:    inline-flex;
             &:last-child {

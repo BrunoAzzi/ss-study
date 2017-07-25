@@ -26,14 +26,11 @@ export class WorkerQualificationsFormComponent implements OnInit {
         if (this.worker.qualifications.length === 0) {
             this.worker.qualifications.push(new Qualification());
         }
-       // this.skillNames = this.qualitiesService.getQualitiesList().startWith([]);
-       this.skillNames =  [
-        'NR 32',
-        'NR 35',
-        'NR 18',
-        'NR 33',
-    ]; 
-        this.maximunLength = this.skillNames.length;
+       this.qualitiesService.getQualitiesList().subscribe(data => 
+                {
+                   this.skillNames = data;              
+                }     
+            )       
     }
 
     addSkill() {
@@ -46,14 +43,4 @@ export class WorkerQualificationsFormComponent implements OnInit {
         if (index > -1) this.worker.qualifications.splice(index, 1);
     }
 
-
-
-
-   /*  skillNames =
-    [
-        'NR 32',
-        'NR 35',
-        'NR 18',
-        'NR 33',
-    ];  */
 }
