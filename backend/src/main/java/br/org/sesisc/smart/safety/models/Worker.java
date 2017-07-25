@@ -44,7 +44,7 @@ public class Worker {
     private boolean cipeiro;
     private String laborCipa;
     private boolean brigade;
-    private java.util.Date mandateBegin;
+    private Date mandateBegin;
     private Date mandateEnd;
 
     private String allergies;

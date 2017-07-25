@@ -12,7 +12,7 @@ import * as moment from 'moment';
 
 export class SkillComponent implements OnInit {
     @Input() skill: Qualification;
-    @Input() nameList: any;
+    @Input() skillNames: any;
     @Input() form: any;
 
     @Output() skillNamesChange = new EventEmitter();
@@ -30,7 +30,6 @@ export class SkillComponent implements OnInit {
     };
      
     ngOnInit() {
-      //  this.skill = new Qualification(this.skill);
        const constRealizationDate     = moment(this.skill.realizationDate, 'YYYY-MM-DD HH:mm:ss');
        this.skill.realizationDate =  { date: { year: constRealizationDate.year(), month: constRealizationDate.month() + 1, day: constRealizationDate.date() } };
     }
@@ -84,21 +83,17 @@ export class SkillComponent implements OnInit {
     removeMyself() {
         this.addNameInList(this.formerName);
         this.removed.emit(this);
-    }
-
+    } 
+ 
     removeNameInList(name: string) {
-        const index = this.nameList.indexOf(name);
-        if (index > -1) this.nameList.splice(index, 1);
+        const index = this.skillNames.indexOf(name);
+        if (index > -1) this.skillNames.splice(index, 1);
     }
 
     addNameInList(name: string) {
-        if (name) this.nameList.push(name);
+        if (name) this.skillNames.push(name);
     }
 
-    set skillNames(val) {
-        this.nameList = val;
-        this.skillNamesChange.emit(this.nameList);
-    }
 
     clickRecycling(value) {
         value.checked === true
@@ -106,8 +101,5 @@ export class SkillComponent implements OnInit {
             : this.recyclingMdSlideToggle = false;
     }
 
-    @Input()
-    get skillNames() {
-        return this.nameList;
-    }
+
 }
