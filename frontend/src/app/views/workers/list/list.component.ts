@@ -1,5 +1,6 @@
 import { Observable } from 'rxjs/Observable';
-import { Component } from '@angular/core';
+import 'rxjs/add/operator/startWith';
+import {Component, OnInit} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Worker } from '../../../models/worker.model';
 import { WorkerService } from '../../../services/worker.service';
@@ -9,7 +10,7 @@ import { WorkerService } from '../../../services/worker.service';
     styleUrls:   ['./list.component.scss'],
 })
 
-export class WorkerListComponent {
+export class WorkerListComponent implements OnInit {
     LAST_SAVED  = 'last_saved';
     FIRST_SAVED = 'first_saved';
 
