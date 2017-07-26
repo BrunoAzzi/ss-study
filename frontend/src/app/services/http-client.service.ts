@@ -10,10 +10,8 @@ export class HttpClientService {
 
   private url = environment.backendUrl;
   private authToken;
-  private http: Http;
-  private router: Router;
-
-  constructor() { }
+  
+  constructor(private http: Http, private router: Router) { }
 
   setAuthUrl() {
     this.url = environment.authUrl;
