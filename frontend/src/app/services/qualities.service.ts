@@ -1,5 +1,5 @@
 import { HttpClientService } from './http-client.service';
-import { Quality } from '../models/Quality.model';
+import { Quality } from '../models/quality.model';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
